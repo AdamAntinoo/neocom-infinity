@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.config.interceptor;
+package org.dimensinfin.eveonline.neocom.infinity.core.config.interceptor;
 
 import java.time.Duration;
 import java.time.Instant;

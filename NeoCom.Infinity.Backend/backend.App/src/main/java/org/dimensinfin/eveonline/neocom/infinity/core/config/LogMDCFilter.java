@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.config;
+package org.dimensinfin.eveonline.neocom.infinity.core.config;
 
 import java.io.IOException;
 import java.util.UUID;

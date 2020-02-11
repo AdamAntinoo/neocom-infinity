@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.serializer;
+package org.dimensinfin.eveonline.neocom.infinity.core.serializer;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
