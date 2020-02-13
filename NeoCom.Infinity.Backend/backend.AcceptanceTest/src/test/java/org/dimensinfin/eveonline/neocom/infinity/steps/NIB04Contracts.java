@@ -61,7 +61,7 @@ public class NIB04Contracts extends SupportSteps {
 				Assert.assertEquals( row.get( JWT_TOKEN ), responseValidation.getJwtToken() );
 				Assert.assertEquals( row.get( CREDENTIAL ), responseValidation.getCredential().getJsonClass() );
 				Assert.assertEquals( Integer.valueOf( row.get( ACCOUNT_ID ) ).intValue(),
-						responseValidation.getCredential().getAccountId() );
+						responseValidation.getCredential().getAccountId().intValue() );
 				Assert.assertEquals( Integer.valueOf( row.get( CORPORATION_ID ) ).intValue(),
 						responseValidation.getCredential().getCorporationId() );
 				Assert.assertEquals( row.get( ACCOUNT_NAME ), responseValidation.getCredential().getAccountName() );

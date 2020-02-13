@@ -12,19 +12,19 @@ import org.apache.tomcat.util.codec.binary.Base64;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.dimensinfin.eveonline.neocom.infinity.support.NeoComWorld;
+import org.dimensinfin.eveonline.neocom.infinity.core.security.JwtPayload;
 import org.dimensinfin.eveonline.neocom.infinity.support.ConverterContainer;
+import org.dimensinfin.eveonline.neocom.infinity.support.NeoComWorld;
 import org.dimensinfin.eveonline.neocom.infinity.support.RequestType;
-import org.dimensinfin.eveonline.neocom.infinity.security.JwtPayload;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import static org.dimensinfin.eveonline.neocom.infinity.security.SecurityConstants.SECRET;
-import static org.dimensinfin.eveonline.neocom.infinity.security.SecurityConstants.TOKEN_ACCOUNT_NAME_FIELD_NAME;
-import static org.dimensinfin.eveonline.neocom.infinity.security.SecurityConstants.TOKEN_CORPORATION_ID_FIELD_NAME;
-import static org.dimensinfin.eveonline.neocom.infinity.security.SecurityConstants.TOKEN_PILOT_ID_FIELD_NAME;
-import static org.dimensinfin.eveonline.neocom.infinity.security.SecurityConstants.TOKEN_PREFIX;
-import static org.dimensinfin.eveonline.neocom.infinity.security.SecurityConstants.TOKEN_UNIQUE_IDENTIFIER_FIELD_NAME;
+import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.SECRET;
+import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.TOKEN_ACCOUNT_NAME_FIELD_NAME;
+import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.TOKEN_CORPORATION_ID_FIELD_NAME;
+import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.TOKEN_PILOT_ID_FIELD_NAME;
+import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.TOKEN_PREFIX;
+import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.TOKEN_UNIQUE_IDENTIFIER_FIELD_NAME;
 
 public class NIB01ValidateAuthorizationToken extends SupportSteps {
 	private static final String SUB = "sub";
