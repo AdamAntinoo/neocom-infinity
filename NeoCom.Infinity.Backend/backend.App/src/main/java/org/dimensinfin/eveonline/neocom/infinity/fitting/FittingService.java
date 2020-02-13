@@ -12,6 +12,8 @@ import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.domain.Fitting;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdFittings200Ok;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataProviderWrapper;
+import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.ErrorInfo;
+import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.NeoComNotFoundException;
 import org.dimensinfin.eveonline.neocom.infinity.core.security.CredentialDetails;
 import org.dimensinfin.eveonline.neocom.infinity.core.security.CredentialDetailsService;
 import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticationProvider;
@@ -20,30 +22,27 @@ import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticat
 public class FittingService {
 	private final ESIDataProviderWrapper esiDataAdapter;
 	private final CredentialDetailsService credentialDetailsService;
-	private NeoComAuthenticationProvider neoComAuthenticationProvider;
+	private final NeoComAuthenticationProvider neoComAuthenticationProvider;
 
 	@Autowired
 	public FittingService( final ESIDataProviderWrapper esiDataAdapter,
-	                       final CredentialDetailsService credentialDetailsService ) {
+	                       final CredentialDetailsService credentialDetailsService,
+	                       final NeoComAuthenticationProvider neoComAuthenticationProvider ) {
 		this.esiDataAdapter = esiDataAdapter;
 		this.credentialDetailsService = credentialDetailsService;
+		this.neoComAuthenticationProvider = neoComAuthenticationProvider;
 	}
-
-//	public ResponseEntity<List<Fitting>> getFittingList( final int corporationId ) {
-//		final GetCorporationsCorporationIdOk corporationData = this.esiDataAdapter.getCorporationsCorporationId( corporationId );
-//		if (null == corporationData)
-//			throw new NeoComNotFoundException( ErrorInfo.TARGET_NOT_FOUND, "Pilot", Integer.valueOf( corporationId ).toString() );
-//		return new ResponseEntity<Corporation>( this.obtainCorporationData( corporationId ), HttpStatus.OK );
-//	}
 
 	public ResponseEntity<List<Fitting>> getPilotFittings( final Integer authorizedPilotId ) {
 		final String uniqueId = this.neoComAuthenticationProvider.getAuthenticatedUniqueId();
-		final Credential credential = ((CredentialDetails)this.credentialDetailsService.loadUserByUsername( uniqueId )).getCredential();
+		final Credential credential = ((CredentialDetails) this.credentialDetailsService.loadUserByUsername( uniqueId )).getCredential();
 		final List<GetCharactersCharacterIdFittings200Ok> fittings = this.esiDataAdapter.getCharactersCharacterIdFittings( credential );
-		final List<Fitting> fittingList = new ArrayList<>( fittings.size() );
-		for ( GetCharactersCharacterIdFittings200Ok esiFitting : fittings ){
-			fittingList.add( new Fitting.Builder().withFittingData( esiFitting ).build());
+		if ( null== fittings)throw new NeoComNotFoundException( ErrorInfo.ESI_DATA_NOT_FOUND, "Fittings",
+				Integer.toString( credential.getAccountId() ) );
+		final List<Fitting> fittingList = new ArrayList<>(  );
+		for (GetCharactersCharacterIdFittings200Ok esiFitting : fittings) {
+			fittingList.add( new Fitting.Builder().withFittingData( esiFitting ).build() );
 		}
-		return new ResponseEntity<>(fittingList, HttpStatus.OK );
+		return new ResponseEntity<>( fittingList, HttpStatus.OK );
 	}
 }

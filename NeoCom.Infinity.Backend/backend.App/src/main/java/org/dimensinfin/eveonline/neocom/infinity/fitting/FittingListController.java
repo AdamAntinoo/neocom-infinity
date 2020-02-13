@@ -43,7 +43,7 @@ public class FittingListController extends NeoComController {
 		this.neoComAuthenticationProvider = neoComAuthenticationProvider;
 	}
 
-	@GetMapping(path = "/fittings/pilot",
+	@GetMapping(path = "/fittings/pilot/{pilotId}",
 			consumes = "application/json",
 			produces = "application/json")
 	public ResponseEntity<List<Fitting>> getPilotFittings( @PathVariable final Integer pilotId ) {
