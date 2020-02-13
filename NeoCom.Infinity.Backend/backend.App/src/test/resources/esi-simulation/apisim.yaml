@@ -380,3 +380,20 @@ response:
   body:
     type: text
     file: "${sim.path}/esiresponses/alliances.json"
+
+---
+
+simlet: character-fittings
+
+request:
+  - method: GET
+  - uriPathPattern: "/characters/{characterId}/fittings/"
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body:
+    type: text
+    file: "${sim.path}/esiresponses/fittings.json"
