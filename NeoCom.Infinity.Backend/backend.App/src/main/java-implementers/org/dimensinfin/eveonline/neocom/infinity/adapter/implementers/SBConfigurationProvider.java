@@ -9,7 +9,7 @@ import java.util.Properties;
 
 import com.annimon.stream.Stream;
 
-import org.dimensinfin.eveonline.neocom.adapters.AConfigurationProvider;
+import org.dimensinfin.eveonline.neocom.adapter.AConfigurationProvider;
 
 public class SBConfigurationProvider extends AConfigurationProvider {
 	protected void readAllProperties() throws IOException {

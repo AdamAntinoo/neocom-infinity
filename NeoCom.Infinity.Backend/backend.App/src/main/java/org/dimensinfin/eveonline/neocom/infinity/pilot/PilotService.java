@@ -7,16 +7,16 @@ import org.springframework.stereotype.Service;
 
 import org.dimensinfin.eveonline.neocom.domain.Pilot;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdOk;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataAdapterWrapper;
+import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataProviderWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.ErrorInfo;
 import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.NeoComNotFoundException;
 
 @Service
 public class PilotService {
-	private ESIDataAdapterWrapper esiDataAdapter;
+	private ESIDataProviderWrapper esiDataAdapter;
 
 	@Autowired
-	public PilotService( final ESIDataAdapterWrapper esiDataAdapter ) {
+	public PilotService( final ESIDataProviderWrapper esiDataAdapter ) {
 		this.esiDataAdapter = esiDataAdapter;
 	}
 

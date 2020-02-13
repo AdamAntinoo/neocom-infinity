@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.dimensinfin.eveonline.neocom.adapters.ESIDataAdapter;
 import org.dimensinfin.eveonline.neocom.infinity.core.NeoComController;
 import org.dimensinfin.eveonline.neocom.infinity.universe.client.v1.ServerStatus;
+import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 
 @RestController
 @CrossOrigin()
@@ -33,7 +33,7 @@ public class UniverseController extends NeoComController {
 	public ResponseEntity<ServerStatus> getServerStatus( @PathVariable final Optional<String> dataSource ) {
 //		logger.info( ">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/server/datasource/{}", dataSource );
 		String server;
-		if (!dataSource.isPresent()) server = ESIDataAdapter.DEFAULT_ESI_SERVER;
+		if (!dataSource.isPresent()) server = ESIDataProvider.DEFAULT_ESI_SERVER;
 		else server = dataSource.get();
 		return this.universeService.getServerStatus( server );
 	}

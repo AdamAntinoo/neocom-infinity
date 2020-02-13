@@ -11,7 +11,7 @@ import org.dimensinfin.eveonline.neocom.domain.Pilot;
 import org.dimensinfin.eveonline.neocom.infinity.core.NeoComController;
 import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.ErrorInfo;
 import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.NeoComAuthorizationException;
-import org.dimensinfin.eveonline.neocom.infinity.security.NeoComAuthenticationProvider;
+import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticationProvider;
 
 @RestController
 @CrossOrigin()
@@ -32,7 +32,6 @@ public class PilotController extends NeoComController {
 			consumes = "application/json",
 			produces = "application/json")
 	public ResponseEntity<Pilot> getPilotData( @PathVariable final Integer pilotId ) {
-//		logger.info( ">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/neocom/pilots/{}", pilotId );
 		final Integer authorizedPilotId = this.neoComAuthenticationProvider.getAuthenticatedPilot();
 		if (authorizedPilotId.intValue() != pilotId.intValue())
 			throw new NeoComAuthorizationException( ErrorInfo.PILOT_ID_NOT_AUTHORIZED );

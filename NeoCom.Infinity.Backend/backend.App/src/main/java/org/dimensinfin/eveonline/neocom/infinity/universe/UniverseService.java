@@ -5,15 +5,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataAdapterWrapper;
+import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataProviderWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.universe.client.v1.ServerStatus;
 
 @Service
 public class UniverseService {
-	private ESIDataAdapterWrapper esiDataAdapter;
+	private ESIDataProviderWrapper esiDataAdapter;
 
 	@Autowired
-	public UniverseService( final ESIDataAdapterWrapper esiDataAdapter ) {
+	public UniverseService( final ESIDataProviderWrapper esiDataAdapter ) {
 		this.esiDataAdapter = esiDataAdapter;
 	}
 

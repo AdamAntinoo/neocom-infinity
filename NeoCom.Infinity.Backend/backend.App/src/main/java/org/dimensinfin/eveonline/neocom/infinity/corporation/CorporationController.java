@@ -13,8 +13,7 @@ import org.dimensinfin.eveonline.neocom.domain.Corporation;
 import org.dimensinfin.eveonline.neocom.infinity.core.NeoComController;
 import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.ErrorInfo;
 import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.NeoComAuthorizationException;
-import org.dimensinfin.eveonline.neocom.infinity.security.NeoComAuthenticationProvider;
-//import org.dimensinfin.eveonline.neocom.infinity.security.NeoComAuthenticationProvider;
+import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticationProvider;
 
 @RestController
 @CrossOrigin()
@@ -35,8 +34,6 @@ public class CorporationController extends NeoComController {
 			consumes = "application/json",
 			produces = "application/json")
 	public ResponseEntity<Corporation> getCorporationData( @PathVariable final Integer corporationId ) {
-//		logger.info( ">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/api/v1/neocom/corporations/{}",
-//				corporationId );
 		// Check corporation identifier access is authorized.
 		try {
 			final Integer authorizedCorporationId = this.neoComAuthenticationProvider.getAuthenticatedCorporation();

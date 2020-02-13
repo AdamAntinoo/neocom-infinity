@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
-import org.dimensinfin.eveonline.neocom.adapters.ESIDataAdapter;
+import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 
 @Component
 public class ValidateAuthorizationTokenRequest {
@@ -30,7 +30,7 @@ public class ValidateAuthorizationTokenRequest {
 	public String getDataSourceName() {
 		if (this.dataSource.isPresent())
 			return this.dataSource.get();
-		else return ESIDataAdapter.DEFAULT_ESI_SERVER;
+		else return ESIDataProvider.DEFAULT_ESI_SERVER;
 	}
 
 	// - B U I L D E R

@@ -1,10 +1,10 @@
 package org.dimensinfin.eveonline.neocom.infinity.authorization;
 
-import org.dimensinfin.eveonline.neocom.adapters.ESIDataAdapter;
 import org.dimensinfin.eveonline.neocom.auth.TokenTranslationResponse;
 import org.dimensinfin.eveonline.neocom.auth.VerifyCharacterResponse;
 import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.ErrorInfo;
 import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.NeoComSBException;
+import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 
 public class TokenVerification {
 	private String authCode;
@@ -18,7 +18,7 @@ public class TokenVerification {
 	}
 
 	public String getDataSource() {
-		if ( null == this.dataSource) return ESIDataAdapter.DEFAULT_ESI_SERVER;
+		if ( null == this.dataSource) return ESIDataProvider.DEFAULT_ESI_SERVER;
 		return this.dataSource;
 	}
 

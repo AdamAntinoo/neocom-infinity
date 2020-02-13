@@ -1,6 +1,7 @@
-package org.dimensinfin.eveonline.neocom.infinity.security;
+package org.dimensinfin.eveonline.neocom.infinity.core.security;
 
 import java.util.Collection;
+import java.util.Objects;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,6 +10,11 @@ import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 
 public class CredentialDetails implements UserDetails {
 	private Credential credential;
+
+	public Credential getCredential() {
+		Objects.requireNonNull( this.credential );
+		return this.credential;
+	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

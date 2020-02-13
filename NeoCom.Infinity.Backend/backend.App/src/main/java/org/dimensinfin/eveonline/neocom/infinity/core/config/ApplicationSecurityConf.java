@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.security;
+package org.dimensinfin.eveonline.neocom.infinity.core.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -12,8 +12,12 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import static org.dimensinfin.eveonline.neocom.infinity.security.SecurityConstants.LOGIN_VERIFICATION_URL;
-import static org.dimensinfin.eveonline.neocom.infinity.security.SecurityConstants.SERVER_STATUS_URL;
+import org.dimensinfin.eveonline.neocom.infinity.core.security.CredentialDetailsService;
+import org.dimensinfin.eveonline.neocom.infinity.core.security.JWTAuthorizationFilter;
+import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticationProvider;
+
+import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.LOGIN_VERIFICATION_URL;
+import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.SERVER_STATUS_URL;
 
 @Configuration
 @EnableWebSecurity

@@ -7,18 +7,18 @@ import org.springframework.stereotype.Service;
 
 import org.dimensinfin.eveonline.neocom.domain.Corporation;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCorporationsCorporationIdOk;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataAdapterWrapper;
+import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataProviderWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.ErrorInfo;
 import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.NeoComNotFoundException;
 import org.dimensinfin.eveonline.neocom.infinity.pilot.PilotService;
 
 @Service
 public class CorporationService {
-	private ESIDataAdapterWrapper esiDataAdapter;
+	private ESIDataProviderWrapper esiDataAdapter;
 	private final PilotService pilotService;
 
 	@Autowired
-	public CorporationService( final ESIDataAdapterWrapper esiDataAdapter,
+	public CorporationService( final ESIDataProviderWrapper esiDataAdapter,
 	                           final PilotService pilotService ) {
 		this.esiDataAdapter = esiDataAdapter;
 		this.pilotService = pilotService;
@@ -27,8 +27,8 @@ public class CorporationService {
 	public ResponseEntity<Corporation> getCorporationData( final int corporationId ) {
 		final GetCorporationsCorporationIdOk corporationData = this.esiDataAdapter.getCorporationsCorporationId( corporationId );
 		if (null == corporationData)
-			throw new NeoComNotFoundException( ErrorInfo.TARGET_NOT_FOUND, "Pilot", Integer.valueOf( corporationId ).toString() );
-		return new ResponseEntity<Corporation>( this.obtainCorporationData( corporationId ), HttpStatus.OK );
+			throw new NeoComNotFoundException( ErrorInfo.TARGET_NOT_FOUND, "Pilot", Integer.toString( corporationId ) );
+		return new ResponseEntity<>( this.obtainCorporationData( corporationId ), HttpStatus.OK );
 	}
 
 	public Corporation obtainCorporationData( final int corporationId ) {

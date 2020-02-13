@@ -13,7 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import org.dimensinfin.eveonline.neocom.adapters.ESIDataAdapter;
 import org.dimensinfin.eveonline.neocom.auth.TokenRequestBody;
 import org.dimensinfin.eveonline.neocom.auth.TokenTranslationResponse;
 import org.dimensinfin.eveonline.neocom.auth.VerifyCharacterResponse;
@@ -21,12 +20,13 @@ import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdOk;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.ConfigurationProviderWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.CredentialRepositoryWrapper;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataAdapterWrapper;
+import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataProviderWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.core.NeoComService;
 import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.ErrorInfo;
 import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.NeoComSBException;
+import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 
 import okhttp3.CertificatePinner;
 import okhttp3.OkHttpClient;
@@ -38,13 +38,13 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
-import static org.dimensinfin.eveonline.neocom.infinity.security.SecurityConstants.ISSUER;
-import static org.dimensinfin.eveonline.neocom.infinity.security.SecurityConstants.SECRET;
-import static org.dimensinfin.eveonline.neocom.infinity.security.SecurityConstants.SUBJECT;
-import static org.dimensinfin.eveonline.neocom.infinity.security.SecurityConstants.TOKEN_ACCOUNT_NAME_FIELD_NAME;
-import static org.dimensinfin.eveonline.neocom.infinity.security.SecurityConstants.TOKEN_CORPORATION_ID_FIELD_NAME;
-import static org.dimensinfin.eveonline.neocom.infinity.security.SecurityConstants.TOKEN_PILOT_ID_FIELD_NAME;
-import static org.dimensinfin.eveonline.neocom.infinity.security.SecurityConstants.TOKEN_UNIQUE_IDENTIFIER_FIELD_NAME;
+import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.ISSUER;
+import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.SECRET;
+import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.SUBJECT;
+import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.TOKEN_ACCOUNT_NAME_FIELD_NAME;
+import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.TOKEN_CORPORATION_ID_FIELD_NAME;
+import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.TOKEN_PILOT_ID_FIELD_NAME;
+import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.TOKEN_UNIQUE_IDENTIFIER_FIELD_NAME;
 
 @Service
 public class AuthorizationService extends NeoComService {
@@ -62,12 +62,12 @@ public class AuthorizationService extends NeoComService {
 	}
 
 	private final ConfigurationProviderWrapper configurationProvider;
-	private final ESIDataAdapterWrapper esiDataAdapter;
+	private final ESIDataProviderWrapper esiDataAdapter;
 	private final CredentialRepositoryWrapper credentialRepository;
 
 	@Autowired
 	public AuthorizationService( final ConfigurationProviderWrapper configurationProvider,
-	                             final ESIDataAdapterWrapper esiDataAdapter,
+	                             final ESIDataProviderWrapper esiDataAdapter,
 	                             final CredentialRepositoryWrapper credentialRepository ) {
 		this.configurationProvider = configurationProvider;
 		this.esiDataAdapter = esiDataAdapter;
@@ -80,7 +80,7 @@ public class AuthorizationService extends NeoComService {
 		this.validateStateMatch( validateAuthorizationTokenRequest.getState() );
 
 		// Create the authentication process data store
-		String dataSource = ESIDataAdapter.DEFAULT_ESI_SERVER; // Set the default server identifier.
+		String dataSource = ESIDataProvider.DEFAULT_ESI_SERVER; // Set the default server identifier.
 		if (validateAuthorizationTokenRequest.getDataSource().isPresent())
 			dataSource = validateAuthorizationTokenRequest.getDataSource().get();
 		final TokenVerification tokenVerificationStore = new TokenVerification()

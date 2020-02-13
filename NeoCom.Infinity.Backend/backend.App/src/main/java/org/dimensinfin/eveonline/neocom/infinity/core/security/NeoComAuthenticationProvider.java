@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.security;
+package org.dimensinfin.eveonline.neocom.infinity.core.security;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,16 +20,6 @@ import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.NeoComSBExcepti
 public class NeoComAuthenticationProvider implements AuthenticationProvider {
 	public static final ObjectMapper jsonMapper = new ObjectMapper();
 
-	@Override
-	public Authentication authenticate( Authentication authentication ) throws AuthenticationException {
-		return new UsernamePasswordAuthenticationToken( authentication.getPrincipal(), null, new ArrayList<>() );
-	}
-
-	@Override
-	public boolean supports( Class<?> authentication ) {
-		return authentication.equals( UsernamePasswordAuthenticationToken.class );
-	}
-
 	public Integer getAuthenticatedCorporation() throws IOException {
 		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		final String payloadBase64 = (String) authentication.getPrincipal();
@@ -41,6 +31,20 @@ public class NeoComAuthenticationProvider implements AuthenticationProvider {
 
 	public Integer getAuthenticatedPilot() {
 		return this.accessDecodedPayload( ErrorInfo.PILOT_ID_NOT_AUTHORIZED ).getPilotId();
+	}
+
+	public String getAuthenticatedUniqueId() {
+		return this.accessDecodedPayload( ErrorInfo.PILOT_ID_NOT_AUTHORIZED ).getUniqueId();
+	}
+
+	@Override
+	public Authentication authenticate( Authentication authentication ) throws AuthenticationException {
+		return new UsernamePasswordAuthenticationToken( authentication.getPrincipal(), null, new ArrayList<>() );
+	}
+
+	@Override
+	public boolean supports( Class<?> authentication ) {
+		return authentication.equals( UsernamePasswordAuthenticationToken.class );
 	}
 
 	private JwtPayload accessDecodedPayload( final ErrorInfo configuredError ) {

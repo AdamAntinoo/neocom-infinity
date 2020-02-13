@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdOk;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.CredentialRepositoryWrapper;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataAdapterWrapper;
+import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataProviderWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.SupportConfigurationProviderWrapper;
@@ -16,7 +16,7 @@ import org.dimensinfin.eveonline.neocom.infinity.support.SupportConfigurationPro
 //@RunWith(MockitoJUnitRunner.class)
 public class AuthorizationServiceTest {
 	private SupportConfigurationProviderWrapper configurationProvider;
-	private ESIDataAdapterWrapper esiDataAdapter;
+	private ESIDataProviderWrapper esiDataAdapter;
 	private CredentialRepositoryWrapper credentialRepository;
 //	@InjectMocks
 	private AuthorizationService authorizationService;
@@ -24,7 +24,7 @@ public class AuthorizationServiceTest {
 	@Before
 	public void setUp() throws Exception {
 		this.configurationProvider = new SupportConfigurationProviderWrapper("default");
-		this.esiDataAdapter = Mockito.mock( ESIDataAdapterWrapper.class );
+		this.esiDataAdapter = Mockito.mock( ESIDataProviderWrapper.class );
 		this.credentialRepository = Mockito.mock( CredentialRepositoryWrapper.class );
 		this.authorizationService = new AuthorizationService( this.configurationProvider,
 		this.esiDataAdapter,

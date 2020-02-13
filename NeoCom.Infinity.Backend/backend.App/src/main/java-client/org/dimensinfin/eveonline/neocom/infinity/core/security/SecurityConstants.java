@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.security;
+package org.dimensinfin.eveonline.neocom.infinity.core.security;
 
 public class SecurityConstants {
 	public static final String ISSUER = "NeoCom.Infinity.Backend";
