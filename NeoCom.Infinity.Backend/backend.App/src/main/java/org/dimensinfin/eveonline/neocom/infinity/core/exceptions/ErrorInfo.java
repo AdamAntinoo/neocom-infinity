@@ -25,7 +25,10 @@ public enum ErrorInfo {
 			"The access to the pilot data is not authorized to the requester credential."		),
 	TARGET_NOT_FOUND( HttpStatus.NOT_FOUND,
 			"neocom.error.authorization.translation",
-			"The entity of class {0} with identifier {1} is not found."  );
+			"The entity of class {0} with identifier {1} is not found."  ),
+	ESI_DATA_NOT_FOUND( HttpStatus.NOT_FOUND,
+			"neocom.error.data.nonexistent",
+			"The requested data of class {0} was not found on the ESI service."  );
 
 	public final String errorMessage;
 	public final HttpStatus status;
