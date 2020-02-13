@@ -14,11 +14,13 @@ public class ESIDataProviderWrapper extends ESIDataProvider {
 	public ESIDataProviderWrapper( final ConfigurationProviderWrapper configurationProvider,
 	                               final FileSystemWrapper fileSystemAdapter,
 	                               final RetrofitFactoryWrapper retrofitFactory,
-	                               final LocationCatalogServiceWrapper locationCatalogService ) {
+	                               final LocationCatalogServiceWrapper locationCatalogService ,
+	                               final StoreCacheManagerWrapper storeCacheManager ) {
 		this.configurationProvider = configurationProvider;
 		this.fileSystemAdapter = fileSystemAdapter;
 		this.retrofitFactory=retrofitFactory;
 		this.locationCatalogService = locationCatalogService;
+		this.storeCacheManager = storeCacheManager;
 	}
 
 	@PostConstruct
@@ -28,7 +30,7 @@ public class ESIDataProviderWrapper extends ESIDataProvider {
 				.withFileSystemAdapter( this.fileSystemAdapter )
 				.withRetrofitFactory( this.retrofitFactory )
 				.withLocationCatalogService( this.locationCatalogService )
-				.withStoreCacheManager(  )
+				.withStoreCacheManager( this.storeCacheManager )
 				.build();
 	}
 }
