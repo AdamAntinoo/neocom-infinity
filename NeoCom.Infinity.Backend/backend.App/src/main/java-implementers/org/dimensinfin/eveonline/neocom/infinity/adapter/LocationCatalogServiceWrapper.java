@@ -5,7 +5,9 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import org.dimensinfin.eveonline.neocom.adapters.LocationCatalogService;
+import org.dimensinfin.eveonline.neocom.adapter.LocationCatalogService;
+import org.dimensinfin.eveonline.neocom.adapter.StoreCacheManager;
+import org.dimensinfin.eveonline.neocom.provider.ESIUniverseDataProvider;
 
 @Component
 public class LocationCatalogServiceWrapper extends LocationCatalogService {
@@ -13,21 +15,29 @@ public class LocationCatalogServiceWrapper extends LocationCatalogService {
 	@Autowired
 	public LocationCatalogServiceWrapper( final ConfigurationProviderWrapper configurationProvider,
 	                                      final FileSystemWrapper fileSystemAdapter,
-//	                                      final SDEDatabaseAdapterWrapper sdeDatabaseAdapter,
-	                                      final LocationRepositoryWrapper locationRepository ) {
+                                          final RetrofitFactoryWrapper retrofitFactory ) {
 		this.configurationProvider = configurationProvider;
 		this.fileSystemAdapter = fileSystemAdapter;
-//		this.sdeDatabaseAdapter = sdeDatabaseAdapter;
-		this.locationRepository = locationRepository;
+		this.retrofitFactory = retrofitFactory;
 	}
 
 	@PostConstruct
 	private void build() {
+		final ESIUniverseDataProvider esiUniverseDataProviderLocal = new ESIUniverseDataProvider.Builder()
+				.withConfigurationProvider( this.configurationProvider )
+				.withFileSystemAdapter( this.fileSystemAdapter )
+				.withRetrofitFactory( this.retrofitFactory )
+				.withStoreCacheManager( new StoreCacheManager.Builder()
+						.withConfigurationProvider( this.configurationProvider )
+						.withFileSystemAdapter( this.fileSystemAdapter )
+						.withRetrofitFactory( this.retrofitFactory )
+						.build() )
+				.build();
 		new LocationCatalogService.Builder( this )
 				.withConfigurationProvider( this.configurationProvider )
 				.withFileSystemAdapter( this.fileSystemAdapter )
-//				.withSDEDatabaseAdapter( this.sdeDatabaseAdapter )
-				.withLocationRepository( this.locationRepository )
+				.withESIUniverseDataProvider( esiUniverseDataProviderLocal )
+				.withRetrofitFactory( this.retrofitFactory )
 				.build();
 	}
 }

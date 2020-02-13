@@ -7,8 +7,7 @@ import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBFileSyst
 
 @Component
 public class FileSystemWrapper extends SBFileSystemAdapter {
-	//
-	private static String DEFAULT_APPLICATION_DIRECTORY = "./NeoCom.Infinity";
+	private static String DEFAULT_APPLICATION_DIRECTORY = "./productionData/NeoCom.Infinity";
 
 	public FileSystemWrapper( @Value("${P.runtime.filesystem.application.directory}") final String defaultApplicationDirectory ) {
 		if (null != defaultApplicationDirectory) this.applicationFolder = defaultApplicationDirectory;
