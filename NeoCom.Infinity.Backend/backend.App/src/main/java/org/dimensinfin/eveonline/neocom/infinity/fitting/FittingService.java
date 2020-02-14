@@ -17,18 +17,19 @@ import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.NeoComNotFoundE
 import org.dimensinfin.eveonline.neocom.infinity.core.security.CredentialDetails;
 import org.dimensinfin.eveonline.neocom.infinity.core.security.CredentialDetailsService;
 import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticationProvider;
+import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 
 @Service
 public class FittingService {
-	private final ESIDataProviderWrapper esiDataAdapter;
+	private final ESIDataProvider esiDataProvider;
 	private final CredentialDetailsService credentialDetailsService;
 	private final NeoComAuthenticationProvider neoComAuthenticationProvider;
 
 	@Autowired
-	public FittingService( final ESIDataProviderWrapper esiDataAdapter,
+	public FittingService( final ESIDataProviderWrapper esiDataProviderWrapper,
 	                       final CredentialDetailsService credentialDetailsService,
 	                       final NeoComAuthenticationProvider neoComAuthenticationProvider ) {
-		this.esiDataAdapter = esiDataAdapter;
+		this.esiDataProvider = esiDataProviderWrapper.getSingleton();
 		this.credentialDetailsService = credentialDetailsService;
 		this.neoComAuthenticationProvider = neoComAuthenticationProvider;
 	}
@@ -36,7 +37,7 @@ public class FittingService {
 	public ResponseEntity<List<Fitting>> getPilotFittings( final Integer authorizedPilotId ) {
 		final String uniqueId = this.neoComAuthenticationProvider.getAuthenticatedUniqueId();
 		final Credential credential = ((CredentialDetails) this.credentialDetailsService.loadUserByUsername( uniqueId )).getCredential();
-		final List<GetCharactersCharacterIdFittings200Ok> fittings = this.esiDataAdapter.getCharactersCharacterIdFittings( credential );
+		final List<GetCharactersCharacterIdFittings200Ok> fittings = this.esiDataProvider.getCharactersCharacterIdFittings( credential );
 		if ( null== fittings)throw new NeoComNotFoundException( ErrorInfo.ESI_DATA_NOT_FOUND, "Fittings",
 				Integer.toString( credential.getAccountId() ) );
 		final List<Fitting> fittingList = new ArrayList<>(  );

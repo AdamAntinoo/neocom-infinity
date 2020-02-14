@@ -10,18 +10,19 @@ import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterI
 import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataProviderWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.ErrorInfo;
 import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.NeoComNotFoundException;
+import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 
 @Service
 public class PilotService {
-	private ESIDataProviderWrapper esiDataAdapter;
+	private ESIDataProvider esiDataProvider;
 
 	@Autowired
-	public PilotService( final ESIDataProviderWrapper esiDataAdapter ) {
-		this.esiDataAdapter = esiDataAdapter;
+	public PilotService( final ESIDataProviderWrapper esiDataAdapterWrapper ) {
+		this.esiDataProvider = esiDataAdapterWrapper.getSingleton();
 	}
 
 	public ResponseEntity<Pilot> getPilotData( final int pilotId ) {
-		final GetCharactersCharacterIdOk pilotData = this.esiDataAdapter.getCharactersCharacterId( pilotId );
+		final GetCharactersCharacterIdOk pilotData = this.esiDataProvider.getCharactersCharacterId( pilotId );
 		if (null == pilotData)
 			throw new NeoComNotFoundException( ErrorInfo.TARGET_NOT_FOUND, "Pilot", Integer.valueOf( pilotId).toString() );
 		return new ResponseEntity<Pilot>( this.obtainPilotData( pilotId ), HttpStatus.OK );
@@ -29,13 +30,13 @@ public class PilotService {
 
 	public Pilot obtainPilotData( final int pilotId ) {
 		// Access the rest of the pilot's esi data from the service.
-		final GetCharactersCharacterIdOk pilotData = this.esiDataAdapter.getCharactersCharacterId( pilotId );
+		final GetCharactersCharacterIdOk pilotData = this.esiDataProvider.getCharactersCharacterId( pilotId );
 		final Pilot pilot = new Pilot.Builder()
 				.withPilotIdentifier( pilotId )
 				.withCharacterPublicData( pilotData )
-				.withRaceData( this.esiDataAdapter.searchSDERace( pilotData.getRaceId() ) )
-				.withAncestryData( this.esiDataAdapter.searchSDEAncestry( pilotData.getAncestryId() ) )
-				.withBloodlineData( this.esiDataAdapter.searchSDEBloodline( pilotData.getBloodlineId() ) )
+				.withRaceData( this.esiDataProvider.searchSDERace( pilotData.getRaceId() ) )
+				.withAncestryData( this.esiDataProvider.searchSDEAncestry( pilotData.getAncestryId() ) )
+				.withBloodlineData( this.esiDataProvider.searchSDEBloodline( pilotData.getBloodlineId() ) )
 				.build();
 		return pilot;
 	}

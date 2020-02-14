@@ -62,15 +62,15 @@ public class AuthorizationService extends NeoComService {
 	}
 
 	private final ConfigurationProviderWrapper configurationProvider;
-	private final ESIDataProviderWrapper esiDataAdapter;
+	private final ESIDataProvider esiDataAdapter;
 	private final CredentialRepositoryWrapper credentialRepository;
 
 	@Autowired
 	public AuthorizationService( final ConfigurationProviderWrapper configurationProvider,
-	                             final ESIDataProviderWrapper esiDataAdapter,
+	                             final ESIDataProviderWrapper esiDataAdapterWrapper,
 	                             final CredentialRepositoryWrapper credentialRepository ) {
 		this.configurationProvider = configurationProvider;
-		this.esiDataAdapter = esiDataAdapter;
+		this.esiDataAdapter = esiDataAdapterWrapper.getSingleton();
 		this.credentialRepository = credentialRepository;
 	}
 

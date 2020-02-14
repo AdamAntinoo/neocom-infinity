@@ -12,29 +12,32 @@ import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataProviderWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.SupportConfigurationProviderWrapper;
+import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 
 //@RunWith(MockitoJUnitRunner.class)
 public class AuthorizationServiceTest {
 	private SupportConfigurationProviderWrapper configurationProvider;
-	private ESIDataProviderWrapper esiDataAdapter;
+	private ESIDataProvider esiDataProvider;
+	private ESIDataProviderWrapper esiDataProviderWrapper;
 	private CredentialRepositoryWrapper credentialRepository;
-//	@InjectMocks
 	private AuthorizationService authorizationService;
 
 	@Before
 	public void setUp() throws Exception {
-		this.configurationProvider = new SupportConfigurationProviderWrapper("default");
-		this.esiDataAdapter = Mockito.mock( ESIDataProviderWrapper.class );
+		this.configurationProvider = new SupportConfigurationProviderWrapper( "default" );
+		this.esiDataProvider = Mockito.mock( ESIDataProvider.class );
+		this.esiDataProviderWrapper = Mockito.mock( ESIDataProviderWrapper.class );
+		Mockito.when( this.esiDataProviderWrapper.getSingleton() ).thenReturn( this.esiDataProvider );
 		this.credentialRepository = Mockito.mock( CredentialRepositoryWrapper.class );
 		this.authorizationService = new AuthorizationService( this.configurationProvider,
-		this.esiDataAdapter,
-				this.credentialRepository);
+				this.esiDataProviderWrapper,
+				this.credentialRepository );
 	}
 
 	@Test
 	public void validateAuthorizationToken() {
 		final GetCharactersCharacterIdOk characterIdOkBlock = Mockito.mock( GetCharactersCharacterIdOk.class );
-		Mockito.when( this.esiDataAdapter.getCharactersCharacterId(Mockito.anyInt()) ).thenReturn( characterIdOkBlock );
+		Mockito.when( this.esiDataProvider.getCharactersCharacterId( Mockito.anyInt() ) ).thenReturn( characterIdOkBlock );
 		Mockito.when( characterIdOkBlock.getCorporationId() ).thenReturn( 98384726 );
 		final ValidateAuthorizationTokenRequest validateAuthorizationTokenRequest =
 				new ValidateAuthorizationTokenRequest.Builder()

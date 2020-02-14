@@ -7,20 +7,21 @@ import org.springframework.stereotype.Service;
 
 import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataProviderWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.universe.client.v1.ServerStatus;
+import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 
 @Service
 public class UniverseService {
-	private ESIDataProviderWrapper esiDataAdapter;
+	private ESIDataProvider esiDataProvider;
 
 	@Autowired
-	public UniverseService( final ESIDataProviderWrapper esiDataAdapter ) {
-		this.esiDataAdapter = esiDataAdapter;
+	public UniverseService( final ESIDataProviderWrapper esiDataProviderWrapper ) {
+		this.esiDataProvider = esiDataProviderWrapper.getSingleton();
 	}
 
 	public ResponseEntity<ServerStatus> getServerStatus( final String server ) {
 		return new ResponseEntity<ServerStatus>( new ServerStatus.Builder()
 				.withServer( server )
-				.withStatus( this.esiDataAdapter.getUniverseStatus( server ) )
+				.withStatus( this.esiDataProvider.getUniverseStatus( server ) )
 				.build(), HttpStatus.OK );
 	}
 }

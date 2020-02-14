@@ -1,5 +1,6 @@
 package org.dimensinfin.eveonline.neocom.infinity.adapter;
 
+import java.util.Objects;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,19 +10,27 @@ import org.dimensinfin.eveonline.neocom.adapter.LocationCatalogService;
 import org.dimensinfin.eveonline.neocom.provider.ESIUniverseDataProvider;
 
 @Component
-public class LocationCatalogServiceWrapper extends LocationCatalogService {
-	private StoreCacheManagerWrapper storeCacheManagerLocal;
+public class LocationCatalogServiceWrapper {
+	private final ConfigurationProviderWrapper configurationProvider;
+	private final FileSystemWrapper fileSystemAdapter;
+	private final RetrofitFactoryWrapper retrofitFactoryWrapper;
+	private final StoreCacheManagerWrapper storeCacheManagerWrapper;
+	private LocationCatalogService singleton;
 
 	// - C O N S T R U C T O R S
 	@Autowired
 	public LocationCatalogServiceWrapper( final ConfigurationProviderWrapper configurationProvider,
 	                                      final FileSystemWrapper fileSystemAdapter,
-	                                      final RetrofitFactoryWrapper retrofitFactory,
-	                                      final StoreCacheManagerWrapper storeCacheManager ) {
+	                                      final RetrofitFactoryWrapper retrofitFactoryWrapper,
+	                                      final StoreCacheManagerWrapper storeCacheManagerWrapper ) {
 		this.configurationProvider = configurationProvider;
 		this.fileSystemAdapter = fileSystemAdapter;
-		this.retrofitFactory = retrofitFactory;
-		this.storeCacheManagerLocal = storeCacheManager;
+		this.retrofitFactoryWrapper = retrofitFactoryWrapper;
+		this.storeCacheManagerWrapper = storeCacheManagerWrapper;
+	}
+
+	public LocationCatalogService getSingleton() {
+		return Objects.requireNonNull( this.singleton );
 	}
 
 	@PostConstruct
@@ -29,14 +38,14 @@ public class LocationCatalogServiceWrapper extends LocationCatalogService {
 		final ESIUniverseDataProvider esiUniverseDataProviderLocal = new ESIUniverseDataProvider.Builder()
 				.withConfigurationProvider( this.configurationProvider )
 				.withFileSystemAdapter( this.fileSystemAdapter )
-				.withRetrofitFactory( this.retrofitFactory )
-				.withStoreCacheManager( this.storeCacheManagerLocal )
+				.withRetrofitFactory( this.retrofitFactoryWrapper.getSingleton() )
+				.withStoreCacheManager( this.storeCacheManagerWrapper.getSingleton() )
 				.build();
-		new LocationCatalogService.Builder( this )
+		this.singleton = new LocationCatalogService.Builder(  )
 				.withConfigurationProvider( this.configurationProvider )
 				.withFileSystemAdapter( this.fileSystemAdapter )
 				.withESIUniverseDataProvider( esiUniverseDataProviderLocal )
-				.withRetrofitFactory( this.retrofitFactory )
+				.withRetrofitFactory( this.retrofitFactoryWrapper.getSingleton() )
 				.build();
 	}
 }
