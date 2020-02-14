@@ -10,7 +10,7 @@
         "compodoc": "compodoc -p tsconfig.json --theme laravel",
         "typedoc": "typedoc --mode modules -module commonjs --exclude **/*.spec.ts --out docs/typedoc src/app",
         "start:network": "sudo iptables -t nat -I OUTPUT -p tcp -d 127.0.0.1 --dport 80 -j REDIRECT --to-ports 4200",
-        "start:support": "bash ./support/support-services.sh start | npm run start:network",
+        "start:support": "bash ./support/support-services.sh start",
         "start:dev": "ng serve --progress --proxy-config proxy.conf.json --base-href /app --public-host neocom.infinity.local",
         "start:server": "npm run build:dev && node server.js",
         "stop:support": "bash ./support/support-services.sh stop",
