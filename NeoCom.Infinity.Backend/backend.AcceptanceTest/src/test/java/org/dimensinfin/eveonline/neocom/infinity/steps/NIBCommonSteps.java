@@ -11,15 +11,17 @@ import org.springframework.http.ResponseEntity;
 
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
+import org.dimensinfin.eveonline.neocom.infinity.support.ConverterContainer;
+import org.dimensinfin.eveonline.neocom.infinity.support.CucumberTableConverter;
 import org.dimensinfin.eveonline.neocom.infinity.support.NeoComWorld;
 import org.dimensinfin.eveonline.neocom.infinity.support.RequestType;
 import org.dimensinfin.eveonline.neocom.infinity.support.authorization.rest.v1.AuthorizationFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.support.corporation.rest.v1.CorporationFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.support.corporation.rest.v1.CorporationResponse;
+import org.dimensinfin.eveonline.neocom.infinity.support.fitting.rest.v1.FittingFeignClientV1;
+import org.dimensinfin.eveonline.neocom.infinity.support.fitting.rest.v1.FittingResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.pilot.rest.v1.PilotFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.support.pilot.rest.v1.PilotResponse;
-import org.dimensinfin.eveonline.neocom.infinity.support.ConverterContainer;
-import org.dimensinfin.eveonline.neocom.infinity.support.CucumberTableConverter;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -33,18 +35,21 @@ public class NIBCommonSteps extends SupportSteps {
 	private AuthorizationFeignClientV1 authorizationFeignClient;
 	private CorporationFeignClientV1 corporationFeignClient;
 	private PilotFeignClientV1 pilotFeignClient;
+	private FittingFeignClientV1 fittingFeignClient;
 
 	@Autowired
 	public NIBCommonSteps( final ConverterContainer cucumberTableToRequestConverters,
 	                       final NeoComWorld neocomWorld,
 	                       final AuthorizationFeignClientV1 authorizationFeignClient,
 	                       final CorporationFeignClientV1 corporationFeignClient,
-	                       final PilotFeignClientV1 pilotFeignClient) {
+	                       final PilotFeignClientV1 pilotFeignClient,
+	                       final FittingFeignClientV1 fittingFeignClient ) {
 		super( cucumberTableToRequestConverters );
 		this.neocomWorld = neocomWorld;
 		this.authorizationFeignClient = authorizationFeignClient;
 		this.corporationFeignClient = corporationFeignClient;
-		this.pilotFeignClient=pilotFeignClient;
+		this.pilotFeignClient = pilotFeignClient;
+		this.fittingFeignClient = fittingFeignClient;
 	}
 
 	@Given("a request to the {string} endpoint with the next data")
@@ -65,11 +70,13 @@ public class NIBCommonSteps extends SupportSteps {
 				this.neocomWorld.setCorporationIdentifier( corporationId );
 				break;
 			case GET_PILOT_ENDPOINT_NAME:
+			case GET_PILOTS_FITTINGS_ENDPOINT_NAME:
 				final Map<String, String> rowPilot = cucumberTable.get( 0 );
 				final Integer pilotId = Integer.valueOf( rowPilot.get( PILOT_ID ) );
 				Assert.assertNotNull( pilotId );
 				this.neocomWorld.setPilotIdentifier( pilotId );
 				break;
+
 			default:
 				throw new NotImplementedException( "Request type not implemented." );
 		}
@@ -79,6 +86,7 @@ public class NIBCommonSteps extends SupportSteps {
 	public void the_request_is_processed( final String endpointName ) {
 		final RequestType requestType = RequestType.from( endpointName );
 		final ResponseEntity responseEntity = this.processRequest( requestType );
+		this.neocomWorld.setHttpStatusCode( responseEntity.getStatusCode() );
 		this.neocomWorld.setHttpStatusCodeValue( responseEntity.getStatusCodeValue() );
 	}
 
@@ -86,6 +94,12 @@ public class NIBCommonSteps extends SupportSteps {
 	public void the_response_status_code_is( final Integer httpStatusCodeValue ) {
 		Assert.assertNotNull( this.neocomWorld.getHttpStatusCodeValue() );
 		Assert.assertEquals( httpStatusCodeValue.intValue(), this.neocomWorld.getHttpStatusCodeValue() );
+	}
+
+	@Then("the response status code is {string}")
+	public void the_response_status_code_is( final String httpStatusCode ) {
+		Assert.assertNotNull( this.neocomWorld.getHttpStatusCode() );
+		Assert.assertEquals( httpStatusCode, this.neocomWorld.getHttpStatusCode() );
 	}
 
 	private ResponseEntity processRequest( final RequestType requestType ) {
@@ -120,6 +134,17 @@ public class NIBCommonSteps extends SupportSteps {
 					this.neocomWorld.setPilotResponseEntity( pilotResponseEntity );
 					this.neocomWorld.setPilotResponse( pilotResponseEntity.getBody() );
 					return pilotResponseEntity;
+				case GET_PILOTS_FITTINGS_ENDPOINT_NAME:
+					Assert.assertTrue( this.neocomWorld.getPilotIdentifier().isPresent() );
+					final ResponseEntity<List<FittingResponse>> fittingResponseEntity =
+							this.fittingFeignClient.getPilotFittings(
+									this.neocomWorld.getPilotIdentifier().get(),
+									this.neocomWorld.getJwtAuthorizationToken()
+							);
+					this.neocomWorld.setFittingResponseEntity( fittingResponseEntity );
+					this.neocomWorld.setFittingResponse( fittingResponseEntity.getBody() );
+					return fittingResponseEntity;
+
 				default:
 					throw new NotImplementedException( "Request type not implemented." );
 			}

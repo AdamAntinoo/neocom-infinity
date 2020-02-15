@@ -8,7 +8,8 @@ public enum RequestType {
 	VALIDATE_AUTHORIZATION_TOKEN_ENDPOINT_NAME( "Validate Authorization Token" ),
 	GET_SERVER( " Get Server Status"),
 	GET_CORPORATION_ENDPOINT_NAME( "Get Corporation Data" ),
-	GET_PILOT_ENDPOINT_NAME( "Get Pilot Data" );
+	GET_PILOT_ENDPOINT_NAME( "Get Pilot Data" ),
+	GET_PILOTS_FITTINGS_ENDPOINT_NAME( "Get Pilot Fittings" );
 
 	public static RequestType from( final String code ) {
 		return Arrays.stream( RequestType.values() )

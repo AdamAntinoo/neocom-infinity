@@ -1,6 +1,7 @@
 package org.dimensinfin.eveonline.neocom.infinity.fitting;
 
 import java.util.List;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,8 +29,9 @@ import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticat
  *
  * @author Adam Antinoo
  */
+@SuppressWarnings("SpellCheckingInspection")
 @RestController
-@CrossOrigin()
+@CrossOrigin
 @Validated
 @RequestMapping("/api/v1/neocom")
 public class FittingListController extends NeoComController {
@@ -46,10 +48,10 @@ public class FittingListController extends NeoComController {
 	@GetMapping(path = "/fittings/pilot/{pilotId}",
 			consumes = "application/json",
 			produces = "application/json")
-	public ResponseEntity<List<Fitting>> getPilotFittings( @PathVariable final Integer pilotId ) {
+	public ResponseEntity<List<Fitting>> getPilotFittings( @NotNull @PathVariable final Integer pilotId ) {
 		final Integer authorizedPilotId = this.neoComAuthenticationProvider.getAuthenticatedPilot();
 		if (authorizedPilotId.intValue() != pilotId.intValue())
 			throw new NeoComAuthorizationException( ErrorInfo.PILOT_ID_NOT_AUTHORIZED );
-		return this.fittingService.getPilotFittings( authorizedPilotId );
+		return this.fittingService.getPilotFittings();
 	}
 }

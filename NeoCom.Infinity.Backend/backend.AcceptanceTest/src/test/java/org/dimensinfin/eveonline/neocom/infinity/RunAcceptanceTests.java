@@ -10,5 +10,5 @@ import cucumber.api.junit.Cucumber;
 		features = { "src/test/resources/features" },
 		glue = { "org.dimensinfin.eveonline.neocom.infinity.steps" },
 		plugin = { "pretty", "json:target/cucumber_report.json" },
-		tags = { "not @skip_scenario", "not @front", "not @duplication", "@NIB04.03" })
+		tags = { "not @skip_scenario", "not @front", "not @duplication", "@NIB06.01" })
 public class RunAcceptanceTests {}

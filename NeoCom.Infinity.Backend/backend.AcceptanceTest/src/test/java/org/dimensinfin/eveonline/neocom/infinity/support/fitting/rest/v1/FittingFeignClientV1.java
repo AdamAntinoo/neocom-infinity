@@ -1,6 +1,7 @@
-package org.dimensinfin.eveonline.neocom.infinity.support.pilot.rest.v1;
+package org.dimensinfin.eveonline.neocom.infinity.support.fitting.rest.v1;
 
 import java.io.IOException;
+import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
@@ -16,9 +17,9 @@ import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
 @Component
-public class PilotFeignClientV1 {
-	public ResponseEntity<PilotResponse> getPilotData( final Integer pilotIdentifier,
-	                                                   final String authorizationToken ) throws IOException {
+public class FittingFeignClientV1 {
+	public ResponseEntity<List<FittingResponse>> getPilotFittings( final Integer pilotIdentifier,
+	                                                         final String authorizationToken ) throws IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.registerModule( new JodaModule() );
 		final NeoComApiv1 serviceNeoComApiEndpoints = new Retrofit.Builder()
@@ -26,15 +27,15 @@ public class PilotFeignClientV1 {
 				.addConverterFactory( JacksonConverterFactory.create( mapper ) )
 				.build()
 				.create( NeoComApiv1.class );
-		final Call<PilotResponse> request = serviceNeoComApiEndpoints.getPilotData(
+		final Call<List<FittingResponse>> request = serviceNeoComApiEndpoints.getPilotFittings(
 				"application/json",
 				authorizationToken,
 				pilotIdentifier
 		);
-		final Response<PilotResponse> response = request.execute();
+		final Response<List<FittingResponse>> response = request.execute();
 		if (response.isSuccessful()) {
-			final PilotResponse body = response.body();
-			return new ResponseEntity<PilotResponse>( body, HttpStatus.OK );
+			final List<FittingResponse> body = response.body();
+			return new ResponseEntity<List<FittingResponse>>( body, HttpStatus.OK );
 		} else return new ResponseEntity( HttpStatus.valueOf( response.code() ) );
 	}
 }

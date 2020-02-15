@@ -34,13 +34,13 @@ public class FittingService {
 		this.neoComAuthenticationProvider = neoComAuthenticationProvider;
 	}
 
-	public ResponseEntity<List<Fitting>> getPilotFittings( final Integer authorizedPilotId ) {
+	public ResponseEntity<List<Fitting>> getPilotFittings() {
 		final String uniqueId = this.neoComAuthenticationProvider.getAuthenticatedUniqueId();
 		final Credential credential = ((CredentialDetails) this.credentialDetailsService.loadUserByUsername( uniqueId )).getCredential();
 		final List<GetCharactersCharacterIdFittings200Ok> fittings = this.esiDataProvider.getCharactersCharacterIdFittings( credential );
-		if ( null== fittings)throw new NeoComNotFoundException( ErrorInfo.ESI_DATA_NOT_FOUND, "Fittings",
+		if (null == fittings) throw new NeoComNotFoundException( ErrorInfo.ESI_DATA_NOT_FOUND, "Fittings",
 				Integer.toString( credential.getAccountId() ) );
-		final List<Fitting> fittingList = new ArrayList<>(  );
+		final List<Fitting> fittingList = new ArrayList<>();
 		for (GetCharactersCharacterIdFittings200Ok esiFitting : fittings) {
 			fittingList.add( new Fitting.Builder().withFittingData( esiFitting ).build() );
 		}
