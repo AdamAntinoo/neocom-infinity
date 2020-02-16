@@ -20,6 +20,7 @@ import { Corporation } from '@app/domain/Corporation.domain';
 import { CorporationDataResponse } from '@app/domain/dto/CorporationDataResponse.dto';
 import { Pilot } from '@app/domain/Pilot.domain';
 import { ResponseTransformer } from './support/ResponseTransformer';
+import { Fitting } from '@app/domain/Fitting.domain';
 
 @Injectable({
     providedIn: 'root'
@@ -116,6 +117,9 @@ export class AppStoreService {
     // - P I L O T
     public accessPilot(): Observable<Pilot | Pilot[]> {
         return this.pilotActiveCache.accessData();
+    }
+    public accessPilotFittings(): Observable<Fitting | Fitting[]> {
+        return null;
     }
 
     // - G L O B A L   S U P P O R T   M E T H O D S
