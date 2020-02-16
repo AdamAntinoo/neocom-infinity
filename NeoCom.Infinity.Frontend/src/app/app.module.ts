@@ -31,6 +31,7 @@ import { AppComponent } from './app.component';
 // - APPLICATION MODULES
 import { SharedModule } from './modules/shared/shared.module';
 import { HeaderModule } from './modules/header/header.module';
+import { FittingsModule } from './modules/fittings/fittings.module';
 // - PAGES
 import { LoginValidationPageComponent } from './pages/login-validation-page/login-validation-page.component';
 import { DashboardHomePageComponent } from './pages/dashboard-home-page/dashboard-home-page.component';
@@ -74,6 +75,7 @@ export function rollbarFactory() {
         // - APPLICATION MODULES
         SharedModule,
         HeaderModule,
+        FittingsModule,
         // - ROUTING
         RouterModule,
         AppRoutingModule

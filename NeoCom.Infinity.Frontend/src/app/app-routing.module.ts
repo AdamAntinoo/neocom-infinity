@@ -30,6 +30,12 @@ const routes: Routes = [
     // },
     // - REDIRECT NOT FOUND PAGES
     // { path: '**', component: NotFoundPage }
+    // -  F I T T I N G S
+    {
+        path: 'fittings',
+        loadChildren: './fittings/fittings.module#FittingsModule',
+        canActivate: [TokenAuthorizationGuard]
+    },
 ];
 
 @NgModule({
