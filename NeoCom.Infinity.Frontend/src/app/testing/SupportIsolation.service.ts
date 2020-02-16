@@ -1,12 +1,20 @@
 // - CORE
 import { Injectable } from '@angular/core';
 import * as jwt_decode from 'jwt-decode';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class SupportIsolationService {
     private storage = new Map();
+
+    // - M O C K   D A T A   A C C E S S
+    public directAccessMockResource(dataIdentifier: string): any {
+        console.log(">>[SupportIsolationService.directAccessMockResource]> dataIdentifier: " + dataIdentifier);
+        let rawdata = require('./mock-data/' + dataIdentifier.toLowerCase() + '.json');
+        return rawdata;
+    }
 
     // - S T O R A G E
     public getFromStorage(_key: string): any {

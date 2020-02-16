@@ -36,3 +36,12 @@ return Observable.create((observer) => {
 [OPEN EXTERNAL URL]
 window.open(externalUrl, '_self');
 window.location()
+
+[GIT]
+-- Connect the local repository to another cloud repository and then update and connect all branches.
+git remote remove origin
+git remote add origin <remote_repo_url>
+git push --all origin
+If you want to set all of your branches to automatically use this remote repo when you use git pull, add --set-upstream to the push:
+
+git push --all --set-upstream origin

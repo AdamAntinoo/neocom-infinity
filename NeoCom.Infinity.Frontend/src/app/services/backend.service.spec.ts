@@ -12,20 +12,25 @@ import { RouteMockUpComponent } from '@app/testing/RouteMockUp.component';
 import { routes } from '@app/testing/RouteMockUp.component';
 // - PROVIDERS
 import { IsolationService } from '@app/platform/isolation.service';
+import { HttpClientWrapperService } from './httpclientwrapper.service';
 import { SupportIsolationService } from '@app/testing/SupportIsolation.service';
+import { SupportHttpClientWrapperService } from '@app/testing/SupportHttpClientWrapperService.service';
 import { BackendService } from './backend.service';
+
 import { ValidateAuthorizationTokenResponse } from '@app/domain/dto/ValidateAuthorizationTokenResponse';
-import { ServerInfoResponse } from '@app/domain/dto/ServerInfoResponse.dto';
 import { AppStoreService } from './appstore.service';
 import { SupportAppStoreService } from '@app/testing/SupportAppStore.service';
-import { CorporationDataResponse } from '@app/domain/dto/CorporationDataResponse.dto';
 import { Pilot } from '@app/domain/Pilot.domain';
 import { ResponseTransformer } from './support/ResponseTransformer';
 import { Corporation } from '@app/domain/Corporation.domain';
 import { ServerStatus } from '@app/domain/ServerStatus.domain';
+import { Fitting } from '@app/domain/Fitting.domain';
 
-describe('SERVICE BackendService [Module: APP]', () => {
+fdescribe('SERVICE BackendService [Module: APP]', () => {
     let service: BackendService;
+    let isolationService: SupportIsolationService;
+    let httpService: HttpClientWrapperService;
+
     let appStoreService: SupportAppStoreService;
 
     beforeEach(() => {
@@ -40,12 +45,14 @@ describe('SERVICE BackendService [Module: APP]', () => {
             ],
             providers: [
                 { provide: IsolationService, useClass: SupportIsolationService },
-                { provide: AppStoreService, useClass: SupportAppStoreService },
+                { provide: HttpClientWrapperService, useClass: SupportHttpClientWrapperService },
             ]
         })
             .compileComponents();
         service = TestBed.get(BackendService);
+        isolationService = TestBed.get(IsolationService);
         appStoreService = TestBed.get(AppStoreService);
+        httpService = TestBed.get(HttpClientWrapperService);
     });
 
     // - C O N S T R U C T I O N   P H A S E
@@ -57,7 +64,7 @@ describe('SERVICE BackendService [Module: APP]', () => {
     });
 
     // - C O D E   C O V E R A G E   P H A S E
-    describe('Code Coverage Phase [apiValidateAuthorizationToken_v1]', () => {
+    xdescribe('Code Coverage Phase [apiValidateAuthorizationToken_v1]', () => {
         it('apiValidateAuthorizationToken_v1.success: get a validated authorization from the mocked server',
             async(inject([HttpTestingController, BackendService], (backend: HttpTestingController, service: BackendService) => {
                 const validationResponseJson = {
@@ -152,5 +159,34 @@ describe('SERVICE BackendService [Module: APP]', () => {
                 })[0].flush(responseJson);
                 backend.verify();
             })));
+    });
+    fdescribe('Code Coverage Phase [apiGetPilotFittings_v1]', () => {
+        it('apiGetPilotFittings_v1.success: get the list of the pilot fittings', () => {
+            // async(inject([HttpTestingController, BackendService], (backend: HttpTestingController, service: BackendService) => {
+            // Load into a constant the JSON definition for the mock fittings.
+            const fittingResponseJson = isolationService.directAccessMockResource('pilot.fittings');
+            service.apiGetPilotFittings_v1(123,
+                new ResponseTransformer().setDescription('Do response transformation to "Fitting List".')
+                    .setTransformation((entrydata: any): Fitting[] => {
+                        let results: Fitting[] = [];
+                        if (entrydata instanceof Array) {
+                            for (let key in entrydata)
+                                results.push(new Fitting(entrydata[key]));
+                        } else
+                            results.push(new Fitting(entrydata));
+
+                        return results;
+                    }))
+                .subscribe(response => {
+                    console.log('--[apiGetPilotFittings_v1]> response: ' + JSON.stringify(response));
+                    expect(response).toBeDefined();
+                    expect(response.length).toBe(9);
+                });
+            // backend.match((request) => {
+            //     return request.url.match(/validateAuthorizationToken/) &&
+            //         request.method === 'GET';
+            // })[0].flush(fittingResponseJson);
+            // backend.verify();
+        });
     });
 });
