@@ -21,7 +21,8 @@ export class FittingsDashboardPageComponent extends AppPanelComponent implements
         this.downloading = true;
         // Download the list of fittings for this Pilot.
         console.log('-[FittingsDashboardPageComponent.ngOnInit]> Starting to download pilot fittings');
-        this.appStoreService.accessPilotFittings(new ResponseTransformer().setDescription('Do response transformation to "Fitting List".')
+        this.appStoreService.accessPilotFittings(new ResponseTransformer()
+            .setDescription('Do response transformation to "Fitting List".')
             .setTransformation((entrydata: any): Fitting[] => {
                 let results: Fitting[] = [];
                 if (entrydata instanceof Array) {

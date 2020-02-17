@@ -1,21 +1,18 @@
 // - CORE
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 // - TESTING
-import { async } from '@angular/core/testing';
-import { fakeAsync } from '@angular/core/testing';
-import { tick } from '@angular/core/testing';
 import { ComponentFixture } from '@angular/core/testing';
 import { TestBed } from '@angular/core/testing';
 // - PROVIDERS
+import { environment } from '@env/environment';
 import { IsolationService } from '@app/platform/isolation.service';
 import { SupportIsolationService } from '@app/testing/SupportIsolation.service';
-import { environment } from '@env/environment';
 
-import { AppInfoPanelComponent } from '@app/modules/shared/panels/app-info-panel/app-info-panel.component';
+import { AppInfoPanelComponent } from './app-info-panel.component';
 
 describe('PANEL AppInfoPanelComponent [Module: SHARED]', () => {
-    let component: AppInfoPanelComponent;
     let fixture: ComponentFixture<AppInfoPanelComponent>;
+    let component: AppInfoPanelComponent;
     let isolationService: SupportIsolationService;
 
     beforeEach(() => {
@@ -45,17 +42,17 @@ describe('PANEL AppInfoPanelComponent [Module: SHARED]', () => {
     // - C O D E   C O V E R A G E   P H A S E
     describe('Code Coverage Phase [getters]', () => {
         it('getName: validate the name field', () => {
-           const obtained = component.getName();
-           const expected = environment.appName as string;
-           expect(obtained).toBe(expected.toUpperCase());
+            const obtained = component.getName();
+            const expected = environment.appName as string;
+            expect(obtained).toBe(expected.toUpperCase());
         });
         it('getVersion: validate the version field', () => {
             const obtained = component.getVersion();
-           expect(obtained).toBe(environment.appVersion);
+            expect(obtained).toBe(environment.appVersion);
         });
         it('getCopyright: validate the copyright field', () => {
             const obtained = component.getCopyright();
-           expect(obtained).toBe(environment.copyright);
+            expect(obtained).toBe(environment.copyright);
         });
     });
 });

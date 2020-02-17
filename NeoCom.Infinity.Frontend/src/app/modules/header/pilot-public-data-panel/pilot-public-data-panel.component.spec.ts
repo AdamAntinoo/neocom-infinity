@@ -15,11 +15,6 @@ import { SupportAppStoreService } from '@app/testing/SupportAppStore.service';
 import { BackendService } from '@app/services/backend.service';
 import { SupportBackendService } from '@app/testing/SupportBackend.service';
 
-import { AppInfoPanelComponent } from '@app/modules/shared/panels/app-info-panel/app-info-panel.component';
-import { Alliance } from '@app/domain/Alliance.domain';
-import { Observable } from 'rxjs';
-import { Corporation } from '@app/domain/Corporation.domain';
-import { environment } from '@env/environment';
 import { PilotPublicDataPanelComponent } from './pilot-public-data-panel.component';
 import { Pilot } from '@app/domain/Pilot.domain';
 

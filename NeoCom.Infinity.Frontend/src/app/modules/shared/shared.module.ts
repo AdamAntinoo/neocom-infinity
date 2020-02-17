@@ -4,12 +4,9 @@ import { CommonModule } from '@angular/common';
 // - ROUTING
 import { RouterModule } from '@angular/router';
 import { Routes } from '@angular/router';
-// - GUARDS
-import { TokenAuthorizationGuard } from '@app/security/token-authorization.guard';
 
 // - PAGES
 // - PANELS
-import { AppInfoPanelComponent } from './panels/app-info-panel/app-info-panel.component';
 import { AppPanelComponent } from './panels/app-panel/app-panel.component';
 // - RENDERS
 import { RenderComponent } from './renders/render/render.component';
@@ -31,7 +28,6 @@ const routes: Routes = [
     ],
     declarations: [
         // - PANELS
-        AppInfoPanelComponent,
         // - RENDERS
         RenderComponent,
         AllianceRenderComponent,
@@ -41,7 +37,6 @@ const routes: Routes = [
     ],
     exports: [
         RouterModule,
-        AppInfoPanelComponent,
         // - RENDERS
         AllianceRenderComponent,
         CorporationRenderComponent,

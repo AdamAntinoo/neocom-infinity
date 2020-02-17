@@ -23,7 +23,7 @@ const routes: Routes = [
         CommonModule,
         SharedModule,
         HeaderModule,
-       RouterModule.forChild(routes),
+        RouterModule.forChild(routes),
     ],
     declarations: [
         FittingsDashboardPageComponent

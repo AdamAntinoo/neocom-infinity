@@ -1,8 +1,5 @@
 // - CORE
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { Subject } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
-import { Params } from '@angular/router';
 // - TESTING
 import { async } from '@angular/core/testing';
 import { fakeAsync } from '@angular/core/testing';
@@ -20,11 +17,7 @@ import { SupportIsolationService } from '@app/testing/SupportIsolation.service';
 import { SupportAppStoreService } from '@app/testing/SupportAppStore.service';
 import { SupportBackendService } from '@app/testing/SupportBackend.service';
 
-// import { LoginValidationPageComponent } from './login-validation-page.component';
-// import { AppInfoPanelComponent } from '@app/panels/app-info-panel/app-info-panel.component';
-import { LoginValidationProgressComponent } from '@app/panels/login-validation-progress/login-validation-progress.component';
-import { LoginValidationExceptionComponent } from '@app/panels/login-validation-exception/login-validation-exception.component';
-import { AppInfoPanelComponent } from '@app/modules/shared/panels/app-info-panel/app-info-panel.component';
+import { AppInfoPanelComponent } from '@app/modules/header/app-info-panel/app-info-panel.component';
 import { ServerInfoPanelComponent } from '@app/modules/header/server-info-panel/server-info-panel.component';
 import { DashboardHomePageComponent } from './dashboard-home-page.component';
 
@@ -46,7 +39,6 @@ describe('PAGE DashboardHomePageComponent [Module: CORE]', () => {
             ],
             providers: [
                 { provide: IsolationService, useClass: SupportIsolationService },
-                // { provide: ActivatedRoute, useValue: { queryParams: params } },
                 { provide: AppStoreService, useClass: SupportAppStoreService },
                 { provide: BackendService, useClass: SupportBackendService }
             ]

@@ -16,7 +16,6 @@ import { SupportAppStoreService } from '@app/testing/SupportAppStore.service';
 import { BackendService } from '@app/services/backend.service';
 import { SupportBackendService } from '@app/testing/SupportBackend.service';
 
-import { AppInfoPanelComponent } from '@app/modules/shared/panels/app-info-panel/app-info-panel.component';
 import { Alliance } from '@app/domain/Alliance.domain';
 import { CorporationPublicDataPanelComponent } from './corporation-public-data-panel.component';
 import { Observable } from 'rxjs';

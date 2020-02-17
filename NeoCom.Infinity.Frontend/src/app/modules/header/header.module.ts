@@ -10,6 +10,7 @@ import { TokenAuthorizationGuard } from '@app/security/token-authorization.guard
 import { SharedModule } from '../shared/shared.module';
 // - PAGES
 // - PANELS
+import { AppInfoPanelComponent } from './app-info-panel/app-info-panel.component';
 import { CorporationPublicDataPanelComponent } from './corporation-public-data-panel/corporation-public-data-panel.component';
 import { PilotPublicDataPanelComponent } from './pilot-public-data-panel/pilot-public-data-panel.component';
 import { ServerInfoPanelComponent } from './server-info-panel/server-info-panel.component';
@@ -27,6 +28,7 @@ const routes: Routes = [
     ],
     declarations: [
         // - PANELS
+        AppInfoPanelComponent,
         CorporationPublicDataPanelComponent,
         PilotPublicDataPanelComponent,
         ServerInfoPanelComponent,
@@ -34,6 +36,8 @@ const routes: Routes = [
     ],
     exports: [
         RouterModule,
+        // - PANELS
+        AppInfoPanelComponent,
         CorporationPublicDataPanelComponent,
         PilotPublicDataPanelComponent,
         ServerInfoPanelComponent,
