@@ -5,14 +5,14 @@ import { SupportIsolationService } from '@app/testing/SupportIsolation.service';
 // - DOMAIN
 import { FittingItem } from './FittingItem.domain';
 
-fdescribe('CLASS FittingItem [Module: DOMAIN]', () => {
+describe('CLASS FittingItem [Module: DOMAIN]', () => {
     let isolation: SupportIsolationService;
 
     beforeEach(() => {
         isolation = TestBed.get(SupportIsolationService);
     });
     // - C O N S T R U C T I O N   P H A S E
-    fdescribe('Construction Phase', () => {
+    describe('Construction Phase', () => {
         it('Should be created', () => {
             console.log('><[domain/Fitting]> should be created');
             expect(new FittingItem()).toBeTruthy();

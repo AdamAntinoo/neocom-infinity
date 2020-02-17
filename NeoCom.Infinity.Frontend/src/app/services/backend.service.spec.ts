@@ -26,7 +26,7 @@ import { Corporation } from '@app/domain/Corporation.domain';
 import { ServerStatus } from '@app/domain/ServerStatus.domain';
 import { Fitting } from '@app/domain/Fitting.domain';
 
-fdescribe('SERVICE BackendService [Module: APP]', () => {
+describe('SERVICE BackendService [Module: APP]', () => {
     let service: BackendService;
     let isolationService: SupportIsolationService;
     let httpService: HttpClientWrapperService;
@@ -64,107 +64,63 @@ fdescribe('SERVICE BackendService [Module: APP]', () => {
     });
 
     // - C O D E   C O V E R A G E   P H A S E
-    xdescribe('Code Coverage Phase [apiValidateAuthorizationToken_v1]', () => {
-        it('apiValidateAuthorizationToken_v1.success: get a validated authorization from the mocked server',
-            async(inject([HttpTestingController, BackendService], (backend: HttpTestingController, service: BackendService) => {
-                const validationResponseJson = {
-                    "responseType": "ValidateAuthorizationTokenResponse",
-                    "jwtToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6OTgzODQ3MjYsImFjY291bnROYW1lIjoiQmV0aCBSaXBsZXkiLCJpc3MiOiJOZW9Db20uSW5maW5pdHkuQmFja2VuZCIsInVuaXF1ZUlkIjoidHJhbnF1aWxpdHkvOTIyMjM2NDciLCJwaWxvdElkIjo5MjIyMzY0N30.Qom8COyZB2sW3bCGm9pnGcIOqw-E2yKDsmGklQW6r9Fhu8jJpkNUv5TUhU2cJjIg5jX3082bZ6eKtRZ3z10vGw",
-                    "credential": {
-                        "jsonClass": "Credential",
-                        "uniqueId": "tranquility/92223647",
-                        "accountId": 92223647,
-                        "accountName": "Adam Antinoo",
-                        "assetsCount": 1476,
-                        "walletBalance": 6.309543632E8,
-                        "raceName": "Amarr",
-                        "dataSource": "tranquility"
-                    }
-                };
-                service.apiValidateAuthorizationToken_v1('-ANY-CODE-', '-ANY-STATE-',
-                    new ResponseTransformer().setDescription('Do response transformation to "ValidateAuthorizationTokenResponse".')
-                        .setTransformation((data: any): ValidateAuthorizationTokenResponse => {
-                            return new ValidateAuthorizationTokenResponse(data);
-                        }))
-                    .subscribe(response => {
-                        console.log('--[apiValidateAuthorizationToken_v1]> response: ' + JSON.stringify(response));
-                        expect(response).toBeDefined();
-                        expect(response.getResponseType()).toContain('ValidateAuthorizationTokenResponse');
-                    });
-                backend.match((request) => {
-                    return request.url.match(/validateAuthorizationToken/) &&
-                        request.method === 'GET';
-                })[0].flush(validationResponseJson);
-                backend.verify();
-            })));
+    describe('Code Coverage Phase [apiValidateAuthorizationToken_v1]', () => {
+        it('apiValidateAuthorizationToken_v1.success: get a validated authorization from the mocked server', () => {
+            service.apiValidateAuthorizationToken_v1('-ANY-CODE-', '-ANY-STATE-', new ResponseTransformer()
+                .setDescription('Do response transformation to "ValidateAuthorizationTokenResponse".')
+                .setTransformation((data: any): ValidateAuthorizationTokenResponse => {
+                    console.log('--[apiValidateAuthorizationToken_v1]> transformation data: ' + JSON.stringify(data));
+                    return new ValidateAuthorizationTokenResponse(data);
+                }))
+                .subscribe(response => {
+                    console.log('--[apiValidateAuthorizationToken_v1]> response: ' + JSON.stringify(response));
+                    expect(response).toBeDefined();
+                    expect(response.getResponseType()).toContain('ValidateAuthorizationTokenResponse');
+                });
+        });
     });
     describe('Code Coverage Phase [apiGetServerInfo_v1]', () => {
-        it('apiGetServerInfo_v1.success: get the server info from the mocked server',
-            async(inject([HttpTestingController, BackendService], (backend: HttpTestingController, service: BackendService) => {
-                const responseJson = {
-                    "players": 10528,
-                    "server_version": "1585794",
-                    "start_time": "2019-10-16T11:06:17Z"
-                };
-                service.apiGetServerInfo_v1(new ResponseTransformer().setDescription('Do response transformation to "ServerStatus".')
-                    .setTransformation((data: any): ServerStatus => {
-                        return new ServerStatus(data);
-                    }))
-                    .subscribe(response => {
-                        console.log('--[apiGetServerInfo_v1]> response: ' + JSON.stringify(response));
-                        expect(response).toBeDefined();
-                        expect(response.getJsonClass()).toContain('ServerStatus');
-                    });
-                backend.match((request) => {
-                    return request.url.match(/server/) &&
-                        request.method === 'GET';
-                })[0].flush(responseJson);
-                backend.verify();
-            })));
+        it('apiGetServerInfo_v1.success: get the server info from the mocked server', () => {
+            service.apiGetServerInfo_v1(new ResponseTransformer()
+                .setDescription('Do response transformation to "ServerStatus".')
+                .setTransformation((data: any): ServerStatus => {
+                    return new ServerStatus(data);
+                }))
+                .subscribe(response => {
+                    console.log('--[apiGetServerInfo_v1]> response: ' + JSON.stringify(response));
+                    expect(response).toBeDefined();
+                    expect(response.getJsonClass()).toContain('ServerStatus');
+                });
+        });
     });
     describe('Code Coverage Phase [apiGetCorporationPublicData_v1]', () => {
-        it('apiGetCorporationPublicData_v1.success: get the corporation data from the mocked server',
-            async(inject([HttpTestingController, BackendService], (backend: HttpTestingController, service: BackendService) => {
-                const responseJson = appStoreService.directAccessMockResource('corporations');
-                service.apiGetCorporationPublicData_v1(123,
-                    new ResponseTransformer().setDescription('Do response transformation to "Corporation".')
-                        .setTransformation((data: any): Corporation => {
-                            return new Corporation(data);
-                        }))
-                    .subscribe(response => {
-                        console.log('--[apiGetCorporationPublicData_v1]> response: ' + JSON.stringify(response));
-                        expect(response).toBeDefined();
-                        expect(response.getJsonClass()).toContain('Corporation');
-                    });
-                backend.match((request) => {
-                    return request.url.match(/corporations/) &&
-                        request.method === 'GET';
-                })[0].flush(responseJson);
-                backend.verify();
-            })));
+        it('apiGetCorporationPublicData_v1.success: get the corporation data from the mocked server', () => {
+            const responseJson = isolationService.directAccessMockResource('corporations');
+            service.apiGetCorporationPublicData_v1(123,
+                new ResponseTransformer().setDescription('Do response transformation to "Corporation".')
+                    .setTransformation((data: any): Corporation => {
+                        return new Corporation(data);
+                    }))
+                .subscribe(response => {
+                    console.log('--[apiGetCorporationPublicData_v1]> response: ' + JSON.stringify(response));
+                    expect(response).toBeDefined();
+                    expect(response.getJsonClass()).toContain('Corporation');
+                });
+        });
     });
     describe('Code Coverage Phase [apiGetPilotPublicData_v1]', () => {
-        it('apiGetPilotPublicData_v1.success: get the pilot data from the mocked server',
-            async(inject([HttpTestingController, BackendService], (backend: HttpTestingController, service: BackendService) => {
-                const responseJson = appStoreService.directAccessMockResource('pilots');
-                service.apiGetPilotPublicData_v1(123)
-                    .subscribe((response: Pilot) => {
-                        console.log('--[apiGetCorporationPublicData_v1]> response: ' + JSON.stringify(response));
-                        expect(response).toBeDefined();
-                        expect(response.getJsonClass()).toContain('Pilot');
-                    });
-                backend.match((request) => {
-                    return request.url.match(/pilots/) &&
-                        request.method === 'GET';
-                })[0].flush(responseJson);
-                backend.verify();
-            })));
+        it('apiGetPilotPublicData_v1.success: get the pilot data from the mocked server', () => {
+            const responseJson = isolationService.directAccessMockResource('pilots');
+            service.apiGetPilotPublicData_v1(123)
+                .subscribe((response: Pilot) => {
+                    console.log('--[apiGetCorporationPublicData_v1]> response: ' + JSON.stringify(response));
+                    expect(response).toBeDefined();
+                    expect(response.getJsonClass()).toContain('Pilot');
+                });
+        });
     });
-    fdescribe('Code Coverage Phase [apiGetPilotFittings_v1]', () => {
+    describe('Code Coverage Phase [apiGetPilotFittings_v1]', () => {
         it('apiGetPilotFittings_v1.success: get the list of the pilot fittings', () => {
-            // async(inject([HttpTestingController, BackendService], (backend: HttpTestingController, service: BackendService) => {
-            // Load into a constant the JSON definition for the mock fittings.
-            const fittingResponseJson = isolationService.directAccessMockResource('pilot.fittings');
             service.apiGetPilotFittings_v1(123,
                 new ResponseTransformer().setDescription('Do response transformation to "Fitting List".')
                     .setTransformation((entrydata: any): Fitting[] => {
@@ -182,11 +138,6 @@ fdescribe('SERVICE BackendService [Module: APP]', () => {
                     expect(response).toBeDefined();
                     expect(response.length).toBe(9);
                 });
-            // backend.match((request) => {
-            //     return request.url.match(/validateAuthorizationToken/) &&
-            //         request.method === 'GET';
-            // })[0].flush(fittingResponseJson);
-            // backend.verify();
         });
     });
 });

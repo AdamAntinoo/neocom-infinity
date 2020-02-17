@@ -181,7 +181,7 @@ describe('PANEL CorporationPublicDataPanelComponent [Module: SHARED]', () => {
         });
         it('getCorporationName.success: validate the corporation name field', () => {
             const expected = isolationService.generateRandomString(12);
-            corporation.corporationPublicData.name = expected;
+            corporation.corporationPublicData = { name: expected };
             component.corporation = corporation;
             const obtained = component.getCorporationName();
             expect(obtained).toBe(expected);

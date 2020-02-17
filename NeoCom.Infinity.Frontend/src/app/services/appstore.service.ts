@@ -118,8 +118,9 @@ export class AppStoreService {
     public accessPilot(): Observable<Pilot | Pilot[]> {
         return this.pilotActiveCache.accessData();
     }
-    public accessPilotFittings(): Observable<Fitting | Fitting[]> {
-        return null;
+    public accessPilotFittings(transformer: ResponseTransformer): Observable<Fitting | Fitting[]> {
+        let pilotId = this.getCredential().getAccountId();
+        return this.backendService.apiGetPilotFittings_v1(pilotId, transformer);
     }
 
     // - G L O B A L   S U P P O R T   M E T H O D S
