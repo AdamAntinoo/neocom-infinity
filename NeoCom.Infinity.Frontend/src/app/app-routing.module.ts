@@ -33,7 +33,7 @@ const routes: Routes = [
     // -  F I T T I N G S
     {
         path: 'fittings',
-        loadChildren: './fittings/fittings.module#FittingsModule',
+        loadChildren: './modules/fittings/fittings.module#FittingsModule',
         canActivate: [TokenAuthorizationGuard]
     },
 ];

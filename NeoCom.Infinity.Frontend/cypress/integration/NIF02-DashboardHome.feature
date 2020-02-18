@@ -2,6 +2,7 @@
 Feature: [NIF02]-Display the character dashboard page.
 
     This page is where to show the Corporation data along with the Pilot data. Also there is a toolbar where to select the feature to work with. There are a set of dashboard pages, each one for a different feature plus this one that will not show any feature activated.
+
     Background: Prepare the environment for the page Dashboard Page
         Given one instance of AppInfoPanel
         Given one instance of ServerInfoPanel
@@ -60,4 +61,4 @@ Feature: [NIF02]-Display the character dashboard page.
     Scenario: [NIF02.06]-If the Fittings tab is selected then we move to the Fittings Dashboard.
         When the DashBoardPage is activated with the request id "DASHBOARD-HOME-SUCCESS"
         Then there is a tab-container-panel with 2 tabs
-        And if the Fittings tab is selected we land on the FittingsDasgboard page
+        And if the Fittings tab is selected we land on the FittingsDashboard page

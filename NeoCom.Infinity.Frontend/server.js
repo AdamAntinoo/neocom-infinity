@@ -1,4 +1,4 @@
-//Install express server
+// - D E P E N D E N C I E S
 const express = require('express');
 const path = require('path');
 const compression = require('compression');

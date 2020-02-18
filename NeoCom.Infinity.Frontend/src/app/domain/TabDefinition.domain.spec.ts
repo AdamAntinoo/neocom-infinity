@@ -6,7 +6,7 @@ import { SupportIsolationService } from '@app/testing/SupportIsolation.service';
 import { environment } from '@env/environment.prod';
 import { TabDefinition } from './TabDefinition.domain';
 
-fdescribe('CLASS TabDefinition [Module: DOMAIN]', () => {
+describe('CLASS TabDefinition [Module: DOMAIN]', () => {
     let isolation: SupportIsolationService;
 
     beforeEach(() => {
