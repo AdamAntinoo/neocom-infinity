@@ -3,26 +3,30 @@ package org.dimensinfin.eveonline.neocom.infinity.core.serializer;
 import java.io.IOException;
 
 import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import org.springframework.boot.jackson.JsonComponent;
 
-import org.dimensinfin.eveonline.neocom.domain.Fitting;
+import org.dimensinfin.eveonline.neocom.domain.NeoItem;
 
 @JsonComponent
-public class FittingSerializer extends JsonSerializer<Fitting> {
+public class NeoItemSerializer extends JsonSerializer<NeoItem> {
 	@Override
-	public void serialize( final Fitting value, final JsonGenerator jgen, final SerializerProvider provider )
-			throws IOException, JsonProcessingException {
+	public void serialize( final NeoItem value, final JsonGenerator jgen, final SerializerProvider provider )
+			throws IOException {
 		jgen.writeStartObject();
 
 		jgen.writeStringField( "jsonClass", value.getJsonClass() );
-		jgen.writeNumberField( "fittingId", value.getFittingId() );
-		jgen.writeStringField( "name", value.getName() );
-		jgen.writeStringField( "description", value.getDescription() );
-		jgen.writeObjectField( "shipHullInfo", value.getShipItem() );
-		jgen.writeObjectField( "items", value.getItems() );
+		jgen.writeNumberField( "typeId", value.getTypeId() );
+		jgen.writeNumberField( "groupId", value.getGroupId() );
+		jgen.writeStringField( "groupName", value.getGroupName() );
+		jgen.writeNumberField( "categoryId", value.getCategoryId() );
+		jgen.writeStringField( "categoryName", value.getCategoryName() );
+		jgen.writeStringField( "tech", value.getTech() );
+		jgen.writeNumberField( "volume", value.getVolume() );
+		jgen.writeNumberField( "price", value.getPrice() );
+		jgen.writeBooleanField( "isBlueprint", value.isBlueprint() );
+		jgen.writeStringField( "urlforItem", value.getURLForItem() );
 
 		jgen.writeEndObject();
 	}

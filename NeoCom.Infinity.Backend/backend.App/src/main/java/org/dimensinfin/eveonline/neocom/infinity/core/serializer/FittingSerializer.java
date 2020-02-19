@@ -21,9 +21,8 @@ public class FittingSerializer extends JsonSerializer<Fitting> {
 		jgen.writeNumberField( "fittingId", value.getFittingId() );
 		jgen.writeStringField( "name", value.getName() );
 		jgen.writeStringField( "description", value.getDescription() );
-		jgen.writeStringField( "hullClass", value.getGroupName() );
 		jgen.writeStringField( "hullGroup", value.getHullGroup() );
-		jgen.writeStringField( "hullIcon", value.getURLForItem() );
+		jgen.writeObjectField( "shipHullInfo", value.getShipItem() );
 		jgen.writeObjectField( "items", value.getItems() );
 
 		jgen.writeEndObject();
