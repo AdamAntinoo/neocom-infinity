@@ -14,7 +14,6 @@ import { AppInfoPanelComponent } from './app-info-panel/app-info-panel.component
 import { CorporationPublicDataPanelComponent } from './corporation-public-data-panel/corporation-public-data-panel.component';
 import { PilotPublicDataPanelComponent } from './pilot-public-data-panel/pilot-public-data-panel.component';
 import { ServerInfoPanelComponent } from './server-info-panel/server-info-panel.component';
-import { TabContainerPanelComponent } from './tab-container-panel/tab-container-panel.component';
 
 // - MODULE ROUTES
 const routes: Routes = [
@@ -32,7 +31,6 @@ const routes: Routes = [
         CorporationPublicDataPanelComponent,
         PilotPublicDataPanelComponent,
         ServerInfoPanelComponent,
-        TabContainerPanelComponent,
     ],
     exports: [
         RouterModule,
@@ -41,7 +39,6 @@ const routes: Routes = [
         CorporationPublicDataPanelComponent,
         PilotPublicDataPanelComponent,
         ServerInfoPanelComponent,
-        TabContainerPanelComponent,
     ]
 })
 export class HeaderModule { }
