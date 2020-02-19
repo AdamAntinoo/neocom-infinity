@@ -7,6 +7,9 @@ dist/
 src/styles/fonts
 coverage/
 
+# - Ignore temporary GIT repository
+.xgit/
+
 # - Ignore support code and utilities
 support/apisimulator-http-1.4/
 support/backend-simulation/*.log
