@@ -5,9 +5,5 @@
 <div>
     <corporation-public-data-panel id="corporation-public-data-panel"></corporation-public-data-panel>
 </div>
-<div>
-    <pilot-public-data-panel id="pilot-public-data-panel"></pilot-public-data-panel>
-</div>
-<div>
-    <tab-container-panel id="tab-container-panel" [tabName]="'-NONE-'"></tab-container-panel>
-</div>
+<pilot-public-data-panel id="pilot-public-data-panel"></pilot-public-data-panel>
+<tab-container-panel [selectedTabName]="'-NONE-'" [tabDefinitionFile]="'dashboard-tabs'"></tab-container-panel>

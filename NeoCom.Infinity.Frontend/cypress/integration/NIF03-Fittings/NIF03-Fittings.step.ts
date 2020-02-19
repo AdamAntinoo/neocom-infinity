@@ -18,5 +18,7 @@ When('the PilotFittingsPage is activated with the request id {string}', function
     }
 });
 Then('there is a viewer-panel with {string} instances of {string}', function (instanceCount, instanceTag) {
+    cy.log('instanceCount=' + instanceCount);
+    cy.log('instanceTag=' + instanceTag);
     cy.get('viewer-panel').find(instanceTag).should('have.length', instanceCount);
 });

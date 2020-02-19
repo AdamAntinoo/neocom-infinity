@@ -21,12 +21,12 @@ Feature: [NIF03]-Display the Fittings management page. Allow to select between p
             | title             | subtitle                                                 |
             | > FITTING MANAGER | Shows the list Fittings available to the selected Pilot. |
         Given one instance of TabContainerPanel
-        Then there is a "action-bar" with the next fields
-            | tab-count | active-tab | active-tab-name |
-            | 2         | 1          | Pilot           |
+        Then there is a "tab-container-panel" with the next fields
+            | tab-count | active-tab-name |
+            | 2         | Pilot           |
         Given one instance of ViewerPanel
-        And there is a "viewer-panel" with "4" instances of "v1-group-container"
-        Given one instance of V1GroupContainer
+        Then there is a viewer-panel with "4" instances of "v1-group-container"
+        # Given one instance of V1GroupContainer
         And there is a "v1-group-container" with the next fields
             | neocom-icon                                 | hullClass | neocom-classname | stack-counter |
             | /assets/res-fitting/drawable/frigate_64.png | Frigate   | SHIP GROUP       | 1             |

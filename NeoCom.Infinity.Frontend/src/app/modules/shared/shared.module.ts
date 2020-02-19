@@ -7,7 +7,7 @@ import { Routes } from '@angular/router';
 
 // - PAGES
 // - PANELS
-// import { AppPanelComponent } from './panels/app-panel/app-panel.component';
+import { AppPanelComponent } from './panels/app-panel/app-panel.component';
 import { ActionBarComponent } from './panels/action-bar/action-bar.component';
 import { TabContainerPanelComponent } from './panels/tab-container-panel/tab-container-panel.component';
 import { ViewerPanelComponent } from './panels/viewer-panel/viewer-panel.component';
@@ -36,6 +36,7 @@ const routes: Routes = [
     ],
     declarations: [
         // - PANELS
+        AppPanelComponent,
         ActionBarComponent,
         TabContainerPanelComponent,
         ViewerPanelComponent,
@@ -53,6 +54,7 @@ const routes: Routes = [
     exports: [
         RouterModule,
         // - PANELS
+        AppPanelComponent,
         ActionBarComponent,
         TabContainerPanelComponent,
         ViewerPanelComponent,

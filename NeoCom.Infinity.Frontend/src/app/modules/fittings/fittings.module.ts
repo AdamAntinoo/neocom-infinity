@@ -14,8 +14,6 @@ import { HeaderModule } from '@app/modules/header/header.module';
 // - MODULE ROUTES
 const routes: Routes = [
     { path: 'pilot', component: PilotFittingsPageComponent, canActivate: [TokenAuthorizationGuard] }
-    // { path: 'home', component: DashboardHomePage, canActivate: [TokenAuthorizationGuard] },
-    // { path: 'servicios', component: AdminServiciosPageComponent, canActivate: [AuthAdminGuard] }
 ];
 
 @NgModule({

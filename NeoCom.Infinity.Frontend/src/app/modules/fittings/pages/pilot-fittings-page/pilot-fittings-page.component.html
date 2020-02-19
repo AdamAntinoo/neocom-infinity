@@ -6,4 +6,8 @@
     <corporation-public-data-panel id="corporation-public-data-panel"></corporation-public-data-panel>
     <pilot-public-data-panel id="pilot-public-data-panel"></pilot-public-data-panel>
 </div>
-<viewer-panel [nodes2render]="getNodes2Render()" [downloadtitle]="'Downloading Pilot Fittings...'" [downloader]="self" [variant]="'-FITTING_LIST-'"></viewer-panel>
+<action-bar [title]="'> FITTING MANAGER'" [subtitle]="'Shows the list Fittings available to the selected Pilot.'"></action-bar>
+<tab-container-panel [selectedTabName]="'Pilot'" [tabDefinitionFile]="'fitting-tab-definition'"></tab-container-panel>
+
+<viewer-panel [nodes2render]="getNodes2Render()" [downloadtitle]="'Downloading Pilot Fittings...'" [downloader]="self" [variant]="'-FITTING_LIST-'">
+</viewer-panel>
