@@ -9,7 +9,6 @@ import { ResponseTransformer } from '@app/services/support/ResponseTransformer';
 import { Fitting } from '@app/domain/Fitting.domain';
 import { GroupContainer } from '@app/domain/GroupContainer.model';
 import { EVariant } from '@app/domain/interfaces/EPack.enumerated';
-import { ICollaboration } from '@app/domain/interfaces/ICollaboration.interface';
 import { URLGroupIconReference, AssetGroupIconReference } from '@domain/interfaces/IIconReference.interface';
 
 @Component({
@@ -50,10 +49,6 @@ export class FittingsDashboardPageComponent extends AppPanelComponent implements
         console.log("<[FittingsDashboardPageComponent.ngOnInit]");
     }
 
-    // - I V I E W E R
-    public getNodes2Render(variant: EVariant): ICollaboration[] {
-        return this.dataModelRoot;
-    }
     private classifyFittings(fittings: Fitting[]): void {
         // Process the fittings and classify them into Ship categories, then ship type end then fitting.
         for (let fit of fittings) {

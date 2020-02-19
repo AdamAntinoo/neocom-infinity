@@ -1,8 +1,6 @@
 // - CORE
 import { Component } from '@angular/core';
 import { Input } from '@angular/core';
-import { Output } from '@angular/core';
-import { EventEmitter } from '@angular/core';
 // - DOMAIN
 import { EVariant } from '@app/domain/interfaces/EPack.enumerated';
 import { ICollaboration } from '@domain/interfaces/ICollaboration.interface';
@@ -16,11 +14,9 @@ import { IViewer } from '@domain/interfaces/IViewer.interface';
 export class AppPanelComponent implements IViewer {
     @Input() self: AppPanelComponent;
     @Input() variant: string | EVariant = '-DEFAULT-';
-    @Output() notifyChange = new EventEmitter();
     protected downloading: boolean = false;
     protected dataModelRoot: ICollaboration[] = [];
     private renderNodeList: ICollaboration[] = [];
-    public completed: boolean = false;
 
     constructor() {
         this.self = this;
@@ -32,7 +28,6 @@ export class AppPanelComponent implements IViewer {
     public completeDowload(): void {
         this.notifyDataChanged();
         this.downloading = false;
-        this.completed = !this.completed;
     }
     public getNodes2Render(): ICollaboration[] {
         console.log(">[AppPanelComponent.getNodes2Render]> node count: " + this.renderNodeList.length);
@@ -62,7 +57,6 @@ export class AppPanelComponent implements IViewer {
             }
         }
         this.renderNodeList = copyList;
-        // this.notifyChange.emit(this.renderNodeList.length);
         console.log("<[AppPanelComponent.notifyDataChanged]");
     }
     public applyPolicies(entries: ICollaboration[]): ICollaboration[] {
