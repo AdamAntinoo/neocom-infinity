@@ -1,9 +1,9 @@
-<div *ngIf="!downloading; else downloadSpinning" class="citamed-form-group">
-    <div *ngFor="let node of getNodes2Render()">
-
-    </div>
+<!-- <div *ngIf="!isDownloading(); else downloadSpinning" class="citamed-form-group"> -->
+<div *ngFor="let node of getNodes2Render()">
+    NODE RENDER
 </div>
+<!-- </div> -->
 <!-- D O W N L O A D I N G   S P I N N E R -->
-<ng-template #downloadSpinning class="download-spinner">
+<!-- <ng-template #downloadSpinning class="download-spinner">
     <spinner-panel [title]="downloadtitle"></spinner-panel>
-</ng-template>
+</ng-template> -->

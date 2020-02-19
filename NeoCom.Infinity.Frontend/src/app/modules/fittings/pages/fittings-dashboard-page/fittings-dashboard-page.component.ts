@@ -10,6 +10,7 @@ import { Fitting } from '@app/domain/Fitting.domain';
 import { GroupContainer } from '@app/domain/GroupContainer.model';
 import { EVariant } from '@app/domain/interfaces/EPack.enumerated';
 import { ICollaboration } from '@app/domain/interfaces/ICollaboration.interface';
+import { URLGroupIconReference, AssetGroupIconReference } from '@domain/interfaces/IIconReference.interface';
 
 @Component({
     selector: 'fittings-dashboard-page',
@@ -25,7 +26,7 @@ export class FittingsDashboardPageComponent extends AppPanelComponent implements
     ngOnInit() {
         console.log(">[FittingsDashboardPageComponent.ngOnInit]");
         this.setVariant(EVariant.FITTING_LIST);
-        this.downloading = true;
+        // this.downloading = true;
         // Download the list of fittings for this Pilot.
         console.log('-[FittingsDashboardPageComponent.ngOnInit]> Starting to download pilot fittings');
         this.appStoreService.accessPilotFittings(new ResponseTransformer()
@@ -44,26 +45,26 @@ export class FittingsDashboardPageComponent extends AppPanelComponent implements
                 console.log('-[FittingsDashboardPageComponent.ngOnInit]> response: ' + JSON.stringify(response));
                 // Process the list of fittings into the ship type groupings.
                 this.classifyFittings(response);
+                this.completeDowload();    // Notify the completion of the download.
             });
         console.log("<[FittingsDashboardPageComponent.ngOnInit]");
     }
 
     // - I V I E W E R
     public getNodes2Render(variant: EVariant): ICollaboration[] {
-        return [];
+        return this.dataModelRoot;
     }
     private classifyFittings(fittings: Fitting[]): void {
-        /*
         // Process the fittings and classify them into Ship categories, then ship type end then fitting.
         for (let fit of fittings) {
             // Search for this ship type on the list of ships.
             let hitShip = this.shipList.get(fit.getShipTypeId());
             if (null == hitShip) {
                 // Create a new ship class entry and also check the group.
-                console.log("-- [PilotFittingsPage.accessPilotFittings]> Creating Ship Group: " + fit.getShipName());
+                console.log("-- [PilotFittingsPage.accessPilotFittings]> Creating Ship Group: " + fit.getShipGroup());
                 hitShip = new GroupContainer()
                     .setId(fit.getShipTypeId())
-                    .setTitle(fit.getShipName())
+                    .setTitle(fit.getShipGroup())
                     .setGroupIcon(new URLGroupIconReference(fit.getShipTypeId()));
                 this.shipList.set(fit.getShipTypeId(), hitShip);
                 let groupId = fit.getShipGroupId();
@@ -84,8 +85,6 @@ export class FittingsDashboardPageComponent extends AppPanelComponent implements
                     hitGroup.addContent(hitShip);
                 }
             }
-
         }
-        */
     }
 }
