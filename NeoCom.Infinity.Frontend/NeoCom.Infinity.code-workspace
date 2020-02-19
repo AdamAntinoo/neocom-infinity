@@ -31,6 +31,7 @@
 			120,
 			130
         ],
-        "git.ignoreLimitWarning": true
+        "git.ignoreLimitWarning": true,
+        "html.format.wrapAttributes": "force-aligned"
 	}
 }
