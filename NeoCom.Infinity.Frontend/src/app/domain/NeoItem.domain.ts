@@ -3,6 +3,7 @@ import { NeoCom } from './NeoCom.domain';
 
 export class NeoItem extends NeoCom {
     public typeId: number;
+    public name: string;
     public groupId: number;
     public groupName: string;
     public categoryId: number;

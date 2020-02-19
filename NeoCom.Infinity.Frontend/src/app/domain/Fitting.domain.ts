@@ -35,10 +35,13 @@ export class Fitting extends NeoCom {
         if (null != this.shipHullInfo) return this.shipHullInfo.typeId;
         else return -1;
     }
-    // public getShipName(): string {
-    //     if (null != this.shipHullInfo) return this.shipHullInfo.name;
-    //     else return "-";
-    // }
+    public getShipName(): string {
+        if (null != this.shipHullInfo) return this.shipHullInfo.name;
+        else return "-";
+    }
+    public getHullCategory(): string {
+        return this.hullGroup;
+    }
     public getShipGroup(): string {
         if (null != this.shipHullInfo) return this.shipHullInfo.getGroupName();
         else return "-SHIP-";

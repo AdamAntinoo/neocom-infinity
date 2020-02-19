@@ -72,7 +72,7 @@ export class FittingsDashboardPageComponent extends AppPanelComponent implements
                     hitGroup = new GroupContainer()
                         .setId(groupId)
                         .setTitle(group)
-                        .setGroupIcon(new AssetGroupIconReference(fit.getHullGroup() + "_64"));
+                        .setGroupIcon(new AssetGroupIconReference(fit.getHullCategory() + "_64"));
                     this.groupList.set(groupId, hitGroup);
                     // Add the new group to the dta content root.
                     this.dataModelRoot.push(hitGroup);

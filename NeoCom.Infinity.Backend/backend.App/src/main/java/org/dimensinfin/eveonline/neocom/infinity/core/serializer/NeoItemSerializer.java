@@ -18,6 +18,7 @@ public class NeoItemSerializer extends JsonSerializer<NeoItem> {
 
 		jgen.writeStringField( "jsonClass", value.getJsonClass() );
 		jgen.writeNumberField( "typeId", value.getTypeId() );
+		jgen.writeStringField( "name", value.getName() );
 		jgen.writeNumberField( "groupId", value.getGroupId() );
 		jgen.writeStringField( "groupName", value.getGroupName() );
 		jgen.writeNumberField( "categoryId", value.getCategoryId() );
