@@ -1,0 +1,6 @@
+<v1-group-container *ngIf="node.jsonClass == 'GroupContainer'" [container]="container" [node]="node" [variant]="variant" (mouseenter)="mouseEnter(node)">
+</v1-group-container>
+<v1-fitting *ngIf="node.jsonClass == 'Fitting'" [container]="container" [node]="node" [variant]="variant" (mouseenter)="mouseEnter(node)">
+</v1-fitting>
+<v1-fitting-item *ngIf="node.jsonClass == 'FittingItem'" [container]="container" [node]="node" [variant]="variant" (mouseenter)="mouseEnter(node)">
+</v1-fitting-item>
