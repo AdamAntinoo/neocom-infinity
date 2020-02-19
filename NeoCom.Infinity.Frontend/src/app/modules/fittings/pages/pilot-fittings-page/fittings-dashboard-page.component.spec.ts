@@ -17,13 +17,13 @@ import { SupportIsolationService } from '@app/testing/SupportIsolation.service';
 import { SupportAppStoreService } from '@app/testing/SupportAppStore.service';
 import { SupportBackendService } from '@app/testing/SupportBackend.service';
 
-import { FittingsDashboardPageComponent } from './fittings-dashboard-page.component';
+import { PilotFittingsPageComponent } from './fittings-dashboard-page.component';
 import { AppInfoPanelComponent } from '@app/modules/header/app-info-panel/app-info-panel.component';
 import { ServerInfoPanelComponent } from '@app/modules/header/server-info-panel/server-info-panel.component';
 
 describe('FittingsDashboardPageComponent', () => {
-    let fixture: ComponentFixture<FittingsDashboardPageComponent>;
-    let component: FittingsDashboardPageComponent;
+    let fixture: ComponentFixture<PilotFittingsPageComponent>;
+    let component: PilotFittingsPageComponent;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -33,7 +33,7 @@ describe('FittingsDashboardPageComponent', () => {
             ],
             declarations: [
                 RouteMockUpComponent,
-                FittingsDashboardPageComponent,
+                PilotFittingsPageComponent,
                 AppInfoPanelComponent,
                 ServerInfoPanelComponent,
             ],
@@ -44,7 +44,7 @@ describe('FittingsDashboardPageComponent', () => {
             ]
         })
             .compileComponents();
-        fixture = TestBed.createComponent(FittingsDashboardPageComponent);
+        fixture = TestBed.createComponent(PilotFittingsPageComponent);
         component = fixture.componentInstance;
     });
 

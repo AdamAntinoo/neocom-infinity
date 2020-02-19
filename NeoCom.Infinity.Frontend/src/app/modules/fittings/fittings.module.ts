@@ -7,13 +7,13 @@ import { Routes } from '@angular/router';
 // - SECURITY
 import { TokenAuthorizationGuard } from '@app/security/token-authorization.guard';
 // - COMPONENTS
-import { FittingsDashboardPageComponent } from './pages/fittings-dashboard-page/fittings-dashboard-page.component';
+import { PilotFittingsPageComponent } from './pages/pilot-fittings-page/pilot-fittings-page.component';
 import { SharedModule } from '@app/modules/shared/shared.module';
 import { HeaderModule } from '@app/modules/header/header.module';
 
 // - MODULE ROUTES
 const routes: Routes = [
-    { path: '', component: FittingsDashboardPageComponent, canActivate: [TokenAuthorizationGuard] }
+    { path: 'pilot', component: PilotFittingsPageComponent, canActivate: [TokenAuthorizationGuard] }
     // { path: 'home', component: DashboardHomePage, canActivate: [TokenAuthorizationGuard] },
     // { path: 'servicios', component: AdminServiciosPageComponent, canActivate: [AuthAdminGuard] }
 ];
@@ -26,11 +26,11 @@ const routes: Routes = [
         RouterModule.forChild(routes),
     ],
     declarations: [
-        FittingsDashboardPageComponent
+        PilotFittingsPageComponent
     ],
     exports: [
         RouterModule,
-        FittingsDashboardPageComponent,
+        PilotFittingsPageComponent,
     ]
 })
 export class FittingsModule { }

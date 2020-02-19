@@ -12,22 +12,22 @@ import { EVariant } from '@app/domain/interfaces/EPack.enumerated';
 import { URLGroupIconReference, AssetGroupIconReference } from '@domain/interfaces/IIconReference.interface';
 
 @Component({
-    selector: 'fittings-dashboard-page',
-    templateUrl: './fittings-dashboard-page.component.html',
-    styleUrls: ['./fittings-dashboard-page.component.scss']
+    selector: 'pilot-fittings-page',
+    templateUrl: './pilot-fittings-page.component.html',
+    styleUrls: ['./pilot-fittings-page.component.scss']
 })
-export class FittingsDashboardPageComponent extends AppPanelComponent implements OnInit {
+export class PilotFittingsPageComponent extends AppPanelComponent implements OnInit {
     private groupList: Map<number, GroupContainer> = new Map<number, GroupContainer>();
     private shipList: Map<number, GroupContainer> = new Map<number, GroupContainer>();
 
     constructor(protected appStoreService: AppStoreService) { super(); }
 
     ngOnInit() {
-        console.log(">[FittingsDashboardPageComponent.ngOnInit]");
+        console.log(">[PilotFittingsPageComponent.ngOnInit]");
         this.setVariant(EVariant.FITTING_LIST);
         // this.downloading = true;
         // Download the list of fittings for this Pilot.
-        console.log('-[FittingsDashboardPageComponent.ngOnInit]> Starting to download pilot fittings');
+        console.log('-[PilotFittingsPageComponent.ngOnInit]> Starting to download pilot fittings');
         this.appStoreService.accessPilotFittings(new ResponseTransformer()
             .setDescription('Do response transformation to "Fitting List".')
             .setTransformation((entrydata: any): Fitting[] => {
@@ -41,12 +41,12 @@ export class FittingsDashboardPageComponent extends AppPanelComponent implements
                 return results;
             }))
             .subscribe((response: Fitting[]) => {
-                console.log('-[FittingsDashboardPageComponent.ngOnInit]> response: ' + JSON.stringify(response));
+                console.log('-[PilotFittingsPageComponent.ngOnInit]> response: ' + JSON.stringify(response));
                 // Process the list of fittings into the ship type groupings.
                 this.classifyFittings(response);
                 this.completeDowload();    // Notify the completion of the download.
             });
-        console.log("<[FittingsDashboardPageComponent.ngOnInit]");
+        console.log("<[PilotFittingsPageComponent.ngOnInit]");
     }
 
     private classifyFittings(fittings: Fitting[]): void {

@@ -2,7 +2,7 @@
     "jsonClass": "TabDefinition",
     "name": "Fittings",
     "icon": "assets/res-sde/drawable/fittingmanagement.png",
-    "pageLink": "/app/fittings"
+    "pageLink": "/app/fittings/pilot"
 }, {
     "jsonClass": "TabDefinition",
     "name": "Assets",
