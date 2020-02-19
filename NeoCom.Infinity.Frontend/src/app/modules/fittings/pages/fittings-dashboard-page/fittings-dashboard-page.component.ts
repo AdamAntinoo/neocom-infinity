@@ -1,8 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+// - CORE
+import { Component } from '@angular/core';
+import { OnInit } from '@angular/core';
+// - SERVICES
 import { AppPanelComponent } from '@app/modules/shared/panels/app-panel/app-panel.component';
 import { AppStoreService } from '@app/services/appstore.service';
-import { Fitting } from '@app/domain/Fitting.domain';
 import { ResponseTransformer } from '@app/services/support/ResponseTransformer';
+// - DOMAIN
+import { Fitting } from '@app/domain/Fitting.domain';
+import { GroupContainer } from '@app/domain/GroupContainer.model';
+import { EVariant } from '@app/domain/interfaces/EPack.enumerated';
+import { ICollaboration } from '@app/domain/interfaces/ICollaboration.interface';
 
 @Component({
     selector: 'fittings-dashboard-page',
@@ -10,14 +17,14 @@ import { ResponseTransformer } from '@app/services/support/ResponseTransformer';
     styleUrls: ['./fittings-dashboard-page.component.scss']
 })
 export class FittingsDashboardPageComponent extends AppPanelComponent implements OnInit {
-    // private groupList: Map<number, GroupContainer> = new Map<number, GroupContainer>();
-    // private shipList: Map<number, GroupContainer> = new Map<number, GroupContainer>();
+    private groupList: Map<number, GroupContainer> = new Map<number, GroupContainer>();
+    private shipList: Map<number, GroupContainer> = new Map<number, GroupContainer>();
 
     constructor(protected appStoreService: AppStoreService) { super(); }
 
     ngOnInit() {
-        console.log(">>[FittingsDashboardPageComponent.ngOnInit]");
-        this.setVariant("-FITTINGLIST-");
+        console.log(">[FittingsDashboardPageComponent.ngOnInit]");
+        this.setVariant(EVariant.FITTING_LIST);
         this.downloading = true;
         // Download the list of fittings for this Pilot.
         console.log('-[FittingsDashboardPageComponent.ngOnInit]> Starting to download pilot fittings');
@@ -38,6 +45,12 @@ export class FittingsDashboardPageComponent extends AppPanelComponent implements
                 // Process the list of fittings into the ship type groupings.
                 this.classifyFittings(response);
             });
+        console.log("<[FittingsDashboardPageComponent.ngOnInit]");
+    }
+
+    // - I V I E W E R
+    public getNodes2Render(variant: EVariant): ICollaboration[] {
+        return [];
     }
     private classifyFittings(fittings: Fitting[]): void {
         /*

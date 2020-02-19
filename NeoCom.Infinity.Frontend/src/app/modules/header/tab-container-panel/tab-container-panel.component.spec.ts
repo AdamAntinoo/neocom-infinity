@@ -15,7 +15,7 @@ import { AppStoreService } from '@app/services/appstore.service';
 import { SupportAppStoreService } from '@app/testing/SupportAppStore.service';
 import { Observable } from 'rxjs';
 
-fdescribe('PANEL TabContainerPanelComponent [Module: HEADER]', () => {
+describe('PANEL TabContainerPanelComponent [Module: HEADER]', () => {
     let component: TabContainerPanelComponent;
     let fixture: ComponentFixture<TabContainerPanelComponent>;
     let isolationService: SupportIsolationService;
@@ -48,7 +48,7 @@ fdescribe('PANEL TabContainerPanelComponent [Module: HEADER]', () => {
 
     // - L I F E C Y C L E   P H A S E
     describe('Lifecycle Phase', () => {
-        fit('Lifecycle: OnInit -> get the tab definitions. List definitions', fakeAsync(() => {
+        it('Lifecycle: OnInit -> get the tab definitions. List definitions', fakeAsync(() => {
             console.log('><[header/TabContainerPanelComponent]> Lifecycle: OnInit -> get the tab definitions');
             let componentAsAny = component as any;
             expect(component.tabs).toBeDefined();
@@ -57,7 +57,7 @@ fdescribe('PANEL TabContainerPanelComponent [Module: HEADER]', () => {
             component.ngOnInit();
             expect(component.tabs.length).toBe(2);
         }));
-        fit('Lifecycle: OnInit -> get the tab definitions. List definitions. Tab selected', fakeAsync(() => {
+        it('Lifecycle: OnInit -> get the tab definitions. List definitions. Tab selected', fakeAsync(() => {
             console.log('><[header/TabContainerPanelComponent]> Lifecycle: OnInit -> get the tab definitions');
             let componentAsAny = component as any;
             expect(component.tabs).toBeDefined();
@@ -68,7 +68,7 @@ fdescribe('PANEL TabContainerPanelComponent [Module: HEADER]', () => {
             expect(component.tabs.length).toBe(2);
             expect(component.tabs[0].isActive()).toBeTruthy();
         }));
-        fit('Lifecycle: OnInit -> get the tab definitions. Single definition', fakeAsync(() => {
+    it('Lifecycle: OnInit -> get the tab definitions. Single definition', fakeAsync(() => {
             console.log('><[header/TabContainerPanelComponent]> Lifecycle: OnInit -> get the tab definitions');
             let componentAsAny = component as any;
             expect(component.tabs).toBeDefined();
@@ -90,7 +90,7 @@ fdescribe('PANEL TabContainerPanelComponent [Module: HEADER]', () => {
             component.ngOnInit();
             expect(component.tabs.length).toBe(1);
         }));
-        fit('Lifecycle: OnInit -> get the tab definitions. Single definition tab active', fakeAsync(() => {
+        it('Lifecycle: OnInit -> get the tab definitions. Single definition tab active', fakeAsync(() => {
             console.log('><[header/TabContainerPanelComponent]> Lifecycle: OnInit -> get the tab definitions');
             let componentAsAny = component as any;
             expect(component.tabs).toBeDefined();
