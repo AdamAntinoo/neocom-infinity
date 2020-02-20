@@ -1,9 +1,9 @@
 // - CORE
 import { Component } from '@angular/core';
 // - RENDERS
-import { NodeContainerRenderComponent } from '@renders/node-container-render/node-container-render.component';
+import { NodeContainerRenderComponent } from '../node-container-render/node-container-render.component';
 // - DOMAIN
-import { GroupContainer } from '@domain/GroupContainer.model';
+import { GroupContainer } from '@domain/GroupContainer.domain';
 
 @Component({
     selector: 'v1-group-container',
@@ -15,18 +15,18 @@ export class V1GroupContainerRenderComponent extends NodeContainerRenderComponen
     constructor() { super(); }
 
     public getTitle(): string {
-        let group = this.node as GroupContainer;
+        let group = this.getNode() as GroupContainer;
         return group.getGroupTitle();
     }
     public getGroupIconReference(): string {
-        if (null != this.node) {
-            let group = this.node as GroupContainer;
+        if (null != this.getNode()) {
+            let group = this.getNode() as GroupContainer;
             return group.getGroupIconReference();
         }
     }
     public getContentsCount(): number {
-        if (null != this.node) {
-            let group = this.node as GroupContainer;
+        if (null != this.getNode()) {
+            let group = this.getNode() as GroupContainer;
             return group.getContentsCount();
         } else return 0;
     }

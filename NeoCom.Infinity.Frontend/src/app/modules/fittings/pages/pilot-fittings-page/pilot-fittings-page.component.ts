@@ -6,7 +6,7 @@ import { AppPanelComponent } from '@app/modules/shared/panels/app-panel/app-pane
 import { AppStoreService } from '@app/services/appstore.service';
 import { ResponseTransformer } from '@app/services/support/ResponseTransformer';
 // - DOMAIN
-import { Fitting } from '@app/domain/Fitting.domain';
+import { Fitting } from '../../../../domain/Fitting.domain';
 import { GroupContainer } from '@domain/GroupContainer.domain';
 import { EVariant } from '@app/domain/interfaces/EPack.enumerated';
 import { URLGroupIconReference, AssetGroupIconReference } from '@domain/interfaces/IIconReference.interface';
@@ -25,7 +25,6 @@ export class PilotFittingsPageComponent extends AppPanelComponent implements OnI
     ngOnInit() {
         console.log(">[PilotFittingsPageComponent.ngOnInit]");
         this.setVariant(EVariant.FITTING_LIST);
-        // this.downloading = true;
         // Download the list of fittings for this Pilot.
         console.log('-[PilotFittingsPageComponent.ngOnInit]> Starting to download pilot fittings');
         this.appStoreService.accessPilotFittings(new ResponseTransformer()
@@ -41,18 +40,28 @@ export class PilotFittingsPageComponent extends AppPanelComponent implements OnI
                 return results;
             }))
             .subscribe((response: Fitting[]) => {
-                console.log('-[PilotFittingsPageComponent.ngOnInit]> response: ' + JSON.stringify(response));
+                // console.log('-[PilotFittingsPageComponent.ngOnInit]> response: ' + JSON.stringify(response));
                 // Process the list of fittings into the ship type groupings.
                 this.classifyFittings(response);
+                console.log('-[PilotFittingsPageComponent.ngOnInit]> nodes processed: ' + this.dataModelRoot.length);
                 this.completeDowload();    // Notify the completion of the download.
             });
         console.log("<[PilotFittingsPageComponent.ngOnInit]");
     }
 
     private classifyFittings(fittings: Fitting[]): void {
+        console.log('>[PilotFittingsPage.classifyFittings]');
+        let hitShip = new GroupContainer()
         // Process the fittings and classify them into Ship categories, then ship type end then fitting.
+        console.log('-[PilotFittingsPage.classifyFittings]> fitting count: ' + fittings.length);
         for (let fit of fittings) {
             // Search for this ship type on the list of ships.
+            console.log('-[PilotFittingsPage.classifyFittings]> fitting name: ' + JSON.stringify(fit));
+            try {
+                console.log('-[PilotFittingsPage.classifyFittings]> ship type: ' + fit.getShipTypeId());
+            } catch (error) {
+                console.log('-[PilotFittingsPage.classifyFittings]> error: ' + JSON.stringify(error));
+           }
             let hitShip = this.shipList.get(fit.getShipTypeId());
             if (null == hitShip) {
                 // Create a new ship class entry and also check the group.
@@ -81,5 +90,6 @@ export class PilotFittingsPageComponent extends AppPanelComponent implements OnI
                 }
             }
         }
+        console.log('<[PilotFittingsPage.classifyFittings]');
     }
 }

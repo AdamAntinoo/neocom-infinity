@@ -117,7 +117,7 @@ describe('PANEL CorporationPublicDataPanelComponent [Module: SHARED]', () => {
 
     // - C O D E   C O V E R A G E   P H A S E
     describe('Code Coverage Phase [getters]', () => {
-        it('getCorporationCeo.success: validate the corporation ceo field', () => {
+        xit('getCorporationCeo.success: validate the corporation ceo field', () => {
             const expected = new Pilot({
                 "lastUpdateTime": "1970-01-01T00:00:00.000Z",
                 "pilotId": 977174846,

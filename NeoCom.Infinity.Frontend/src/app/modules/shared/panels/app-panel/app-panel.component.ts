@@ -13,8 +13,8 @@ import { IViewer } from '@domain/interfaces/IViewer.interface';
 })
 export class AppPanelComponent implements IViewer {
     @Input() self: AppPanelComponent;
-    @Input() variant: string | EVariant = '-DEFAULT-';
-    protected downloading: boolean = false;
+    @Input() variant:  EVariant = EVariant.DEFAULT;
+    protected downloading: boolean = true;
     protected dataModelRoot: ICollaboration[] = [];
     private renderNodeList: ICollaboration[] = [];
 
@@ -22,6 +22,10 @@ export class AppPanelComponent implements IViewer {
         this.self = this;
     }
 
+    // - GETTERS & SETTERS
+    public getVariant(): EVariant{
+        return this.variant;
+    }
     public isDownloading(): boolean {
         return this.downloading;
     }
@@ -34,7 +38,7 @@ export class AppPanelComponent implements IViewer {
         return this.renderNodeList;
     }
 
-    public setVariant(variant: string | EVariant): void {
+    public setVariant(variant:  EVariant): void {
         this.variant = variant;
     }
     // - I V I E W E R

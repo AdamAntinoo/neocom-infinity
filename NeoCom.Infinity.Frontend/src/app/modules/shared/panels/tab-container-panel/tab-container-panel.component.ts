@@ -18,7 +18,7 @@ import { TabDefinition } from '@app/domain/TabDefinition.domain';
 export class TabContainerPanelComponent implements OnInit {
     @Input() selectedTabName: string = '-NONE-'; // The name of the tab to be selected.
     @Input() tabDefinitionFile: string; // The name of the propeties fiel that define the tab list
-    private tabs: TabDefinition[] = [];
+    public tabs: TabDefinition[] = [];
 
     constructor(protected appStoreService: AppStoreService) { }
 
@@ -44,12 +44,16 @@ export class TabContainerPanelComponent implements OnInit {
                             results.push(tab);
                         }
                     } else {
-                        const tab = new TabDefinition(data);
+                        console.log("-[TabContainerPanelComponent.propertiesTabDefinitions]> Detected single tab.");
+                    const tab = new TabDefinition(data);
                         if (tab.getName() === this.selectedTabName) tab.select();
                         results.push(tab);
                     }
                     return results;
                 }));
-        else return null;
+        else return Observable.create((observer) => {
+            observer.next([]);
+            observer.complete();;
+        });
     }
 }

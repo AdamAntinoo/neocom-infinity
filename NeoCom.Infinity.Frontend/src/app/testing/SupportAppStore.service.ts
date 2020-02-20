@@ -20,6 +20,8 @@ import { Credential } from '@app/domain/Credential.domain';
 import { Corporation } from '@app/domain/Corporation.domain';
 import { Pilot } from '@app/domain/Pilot.domain';
 import { CorporationDataResponse } from '@app/domain/dto/CorporationDataResponse.dto';
+import { ResponseTransformer } from '@app/services/support/ResponseTransformer';
+import { Fitting } from '@domain/Fitting.domain';
 
 @Injectable({
     providedIn: 'root'
@@ -71,6 +73,9 @@ export class SupportAppStoreService {
     // - P I L O T
     public accessPilot(): Observable<Pilot | Pilot[]> {
         return this.pilotActiveCache;
+    }
+    public accessPilotFittings(transformer: ResponseTransformer): Observable<Fitting | Fitting[]> {
+        return this.directAccessMockResource('pilot.fittings');
     }
 
     // - S T O R E   D A T A   D O W N L O A D E R S

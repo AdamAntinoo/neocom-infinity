@@ -16,6 +16,9 @@ export class NodeContainerRenderComponent {
     @Input() node: ICollaboration;
     @Input() variant: EVariant = EVariant.DEFAULT;
 
+    public getNode(): ICollaboration{
+        return this.node;
+    }
     public mouseEnter(target: ICollaboration) {
         this.container.enterSelected(target);
     }
