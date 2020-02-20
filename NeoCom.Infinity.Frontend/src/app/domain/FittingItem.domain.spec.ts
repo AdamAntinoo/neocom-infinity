@@ -7,7 +7,12 @@ import { FittingItem } from './FittingItem.domain';
 
 describe('CLASS FittingItem [Module: DOMAIN]', () => {
     let isolation: SupportIsolationService;
-
+    let fittingItem4Test = {
+        "jsonClass": "FittingItem",
+        "typeId": 2048,
+        "name": "Damage Control II",
+        "location": "LoSlot0"
+    };
     beforeEach(() => {
         isolation = TestBed.get(SupportIsolationService);
     });
@@ -17,15 +22,13 @@ describe('CLASS FittingItem [Module: DOMAIN]', () => {
             console.log('><[domain/Fitting]> should be created');
             expect(new FittingItem()).toBeTruthy();
         });
-    });
-    // - C O D E   C O V E R A G E   P H A S E
-    xdescribe('Code Coverage Phase [getters]', () => {
-        it('getName.success: check the name field', () => {
-            const expectedName = isolation.generateRandomString(32);
-            const expected = new Object({ name: expectedName });
-            // const corporation = new Corporation({ corporationPublicData: expected })
-            // const obtained = corporation.getName();
-            // expect(obtained).toBe(expectedName);
+        it('Check the class of the created instance', () => {
+            console.log('><[domain/Fitting]> should be created');
+            expect(new FittingItem().getJsonClass()).toBe('FittingItem');
+        });
+        it('Should validate the construction transformation', () => {
+            console.log('><[domain/Fitting]> Should validate the construction transformation');
+            expect(new FittingItem(fittingItem4Test)).toBeTruthy();
         });
     });
 });

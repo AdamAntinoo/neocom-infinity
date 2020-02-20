@@ -8,7 +8,7 @@ export class Fitting extends NeoCom {
     private name: string;
     private description: string;
     private hullGroup: string;
-    private shipHullInfo: NeoItem = new NeoItem();
+    private shipHullInfo: NeoItem;
     private items: FittingItem[] = [];
 
     constructor(values: Object = {}) {
@@ -35,10 +35,13 @@ export class Fitting extends NeoCom {
         if (null != this.shipHullInfo) return this.shipHullInfo.typeId;
         else return -1;
     }
-    public getShipName(): string {
+    public getShipClassName(): string {
         if (null != this.shipHullInfo) return this.shipHullInfo.name;
         else return "-";
     }
+    /**
+     * This is a reduced set of categories because there are different groups of Frigates and all share the same hull category.
+     */
     public getHullCategory(): string {
         return this.hullGroup;
     }
@@ -49,8 +52,5 @@ export class Fitting extends NeoCom {
     public getShipGroupId(): number {
         if (null != this.shipHullInfo) return this.shipHullInfo.getGroupId();
         else return 0;
-    }
-    public getHullGroup(): string {
-        return this.hullGroup;
     }
 }

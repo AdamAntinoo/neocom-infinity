@@ -14,7 +14,7 @@ export class GroupContainer extends NeoComExpandable {
     private id: number = -1;
     private title: string = '-G-CONTAINER-';
     private groupIcon: IIconReference = new AssetGroupIconReference('rookie_64.png');
-    private contents: any = [];
+    private contents: ICollaboration[] = [];
 
     constructor(values: Object = {}) {
         super();
@@ -57,6 +57,9 @@ export class GroupContainer extends NeoComExpandable {
     }
 
     // - GETTERS & SETTERS
+    public getId(): number {
+        return this.id;
+    }
     public getGroupTitle(): string {
         return this.title;
     }
@@ -66,7 +69,7 @@ export class GroupContainer extends NeoComExpandable {
     public getContentsCount(): number {
         return this.contents.length;
     }
-    public getContents(): NeoCom[] {
+    public getContents(): ICollaboration[] {
         return this.contents;
     }
     public setId(newid: number): GroupContainer {
@@ -81,7 +84,7 @@ export class GroupContainer extends NeoComExpandable {
         this.groupIcon = reference;
         return this;
     }
-    public addContent(newcontent: NeoCom): GroupContainer {
+    public addContent(newcontent: ICollaboration): GroupContainer {
         this.contents.push(newcontent);
         return this;
     }

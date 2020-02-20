@@ -3,7 +3,8 @@ import { NeoCom } from './NeoCom.domain';
 import { IExpandable } from '@domain/interfaces/IExpandable.interface';
 
 export class NeoComExpandable extends NeoCom implements IExpandable {
-    public expanded: boolean;
+    public expanded: boolean = false;
+
     // - I E X P A N D A B L E
     public isExpanded(): boolean {
         return this.expanded;
@@ -20,7 +21,4 @@ export class NeoComExpandable extends NeoCom implements IExpandable {
         this.expanded = !this.expanded;
         return this.expanded;
     }
-    // public getContentsSize(): number {
-    //     throw new Error("Method not implemented.");
-    // }
 }

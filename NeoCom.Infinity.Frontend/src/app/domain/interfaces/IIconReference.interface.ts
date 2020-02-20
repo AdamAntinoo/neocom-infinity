@@ -13,7 +13,7 @@ export class URLGroupIconReference implements IIconReference {
     }
 }
 export class AssetGroupIconReference implements IIconReference {
-    private static FITTING_SHIP_ASSET_LOCATION: string = "/assets/res-fitting/drawable/";
+    public static FITTING_SHIP_ASSET_LOCATION: string = "/assets/res-fitting/drawable/";
 
     constructor(private iconName: string) { }
     public getReference(): string {

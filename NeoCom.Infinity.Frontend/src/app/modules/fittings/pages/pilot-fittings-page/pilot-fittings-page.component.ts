@@ -7,7 +7,7 @@ import { AppStoreService } from '@app/services/appstore.service';
 import { ResponseTransformer } from '@app/services/support/ResponseTransformer';
 // - DOMAIN
 import { Fitting } from '@app/domain/Fitting.domain';
-import { GroupContainer } from '@app/domain/GroupContainer.model';
+import { GroupContainer } from '@domain/GroupContainer.domain';
 import { EVariant } from '@app/domain/interfaces/EPack.enumerated';
 import { URLGroupIconReference, AssetGroupIconReference } from '@domain/interfaces/IIconReference.interface';
 
