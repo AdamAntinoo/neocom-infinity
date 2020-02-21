@@ -18,8 +18,12 @@ export class NodeContainerRenderComponent implements IColorTheme {
     @Input() node: NeoCom;
     @Input() variant: EVariant = EVariant.DEFAULT;
     @Input() colorScheme: string = 'panel-white';  // The name of the panel style to be rendered.
+
     public getNode(): NeoCom {
         return this.node;
+    }
+    public getVariant(): EVariant{
+        return this.variant;
     }
     /**
      * Pass the container panel the node that is being entered so if there is additional data it can be exported to another panel.
@@ -35,7 +39,8 @@ export class NodeContainerRenderComponent implements IColorTheme {
         }
     }
     public isExpanded(): boolean {
-        return this.node.isExpanded();
+        if (null != this.node)
+            return this.node.isExpanded();
     }
 
     // - I C O L O R T H E M E
@@ -61,12 +66,12 @@ export class NodeContainerRenderComponent implements IColorTheme {
         return this.colorScheme;
     }
     public getExpandedPanelStyle(): string {
-        return this.colorScheme + '-expanded';
+        return this.colorScheme+' ' +this.colorScheme + '-expanded';
     }
     public getSelectedPanelStyle(): string {
-        return this.colorScheme + '-selected';
+        return this.colorScheme + ' ' +this.colorScheme + '-selected';
     }
     public getExpandedSelectedPanelStyle(): string {
-        return this.getExpandedPanelStyle() + ' ' + this.getSelectedPanelStyle();
+        return this.colorScheme + ' ' +this.getExpandedPanelStyle() + ' ' + this.getSelectedPanelStyle();
     }
 }
