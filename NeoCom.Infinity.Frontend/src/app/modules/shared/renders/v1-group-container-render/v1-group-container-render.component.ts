@@ -12,7 +12,7 @@ import { EVariant } from '@domain/interfaces/EPack.enumerated';
     styleUrls: ['./v1-group-container-render.component.scss']
 })
 export class V1GroupContainerRenderComponent extends NodeContainerRenderComponent {
-//   private  colorScheme: string = 'panel-white';  // The name of the panel color style to be rendered.
+    //   private  colorScheme: string = 'panel-white';  // The name of the panel color style to be rendered.
 
     constructor() { super(); }
 
@@ -32,33 +32,22 @@ export class V1GroupContainerRenderComponent extends NodeContainerRenderComponen
             return group.getContentsCount();
         } else return 0;
     }
-    public getColorSchemePanelStyle(): string{
-        return 'panel-red';
-    }
-    public getColorSchemePanelStyleq(): string {
-        // Detect the state configuration.
-        // if (this.node.isSelected())
-        //     if (this.node.isExpanded())
-        //         return this.getExpandedSelectedPanelStyle();
-        // if (this.node.isSelected())
-        //     return this.getSelectedPanelStyle();
-        // if (this.node.isExpanded())
-        //     return this.getExpandedPanelStyle();
-        return this.getPanelStyle();
-    }
-  public  getPanelStyle(): string {
-        return this.colorScheme;
-    }
-    public   getExpandedPanelStyle(): string {
-        return this.colorScheme + '-expanded'
-    }
-    public    getSelectedPanelStyle(): string {
-        return this.colorScheme + '-selected'
-    }
-    public  getExpandedSelectedPanelStyle(): string {
-        return this.getExpandedPanelStyle() + ' ' + this.getSelectedPanelStyle();
-    }
-    public getVariant(): string{
+    // public getColorSchemePanelStyle(): string {
+    //     return 'panel-red';
+    // }
+    // public getPanelStyle(): string {
+    //     return this.colorScheme;
+    // }
+    // public getExpandedPanelStyle(): string {
+    //     return this.colorScheme /*+ '-expanded'*/
+    // }
+    // public getSelectedPanelStyle(): string {
+    //     return this.colorScheme + '-selected'
+    // }
+    // public getExpandedSelectedPanelStyle(): string {
+    //     return this.getExpandedPanelStyle() + ' ' + this.getSelectedPanelStyle();
+    // }
+    public getVariant(): string {
         return EVariant.DEFAULT;
     }
 }

@@ -46,6 +46,14 @@ export class NodeContainerRenderComponent implements IColorTheme {
      * @memberof AppPanelComponent
      */
     public getColorSchemePanelStyle(): string {
+        // Detect the state configuration.
+        if (this.node.isSelected())
+            if (this.node.isExpanded())
+                return this.getExpandedSelectedPanelStyle();
+        if (this.node.isSelected())
+            return this.getSelectedPanelStyle();
+        if (this.node.isExpanded())
+            return this.getExpandedPanelStyle();
         return this.getPanelStyle();
     }
 
@@ -53,10 +61,10 @@ export class NodeContainerRenderComponent implements IColorTheme {
         return this.colorScheme;
     }
     public getExpandedPanelStyle(): string {
-        return this.colorScheme + '-expanded'
+        return this.colorScheme + '-expanded';
     }
     public getSelectedPanelStyle(): string {
-        return this.colorScheme + '-selected'
+        return this.colorScheme + '-selected';
     }
     public getExpandedSelectedPanelStyle(): string {
         return this.getExpandedPanelStyle() + ' ' + this.getSelectedPanelStyle();
