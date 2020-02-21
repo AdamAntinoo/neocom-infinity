@@ -1,11 +1,16 @@
 // - DOMAIN
+import { INode } from './interfaces/INode.interface';
 import { ICollaboration } from './interfaces/ICollaboration.interface';
 import { IExpandable } from './interfaces/IExpandable.interface';
-import { INode } from './interfaces/INode.interface';
+import { ISelectable } from './interfaces/ISelectable.interface';
+import { IColorTheme } from './interfaces/IColorTheme.interface';
 
-export class NeoCom implements INode, ICollaboration, IExpandable {
+export class NeoCom implements INode, ICollaboration, IExpandable, ISelectable/*, IColorTheme*/ {
     protected jsonClass: string = 'NeoCom';
     protected expanded: boolean = false;
+    protected selected: boolean = false;
+    // protected themeColor: ColorTheme = new ColorTheme().setThemeColor(ESeparator.WHITE);
+
 
     constructor(values: Object = {}) {
         Object.assign(this, values);
@@ -21,6 +26,11 @@ export class NeoCom implements INode, ICollaboration, IExpandable {
     // - I N O D E
     public getJsonClass(): string {
         return this.jsonClass;
+    }
+
+    // -  I C O L L A B O R A T I O N
+    collaborate2View(): ICollaboration[] {
+        return [];
     }
 
     // - I E X P A N D A B L E
@@ -40,8 +50,19 @@ export class NeoCom implements INode, ICollaboration, IExpandable {
         return this.isExpanded();
     }
 
-    // -  I C O L L A B O R A T I O N
-    collaborate2View(): ICollaboration[] {
-        return [];
+    // - I S E L E C T A B L E
+    public toggleSelected(): boolean {
+        this.selected = !this.selected;
+        return this.selected;
+    }
+    public isSelected(): boolean {
+        if (this.selected) return true;
+        else return false;
+    }
+    public select(): void {
+        this.selected = true;
+    }
+    public unselect(): void {
+        this.selected = false;
     }
 }

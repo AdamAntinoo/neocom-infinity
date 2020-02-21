@@ -23,7 +23,7 @@ export class GroupContainer extends NeoComExpandable {
     }
 
     // - I C O L L A B O R A T I O N
-    public collaborate2View(appModelStore: AppStoreService, variant: EVariant): ICollaboration[] {
+    public collaborate2View(appModelStore?: AppStoreService, variant?: EVariant): ICollaboration[] {
         console.log('>[GroupContainer.collaborate2View]');
         let collab: any = []; // Initialize the list to be output.
         // Check if the Node is expanded or not.

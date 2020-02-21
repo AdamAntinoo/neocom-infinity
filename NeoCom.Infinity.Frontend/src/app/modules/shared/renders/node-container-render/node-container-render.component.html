@@ -1,6 +1,14 @@
-<v1-group-container *ngIf="node.jsonClass == 'GroupContainer'" [container]="container" [node]="node" [variant]="variant" (mouseenter)="mouseEnter(node)">
-</v1-group-container>
-<v1-fitting *ngIf="node.jsonClass == 'Fitting'" [container]="container" [node]="node" [variant]="variant" (mouseenter)="mouseEnter(node)">
-</v1-fitting>
-<v1-fitting-item *ngIf="node.jsonClass == 'FittingItem'" [container]="container" [node]="node" [variant]="variant" (mouseenter)="mouseEnter(node)">
-</v1-fitting-item>
+<div class="neocom-panel" [ngClass]="getColorSchemePanelStyle()" (mouseenter)="mouseEnter(node)" (click)="toggleExpanded()">
+    <v1-group-container *ngIf="node.jsonClass == 'GroupContainer'" style="flex-grow: 95;" [container]="container" [node]="node" [variant]="variant">
+    </v1-group-container>
+    <v1-fitting *ngIf="node.jsonClass == 'Fitting'" [container]="container" [node]="node" [variant]="variant">
+    </v1-fitting>
+    <v1-fitting-item *ngIf="node.jsonClass == 'FittingItem'" [container]="container" [node]="node" [variant]="variant">
+    </v1-fitting-item>
+    <div *ngIf="node.isExpandable()" style="" class="neocom-arrow-box">
+        <img class="neocom-arrow" [ngClass]="{'neocom-arrow-expanded': isExpanded()}" src="/assets/res-ui/drawable/arrowright.png ">
+    </div>
+</div>
+<!-- <div *ngIf="hasMenu()" style="">
+            <img src="/assets/icons/menuicon.jpg" width="16px" height="16px" style="filter: invert(100%);">
+        </div> -->

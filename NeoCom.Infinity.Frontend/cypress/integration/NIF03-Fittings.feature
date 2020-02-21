@@ -4,7 +4,6 @@ Feature: [NIF03]-Display the Fittings management page. Allow to select between p
     This page shows a title for the function covered that is the Fittings display. There is an active tab that allows to select between the pilot or the corporation fittings to be displayed. Fittings are then classified by the type of ship that they apply to, then by the ship class and finally the fitting node.
 
     Background: Check the existence of the right panels on the page Fittings Dashboard Page
-        Given one instance of ServerInfoPanel
     # Given one instance of CorporationPublicDataPanel
     # Given one instance of CorporationDetailsDataRender
     # Given one instance of CorporationCeoRender
@@ -16,6 +15,7 @@ Feature: [NIF03]-Display the Fittings management page. Allow to select between p
     Scenario: [NIF03.01]-Check that the fittings data section has the function title and shows the right set of fittings.
         When the PilotFittingsPage is activated with the request id "PILOT-FITTINGS"
         Given one instance of AppInfoPanel
+        Given one instance of ServerInfoPanel
         Given one instance of ActionBarPanel
         Then there is a "action-bar" with the next fields
             | title             | subtitle                                                 |
@@ -30,3 +30,20 @@ Feature: [NIF03]-Display the Fittings management page. Allow to select between p
         And there is a "v1-group-container" with the next fields
             | neocom-icon                                 | hullClass | neocom-classname | stack-counter |
             | /assets/res-fitting/drawable/frigate_64.png | Frigate   | SHIP GROUP       | 1             |
+  
+    @NIF03 @NIF03.02
+    Scenario: [NIF03.02]-The expandable Groups has the expandable arrow and functionality.
+        When the PilotFittingsPage is activated with the request id "PILOT-FITTINGS"
+        Then the v1-group-container has a expandable arrow indicator pointing right
+        And the v1-group-container title has the glow attribute
+        And the border color of the "v1-group-container" is "WHITE"
+        And the opacity interaction for the "v1-group-container" is "disabled"
+
+    @NIF03 @NIF03.03
+    Scenario: [NIF03.03]-Add more render nodes when the Group is expanded.
+        When the PilotFittingsPage is activated with the request id "PILOT-FITTINGS"
+        And there is a click on the first v1-group-container
+        Then the v1-group-container expands to render its contents
+        And the expanded arrow now points down
+        And the background color has changed to a shade of the border color
+        And there is a viewer-panel with "5" instances of "v1-group-container"

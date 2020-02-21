@@ -34,7 +34,7 @@ export class AppPanelComponent implements IViewer {
         this.downloading = false;
     }
     public getNodes2Render(): ICollaboration[] {
-        console.log(">[AppPanelComponent.getNodes2Render]> node count: " + this.renderNodeList.length);
+        // console.log(">[AppPanelComponent.getNodes2Render]> node count: " + this.renderNodeList.length);
         return this.renderNodeList;
     }
 

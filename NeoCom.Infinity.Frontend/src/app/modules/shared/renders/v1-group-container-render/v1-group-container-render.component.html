@@ -1,4 +1,5 @@
-<div class="neocom-panel panel-red">
+<!-- D E F A U L T   V A R I A N T -->
+<div *ngIf="getVariant() === '-DEFAULT-'">
     <div style="display: flex; flex-direction: row; flex-wrap: nowrap;">
         <div>
             <img class="neocom-icon" src="{{getGroupIconReference()}}" id="iconsize-36">
@@ -10,11 +11,5 @@
             <div class="neocom-classname">SHIP GROUP</div>
             <div class="stack-counter">{{getContentsCount()}}</div>
         </div>
-        <!-- <div *ngIf="hasMenu()" style="">
-            <img src="/assets/icons/menuicon.jpg" width="16px" height="16px" style="filter: invert(100%);">
-        </div>
-        <div *ngIf="node.isExpandable()" style="" class="neocom-arrow-box" (click)="node.toggleExpanded()">
-            <img class="neocom-arrow" [ngClass]="{'neocom-arrow-expanded': node.expanded}" src="/assets/res-ui/drawable/arrowright.png ">
-        </div> -->
     </div>
 </div>
