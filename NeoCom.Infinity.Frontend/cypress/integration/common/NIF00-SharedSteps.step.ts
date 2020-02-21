@@ -15,23 +15,27 @@ import { TabContainerPanel } from '../../support/page-objects/TabContainerPanel.
 import { ViewerPanel } from '../../support/page-objects/ViewerPanel.panel';
 import { V1GroupContainer } from '../../support/page-objects/V1GroupContainer.panel';
 
-let appInfoPanel: AppInfoPanel;
-let serverInfoPanel: ServerInfoPanel;
+// let appInfoPanel: AppInfoPanel;
+// let serverInfoPanel: ServerInfoPanel;
 let corporationDataPanel: CorporationDataPanel;
 let pilotPublicDataPanel: PilotPublicDataPanel;
 let pilotRender: PilotRenderPanel;
-let actionBarPanel: ActionBarPanel;
-let tabContainerPanel: TabContainerPanel;
-let viewerPanel: ViewerPanel;
-let v1GroupContainer: V1GroupContainer;
+// let actionBarPanel: ActionBarPanel;
+// let tabContainerPanel: TabContainerPanel;
+// let viewerPanel: ViewerPanel;
+// let v1GroupContainer: V1GroupContainer;
 
 Given('one instance of AppInfoPanel', function () {
-    appInfoPanel = new AppInfoPanel();
+    console.log('[GIVEN] one instance of AppInfoPanel');
+    const appInfoPanel: AppInfoPanel = new AppInfoPanel();
     expect(appInfoPanel).to.not.be.null;
     cy.get('app-root').find('app-info-panel').should('have.length', 1)
 });
 Given('one instance of ServerInfoPanel', function () {
-    serverInfoPanel = new ServerInfoPanel();
+    console.log('[GIVEN] one instance of ServerInfoPanel');
+    const serverInfoPanel: ServerInfoPanel = new ServerInfoPanel();
+    expect(serverInfoPanel).to.not.be.null;
+    cy.get('app-root').find('server-info-panel').should('have.length', 1)
 });
 Given('one instance of CorporationDataPanel', function () {
     corporationDataPanel = new CorporationDataPanel();
@@ -44,27 +48,33 @@ Given('one instance of PilotRenderPanel', function () {
 });
 Given('one instance of ActionBarPanel', function () {
     console.log('[GIVEN] one instance of ActionBarPanel');
-    actionBarPanel = new ActionBarPanel();
+    const actionBarPanel: ActionBarPanel = new ActionBarPanel();
     expect(actionBarPanel).to.not.be.null;
     cy.get('app-root').find('action-bar').should('have.length', 1)
 });
 Given('one instance of TabContainerPanel', function () {
     console.log('[GIVEN] one instance of TabContainerPanel');
-    tabContainerPanel = new TabContainerPanel();
+    const tabContainerPanel: TabContainerPanel = new TabContainerPanel();
     expect(tabContainerPanel).to.not.be.null;
     cy.get('app-root').find('tab-container-panel').should('have.length', 1)
 });
 Given('one instance of ViewerPanel', function () {
     console.log('[GIVEN] one instance of ViewerPanel');
-    viewerPanel = new ViewerPanel();
+    const viewerPanel: ViewerPanel = new ViewerPanel();
     expect(viewerPanel).to.not.be.null;
     cy.get('app-root').find('viewer-panel').should('have.length', 1)
 });
 Given('one instance of V1GroupContainer', function () {
     console.log('[GIVEN] one instance of V1GroupContainer');
-    v1GroupContainer = new V1GroupContainer();
+    const v1GroupContainer: V1GroupContainer = new V1GroupContainer();
     expect(v1GroupContainer).to.not.be.null;
     cy.get('app-root').find('v1-group-container').should('have.length', 1)
+});
+Given('at least one instance of V1GroupContainer', function () {
+    console.log('[GIVEN] at least one instance of V1GroupContainer');
+    const v1GroupContainer: V1GroupContainer = new V1GroupContainer();
+    expect(v1GroupContainer).to.not.be.null;
+    cy.get('app-root').find('v1-group-container').should('have.length.gt', 0)
 });
 
 Then('there is a {string} with the next fields', (panelType, dataTable) => {
@@ -74,9 +84,13 @@ Then('there is a {string} with the next fields', (panelType, dataTable) => {
     const row = dataTable.hashes()[0];
     switch (panelType) {
         case 'appinfo-panel':
+            const appInfoPanel: AppInfoPanel = new AppInfoPanel();
+            expect(appInfoPanel).to.not.be.null;
             appInfoPanel.validatePanel(row);
             break;
         case 'serverinfo-panel':
+            const serverInfoPanel: ServerInfoPanel = new ServerInfoPanel();
+            expect(serverInfoPanel).to.not.be.null;
             serverInfoPanel.validatePanel(row);
             break;
         case 'corporation-public-data-panel':
@@ -89,19 +103,23 @@ Then('there is a {string} with the next fields', (panelType, dataTable) => {
             pilotRender.validatePanel(row);
             break;
         case 'action-bar':
+            const actionBarPanel: ActionBarPanel = new ActionBarPanel();
+            expect(actionBarPanel).to.not.be.null;
             actionBarPanel.validatePanel(row);
             break;
         case 'tab-container-panel':
+            const tabContainerPanel: TabContainerPanel = new TabContainerPanel();
+            expect(tabContainerPanel).to.not.be.null;
             tabContainerPanel.validatePanel(row);
             break;
-        case 'viewer-panel':
-            viewerPanel.validatePanel(row);
-            break;
+//         case 'viewer-panel':
+//             const viewerPanel: ViewerPanel = new ViewerPanel();
+//             expect(viewerPanel).to.not.be.null;
+//   viewerPanel.validatePanel(row);
+//             break;
         case 'v1-group-container':
-            // console.log('[GIVEN] one instance of V1GroupContainer');
-            v1GroupContainer = new V1GroupContainer();
+            const v1GroupContainer: V1GroupContainer = new V1GroupContainer();
             expect(v1GroupContainer).to.not.be.null;
-            // cy.get('app-root').find('v1-group-container').should('have.length', 1)
             v1GroupContainer.validatePanel(row);
             break;
     }

@@ -32,7 +32,10 @@ export class GroupContainer extends NeoComExpandable {
             collab.push(new Separator().setVariation(ESeparator.RED));
             console.log('>>[GroupContainer.collaborate2View]> Collaborating: ' + 'GroupContainer');
             collab.push(this);
-            collab.push(this.collaborateContents(this.contents, appModelStore, variant));
+            for (let partialnode of this.collaborateContents(this.contents, appModelStore, variant)) {
+                collab.push(partialnode);
+            }
+        // collab.concat(this.collaborateContents(this.contents, appModelStore, variant));
             console.log(">[GroupContainer.collaborate2View]> Collaborating: " + "Separator.RED");
             collab.push(new Separator().setVariation(ESeparator.RED));
         } else {
@@ -42,12 +45,12 @@ export class GroupContainer extends NeoComExpandable {
         console.log('<[GroupContainer.collaborate2View]');
         return collab;
     }
-    private collaborateContents(contents: ICollaboration[],
+    private collaborateContents(contentList: ICollaboration[],
         appModelStore: AppStoreService,
-        variant: EVariant): ICollaboration[] | NeoCom[] {
+        variant: EVariant): ICollaboration[] {
         let collaboration = [];
         // Process each Location for new collaborations.
-        for (let node of contents) {
+        for (let node of contentList) {
             let partialcollab = node.collaborate2View(appModelStore, variant);
             for (let partialnode of partialcollab) {
                 collaboration.push(partialnode);

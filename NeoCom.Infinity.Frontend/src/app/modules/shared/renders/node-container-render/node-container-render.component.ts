@@ -28,8 +28,11 @@ export class NodeContainerRenderComponent implements IColorTheme {
     public mouseEnter(target: ICollaboration) {
         this.container.enterSelected(target);
     }
-    public toggleExpanded(): void {  
-        if (null != this.node) console.log('><[Neocom.toggleExpanded]> expand: ' + this.node.toggleExpanded());
+    public toggleExpanded(): void {
+        if (null != this.node) {
+            console.log('><[Neocom.toggleExpanded]> expand: ' + this.node.toggleExpanded());
+            this.container.notifyDataChanged();
+        }
     }
     public isExpanded(): boolean {
         return this.node.isExpanded();

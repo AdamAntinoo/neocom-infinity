@@ -21,6 +21,7 @@ import { PilotRenderComponent } from './renders/pilot-render/pilot-render.compon
 import { V1GroupContainerRenderComponent } from './renders/v1-group-container-render/v1-group-container-render.component';
 import { V1FittingRenderComponent } from './renders/v1-fitting-render/v1-fitting-render.component';
 import { V1FittingItemRenderComponent } from './renders/v1-fitting-item-render/v1-fitting-item-render.component';
+import { SeparatorComponent } from '@renders/separator-render/separator-render.component';
 
 // - MODULE ROUTES
 const routes: Routes = [
@@ -50,6 +51,7 @@ const routes: Routes = [
         V1GroupContainerRenderComponent,
         V1FittingRenderComponent,
         V1FittingItemRenderComponent,
+        SeparatorComponent,
     ],
     exports: [
         RouterModule,
@@ -63,7 +65,8 @@ const routes: Routes = [
         NodeContainerRenderComponent,
         AllianceRenderComponent,
         CorporationRenderComponent,
-        PilotRenderComponent
+        PilotRenderComponent,
+        SeparatorComponent
     ]
 })
 export class SharedModule { }

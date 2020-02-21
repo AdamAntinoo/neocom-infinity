@@ -61,14 +61,14 @@ export class PilotFittingsPageComponent extends AppPanelComponent implements OnI
                 console.log('-[PilotFittingsPage.classifyFittings]> ship type: ' + fit.getShipTypeId());
             } catch (error) {
                 console.log('-[PilotFittingsPage.classifyFittings]> error: ' + JSON.stringify(error));
-           }
+            }
             let hitShip = this.shipList.get(fit.getShipTypeId());
             if (null == hitShip) {
                 // Create a new ship class entry and also check the group.
                 console.log("-- [PilotFittingsPage.accessPilotFittings]> Creating Ship Group: " + fit.getShipGroup());
                 hitShip = new GroupContainer()
                     .setId(fit.getShipTypeId())
-                    .setTitle(fit.getShipGroup())
+                    .setTitle(fit.getShipClassName())
                     .setGroupIcon(new URLGroupIconReference(fit.getShipTypeId()));
                 this.shipList.set(fit.getShipTypeId(), hitShip);
                 let groupId = fit.getShipGroupId();
