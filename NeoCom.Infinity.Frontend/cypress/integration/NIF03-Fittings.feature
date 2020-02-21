@@ -34,16 +34,16 @@ Feature: [NIF03]-Display the Fittings management page. Allow to select between p
     @NIF03 @NIF03.02
     Scenario: [NIF03.02]-The expandable Groups has the expandable arrow and functionality.
         When the PilotFittingsPage is activated with the request id "PILOT-FITTINGS"
-        Then the v1-group-container has a expandable arrow indicator pointing right
+        Then the node-container has a expandable arrow indicator pointing right
         And the v1-group-container title has the glow attribute
         And the border color of the "v1-group-container" is "WHITE"
-        And the opacity interaction for the "v1-group-container" is "disabled"
+        # And the opacity interaction for the "v1-group-container" is "disabled"
 
-    @NIF03 @NIF03.03
-    Scenario: [NIF03.03]-Add more render nodes when the Group is expanded.
-        When the PilotFittingsPage is activated with the request id "PILOT-FITTINGS"
-        And there is a click on the first v1-group-container
-        Then the v1-group-container expands to render its contents
-        And the expanded arrow now points down
-        And the background color has changed to a shade of the border color
-        And there is a viewer-panel with "5" instances of "v1-group-container"
+    # @NIF03 @NIF03.03
+    # Scenario: [NIF03.03]-Add more render nodes when the Group is expanded.
+    #     When the PilotFittingsPage is activated with the request id "PILOT-FITTINGS"
+    #     And there is a click on the first v1-group-container
+    #     Then the v1-group-container expands to render its contents
+    #     And the expanded arrow now points down
+    #     And the background color has changed to a shade of the border color
+    #     And there is a viewer-panel with "5" instances of "v1-group-container"

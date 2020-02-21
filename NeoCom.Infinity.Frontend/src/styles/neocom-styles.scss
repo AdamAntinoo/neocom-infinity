@@ -20,42 +20,42 @@
     margin: 2px;
 }
 
-#iconsize-12 {
+.iconsize-12 {
     height: 12px;
     width: 12px;
 }
 
-#iconsize-16 {
+.iconsize-16 {
     height: 16px;
     width: 16px;
 }
 
-#iconsize-24 {
+.iconsize-24 {
     height: 24px;
     width: 24px;
 }
 
-#iconsize-32 {
+.iconsize-32 {
     height: 32px;
     width: 32px;
 }
 
-#iconsize-36 {
+.iconsize-36 {
     height: 36px;
     width: 36px;
 }
 
-#iconsize-48 {
+.iconsize-48 {
     height: 48px;
     width: 48px;
 }
 
-#iconsize-60 {
+.iconsize-60 {
     height: 60px;
     width: 60px;
 }
 
-#iconsize-90 {
+.iconsize-90 {
     height: 90px;
     width: 90px;
 }
@@ -70,6 +70,21 @@
 }
 
 // - N A M E S
+$glow-color: white;
+.neocom-name {
+    font-size: $selected-text-size;
+    font-weight: $semibold-weight;
+    line-height: 1.3;
+}
+
+.glow {
+    text-shadow: 0 0 1px $glow-color;
+}
+
+.glow:hover {
+    text-shadow: 0 0 2px $glow-color;
+}
+
 %neocom-special-name {
     font-size: $selected-text-size;
     font-weight: $semibold-weight;

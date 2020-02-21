@@ -17,7 +17,7 @@ export class V1GroupContainer extends IsolationService {
             cy.get('.neocom-icon').invoke('attr', 'src').should('equal', iconPath);
         });
         cy.get('v1-group-container').within(($panel) => {
-            cy.get('#neocom-ts20').contains(hullClass);
+            cy.get('.neocom-ts20').contains(hullClass);
         });
     }
 }
