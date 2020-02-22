@@ -5,6 +5,7 @@ import { Input } from '@angular/core';
 import { EVariant } from '@app/domain/interfaces/EPack.enumerated';
 import { ICollaboration } from '@domain/interfaces/ICollaboration.interface';
 import { IViewer } from '@domain/interfaces/IViewer.interface';
+import { NeoCom } from '@domain/NeoCom.domain';
 
 @Component({
     selector: 'app-panel',
@@ -17,6 +18,7 @@ export class AppPanelComponent implements IViewer {
     protected downloading: boolean = true;
     protected dataModelRoot: ICollaboration[] = [];
     private renderNodeList: ICollaboration[] = [];
+    private target: NeoCom;
 
     constructor() {
         this.self = this;
@@ -42,7 +44,9 @@ export class AppPanelComponent implements IViewer {
         this.variant = variant;
     }
     // - I V I E W E R
-    public enterSelected(node: ICollaboration): void { }
+    public enterSelected(node: NeoCom): void { 
+        this.target = node;
+    }
     /**
       Reconstructs the list of nodes to be rendered from the current DataRoot and their collaborations to the view.
       */

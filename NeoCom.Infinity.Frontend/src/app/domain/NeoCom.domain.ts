@@ -4,13 +4,13 @@ import { ICollaboration } from './interfaces/ICollaboration.interface';
 import { IExpandable } from './interfaces/IExpandable.interface';
 import { ISelectable } from './interfaces/ISelectable.interface';
 import { IColorTheme } from './interfaces/IColorTheme.interface';
+import { ESeparator } from './interfaces/EPack.enumerated';
 
 export class NeoCom implements INode, ICollaboration, IExpandable, ISelectable/*, IColorTheme*/ {
     protected jsonClass: string = 'NeoCom';
     protected expanded: boolean = false;
     protected selected: boolean = false;
-    // protected themeColor: ColorTheme = new ColorTheme().setThemeColor(ESeparator.WHITE);
-
+    protected themeColor: ESeparator = ESeparator.WHITE;
 
     constructor(values: Object = {}) {
         Object.assign(this, values);
@@ -64,5 +64,15 @@ export class NeoCom implements INode, ICollaboration, IExpandable, ISelectable/*
     }
     public unselect(): void {
         this.selected = false;
+    }
+
+    // - I M E N U
+    public hasMenu(): boolean {
+        return false;
+    }
+
+    // - I C O L O R
+    public getThemeColor(): ESeparator{
+        return this.themeColor;
     }
 }

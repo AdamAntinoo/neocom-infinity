@@ -11,6 +11,10 @@ import { SupportIsolationService } from '@app/testing/SupportIsolation.service';
 
 import { NodeContainerRenderComponent } from './node-container-render.component';
 import { GroupContainer } from '@domain/GroupContainer.domain';
+import { NeoCom } from '@domain/NeoCom.domain';
+import { AppPanelComponent } from '../../panels/app-panel/app-panel.component';
+import { Container } from '@angular/compiler/src/i18n/i18n_ast';
+import { NeoComExpandable } from '@domain/NeoComExpandable.domain';
 
 describe('RENDER NodeContainerRenderComponent [Module: SHARED]', () => {
     let fixture: ComponentFixture<NodeContainerRenderComponent>;
@@ -20,13 +24,16 @@ describe('RENDER NodeContainerRenderComponent [Module: SHARED]', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             schemas: [NO_ERRORS_SCHEMA],
+            //     imports: [
+            //         AppPanelComponent
+            //    ],
             declarations: [
-                NodeContainerRenderComponent
+                NodeContainerRenderComponent,
+                AppPanelComponent
             ],
         })
             .compileComponents();
         fixture = TestBed.createComponent(NodeContainerRenderComponent);
-        component = fixture.componentInstance;
         isolation = TestBed.get(SupportIsolationService);
     });
 
@@ -34,15 +41,114 @@ describe('RENDER NodeContainerRenderComponent [Module: SHARED]', () => {
     describe('Construction Phase', () => {
         it('Should be created', () => {
             console.log('><[renders/NodeContainerRenderComponent]> should be created');
+            component = fixture.componentInstance;
             expect(component).toBeDefined('component has not been created.');
         });
     });
     // - C O D E   C O V E R A G E   P H A S E
+    describe('Code Coverage Phase [actions]', () => {
+        it('mouseEnter: pass the hovered node to the parent view container', () => {
+            const container = TestBed.createComponent(AppPanelComponent).componentInstance;
+            component = fixture.componentInstance;
+            component.container = container;
+            let spy = spyOn(component.container, 'enterSelected');
+            const node = new NeoCom();
+            component.mouseEnter(node);
+            expect(spy).toHaveBeenCalled();
+        });
+        it('toggleExpanded.success: toggle the expand property for the node', () => {
+            const container = TestBed.createComponent(AppPanelComponent).componentInstance;
+            component = fixture.componentInstance;
+            component.container = container;
+            let spy = spyOn(component.container, 'notifyDataChanged');
+            const node = new NeoComExpandable();
+            component.node = node;
+            expect(component.getNode().isExpanded()).toBeFalsy();
+            component.toggleExpanded();
+            expect(spy).toHaveBeenCalled();
+            expect(component.getNode().isExpanded()).toBeTruthy();
+        });
+        it('toggleExpanded.failure: toggle the expand property for the node', () => {
+            const node = new NeoCom();
+            component = fixture.componentInstance;
+            expect(component.getNode()).toBeUndefined();
+            component.toggleExpanded();
+            expect(component.getNode()).toBeUndefined();
+        });
+        it('isExpanded.success: get the node expand state', () => {
+            const container = TestBed.createComponent(AppPanelComponent).componentInstance;
+            component = fixture.componentInstance;
+            component.container = container;
+            let spy = spyOn(component.container, 'notifyDataChanged');
+            const node = new NeoComExpandable();
+            component.node = node;
+            expect(component.isExpanded()).toBeFalsy();
+            component.toggleExpanded();
+            expect(spy).toHaveBeenCalled();
+            expect(component.isExpanded()).toBeTruthy();
+        });
+        it('isExpanded.failure: get the node expand state', () => {
+            const container = TestBed.createComponent(AppPanelComponent).componentInstance;
+            component = fixture.componentInstance;
+            component.container = container;
+            let spy = spyOn(component.container, 'notifyDataChanged');
+            const node = new NeoComExpandable();
+            expect(component.isExpanded()).toBeFalsy();
+            component.toggleExpanded();
+            expect(component.isExpanded()).toBeFalsy();
+        });
+        it('getColorSchemePanelStyle.standard: get class style to be applied to the panel', () => {
+            component = fixture.componentInstance;
+            const node = new NeoComExpandable();
+            component.node = node;
+            component.colorScheme = 'test-color';
+            expect(node.isSelected()).toBeFalsy();
+            expect(node.isExpanded()).toBeFalsy();
+            let obtained = component.getColorSchemePanelStyle();
+            expect(obtained).toBe('test-color');
+        });
+        it('getColorSchemePanelStyle.expanded: get class style to be applied to the panel', () => {
+            component = fixture.componentInstance;
+            const node = new NeoComExpandable();
+            node.expand();
+            component.node = node;
+            component.colorScheme = 'test-color';
+            expect(node.isSelected()).toBeFalsy();
+            expect(node.isExpanded()).toBeTruthy();
+            let obtained = component.getColorSchemePanelStyle();
+            expect(obtained).toBe('test-color-expanded');
+        });
+        it('getColorSchemePanelStyle.selected: get class style to be applied to the panel', () => {
+            component = fixture.componentInstance;
+            const node = new NeoComExpandable();
+            node.select();
+            component.node = node;
+            component.colorScheme = 'test-color';
+            expect(node.isSelected()).toBeTruthy();
+            expect(node.isExpanded()).toBeFalsy();
+            let obtained = component.getColorSchemePanelStyle();
+            expect(obtained).toBe('test-color-selected');
+        });
+        it('getColorSchemePanelStyle.all: get class style to be applied to the panel', () => {
+            component = fixture.componentInstance;
+            const node = new NeoComExpandable();
+            node.expand();
+            node.select();
+            component.node = node;
+            component.colorScheme = 'test-color';
+            expect(node.isSelected()).toBeTruthy();
+            expect(node.isExpanded()).toBeTruthy();
+            let obtained = component.getColorSchemePanelStyle();
+            expect(obtained).toBe('test-color-expanded test-color-selected');
+        });
+    });
+
     describe('Code Coverage Phase [getters]', () => {
         it('getNode.success: obtain the contained node', () => {
             const expectedName = isolation.generateRandomString(32);
             const expected = new GroupContainer();
             expected.setTitle(expectedName);
+            component = fixture.componentInstance;
             component.node = expected;
             const obtained = component.getNode() as GroupContainer;
             expect(obtained).toBeDefined();

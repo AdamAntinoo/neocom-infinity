@@ -21,18 +21,9 @@ describe('RENDER V1GroupContainerRenderComponent [Module: SHARED]', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             schemas: [NO_ERRORS_SCHEMA],
-            // imports: [
-            //     RouterTestingModule.withRoutes(routes)
-            // ],
             declarations: [
-                // RouteMockUpComponent,
                 V1GroupContainerRenderComponent
             ],
-            // providers: [
-            //     { provide: IsolationService, useClass: SupportIsolationService },
-            //     { provide: AppStoreService, useClass: SupportAppStoreService },
-            //     { provide: BackendService, useClass: SupportBackendService }
-            // ]
         })
             .compileComponents();
         fixture = TestBed.createComponent(V1GroupContainerRenderComponent);
@@ -53,9 +44,18 @@ describe('RENDER V1GroupContainerRenderComponent [Module: SHARED]', () => {
             const expected = isolation.generateRandomString(32);
             const group = new GroupContainer();
             group.setTitle(expected);
+            component = fixture.componentInstance;
             component.node = group;
             const obtained = component.getTitle();
             expect(obtained).toBe(expected);
+        });
+        it('getTitle.failure: obtain the group title from the component contained node', () => {
+            const expected = isolation.generateRandomString(32);
+            const group = new GroupContainer();
+            group.setTitle(expected);
+            component = fixture.componentInstance;
+            const obtained = component.getTitle();
+            expect(obtained).toBe('-');
         });
         it('getGroupIconReference.success: obtain the icon path from the contained node', () => {
             const expectedName = isolation.generateRandomString(32);
@@ -63,17 +63,39 @@ describe('RENDER V1GroupContainerRenderComponent [Module: SHARED]', () => {
             const icon = new AssetGroupIconReference(expectedName);
             const group: GroupContainer = new GroupContainer();
             group.setGroupIcon(icon);
-            const obtained = group.getGroupIconReference();
+            component = fixture.componentInstance;
+            component.node = group;
+            const obtained = component.getGroupIconReference();
             expect(obtained).toBe(expected);
+        });
+        it('getGroupIconReference.failure: obtain the icon path from the contained node', () => {
+            const expectedName = isolation.generateRandomString(32);
+            const expected = AssetGroupIconReference.FITTING_SHIP_ASSET_LOCATION + expectedName.toLowerCase() + '.png';
+            const icon = new AssetGroupIconReference(expectedName);
+            const group: GroupContainer = new GroupContainer();
+            group.setGroupIcon(icon);
+            component = fixture.componentInstance;
+            const obtained = component.getGroupIconReference();
+            expect(obtained).toBeUndefined();
         });
         it('getContentsCount.success: obtain the content of the contained node', () => {
             const group = new GroupContainer();
             group.addContent(new GroupContainer());
             group.addContent(new GroupContainer());
             group.addContent(new GroupContainer());
+            component = fixture.componentInstance;
             component.node = group;
             let obtained = component.getContentsCount();
             expect(obtained).toBe(3);
+        });
+        it('getContentsCount.failure: obtain the content of the contained node', () => {
+            const group = new GroupContainer();
+            group.addContent(new GroupContainer());
+            group.addContent(new GroupContainer());
+            group.addContent(new GroupContainer());
+            component = fixture.componentInstance;
+            let obtained = component.getContentsCount();
+            expect(obtained).toBe(0);
         });
     });
 });
