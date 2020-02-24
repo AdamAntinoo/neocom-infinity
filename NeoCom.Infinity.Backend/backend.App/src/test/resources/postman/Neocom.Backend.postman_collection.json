@@ -2,6 +2,7 @@
 	"info": {
 		"_postman_id": "47c26a5e-a381-4321-a8a8-dc176cdbbfe3",
 		"name": "Neocom.Backend",
+		"description": "# Introduction\nAccess ESI data repository using the adquired oauth authentication and process data values for later rendering on other platforms.\n\n# Overview\nThings that the developers should know about\n\n# Authentication\nWhat is the preferred way of using the API?\n\n# Error Codes\n500 - Undefind or unepected error\n403 - Forbidden access or invalid credentials\n\n# Rate limit\nOnly platform rate limit.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -9,7 +10,7 @@
 			"name": "ESIOAuthMock",
 			"item": [
 				{
-					"name": "Validate Authorization Token Default",
+					"name": "OAuth v0 Authorization Token",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -18,13 +19,13 @@
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
+								"type": "text",
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Basic ZWFjYWE5Y2QzNjU5NDE4OTg3NzU0NGQ4NTE3NTM3MzQ6RjVTR04xc1VobHBnb053bmlKeGlTaHpIRUM1M0dERUJhUXNIRzBqRw==",
-								"type": "text"
+								"type": "text",
+								"value": "Basic ZWFjYWE5Y2QzNjU5NDE4OTg3NzU0NGQ4NTE3NTM3MzQ6RjVTR04xc1VobHBnb053bmlKeGlTaHpIRUM1M0dERUJhUXNIRzBqRw=="
 							}
 						],
 						"body": {
@@ -32,9 +33,45 @@
 							"raw": "{\n\t\"auth-token\": \"CONTENT-FOR-AUTH-TOKEN\"\n}"
 						},
 						"url": {
-							"raw": "{{serverName}}{{serverPort}}/v2/oauth/token",
+							"raw": "{{esiAuthServer}}/oauth/token",
 							"host": [
-								"{{serverName}}{{serverPort}}"
+								"{{esiAuthServer}}"
+							],
+							"path": [
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OAuth Authorization Token",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Basic ZWFjYWE5Y2QzNjU5NDE4OTg3NzU0NGQ4NTE3NTM3MzQ6RjVTR04xc1VobHBnb053bmlKeGlTaHpIRUM1M0dERUJhUXNIRzBqRw=="
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"auth-token\": \"CONTENT-FOR-AUTH-TOKEN\"\n}"
+						},
+						"url": {
+							"raw": "{{esiAuthServer}}/v2/oauth/token",
+							"host": [
+								"{{esiAuthServer}}"
 							],
 							"path": [
 								"v2",
@@ -46,18 +83,14 @@
 					"response": []
 				},
 				{
-					"name": "Verify Authorization Token",
+					"name": "OAuth Verify Token",
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
-							"raw": "{{serverName}}{{serverPort}}/oauth/verify",
+							"raw": "{{esiAuthServer}}/oauth/verify",
 							"host": [
-								"{{serverName}}{{serverPort}}"
+								"{{esiAuthServer}}"
 							],
 							"path": [
 								"oauth",
@@ -67,7 +100,399 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "BackendMock",
+			"item": [
+				{
+					"name": "Validate Authorization Token",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{backendMock}}{{apiv1}}/validateAuthorizationToken?code=code&state=state&datasource=datasource",
+							"host": [
+								"{{backendMock}}{{apiv1}}"
+							],
+							"path": [
+								"validateAuthorizationToken"
+							],
+							"query": [
+								{
+									"key": "code",
+									"value": "code"
+								},
+								{
+									"key": "state",
+									"value": "state"
+								},
+								{
+									"key": "datasource",
+									"value": "datasource"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Server Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{backendServer}}{{apiv1}}/server/datasource/tranquility",
+							"host": [
+								"{{backendServer}}{{apiv1}}"
+							],
+							"path": [
+								"server",
+								"datasource",
+								"tranquility"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAlliancesId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{esiServiceMock}}/alliances/123/",
+							"host": [
+								"{{esiServiceMock}}"
+							],
+							"path": [
+								"alliances",
+								"123",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCharactersId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{esiServiceMock}}/characters/123/",
+							"host": [
+								"{{esiServiceMock}}"
+							],
+							"path": [
+								"characters",
+								"123",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "ESIDataServiceMock",
+			"item": [
+				{
+					"name": "GetCharacterAssets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{esiServiceMock}}/characters/{{characterId}}/assets/?datasource=tranquility&page=1",
+							"host": [
+								"{{esiServiceMock}}"
+							],
+							"path": [
+								"characters",
+								"{{characterId}}",
+								"assets",
+								""
+							],
+							"query": [
+								{
+									"key": "datasource",
+									"value": "tranquility"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Validate Authorization Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4e2672e4-bd1e-402b-8e4c-06db48e80ac7",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"pm.environment.set(\"jwtToken\", jsonData.jwtToken);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{backendServer}}{{apiv1}}/validateAuthorizationToken?code={{code}}&state={{state}}&datasource=tranquility",
+					"host": [
+						"{{backendServer}}{{apiv1}}"
+					],
+					"path": [
+						"validateAuthorizationToken"
+					],
+					"query": [
+						{
+							"key": "code",
+							"value": "{{code}}"
+						},
+						{
+							"key": "state",
+							"value": "{{state}}"
+						},
+						{
+							"key": "datasource",
+							"value": "tranquility"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Corporation Data",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{backendServer}}{{apiv1}}/corporations/98384726",
+					"host": [
+						"{{backendServer}}{{apiv1}}"
+					],
+					"path": [
+						"corporations",
+						"98384726"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Corporation Data - Failure",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{backendServer}}{{backendPort}}{{apiv1}}/corporation/93813311",
+					"host": [
+						"{{backendServer}}{{backendPort}}{{apiv1}}"
+					],
+					"path": [
+						"corporation",
+						"93813311"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Pilot Data",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{backendServer}}{{apiv1}}/pilots/92223647",
+					"host": [
+						"{{backendServer}}{{apiv1}}"
+					],
+					"path": [
+						"pilots",
+						"92223647"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Pilot Data - Unauthorized",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{backendServer}}{{backendPort}}{{apiv1}}/pilots/92223647",
+					"host": [
+						"{{backendServer}}{{backendPort}}{{apiv1}}"
+					],
+					"path": [
+						"pilots",
+						"92223647"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Server Status",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{backendServer}}{{apiv1}}/server/datasource/tranquility",
+					"host": [
+						"{{backendServer}}{{apiv1}}"
+					],
+					"path": [
+						"server",
+						"datasource",
+						"tranquility"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Pilot Fittings",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{backendServer}}{{apiv1}}/fittings/pilot/{{pilotIdentifier}}",
+					"host": [
+						"{{backendServer}}{{apiv1}}"
+					],
+					"path": [
+						"fittings",
+						"pilot",
+						"{{pilotIdentifier}}"
+					]
+				}
+			},
+			"response": []
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }

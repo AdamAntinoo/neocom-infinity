@@ -18,7 +18,7 @@ public class FittingItemSerializer extends JsonSerializer<FittingItem> {
 		jgen.writeStartObject();
 
 		jgen.writeStringField( "jsonClass", value.getJsonClass() );
-		jgen.writeNumberField( "typeId", value.getTypeId() );
+		jgen.writeNumberField( "neoItemId", value.getTypeId() );
 		jgen.writeStringField( "name", value.getTypeName() );
 		jgen.writeStringField( "location", value.getFlag().toString() );
 
