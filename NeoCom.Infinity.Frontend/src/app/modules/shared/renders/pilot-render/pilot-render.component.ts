@@ -5,8 +5,8 @@ import { Input } from '@angular/core';
 // - SERVICES
 import { IsolationService } from '@app/platform/isolation.service';
 // - DOMAIN
-import { RenderComponent } from '../render/render.component';
 import { Pilot } from '@app/domain/Pilot.domain';
+import { RenderComponent } from '../render/render.component';
 
 @Component({
     selector: 'pilot-render',

@@ -1,32 +1,44 @@
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "outDir": "./dist/out-tsc",
-    "sourceMap": true,
-    "declaration": false,
-    "downlevelIteration": true,
-    "experimentalDecorators": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "importHelpers": true,
-    "target": "es2015",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2018",
-      "dom"
-    ],
-    "baseUrl": "./",
-    "paths": {
-      "@env/*": ["src/environments/*"],
-      "@domain/*": ["src/app/domain/*"],
-      "@renders/*": ["src/app/modules/shared/renders/*"],
-      "@app/*": ["src/app/*"],
+    "compileOnSave": false,
+    "compilerOptions": {
+        "outDir": "./dist/out-tsc",
+        "sourceMap": true,
+        "declaration": false,
+        "downlevelIteration": true,
+        "experimentalDecorators": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "importHelpers": true,
+        "allowSyntheticDefaultImports": true,
+        "strictPropertyInitialization": false,
+        "target": "es2015",
+        "lib": [
+            "es2018",
+            "dom"
+        ],
+        "types": [
+            "jasmine",
+            "node",
+            "cypress"
+        ],
+        "baseUrl": "./",
+        "paths": {
+            "@env/*": [
+                "src/environments/*"
+            ],
+            "@domain/*": [
+                "src/app/domain/*"
+            ],
+            "@shared/*": [
+                "src/app/modules/shared/*"
+            ],
+            "@app/*": [
+                "src/app/*"
+            ],
+        }
+    },
+    "angularCompilerOptions": {
+        "fullTemplateTypeCheck": true,
+        "strictInjectionParameters": true
     }
-  },
-  "angularCompilerOptions": {
-    "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true
-  }
 }

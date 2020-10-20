@@ -43,10 +43,8 @@ export class HttpClientWrapperService {
      * This is the common code to all secure calls. It will check if the call can use the mockup system and if that system has a mockup destionation for the request.
      * This call also should create a new set of headers to be used on the next call and should put inside the current authentication data.
      *
-     * @protected
-     * @param {HttpHeaders} [_requestHeaders]
-     * @returns {HttpHeaders}
-     * @memberof BackendService
+     * @param [_requestHeaders]
+     * @returns the new list of headers.
      */
     protected wrapHttpSecureHeaders(_requestHeaders?: HttpHeaders): HttpHeaders {
         let headers = new HttpHeaders()

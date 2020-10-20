@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Input } from '@angular/core';
 // - DOMAIN
 import { ICollaboration } from '@app/domain/interfaces/ICollaboration.interface';
-import { EVariant } from '@app/domain/interfaces/EPack.enumerated';
+import { EVariant, ESeparator } from '@app/domain/interfaces/EPack.enumerated';
 import { IViewer } from '@app/domain/interfaces/IViewer.interface';
 import { NeoCom } from '@domain/NeoCom.domain';
 import { IColorTheme } from '@domain/interfaces/IColorTheme.interface';
@@ -17,12 +17,12 @@ export class NodeContainerRenderComponent implements IColorTheme {
     @Input() container: IViewer;
     @Input() node: NeoCom;
     @Input() variant: EVariant = EVariant.DEFAULT;
-    @Input() colorScheme: string = 'panel-white';  // The name of the panel style to be rendered.
+    // @Input() colorScheme: string = 'panel-white';  // The name of the panel style to be rendered.
 
     public getNode(): NeoCom {
         return this.node;
     }
-    public getVariant(): EVariant{
+    public getVariant(): EVariant {
         return this.variant;
     }
     /**
@@ -47,8 +47,7 @@ export class NodeContainerRenderComponent implements IColorTheme {
     /**
      * Return the list of styles that should be applied to the Panel dependin of the state of the associated node.
      * For panels the only color is the border color. More elaborated or actionable panels can have states and then we can return more detailed styles.
-     * @returns {string} the list of styles to be applied.
-     * @memberof AppPanelComponent
+     * @returns the list of styles to be applied.
      */
     public getColorSchemePanelStyle(): string {
         // Detect the state configuration.
@@ -63,15 +62,25 @@ export class NodeContainerRenderComponent implements IColorTheme {
     }
 
     public getPanelStyle(): string {
-        return this.colorScheme;
+        return this.decodeColor(this.node.getThemeColor());
     }
     public getExpandedPanelStyle(): string {
-        return this.colorScheme+' ' +this.colorScheme + '-expanded';
+        return this.getPanelStyle() + ' ' + this.getPanelStyle() + '-expanded';
     }
     public getSelectedPanelStyle(): string {
-        return this.colorScheme + ' ' +this.colorScheme + '-selected';
+        return this.getPanelStyle() + ' ' + this.getPanelStyle() + '-selected';
     }
     public getExpandedSelectedPanelStyle(): string {
-        return this.colorScheme + ' ' +this.getExpandedPanelStyle() + ' ' + this.getSelectedPanelStyle();
+        return this.getPanelStyle() + ' ' + this.getPanelStyle() + '-expanded' + ' ' + this.getPanelStyle() + '-selected';
+    }
+    private decodeColor(theme: ESeparator): string {
+        switch (theme) {
+            case ESeparator.WHITE:
+                return 'panel-white';
+            case ESeparator.GREEN:
+                return 'panel-green';
+            default:
+                return 'panel-white';
+        }
     }
 }

@@ -1,22 +1,24 @@
 // - CORE MODULES
+import { ErrorHandler } from '@angular/core';
 import { NgModule } from '@angular/core';
 // - BROWSER & ANIMATIONS
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// - HTTP CLIENT
-import { HttpClientModule } from '@angular/common/http';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-// - NOTIFICATIONS
-import { ToastrModule } from 'ng6-toastr-notifications';
-// - DRAG & DROP
-import { NgDragDropModule } from 'ng-drag-drop';
-// - WEBSTORAGE
-import { StorageServiceModule } from 'angular-webstorage-service';
 // - ROUTING
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
+// - ADDITIONAL PACKAGES
+import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ToastrModule } from 'ngx-toastr';
+import { NgDragDropModule } from 'ng-drag-drop';
+import { RollbarModule } from 'angular-rollbar'
+import { RollbarService } from 'angular-rollbar'
+
+
 // - INTERCEPTORS
 import { AuthorizationInterceptor } from './security/authorization.interceptor';
 import { NeoComHeadersInterceptor } from './security/neocomheaders.interceptor';
@@ -29,6 +31,7 @@ import { AuthenticationService } from './security/authentication.service';
 import { AppComponent } from './app.component';
 
 // - APPLICATION MODULES
+import { AppCommonModule } from './modules/common/common.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { HeaderModule } from './modules/header/header.module';
 import { FittingsModule } from './modules/fittings/fittings.module';
@@ -45,17 +48,17 @@ import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
 registerLocaleData(localeEs);
 
-// - ERROR INTERCEPTION
-import * as Rollbar from 'rollbar';
-import { rollbarConfig } from '@app/rollbar-errorhandler.service';
-import { RollbarService } from '@app/rollbar-errorhandler.service';
-import { ErrorHandler } from '@angular/core';
-import { RollbarErrorHandler } from '@app/rollbar-errorhandler.service';
-import { HttpErrorInterceptor } from './security/httpErrorProcessing.interceptor';
+// // - ERROR INTERCEPTION
+// import * as Rollbar from 'rollbar';
+// import { rollbarConfig } from '@app/rollbar-errorhandler.service';
+// import { RollbarService } from '@app/rollbar-errorhandler.service';
+// import { ErrorHandler } from '@angular/core';
+// import { RollbarErrorHandler } from '@app/rollbar-errorhandler.service';
+// import { HttpErrorInterceptor } from './security/httpErrorProcessing.interceptor';
 
-export function rollbarFactory() {
-    return new Rollbar(rollbarConfig);
-}
+// export function rollbarFactory() {
+//     return new Rollbar(rollbarConfig);
+// }
 
 @NgModule({
     imports: [
@@ -64,21 +67,22 @@ export function rollbarFactory() {
         ReactiveFormsModule,
         BrowserModule,
         BrowserAnimationsModule,
-        // - HTTP CLIENT
-        HttpClientModule,
-        // - NOTIFICATIONS
-        ToastrModule.forRoot(),
-        // - DRAG & DROP
-        NgDragDropModule.forRoot(),
-        // - WEBSTORAGE
-        StorageServiceModule,
-        // - APPLICATION MODULES
-        SharedModule,
-        HeaderModule,
-        FittingsModule,
         // - ROUTING
         RouterModule,
-        AppRoutingModule
+        AppRoutingModule,
+        // - ADDITIONAL MODULES
+        HttpClientModule,
+        ToastrModule.forRoot(),
+        MatDialogModule,
+        NgDragDropModule.forRoot(),
+        RollbarModule.forRoot({
+            accessToken: '4b7515a4ac41496b931963f64ef666e2'
+        }),
+        // - APPLICATION MODULES
+        AppCommonModule,
+        SharedModule,
+        HeaderModule,
+        FittingsModule
     ],
     declarations: [
         AppComponent,
@@ -99,9 +103,9 @@ export function rollbarFactory() {
         // { provide: ErrorHandler, useClass: RollbarErrorHandler },
         // { provide: RollbarService, useFactory: rollbarFactory },
         // - HTTP INTERCEPTION
-        { provide: HTTP_INTERCEPTORS, useClass: AuthorizationInterceptor, multi: true },
-        { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }
+        // { provide: HTTP_INTERCEPTORS, useClass: AuthorizationInterceptor, multi: true },
+        // { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }
     ],
-    bootstrap: [AppComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

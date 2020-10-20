@@ -2,7 +2,7 @@ const cypressTypeScriptPreprocessor = require('./cy-ts-preprocessor')
 
 module.exports = (on, config) => {
     // - CODE COVERAGE
-    on('task', require('@cypress/code-coverage/task'))
+    require('@cypress/code-coverage/task')(on, config)
         // - TYPESCRIPT PREPROCESSING
     on("file:preprocessor", cypressTypeScriptPreprocessor);
     // - ENVRONMENT CONFIGURATION

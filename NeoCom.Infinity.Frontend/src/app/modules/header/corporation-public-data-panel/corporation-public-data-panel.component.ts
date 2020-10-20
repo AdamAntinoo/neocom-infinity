@@ -2,6 +2,7 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { OnDestroy } from '@angular/core';
+import { Input } from '@angular/core';
 import { environment } from '@env/environment';
 import { Subscription } from 'rxjs';
 // - SERVICES
@@ -18,7 +19,8 @@ import { Pilot } from '@app/domain/Pilot.domain';
     styleUrls: ['./corporation-public-data-panel.component.scss']
 })
 export class CorporationPublicDataPanelComponent implements OnInit, OnDestroy {
-    public corporation: Corporation; // The authorized corporation public data.
+    @Input () corporation : Corporation // The authorized corporation public data.
+    // public corporation: Corporation; // The authorized corporation public data.
     private corporationSubscription: Subscription;
 
     constructor(

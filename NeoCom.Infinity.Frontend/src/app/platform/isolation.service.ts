@@ -1,67 +1,55 @@
 // - CORE
-import { Injectable } from '@angular/core';
-import { Inject } from '@angular/core';
-// - ENVIRONMENT
-import { environment } from '@env/environment';
-// - WEBSTORAGE
-import { LOCAL_STORAGE } from 'angular-webstorage-service';
-import { SESSION_STORAGE } from 'angular-webstorage-service';
-import { WebStorageService } from 'angular-webstorage-service';
-import * as jwt_decode from 'jwt-decode';
-// - NOTIFICATIONS
-import { ToastrManager } from 'ng6-toastr-notifications';
-// - ROUTER
-import { Router } from '@angular/router';
+import { Injectable } from '@angular/core'
+import { Inject } from '@angular/core'
+import { HttpErrorResponse } from '@angular/common/http'
+import { ToastrService } from 'ngx-toastr'
+import * as jwt_decode from 'jwt-decode'
+// - STORAGE
+import { LOCAL_STORAGE } from 'ngx-webstorage-service'
+import { SESSION_STORAGE } from 'ngx-webstorage-service'
+import { StorageService } from 'ngx-webstorage-service'
 
 /**
  * The responsibility for this service is to isolate the internal application api from the external implementation when using libraries that can change over time like the Toaster. It will also provide a simplification when accessing some common features like the environment, global functions or storage.
  */
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class IsolationService {
-    // - C O N S T A N T S
-    public JWTTOKEN_KEY: string;
-    public JWTTOKEN_EXPIRATION_TIME_KEY: string;
-    // - C O N S T R U C T O R
     constructor(
-        @Inject(LOCAL_STORAGE) protected storage: WebStorageService,
-        @Inject(SESSION_STORAGE) protected sessionStorage: WebStorageService,
-        protected notifier: ToastrManager,
-        //  protected router: Router
-    ) {
-        //   this.JWTTOKEN_KEY = environment.JWTTOKEN_KEY;
-        //   this.JWTTOKEN_EXPIRATION_TIME_KEY = environment.JWTTOKEN_EXPIRATION_TIME_KEY;
+        @Inject(LOCAL_STORAGE) protected storage: StorageService,
+        @Inject(SESSION_STORAGE) protected sessionStorage: StorageService,
+        private notifier: ToastrService
+    ) { }
+
+    // - E X C E P T I O N S
+    public processException(error: HttpErrorResponse): void {
+        if (error.error.status == 404) {
+            this.errorNotification('Endpoint [' + error.error.path + '] not found on server.', '404 NOT FOUND')
+        } else {
+            const errorName: string = error.error.errorName
+            const httpStatus: string = error.error.httpStatus
+            const message: string = error.error.message
+            const cause: string = error.error.cause
+            if (null != cause)
+                this.errorNotification(message + '\nCausa: ' + cause, '[' + httpStatus + ']/' + errorName)
+            else
+                this.errorNotification(message, '[' + httpStatus + ']/' + errorName)
+        }
     }
 
-    // - R O U T I N G   W R A P
-    //  public route2FirstPage(): void {
-    //      this.router.navigate(['loginValidation']);
-    //  }
-
-    // - E N V I R O N M E N T   A C C E S S
-    //  public getServerName(): string {
-    //      return environment.serverName;
-    //  }
-    //  public getApiV1(): string {
-    //      return environment.apiVersion1;
-    //  }
-    //  public getApiV2(): string {
-    //      return environment.apiVersion2;
-    //  }
-    //  public getAppName(): string {
-    //      return environment.appName;
-    //  }
-    //  public getAppVersion(): string {
-    //      return environment.appVersion;
-    //  }
-    //  public inDevelopment(): boolean {
-    //      return !environment.production;
-    //  }
-    //  public getMockStatus(): boolean {
-    //      return environment.mockStatus;
-    //  }
-    //  public showExceptions(): boolean {
-    //      return environment.showexceptions;
-    //  }
+    // - R A M D O M
+    public generateRandomNum(min: number, max: number) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    };
+    public generateRandomString(length: number): string {
+        var string = '';
+        var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz' //Include numbers if you want
+        for (let i = 0; i < length; i++) {
+            string += letters.charAt(Math.floor(Math.random() * letters.length));
+        }
+        return string;
+    }
 
     // - J W T
     public JWTDecode(token: string): any {
@@ -103,7 +91,7 @@ export class IsolationService {
         let notConf;
         if (null != _options) notConf = { ...this.notifierConfiguration, ..._options };
         else notConf = this.notifierConfiguration;
-        this.notifier.successToastr(_message, _title, notConf);
+        // this.notifier.successToastr(_message, _title, notConf);
     }
     public errorNotification(_message: string, _title?: string, _options?: any): void {
         // Join options configuration.
@@ -111,21 +99,21 @@ export class IsolationService {
         if (null != _options) notConf = { ...this.notifierConfiguration, ..._options };
         else notConf = this.notifierConfiguration;
         notConf.toastTimeout = 15000;
-        this.notifier.errorToastr(_message, _title, notConf);
+        // this.notifier.errorToastr(_message, _title, notConf);
     }
     public warningNotification(_message: string, _title?: string, _options?: any): void {
         // Join options configuration.
         let notConf;
         if (null != _options) notConf = { ...this.notifierConfiguration, ..._options };
         else notConf = this.notifierConfiguration;
-        this.notifier.warningToastr(_message, _title, notConf);
+        // this.notifier.warningToastr(_message, _title, notConf);
     }
     public infoNotification(_message: string, _title?: string, _options?: any): void {
         // Join options configuration.
         let notConf;
         if (null != _options) notConf = { ...this.notifierConfiguration, ..._options };
         else notConf = this.notifierConfiguration;
-        this.notifier.infoToastr(_message, _title, notConf);
+        // this.notifier.infoToastr(_message, _title, notConf);
     }
 
     // - U T I L I T I E S

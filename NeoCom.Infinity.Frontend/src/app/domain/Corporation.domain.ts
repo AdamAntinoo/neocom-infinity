@@ -3,8 +3,9 @@ import { Alliance } from './Alliance.domain';
 import { Pilot } from './Pilot.domain';
 import { NeoCom } from './NeoCom.domain';
 import { neocom_constants } from '../platform/neocom-constants.platform';
+import { HALLink } from './hal/HALLink.hal';
 
-export class Corporation extends NeoCom {
+export class Corporation extends HALLink  {
     public corporationId: number;
     public corporationPublicData: any;
     public ceoPilotData: Pilot;

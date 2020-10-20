@@ -14,7 +14,7 @@ import { ExceptionInformationPageComponent } from './pages/exception-information
 const routes: Routes = [
     {
         path: '',
-        redirectTo: '/loginValidation',
+        redirectTo: '/dashboard',
         pathMatch: 'full'
     },
     // - LOGIN PAGES
@@ -31,11 +31,11 @@ const routes: Routes = [
     // - REDIRECT NOT FOUND PAGES
     // { path: '**', component: NotFoundPage }
     // -  F I T T I N G S
-    {
-        path: 'fittings',
-        loadChildren: './modules/fittings/fittings.module#FittingsModule',
-        canActivate: [TokenAuthorizationGuard]
-    },
+    // {
+    //     path: 'fittings',
+    //     loadChildren: './modules/fittings/fittings.module#FittingsModule',
+    //     canActivate: [TokenAuthorizationGuard]
+    // },
 ];
 
 @NgModule({

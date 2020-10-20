@@ -1,0 +1,11 @@
+version: '3'
+services:
+  apisimulator-backend:
+    container_name: apisimulator-neocom-infinity-backend
+    image: apimastery/apisimulator
+    ports:
+      - "5210:6090"
+    volumes:
+      # WARNING - Use full absolute paths to make this work.
+      - /home/adam/Development/NeoCom0.20/NeoCom-Infinity-frontend/support/backend-simulation:/backend-simulation
+    command: "bin/apisimulator start /backend-simulation -p 6090"

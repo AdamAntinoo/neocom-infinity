@@ -1,1 +1,29 @@
-<p>v1-fitting-render works!</p>
+<!-- D E F A U L T   V A R I A N T -->
+<div *ngIf="getVariant() === '-DEFAULT-'">
+    <div style="display: flex; flex-direction: row; flex-wrap: nowrap;">
+        <div>
+            <img class="neocom-icon iconsize-36" src="{{getUrl4Item()}}">
+        </div>
+        <div style="flex-grow: 85; padding-top: 10px;">
+            <span class="neocom-name glow neocom-ts20">{{getName()}}</span>
+        </div>
+        <div style="text-align: right;">
+            <div class="neocom-classname">FITTING</div>
+        </div>
+    </div>
+</div>
+<!-- F I T T I N G - L I S T   V A R I A N T -->
+<div *ngIf="getVariant() === '-FITTING-LIST-'">
+    <div style="display: flex; flex-direction: row; flex-wrap: nowrap;">
+        <div>
+            <img class="neocom-icon iconsize-36" src="{{getUrl4Item()}}">
+        </div>
+        <div style="flex-grow: 85; padding-top: 10px;">
+            <span class="neocom-name glow neocom-ts20">{{getName()}}</span>
+        </div>
+        <div style="text-align: right;">
+            <div class="neocom-classname">FITTING</div>
+            <div class="stack-counter">&nbsp;</div>
+        </div>
+    </div>
+</div>

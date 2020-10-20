@@ -30,7 +30,6 @@ import { ExceptionCatalog } from '@app/platform/ExceptionCatalog';
 describe('SERVICE AppStoreService [Module: CORE]', () => {
     let service: AppStoreService;
     let isolationService: SupportIsolationService;
-    // let routeChecker: RouteMockUpComponent;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -50,7 +49,6 @@ describe('SERVICE AppStoreService [Module: CORE]', () => {
             .compileComponents();
         service = TestBed.get(AppStoreService);
         isolationService = TestBed.get(IsolationService);
-        // routeChecker: TestBed.get(RouteMockUpComponent);
     });
 
     // - C O N S T R U C T I O N   P H A S E

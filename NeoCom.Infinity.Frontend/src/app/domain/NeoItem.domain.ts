@@ -25,4 +25,7 @@ export class NeoItem extends NeoCom {
     public getGroupName(): string {
         return this.groupName;
     }
+    public getUrl4Item(): string {
+        return this.urlforItem;
+    }
 }

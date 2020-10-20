@@ -108,6 +108,12 @@ describe('CLASS Fitting [Module: DOMAIN]', () => {
             const obtained = fitting.getFittingId();
             expect(obtained).toBe(expected);
         });
+        it('getName.success: check the fitting identifier', () => {
+            const expected = "VM Clearer A1";
+            const fitting: Fitting = new Fitting(fitting4Test);
+            const obtained = fitting.getName();
+            expect(obtained).toBe(expected);
+        });
         it('getShipTypeId.success: check the ship type identifier', () => {
             const expected = 32880;
             const fitting: Fitting = new Fitting(fitting4Test);
@@ -157,6 +163,17 @@ describe('CLASS Fitting [Module: DOMAIN]', () => {
             const fitting: Fitting = new Fitting(fitting4Failure);
             const obtained = fitting.getShipGroupId();
             expect(obtained).toBe(0);
+        });
+        it('getUrl4Item.success: check the ship class identifier', () => {
+            const expected = "https://image.eveonline.com/Type/32880_64.png";
+            const fitting: Fitting = new Fitting(fitting4Test);
+            const obtained = fitting.getUrl4Item();
+            expect(obtained).toBe(expected);
+        });
+        it('getUrl4Item.failure: check the ship class identifier', () => {
+            const fitting: Fitting = new Fitting(fitting4Failure);
+            const obtained = fitting.getUrl4Item();
+            expect(obtained).toBe('/assets/res-ui/drawable/defaulticonplaceholder.png');
         });
     });
 });

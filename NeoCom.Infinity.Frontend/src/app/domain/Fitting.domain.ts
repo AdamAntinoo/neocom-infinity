@@ -2,6 +2,8 @@
 import { NeoCom } from './NeoCom.domain';
 import { FittingItem } from './FittingItem.domain';
 import { NeoItem } from './NeoItem.domain';
+import { UIIconReference } from './interfaces/IIconReference.interface';
+import { ESeparator } from './interfaces/EPack.enumerated';
 
 export class Fitting extends NeoCom {
     private fittingId: number;
@@ -15,6 +17,7 @@ export class Fitting extends NeoCom {
         super();
         Object.assign(this, values);
         this.jsonClass = 'Fitting';
+        this.themeColor = ESeparator.GREEN;
         // Transform child instances to class objects.
         if (null != this.shipHullInfo) {
             this.shipHullInfo = new NeoItem(this.shipHullInfo);
@@ -30,6 +33,9 @@ export class Fitting extends NeoCom {
     // - GETTERS & SETTERS
     public getFittingId(): number {
         return this.fittingId;
+    }
+    public getName(): string {
+        return this.name;
     }
     public getShipTypeId(): number {
         if (null != this.shipHullInfo) return this.shipHullInfo.typeId;
@@ -52,5 +58,10 @@ export class Fitting extends NeoCom {
     public getShipGroupId(): number {
         if (null != this.shipHullInfo) return this.shipHullInfo.getGroupId();
         else return 0;
+    }
+    public getUrl4Item(): string {
+        if (null != this.shipHullInfo)
+            return this.shipHullInfo.getUrl4Item();
+        else return new UIIconReference('defaulticonplaceholder').getReference();
     }
 }

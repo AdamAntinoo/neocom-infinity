@@ -7,7 +7,7 @@ import { IColorTheme } from './interfaces/IColorTheme.interface';
 import { ESeparator } from './interfaces/EPack.enumerated';
 
 export class NeoCom implements INode, ICollaboration, IExpandable, ISelectable/*, IColorTheme*/ {
-    protected jsonClass: string = 'NeoCom';
+    public jsonClass: string = 'NeoCom';
     protected expanded: boolean = false;
     protected selected: boolean = false;
     protected themeColor: ESeparator = ESeparator.WHITE;
@@ -30,7 +30,7 @@ export class NeoCom implements INode, ICollaboration, IExpandable, ISelectable/*
 
     // -  I C O L L A B O R A T I O N
     collaborate2View(): ICollaboration[] {
-        return [];
+        return [this];
     }
 
     // - I E X P A N D A B L E

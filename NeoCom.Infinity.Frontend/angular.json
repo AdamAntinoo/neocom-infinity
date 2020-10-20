@@ -3,7 +3,7 @@
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
-        "NeoCom-Infinity": {
+        "NeoComInfinityFrontend": {
             "projectType": "application",
             "schematics": {
                 "@schematics/angular:component": {
@@ -17,12 +17,12 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "outputPath": "dist/NeoCom-Infinity",
+                        "outputPath": "dist/NeoComInfinityFrontend",
                         "index": "src/index.html",
                         "main": "src/main.ts",
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.app.json",
-                        "aot": false,
+                        "aot": true,
                         "assets": [
                             "src/favicon.ico",
                             "src/assets"
@@ -43,33 +43,6 @@
                             "sourceMap": false,
                             "extractCss": true,
                             "namedChunks": false,
-                            "aot": true,
-                            "extractLicenses": true,
-                            "vendorChunk": false,
-                            "buildOptimizer": true,
-                            "budgets": [{
-                                    "type": "initial",
-                                    "maximumWarning": "2mb",
-                                    "maximumError": "5mb"
-                                },
-                                {
-                                    "type": "anyComponentStyle",
-                                    "maximumWarning": "6kb",
-                                    "maximumError": "10kb"
-                                }
-                            ]
-                        },
-                        "e2e": {
-                            "fileReplacements": [{
-                                "replace": "src/environments/environment.ts",
-                                "with": "src/environments/environment.e2e.ts"
-                            }],
-                            "optimization": false,
-                            "outputHashing": "all",
-                            "sourceMap": true,
-                            "extractCss": true,
-                            "namedChunks": false,
-                            "aot": true,
                             "extractLicenses": true,
                             "vendorChunk": false,
                             "buildOptimizer": true,
@@ -90,22 +63,18 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "NeoCom-Infinity:build",
-                        "proxyConfig": "proxy.conf.json"
+                        "browserTarget": "NeoComInfinityFrontend:build"
                     },
                     "configurations": {
                         "production": {
-                            "browserTarget": "NeoCom-Infinity:build:production"
-                        },
-                        "e2e": {
-                            "browserTarget": "NeoCom-Infinity:build:e2e"
+                            "browserTarget": "NeoComInfinityFrontend:build:production"
                         }
                     }
                 },
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "NeoCom-Infinity:build"
+                        "browserTarget": "NeoComInfinityFrontend:build"
                     }
                 },
                 "test": {
@@ -142,19 +111,19 @@
                     "builder": "@angular-devkit/build-angular:protractor",
                     "options": {
                         "protractorConfig": "e2e/protractor.conf.js",
-                        "devServerTarget": "NeoCom-Infinity:serve"
+                        "devServerTarget": "NeoComInfinityFrontend:serve"
                     },
                     "configurations": {
                         "production": {
-                            "devServerTarget": "NeoCom-Infinity:serve:production"
-                        },
-                        "e2e": {
-                            "devServerTarget": "NeoCom-Infinity:serve:e2e"
+                            "devServerTarget": "NeoComInfinityFrontend:serve:production"
                         }
                     }
                 }
             }
         }
     },
-    "defaultProject": "NeoCom-Infinity"
+    "defaultProject": "NeoComInfinityFrontend",
+    "cli": {
+        "analytics": "65a491ff-9043-4f7e-967d-ac994e16d910"
+    }
 }

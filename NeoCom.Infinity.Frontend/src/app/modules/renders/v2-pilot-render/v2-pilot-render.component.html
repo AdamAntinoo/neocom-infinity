@@ -1,0 +1,14 @@
+<!-- H E A D E R -->
+<div *ngIf="variant === '-HEADER-'" class="pilot">
+    <div *ngIf="node" class="row">
+        <div width="64px">
+            <img class="neocom-icon" id="pilot-icon" style="width: 66px;" src="{{node.getPilotIcon()}}">
+        </div>
+        <div style="margin-left: 2px;">
+            <span class="pilot-name">{{node.pilotPublicData.name}}</span><span class="pilot-id">[{{node.pilotId}}]</span>
+            <div *ngIf="node.raceData" class="pilot-ancestry">{{getAncestryData()}}</div>
+            <div class="pilot-gender">{{node.pilotPublicData.gender}}</div>
+            <div class="pilot-lastlocation">{{getLastLocation()}}</div>
+        </div>
+    </div>
+</div>

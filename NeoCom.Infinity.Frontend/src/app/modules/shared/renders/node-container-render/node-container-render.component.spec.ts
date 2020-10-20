@@ -15,6 +15,7 @@ import { NeoCom } from '@domain/NeoCom.domain';
 import { AppPanelComponent } from '../../panels/app-panel/app-panel.component';
 import { Container } from '@angular/compiler/src/i18n/i18n_ast';
 import { NeoComExpandable } from '@domain/NeoComExpandable.domain';
+import { Fitting } from '@domain/Fitting.domain';
 
 describe('RENDER NodeContainerRenderComponent [Module: SHARED]', () => {
     let fixture: ComponentFixture<NodeContainerRenderComponent>;
@@ -99,47 +100,43 @@ describe('RENDER NodeContainerRenderComponent [Module: SHARED]', () => {
         });
         it('getColorSchemePanelStyle.standard: get class style to be applied to the panel', () => {
             component = fixture.componentInstance;
-            const node = new NeoComExpandable();
+            const node = new Fitting();
             component.node = node;
-            component.colorScheme = 'test-color';
             expect(node.isSelected()).toBeFalsy();
             expect(node.isExpanded()).toBeFalsy();
             let obtained = component.getColorSchemePanelStyle();
-            expect(obtained).toBe('test-color');
+            expect(obtained).toBe('panel-green');
         });
         it('getColorSchemePanelStyle.expanded: get class style to be applied to the panel', () => {
             component = fixture.componentInstance;
-            const node = new NeoComExpandable();
+            const node = new Fitting();
             node.expand();
             component.node = node;
-            component.colorScheme = 'test-color';
             expect(node.isSelected()).toBeFalsy();
             expect(node.isExpanded()).toBeTruthy();
             let obtained = component.getColorSchemePanelStyle();
-            expect(obtained).toBe('test-color-expanded');
+            expect(obtained).toBe('panel-green panel-green-expanded');
         });
         it('getColorSchemePanelStyle.selected: get class style to be applied to the panel', () => {
             component = fixture.componentInstance;
-            const node = new NeoComExpandable();
+            const node = new Fitting();
             node.select();
             component.node = node;
-            component.colorScheme = 'test-color';
-            expect(node.isSelected()).toBeTruthy();
+           expect(node.isSelected()).toBeTruthy();
             expect(node.isExpanded()).toBeFalsy();
             let obtained = component.getColorSchemePanelStyle();
-            expect(obtained).toBe('test-color-selected');
+            expect(obtained).toBe('panel-green panel-green-selected');
         });
         it('getColorSchemePanelStyle.all: get class style to be applied to the panel', () => {
             component = fixture.componentInstance;
-            const node = new NeoComExpandable();
+            const node = new Fitting();
             node.expand();
             node.select();
             component.node = node;
-            component.colorScheme = 'test-color';
             expect(node.isSelected()).toBeTruthy();
             expect(node.isExpanded()).toBeTruthy();
             let obtained = component.getColorSchemePanelStyle();
-            expect(obtained).toBe('test-color-expanded test-color-selected');
+            expect(obtained).toBe('panel-green panel-green-expanded panel-green-selected');
         });
     });
 

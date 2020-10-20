@@ -1,4 +1,8 @@
 {
     "testFiles": "**/*.feature",
-    "ignoreTestFiles": "*.js"
+    "ignoreTestFiles": "*.js",
+    "projectId": "c6rdzc",
+    "video": false,
+    "integrationFolder": "cypress",
+    "baseUrl": "http://localhost:5200"
 }

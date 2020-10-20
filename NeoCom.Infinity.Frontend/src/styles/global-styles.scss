@@ -1,0 +1,83 @@
+hr {
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    filter: blur(1px);
+}
+
+$page-path-color: white;
+.page-path {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Electrolize', sans-serif;
+    margin-top: 10px;
+    text-transform: uppercase;
+    text-shadow: 0px 0px 2px $page-path-color, 0px 0px 1px $page-path-color;
+    color: $page-path-color;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.notifier-box {
+    position: relative;
+    overflow: hidden;
+    margin: 0 0 6px;
+    padding: 15px 15px 15px 50px;
+    width: 380px;
+    border-radius: 3px 3px 3px 3px;
+    background-position: 15px center;
+    background-repeat: no-repeat;
+    background-size: 24px;
+    box-shadow: 0 0 12px #999999;
+    color: #FFFFFF;
+}
+
+.notifier-title {
+    font-family: 'Electrolize';
+    margin-bottom: 6px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.notifier-message {
+    font-family: 'Electrolize';
+    font-size: 17px;
+}
+
+.panel-title {
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Electrolize', sans-serif;
+    text-transform: uppercase;
+    text-shadow: 0px 0px 2px white, 0px 0px 1px white;
+}
+
+.header-title {
+    font-size: 18px;
+    font-weight: bold;
+    font-family: "Electrolize", sans-serif;
+    text-transform: uppercase;
+    text-shadow: 0px 0px 2px white, 0px 0px 1px white;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    background-color: black;
+    padding-left: 10px;
+    flex-grow: 3;
+}
+
+.left {
+    margin-left: auto;
+}
+
+.right {
+    margin-left: auto;
+}

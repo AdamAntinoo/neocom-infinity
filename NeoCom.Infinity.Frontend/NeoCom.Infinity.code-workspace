@@ -4,22 +4,7 @@
             "path": "."
         },
         {
-            "path": "/home/adam/Development/NeoCom-newFrontend/neocom-infinity-updated/POCs"
-        },
-        {
-            "path": "/home/adam/Development/Arduino/SlotCarMotorTester"
-        },
-        {
-            "path": "/home/adam/Development/InnoDentalv0.11.0/CitasCentro.frontend"
-        },
-        {
-            "path": "/home/adam/Development/SlotCars/slotcartiming/timing-frontend"
-        },
-        {
-            "path": "/home/adam/Development/NeoCom/proofofconcept/A5POCWorkBench"
-        },
-        {
-            "path": "/home/adam/Development/SlotCars/slotcartiming/timing-backend"
+            "path": "../../InnovativeDimensionProjects/Innovative-AngularCore"
         }
     ],
 	"settings": {

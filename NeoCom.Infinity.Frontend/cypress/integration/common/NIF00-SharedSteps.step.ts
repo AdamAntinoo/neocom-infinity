@@ -7,18 +7,21 @@ import { Then } from "cypress-cucumber-preprocessor/steps";
 // - PAGE OBJECTS
 import { AppInfoPanel } from "../../support/page-objects/AppInfoPanel.panel";
 import { ServerInfoPanel } from "../../support/page-objects/ServerInfoPanel.panel";
-import { CorporationDataPanel } from "../../support/page-objects/CorporationDataPanel.panel";
 import { PilotPublicDataPanel } from "../../support/page-objects/PilotPublicDataPanel.panel";
+import { CorporationPublicDataPanel } from '../../support/page-objects/CorporationPublicDataPanel.panel';
+
+import { CorporationDataPanel } from "../../support/page-objects/CorporationDataPanel.panel";
 import { PilotRenderPanel } from '../../support/page-objects/PilotRender.panel';
 import { ActionBarPanel } from '../../support/page-objects/ActionBarPanel.panel';
 import { TabContainerPanel } from '../../support/page-objects/TabContainerPanel.panel';
 import { ViewerPanel } from '../../support/page-objects/ViewerPanel.panel';
 import { V1GroupContainer } from '../../support/page-objects/V1GroupContainer.panel';
+import { V1Fitting } from '../../support/page-objects/V1Fitting.panel';
 
 // let appInfoPanel: AppInfoPanel;
 // let serverInfoPanel: ServerInfoPanel;
 let corporationDataPanel: CorporationDataPanel;
-let pilotPublicDataPanel: PilotPublicDataPanel;
+// let pilotPublicDataPanel: PilotPublicDataPanel;
 let pilotRender: PilotRenderPanel;
 // let actionBarPanel: ActionBarPanel;
 // let tabContainerPanel: TabContainerPanel;
@@ -37,15 +40,24 @@ Given('one instance of ServerInfoPanel', function () {
     expect(serverInfoPanel).to.not.be.null;
     cy.get('app-root').find('server-info-panel').should('have.length', 1)
 });
-Given('one instance of CorporationDataPanel', function () {
-    corporationDataPanel = new CorporationDataPanel();
-});
 Given('one instance of PilotPublicDataPanel', function () {
-    pilotPublicDataPanel = new PilotPublicDataPanel();
+    console.log('[GIVEN] one instance of PilotPublicDataPanel');
+    const pilotPublicDataPanel: PilotPublicDataPanel = new PilotPublicDataPanel();
+    expect(pilotPublicDataPanel).to.not.be.null;
+    cy.get('app-root').find('pilot-public-data-panel').should('have.length', 1)
 });
-Given('one instance of PilotRenderPanel', function () {
-    pilotRender = new PilotRenderPanel();
+Given('one instance of CorporationPublicDataPanel', function () {
+    console.log('[GIVEN] one instance of CorporationPublicDataPanel');
+    const corporationPublicDataPanel: CorporationPublicDataPanel = new CorporationPublicDataPanel();
+    expect(CorporationPublicDataPanel).to.not.be.null;
+    cy.get('app-root').find('corporation-public-data-panel').should('have.length', 1)
 });
+// Given('one instance of CorporationDataPanel', function () {
+//     corporationDataPanel = new CorporationDataPanel();
+// });
+// Given('one instance of PilotRenderPanel', function () {
+//     pilotRender = new PilotRenderPanel();
+// });
 Given('one instance of ActionBarPanel', function () {
     console.log('[GIVEN] one instance of ActionBarPanel');
     const actionBarPanel: ActionBarPanel = new ActionBarPanel();
@@ -76,6 +88,12 @@ Given('at least one instance of V1GroupContainer', function () {
     expect(v1GroupContainer).to.not.be.null;
     cy.get('app-root').find('v1-group-container').should('have.length.gt', 0)
 });
+Given('at least one instance of V1Fitting', function () {
+    console.log('[GIVEN] at least one instance of V1Fitting');
+    const v1Fitting: V1Fitting = new V1Fitting();
+    expect(v1Fitting).to.not.be.null;
+    cy.get('app-root').find('v1-fitting').should('have.length.gt', 0)
+});
 
 Then('there is a {string} with the next fields', (panelType, dataTable) => {
     cy.log('[THEN] there is a {string} with the next fields');
@@ -96,9 +114,9 @@ Then('there is a {string} with the next fields', (panelType, dataTable) => {
         case 'corporation-public-data-panel':
             corporationDataPanel.validatePanel(row);
             break;
-        case 'pilot-public-data-panel':
-            pilotPublicDataPanel.validatePanel(row);
-            break;
+        // case 'pilot-public-data-panel':
+        //     pilotPublicDataPanel.validatePanel(row);
+        //     break;
         case 'pilot-render':
             pilotRender.validatePanel(row);
             break;
@@ -112,15 +130,20 @@ Then('there is a {string} with the next fields', (panelType, dataTable) => {
             expect(tabContainerPanel).to.not.be.null;
             tabContainerPanel.validatePanel(row);
             break;
-//         case 'viewer-panel':
-//             const viewerPanel: ViewerPanel = new ViewerPanel();
-//             expect(viewerPanel).to.not.be.null;
-//   viewerPanel.validatePanel(row);
-//             break;
+        //         case 'viewer-panel':
+        //             const viewerPanel: ViewerPanel = new ViewerPanel();
+        //             expect(viewerPanel).to.not.be.null;
+        //   viewerPanel.validatePanel(row);
+        //             break;
         case 'v1-group-container':
             const v1GroupContainer: V1GroupContainer = new V1GroupContainer();
             expect(v1GroupContainer).to.not.be.null;
             v1GroupContainer.validatePanel(row);
+            break;
+        case 'v1-fitting':
+            const v1Fitting: V1Fitting = new V1Fitting();
+            expect(v1Fitting).to.not.be.null;
+            v1Fitting.validatePanel(row);
             break;
     }
 });

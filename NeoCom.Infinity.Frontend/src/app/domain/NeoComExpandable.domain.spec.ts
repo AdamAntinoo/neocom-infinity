@@ -15,6 +15,10 @@ describe('CLASS NeoComExpandable [Module: DOMAIN]', () => {
     });
     // - C O D E   C O V E R A G E   P H A S E
     describe('Validating interfaces [IExpandable]', () => {
+        it('isExpandable.success: check the collapsing function', () => {
+            const node: NeoComExpandable = new NeoComExpandable();
+            expect(node.isExpandable()).toBeTruthy();
+        });
         it('isExpanded.success: check collapsed state', () => {
             const node: NeoComExpandable = new NeoComExpandable();
             expect(node.isExpanded()).toBeFalsy();

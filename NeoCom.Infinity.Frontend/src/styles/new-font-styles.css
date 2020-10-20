@@ -62,7 +62,8 @@
     font-family: 'Proxima Nova Black';
 }
 
-@font-face {
+
+/* @font-face {
     font-family: "Elemental";
     font-style: normal;
     font-weight: normal;
@@ -78,7 +79,7 @@
 
 .elemental-ff {
     font-family: "Elemental";
-}
+} */
 
 @font-face {
     font-family: 'Mons Olympia';

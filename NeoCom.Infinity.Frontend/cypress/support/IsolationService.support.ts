@@ -1,5 +1,5 @@
 // - CORE
-import { environment } from './environment';
+import { environment } from '../../src/environments/environment';
 
 export class IsolationService {
     doLoginPage() {
@@ -53,6 +53,8 @@ export class IsolationService {
         switch (templateName) {
             case 'app-name':
                 return environment.appName;
+            case 'app-title':
+                return environment.appTitle;
             case 'app-version':
                 return environment.appVersion;
             case 'copyright':
@@ -61,7 +63,7 @@ export class IsolationService {
         return '-undefined-';
     }
     public replaceConfigurationTemplate(templateName: string): string {
-        return '-undefined-';
+        return templateName;
     }
     public replaceSystemTemplate(templateName: string): string {
         return '-undefined-';
@@ -79,5 +81,17 @@ export class IsolationService {
     // }
     public removeFromSession(key: string): any {
         // browser.executeScript('sessionStorage.removeItem("' + key + '");');
+    }
+    // - R A M D O M
+    public generateRandomNum(min: number, max: number) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    };
+    public generateRandomString(length: number): string {
+        var string = '';
+        var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz' //Include numbers if you want
+        for (let i = 0; i < length; i++) {
+            string += letters.charAt(Math.floor(Math.random() * letters.length));
+        }
+        return string;
     }
 }

@@ -17,8 +17,8 @@ import { URLGroupIconReference, AssetGroupIconReference } from '@domain/interfac
     styleUrls: ['./pilot-fittings-page.component.scss']
 })
 export class PilotFittingsPageComponent extends AppPanelComponent implements OnInit {
-    private groupList: Map<number, GroupContainer> = new Map<number, GroupContainer>();
-    private shipList: Map<number, GroupContainer> = new Map<number, GroupContainer>();
+    private hullCategories: Map<string, GroupContainer> = new Map<string, GroupContainer>();
+    private shipClasses: Map<string, GroupContainer> = new Map<string, GroupContainer>();
 
     constructor(protected appStoreService: AppStoreService) { super(); }
 
@@ -48,47 +48,55 @@ export class PilotFittingsPageComponent extends AppPanelComponent implements OnI
             });
         console.log("<[PilotFittingsPageComponent.ngOnInit]");
     }
-
+    /**
+     * The processing gets each fitting in turna and then search for the ship type on the already stored list of ships. If found the just adds the new fitting to this ship type. If not then searchs on the list of hull categories. If the hull category is found then the new ship class gets the fitting and then is added to the hull category. If the hull category is not found then it is created and the fitting is first added to the ship that then is added to to hull.
+     * The hierarchy then is Hull Categories / Ship class / Fitting.
+     * Hull categories are stored on the 'hullCategories' global field while the shipClasses are stored on the 'shipClasses' field.
+     * @param fittings the list of fittings to process
+     */
     private classifyFittings(fittings: Fitting[]): void {
         console.log('>[PilotFittingsPage.classifyFittings]');
         let hitShip = new GroupContainer()
         // Process the fittings and classify them into Ship categories, then ship type end then fitting.
         console.log('-[PilotFittingsPage.classifyFittings]> fitting count: ' + fittings.length);
         for (let fit of fittings) {
-            // Search for this ship type on the list of ships.
-            console.log('-[PilotFittingsPage.classifyFittings]> fitting name: ' + JSON.stringify(fit));
-            try {
-                console.log('-[PilotFittingsPage.classifyFittings]> ship type: ' + fit.getShipTypeId());
-            } catch (error) {
-                console.log('-[PilotFittingsPage.classifyFittings]> error: ' + JSON.stringify(error));
-            }
-            let hitShip = this.shipList.get(fit.getShipTypeId());
-            if (null == hitShip) {
-                // Create a new ship class entry and also check the group.
-                console.log("-- [PilotFittingsPage.accessPilotFittings]> Creating Ship Group: " + fit.getShipGroup());
-                hitShip = new GroupContainer()
+            // Search the ship class
+            const shipClassId = fit.getShipClassName();
+            let hitShipClass = this.shipClasses.get(shipClassId);
+            if (null == hitShipClass) {
+                // Create a new ship class entry.
+                console.log("-[PilotFittingsPage.accessPilotFittings]> Creating Ship Class: " + fit.getShipGroup());
+                hitShipClass = new GroupContainer()
                     .setId(fit.getShipTypeId())
                     .setTitle(fit.getShipClassName())
                     .setGroupIcon(new URLGroupIconReference(fit.getShipTypeId()));
-                this.shipList.set(fit.getShipTypeId(), hitShip);
-                let groupId = fit.getShipGroupId();
-                // Search for this group on the current list or create a new group.
-                let hitGroup = this.groupList.get(groupId);
-                if (null == hitGroup) {
-                    // Create a new group and add the current ship class to it.
-                    let group = fit.getShipGroup();
-                    console.log("-- [PilotFittingsPage.accessPilotFittings]> Creating Group: " + group);
-                    hitGroup = new GroupContainer()
-                        .setId(groupId)
-                        .setTitle(group)
+                this.shipClasses.set(shipClassId, hitShipClass);
+
+                // Search for this ship hull category on the list of ships.
+                const hullCategory = fit.getShipGroup();
+                console.log('-[PilotFittingsPage.classifyFittings]> hullCategory: ' + hullCategory);
+                let hitHullCategory = this.hullCategories.get(hullCategory);
+                if (null == hitHullCategory) {
+                    // Create a new hull category and add the current ship class to it.
+                    console.log("-[PilotFittingsPage.accessPilotFittings]> Creating Hull Category: " + hullCategory);
+                    hitHullCategory = new GroupContainer()
+                        .setId(fit.getShipGroupId())
+                        .setTitle(hullCategory)
                         .setGroupIcon(new AssetGroupIconReference(fit.getHullCategory() + "_64"));
-                    this.groupList.set(groupId, hitGroup);
-                    // Add the new group to the dta content root.
-                    this.dataModelRoot.push(hitGroup);
-                    // Add the Ship group to the category group.
-                    hitGroup.addContent(hitShip);
+                    this.hullCategories.set(hullCategory, hitHullCategory);
+                    this.dataModelRoot.push(hitHullCategory);
                 }
+                hitHullCategory.addContent(hitShipClass);
             }
+            hitShipClass.addContent(fit);
+
+            // let groupId = fit.getShipGroupId();
+            // Search for this group on the current list or create a new group.
+            // let group = fit.getShipGroup();
+            // Add the new group to the dta content root.
+            // Add the Ship group to the category group.
+            // }
+            // }
         }
         console.log('<[PilotFittingsPage.classifyFittings]');
     }

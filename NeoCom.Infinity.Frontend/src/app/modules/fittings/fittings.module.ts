@@ -10,6 +10,7 @@ import { Routes } from '@angular/router';
 import { TokenAuthorizationGuard } from '@app/security/token-authorization.guard';
 // - COMPONENTS
 import { PilotFittingsPageComponent } from './pages/pilot-fittings-page/pilot-fittings-page.component';
+// import { V1FittingRenderComponent } from '../shared/renders/v1-fitting-render/v1-fitting-render.component';
 
 // - MODULE ROUTES
 const routes: Routes = [
@@ -25,11 +26,13 @@ const routes: Routes = [
         RouterModule.forChild(routes),
     ],
     declarations: [
-        PilotFittingsPageComponent
+        PilotFittingsPageComponent,
+        // V1FittingRenderComponent
     ],
     exports: [
         RouterModule,
         PilotFittingsPageComponent,
+        // V1FittingRenderComponent
     ]
 })
 export class FittingsModule { }

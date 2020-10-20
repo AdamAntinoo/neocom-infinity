@@ -1,9 +1,33 @@
-<div class="page-container">
-    <app-info-panel id="appinfo-panel" class="neocom-panel app-info-panel"></app-info-panel>
-    <server-info-panel id="server-info-panel" class="neocom-panel server-info-panel"></server-info-panel>
+<div *ngIf="exception else dashboardPage">
+    <div class="row">
+        <div>
+            <div class="field">
+                <span cy-field-label="exceptionTitle" class="label">TITLE</span><br>
+                <span cy-field-value="exceptionTitle" class="exception-title">{{exception.title}}</span>
+            </div>
+            <div class="field">
+                <span cy-field-label="exceptionMessage" class="label">MESSAGE</span><br>
+                <span cy-field-value="exceptionMessage" class="exception-message">{{exception.message}}</span>
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-    <corporation-public-data-panel id="corporation-public-data-panel"></corporation-public-data-panel>
-</div>
-<pilot-public-data-panel id="pilot-public-data-panel"></pilot-public-data-panel>
-<tab-container-panel [selectedTabName]="'-NONE-'" [tabDefinitionFile]="'dashboard-tabs'"></tab-container-panel>
+<ng-template #dashboardPage>
+    <div class="column">
+        <div class="row">
+            <app-info-panel id="appinfo-panel" class="neocom-panel app-info-panel"></app-info-panel>
+            <server-info-panel id="server-info-panel" class="neocom-panel server-info-panel"></server-info-panel>
+        </div>
+        <!-- <div> -->
+
+        <!-- </div> -->
+        <div class="row">
+            <v2-pilot-public-data-panel [identifier]="getPilotId()"></v2-pilot-public-data-panel>
+            <div *ngIf="corpFuture">
+                <corporation-public-data-panel [corporation]="corpFuture"></corporation-public-data-panel>
+            </div>
+        </div>
+        <!-- <tab-container-panel [selectedTabName]="'-NONE-'" [tabDefinitionFile]="'dashboard-tabs'">
+            </tab-container-panel> -->
+    </div>
+</ng-template>

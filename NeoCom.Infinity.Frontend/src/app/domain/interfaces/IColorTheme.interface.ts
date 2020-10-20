@@ -10,7 +10,7 @@
 //--- INTERFACES
 
 export interface IColorTheme {
-  colorScheme: string;
+//   colorScheme: string;
 
   getColorSchemePanelStyle(): string;
   getPanelStyle(): string;

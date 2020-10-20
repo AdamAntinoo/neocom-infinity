@@ -1,6 +1,6 @@
 // - CORE
 import { Injectable } from '@angular/core';
-import { Observable, ObservableInput } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '@env/environment';
 // - HTTP PACKAGE
@@ -23,12 +23,14 @@ import { Fitting } from '@app/domain/Fitting.domain';
 })
 export class BackendService {
     private APIV1: string;
+    private APIV2: string;
 
     constructor(
         protected isolation: IsolationService,
         protected httpService: HttpClientWrapperService) {
-        this.APIV1 = environment.serverName + environment.apiVersion1;
-    }
+            this.APIV1 = environment.serverName + environment.apiVersion1;
+            this.APIV2 = environment.serverName + environment.apiVersion2;
+        }
 
     // - B A C K E N D - A P I
     public apiValidateAuthorizationToken_v1(code: string, state: string,
@@ -74,6 +76,14 @@ export class BackendService {
         return this.httpService.wrapHttpGETCall(request)
             .pipe(map((data: any) => {
                 const response = new Pilot(data);
+                return response;
+            }));
+    }
+    public apiGetPilotPublicData_v2(pilotId: number,transformer: ResponseTransformer): Observable<any> {
+        const request = this.APIV2 + "/pilots/" + pilotId;
+        return this.httpService.wrapHttpGETCall(request)
+            .pipe(map((data: any) => {
+                const response = transformer.transform(data) as Pilot;
                 return response;
             }));
     }
@@ -218,12 +228,9 @@ export class BackendService {
     //     * This is the common code to all secure calls. It will check if the call can use the mockup system and if that system has a mockup destionation for the request.
     //     * This call also should create a new set of headers to be used on the next call and should put inside the current authentication data.
     //     *
-    //     * @protected
-    //     * @param {string} request
-    //     * @param {string} _body
-    //     * @param {HttpHeaders} [_requestHeaders]
-    //     * @returns {HttpHeaders}
-    //     * @memberof BackendService
+    //     * @param request
+    //     * @param _body
+    //     * @param [_requestHeaders]
     //     */
     //    protected wrapHttpSecureHeaders(_requestHeaders?: HttpHeaders): HttpHeaders {
     //       let headers = new HttpHeaders()

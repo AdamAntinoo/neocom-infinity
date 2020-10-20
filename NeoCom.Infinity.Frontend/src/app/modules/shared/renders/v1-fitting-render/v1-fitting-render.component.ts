@@ -1,6 +1,9 @@
 // - CORE
 import { Component } from '@angular/core';
-import { NodeContainerRenderComponent } from '../node-container-render/node-container-render.component';
+// - DOMAIN
+import { NodeContainerRenderComponent } from '@shared/renders/node-container-render/node-container-render.component';
+import { Fitting } from '@domain/Fitting.domain';
+import { UIIconReference } from '@domain/interfaces/IIconReference.interface';
 
 @Component({
     selector: 'v1-fitting',
@@ -8,10 +11,16 @@ import { NodeContainerRenderComponent } from '../node-container-render/node-cont
     styleUrls: ['./v1-fitting-render.component.scss']
 })
 export class V1FittingRenderComponent extends NodeContainerRenderComponent {
-
-    constructor() { super(); }
-
-    ngOnInit() {
+    public getUrl4Item(): string {
+        if (null != this.node) {
+            let fitting = this.node as Fitting;
+            return fitting.getUrl4Item();
+        } else return new UIIconReference('defaulticonplaceholder').getReference()
     }
-
+    public getName(): string {
+        if (null != this.node) {
+            let fitting = this.node as Fitting;
+            return fitting.getName();
+        } else return '-';
+    }
 }

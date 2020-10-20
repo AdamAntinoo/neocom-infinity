@@ -9,6 +9,8 @@ import { TestBed } from '@angular/core/testing';
 // - PROVIDERS
 import { SupportIsolationService } from '@app/testing/SupportIsolation.service';
 import { SeparatorComponent } from './separator-render.component';
+import { GroupContainer } from '@domain/GroupContainer.domain';
+import { ESeparator } from '@domain/interfaces/EPack.enumerated';
 
 describe('RENDER SeparatorComponent [Module: SHARED]', () => {
     let fixture: ComponentFixture<SeparatorComponent>;
@@ -32,19 +34,66 @@ describe('RENDER SeparatorComponent [Module: SHARED]', () => {
         it('Should be created', () => {
             console.log('><[renders/SeparatorComponent]> should be created');
             component = fixture.componentInstance;
-           expect(component).toBeDefined('component has not been created.');
+            expect(component).toBeDefined('component has not been created.');
         });
     });
     // - C O D E   C O V E R A G E   P H A S E
     describe('Code Coverage Phase [getters]', () => {
-        it('getTitle.success: obtain the group title from the component contained node', () => {
-            const expected = isolation.generateRandomString(32);
-            const group = new GroupContainer();
-            group.setTitle(expected);
+        it('getSeparatorColor.white: get the color stype depending on the separator type', () => {
+            const node = new GroupContainer();
+            const nodeAny = node as any;
+            nodeAny.themeColor = ESeparator.WHITE;
             component = fixture.componentInstance;
-            component.node = group;
-            const obtained = component.getTitle();
-            expect(obtained).toBe(expected);
+            component.node = node;
+            expect(component.getSeparatorColor()).toEqual('solid-white');
+        });
+        it('getSeparatorColor.green: get the color stype depending on the separator type', () => {
+            const node = new GroupContainer();
+            const nodeAny = node as any;
+            nodeAny.themeColor = ESeparator.GREEN;
+            component = fixture.componentInstance;
+            component.node = node;
+            expect(component.getSeparatorColor()).toEqual('solid-green');
+        });
+        it('getSeparatorColor.red: get the color stype depending on the separator type', () => {
+            const node = new GroupContainer();
+            const nodeAny = node as any;
+            nodeAny.themeColor = ESeparator.RED;
+            component = fixture.componentInstance;
+            component.node = node;
+            expect(component.getSeparatorColor()).toEqual('solid-red');
+        });
+        it('getSeparatorColor.orange: get the color stype depending on the separator type', () => {
+            const node = new GroupContainer();
+            const nodeAny = node as any;
+            nodeAny.themeColor = ESeparator.ORANGE;
+            component = fixture.componentInstance;
+            component.node = node;
+            expect(component.getSeparatorColor()).toEqual('solid-orange');
+        });
+        it('getSeparatorColor.yellow: get the color stype depending on the separator type', () => {
+            const node = new GroupContainer();
+            const nodeAny = node as any;
+            nodeAny.themeColor = ESeparator.YELLOW;
+            component = fixture.componentInstance;
+            component.node = node;
+            expect(component.getSeparatorColor()).toEqual('solid-yellow');
+        });
+        it('getSeparatorColor.empty: get the color stype depending on the separator type', () => {
+            const node = new GroupContainer();
+            const nodeAny = node as any;
+            nodeAny.themeColor = ESeparator.EMPTY;
+            component = fixture.componentInstance;
+            component.node = node;
+            expect(component.getSeparatorColor()).toEqual('empty-marker');
+        });
+        it('getSeparatorColor.spinner: get the color stype depending on the separator type', () => {
+            const node = new GroupContainer();
+            const nodeAny = node as any;
+            nodeAny.themeColor = ESeparator.SPINNER;
+            component = fixture.componentInstance;
+            component.node = node;
+            expect(component.getSeparatorColor()).toEqual('empty-marker');
         });
     });
 });
