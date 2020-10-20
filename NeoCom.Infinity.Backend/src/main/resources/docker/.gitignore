@@ -1,0 +1,5 @@
+# Remove copied files from repository.
+properties/
+properties*/
+*.jar
+

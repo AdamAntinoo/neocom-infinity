@@ -1,0 +1,252 @@
+openapi: '3.0.2'
+info:
+  title: NeoCom Infinity Backend Public API
+  description: |
+    # Summary
+
+    ### This is the OpenApi specification active and matching the latest published backend application version seen on the Heroku Production servers.
+    This API defines all the client REST endpoints public and available to other systems. The API definition follows the OpenApi 3.0 specification
+    and there are provisioning for automatic code generation for this API clients.
+
+    This specification describes the implemented API for the backend on the application **NeoCom.Infinity**. The end points
+    described are expected to be used from the **Angular Frontend** application. The ouputs are formatted as JSON results and will
+    be consumed by json compliant applications or by clients that will transform them to Java instances. The recommended json deserializer is GSON.
+
+    For java transformation the JSON code could be used to generate the transformation code at the next link. **http://www.jsonschema2pojo.org/**.
+
+    # System Description
+
+    The backend is a single standalone SpringBoot server but that publishes more than a single service. There are 3 main services at this version:
+
+    * **neocom** - this is the core backend service where the application can found Pilot, Corporation, Assets and mush more endpoints.
+    * **spacelocations** - This service will search for detailed data about a space location identifier and get the type, system, statios or
+    structure and any other specific data that is related to the location. Wormholes are still unsupported as many of the out of common space
+    coordinates.
+    * **items** - This is the item database access service. It will add all sorts of market data to each of the available items.
+
+    The exported data is being improved for HATEOAS support so now some of the endpoints will replace resolved esi data by an equivalent http link.
+    This will help to reduce response times because there is no need to go to the ESI servers to get the data (this is specially severe when there
+    are collections of data). The consumer application is really required that detailed data can follow the link to retrieve the additional
+    information but this is done at the user selection pace and not preloading all possible data records.
+
+
+    This is most effective on long lists like assets or fittings. Now instead of resolving each of the item accesses and also getting each item
+    market information the response will just report a link. Following that link we get the item and from it we can get any market additional data
+    is really required.
+
+    ## TODO:
+    * [20201019] *Replace old api endpoints by the new HAL endpoints and also document the corrent exception responses.*
+    * [20191025] *Complete the definition for the NeoComExceptionResponse once I have the correct serialization data.*
+
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: '0.20.0'
+servers:
+  - url: https://printer3d-backend-stage.herokuapp.com
+    description: OpenAPI 0.12.0 for 3D Printer Queue Management Backend Service. Stage environment
+  - url: https://printer3d-backend.herokuapp.com
+    description: OpenAPI 0.12.0 for 3D Printer Queue Management Backend Service. Production
+
+tags:
+  - name: neocom
+    description: >
+      NeoCom Infinity Backend (NIB). This is the group of endpoints related to Eve Online backend access.
+  - name: universe
+    description: >
+      Universe (U). The group for not authenticated eve online data access endpoints. Any data that does not require authentication and that is
+      publicly available.
+  - name: spacelocation
+    description: >
+      Space Location (SL). This set of endpoints are related to the access of the SpaceLocation database.
+  - name: item
+    description: >
+      Item Database (ID). The endpoints to access item data and any of the additional data sets such as market data and other details.
+
+paths:
+  # - A U T H E N T I C A T I O N
+  /api/v1/neocom/validateAuthorizationToken:
+    get:
+      tags:
+        - neocom
+      summary: Validate the authorization token received from the OAuth CCP server on behalf for the pilot authentication.
+      description: |
+        Validate the authorization token received from the OAuth CCP server on behalf for the pilot authentication. This
+        token along with an application client validation information is received by the backend and then transformed and
+        validated against the ESI application authorization definition.
+
+        If the result is positive then the process completes
+        creating a Credential with a new authorization token and a jwt NeoCom authentication token to be used by the Frontend.
+      operationId: validateAuthorizationToken
+      parameters:
+        - in: query
+          name: code
+          required: true
+          description: The authorization new code obtained from the CPP OAuth factory and that should be replaced by the final authentication token.
+          schema:
+            type: string
+            example: WTeBQkkFTECb2n-sGs5xVQ
+        - in: query
+          name: state
+          required: true
+          description: The unique client identiier to validate if this specific application client is authorized to call the service.
+          schema:
+            type: string
+            example: LU5FT0NPTS5JTkZJTklUWS1ERVZFTE9QTUVOVC1WQUxJRCBTVEFURSBTVFJJTkct
+      responses:
+        '200':
+          description: Validation completed successfully and the new authetication credentialas are ready and operative.
+          content:
+            'application/json;charset=UTF-8':
+              schema:
+                $ref: '#/components/schemas/ValidateAuthorizationTokenResponse'
+        '400':
+          description: >
+            Bad formed request or other application exception error like the token was not validated or validation parameters
+            do not match.
+
+            * 'neocom.error.authorization.translation': The token authorization translation failed on some step. Validation
+            incomplete.
+
+            * 'neocom.error.authorization.verification': The final verification failed. Validation incomplete.
+          content:
+            'application/json;charset=UTF-8':
+              schema:
+                $ref: '#/components/schemas/NeoComExceptionResponse'
+        '403':
+          description: >
+            The request was not allowed to complete. Some missing data rejects the request.
+
+            * 'neocom.error.forbidden.corporation': The corporation requested is not authorized to the requester.
+
+            * 'neocom.error.forbidden.pilot': The access to the pilot data is not authorized to the requester credential.
+          content:
+            'application/json;charset=UTF-8':
+              schema:
+                $ref: '#/components/schemas/NeoComExceptionResponse'
+        '500':
+          description: >
+            * 'neocom.error.servererror': The backend system encountered an internal error.
+          content:
+            'application/json;charset=UTF-8':
+              schema:
+                $ref: '#/components/schemas/NeoComExceptionResponse'
+
+  # - N E O C O M
+  /api/v1/neocom/pilots/{pilotId}:
+    get:
+      tags:
+        - neocom
+      summary: Gets the public data available for a Pilot. It will also have authenticated endpoint links for additional data.
+      description: >
+        Gets the public data available for a Pilot. Any additional data that is accessible for a Pilot oike the Wallet or Fittings will be exported
+        as HAL links to a set of authenticated and authorized endpoints that export that additional data.
+      operationId: getPilotPublicData
+      parameters:
+        - in: path
+          name: pilotId
+          required: true
+          style: simple
+          explode: false
+          description: The unique id for the ESI pilot record. Pilot identifiers are unique integers that are generated by the game platform.
+          schema:
+            type: integer
+            format: int64
+          example:
+            93813310
+      responses:
+        200:
+          description: >
+            The public data information available for this pilot along with the ancestry detailed information. Additionally there are links to
+            authorized endpoints for complementary data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PilotModel'
+          links:
+            GetCorporationData:
+              operationId: getCorporation
+              description: >
+                Gets the corporation public data.
+              parameters:
+                corporationId: $response.body#/id
+  /api/v1/neocom/corporations/{corporationId}:
+    get:
+      tags:
+        - neocom
+      operationId: getCorporation
+      parameters:
+        - in: path
+          name: corporationId
+          required: true
+          style: simple
+          explode: false
+          description: The unique game corporation identifier.
+          schema:
+            type: integer
+            format: int64
+          example:
+            98384726
+      responses:
+        200:
+          description: >
+            The public data information available for this pilot along with the ancestry detailed information. Additionally there are links to
+            authorized endpoints for complementary data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CorporationModel'
+
+components:
+  schemas:
+    PilotModel:
+      type: object
+      required:
+        - pilotId
+        - corporationId
+        - corporation
+        - pilotPublicData
+        - raceData
+        - ancestryData
+        - bloodlineData
+      properties:
+        pilotId:
+          type: integer
+          description: >
+            The unique game character identifier assigned at character creation that is going to be used to identify this Pilot.
+          example:
+            93813310
+        corporationId:
+          type: integer
+          description: >
+            The unique game corporation identifier. There is a value assigned at character creation that matched the identifier for one of the NPC
+            corporations. Later the Pilot can move to another Corporation or even create its own Corporation. If a character is fired fro its
+            current corporation it will return to be a member of any of the race NPC corporations.
+            this Pilot.
+          example:
+            98384726
+#        corporation:
+    CorporationModel:
+      type: object
+      properties:
+        corporationId:
+          type: integer
+
+
+    ValidateAuthorizationTokenResponse:
+      type: object
+      required:
+        - responseType
+        - jwtToken
+        - credential
+      properties:
+        responseType:
+          type: string
+          description: |
+            The classification type of the response so the client can use the right deserializer.
+          example: 'ValidateAuthorizationTokenResponse'
+    NeoComExceptionResponse:
+      type: object
+      required:
+        - errorCode
+        - message

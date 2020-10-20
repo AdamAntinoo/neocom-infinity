@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0402_neocom_create_miningextractions_defaultvalues
+      author: NeoCom development team. Adam Antinoo (adamantinoo.git@gmail.com).
+      changes:
+        - addDefaultValue:
+            tableName: MiningExtractions
+            columnName: quantity
+            columnDataType: int
+            defaultValue: 0
+        - addDefaultValue:
+            tableName: MiningExtractions
+            columnName: extractionHour
+            columnDataType: int
+            defaultValue: 24

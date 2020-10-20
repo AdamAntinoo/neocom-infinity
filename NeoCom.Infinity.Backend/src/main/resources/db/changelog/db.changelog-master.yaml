@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/ddl-v0.20.0-01-schema.yaml
+  - include:
+      file: db/changelog/ddl-v0.20.0-02-credentials-table.yaml
+#  - include:
+#      file: db/changelog/ddl-v0.3.1-credentials-altertable.yaml
+#  - include:
+#      file: db/changelog/ddl-v0.4.1-miningextractions-table.yaml
+#  - include:
+#      file: db/changelog/ddl-v0.4.2-miningextractions-defaultvalues.yaml
+#  - include:
+#      file: db/changelog/ddl-v0.5.1-miningextractions-altertable.yaml
