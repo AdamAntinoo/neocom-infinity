@@ -8,10 +8,11 @@ import org.springframework.stereotype.Component;
 
 import org.dimensinfin.eveonline.neocom.adapter.StoreCacheManager;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBConfigurationService;
+import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 
 @Component
 public class StoreCacheManagerWrapper {
-	private final SBConfigurationService configurationService;
+	private final IConfigurationService configurationService;
 	private final FileSystemWrapper fileSystemAdapter;
 	private final RetrofitFactoryWrapper retrofitFactoryWrapper;
 	private StoreCacheManager singleton;

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBConfigurationService;
+import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 import org.dimensinfin.logging.LogWrapper;
 
 @Component
@@ -25,7 +26,7 @@ public class ConfigurationServiceWrapper {
 		else this.propertiesDirectory = configuredLocation;
 	}
 
-	public SBConfigurationService getSingleton() {
+	public IConfigurationService getSingleton() {
 		return Objects.requireNonNull( this.singleton );
 	}
 

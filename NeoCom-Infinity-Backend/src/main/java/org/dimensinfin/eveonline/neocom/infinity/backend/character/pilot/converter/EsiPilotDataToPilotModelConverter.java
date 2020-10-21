@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.pilot.converter;
+package org.dimensinfin.eveonline.neocom.infinity.backend.character.pilot.converter;
 
 import javax.validation.constraints.NotNull;
 
@@ -9,7 +9,7 @@ import org.dimensinfin.core.interfaces.Converter;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdOk;
 import org.dimensinfin.eveonline.neocom.infinity.corporation.rest.CorporationControllerV1;
 import org.dimensinfin.eveonline.neocom.infinity.pilot.rest.representation.PilotModel;
-import org.dimensinfin.eveonline.neocom.infinity.pilot.rest.v2.PilotControllerV2;
+import org.dimensinfin.eveonline.neocom.infinity.backend.character.pilot.rest.v2.PilotControllerV2;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 import org.dimensinfin.eveonline.neocom.provider.ESIUniverseDataProvider;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;

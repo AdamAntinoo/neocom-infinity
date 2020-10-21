@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
-import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComController;
+import org.dimensinfin.eveonline.neocom.infinity.backend.core.rest.NeoComController;
 
 @RestController
 @CrossOrigin()

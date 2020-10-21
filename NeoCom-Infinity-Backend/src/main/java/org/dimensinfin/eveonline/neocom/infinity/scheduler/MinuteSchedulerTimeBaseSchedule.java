@@ -21,6 +21,7 @@ import org.dimensinfin.eveonline.neocom.infinity.adapter.MiningRepositoryWrapper
 import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBConfigurationService;
 import org.dimensinfin.eveonline.neocom.infinity.scheduler.config.SchedulerConfiguration;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
+import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 import org.dimensinfin.eveonline.neocom.service.scheduler.JobScheduler;
 import org.dimensinfin.logging.LogWrapper;
 
@@ -28,7 +29,7 @@ import static org.dimensinfin.eveonline.neocom.infinity.scheduler.CronSchedulePr
 
 @Component
 public class MinuteSchedulerTimeBaseSchedule {
-	private SBConfigurationService configurationService;
+	private IConfigurationService configurationService;
 	private CredentialRepository credentialRepository;
 	private SchedulerConfiguration schedulerConfiguration;
 	private MiningRepository miningRepository;

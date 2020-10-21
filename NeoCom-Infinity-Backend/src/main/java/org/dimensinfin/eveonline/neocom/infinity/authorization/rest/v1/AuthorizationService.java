@@ -70,7 +70,7 @@ public class AuthorizationService extends NeoComService {
 	public AuthorizationService( final ConfigurationServiceWrapper configurationServiceWrapper,
 	                             final ESIDataProviderWrapper esiDataAdapterWrapper,
 	                             final CredentialRepositoryWrapper credentialRepositoryWrapper ) {
-		this.configurationService = configurationServiceWrapper.getSingleton();
+		this.configurationService = (SBConfigurationService) configurationServiceWrapper.getSingleton();
 		this.esiDataAdapter = esiDataAdapterWrapper.getSingleton();
 		this.credentialRepository = credentialRepositoryWrapper.getSingleton();
 	}

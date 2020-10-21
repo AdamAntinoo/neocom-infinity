@@ -3,15 +3,17 @@ package org.dimensinfin.eveonline.neocom.infinity.adapter;
 import java.util.Objects;
 import javax.annotation.PostConstruct;
 
+import org.hibernate.engine.config.spi.ConfigurationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBConfigurationService;
 import org.dimensinfin.eveonline.neocom.provider.ESIUniverseDataProvider;
+import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 
 @Component
 public class ESIUniverseDataProviderWrapper {
-	private final SBConfigurationService configurationService;
+	private final IConfigurationService configurationService;
 	private final FileSystemWrapper fileSystemAdapter;
 	private final RetrofitFactoryWrapper retrofitFactoryWrapper;
 	private final StoreCacheManagerWrapper storeCacheManagerWrapper;

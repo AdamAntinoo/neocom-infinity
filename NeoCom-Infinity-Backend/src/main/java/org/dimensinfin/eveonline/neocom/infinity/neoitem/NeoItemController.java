@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import org.dimensinfin.eveonline.neocom.domain.NeoItem;
-import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComController;
+import org.dimensinfin.eveonline.neocom.infinity.backend.core.rest.NeoComController;
 
 @RestController
 @CrossOrigin

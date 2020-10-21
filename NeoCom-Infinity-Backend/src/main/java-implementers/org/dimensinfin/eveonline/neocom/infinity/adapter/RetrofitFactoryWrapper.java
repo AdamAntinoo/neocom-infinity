@@ -7,12 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBConfigurationService;
+import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 import org.dimensinfin.eveonline.neocom.provider.IFileSystem;
 import org.dimensinfin.eveonline.neocom.provider.RetrofitFactory;
 
 @Component
 public class RetrofitFactoryWrapper {
-	private final SBConfigurationService configurationService;
+	private final IConfigurationService configurationService;
 	private final IFileSystem fileSystemAdapter;
 	private RetrofitFactory singleton;
 

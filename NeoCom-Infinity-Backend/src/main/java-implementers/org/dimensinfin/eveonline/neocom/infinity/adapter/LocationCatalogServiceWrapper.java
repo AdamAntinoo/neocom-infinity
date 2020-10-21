@@ -8,10 +8,11 @@ import org.springframework.stereotype.Component;
 
 import org.dimensinfin.eveonline.neocom.adapter.LocationCatalogService;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBConfigurationService;
+import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 
 @Component
 public class LocationCatalogServiceWrapper {
-	private final SBConfigurationService configurationService;
+	private final IConfigurationService configurationService;
 	private final FileSystemWrapper fileSystemAdapter;
 	private final ESIUniverseDataProviderWrapper esiUniverseDataProviderWrapper;
 	private final RetrofitFactoryWrapper retrofitFactoryWrapper;
