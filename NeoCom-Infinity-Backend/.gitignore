@@ -11,14 +11,19 @@ backend.App/.git-heroku/
 # Compilation ignorable directories
 .gradle/
 build/
-backend.AcceptanceTest/build/
-backend.AcceptanceTest/target/
+target/
+out/
+
+# Simulator source and binary code
+src/test/resources/apisimulator-http-1.6.1/
 
 # Ignore application cache directories from runs
-NeoCom.Infinity.development/
+backend.App/NeoCom.Infinity/
+backend.App/NeoCom.Infinity.development/
+backend.App/NeoCom.Infinity.unittesting/
 
-# Ignore the libraries to be deployed fro common repository
-backend.App/gradlew
-backend.App/gradlew.bat
+# Ignore local libraries from main repository. Only required on Heroku.
 backend.App/deploy/
-backend.App/gradle/
+
+# - Ignore generated files
+coverage/

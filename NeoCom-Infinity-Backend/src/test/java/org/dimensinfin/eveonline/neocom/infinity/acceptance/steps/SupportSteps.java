@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.steps;
+package org.dimensinfin.eveonline.neocom.infinity.acceptance.steps;
 
 import org.apache.commons.lang3.NotImplementedException;
 

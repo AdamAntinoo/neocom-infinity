@@ -1,0 +1,58 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="NeoCom.Infinity.Backend.backend.App UnitTest" type="JUnit" factoryName="JUnit">
+    <module name="NeoCom.Infinity.Backend.backend.App.test" />
+    <useClassPathOnly />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="org.dimensinfin.eveonline.neocom.infinity.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+      <pattern>
+        <option name="PATTERN" value="org.dimensinfin.eveonline.neocom.infinity.credential.rest.support.CredentialSupportController" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+      <pattern>
+        <option name="PATTERN" value="org.dimensinfin.eveonline.neocom.infinity.credential.rest.support.CredentialSupportService" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+      <pattern>
+        <option name="PATTERN" value="org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendApplication" />
+        <option name="ENABLED" value="true" />
+        <option name="INCLUDE" value="false" />
+      </pattern>
+      <pattern>
+        <option name="PATTERN" value="org.dimensinfin.eveonline.neocom.infinity.adapter.AssetRepositoryWrapperTest" />
+        <option name="ENABLED" value="true" />
+        <option name="INCLUDE" value="false" />
+      </pattern>
+      <pattern>
+        <option name="PATTERN" value="org.dimensinfin.eveonline.neocom.infinity.adapter.CredentialRepositoryWrapperTest" />
+        <option name="ENABLED" value="true" />
+        <option name="INCLUDE" value="false" />
+      </pattern>
+      <pattern>
+        <option name="PATTERN" value="org.dimensinfin.eveonline.neocom.infinity.adapter.LocationCatalogServiceWrapperTest" />
+        <option name="ENABLED" value="true" />
+        <option name="INCLUDE" value="false" />
+      </pattern>
+      <pattern>
+        <option name="PATTERN" value="org.dimensinfin.eveonline.neocom.infinity.adapter.RetrofitFactoryWrapperTest" />
+        <option name="ENABLED" value="true" />
+        <option name="INCLUDE" value="false" />
+      </pattern>
+      <pattern>
+        <option name="PATTERN" value="org.dimensinfin.eveonline.neocom.infinity.adapter.StoreCacheManagerWrapperTest" />
+        <option name="ENABLED" value="true" />
+        <option name="INCLUDE" value="false" />
+      </pattern>
+    </extension>
+    <option name="PACKAGE_NAME" value="" />
+    <option name="MAIN_CLASS_NAME" value="" />
+    <option name="METHOD_NAME" value="" />
+    <option name="TEST_OBJECT" value="package" />
+    <option name="PARAMETERS" value="" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

@@ -15,13 +15,13 @@
 #
 # SERVICES:
 # The dockers created by this file are the next services:
-# 5200 - reserved from frontend
-# 5210 - reserved fro frontend
+# 5200 - reserved for frontend
+# 5210 - [backend-simulator] backend api simulator services
 # 5220 - application backend local server
 # 5230 - [postgres-acceptance] acceptance postgres database
 # 5240 - [acceptance] acceptance application backend server
 # 5250 - [apisimulator-esi-oauth] esi-oauth api simulator service
-# 5260 - [apisimulator-esi-data] esi eve online data server api simulator service
+# 5251 - [apisimulator-esi-data] esi eve online data server api simulator service
 
 version: '3.8'
 
@@ -56,7 +56,7 @@ services:
       - "5250:6090"
     volumes:
       # WARNING - Use full absolute paths to make this work.
-      - /home/adam/Development/NeoCom 0.20/NeoCom-Infinity-backend/src/test/resources/esioauth-simulation:/esioauth-simulation
+      - /home/adam/Development/NeoCom 0.20/NeoCom-Infinity/NeoCom-Infinity-Backend/src/test/resources/esioauth-simulation:/esioauth-simulation
     command: "bin/apisimulator start /esioauth-simulation -p 6090"
 
   apisimulator-esi-data:
@@ -66,5 +66,5 @@ services:
       - "5251:6090"
     volumes:
       # WARNING - Use full absolute paths to make this work.
-      - /home/adam/Development/NeoCom 0.20/NeoCom-Infinity-backend/src/test/resources/esidata-simulation:/esidata-simulation
+      - /home/adam/Development/NeoCom 0.20/NeoCom-Infinity/NeoCom-Infinity-Backend/src/test/resources/esidata-simulation:/esidata-simulation
     command: "bin/apisimulator start /esidata-simulation -p 6090"
