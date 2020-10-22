@@ -169,7 +169,7 @@ paths:
               description: >
                 Gets the corporation public data.
               parameters:
-                corporationId: $response.body#/id
+                corporationId: $response.body#/corporationId
   /api/v1/neocom/corporations/{corporationId}:
     get:
       tags:
@@ -225,13 +225,68 @@ components:
             this Pilot.
           example:
             98384726
-#        corporation:
+        wallet:
+          $ref: '#/components/schemas/WalletModel'
     CorporationModel:
       type: object
       properties:
         corporationId:
           type: integer
+    WalletModel:
+      type: object
+      properties:
+        balance:
+          type: number
+          format: double
+          description: >
+            The wallet balance is the current amount of ISK available at the pilot's wallet. The unit are ISK and they can be expressed up to 2
+            decimals.
+          example:
+            1345987,45
+        journal:
+          $ref: '#/components/schemas/WalletJournalModel'
+        transactions:
+          $ref: '#/components/schemas/WalletTransactionsModel'
+    WalletJournalModel:
+      type: array
+      items:
+        $ref: '#/components/schemas/Link'
+    WalletJournalEntryModel:
+      type: object
+      properties:
+        amount:
+          type: number
+          format: double
+          description: >
+            The amount of ISK given or taken from the wallet as a result of the given transaction. Positive when ISK is deposited into the wallet
+            and negative when ISK is withdrawn.
+          example:
+            -100000.00
+    WalletTransactionsModel:
+      type: array
+      items:
+        $ref: '#/components/schemas/Link'
+    WalletTransactionEntryModel:
+      type: object
+      properties:
+        client_id:
+          type: integer
+          format: int32
+          description: >
+            Character unique id of the client partner on the transaction.
+          example:
+            94726838
 
+    Link:
+      type: object
+      properties:
+        href:
+          type: string
+          format: string
+          description: >
+            HATEOAS link to another resource that is going to be served by this same service backend.
+          example:
+            'https://host:9500/api/v1/neocom/pilots/98384726'
 
     ValidateAuthorizationTokenResponse:
       type: object
