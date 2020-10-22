@@ -28,3 +28,6 @@ backend.App/deploy/
 
 # - Ignore generated files
 coverage/
+
+# - Ignore saved test and other runtime caches and data
+NeoCom.Infinity.unittesting/
