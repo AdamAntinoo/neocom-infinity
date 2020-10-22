@@ -16,6 +16,7 @@ out/
 
 # Simulator source and binary code
 src/test/resources/apisimulator-http-1.6.1/
+src/test/resources/apisimulator-http-1.7/
 
 # Ignore application cache directories from runs
 backend.App/NeoCom.Infinity/
