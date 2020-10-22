@@ -30,7 +30,7 @@ import org.dimensinfin.eveonline.neocom.infinity.core.security.CredentialDetails
 import org.dimensinfin.eveonline.neocom.infinity.core.security.CredentialDetailsService;
 import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticationProvider;
 import org.dimensinfin.eveonline.neocom.infinity.corporation.domain.ShippingYardLocation;
-import org.dimensinfin.eveonline.neocom.infinity.pilot.PilotService;
+import org.dimensinfin.eveonline.neocom.infinity.backend.character.pilot.rest.v1.PilotServiceV1;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 import org.dimensinfin.eveonline.neocom.service.logger.NeoComLogger;
 
@@ -38,7 +38,7 @@ import org.dimensinfin.eveonline.neocom.service.logger.NeoComLogger;
 public class CorporationService {
 	private static final String SHIPPING_YARD_PREFIX = "ShipYard";
 	private final ESIDataProvider esiDataProvider;
-	private final PilotService pilotService;
+	private final PilotServiceV1 pilotServiceV1;
 	private final AssetRepository assetRepository;
 	private final CredentialRepository credentialRepository;
 	private final LocationCatalogService locationCatalogService;
@@ -47,14 +47,14 @@ public class CorporationService {
 
 	@Autowired
 	public CorporationService( final ESIDataProviderWrapper esiDataProviderWrapper,
-	                           final PilotService pilotService,
+	                           final PilotServiceV1 pilotServiceV1,
 	                           final AssetRepositoryWrapper assetRepositoryWrapper,
 	                           final CredentialRepositoryWrapper credentialRepositoryWrapper,
 	                           final LocationCatalogServiceWrapper locationCatalogServiceWrapper,
 	                           final CredentialDetailsService credentialDetailsService,
 	                           final NeoComAuthenticationProvider neoComAuthenticationProvider ) {
 		this.esiDataProvider = esiDataProviderWrapper.getSingleton();
-		this.pilotService = pilotService;
+		this.pilotServiceV1 = pilotServiceV1;
 		this.assetRepository = assetRepositoryWrapper.getSingleton();
 		this.credentialRepository = credentialRepositoryWrapper.getSingleton();
 		this.locationCatalogService = locationCatalogServiceWrapper.getSingleton();
@@ -149,7 +149,7 @@ public class CorporationService {
 		final Corporation.Builder corporationBuilder = new Corporation.Builder()
 				.withCorporationId( corporationId )
 				.withCorporationPublicData( corporationData )
-				.withCeoPilotData( this.pilotService.obtainPilotData( corporationData.getCeoId() ) );
+				.withCeoPilotData( this.pilotServiceV1.buildPilotData( corporationData.getCeoId() ) );
 		if (null != corporationData.getAllianceId())
 			return corporationBuilder.optionslAlliance(
 					this.esiDataProvider.getAlliancesAllianceId( corporationData.getAllianceId() ) )

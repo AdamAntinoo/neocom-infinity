@@ -1,6 +1,5 @@
 package org.dimensinfin.eveonline.neocom.infinity.corporation.rest;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
@@ -26,7 +25,7 @@ import org.dimensinfin.eveonline.neocom.infinity.core.security.CredentialDetails
 import org.dimensinfin.eveonline.neocom.infinity.core.security.CredentialDetailsService;
 import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticationProvider;
 import org.dimensinfin.eveonline.neocom.infinity.corporation.domain.ShippingYardLocation;
-import org.dimensinfin.eveonline.neocom.infinity.pilot.PilotService;
+import org.dimensinfin.eveonline.neocom.infinity.backend.character.pilot.rest.v1.PilotServiceV1;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 
 public class CorporationServiceTest {
@@ -35,7 +34,7 @@ public class CorporationServiceTest {
 	// - COMPONENTS
 	private ESIDataProviderWrapper esiDataProviderWrapper;
 	private ESIDataProvider esiDataProvider;
-	private PilotService pilotService;
+	private PilotServiceV1 pilotServiceV1;
 	private AssetRepositoryWrapper assetRepositoryWrapper;
 	private AssetRepository assetRepository;
 	private CredentialRepositoryWrapper credentialRepositoryWrapper;
@@ -49,7 +48,7 @@ public class CorporationServiceTest {
 	public void beforeEach() {
 		this.esiDataProviderWrapper = Mockito.mock( ESIDataProviderWrapper.class );
 		this.esiDataProvider = Mockito.mock( ESIDataProvider.class );
-		this.pilotService = Mockito.mock( PilotService.class );
+		this.pilotServiceV1 = Mockito.mock( PilotServiceV1.class );
 		this.assetRepositoryWrapper = Mockito.mock( AssetRepositoryWrapper.class );
 		this.assetRepository = Mockito.mock( AssetRepository.class );
 		this.credentialRepositoryWrapper = Mockito.mock( CredentialRepositoryWrapper.class );
@@ -73,12 +72,12 @@ public class CorporationServiceTest {
 
 		// When
 		Mockito.when( this.esiDataProvider.getCorporationsCorporationId( Mockito.anyInt() ) ).thenReturn( corporationData );
-		Mockito.when( this.pilotService.obtainPilotData( Mockito.anyInt() ) ).thenReturn( pilot );
+		Mockito.when( this.pilotServiceV1.buildPilotData( Mockito.anyInt() ) ).thenReturn( pilot );
 
 		// Test
 		final CorporationService corporationService = new CorporationService(
 				esiDataProviderWrapper,
-				pilotService,
+				pilotServiceV1,
 				assetRepositoryWrapper,
 				credentialRepositoryWrapper,
 				locationCatalogServiceWrapper,
@@ -110,7 +109,7 @@ public class CorporationServiceTest {
 		// Test
 		final CorporationService corporationService = new CorporationService(
 				esiDataProviderWrapper,
-				pilotService,
+				pilotServiceV1,
 				assetRepositoryWrapper,
 				credentialRepositoryWrapper,
 				locationCatalogServiceWrapper,
