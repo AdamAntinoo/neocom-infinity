@@ -6,7 +6,7 @@
       <env name="JDBC_DATABASE_URL" value="jdbc:postgresql://0.0.0.0:5432/postgres" />
       <env name="DB_USER" value="adamantinoo" />
       <env name="DB_PASSWORD" value="z.iliada.2020" />
-      <env name="NEOCOM_DATABASE_URL" value="jdbc:postgresql://localhost:5230/postgres?user=neocom-user&amp;password=neocom-password" />
+      <env name="NEOCOM_DATABASE_URL" value="jdbc:postgresql://localhost:5432/postgres?user=adamantinoo&amp;password=z.iliada.2020" />
     </envs>
     <option name="MAIN_CLASS_NAME" value="org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendApplication" />
     <module name="NeoCom.Infinity.Backend.main" />
