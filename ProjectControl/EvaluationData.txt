@@ -1,0 +1,1635 @@
+Beth Ripley Fitting
+[
+  {
+    "description": "",
+    "fitting_id": 60320161,
+    "items": [
+      {
+        "flag": "LoSlot0",
+        "quantity": 1,
+        "type_id": 2048
+      },
+      {
+        "flag": "HiSlot0",
+        "quantity": 1,
+        "type_id": 5245
+      },
+      {
+        "flag": "HiSlot1",
+        "quantity": 1,
+        "type_id": 5245
+      },
+      {
+        "flag": "MedSlot1",
+        "quantity": 1,
+        "type_id": 8517
+      },
+      {
+        "flag": "MedSlot2",
+        "quantity": 1,
+        "type_id": 8517
+      },
+      {
+        "flag": "MedSlot0",
+        "quantity": 1,
+        "type_id": 10872
+      },
+      {
+        "flag": "RigSlot0",
+        "quantity": 1,
+        "type_id": 31358
+      }
+    ],
+    "name": "VM Clearer A1",
+    "ship_type_id": 32880
+  },
+  {
+    "description": "",
+    "fitting_id": 44745698,
+    "items": [
+      {
+        "flag": "LoSlot1",
+        "quantity": 1,
+        "type_id": 1319
+      },
+      {
+        "flag": "LoSlot2",
+        "quantity": 1,
+        "type_id": 1319
+      },
+      {
+        "flag": "LoSlot3",
+        "quantity": 1,
+        "type_id": 1319
+      },
+      {
+        "flag": "LoSlot4",
+        "quantity": 1,
+        "type_id": 1319
+      },
+      {
+        "flag": "MedSlot0",
+        "quantity": 1,
+        "type_id": 5973
+      },
+      {
+        "flag": "MedSlot2",
+        "quantity": 1,
+        "type_id": 8433
+      },
+      {
+        "flag": "MedSlot3",
+        "quantity": 1,
+        "type_id": 8433
+      },
+      {
+        "flag": "MedSlot1",
+        "quantity": 1,
+        "type_id": 9622
+      },
+      {
+        "flag": "LoSlot0",
+        "quantity": 1,
+        "type_id": 10998
+      },
+      {
+        "flag": "RigSlot0",
+        "quantity": 1,
+        "type_id": 31754
+      },
+      {
+        "flag": "RigSlot1",
+        "quantity": 1,
+        "type_id": 31790
+      },
+      {
+        "flag": "RigSlot2",
+        "quantity": 1,
+        "type_id": 31790
+      }
+    ],
+    "name": "MI Elef LS1.0",
+    "ship_type_id": 652
+  },
+  {
+    "description": "",
+    "fitting_id": 28101733,
+    "items": [
+      {
+        "flag": "LoSlot0",
+        "quantity": 1,
+        "type_id": 2048
+      },
+      {
+        "flag": "MedSlot1",
+        "quantity": 1,
+        "type_id": 2281
+      },
+      {
+        "flag": "MedSlot2",
+        "quantity": 1,
+        "type_id": 2553
+      },
+      {
+        "flag": "HiSlot0",
+        "quantity": 1,
+        "type_id": 3178
+      },
+      {
+        "flag": "HiSlot1",
+        "quantity": 1,
+        "type_id": 3178
+      },
+      {
+        "flag": "MedSlot0",
+        "quantity": 1,
+        "type_id": 3841
+      },
+      {
+        "flag": "LoSlot3",
+        "quantity": 1,
+        "type_id": 5561
+      },
+      {
+        "flag": "LoSlot4",
+        "quantity": 1,
+        "type_id": 5561
+      },
+      {
+        "flag": "LoSlot5",
+        "quantity": 1,
+        "type_id": 11229
+      },
+      {
+        "flag": "LoSlot1",
+        "quantity": 1,
+        "type_id": 11269
+      },
+      {
+        "flag": "LoSlot2",
+        "quantity": 1,
+        "type_id": 11317
+      },
+      {
+        "flag": "RigSlot0",
+        "quantity": 1,
+        "type_id": 31059
+      },
+      {
+        "flag": "RigSlot1",
+        "quantity": 1,
+        "type_id": 31059
+      }
+    ],
+    "name": "Occator AntiGanking",
+    "ship_type_id": 12745
+  },
+  {
+    "description": "",
+    "fitting_id": 28101737,
+    "items": [
+      {
+        "flag": "LoSlot0",
+        "quantity": 1,
+        "type_id": 2048
+      },
+      {
+        "flag": "MedSlot1",
+        "quantity": 1,
+        "type_id": 2281
+      },
+      {
+        "flag": "DroneBay",
+        "quantity": 6,
+        "type_id": 2456
+      },
+      {
+        "flag": "MedSlot4",
+        "quantity": 1,
+        "type_id": 2539
+      },
+      {
+        "flag": "MedSlot0",
+        "quantity": 1,
+        "type_id": 2553
+      },
+      {
+        "flag": "HiSlot1",
+        "quantity": 1,
+        "type_id": 3178
+      },
+      {
+        "flag": "MedSlot2",
+        "quantity": 1,
+        "type_id": 3831
+      },
+      {
+        "flag": "MedSlot3",
+        "quantity": 1,
+        "type_id": 3831
+      },
+      {
+        "flag": "LoSlot3",
+        "quantity": 1,
+        "type_id": 5561
+      },
+      {
+        "flag": "LoSlot4",
+        "quantity": 1,
+        "type_id": 5561
+      },
+      {
+        "flag": "LoSlot1",
+        "quantity": 1,
+        "type_id": 16311
+      },
+      {
+        "flag": "LoSlot2",
+        "quantity": 1,
+        "type_id": 16407
+      },
+      {
+        "flag": "HiSlot0",
+        "quantity": 1,
+        "type_id": 23527
+      },
+      {
+        "flag": "RigSlot0",
+        "quantity": 1,
+        "type_id": 31119
+      },
+      {
+        "flag": "RigSlot1",
+        "quantity": 1,
+        "type_id": 31119
+      },
+      {
+        "flag": "RigSlot2",
+        "quantity": 1,
+        "type_id": 31119
+      }
+    ],
+    "name": "Nereus AntiGanking",
+    "ship_type_id": 650
+  },
+  {
+    "description": "",
+    "fitting_id": 35947306,
+    "items": [
+      {
+        "flag": "MedSlot3",
+        "quantity": 1,
+        "type_id": 2539
+      },
+      {
+        "flag": "MedSlot2",
+        "quantity": 1,
+        "type_id": 2553
+      },
+      {
+        "flag": "LoSlot2",
+        "quantity": 1,
+        "type_id": 2605
+      },
+      {
+        "flag": "LoSlot3",
+        "quantity": 1,
+        "type_id": 2605
+      },
+      {
+        "flag": "MedSlot1",
+        "quantity": 1,
+        "type_id": 3831
+      },
+      {
+        "flag": "MedSlot0",
+        "quantity": 1,
+        "type_id": 5975
+      },
+      {
+        "flag": "LoSlot0",
+        "quantity": 1,
+        "type_id": 10998
+      },
+      {
+        "flag": "LoSlot1",
+        "quantity": 1,
+        "type_id": 10998
+      },
+      {
+        "flag": "HiSlot0",
+        "quantity": 1,
+        "type_id": 11577
+      },
+      {
+        "flag": "RigSlot2",
+        "quantity": 1,
+        "type_id": 31155
+      },
+      {
+        "flag": "RigSlot1",
+        "quantity": 1,
+        "type_id": 31179
+      },
+      {
+        "flag": "RigSlot0",
+        "quantity": 1,
+        "type_id": 31360
+      }
+    ],
+    "name": "EI Oruga N2",
+    "ship_type_id": 655
+  },
+  {
+    "description": "",
+    "fitting_id": 35947314,
+    "items": [
+      {
+        "flag": "LoSlot2",
+        "quantity": 1,
+        "type_id": 1335
+      },
+      {
+        "flag": "LoSlot3",
+        "quantity": 1,
+        "type_id": 1335
+      },
+      {
+        "flag": "MedSlot3",
+        "quantity": 1,
+        "type_id": 2539
+      },
+      {
+        "flag": "MedSlot2",
+        "quantity": 1,
+        "type_id": 2553
+      },
+      {
+        "flag": "MedSlot1",
+        "quantity": 1,
+        "type_id": 3831
+      },
+      {
+        "flag": "MedSlot0",
+        "quantity": 1,
+        "type_id": 3841
+      },
+      {
+        "flag": "LoSlot0",
+        "quantity": 1,
+        "type_id": 10998
+      },
+      {
+        "flag": "LoSlot1",
+        "quantity": 1,
+        "type_id": 10998
+      },
+      {
+        "flag": "HiSlot0",
+        "quantity": 1,
+        "type_id": 11370
+      },
+      {
+        "flag": "RigSlot2",
+        "quantity": 1,
+        "type_id": 31155
+      },
+      {
+        "flag": "RigSlot1",
+        "quantity": 1,
+        "type_id": 31179
+      },
+      {
+        "flag": "RigSlot0",
+        "quantity": 1,
+        "type_id": 31360
+      }
+    ],
+    "name": "EI Oruga E2",
+    "ship_type_id": 655
+  },
+  {
+    "description": "",
+    "fitting_id": 44745364,
+    "items": [
+      {
+        "flag": "LoSlot2",
+        "quantity": 1,
+        "type_id": 1319
+      },
+      {
+        "flag": "LoSlot3",
+        "quantity": 1,
+        "type_id": 1319
+      },
+      {
+        "flag": "LoSlot4",
+        "quantity": 1,
+        "type_id": 1319
+      },
+      {
+        "flag": "LoSlot0",
+        "quantity": 1,
+        "type_id": 5839
+      },
+      {
+        "flag": "MedSlot1",
+        "quantity": 1,
+        "type_id": 8433
+      },
+      {
+        "flag": "MedSlot2",
+        "quantity": 1,
+        "type_id": 8433
+      },
+      {
+        "flag": "MedSlot3",
+        "quantity": 1,
+        "type_id": 9622
+      },
+      {
+        "flag": "LoSlot1",
+        "quantity": 1,
+        "type_id": 10998
+      },
+      {
+        "flag": "RigSlot0",
+        "quantity": 1,
+        "type_id": 31790
+      },
+      {
+        "flag": "RigSlot1",
+        "quantity": 1,
+        "type_id": 31790
+      },
+      {
+        "flag": "RigSlot2",
+        "quantity": 1,
+        "type_id": 31790
+      },
+      {
+        "flag": "MedSlot0",
+        "quantity": 1,
+        "type_id": 35656
+      }
+    ],
+    "name": "IIS Magno E1",
+    "ship_type_id": 657
+  },
+  {
+    "description": "",
+    "fitting_id": 49342522,
+    "items": [
+      {
+        "flag": "LoSlot1",
+        "quantity": 1,
+        "type_id": 1335
+      },
+      {
+        "flag": "LoSlot2",
+        "quantity": 1,
+        "type_id": 1335
+      },
+      {
+        "flag": "LoSlot3",
+        "quantity": 1,
+        "type_id": 1335
+      },
+      {
+        "flag": "LoSlot4",
+        "quantity": 1,
+        "type_id": 1335
+      },
+      {
+        "flag": "LoSlot5",
+        "quantity": 1,
+        "type_id": 1335
+      },
+      {
+        "flag": "LoSlot0",
+        "quantity": 1,
+        "type_id": 2048
+      },
+      {
+        "flag": "MedSlot2",
+        "quantity": 1,
+        "type_id": 10872
+      },
+      {
+        "flag": "HiSlot0",
+        "quantity": 1,
+        "type_id": 11370
+      },
+      {
+        "flag": "RigSlot0",
+        "quantity": 1,
+        "type_id": 33894
+      },
+      {
+        "flag": "RigSlot1",
+        "quantity": 1,
+        "type_id": 33894
+      },
+      {
+        "flag": "MedSlot1",
+        "quantity": 1,
+        "type_id": 33915
+      },
+      {
+        "flag": "MedSlot0",
+        "quantity": 1,
+        "type_id": 35656
+      }
+    ],
+    "name": "ODST Odin B2",
+    "ship_type_id": 12745
+  },
+  {
+    "description": "",
+    "fitting_id": 74424314,
+    "items": [
+      {
+        "flag": "LoSlot0",
+        "quantity": 1,
+        "type_id": 2048
+      },
+      {
+        "flag": "MedSlot1",
+        "quantity": 1,
+        "type_id": 3829
+      },
+      {
+        "flag": "MedSlot2",
+        "quantity": 1,
+        "type_id": 3829
+      },
+      {
+        "flag": "HiSlot0",
+        "quantity": 1,
+        "type_id": 5245
+      },
+      {
+        "flag": "HiSlot1",
+        "quantity": 1,
+        "type_id": 5245
+      },
+      {
+        "flag": "MedSlot0",
+        "quantity": 1,
+        "type_id": 10872
+      },
+      {
+        "flag": "RigSlot0",
+        "quantity": 1,
+        "type_id": 31358
+      }
+    ],
+    "name": "*VM Clearer A0",
+    "ship_type_id": 32880
+  },
+  {
+    "description": "",
+    "fitting_id": 46753535,
+    "items": [
+      {
+        "flag": "MedSlot2",
+        "quantity": 1,
+        "type_id": 1978
+      },
+      {
+        "flag": "MedSlot3",
+        "quantity": 1,
+        "type_id": 1978
+      },
+      {
+        "flag": "LoSlot6",
+        "quantity": 1,
+        "type_id": 2364
+      },
+      {
+        "flag": "HiSlot0",
+        "quantity": 1,
+        "type_id": 3025
+      },
+      {
+        "flag": "HiSlot1",
+        "quantity": 1,
+        "type_id": 3025
+      },
+      {
+        "flag": "HiSlot2",
+        "quantity": 1,
+        "type_id": 3025
+      },
+      {
+        "flag": "HiSlot3",
+        "quantity": 1,
+        "type_id": 3025
+      },
+      {
+        "flag": "HiSlot4",
+        "quantity": 1,
+        "type_id": 3025
+      },
+      {
+        "flag": "MedSlot1",
+        "quantity": 1,
+        "type_id": 5302
+      },
+      {
+        "flag": "LoSlot3",
+        "quantity": 1,
+        "type_id": 11269
+      },
+      {
+        "flag": "LoSlot0",
+        "quantity": 1,
+        "type_id": 11648
+      },
+      {
+        "flag": "LoSlot1",
+        "quantity": 1,
+        "type_id": 11648
+      },
+      {
+        "flag": "MedSlot0",
+        "quantity": 1,
+        "type_id": 12058
+      },
+      {
+        "flag": "Cargo",
+        "quantity": 5,
+        "type_id": 12822
+      },
+      {
+        "flag": "Cargo",
+        "quantity": 5,
+        "type_id": 12826
+      },
+      {
+        "flag": "LoSlot4",
+        "quantity": 1,
+        "type_id": 13970
+      },
+      {
+        "flag": "LoSlot5",
+        "quantity": 1,
+        "type_id": 13978
+      },
+      {
+        "flag": "LoSlot2",
+        "quantity": 1,
+        "type_id": 20353
+      },
+      {
+        "flag": "Cargo",
+        "quantity": 5,
+        "type_id": 23089
+      },
+      {
+        "flag": "Cargo",
+        "quantity": 5,
+        "type_id": 23095
+      },
+      {
+        "flag": "Cargo",
+        "quantity": 10,
+        "type_id": 23097
+      },
+      {
+        "flag": "Cargo",
+        "quantity": 2,
+        "type_id": 28999
+      },
+      {
+        "flag": "Cargo",
+        "quantity": 2,
+        "type_id": 29001
+      },
+      {
+        "flag": "Cargo",
+        "quantity": 1,
+        "type_id": 29013
+      },
+      {
+        "flag": "Cargo",
+        "quantity": 1,
+        "type_id": 29015
+      },
+      {
+        "flag": "SubSystemSlot1",
+        "quantity": 1,
+        "type_id": 29966
+      },
+      {
+        "flag": "SubSystemSlot0",
+        "quantity": 1,
+        "type_id": 30040
+      },
+      {
+        "flag": "Invalid",
+        "quantity": 1,
+        "type_id": 30078
+      },
+      {
+        "flag": "SubSystemSlot3",
+        "quantity": 1,
+        "type_id": 30119
+      },
+      {
+        "flag": "SubSystemSlot2",
+        "quantity": 1,
+        "type_id": 30173
+      },
+      {
+        "flag": "RigSlot1",
+        "quantity": 1,
+        "type_id": 31059
+      },
+      {
+        "flag": "RigSlot2",
+        "quantity": 1,
+        "type_id": 31059
+      },
+      {
+        "flag": "RigSlot0",
+        "quantity": 1,
+        "type_id": 31360
+      }
+    ],
+    "name": "LSC AAB Pierna 1.0",
+    "ship_type_id": 29986
+  }
+]
+
+Orca type
+{
+  "capacity": 30000,
+  "description": "The Orca was developed as a joint venture between Outer Ring Excavations and Deep Core Mining Inc as a vessel to help meet the demands of New Eden's industry and provide a flexible platform from which mining operations can be more easily managed.\r\n\r\nThe Orca uses much of the technology developed by ORE for the Rorqual and integrated with the latest advancements from Deep Core Mining research division has developed a vessel which offers a diverse role to all sizes of operations and needs. ",
+  "dogma_attributes": [
+    {
+      "attribute_id": 3,
+      "value": 0
+    },
+    {
+      "attribute_id": 4,
+      "value": 150000000
+    },
+    {
+      "attribute_id": 9,
+      "value": 45000
+    },
+    {
+      "attribute_id": 1547,
+      "value": 3
+    },
+    {
+      "attribute_id": 12,
+      "value": 2
+    },
+    {
+      "attribute_id": 13,
+      "value": 5
+    },
+    {
+      "attribute_id": 14,
+      "value": 6
+    },
+    {
+      "attribute_id": 15,
+      "value": 0
+    },
+    {
+      "attribute_id": 2577,
+      "value": -10
+    },
+    {
+      "attribute_id": 2578,
+      "value": 100
+    },
+    {
+      "attribute_id": 19,
+      "value": 1
+    },
+    {
+      "attribute_id": 1556,
+      "value": 150000
+    },
+    {
+      "attribute_id": 21,
+      "value": 0
+    },
+    {
+      "attribute_id": 18,
+      "value": 0
+    },
+    {
+      "attribute_id": 37,
+      "value": 60
+    },
+    {
+      "attribute_id": 38,
+      "value": 30000
+    },
+    {
+      "attribute_id": 552,
+      "value": 1000
+    },
+    {
+      "attribute_id": 48,
+      "value": 550
+    },
+    {
+      "attribute_id": 49,
+      "value": 0
+    },
+    {
+      "attribute_id": 1971,
+      "value": 0.1
+    },
+    {
+      "attribute_id": 564,
+      "value": 75
+    },
+    {
+      "attribute_id": 55,
+      "value": 1200000
+    },
+    {
+      "attribute_id": 11,
+      "value": 1200
+    },
+    {
+      "attribute_id": 70,
+      "value": 0.26
+    },
+    {
+      "attribute_id": 524,
+      "value": 0.75
+    },
+    {
+      "attribute_id": 76,
+      "value": 70000
+    },
+    {
+      "attribute_id": 525,
+      "value": 1
+    },
+    {
+      "attribute_id": 2574,
+      "value": 50
+    },
+    {
+      "attribute_id": 600,
+      "value": 2
+    },
+    {
+      "attribute_id": 101,
+      "value": 0
+    },
+    {
+      "attribute_id": 102,
+      "value": 0
+    },
+    {
+      "attribute_id": 1132,
+      "value": 400
+    },
+    {
+      "attribute_id": 109,
+      "value": 0.67
+    },
+    {
+      "attribute_id": 110,
+      "value": 0.67
+    },
+    {
+      "attribute_id": 111,
+      "value": 0.67
+    },
+    {
+      "attribute_id": 1137,
+      "value": 3
+    },
+    {
+      "attribute_id": 1555,
+      "value": 1000
+    },
+    {
+      "attribute_id": 633,
+      "value": 0
+    },
+    {
+      "attribute_id": 124,
+      "value": 16777215
+    },
+    {
+      "attribute_id": 129,
+      "value": 150
+    },
+    {
+      "attribute_id": 1154,
+      "value": 3
+    },
+    {
+      "attribute_id": 136,
+      "value": 1
+    },
+    {
+      "attribute_id": 2579,
+      "value": -25
+    },
+    {
+      "attribute_id": 153,
+      "value": 1.38e-8
+    },
+    {
+      "attribute_id": 1178,
+      "value": 100
+    },
+    {
+      "attribute_id": 1179,
+      "value": 0.01
+    },
+    {
+      "attribute_id": 161,
+      "value": 10250000
+    },
+    {
+      "attribute_id": 162,
+      "value": 550
+    },
+    {
+      "attribute_id": 113,
+      "value": 0.67
+    },
+    {
+      "attribute_id": 1196,
+      "value": 0.01
+    },
+    {
+      "attribute_id": 1198,
+      "value": 0.01
+    },
+    {
+      "attribute_id": 1199,
+      "value": 100
+    },
+    {
+      "attribute_id": 1200,
+      "value": 100
+    },
+    {
+      "attribute_id": 182,
+      "value": 29637
+    },
+    {
+      "attribute_id": 192,
+      "value": 7
+    },
+    {
+      "attribute_id": 1224,
+      "value": 0.35
+    },
+    {
+      "attribute_id": 715,
+      "value": 5000
+    },
+    {
+      "attribute_id": 716,
+      "value": 10
+    },
+    {
+      "attribute_id": 208,
+      "value": 0
+    },
+    {
+      "attribute_id": 209,
+      "value": 0
+    },
+    {
+      "attribute_id": 210,
+      "value": 30
+    },
+    {
+      "attribute_id": 211,
+      "value": 0
+    },
+    {
+      "attribute_id": 217,
+      "value": 397
+    },
+    {
+      "attribute_id": 1768,
+      "value": 11346
+    },
+    {
+      "attribute_id": 1259,
+      "value": 0.76
+    },
+    {
+      "attribute_id": 1261,
+      "value": 0.71
+    },
+    {
+      "attribute_id": 1262,
+      "value": 0.25
+    },
+    {
+      "attribute_id": 246,
+      "value": 394
+    },
+    {
+      "attribute_id": 1271,
+      "value": 50
+    },
+    {
+      "attribute_id": 1281,
+      "value": 1
+    },
+    {
+      "attribute_id": 263,
+      "value": 30000
+    },
+    {
+      "attribute_id": 264,
+      "value": 0
+    },
+    {
+      "attribute_id": 265,
+      "value": 7000
+    },
+    {
+      "attribute_id": 267,
+      "value": 0.5
+    },
+    {
+      "attribute_id": 268,
+      "value": 0.9
+    },
+    {
+      "attribute_id": 269,
+      "value": 0.65
+    },
+    {
+      "attribute_id": 270,
+      "value": 0.65
+    },
+    {
+      "attribute_id": 271,
+      "value": 1
+    },
+    {
+      "attribute_id": 272,
+      "value": 0.5
+    },
+    {
+      "attribute_id": 273,
+      "value": 0.6
+    },
+    {
+      "attribute_id": 274,
+      "value": 0.8
+    },
+    {
+      "attribute_id": 277,
+      "value": 1
+    },
+    {
+      "attribute_id": 283,
+      "value": 200
+    },
+    {
+      "attribute_id": 1355,
+      "value": 250
+    },
+    {
+      "attribute_id": 1356,
+      "value": 5
+    },
+    {
+      "attribute_id": 1357,
+      "value": 100
+    },
+    {
+      "attribute_id": 1358,
+      "value": 3
+    },
+    {
+      "attribute_id": 1359,
+      "value": 500
+    },
+    {
+      "attribute_id": 351,
+      "value": 400
+    },
+    {
+      "attribute_id": 2580,
+      "value": 100
+    },
+    {
+      "attribute_id": 907,
+      "value": 1
+    },
+    {
+      "attribute_id": 908,
+      "value": 400000
+    },
+    {
+      "attribute_id": 911,
+      "value": 1
+    },
+    {
+      "attribute_id": 912,
+      "value": 40000
+    },
+    {
+      "attribute_id": 2464,
+      "value": 1
+    },
+    {
+      "attribute_id": 422,
+      "value": 1
+    },
+    {
+      "attribute_id": 2474,
+      "value": 1
+    },
+    {
+      "attribute_id": 2475,
+      "value": 10
+    },
+    {
+      "attribute_id": 435,
+      "value": 2
+    },
+    {
+      "attribute_id": 79,
+      "value": 6750
+    },
+    {
+      "attribute_id": 479,
+      "value": 6000000
+    },
+    {
+      "attribute_id": 482,
+      "value": 8000
+    },
+    {
+      "attribute_id": 484,
+      "value": 0.75
+    }
+  ],
+  "dogma_effects": [
+    {
+      "effect_id": 2134,
+      "is_default": false
+    },
+    {
+      "effect_id": 2251,
+      "is_default": false
+    },
+    {
+      "effect_id": 3739,
+      "is_default": false
+    },
+    {
+      "effect_id": 3740,
+      "is_default": false
+    },
+    {
+      "effect_id": 3742,
+      "is_default": false
+    },
+    {
+      "effect_id": 3744,
+      "is_default": false
+    },
+    {
+      "effect_id": 3745,
+      "is_default": false
+    },
+    {
+      "effect_id": 5029,
+      "is_default": false
+    },
+    {
+      "effect_id": 6783,
+      "is_default": false
+    },
+    {
+      "effect_id": 6786,
+      "is_default": false
+    },
+    {
+      "effect_id": 6787,
+      "is_default": false
+    },
+    {
+      "effect_id": 6788,
+      "is_default": false
+    },
+    {
+      "effect_id": 6789,
+      "is_default": false
+    },
+    {
+      "effect_id": 6790,
+      "is_default": false
+    }
+  ],
+  "graphic_id": 3466,
+  "group_id": 941,
+  "market_group_id": 2336,
+  "mass": 150000000,
+  "name": "Orca",
+  "packaged_volume": 500000,
+  "portion_size": 1,
+  "published": true,
+  "radius": 550,
+  "type_id": 28606,
+  "volume": 10250000
+}
+
+Metropolis Orca open transactions
+[
+  {
+    "duration": 90,
+    "is_buy_order": false,
+    "issued": "2020-10-06T00:45:16Z",
+    "location_id": 60005686,
+    "min_volume": 1,
+    "order_id": 5815620510,
+    "price": 1845000000,
+    "range": "region",
+    "system_id": 30002053,
+    "type_id": 28606,
+    "volume_remain": 1,
+    "volume_total": 1
+  },
+  {
+    "duration": 30,
+    "is_buy_order": false,
+    "issued": "2020-10-24T14:06:39Z",
+    "location_id": 60005686,
+    "min_volume": 1,
+    "order_id": 5830247261,
+    "price": 1338000000,
+    "range": "region",
+    "system_id": 30002053,
+    "type_id": 28606,
+    "volume_remain": 1,
+    "volume_total": 1
+  },
+  {
+    "duration": 90,
+    "is_buy_order": false,
+    "issued": "2020-10-24T18:52:24Z",
+    "location_id": 60005686,
+    "min_volume": 1,
+    "order_id": 5830483987,
+    "price": 1300000000,
+    "range": "region",
+    "system_id": 30002053,
+    "type_id": 28606,
+    "volume_remain": 1,
+    "volume_total": 1
+  },
+  {
+    "duration": 90,
+    "is_buy_order": false,
+    "issued": "2020-10-24T18:52:43Z",
+    "location_id": 60005686,
+    "min_volume": 1,
+    "order_id": 5830484234,
+    "price": 1300000000,
+    "range": "region",
+    "system_id": 30002053,
+    "type_id": 28606,
+    "volume_remain": 1,
+    "volume_total": 1
+  },
+  {
+    "duration": 90,
+    "is_buy_order": false,
+    "issued": "2020-10-24T18:52:49Z",
+    "location_id": 60005686,
+    "min_volume": 1,
+    "order_id": 5830484406,
+    "price": 1300000000,
+    "range": "region",
+    "system_id": 30002053,
+    "type_id": 28606,
+    "volume_remain": 1,
+    "volume_total": 1
+  },
+  {
+    "duration": 90,
+    "is_buy_order": false,
+    "issued": "2020-10-24T18:53:09Z",
+    "location_id": 60005686,
+    "min_volume": 1,
+    "order_id": 5830484753,
+    "price": 1300000000,
+    "range": "region",
+    "system_id": 30002053,
+    "type_id": 28606,
+    "volume_remain": 1,
+    "volume_total": 1
+  },
+  {
+    "duration": 90,
+    "is_buy_order": false,
+    "issued": "2020-10-04T08:07:37Z",
+    "location_id": 60005686,
+    "min_volume": 1,
+    "order_id": 5814197608,
+    "price": 1856000000,
+    "range": "region",
+    "system_id": 30002053,
+    "type_id": 28606,
+    "volume_remain": 1,
+    "volume_total": 1
+  },
+  {
+    "duration": 7,
+    "is_buy_order": false,
+    "issued": "2020-10-26T16:01:32Z",
+    "location_id": 60002146,
+    "min_volume": 1,
+    "order_id": 5829662364,
+    "price": 1270000000,
+    "range": "region",
+    "system_id": 30003392,
+    "type_id": 28606,
+    "volume_remain": 1,
+    "volume_total": 1
+  },
+  {
+    "duration": 90,
+    "is_buy_order": false,
+    "issued": "2020-10-23T16:52:09Z",
+    "location_id": 60005719,
+    "min_volume": 1,
+    "order_id": 5829511901,
+    "price": 1600000000,
+    "range": "region",
+    "system_id": 30003412,
+    "type_id": 28606,
+    "volume_remain": 1,
+    "volume_total": 1
+  },
+  {
+    "duration": 90,
+    "is_buy_order": false,
+    "issued": "2020-10-05T21:02:47Z",
+    "location_id": 60014113,
+    "min_volume": 1,
+    "order_id": 5815503057,
+    "price": 1951000000,
+    "range": "region",
+    "system_id": 30003469,
+    "type_id": 28606,
+    "volume_remain": 1,
+    "volume_total": 1
+  },
+  {
+    "duration": 90,
+    "is_buy_order": false,
+    "issued": "2020-10-07T15:57:20Z",
+    "location_id": 60001030,
+    "min_volume": 1,
+    "order_id": 5816730586,
+    "price": 1500000000,
+    "range": "region",
+    "system_id": 30003470,
+    "type_id": 28606,
+    "volume_remain": 1,
+    "volume_total": 1
+  },
+  {
+    "duration": 90,
+    "is_buy_order": false,
+    "issued": "2020-10-21T14:15:24Z",
+    "location_id": 60001030,
+    "min_volume": 1,
+    "order_id": 5827901153,
+    "price": 1489000000,
+    "range": "region",
+    "system_id": 30003470,
+    "type_id": 28606,
+    "volume_remain": 1,
+    "volume_total": 1
+  },
+  {
+    "duration": 90,
+    "is_buy_order": true,
+    "issued": "2020-10-13T06:23:53Z",
+    "location_id": 1031058135975,
+    "min_volume": 1,
+    "order_id": 5821216626,
+    "price": 1200000,
+    "range": "40",
+    "system_id": 30002053,
+    "type_id": 28606,
+    "volume_remain": 9,
+    "volume_total": 9
+  },
+  {
+    "duration": 90,
+    "is_buy_order": true,
+    "issued": "2020-09-30T13:47:15Z",
+    "location_id": 60005686,
+    "min_volume": 1,
+    "order_id": 5811223394,
+    "price": 762600000,
+    "range": "station",
+    "system_id": 30002053,
+    "type_id": 28606,
+    "volume_remain": 1,
+    "volume_total": 1
+  },
+  {
+    "duration": 90,
+    "is_buy_order": true,
+    "issued": "2020-10-24T21:26:24Z",
+    "location_id": 1031058135975,
+    "min_volume": 1,
+    "order_id": 5827900570,
+    "price": 554000000,
+    "range": "region",
+    "system_id": 30002053,
+    "type_id": 28606,
+    "volume_remain": 1,
+    "volume_total": 1
+  },
+  {
+    "duration": 90,
+    "is_buy_order": true,
+    "issued": "2020-10-09T08:54:26Z",
+    "location_id": 1031058135975,
+    "min_volume": 1,
+    "order_id": 5811067227,
+    "price": 850600000,
+    "range": "3",
+    "system_id": 30002053,
+    "type_id": 28606,
+    "volume_remain": 1,
+    "volume_total": 1
+  },
+  {
+    "duration": 90,
+    "is_buy_order": true,
+    "issued": "2020-10-05T15:57:03Z",
+    "location_id": 1031058135975,
+    "min_volume": 1,
+    "order_id": 5815282276,
+    "price": 850000000,
+    "range": "2",
+    "system_id": 30002053,
+    "type_id": 28606,
+    "volume_remain": 1,
+    "volume_total": 1
+  },
+  {
+    "duration": 90,
+    "is_buy_order": true,
+    "issued": "2020-10-02T13:40:41Z",
+    "location_id": 1031058135975,
+    "min_volume": 1,
+    "order_id": 5794154280,
+    "price": 763700000,
+    "range": "1",
+    "system_id": 30002053,
+    "type_id": 28606,
+    "volume_remain": 1,
+    "volume_total": 1
+  },
+  {
+    "duration": 90,
+    "is_buy_order": true,
+    "issued": "2020-09-21T15:54:02Z",
+    "location_id": 60005686,
+    "min_volume": 1,
+    "order_id": 5648450200,
+    "price": 762100000,
+    "range": "solarsystem",
+    "system_id": 30002053,
+    "type_id": 28606,
+    "volume_remain": 1,
+    "volume_total": 1
+  },
+  {
+    "duration": 90,
+    "is_buy_order": true,
+    "issued": "2020-10-24T18:41:07Z",
+    "location_id": 1031058135975,
+    "min_volume": 1,
+    "order_id": 5822436212,
+    "price": 553900000,
+    "range": "region",
+    "system_id": 30002053,
+    "type_id": 28606,
+    "volume_remain": 1,
+    "volume_total": 1
+  },
+  {
+    "duration": 30,
+    "is_buy_order": true,
+    "issued": "2020-10-28T10:17:36Z",
+    "location_id": 60005686,
+    "min_volume": 1,
+    "order_id": 5833485870,
+    "price": 850700000,
+    "range": "solarsystem",
+    "system_id": 30002053,
+    "type_id": 28606,
+    "volume_remain": 1,
+    "volume_total": 1
+  },
+  {
+    "duration": 90,
+    "is_buy_order": true,
+    "issued": "2020-10-11T07:34:18Z",
+    "location_id": 60004546,
+    "min_volume": 1,
+    "order_id": 5817429045,
+    "price": 920100000,
+    "range": "2",
+    "system_id": 30002068,
+    "type_id": 28606,
+    "volume_remain": 1,
+    "volume_total": 1
+  },
+  {
+    "duration": 90,
+    "is_buy_order": true,
+    "issued": "2020-09-04T19:18:58Z",
+    "location_id": 60005377,
+    "min_volume": 1,
+    "order_id": 5634627226,
+    "price": 375400000,
+    "range": "5",
+    "system_id": 30003416,
+    "type_id": 28606,
+    "volume_remain": 1,
+    "volume_total": 1
+  },
+  {
+    "duration": 90,
+    "is_buy_order": true,
+    "issued": "2020-08-12T20:51:49Z",
+    "location_id": 60005023,
+    "min_volume": 1,
+    "order_id": 5746186599,
+    "price": 513600000,
+    "range": "40",
+    "system_id": 30003437,
+    "type_id": 28606,
+    "volume_remain": 3,
+    "volume_total": 4
+  },
+  {
+    "duration": 90,
+    "is_buy_order": true,
+    "issued": "2020-10-22T22:02:12Z",
+    "location_id": 60004501,
+    "min_volume": 1,
+    "order_id": 5736450070,
+    "price": 553500000,
+    "range": "10",
+    "system_id": 30003449,
+    "type_id": 28606,
+    "volume_remain": 1,
+    "volume_total": 1
+  },
+  {
+    "duration": 90,
+    "is_buy_order": true,
+    "issued": "2020-10-21T10:25:58Z",
+    "location_id": 1031512896047,
+    "min_volume": 1,
+    "order_id": 5807577633,
+    "price": 553100000,
+    "range": "10",
+    "system_id": 30003471,
+    "type_id": 28606,
+    "volume_remain": 1,
+    "volume_total": 1
+  },
+  {
+    "duration": 90,
+    "is_buy_order": true,
+    "issued": "2020-08-04T16:48:25Z",
+    "location_id": 1031512896047,
+    "min_volume": 1,
+    "order_id": 5764675221,
+    "price": 513000000,
+    "range": "solarsystem",
+    "system_id": 30003471,
+    "type_id": 28606,
+    "volume_remain": 1,
+    "volume_total": 1
+  }
+]
+

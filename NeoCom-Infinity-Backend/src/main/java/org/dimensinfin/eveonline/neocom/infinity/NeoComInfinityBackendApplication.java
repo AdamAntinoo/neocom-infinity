@@ -1,40 +1,31 @@
 package org.dimensinfin.eveonline.neocom.infinity;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.hateoas.LinkRelation;
 import org.springframework.hateoas.mediatype.hal.HalConfiguration;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.filter.ForwardedHeaderFilter;
 
-import org.dimensinfin.eveonline.neocom.service.logger.NeoComLogger;
+import org.dimensinfin.logging.LogWrapper;
 
-@EnableScheduling
 @SpringBootApplication
+@EnableDiscoveryClient
+@EnableAutoConfiguration
 public class NeoComInfinityBackendApplication {
-	private static final Logger logger = LoggerFactory.getLogger( NeoComInfinityBackendApplication.class );
-	private static boolean printedVersion = false;
+	public static final String APPLICATION_ERROR_CODE_PREFIX = "dimensinfin.printer3d";
 
 	public static void main( String[] args ) {
-		NeoComLogger.enter();
-		printVersion();
+		LogWrapper.enter();
 		SpringApplication.run( NeoComInfinityBackendApplication.class, args );
-		NeoComLogger.exit();
-	}
-
-	private static void printVersion() {
-		if (!printedVersion) {
-			logger.info( "\n\n  ___   _  ___  _  _   \n" +
-					" / _ \\ / |/ _ \\| || |  \n" +
-					"| | | || | (_) | || |_ \n" +
-					"| |_| || |\\__, |__   _|\n" +
-					" \\___(_)_|  /_(_) |_|  \n" +
-					"                       \n" );
-			printedVersion = true;
-		}
+		new LogoPrinter().print();
+		LogWrapper.exit();
 	}
 
 	@Bean
@@ -50,5 +41,30 @@ public class NeoComInfinityBackendApplication {
 						LinkRelation.of( "prev" ), HalConfiguration.RenderSingleLinks.AS_SINGLE )
 				.withRenderSingleLinksFor(
 						LinkRelation.of( "next" ), HalConfiguration.RenderSingleLinks.AS_SINGLE );
+	}
+
+	private static final class LogoPrinter {
+		public void print() {
+			this.printVersion( this.readAllBytes() );
+		}
+
+		private void printVersion( final String bannerData ) {
+			LogWrapper.info( "\n\n" + bannerData + "\n" );
+		}
+
+		private String readAllBytes() {
+			try {
+				File resource = new File( System.getenv( "NEOCOM_BANNER_LOCATION" ) );
+				return new String( Files.readAllBytes( resource.toPath() ) );
+			} catch (final IOException ioe) {
+				LogWrapper.error( ioe );
+				return "        ___      ___      ___  \n" +
+						"__   __/ _ \\    / _ \\    / _ \\ \n" +
+						"\\ \\ / / | | |  | | | |  | | | |\n" +
+						" \\ V /| |_| |  | |_| |  | |_| |\n" +
+						"  \\_/  \\___(_)  \\___(_)  \\___/ \n" +
+						"                               \n";
+			}
+		}
 	}
 }

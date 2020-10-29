@@ -7,6 +7,7 @@
       <env name="DB_USER" value="adamantinoo" />
       <env name="DB_PASSWORD" value="z.iliada.2020" />
       <env name="NEOCOM_DATABASE_URL" value="jdbc:postgresql://localhost:5432/postgres?user=adamantinoo&amp;password=z.iliada.2020" />
+      <env name="NEOCOM_BANNER_LOCATION" value="./build/resources/main/app-banner.txt" />
     </envs>
     <option name="MAIN_CLASS_NAME" value="org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendApplication" />
     <module name="NeoCom.Infinity.Backend.main" />
