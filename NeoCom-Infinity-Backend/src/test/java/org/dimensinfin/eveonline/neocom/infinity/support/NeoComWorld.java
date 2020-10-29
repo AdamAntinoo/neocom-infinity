@@ -8,17 +8,50 @@ import org.springframework.http.ResponseEntity;
 
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.database.entities.MiningExtractionEntity;
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.CommonWorld;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialResponse;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
+import org.dimensinfin.eveonline.neocom.infinity.pilot.rest.representation.PilotModel;
 import org.dimensinfin.eveonline.neocom.infinity.support.corporation.rest.v1.CorporationResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.corporation.rest.v1.LocationAssetContainer;
 import org.dimensinfin.eveonline.neocom.infinity.support.fitting.rest.v1.FittingResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.neoitem.rest.v1.NeoItemTransport;
 import org.dimensinfin.eveonline.neocom.infinity.support.pilot.rest.v1.PilotResponse;
 
-public class NeoComWorld {
+public class NeoComWorld    extends CommonWorld {
+	private ResponseEntity<ValidateAuthorizationTokenResponse> validateAuthorizationTokenResponseEntity;
+private ResponseEntity<PilotModel> 	pilotDataResponseEntity;
+
+	public ResponseEntity<PilotModel> getPilotDataResponseEntity() {
+		return this.pilotDataResponseEntity;
+	}
+
+	public NeoComWorld setPilotDataResponseEntity( final ResponseEntity<PilotModel> pilotDataResponseEntity ) {
+		this.pilotDataResponseEntity = pilotDataResponseEntity;
+		return this;
+	}
+	//	private String jwtAuthorizationToken;
+
+	public ResponseEntity<ValidateAuthorizationTokenResponse> getValidateAuthorizationTokenResponseEntity() {
+		return this.validateAuthorizationTokenResponseEntity;
+	}
+
+	public NeoComWorld setValidateAuthorizationTokenResponseEntity( final ResponseEntity<ValidateAuthorizationTokenResponse> validateAuthorizationTokenResponseEntity ) {
+		this.validateAuthorizationTokenResponseEntity = validateAuthorizationTokenResponseEntity;
+		return this;
+	}
+//	public String getJwtAuthorizationToken() {
+//		return jwtAuthorizationToken;
+//	}
+//
+//	public NeoComWorld setJwtAuthorizationToken( final String jwtAuthorizationToken ) {
+//		this.jwtAuthorizationToken = jwtAuthorizationToken;
+//		return this;
+//	}
+
+
 	private HttpStatus httpStatusCode;
 	private int httpStatusCodeValue;
 
@@ -26,7 +59,6 @@ public class NeoComWorld {
 	private ValidateAuthorizationTokenResponse validateAuthorizationTokenResponse;
 	private Optional<Integer> corporationIdentifier = Optional.empty();
 	private Optional<Integer> pilotIdentifier = Optional.empty();
-	private String jwtAuthorizationToken;
 	private ResponseEntity<CorporationResponse> corporationResponseEntity;
 	private CorporationResponse corporationResponse;
 	private ResponseEntity<PilotResponse> pilotResponseEntity;
@@ -105,16 +137,6 @@ public class NeoComWorld {
 		if (null != pilotIdentifier) this.pilotIdentifier = Optional.of( pilotIdentifier );
 		return this;
 	}
-
-	public String getJwtAuthorizationToken() {
-		return jwtAuthorizationToken;
-	}
-
-	public NeoComWorld setJwtAuthorizationToken( final String jwtAuthorizationToken ) {
-		this.jwtAuthorizationToken = jwtAuthorizationToken;
-		return this;
-	}
-
 	public ResponseEntity<CorporationResponse> getCorporationResponseEntity() {
 		return this.corporationResponseEntity;
 	}
