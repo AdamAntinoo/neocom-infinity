@@ -2,6 +2,8 @@ package org.dimensinfin.eveonline.neocom.infinity.pilot.rest.representation;
 
 import java.util.Objects;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.RepresentationModel;
 
@@ -15,7 +17,11 @@ public class PilotModel extends RepresentationModel<PilotModel> {
 	private Integer corporationId;
 	private Link corporation;
 	private Link lastKnownLocation;
+	@SerializedName("pilotPublicData")
+	@Expose
 	private GetCharactersCharacterIdOk pilotPublicData;
+	@SerializedName("raceData")
+	@Expose
 	private GetUniverseRaces200Ok raceData;
 	private GetUniverseAncestries200Ok ancestryData;
 	private GetUniverseBloodlines200Ok bloodlineData;

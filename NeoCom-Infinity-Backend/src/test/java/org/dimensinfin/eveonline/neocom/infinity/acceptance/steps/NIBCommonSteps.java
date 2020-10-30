@@ -103,7 +103,7 @@ public class NIBCommonSteps extends SupportSteps {
 				Assert.assertNotNull( corporationId );
 				this.neocomWorld.setCorporationIdentifier( corporationId );
 				break;
-			case GET_PILOT_ENDPOINT_NAME:
+			case GET_PILOT_DATA_ENDPOINT_NAME:
 			case GET_PILOTS_FITTINGS_ENDPOINT_NAME:
 			case GET_TODAY_MINING_EXTRACTIONS:
 				final Map<String, String> rowPilot = dataTable.get( 0 );
@@ -158,8 +158,8 @@ public class NIBCommonSteps extends SupportSteps {
 
 	@Then("the response status code is {int}")
 	public void the_response_status_code_is( final Integer httpStatusCodeValue ) {
-		Assert.assertNotNull( this.neocomWorld.getHttpStatusCodeValue() );
-		Assert.assertEquals( httpStatusCodeValue.intValue(), this.neocomWorld.getHttpStatusCodeValue() );
+		Assert.assertNotNull( this.neocomWorld.getHttpStatus() );
+		Assert.assertEquals( httpStatusCodeValue.intValue(), this.neocomWorld.getHttpStatus().value() );
 	}
 
 	@Then("the response status code is {string}")
@@ -202,7 +202,7 @@ public class NIBCommonSteps extends SupportSteps {
 					this.neocomWorld.setCorporationResponseEntity( corporationDataResponse );
 					this.neocomWorld.setCorporationResponse( corporationDataResponse.getBody() );
 					return corporationDataResponse;
-				case GET_PILOT_ENDPOINT_NAME:
+				case GET_PILOT_DATA_ENDPOINT_NAME:
 					Assert.assertTrue( this.neocomWorld.getPilotIdentifier().isPresent() );
 					final ResponseEntity<PilotResponse> pilotResponseEntity =
 							this.pilotFeignClient.getPilotData(

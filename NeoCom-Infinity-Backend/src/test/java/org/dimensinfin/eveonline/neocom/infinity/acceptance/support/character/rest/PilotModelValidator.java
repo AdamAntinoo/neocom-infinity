@@ -5,6 +5,7 @@ import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.Validator;
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.character.decoders.PilotModelDecoder;
 import org.dimensinfin.eveonline.neocom.infinity.pilot.rest.representation.PilotModel;
 
 import static org.dimensinfin.eveonline.neocom.infinity.acceptance.support.AcceptanceFieldMapConstants.CORPORATION_ID;
