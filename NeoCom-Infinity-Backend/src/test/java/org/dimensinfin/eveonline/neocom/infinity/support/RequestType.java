@@ -10,6 +10,8 @@ public enum RequestType {
 	GET_PILOTS_FITTINGS_ENDPOINT_NAME( "Get Pilot Fittings" ),
 	GET_PILOTS_FITTINGS_V2_ENDPOINT_NAME( "Get Pilot Fittings" ),
 
+	GET_ESIITEM_ENDPOINT_NAME (""),
+
 	GET_SERVER( " Get Server Status" ),
 	GET_CORPORATION_ENDPOINT_NAME( "Get Corporation Data" ),
 	GET_CORPORATION_ASSETS_BY_LOCATION( "Get Corporation Assets By Location" ),

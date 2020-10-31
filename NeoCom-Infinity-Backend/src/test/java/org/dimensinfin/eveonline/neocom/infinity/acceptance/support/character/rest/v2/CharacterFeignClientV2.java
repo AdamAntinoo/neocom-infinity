@@ -23,20 +23,22 @@ import retrofit2.Retrofit;
 
 @Component
 public class CharacterFeignClientV2 extends CommonFeignClient {
-	private ESIDataProviderWrapper esiDataProviderWrapper;
+//	private ESIDataProviderWrapper esiDataProviderWrapper;
 
 	// - C O N S T R U C T O R S
 	@Autowired
-	public CharacterFeignClientV2( final @NotNull AcceptanceTargetConfig acceptanceTargetConfig,
-	                               final @NotNull ESIDataProviderWrapper esiDataProviderWrapper ) {
+	public CharacterFeignClientV2( final @NotNull AcceptanceTargetConfig acceptanceTargetConfig
+//			,
+//	                               final @NotNull ESIDataProviderWrapper esiDataProviderWrapper
+	) {
 		super( acceptanceTargetConfig );
-		this.esiDataProviderWrapper =  new ESIDataProvider.Builder()
-				.withConfigurationProvider( this.configurationServiceWrapper.getSingleton() )
-				.withFileSystemAdapter( this.fileSystemAdapter )
-				.withRetrofitFactory( this.retrofitFactoryWrapper.getSingleton() )
-				.withLocationCatalogService( this.locationCatalogServiceWrapper.getSingleton() )
-				.withStoreCacheManager( this.storeCacheManagerWrapper.getSingleton() )
-				.build();
+//		this.esiDataProviderWrapper =  new ESIDataProvider.Builder()
+//				.withConfigurationProvider( this.configurationServiceWrapper.getSingleton() )
+//				.withFileSystemAdapter( this.fileSystemAdapter )
+//				.withRetrofitFactory( this.retrofitFactoryWrapper.getSingleton() )
+//				.withLocationCatalogService( this.locationCatalogServiceWrapper.getSingleton() )
+//				.withStoreCacheManager( this.storeCacheManagerWrapper.getSingleton() )
+//				.build();
 	}
 
 	public ResponseEntity<PilotModel> getPilotData( final Integer pilotId,

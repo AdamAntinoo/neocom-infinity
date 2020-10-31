@@ -52,4 +52,4 @@ Feature: [STORY] This feature set includes the new endpoints under the /pilot.
     And the response has a list of 9 fittings
     And the fitting with id "28101737" has the next data
       | fittingId | fittingItemsCount | name               | hullClass  | shipHull | shipTypeId | shipHullClassName |
-      | 28101737  | 16                | Nereus AntiGanking | Industrial | <exists> | 650        | Nereus            |
+      | 28101737  | 16                | Nereus AntiGanking | industrial | <exists> | 650        | Nereus            |

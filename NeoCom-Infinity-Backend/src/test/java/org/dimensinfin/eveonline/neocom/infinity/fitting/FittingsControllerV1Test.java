@@ -10,17 +10,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import org.dimensinfin.eveonline.neocom.domain.Fitting;
+import org.dimensinfin.eveonline.neocom.infinity.backend.character.fitting.rest.v1.FittingsControllerV1;
 import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.NeoComAuthorizationException;
 import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticationProvider;
 
-public class FittingsControllerTest {
+public class FittingsControllerV1Test {
 	@Test
 	public void getPilotFittingsNeoComAuthorizationException() {
 		// Given
 		final FittingService fittingService = Mockito.mock( FittingService.class );
 		final NeoComAuthenticationProvider neoComAuthenticationProvider = Mockito.mock( NeoComAuthenticationProvider.class );
 //		final Integer pilotId = 93813310;
-		final FittingsController fittingsController = new FittingsController( fittingService, neoComAuthenticationProvider );
+		final FittingsControllerV1 fittingsControllerV1 = new FittingsControllerV1( fittingService, neoComAuthenticationProvider );
 		final ResponseEntity<List<Fitting>> response = new ResponseEntity( new ArrayList<Fitting>(), HttpStatus.OK );
 
 		//When
@@ -29,7 +30,7 @@ public class FittingsControllerTest {
 
 		// Test
 		NeoComAuthorizationException thrown = Assertions.assertThrows( NeoComAuthorizationException.class,
-				() -> fittingsController.getPilotFittings( 100 ),
+				() -> fittingsControllerV1.getPilotFittings( 100 ),
 				"Expected fittingsController.getPilotFittings() to throw null verification, but it didn't." );
 	}
 
@@ -39,7 +40,7 @@ public class FittingsControllerTest {
 		final FittingService fittingService = Mockito.mock( FittingService.class );
 		final NeoComAuthenticationProvider neoComAuthenticationProvider = Mockito.mock( NeoComAuthenticationProvider.class );
 		final Integer pilotId = 93813310;
-		final FittingsController fittingsController = new FittingsController( fittingService, neoComAuthenticationProvider );
+		final FittingsControllerV1 fittingsControllerV1 = new FittingsControllerV1( fittingService, neoComAuthenticationProvider );
 		final ResponseEntity<List<Fitting>> response = new ResponseEntity( new ArrayList<Fitting>(), HttpStatus.OK );
 
 		//When
@@ -47,7 +48,7 @@ public class FittingsControllerTest {
 		Mockito.when( neoComAuthenticationProvider.getAuthenticatedPilot() ).thenReturn( 93813310 );
 
 		// Test
-		ResponseEntity<List<Fitting>> obtainedResponseEntity = fittingsController.getPilotFittings( pilotId );
+		ResponseEntity<List<Fitting>> obtainedResponseEntity = fittingsControllerV1.getPilotFittings( pilotId );
 
 		// Asserts
 		Assertions.assertEquals( HttpStatus.OK, obtainedResponseEntity.getStatusCode() );

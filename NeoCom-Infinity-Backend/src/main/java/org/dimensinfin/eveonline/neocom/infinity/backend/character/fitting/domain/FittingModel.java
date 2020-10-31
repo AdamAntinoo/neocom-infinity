@@ -6,14 +6,14 @@ import java.util.Objects;
 
 import org.springframework.hateoas.RepresentationModel;
 
-import org.dimensinfin.eveonline.neocom.domain.NeoItem;
+import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.EsiItemModel;
 
 public class FittingModel extends RepresentationModel<FittingModel> {
 	private final List<FittingItemModel> fittingItems = new ArrayList<>();
 	private Integer fittingId;
 	private String name;
 	private String description;
-	private ShipHull shipHull;
+	private EsiItemModel shipHull;
 
 	// - C O N S T R U C T O R S
 	private FittingModel() {}
@@ -35,7 +35,7 @@ public class FittingModel extends RepresentationModel<FittingModel> {
 		return this.name;
 	}
 
-	public ShipHull getShipHull() {
+	public EsiItemModel getShipHull() {
 		return this.shipHull;
 	}
 
@@ -68,16 +68,12 @@ public class FittingModel extends RepresentationModel<FittingModel> {
 			return this;
 		}
 
-		//		public FittingModel.Builder withShipType( final Integer shipTypeId ) {
-		//			this.onConstruction.shipTypeId = Objects.requireNonNull( shipTypeId );
-		//			return this;
-		//		}
 		public FittingModel.Builder withName( final String name ) {
 			this.onConstruction.name = Objects.requireNonNull( name );
 			return this;
 		}
 
-		public FittingModel.Builder withShipHull( final ShipHull shipHull ) {
+		public FittingModel.Builder withShipHull( final EsiItemModel shipHull ) {
 			this.onConstruction.shipHull = Objects.requireNonNull( shipHull );
 			return this;
 		}

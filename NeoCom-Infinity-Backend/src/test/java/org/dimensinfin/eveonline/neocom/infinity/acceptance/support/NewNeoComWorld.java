@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.character.fitting.domain.FittingModel;
+import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.EsiItemModel;
 import org.dimensinfin.eveonline.neocom.infinity.pilot.rest.representation.PilotModel;
 
 public class NewNeoComWorld extends CommonWorld {
@@ -13,7 +14,18 @@ public class NewNeoComWorld extends CommonWorld {
 	private ResponseEntity<PilotModel> pilotDataResponseEntity;
 	private ResponseEntity<List<FittingModel>> pilotFittingsResponseEntity;
 
-// - G E T T E R S   &   S E T T E R S
+	private ResponseEntity<EsiItemModel> itemResponseEntity;
+
+	// - G E T T E R S   &   S E T T E R S
+	public ResponseEntity<EsiItemModel> getItemResponseEntity() {
+		return this.itemResponseEntity;
+	}
+
+	public NewNeoComWorld setItemResponseEntity( final ResponseEntity<EsiItemModel> itemResponseEntity ) {
+		this.itemResponseEntity = itemResponseEntity;
+		return this;
+	}
+
 	public ResponseEntity<PilotModel> getPilotDataResponseEntity() {
 		return this.pilotDataResponseEntity;
 	}
@@ -31,7 +43,6 @@ public class NewNeoComWorld extends CommonWorld {
 		this.pilotFittingsResponseEntity = pilotFittingsResponseEntity;
 		return this;
 	}
-	//	private String jwtAuthorizationToken;
 
 	public ResponseEntity<ValidateAuthorizationTokenResponse> getValidateAuthorizationTokenResponseEntity() {
 		return this.validateAuthorizationTokenResponseEntity;

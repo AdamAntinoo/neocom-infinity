@@ -28,10 +28,10 @@ public class FittingModelValidator implements Validator<FittingModel> {
 				rowData.get( FITTING_HULL_CLASS ),
 				record.getShipHull().getHullGroup()
 		);
-		if (null != rowData.get( FITTING_SHIP_TYPE_ID )) Assertions.assertEquals(
-				Integer.parseInt( rowData.get( FITTING_SHIP_TYPE_ID ) ),
-				record.getShipHull().getTypeId()
-		);
+//		if (null != rowData.get( FITTING_SHIP_TYPE_ID )) Assertions.assertEquals(
+//				Integer.parseInt( rowData.get( FITTING_SHIP_TYPE_ID ) ),
+//				record.getShipHull().getTypeId()
+//		);
 		if (null != rowData.get( FITTING_SHIP_HULL_CLASS_NAME )) Assertions.assertEquals(
 				rowData.get( FITTING_SHIP_HULL_CLASS_NAME ),
 				record.getShipHull().getName()

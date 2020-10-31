@@ -3,6 +3,8 @@ package org.dimensinfin.eveonline.neocom.infinity.acceptance.steps;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.constraints.NotNull;
+
 import org.junit.jupiter.api.Assertions;
 
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.character.rest.FittingModelValidator;
@@ -12,10 +14,9 @@ import org.dimensinfin.eveonline.neocom.infinity.support.NeoComWorld;
 
 import io.cucumber.java.en.Then;
 
-public class NIB03Character extends SupportSteps {
-	// - C O N S T R U C T O R S
-	public NIB03Character( final ConverterContainer cucumberTableToRequestConverters, final NeoComWorld neocomWorld ) {
-		super( cucumberTableToRequestConverters, neocomWorld );
+public class NIB03Character extends StepSupport {
+	public NIB03Character( final @NotNull NeoComWorld neoComWorld ) {
+		super( neoComWorld );
 	}
 
 	@Then("the response has a list of {int} fittings")
