@@ -398,6 +398,22 @@ response:
     file: "${sim.path}/esiresponses/characters.fittings.json"
 
 ---
+simlet: character-fittings
+
+request:
+  - method: GET
+  - uriPathPattern: "/api/v2/neocom/pilots/93813310/fittings"
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body:
+    type: text
+    file: "${sim.path}/esiresponses/characters.fittings.json"
+
+---
 
 simlet: character-wallet
 

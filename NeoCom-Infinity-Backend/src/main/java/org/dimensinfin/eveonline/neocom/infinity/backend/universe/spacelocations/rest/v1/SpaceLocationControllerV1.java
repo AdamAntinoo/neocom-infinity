@@ -16,7 +16,7 @@ import org.dimensinfin.eveonline.neocom.domain.space.SpaceLocation;
 
 @RestController
 @Validated
-@RequestMapping("/api/v1/neocom")
+@RequestMapping("/api/v1/universe")
 public class SpaceLocationControllerV1 {
 	private SpaceLocationServiceV1 spaceLocationServiceV1;
 

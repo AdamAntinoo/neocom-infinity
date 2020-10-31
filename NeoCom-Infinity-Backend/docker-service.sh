@@ -23,7 +23,7 @@ generateContainer() {
   cp ./build/resources/main/app-banner.txt "$DOCKER_DIRECTORY"
   cp ./build/resources/main/app-banner.txt ./build/libs/app-banner.txt
   # Copy all properties sets into the container. Configuration will select the right set.
-  cp -r "./build/resources/main/properties" "${DOCKER_DIRECTORY}/properties"
+#  cp -r "./build/resources/main/properties" "${DOCKER_DIRECTORY}/properties"
   cp -r "./build/resources/main/properties-acceptance" "${DOCKER_DIRECTORY}/properties-acceptance"
   cd "$DOCKER_DIRECTORY" || exit 1;
   mv -v NeoCom.Infinity.Backend*.jar ${APPLICATION_JAR_NAME}".jar"

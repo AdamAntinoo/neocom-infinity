@@ -32,7 +32,7 @@ public class CredentialDetailsService implements UserDetailsService {
 			return new CredentialDetails.Builder()
 					.withCredential( credential )
 					.build();
-		} catch (SQLException e) {
+		} catch (final SQLException sqle) {
 			throw new UsernameNotFoundException(
 					ExceptionMessagesExternalisedType.CREDENTIAL_NOT_FOUND_BECAUSE_EXCEPTION.getMessage() );
 		}

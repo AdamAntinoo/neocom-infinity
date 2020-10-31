@@ -5,14 +5,18 @@ import java.util.Objects;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataProviderWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComError;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
 import org.dimensinfin.eveonline.neocom.infinity.core.security.CredentialDetails;
 import org.dimensinfin.eveonline.neocom.infinity.core.security.CredentialDetailsService;
 import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticationProvider;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
+import org.dimensinfin.logging.LogWrapper;
 
 public abstract class NeoComCredentialService {
 
@@ -42,7 +46,18 @@ public abstract class NeoComCredentialService {
 
 	// - G E T T E R S   &   S E T T E R S
 	protected Credential getAuthorizedCredential() {
-		final String uniqueId = this.neoComAuthenticationProvider.getAuthenticatedUniqueId();
-		return ((CredentialDetails) this.credentialDetailsService.loadUserByUsername( uniqueId )).getCredential();
+		LogWrapper.enter();
+		try {
+			final String uniqueId = this.neoComAuthenticationProvider.getAuthenticatedUniqueId();
+			final UserDetails credentialService = this.credentialDetailsService.loadUserByUsername( uniqueId );
+			final Credential credential = ((CredentialDetails) credentialService).getCredential();
+			if (null != credential)
+				LogWrapper.info( MessageFormat.format( "Credential account: {0} - name: {1}", credential.getAccountId(), credential.getName() ) );
+			return credential;
+		} catch (final UsernameNotFoundException unfe) {
+			throw new NeoComRuntimeBackendException( unfe.getMessage() );
+		} finally {
+			LogWrapper.exit();
+		}
 	}
 }

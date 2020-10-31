@@ -48,6 +48,8 @@ services:
       - JDBC_DATABASE_URL=jdbc:postgresql://postgres-acceptance:5432/postgres
       - DB_USER=neocom-user
       - DB_PASSWORD=neocom-password
+      - DEFAULT_BACKEND_SERVER="http://localhost:"
+      - NEOCOM_BANNER_LOCATION=./app-banner.txt
 
   apisimulator-esi-oauth:
     container_name: apisimulator-esi-oauth

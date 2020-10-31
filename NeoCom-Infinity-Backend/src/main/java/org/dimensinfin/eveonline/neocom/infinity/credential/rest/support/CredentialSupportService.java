@@ -15,7 +15,7 @@ import org.dimensinfin.eveonline.neocom.infinity.adapter.support.SupportCredenti
 import org.dimensinfin.eveonline.neocom.service.logger.NeoComLogger;
 
 @Service
-@Profile("dev")
+@Profile("acceptance")
 public class CredentialSupportService {
 	private SupportCredentialRepository credentialRepository;
 
