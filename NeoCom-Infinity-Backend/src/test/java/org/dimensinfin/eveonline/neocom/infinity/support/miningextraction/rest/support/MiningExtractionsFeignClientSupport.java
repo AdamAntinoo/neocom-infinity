@@ -2,9 +2,12 @@ package org.dimensinfin.eveonline.neocom.infinity.support.miningextraction.rest.
 
 import java.io.IOException;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.stereotype.Component;
 
 import org.dimensinfin.eveonline.neocom.database.entities.MiningExtractionEntity;
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.ITargetConfiguration;
 import org.dimensinfin.eveonline.neocom.infinity.mining.rest.support.MiningExtractionCountResponse;
 import org.dimensinfin.eveonline.neocom.infinity.mining.rest.support.StoreMiningExtractionResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.core.CommonFeignClient;
@@ -16,6 +19,10 @@ import retrofit2.Retrofit;
 
 @Component
 public class MiningExtractionsFeignClientSupport extends CommonFeignClient {
+	public MiningExtractionsFeignClientSupport( final @NotNull ITargetConfiguration acceptanceTargetConfig ) {
+		super( acceptanceTargetConfig );
+	}
+
 	public Integer deleteAllMiningExtractions() throws IOException {
 		final String ENDPOINT_MESSAGE = "Request to delete all mining extractions.";
 		final Response<MiningExtractionCountResponse> response = new Retrofit.Builder()

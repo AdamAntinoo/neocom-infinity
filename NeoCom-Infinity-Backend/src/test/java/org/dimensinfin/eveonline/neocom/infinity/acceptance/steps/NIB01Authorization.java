@@ -67,7 +67,7 @@ public class NIB01Authorization extends SupportSteps {
 		Assert.assertNotNull( credential );
 		this.neocomWorld.setCredential( credential );
 	}
-
+@Deprecated
 	@Then("the {string} response contains a valid Credential")
 	public void the_response_contains_a_valid_Credential( final String endpointName ) {
 		final RequestType requestType = RequestType.from( endpointName );
@@ -78,7 +78,24 @@ public class NIB01Authorization extends SupportSteps {
 				break;
 		}
 	}
-
+	@Then("the Validate Authorization Token response contains a Credential")
+	public void the_Validate_Authorization_Token_response_contains_a_Credential() {
+		Assert.assertNotNull( this.neocomWorld.getValidateAuthorizationTokenResponseEntity() );
+		Assert.assertNotNull( this.neocomWorld.getValidateAuthorizationTokenResponseEntity().getBody() );
+		Assert.assertNotNull( this.neocomWorld.getValidateAuthorizationTokenResponseEntity().getBody().getCredential() );
+		this.neocomWorld.setCredential( this.neocomWorld.getValidateAuthorizationTokenResponseEntity().getBody().getCredential() );
+	}
+	@Then("the current world Credential has the next values:")
+	public void the_current_world_Credential_has_the_next_values(final List<Map<String, String>> dataTable) {
+		// Write code here that turns the phrase above into concrete actions
+		// For automatic transformation, change DataTable to one of
+		// E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
+		// Map<K, List<V>>. E,K,V must be a String, Integer, Float,
+		// Double, Byte, Short, Long, BigInteger or BigDecimal.
+		//
+		// For other transformations you can register a DataTableType.
+		throw new io.cucumber.java.PendingException();
+	}
 	@Given("the state field matches {string}")
 	public void the_state_field_matches( final String stateValue ) {
 		Assert.assertEquals( this.neocomWorld.getValidateAuthorizationTokenRequest().getState(),

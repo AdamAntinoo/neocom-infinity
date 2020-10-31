@@ -19,7 +19,6 @@ public class NIB02Corporation extends SupportSteps {
 	                         final NeoComWorld neocomWorld ) {
 		super( cucumberTableToRequestConverters , neocomWorld);
 	}
-
 	@Given("{string} authorization token")
 	public void authorization_token( String jwtToken ) {
 		// Process special values
