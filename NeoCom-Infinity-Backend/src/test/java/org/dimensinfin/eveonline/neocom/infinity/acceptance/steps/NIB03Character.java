@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Assertions;
 
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.character.rest.FittingModelValidator;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.character.rest.PilotModelValidator;
 import org.dimensinfin.eveonline.neocom.infinity.support.ConverterContainer;
 import org.dimensinfin.eveonline.neocom.infinity.support.NeoComWorld;
@@ -17,10 +18,28 @@ public class NIB03Character extends SupportSteps {
 		super( cucumberTableToRequestConverters, neocomWorld );
 	}
 
+	@Then("the response has a list of {int} fittings")
+	public void the_response_has_a_list_of_fittings( final Integer fittingCount ) {
+		Assertions.assertNotNull( this.neocomWorld.getPilotFittingsResponseEntity() );
+		Assertions.assertNotNull( this.neocomWorld.getPilotFittingsResponseEntity().getBody() );
+		Assertions.assertEquals( fittingCount, this.neocomWorld.getPilotFittingsResponseEntity().getBody().size() );
+	}
+
 	@Then("the resulting Pilot data has the next contents")
 	public void the_resulting_Pilot_data_has_the_next_contents( final List<Map<String, String>> dataTable ) {
 		Assertions.assertNotNull( this.neocomWorld.getPilotDataResponseEntity() );
 		Assertions.assertNotNull( this.neocomWorld.getPilotDataResponseEntity().getBody() );
 		Assertions.assertTrue( new PilotModelValidator().validate( dataTable.get( 0 ), this.neocomWorld.getPilotDataResponseEntity().getBody() ) );
+	}
+	@Then("the fitting with id {string} has the next data")
+	public void the_fitting_with_id_has_the_next_data(final String fittingIdentifier, final List<Map<String, String>> dataTable) {
+		Assertions.assertNotNull( this.neocomWorld.getPilotFittingsResponseEntity() );
+		Assertions.assertNotNull( this.neocomWorld.getPilotFittingsResponseEntity().getBody() );
+		// Search for fitting
+		this.neocomWorld.getPilotFittingsResponseEntity().getBody().stream()
+				.filter( fitting -> fitting.getFittingId()==Integer.parseInt( fittingIdentifier ) )
+				.forEach( fitting -> Assertions.assertTrue(
+						new FittingModelValidator().validate( dataTable.get( 0 ), fitting )
+				));
 	}
 }

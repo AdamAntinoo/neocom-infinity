@@ -158,8 +158,8 @@ public class NIBCommonSteps extends SupportSteps {
 
 	@Then("the response status code is {int}")
 	public void the_response_status_code_is( final Integer httpStatusCodeValue ) {
-		Assert.assertNotNull( this.neocomWorld.getHttpStatus() );
-		Assert.assertEquals( httpStatusCodeValue.intValue(), this.neocomWorld.getHttpStatus().value() );
+		Assert.assertNotNull( this.neocomWorld.getHttpStatusCodeValue() );
+		Assert.assertEquals( httpStatusCodeValue.intValue(), this.neocomWorld.getHttpStatusCodeValue() );
 	}
 
 	@Then("the response status code is {string}")

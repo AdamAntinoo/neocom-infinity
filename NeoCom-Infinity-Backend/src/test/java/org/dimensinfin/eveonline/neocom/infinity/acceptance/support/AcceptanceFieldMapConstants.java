@@ -19,4 +19,12 @@ public class AcceptanceFieldMapConstants {
 	public static final String PILOT_RACE_DATA_OBJECT = "raceData";
 	public static final String PILOT_ANCESTRY_DATA_OBJECT = "ancestryData";
 	public static final String PILOT_BLOODLINE_DATA_OBJECT = "bloodlineData";
+
+	public static final String FITTING_ID = "fittingId";
+	public static final String FITTING_ITEMS_COUNT = "fittingItemsCount";
+	public static final String FITTING_NAME = "name";
+	public static final String FITTING_HULL_CLASS = "hullClass";
+	public static final String FITTING_SHUP_HULL = "shipHull";
+	public static final String FITTING_SHIP_TYPE_ID = "shipTypeId";
+	public static final String FITTING_SHIP_HULL_CLASS_NAME = "shipHullClassName";
 }

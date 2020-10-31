@@ -9,10 +9,12 @@ import org.springframework.http.ResponseEntity;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.database.entities.MiningExtractionEntity;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.CommonWorld;
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.NewNeoComWorld;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialResponse;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
+import org.dimensinfin.eveonline.neocom.infinity.backend.character.fitting.domain.FittingModel;
 import org.dimensinfin.eveonline.neocom.infinity.pilot.rest.representation.PilotModel;
 import org.dimensinfin.eveonline.neocom.infinity.support.corporation.rest.v1.CorporationResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.corporation.rest.v1.LocationAssetContainer;
@@ -20,28 +22,7 @@ import org.dimensinfin.eveonline.neocom.infinity.support.fitting.rest.v1.Fitting
 import org.dimensinfin.eveonline.neocom.infinity.support.neoitem.rest.v1.NeoItemTransport;
 import org.dimensinfin.eveonline.neocom.infinity.support.pilot.rest.v1.PilotResponse;
 
-public class NeoComWorld    extends CommonWorld {
-	private ResponseEntity<ValidateAuthorizationTokenResponse> validateAuthorizationTokenResponseEntity;
-private ResponseEntity<PilotModel> 	pilotDataResponseEntity;
-
-	public ResponseEntity<PilotModel> getPilotDataResponseEntity() {
-		return this.pilotDataResponseEntity;
-	}
-
-	public NeoComWorld setPilotDataResponseEntity( final ResponseEntity<PilotModel> pilotDataResponseEntity ) {
-		this.pilotDataResponseEntity = pilotDataResponseEntity;
-		return this;
-	}
-	//	private String jwtAuthorizationToken;
-
-	public ResponseEntity<ValidateAuthorizationTokenResponse> getValidateAuthorizationTokenResponseEntity() {
-		return this.validateAuthorizationTokenResponseEntity;
-	}
-
-	public NeoComWorld setValidateAuthorizationTokenResponseEntity( final ResponseEntity<ValidateAuthorizationTokenResponse> validateAuthorizationTokenResponseEntity ) {
-		this.validateAuthorizationTokenResponseEntity = validateAuthorizationTokenResponseEntity;
-		return this;
-	}
+public class NeoComWorld    extends NewNeoComWorld {
 //	public String getJwtAuthorizationToken() {
 //		return jwtAuthorizationToken;
 //	}

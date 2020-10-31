@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.fitting;
+package org.dimensinfin.eveonline.neocom.infinity.backend.character.fitting.rest.v1;
 
 import java.util.List;
 import javax.validation.constraints.NotNull;
@@ -17,6 +17,7 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.core.rest.NeoComControl
 import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.ErrorInfo;
 import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.NeoComAuthorizationException;
 import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticationProvider;
+import org.dimensinfin.eveonline.neocom.infinity.fitting.FittingService;
 
 /**
  * This controller will be responsible to manage the Fitting list and all the Fitting management duties like the registration
@@ -34,13 +35,13 @@ import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticat
 @CrossOrigin
 @Validated
 @RequestMapping("/api/v1/neocom")
-public class FittingsController extends NeoComController {
+public class FittingsControllerV1 extends NeoComController {
 	private final FittingService fittingService;
 	private final NeoComAuthenticationProvider neoComAuthenticationProvider;
 
 	@Autowired
-	public FittingsController( final FittingService fittingService,
-	                           final NeoComAuthenticationProvider neoComAuthenticationProvider ) {
+	public FittingsControllerV1( final FittingService fittingService,
+	                             final NeoComAuthenticationProvider neoComAuthenticationProvider ) {
 		this.fittingService = fittingService;
 		this.neoComAuthenticationProvider = neoComAuthenticationProvider;
 	}
