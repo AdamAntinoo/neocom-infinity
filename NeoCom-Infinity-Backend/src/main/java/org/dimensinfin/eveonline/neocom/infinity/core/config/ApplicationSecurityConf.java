@@ -18,6 +18,8 @@ import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticat
 
 import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.CREDENTIAL_SUPPORT_URL;
 import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.GET_ITEM;
+import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.ITEMSV1_URL;
+import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.ITEMSV2_URL;
 import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.LOGIN_VERIFICATION_URL;
 import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.SERVER_STATUS_URL;
 import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.SPACELOCATIONS_URL;
@@ -29,6 +31,7 @@ public class ApplicationSecurityConf extends WebSecurityConfigurerAdapter {
 	private NeoComAuthenticationProvider neoComAuthenticationProvider;
 	private CredentialDetailsService credentialDetailsService;
 
+	// - C O N S T R U C T O R S
 	@Autowired
 	public ApplicationSecurityConf( final CredentialDetailsService userDetailsService,
 	                                final NeoComAuthenticationProvider neoComAuthenticationProvider ) {
@@ -45,7 +48,7 @@ public class ApplicationSecurityConf extends WebSecurityConfigurerAdapter {
 	protected void configure( HttpSecurity http ) throws Exception {
 		http.cors().and().csrf().disable().authorizeRequests()
 				.antMatchers( LOGIN_VERIFICATION_URL, STORE_CREDENTIAL_URL, SERVER_STATUS_URL, CREDENTIAL_SUPPORT_URL,
-						SPACELOCATIONS_URL,
+						ITEMSV1_URL, ITEMSV2_URL, SPACELOCATIONS_URL,
 						GET_ITEM ).permitAll()
 				.anyRequest().authenticated()
 				.and()
@@ -55,9 +58,10 @@ public class ApplicationSecurityConf extends WebSecurityConfigurerAdapter {
 	}
 
 	@Bean
-	CorsConfigurationSource corsConfigurationSource() {
+	public CorsConfigurationSource corsConfigurationSource() {
 		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration( "/**", new CorsConfiguration().applyPermitDefaultValues() );
 		return source;
 	}
 }
+

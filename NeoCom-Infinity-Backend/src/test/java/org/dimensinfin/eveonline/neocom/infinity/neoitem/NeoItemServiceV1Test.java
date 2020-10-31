@@ -8,9 +8,10 @@ import org.dimensinfin.eveonline.neocom.domain.NeoItem;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseCategoriesCategoryIdOk;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseGroupsGroupIdOk;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseTypesTypeIdOk;
+import org.dimensinfin.eveonline.neocom.infinity.backend.universe.item.rest.v1.NeoItemServiceV1;
 import org.dimensinfin.eveonline.neocom.provider.ESIUniverseDataProvider;
 
-public class NeoItemServiceTest {
+public class NeoItemServiceV1Test {
 	@Test
 	public void getItemBasic() {
 		final GetUniverseTypesTypeIdOk esiItem = Mockito.mock( GetUniverseTypesTypeIdOk.class );
@@ -26,9 +27,9 @@ public class NeoItemServiceTest {
 		Mockito.when( esiUniverseDataProvider.searchItemCategory4Id( Mockito.anyInt() ) )
 				.thenReturn( category );
 		NeoItem.injectEsiUniverseDataAdapter( esiUniverseDataProvider );
-		final NeoItemService neoItemService = new NeoItemService();
+		final NeoItemServiceV1 neoItemServiceV1 = new NeoItemServiceV1();
 		final NeoItem expected = new NeoItem( 123 );
-		final NeoItem obtained = neoItemService.getItemBasic( 123 );
+		final NeoItem obtained = neoItemServiceV1.getItem( 123 );
 		Assertions.assertEquals( expected, obtained );
 	}
 }

@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.neoitem;
+package org.dimensinfin.eveonline.neocom.infinity.backend.universe.item.rest.v1;
 
 import javax.validation.constraints.NotNull;
 
@@ -16,21 +16,20 @@ import org.dimensinfin.eveonline.neocom.domain.NeoItem;
 import org.dimensinfin.eveonline.neocom.infinity.backend.core.rest.NeoComController;
 
 @RestController
-@CrossOrigin
 @Validated
-@RequestMapping("/api/v1/neoitem")
-public class NeoItemController extends NeoComController {
-	private final NeoItemService neoItemService;
+@RequestMapping("/api/v1/universe")
+public class NeoItemControllerV1 extends NeoComController {
+	private final NeoItemServiceV1 neoItemServiceV1;
 
 	@Autowired
-	public NeoItemController( final NeoItemService neoItemService ) {
-		this.neoItemService = neoItemService;
+	public NeoItemControllerV1( final NeoItemServiceV1 neoItemServiceV1 ) {
+		this.neoItemServiceV1 = neoItemServiceV1;
 	}
 
-	@GetMapping(path = "/item/basic/{itemId}",
+	@GetMapping(path = "/items/{itemId}",
 			consumes = "application/json",
 			produces = "application/json")
-	public ResponseEntity<NeoItem> getItemBasic( @PathVariable @NotNull final Integer itemId ) {
-		return new ResponseEntity<>( this.neoItemService.getItemBasic( itemId ), HttpStatus.OK );
+	public ResponseEntity<NeoItem> getItem( final  @PathVariable @NotNull  Integer itemId ) {
+		return new ResponseEntity<>( this.neoItemServiceV1.getItem( itemId ), HttpStatus.OK );
 	}
 }

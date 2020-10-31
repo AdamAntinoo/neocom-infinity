@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.universe;
+package org.dimensinfin.eveonline.neocom.infinity.backend.universe.server.rest.v1;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

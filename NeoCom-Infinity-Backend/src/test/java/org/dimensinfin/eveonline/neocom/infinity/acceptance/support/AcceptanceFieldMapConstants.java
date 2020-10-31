@@ -27,4 +27,12 @@ public class AcceptanceFieldMapConstants {
 	public static final String FITTING_SHUP_HULL = "shipHull";
 	public static final String FITTING_SHIP_TYPE_ID = "shipTypeId";
 	public static final String FITTING_SHIP_HULL_CLASS_NAME = "shipHullClassName";
+
+	public static final String ESIITEM_TYPE_ID = "typeId";
+	public static final String ESIITEM_NAME = "name";
+	public static final String ESIITEM_GROUPNAME = "groupName";
+	public static final String ESIITEM_CATEGORYNAME = "categoryName";
+	public static final String ESIITEM_INDUSTRY_GROUP = "industryGroup";
+	public static final String ESIITEM_HULL_GROUP = "hullGroup";
+	public static final String ESIITEM_URL_FORITEM = "urlforItem";
 }

@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.universe;
+package org.dimensinfin.eveonline.neocom.infinity.backend.universe.server.rest.v1;
 
 import java.util.Optional;
 
