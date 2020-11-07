@@ -19,7 +19,7 @@ unique identifier** we get the list of Fittings.
 process parameters.
 
 
-The fittings cannot be accessed by an identifier from the ESI endpoints. The only access if through 
+The fittings cannot be accessed by an identifier from the ESI endpoints. The only access is through 
 the Pilot fittings list. So with that set of data we get a Fitting core data, a hull
 type identifier and the list of modules and contents to that fit.
 
