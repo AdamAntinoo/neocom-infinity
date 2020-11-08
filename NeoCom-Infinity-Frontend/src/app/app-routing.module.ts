@@ -28,6 +28,8 @@ const routes: Routes = [
     //     loadChildren: './modules/shared/shared.module#SharedModule',
     //     canActivate: [TokenAuthorizationGuard]
     // },
+    // - I N D U S T R Y
+    { path: 'industry', loadChildren: () => import('./modules/industry/industry.module').then(m => m.IndustryModule) },
     // - REDIRECT NOT FOUND PAGES
     // { path: '**', component: NotFoundPage }
     // -  F I T T I N G S
