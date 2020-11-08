@@ -50,18 +50,11 @@ dependencyManagement {
 // - C O R E
 dependencies {
     // - C O R E
-    implementation 'com.annimon:stream:1.1.9'
     implementation 'javax.validation:validation-api:2.0.1.Final'
+    implementation 'com.annimon:stream:1.1.9'
     implementation 'org.apache.commons:commons-lang3:3.9'
     implementation 'com.auth0:java-jwt:3.3.0'
     implementation 'commons-codec:commons-codec:1.10' // Base64 decoding
-
-
-
-//    implementation 'org.threeten:threeten-extra:1.5.0'
-//    implementation 'com.google.code.findbugs:jsr305:3.0.2'
-//    implementation 'net.logstash.logback:logstash-logback-encoder:4.11'
-//    implementation 'com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.10.3'
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion" // OAuth2 authentication
     implementation "com.squareup.retrofit2:converter-jackson:$retrofitVersion" // HTTP encapsulation and swagger support
     implementation "com.squareup.retrofit2:converter-gson:2.4.0"
@@ -78,13 +71,13 @@ dependencies {
     implementation 'org.bitbucket.dimensinfin:core-lib:3.2.1'
     implementation 'org.bitbucket.dimensinfin:annotations:0.3.1'
     // N E O C O M
-    implementation 'org.dimensinfin:ESI.SwaggerApi:4.18.0'
-    implementation 'org.dimensinfin:NeoCom.Annotations:0.19.0'
-    implementation 'org.dimensinfin:NeoCom.DataManagement:0.20.0'
-//    implementation 'org.bitbucket.evedimensinfin:neocom-datamanagement:0.19.5'
+    implementation 'org.bitbucket.evedimensinfin:neocom-datamanagement:0.20.0'
+    // Temporal until the datamanagement dependency is fixed
+    implementation 'org.bitbucket.evedimensinfin.neocom-java-core:esi.swagger-api:0.20.0'
+    implementation 'org.bitbucket.evedimensinfin.neocom-java-core:neocom-annotations:0.20.0'
 }
 // - T E M P O R A L   D E P E N D E N C I E S
-dependencies{
+dependencies {
     implementation "joda-time:joda-time:$jodaTimeVersion" // Just use it until the next DataManagement version has the correct depenencies
     implementation "com.fasterxml.jackson.datatype:jackson-datatype-joda:$jacksonVersion"
     implementation "com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion"
@@ -106,27 +99,19 @@ test {
 }
 dependencies {
     // C O R E
-//    testImplementation 'nl.jqno.equalsverifier:equalsverifier:3.1.10'
-//    testImplementation 'org.apache.commons:commons-lang3:3.9'
-//    testImplementation 'com.squareup.okhttp3:okhttp:3.12.0'
     testImplementation "com.squareup.retrofit2:converter-gson:2.4.0"
-//    testImplementation "com.squareup.retrofit2:converter-jackson:$retrofitVersion" // HTTP encapsulation and swagger support
-//    testImplementation 'com.auth0:java-jwt:3.3.0'
-//    com.squareup.retrofit2:converter-gson:2.4.0
-//    // T E S T I N G
+    // T E S T I N G
     testImplementation 'org.junit.jupiter:junit-jupiter:5.4.2'
     testImplementation 'org.junit.vintage:junit-vintage-engine:5.4.2'
     testImplementation 'org.mockito:mockito-core:3.3.3'
-//    testImplementation 'com.openpojo:openpojo:0.8.12'
-//    // T E S T I N G   A D D I T I O N A L
-//    testImplementation "org.testcontainers:testcontainers:1.12.3"
-//    testImplementation "org.testcontainers:postgresql:1.9.1"
-//    testImplementation 'com.github.javafaker:javafaker:0.17.2'
+    testImplementation 'com.openpojo:openpojo:0.8.12'
 //    // - S P R I N G B O O T
 //    testImplementation('org.springframework.boot:spring-boot-starter-test') {
 //        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 //    }
 //    testImplementation  'com.h2database:h2:1.4.194'
+    // NEOCOM
+//    testImplementation 'org.dimensinfin:ESI.SwaggerApi:4.18.0'
 }
 
 dependencies {
@@ -137,10 +122,6 @@ dependencies {
 //    testImplementation "com.squareup.retrofit2:retrofit:$retrofitVersion" // OAuth2 authentication
 //    testImplementation "com.squareup.retrofit2:converter-jackson:$retrofitVersion" // HTTP encapsulation and swagger support
 //    testImplementation 'com.auth0:java-jwt:3.3.0'
-//    // NEOCOM
-//    testImplementation fileTree(dir: '../backend.App/deploy', include: '*.jar')
-////    testImplementation 'org.dimensinfin:CoreBase.core:3.2.0'
-    testImplementation 'org.dimensinfin:ESI.SwaggerApi:4.18.0'
 ////    testImplementation 'org.dimensinfin:NeoCom.Annotations:0.19.0'
 ////    testImplementation 'org.dimensinfin:NeoCom.DataManagement:0.19.4'
 //    // TESTING
