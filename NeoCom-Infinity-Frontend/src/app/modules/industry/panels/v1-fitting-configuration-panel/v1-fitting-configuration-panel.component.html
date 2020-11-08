@@ -2,4 +2,5 @@
 <div class="panel-title">{{getTitle()}}</div>
 <div *ngIf="fittingData">
     FITTING DATA {{getHullName()}}
+    <v1-fitting-configuration [node]="fittingData"></v1-fitting-configuration>
 </div>
