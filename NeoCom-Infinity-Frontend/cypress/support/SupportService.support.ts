@@ -8,11 +8,13 @@ export class SupportService {
     constructor() {
         // - PAGES
         this.translationTable['Dashboard'] = 'dashboard-home-page'
+        this.translationTable['Fitting Build Configuration'] = 'v1-industry-fitting-build-configuration-page'
         // - PANELS
         this.translationTable['app-component'] = 'app-root'
         this.translationTable['pilot-panel'] = 'v2-pilot-public-data-panel'
-        // this.translationTable['billing-chart'] = 'v1-billing-chart-panel'
-        // this.translationTable['coils'] = 'v1-coils-panel'
+        this.translationTable['fitting-summary'] = 'v1-fitting-summary-panel'
+        this.translationTable['fitting-saved-configuration'] = 'v1-fitting-configuration-panel'
+        this.translationTable['fitting-target-configuration'] = 'v1-fitting-configuration-panel'
         // this.translationTable['machines'] = 'v2-machines-panel'
         // this.translationTable['available-parts'] = 'v1-available-parts-panel'
         // this.translationTable['new-request'] = 'v1-new-request-panel'

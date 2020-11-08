@@ -4,7 +4,10 @@
             "path": "."
         },
         {
-            "path": ".."
+            "path": "../.."
+        },
+        {
+            "path": "../../../InnovativeDimensionProjects/Innovative-AngularCore"
         }
     ],
 	"settings": {

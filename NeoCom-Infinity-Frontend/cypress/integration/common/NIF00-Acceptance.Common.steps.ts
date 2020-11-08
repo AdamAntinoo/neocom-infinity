@@ -12,12 +12,19 @@ const TITLE_VALIDATION = 'NeoCom.Infinity';
 const supportService = new SupportService();
 
 // - A P P L I C A T I O N
+Given('the application NeoCom-Infinity', function () {
+    cy.viewport(1400, 900)
+    cy.visit('/')
+    cy.title().should('eq', TITLE_VALIDATION);
+    cy.get('app-root').as('target-page').as('target')
+})
+
 Given('the application NeoCom-Infinity-frontend', function () {
     cy.viewport(1400, 900)
     cy.visit('/')
     cy.title().should('eq', TITLE_VALIDATION);
     cy.get('app-root').as('target-page').as('target')
-});
+})
 
 // - P A G E   A C T I V A T I O N
 Then('the page {string} is activated', function (symbolicName: string) {
@@ -29,11 +36,22 @@ Then('the page {string} is activated', function (symbolicName: string) {
         .should('exist')
     cy.visit(route)
 });
+/**
+ * On the NeoCom application panels may be on a hierarchical setup and not only as la row list.
+ */
 Then('the page {string} has {int} panels', function (symbolicName: string, panelCount: number) {
     const tag = supportService.translateTag(symbolicName) // Do name replacement
-    cy.get('app-root').find(tag).find('.row').first()
-        .children()
+    cy.get('app-root').find(tag).find('.panel')
         .should('have.length', panelCount)
+});
+
+// - S P I N N E R
+Then('the loading panel shows {string}', function (loadingMessage: string) {
+    cy.get('@target-page').find('.index-loading')
+        .contains(loadingMessage)
+});
+When('the loading panel completes', function () {
+    cy.wait(2000)
 });
 
 // - T A R G E T   S E L E C T I O N
