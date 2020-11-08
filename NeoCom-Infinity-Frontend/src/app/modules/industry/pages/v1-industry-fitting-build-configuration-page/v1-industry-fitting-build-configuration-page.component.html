@@ -1,9 +1,9 @@
-<p>v1-industry-fitting-build-configuration-page works!</p>
 <div id="{{getIdentityParameter()}}" class="column">{{getIdentityParameter()}}
-    <div id="panel1" class="panel">FITTING BUILD SUMMARY</div>
+    <div class="panel">FITTING BUILD SUMMARY</div>
     <div class="row">
         <v1-fitting-configuration-panel class="panel" style="flex-grow: 1;" [title]="'FITTING SAVED CONFIGURATION'">
         </v1-fitting-configuration-panel>
-        <v1-fitting-configuration-panel class="panel" style="flex-grow: 1;"></v1-fitting-configuration-panel>
+        <v1-fitting-configuration-panel class="panel" style="flex-grow: 1;" [title]="'FITTING TARGET CONFIGURATION'">
+        </v1-fitting-configuration-panel>
     </div>
 </div>
