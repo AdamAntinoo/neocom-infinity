@@ -31,7 +31,7 @@ public abstract class NeoComCredentialService {
 				.build();
 	}
 
-	protected final ESIDataProvider esiDataProvider;
+//	protected final ESIDataProvider esiDataProvider;
 	protected final NeoComAuthenticationProvider neoComAuthenticationProvider;
 	private final CredentialDetailsService credentialDetailsService;
 
@@ -39,7 +39,7 @@ public abstract class NeoComCredentialService {
 	public NeoComCredentialService( final @NotNull ESIDataProviderWrapper esiDataProviderWrapper,
 	                                final @NotNull NeoComAuthenticationProvider neoComAuthenticationProvider,
 	                                final @NotNull CredentialDetailsService credentialDetailsService ) {
-		this.esiDataProvider = Objects.requireNonNull( esiDataProviderWrapper.getSingleton() );
+//		this.esiDataProvider = Objects.requireNonNull( esiDataProviderWrapper.getSingleton() );
 		this.neoComAuthenticationProvider = neoComAuthenticationProvider;
 		this.credentialDetailsService = credentialDetailsService;
 	}

@@ -1,6 +1,7 @@
 package org.dimensinfin.eveonline.neocom.infinity.backend.character.fitting.rest.v2;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.validation.constraints.NotNull;
 
@@ -14,9 +15,11 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.core.rest.NeoComCredent
 import org.dimensinfin.eveonline.neocom.infinity.backend.universe.item.rest.v2.EsiItemServiceV2;
 import org.dimensinfin.eveonline.neocom.infinity.core.security.CredentialDetailsService;
 import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticationProvider;
+import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 
 @Service
 public class PilotFittingsServiceV2 extends NeoComCredentialService {
+	private final ESIDataProvider esiDataProvider;
 	private final EsiItemServiceV2 esiItemServiceV2;
 
 	// - C O N S T R U C T O R S
@@ -24,7 +27,8 @@ public class PilotFittingsServiceV2 extends NeoComCredentialService {
 	                               final @NotNull NeoComAuthenticationProvider neoComAuthenticationProvider,
 	                               final @NotNull CredentialDetailsService credentialDetailsService,
 	                               final @NotNull EsiItemServiceV2 esiItemServiceV2 ) {
-		super( esiDataProviderWrapper, neoComAuthenticationProvider, credentialDetailsService );
+		super( null, neoComAuthenticationProvider, credentialDetailsService );
+		this.esiDataProvider = Objects.requireNonNull( esiDataProviderWrapper.getSingleton() );
 		this.esiItemServiceV2 = esiItemServiceV2;
 	}
 

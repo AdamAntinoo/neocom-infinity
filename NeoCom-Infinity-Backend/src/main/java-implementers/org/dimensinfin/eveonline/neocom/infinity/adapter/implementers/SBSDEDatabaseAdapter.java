@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
-import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.jdbc.JdbcPooledConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
 import org.slf4j.Logger;
@@ -14,8 +13,6 @@ import org.slf4j.LoggerFactory;
 
 import org.dimensinfin.eveonline.neocom.database.ISDEDatabaseAdapter;
 import org.dimensinfin.eveonline.neocom.database.SBRawStatement;
-import org.dimensinfin.eveonline.neocom.domain.EsiLocation;
-import org.dimensinfin.eveonline.neocom.exception.NeoComRuntimeException;
 import org.dimensinfin.eveonline.neocom.provider.IFileSystem;
 
 /**
@@ -39,7 +36,7 @@ public class SBSDEDatabaseAdapter implements ISDEDatabaseAdapter {
 
 	//	private Dao<EsiLocation, Long> locationDao = null;
 
-// - C O N S T R U C T O R S
+	// - C O N S T R U C T O R S
 	protected SBSDEDatabaseAdapter() { }
 
 	//	public Dao<EsiLocation, Long> getLocationDao() throws NeoComRuntimeException {
@@ -53,7 +50,7 @@ public class SBSDEDatabaseAdapter implements ISDEDatabaseAdapter {
 	//		return this.locationDao;
 	//	}
 
-// - G E T T E R S   &   S E T T E R S
+	// - G E T T E R S   &   S E T T E R S
 	private String getConnectionDescriptor() {
 		return this.schema + ":" + this.databasePath + this.databaseName;
 	}
@@ -86,10 +83,10 @@ public class SBSDEDatabaseAdapter implements ISDEDatabaseAdapter {
 		return null;
 	}
 
-	@Override
-	public Dao<EsiLocation, Long> getLocationDao() throws NeoComRuntimeException {
-		return null;
-	}
+	//	@Override
+	//	public Dao<EsiLocation, Long> getLocationDao() throws NeoComRuntimeException {
+	//		return null;
+	//	}
 
 	private void createConnectionSource() throws SQLException {
 		this.connectionSource = new JdbcPooledConnectionSource( this.getConnectionDescriptor() );
@@ -142,7 +139,7 @@ public class SBSDEDatabaseAdapter implements ISDEDatabaseAdapter {
 	public static class Builder {
 		private SBSDEDatabaseAdapter onConstruction;
 
-// - C O N S T R U C T O R S
+		// - C O N S T R U C T O R S
 		public Builder() {
 			this.onConstruction = new SBSDEDatabaseAdapter();
 		}
