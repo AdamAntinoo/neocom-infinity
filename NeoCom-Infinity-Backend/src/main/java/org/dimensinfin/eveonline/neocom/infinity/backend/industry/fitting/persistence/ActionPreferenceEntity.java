@@ -5,11 +5,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import org.springframework.data.annotation.Id;
 
 import org.dimensinfin.eveonline.neocom.infinity.datamanagement.industry.domain.ActionType;
 
@@ -29,24 +28,41 @@ public class ActionPreferenceEntity {
 	@Column(name = "fittingId", nullable = false)
 	private Integer fittingId;
 	@NotNull(message = "TypeId unique 'id' is a mandatory field and cannot be null.")
-	@Column(name = "typeId",  nullable = false)
+	@Column(name = "typeId", nullable = false)
 	private Integer typeId;
-	@Column(name = "action",  nullable = false)
+	@Column(name = "action", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private ActionType action = ActionType.BUY;
-	@Column(name = "action",  nullable = false)
+	@Column(name = "saved", nullable = false)
 	private boolean saved = false; // A true on this field sets this rule as a saved rule to be applied to initial setup.
 
 	// - C O N S T R U C T O R S
 	private ActionPreferenceEntity() {}
 
 	// - G E T T E R S   &   S E T T E R S
-	public String getId() {
-		return this.id;
+	public ActionType getAction() {
+		return this.action;
 	}
 
 	public Integer getFittingId() {
 		return this.fittingId;
+	}
+
+	public String getId() {
+		return this.id;
+	}
+
+	public Integer getTypeId() {
+		return this.typeId;
+	}
+
+	public boolean isSaved() {
+		return this.saved;
+	}
+
+	public ActionPreferenceEntity setSaved( final boolean saved ) {
+		this.saved = saved;
+		return this;
 	}
 
 	// - B U I L D E R
@@ -63,16 +79,18 @@ public class ActionPreferenceEntity {
 			return this.onConstruction;
 		}
 
-		public ActionPreferenceEntity.Builder withUniqueId( final @NotNull String uniqueId ) {
-			this.onConstruction.id = Objects.requireNonNull( uniqueId );
-			return this;
-		}
 		public ActionPreferenceEntity.Builder withFittingId( final @NotNull Integer fittingId ) {
 			this.onConstruction.fittingId = Objects.requireNonNull( fittingId );
 			return this;
 		}
+
 		public ActionPreferenceEntity.Builder withTypeId( final @NotNull Integer typeId ) {
 			this.onConstruction.typeId = Objects.requireNonNull( typeId );
+			return this;
+		}
+
+		public ActionPreferenceEntity.Builder withUniqueId( final @NotNull String uniqueId ) {
+			this.onConstruction.id = Objects.requireNonNull( uniqueId );
 			return this;
 		}
 	}
