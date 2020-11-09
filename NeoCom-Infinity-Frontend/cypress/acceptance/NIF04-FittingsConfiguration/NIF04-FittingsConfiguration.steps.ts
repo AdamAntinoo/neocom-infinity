@@ -25,6 +25,42 @@ Given('the page {string} is activated with parameters {int}', function (symbolic
             break;
     }
 })
+
+// - T A R G E T
 Then('the target has the identity {int}', function (identity: number) {
     cy.get('@target').find('[id="' + identity + '"]').should('exist')
+})
+Then('the target is tagged {string}', function (tagColor: string) {
+    cy.get('@target').find('.neocom-panel').first().find('.panel-' + tagColor).should('exist')
+})
+Given('the target section {string}', function (sectionTitle: string) {
+    cy.get('@target')
+        .find('.section')
+        .find('[cy-section-name="' + sectionTitle + '"]').parent().as('target')
+    cy.get('@target')
+        .find('[cy-section-name="' + sectionTitle + '"]')
+        .contains(sectionTitle, { matchCase: false })
+})
+Then('the target has {int} groups', function (count: number) {
+    cy.get('@target').find('.fitting-group').should('have.length', count)
+})
+Given('the target the group identified {string}', function (groupIdentifier: string) {
+    cy.get('@target').find('[cy-name="' + groupIdentifier + '"]').should('exist')
+})
+Then('the target has the group title {string}', function (title: string) {
+    cy.get('@target').find('.group-title').contains(title, { matchCase: false })
+})
+
+// - F I E L D S
+Then('field named {string} has contents {string}',
+    function (fieldName: string, fieldValue: string) {
+        cy.get('@target').within(($item) => {
+            cy.get('[cy-field-name="' + fieldName + '"]')
+                .find('[cy-field-value="' + fieldName + '"]').contains(fieldValue, { matchCase: false })
+        })
+    })
+Then('image named {string} has link {string}', function (imageName: string, imageURL: string) {
+    cy.get('@target').find('.neocom-icon').find('img')
+        .should('be.visible')
+    // .should('have.src', imageURL)
 })

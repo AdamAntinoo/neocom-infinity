@@ -31,11 +31,6 @@ export class V1FittingConfigurationPanelComponent extends AppPanelComponent impl
     public getTitle(): string {
         return this.title.toUpperCase()
     }
-    public getHullName () : string {
-        if ( null != this.fittingData)
-        return this.fittingData.getHullName()
-        else return '-DOWNLOADING-'
-    }
     public sendConfigurationReference(link: string): void {
         if (null != link) {
             this.link = link

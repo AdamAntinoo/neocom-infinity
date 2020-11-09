@@ -15,7 +15,7 @@ export class SupportService {
         this.translationTable['fitting-summary'] = 'v1-fitting-summary-panel'
         this.translationTable['fitting-saved-configuration'] = 'v1-fitting-configuration-panel'
         this.translationTable['fitting-target-configuration'] = 'v1-fitting-configuration-panel'
-        // this.translationTable['machines'] = 'v2-machines-panel'
+        this.translationTable['fitting-module'] = 'v1-fitting-item'
         // this.translationTable['available-parts'] = 'v1-available-parts-panel'
         // this.translationTable['new-request'] = 'v1-new-request-panel'
         // this.translationTable['new-model'] = 'v1-new-model-panel'

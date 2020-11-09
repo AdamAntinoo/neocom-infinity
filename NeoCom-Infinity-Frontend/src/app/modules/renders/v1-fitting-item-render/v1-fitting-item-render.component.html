@@ -1,0 +1,31 @@
+<div class="neocom-panel panel-green row">
+    <div width="64px">
+        <img class="neocom-icon iconsize-36" src="{{getURLIcon()}}" alt="Fitting Hull Image">
+    </div>
+    <div class="column">
+        <div class="field">
+            <span cy-field-label="moduleName" class="label">NAME</span><br>
+            <span cy-field-value="moduleName" class="">{{getName()}}</span>
+        </div>
+        <div class="field">
+            <span cy-field-label="hullTech" class="label">TECH</span><br>
+            <span cy-field-value="hullTech" class="">{{getTech()}}</span>
+        </div>
+    </div>
+    <div class="separator-4"></div>
+    <div class="separator-4"></div>
+    <div class="column">
+        <div class="field">
+            <span cy-field-label="sellStation" class="label">STATION</span><br>
+            <span cy-field-value="sellStation" class="">{{getStationName()}}</span>
+        </div>
+        <div class="field">
+            <span cy-field-label="sellPrice" class="label">PRICE</span><br>
+            <span cy-field-value="sellPrice" class="">{{getPrice()}}</span>
+        </div>
+        <div class="field">
+            <span cy-field-label="hopCount" class="label">HOPS</span><br>
+            <span cy-field-value="hopCount" class="">{{getDistanceHops()}}</span>
+        </div>
+    </div>
+</div>
