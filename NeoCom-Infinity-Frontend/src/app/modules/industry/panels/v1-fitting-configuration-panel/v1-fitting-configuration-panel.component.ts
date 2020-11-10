@@ -15,6 +15,7 @@ import { AppPanelComponent } from '@shared/panels/app-panel/app-panel.component'
 import { BackendService } from '@app/services/backend.service'
 import { HALResolver } from '@app/services/HALResolver.service'
 import { FittingBuildConfiguration } from '@domain/industry/FittingBuildConfiguration.domain'
+import { NCVariant } from '@env/NeoComVariants'
 
 @Component({
     selector: 'v1-fitting-configuration-panel',
@@ -25,7 +26,11 @@ export class V1FittingConfigurationPanelComponent extends AppPanelComponent impl
     @Input() title: string
     private link: string
     public fittingData: FittingBuildConfiguration
-    constructor(protected halResolver: HALResolver) { super() }
+    
+    constructor(protected halResolver: HALResolver) {
+        super()
+        this.setVariant(NCVariant.FITTING_CONFIGURATION.toString())
+    }
 
     // - I N T E R A C T I O N S
     public getTitle(): string {

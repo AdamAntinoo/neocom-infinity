@@ -18,9 +18,6 @@ import { SupportAppStoreService } from '@app/testing/SupportAppStore.service';
 import { SupportBackendService } from '@app/testing/SupportBackend.service';
 
 import { PilotFittingsPageComponent } from './pilot-fittings-page.component';
-import { AppInfoPanelComponent } from '@app/modules/header/app-info-panel/app-info-panel.component';
-import { ServerInfoPanelComponent } from '@app/modules/header/server-info-panel/server-info-panel.component';
-import { EVariant } from '@domain/interfaces/EPack.enumerated';
 
 describe('PAGE PilotFittingsPageComponent [Module: FITTINGS]', () => {
     let fixture: ComponentFixture<PilotFittingsPageComponent>;
@@ -72,7 +69,7 @@ describe('PAGE PilotFittingsPageComponent [Module: FITTINGS]', () => {
     xdescribe('Initialization Phase', () => {
         it('Initialization: check the result for the OnInit', fakeAsync(() => {
             console.log('><[fittings/PilotFittingsPageComponent]> Initialization: check the result for the OnInit. State before');
-            expect(component.getVariant()).toEqual(EVariant.DEFAULT)
+            expect(component.getVariant()).toEqual('-DEFAULT-')
             expect(component.getNodes2Render()).toBeDefined();
             expect(component.getNodes2Render().length).toBe(0);
             expect(component.isDownloading()).toBeTruthy();

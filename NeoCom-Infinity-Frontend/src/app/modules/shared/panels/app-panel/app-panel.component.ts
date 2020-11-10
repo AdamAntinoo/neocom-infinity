@@ -4,10 +4,10 @@ import { Input } from '@angular/core'
 // - INNOVATIVE
 import { BackgroundEnabledComponent } from '@bit/innovative.innovative.innovative-core'
 // - DOMAIN
-import { EVariant } from '@app/domain/interfaces/EPack.enumerated'
 import { ICollaboration } from '@domain/interfaces/ICollaboration.interface'
 import { IViewer } from '@domain/interfaces/IViewer.interface'
 import { NeoCom } from '@domain/NeoCom.domain'
+import { platformConstants } from '@env/platform-constants'
 
 @Component({
     selector: 'app-panel',
@@ -16,7 +16,7 @@ import { NeoCom } from '@domain/NeoCom.domain'
 })
 export class AppPanelComponent extends BackgroundEnabledComponent implements IViewer {
     @Input() self: AppPanelComponent
-    @Input() variant:  EVariant = EVariant.DEFAULT
+    @Input() variant: string = platformConstants.DEFAULT_VARIANT
     protected downloading: boolean = true
     protected dataModelRoot: ICollaboration[] = []
     private renderNodeList: ICollaboration[] = []
@@ -28,7 +28,7 @@ export class AppPanelComponent extends BackgroundEnabledComponent implements IVi
     }
 
     // - GETTERS & SETTERS
-    public getVariant(): EVariant{
+    public getVariant(): string {
         return this.variant
     }
     public isDownloading(): boolean {
@@ -39,15 +39,14 @@ export class AppPanelComponent extends BackgroundEnabledComponent implements IVi
         this.downloading = false
     }
     public getNodes2Render(): ICollaboration[] {
-        // console.log(">[AppPanelComponent.getNodes2Render]> node count: " + this.renderNodeList.length)
         return this.renderNodeList
     }
-
-    public setVariant(variant:  EVariant): void {
+    public setVariant(variant: string): void {
         this.variant = variant
     }
+
     // - I V I E W E R
-    public enterSelected(node: NeoCom): void { 
+    public enterSelected(node: NeoCom): void {
         this.target = node
     }
     /**

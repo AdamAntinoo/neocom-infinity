@@ -4,7 +4,7 @@ import { TestBed } from '@angular/core/testing';
 import { SupportIsolationService } from '@app/testing/SupportIsolation.service';
 // - DOMAIN
 import { NeoCom } from './NeoCom.domain';
-import { EVariant, ESeparator } from './interfaces/EPack.enumerated';
+import { ESeparator } from './interfaces/EPack.enumerated';
 
 describe('CLASS NeoCom [Module: DOMAIN]', () => {
     let isolation: SupportIsolationService;

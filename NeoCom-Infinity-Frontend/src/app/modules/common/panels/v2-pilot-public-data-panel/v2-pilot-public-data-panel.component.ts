@@ -41,8 +41,6 @@ export class V2PilotPublicDataPanelComponent extends BackgroundEnabledComponent 
 
     public ngOnInit(): void {
         console.log(">[PilotPublicDataPavelV2Component.ngOnInit]");
-        // this.startDownloading();
-        // this.setVariant(EVariant.DASHBOARD)
         this.refresh();
         console.log("<[PilotPublicDataPavelV2Component.ngOnInit]");
     }

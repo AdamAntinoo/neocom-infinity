@@ -4,7 +4,6 @@ import { Component } from '@angular/core';
 import { NodeContainerRenderComponent } from '../node-container-render/node-container-render.component';
 // - DOMAIN
 import { GroupContainer } from '@domain/GroupContainer.domain';
-import { EVariant } from '@domain/interfaces/EPack.enumerated';
 
 @Component({
     selector: 'v1-group-container',

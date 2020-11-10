@@ -13,20 +13,6 @@ export enum ESeparator {
     , SPINNER = 'SPINNER'
 }
 
-/**
-Declares the different display indetifier. Ths is the equivalent for the Fragments on the Android platform and its use is to allow a different 'collaboration2View' depeding ont the display identifier.
-*/
-export enum EVariant {
-      CREDENTIALLIST, LOGINLIST
-    , PILOTDETAILS, PILOTROASTER, PILOTINFORMATION
-    , PILOTMANAGERS, ASSETSMANAGER, PLANETARYMANAGER, PLANETARYOPTIMIZATION
-    , FITTING_MANAGER
-    , FITTING_ACTIONS_BYCLASS = '-FITTING-ACTIONS-BY-CLASS-'
-    , ASSETS_BY_LOCATION = '-ASSETS-BY-LOCATION-'
-,   DEFAULT = '-DEFAULT-'
-    , FITTING_LIST = '-FITTING-LIST-'
-}
-
 export enum ELocationType {
     CCPLOCATION, CITADEL, UNKNOWN, EMPTY, STATION, SOLAR_SYSTEM, OTHER
 }

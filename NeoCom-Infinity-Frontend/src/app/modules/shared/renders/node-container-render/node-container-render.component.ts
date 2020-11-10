@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Input } from '@angular/core';
 // - DOMAIN
 import { ICollaboration } from '@app/domain/interfaces/ICollaboration.interface';
-import { EVariant, ESeparator } from '@app/domain/interfaces/EPack.enumerated';
+import { ESeparator } from '@app/domain/interfaces/EPack.enumerated';
 import { IViewer } from '@app/domain/interfaces/IViewer.interface';
 import { NeoCom } from '@domain/NeoCom.domain';
 import { IColorTheme } from '@domain/interfaces/IColorTheme.interface';
@@ -16,13 +16,13 @@ import { IColorTheme } from '@domain/interfaces/IColorTheme.interface';
 export class NodeContainerRenderComponent implements IColorTheme {
     @Input() container: IViewer;
     @Input() node: NeoCom;
-    @Input() variant: EVariant = EVariant.DEFAULT;
+    @Input() variant: string = '-DEFAULT-';
     // @Input() colorScheme: string = 'panel-white';  // The name of the panel style to be rendered.
 
     public getNode(): NeoCom {
         return this.node;
     }
-    public getVariant(): EVariant {
+    public getVariant(): string {
         return this.variant;
     }
     /**

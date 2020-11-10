@@ -13,8 +13,8 @@ import { AppStoreService } from '@app/services/appstore.service';
 import { SupportAppStoreService } from '@app/testing/SupportAppStore.service';
 
 import { AppPanelComponent } from './app-panel.component';
-import { EVariant } from '@domain/interfaces/EPack.enumerated';
 import { GroupContainer } from '@domain/GroupContainer.domain';
+import { NCVariant } from '@env/NeoComVariants';
 
 describe('PANEL AppPanelComponent [Module: SHARED]', () => {
     let component: AppPanelComponent;
@@ -49,7 +49,7 @@ describe('PANEL AppPanelComponent [Module: SHARED]', () => {
     // - C O D E   C O V E R A G E   P H A S E
     describe('Code Coverage Phase [setters]', () => {
         it('setVariant.success: validate the set for the variant', () => {
-            const expected = EVariant.FITTING_LIST;
+            const expected = NCVariant.FITTING_LIST;
             component.setVariant(expected);
             let obtained = component.getVariant();
             expect(obtained).toBe(expected);
@@ -57,7 +57,7 @@ describe('PANEL AppPanelComponent [Module: SHARED]', () => {
     });
     describe('Code Coverage Phase [getters]', () => {
         it('getFittingId.success: check the fitting identifier', () => {
-            const expected = EVariant.FITTING_LIST;;
+            const expected = NCVariant.FITTING_LIST;;
             component.variant = expected;
             let obtained = component.getVariant();
             expect(obtained).toBe(expected);

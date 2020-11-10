@@ -1,8 +1,6 @@
 // - SERVICES
 import { AppStoreService } from '@app/services/appstore.service';
 // - DOMAIN
-import { NeoCom } from '@domain/NeoCom.domain';
-import { EVariant } from '@domain/interfaces/EPack.enumerated';
 import { ESeparator } from '@domain/interfaces/EPack.enumerated';
 import { IIconReference } from './interfaces/IIconReference.interface';
 import { AssetGroupIconReference } from './interfaces/IIconReference.interface';
@@ -23,7 +21,7 @@ export class GroupContainer extends NeoComExpandable {
     }
 
     // - I C O L L A B O R A T I O N
-    public collaborate2View(appModelStore?: AppStoreService, variant?: EVariant): ICollaboration[] {
+    public collaborate2View(appModelStore?: AppStoreService, variant?: string): ICollaboration[] {
         console.log('>[GroupContainer.collaborate2View]');
         let collab: any = []; // Initialize the list to be output.
         // Check if the Node is expanded or not.
@@ -35,7 +33,7 @@ export class GroupContainer extends NeoComExpandable {
             for (let partialnode of this.collaborateContents(this.contents, appModelStore, variant)) {
                 collab.push(partialnode);
             }
-        // collab.concat(this.collaborateContents(this.contents, appModelStore, variant));
+            // collab.concat(this.collaborateContents(this.contents, appModelStore, variant));
             console.log(">[GroupContainer.collaborate2View]> Collaborating: " + "Separator.RED");
             collab.push(new Separator().setVariation(ESeparator.RED));
         } else {
@@ -47,7 +45,7 @@ export class GroupContainer extends NeoComExpandable {
     }
     private collaborateContents(contentList: ICollaboration[],
         appModelStore: AppStoreService,
-        variant: EVariant): ICollaboration[] {
+        variant: string): ICollaboration[] {
         let collaboration = [];
         // Process each Location for new collaborations.
         for (let node of contentList) {

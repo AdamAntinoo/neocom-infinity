@@ -8,8 +8,8 @@ import { ResponseTransformer } from '@app/services/support/ResponseTransformer';
 // - DOMAIN
 import { Fitting } from '../../../../domain/Fitting.domain';
 import { GroupContainer } from '@domain/GroupContainer.domain';
-import { EVariant } from '@app/domain/interfaces/EPack.enumerated';
 import { URLGroupIconReference, AssetGroupIconReference } from '@domain/interfaces/IIconReference.interface';
+import { NCVariant } from '@env/NeoComVariants';
 
 @Component({
     selector: 'pilot-fittings-page',
@@ -22,9 +22,9 @@ export class PilotFittingsPageComponent extends AppPanelComponent implements OnI
 
     constructor(protected appStoreService: AppStoreService) { super(); }
 
-    ngOnInit() {
+    public ngOnInit() {
         console.log(">[PilotFittingsPageComponent.ngOnInit]");
-        this.setVariant(EVariant.FITTING_LIST);
+        this.setVariant(NCVariant.FITTING_LIST);
         // Download the list of fittings for this Pilot.
         console.log('-[PilotFittingsPageComponent.ngOnInit]> Starting to download pilot fittings');
         this.appStoreService.accessPilotFittings(new ResponseTransformer()

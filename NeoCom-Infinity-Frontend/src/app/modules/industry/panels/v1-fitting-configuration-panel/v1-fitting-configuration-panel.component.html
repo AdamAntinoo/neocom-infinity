@@ -1,5 +1,8 @@
 <div>
     <div class="panel-title">{{getTitle()}}</div>
+    CALLING VIEWER PANEL
+    <viewer-panel [nodes2render]="getNodes2Render()" [downloadtitle]="'Downloading Fitting Build Configuration data...'" [downloader]="self" [variant]="getVariant()">
+    </viewer-panel>
     <div *ngIf="fittingData">
         <v1-fitting-configuration [node]="fittingData"></v1-fitting-configuration>
     </div>

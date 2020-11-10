@@ -1,13 +1,14 @@
 // - DOMAIN
 import { BaseNode } from '@domain/core/BaseNode.domain'
 import { ICollaboration } from '@domain/interfaces/ICollaboration.interface'
+import { NeoCom } from '@domain/NeoCom.domain'
 import { BuildActionDao } from './BuildActionDao.dao'
 import { HullDao } from './HullDao.dao'
 /**
  * This class contains all the Fitting data hierarchy as processed from the backend.
  * It uses the Node factory to collaborate contents to the automatic node render factory so content management is simple to render and control.
  */
-export class FittingBuildConfiguration extends BaseNode {
+export class FittingBuildConfiguration extends NeoCom {
     public name: string
     public description: string
     public hullGroup: string
