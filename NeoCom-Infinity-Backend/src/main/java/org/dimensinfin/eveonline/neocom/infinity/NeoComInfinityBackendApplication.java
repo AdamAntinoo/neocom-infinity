@@ -19,7 +19,7 @@ import org.dimensinfin.logging.LogWrapper;
 @EnableDiscoveryClient
 @EnableAutoConfiguration
 public class NeoComInfinityBackendApplication {
-	public static final String APPLICATION_ERROR_CODE_PREFIX = "dimensinfin.printer3d";
+	public static final String APPLICATION_ERROR_CODE_PREFIX = "dimensinfin.eveonline.neocom";
 
 	public static void main( String[] args ) {
 		LogWrapper.enter();

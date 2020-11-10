@@ -37,7 +37,7 @@ public class ActionPreferenceEntity {
 	private boolean saved = false; // A true on this field sets this rule as a saved rule to be applied to initial setup.
 
 	// - C O N S T R U C T O R S
-	private ActionPreferenceEntity() {}
+	protected ActionPreferenceEntity() {}
 
 	// - G E T T E R S   &   S E T T E R S
 	public ActionType getAction() {

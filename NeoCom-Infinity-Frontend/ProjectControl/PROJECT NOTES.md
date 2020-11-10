@@ -33,7 +33,7 @@ graph TB
     Node2 --> Node4[Fitting Data]
     Node2 --> Node5[Hull]
     Node5 --> Node8[Hull Data]
-    Node5 --> Node9[Buy Market Data]    
+    Node5 -- BUY --> Node9[Buy Market Data]    
 end
 ```
 ```mermaid
@@ -43,11 +43,11 @@ graph TB
     Node6[High Slots Group] --> Node7[Mid Slots Group]
     Node6 -- Multiple... --> Node10[Module Info]
     Node10 --> Node11[Module Data]
-    Node10 --> Node12[Buy Market Data]
+    Node10 -- BUY --> Node12[Buy Market Data]
     Node7 -- Multiple... --> Node13[Module Info]
     Node7 --> Node16[Low Slots Group]
     Node13 --> Node14[Module Data]
-    Node13 --> Node15[Buy Market Data]
+    Node13 -- BUY --> Node15[Buy Market Data]
 end
 ```
 

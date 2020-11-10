@@ -9,14 +9,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataProviderWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComError;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
 import org.dimensinfin.eveonline.neocom.infinity.core.security.CredentialDetails;
 import org.dimensinfin.eveonline.neocom.infinity.core.security.CredentialDetailsService;
 import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticationProvider;
-import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 import org.dimensinfin.logging.LogWrapper;
+
+import static org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendApplication.APPLICATION_ERROR_CODE_PREFIX;
 
 public abstract class NeoComCredentialService {
 
@@ -24,22 +24,29 @@ public abstract class NeoComCredentialService {
 		return new NeoComError.Builder()
 				.withErrorName( "TARGET_NOT_FOUND" )
 				.withHttpStatus( HttpStatus.NOT_FOUND )
-				.withErrorCode( "dimensinfin.neocom.entity.not.found" )
+				.withErrorCode( APPLICATION_ERROR_CODE_PREFIX + ".entity.not.found" )
 				.withMessage( MessageFormat.format(
 						"The entity of class {0} with identifier {1} is not found.",
-						entityName, identifier ) )
+						entityName, identifier )
+				)
 				.build();
 	}
 
-//	protected final ESIDataProvider esiDataProvider;
+	public static NeoComError Error_CREDENTIALNOTFOUND() {
+		return new NeoComError.Builder()
+				.withErrorName( "CREDENTIAL_NOT_FOUND" )
+				.withHttpStatus( HttpStatus.UNAUTHORIZED )
+				.withErrorCode( APPLICATION_ERROR_CODE_PREFIX + ".credential.not.found" )
+				.withMessage( "There is no valid credential to backup the authentication record." )
+				.build();
+	}
+
 	protected final NeoComAuthenticationProvider neoComAuthenticationProvider;
 	private final CredentialDetailsService credentialDetailsService;
 
 	// - C O N S T R U C T O R S
-	public NeoComCredentialService( final @NotNull ESIDataProviderWrapper esiDataProviderWrapper,
-	                                final @NotNull NeoComAuthenticationProvider neoComAuthenticationProvider,
+	public NeoComCredentialService( final @NotNull NeoComAuthenticationProvider neoComAuthenticationProvider,
 	                                final @NotNull CredentialDetailsService credentialDetailsService ) {
-//		this.esiDataProvider = Objects.requireNonNull( esiDataProviderWrapper.getSingleton() );
 		this.neoComAuthenticationProvider = neoComAuthenticationProvider;
 		this.credentialDetailsService = credentialDetailsService;
 	}
@@ -49,11 +56,14 @@ public abstract class NeoComCredentialService {
 		LogWrapper.enter();
 		try {
 			final String uniqueId = this.neoComAuthenticationProvider.getAuthenticatedUniqueId();
-			final UserDetails credentialService = this.credentialDetailsService.loadUserByUsername( uniqueId );
-			final Credential credential = ((CredentialDetails) credentialService).getCredential();
-			if (null != credential)
+			try {
+				final UserDetails credentialService = Objects.requireNonNull( this.credentialDetailsService.loadUserByUsername( uniqueId ) );
+				final Credential credential = Objects.requireNonNull( ((CredentialDetails) credentialService).getCredential() );
 				LogWrapper.info( MessageFormat.format( "Credential account: {0} - name: {1}", credential.getAccountId(), credential.getName() ) );
-			return credential;
+				return credential;
+			} catch (final NullPointerException npe) {
+				throw new NeoComRuntimeBackendException( Error_CREDENTIALNOTFOUND() );
+			}
 		} catch (final UsernameNotFoundException unfe) {
 			throw new NeoComRuntimeBackendException( unfe.getMessage() );
 		} finally {

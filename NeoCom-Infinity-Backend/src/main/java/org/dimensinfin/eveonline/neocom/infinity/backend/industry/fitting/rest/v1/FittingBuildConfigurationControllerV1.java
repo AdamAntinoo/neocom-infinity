@@ -23,24 +23,26 @@ public class FittingBuildConfigurationControllerV1 extends IndustryController {
 		this.fittingBuildConfigurationServiceV1 = fittingBuildConfigurationServiceV1;
 	}
 
-	@GetMapping(path = "/fitting/buildConfiguration/{fittingId}",
+	@GetMapping(path = "/fittings/buildConfiguration/{fittingId}",
 			consumes = "application/json",
 			produces = "application/json")
 	public ResponseEntity<FittingBuildConfigurationDao> getFittingBuildConfigurationById( final @PathVariable @NotNull Integer fittingId ) {
 		return new ResponseEntity<>( this.fittingBuildConfigurationServiceV1.getFittingBuildConfigurationById( fittingId ), HttpStatus.OK );
 	}
 
-	@GetMapping(path = "/fitting/buildConfiguration/{fittingId}/savedConfiguration",
+	@GetMapping(path = "/fittings/buildConfiguration/{fittingId}/savedConfiguration",
 			consumes = "application/json",
 			produces = "application/json")
 	public ResponseEntity<FittingIndustryJob> getFittingBuildConfigurationSavedConfiguration( final @PathVariable @NotNull Integer fittingId ) {
-		return new ResponseEntity<>( this.fittingBuildConfigurationServiceV1.getFittingBuildConfigurationSavedConfiguration( fittingId ), HttpStatus.OK );
+		return new ResponseEntity<>( this.fittingBuildConfigurationServiceV1.getFittingBuildConfigurationSavedConfiguration( fittingId ),
+				HttpStatus.OK );
 	}
 
-	@GetMapping(path = "/fitting/buildConfiguration/{fittingId}/targetConfiguration",
+	@GetMapping(path = "/fittings/buildConfiguration/{fittingId}/targetConfiguration",
 			consumes = "application/json",
 			produces = "application/json")
 	public ResponseEntity<FittingIndustryJob> getFittingBuildConfigurationTargetConfiguration( final @PathVariable @NotNull Integer fittingId ) {
-		return new ResponseEntity<>( this.fittingBuildConfigurationServiceV1.getFittingBuildConfigurationTargetConfiguration( fittingId ), HttpStatus.OK );
+		return new ResponseEntity<>( this.fittingBuildConfigurationServiceV1.getFittingBuildConfigurationTargetConfiguration( fittingId ),
+				HttpStatus.OK );
 	}
 }

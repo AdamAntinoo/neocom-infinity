@@ -2,34 +2,42 @@ package org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.servi
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
-import org.springframework.stereotype.Service;
-
+import org.dimensinfin.eveonline.neocom.domain.Fitting;
+import org.dimensinfin.eveonline.neocom.domain.FittingItem;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.CharacterscharacterIdfittingsItems;
-import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdFittings200Ok;
+import org.dimensinfin.eveonline.neocom.infinity.backend.character.fitting.domain.FittingModel;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.domain.FittingIndustryJob;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.persistence.ActionPreferenceEntity;
 import org.dimensinfin.eveonline.neocom.infinity.datamanagement.industry.processor.IndustryBuildProcessor;
 
-@Service
 public class FittingBuildTransformationService {
 	private IndustryBuildProcessor industryBuildProcessor;
-	private GetCharactersCharacterIdFittings200Ok fittingData;
+	private Fitting fitting;
 	private List<ActionPreferenceEntity> preferences;
 
 	// - C O N S T R U C T O R S
 	private FittingBuildTransformationService() {}
 
 	public FittingIndustryJob transformInitialState() {
+		final List<ActionPreferenceEntity> actions = this.preferences.stream()
+				.filter( action -> action.isSaved() )
+				.collect( Collectors.toList() );
 		final FittingIndustryJob fittingJob = new FittingIndustryJob.Builder()
-				.withHull( this.industryBuildProcessor.generateBuyAction( this.fittingData.getShipTypeId(), 1 ) )
+				.withFitting( this.fitting )
+				.withHull( this.industryBuildProcessor.generateBuyAction( this.fitting.getShipTypeId(), 1 ) )
 				.build(); // Create a new industry job.
-		for (CharacterscharacterIdfittingsItems fittingItem : this.fittingData.getItems()) {
+		for (FittingItem fittingItem : this.fitting.getItems()) {
 			fittingJob.addJobActionToBom(
 					this.industryBuildProcessor.generateBuyAction( fittingItem.getTypeId(), fittingItem.getQuantity() )
 			);
 		}
 		return fittingJob;
+	}
+
+	public FittingIndustryJob transformTargetState() {
+		return this.transformInitialState();
 	}
 
 	// - B U I L D E R
@@ -43,13 +51,13 @@ public class FittingBuildTransformationService {
 
 		public FittingBuildTransformationService build() {
 			Objects.requireNonNull( this.onConstruction.industryBuildProcessor );
-			Objects.requireNonNull( this.onConstruction.fittingData );
+			Objects.requireNonNull( this.onConstruction.fitting );
 			Objects.requireNonNull( this.onConstruction.preferences );
 			return this.onConstruction;
 		}
 
-		public FittingBuildTransformationService.Builder withFitting( final GetCharactersCharacterIdFittings200Ok targetFitting ) {
-			this.onConstruction.fittingData = Objects.requireNonNull( targetFitting );
+		public FittingBuildTransformationService.Builder withFitting( final Fitting targetFitting ) {
+			this.onConstruction.fitting = Objects.requireNonNull( targetFitting );
 			return this;
 		}
 

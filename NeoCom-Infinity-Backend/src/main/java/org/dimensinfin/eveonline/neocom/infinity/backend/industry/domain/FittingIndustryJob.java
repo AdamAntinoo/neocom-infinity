@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import org.dimensinfin.eveonline.neocom.domain.Fitting;
 import org.dimensinfin.eveonline.neocom.infinity.datamanagement.industry.domain.IAction;
 
 public class FittingIndustryJob {
+	private Fitting  fitting;
 	private IAction hull;
 	private List<IAction> actions = new ArrayList<>();
 
@@ -16,6 +18,14 @@ public class FittingIndustryJob {
 	// - G E T T E R S   &   S E T T E R S
 	public List<IAction> getActions() {
 		return this.actions;
+	}
+
+	public Fitting getFitting() {
+		return this.fitting;
+	}
+
+	public String getFittingJobId() {
+		return "";
 	}
 
 	public IAction getHull() {
@@ -37,8 +47,14 @@ public class FittingIndustryJob {
 		}
 
 		public FittingIndustryJob build() {
+			Objects.requireNonNull( this.onConstruction.fitting );
 			Objects.requireNonNull( this.onConstruction.hull );
 			return this.onConstruction;
+		}
+
+		public FittingIndustryJob.Builder withFitting( final Fitting fitting ) {
+			this.onConstruction.fitting = Objects.requireNonNull( fitting );
+			return this;
 		}
 
 		public FittingIndustryJob.Builder withHull( final IAction hullAction ) {
