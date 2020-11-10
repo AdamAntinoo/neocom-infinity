@@ -21,7 +21,7 @@ public class WalletServiceV1 extends NeoComCredentialService {
 	public WalletServiceV1( final @NotNull ESIDataProviderWrapper esiDataProviderWrapper,
 	                        final @NotNull NeoComAuthenticationProvider neoComAuthenticationProvider,
 	                        final @NotNull CredentialDetailsService credentialDetailsService ) {
-		super( null, neoComAuthenticationProvider, credentialDetailsService );
+		super( neoComAuthenticationProvider, credentialDetailsService );
 		this.esiDataProvider = Objects.requireNonNull( esiDataProviderWrapper.getSingleton() );
 	}
 

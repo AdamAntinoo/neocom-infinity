@@ -32,12 +32,8 @@ public class FittingTransformationServiceV1 extends NeoComCredentialService {
 	public FittingTransformationServiceV1( final @NotNull ESIDataProviderWrapper esiDataProviderWrapper,
 	                                       final @NotNull NeoComAuthenticationProvider neoComAuthenticationProvider,
 	                                       final @NotNull CredentialDetailsService credentialDetailsService,
-	                                       final @NotNull PilotFittingsServiceV2 pilotFittingsServiceV2,
-	                                       final @NotNull ItemFactory factory,
 	                                       final @NotNull LocationCatalogServiceWrapper locationCatalogServiceWrapper ) {
-		super( null, neoComAuthenticationProvider, credentialDetailsService );
-		//		this.pilotFittingsServiceV2 = pilotFittingsServiceV2;
-		//		this.factory = factory;
+		super( neoComAuthenticationProvider, credentialDetailsService );
 		this.esiDataProvider = Objects.requireNonNull( esiDataProviderWrapper.getSingleton() );
 		this.locationCatalogService = Objects.requireNonNull( locationCatalogServiceWrapper.getSingleton() );
 	}

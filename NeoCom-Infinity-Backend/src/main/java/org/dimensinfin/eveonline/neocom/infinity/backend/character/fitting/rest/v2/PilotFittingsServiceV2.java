@@ -27,7 +27,7 @@ public class PilotFittingsServiceV2 extends NeoComCredentialService {
 	                               final @NotNull NeoComAuthenticationProvider neoComAuthenticationProvider,
 	                               final @NotNull CredentialDetailsService credentialDetailsService,
 	                               final @NotNull EsiItemServiceV2 esiItemServiceV2 ) {
-		super( null, neoComAuthenticationProvider, credentialDetailsService );
+		super( neoComAuthenticationProvider, credentialDetailsService );
 		this.esiDataProvider = Objects.requireNonNull( esiDataProviderWrapper.getSingleton() );
 		this.esiItemServiceV2 = esiItemServiceV2;
 	}

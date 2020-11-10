@@ -12,15 +12,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import org.dimensinfin.eveonline.neocom.adapter.LocationCatalogService;
+import org.dimensinfin.eveonline.neocom.domain.Fitting;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdFittings200Ok;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataProviderWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.LocationCatalogServiceWrapper;
+import org.dimensinfin.eveonline.neocom.infinity.backend.character.fitting.converter.EsiCharacterFittingToFittingModelConverter;
 import org.dimensinfin.eveonline.neocom.infinity.backend.core.rest.NeoComCredentialService;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.domain.FittingIndustryJob;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.persistence.ActionPreferenceEntity;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.persistence.BuildActionPreferencesRepository;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.rest.dao.FittingBuildConfigurationDao;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.service.FittingBuildTransformationService;
+import org.dimensinfin.eveonline.neocom.infinity.backend.universe.item.rest.v2.EsiItemServiceV2;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComError;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
 import org.dimensinfin.eveonline.neocom.infinity.core.security.CredentialDetailsService;
@@ -52,52 +55,55 @@ public class FittingBuildConfigurationServiceV1 extends NeoComCredentialService 
 				.build();
 	}
 
-//	public static NeoComError Error_FITTINGREQUESTNOTAUTHORIZED( final String message ) {
-//		return new NeoComError.Builder()
-//				.withErrorName( "FITTING_UNAUTHORIZED" )
-//				.withHttpStatus( HttpStatus.UNAUTHORIZED )
-//				.withErrorCode( INDUSTRY_ERROR_CODE_PREFIX + ".fitting.notauthorized" )
-//				.withMessage( MessageFormat.format( "Fitting request not authorized. {0}", message ) )
-//				.withCause( "Not found a valid Credential to authenticate the request." )
-//				.build();
-//	}
+	//	public static NeoComError Error_FITTINGREQUESTNOTAUTHORIZED( final String message ) {
+	//		return new NeoComError.Builder()
+	//				.withErrorName( "FITTING_UNAUTHORIZED" )
+	//				.withHttpStatus( HttpStatus.UNAUTHORIZED )
+	//				.withErrorCode( INDUSTRY_ERROR_CODE_PREFIX + ".fitting.notauthorized" )
+	//				.withMessage( MessageFormat.format( "Fitting request not authorized. {0}", message ) )
+	//				.withCause( "Not found a valid Credential to authenticate the request." )
+	//				.build();
+	//	}
 
 	private final ESIDataProvider esiDataProvider;
 	private final LocationCatalogService locationCatalogService;
 	private final BuildActionPreferencesRepository buildActionPreferencesRepository;
+	private final EsiItemServiceV2 esiItemServiceV2;
 
 	// - C O N S T R U C T O R S
 	public FittingBuildConfigurationServiceV1( final @NotNull NeoComAuthenticationProvider neoComAuthenticationProvider,
 	                                           final @NotNull CredentialDetailsService credentialDetailsService,
 	                                           final @NotNull ESIDataProviderWrapper esiDataProviderWrapper,
 	                                           final @NotNull LocationCatalogServiceWrapper locationCatalogServiceWrapper,
-	                                           final @NotNull BuildActionPreferencesRepository buildActionPreferencesRepository ) {
+	                                           final @NotNull BuildActionPreferencesRepository buildActionPreferencesRepository,
+	                                           final @NotNull EsiItemServiceV2 esiItemServiceV2 ) {
 		super( neoComAuthenticationProvider, credentialDetailsService );
 		this.esiDataProvider = Objects.requireNonNull( esiDataProviderWrapper.getSingleton() );
 		this.locationCatalogService = Objects.requireNonNull( locationCatalogServiceWrapper.getSingleton() );
 		this.buildActionPreferencesRepository = buildActionPreferencesRepository;
+		this.esiItemServiceV2 = esiItemServiceV2;
 	}
 
 	public FittingBuildConfigurationDao getFittingBuildConfigurationById( final @NotNull Integer fittingId ) {
-//		try {
-			this.getAuthorizedCredential();
-			return new FittingBuildConfigurationDao.Builder()
-					.withSavedLink(
-							WebMvcLinkBuilder.linkTo(
-									WebMvcLinkBuilder.methodOn( FittingBuildConfigurationControllerV1.class )
-											.getFittingBuildConfigurationSavedConfiguration( fittingId )
-							).withSelfRel()
-					)
-					.withTargetLink(
-							WebMvcLinkBuilder.linkTo(
-									WebMvcLinkBuilder.methodOn( FittingBuildConfigurationControllerV1.class )
-											.getFittingBuildConfigurationTargetConfiguration( fittingId )
-							).withSelfRel()
-					)
-					.build();
-//		} catch (final NeoComRuntimeBackendException ncrex) {
-//			throw new NeoComRuntimeBackendException( Error_FITTINGREQUESTNOTAUTHORIZED(ncrex.getMessage()) );
-//		}
+		//		try {
+		this.getAuthorizedCredential();
+		return new FittingBuildConfigurationDao.Builder()
+				.withSavedLink(
+						WebMvcLinkBuilder.linkTo(
+								WebMvcLinkBuilder.methodOn( FittingBuildConfigurationControllerV1.class )
+										.getFittingBuildConfigurationSavedConfiguration( fittingId )
+						).withSelfRel()
+				)
+				.withTargetLink(
+						WebMvcLinkBuilder.linkTo(
+								WebMvcLinkBuilder.methodOn( FittingBuildConfigurationControllerV1.class )
+										.getFittingBuildConfigurationTargetConfiguration( fittingId )
+						).withSelfRel()
+				)
+				.build();
+		//		} catch (final NeoComRuntimeBackendException ncrex) {
+		//			throw new NeoComRuntimeBackendException( Error_FITTINGREQUESTNOTAUTHORIZED(ncrex.getMessage()) );
+		//		}
 	}
 
 	public FittingIndustryJob getFittingBuildConfigurationSavedConfiguration( final @NotNull Integer fittingId ) {
@@ -149,7 +155,7 @@ public class FittingBuildConfigurationServiceV1 extends NeoComCredentialService 
 
 		final FittingBuildTransformationService transformer = new FittingBuildTransformationService.Builder()
 				.withIndustryBuildProcessor( industryBuildProcessor )
-				.withFitting( targetFitting )
+				.withFitting(new Fitting.Builder().withFittingData( targetFitting ).build())
 				.withPreferences( actionPreferences )
 				.build();
 		return saved ? transformer.transformInitialState() : transformer.transformTargetState();
