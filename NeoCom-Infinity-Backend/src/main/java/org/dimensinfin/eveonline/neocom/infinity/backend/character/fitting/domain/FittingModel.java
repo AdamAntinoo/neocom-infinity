@@ -43,6 +43,10 @@ public class FittingModel extends RepresentationModel<FittingModel> {
 		this.fittingItems.add( fittingItem );
 	}
 
+	public int getShipTypeId() {
+		return   this.shipHull.getTypeId();
+	}
+
 	// - B U I L D E R
 	public static class Builder {
 		private final FittingModel onConstruction;

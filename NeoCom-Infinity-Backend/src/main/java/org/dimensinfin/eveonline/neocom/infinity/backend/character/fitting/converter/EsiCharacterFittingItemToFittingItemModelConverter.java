@@ -11,6 +11,7 @@ public class EsiCharacterFittingItemToFittingItemModelConverter implements Conve
 	@Override
 	public FittingItemModel convert( final CharacterscharacterIdfittingsItems input ) {
 		return new FittingItemModel.Builder()
+				.withTypeId( input.getTypeId() )
 				.withSlotFlag( input.getFlag() )
 				.withQuantity( input.getQuantity() )
 				.withTypeLink( WebMvcLinkBuilder.linkTo(

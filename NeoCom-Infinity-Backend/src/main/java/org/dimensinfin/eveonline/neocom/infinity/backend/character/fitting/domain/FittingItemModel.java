@@ -10,6 +10,7 @@ import org.springframework.hateoas.RepresentationModel;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.CharacterscharacterIdfittingsItems;
 
 public class FittingItemModel extends RepresentationModel<FittingItemModel> {
+	private Integer typeId;
 	private CharacterscharacterIdfittingsItems.FlagEnum flag;
 	private Integer quantity = 0;
 	private Link typeData;
@@ -30,14 +31,18 @@ public class FittingItemModel extends RepresentationModel<FittingItemModel> {
 		return this.typeData;
 	}
 
-	@JsonProperty("_links")
-	public void setLinks( final Map<String, Link> links ) {
-		links.forEach( ( label, link ) -> this.add( link.withRel( label ) ) );
-	}
-
 	public FittingItemModel setTypeData( final Link typeData ) {
 		this.typeData = typeData;
 		return this;
+	}
+
+	public int getTypeId() {
+		return this.typeId;
+	}
+
+	@JsonProperty("_links")
+	public void setLinks( final Map<String, Link> links ) {
+		links.forEach( ( label, link ) -> this.add( link.withRel( label ) ) );
 	}
 
 	// - B U I L D E R
@@ -60,6 +65,11 @@ public class FittingItemModel extends RepresentationModel<FittingItemModel> {
 
 		public FittingItemModel.Builder withSlotFlag( final CharacterscharacterIdfittingsItems.FlagEnum flag ) {
 			this.onConstruction.flag = Objects.requireNonNull( flag );
+			return this;
+		}
+
+		public FittingItemModel.Builder withTypeId( final Integer typeId ) {
+			this.onConstruction.typeId = Objects.requireNonNull( typeId );
 			return this;
 		}
 

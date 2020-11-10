@@ -5,10 +5,11 @@ import java.util.List;
 import java.util.Objects;
 
 import org.dimensinfin.eveonline.neocom.domain.Fitting;
+import org.dimensinfin.eveonline.neocom.infinity.backend.character.fitting.domain.FittingModel;
 import org.dimensinfin.eveonline.neocom.infinity.datamanagement.industry.domain.IAction;
 
 public class FittingIndustryJob {
-	private Fitting  fitting;
+	private FittingModel  fitting;
 	private IAction hull;
 	private List<IAction> actions = new ArrayList<>();
 
@@ -20,7 +21,7 @@ public class FittingIndustryJob {
 		return this.actions;
 	}
 
-	public Fitting getFitting() {
+	public FittingModel getFitting() {
 		return this.fitting;
 	}
 
@@ -52,7 +53,7 @@ public class FittingIndustryJob {
 			return this.onConstruction;
 		}
 
-		public FittingIndustryJob.Builder withFitting( final Fitting fitting ) {
+		public FittingIndustryJob.Builder withFitting( final FittingModel fitting ) {
 			this.onConstruction.fitting = Objects.requireNonNull( fitting );
 			return this;
 		}

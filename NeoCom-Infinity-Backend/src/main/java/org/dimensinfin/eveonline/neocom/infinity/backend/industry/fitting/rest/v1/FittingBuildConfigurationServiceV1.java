@@ -155,7 +155,8 @@ public class FittingBuildConfigurationServiceV1 extends NeoComCredentialService 
 
 		final FittingBuildTransformationService transformer = new FittingBuildTransformationService.Builder()
 				.withIndustryBuildProcessor( industryBuildProcessor )
-				.withFitting(new Fitting.Builder().withFittingData( targetFitting ).build())
+				.withFitting(
+						new EsiCharacterFittingToFittingModelConverter(  this.esiDataProvider, this.esiItemServiceV2).convert( targetFitting ))
 				.withPreferences( actionPreferences )
 				.build();
 		return saved ? transformer.transformInitialState() : transformer.transformTargetState();
