@@ -1,6 +1,7 @@
 # Classes pending Unit Test completion
 ## 0.20.0
 * FittingBuildOrderControllerV1
+* IndustryController
 * FittingBuildOrderServiceV1
 * FittingBuildOrder
 * BuildActionPreferencesRepository

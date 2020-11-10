@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.rest.dao.FittingBuildOrderDao;
+import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.rest.dao.FittingBuildConfigurationDao;
 
 @RestController
 @Validated
@@ -24,7 +24,7 @@ public class FittingTransformationControllerV1 {
 	@GetMapping(path = "/industry/fitting/buildOrder/{fittingOrderId}/make",
 			consumes = "application/json",
 			produces = "application/json")
-	public ResponseEntity<FittingBuildOrderDao> getFittingBuildOrderById( final @PathVariable @NotNull String fittingOrderId ) {
+	public ResponseEntity<FittingBuildConfigurationDao> getFittingBuildOrderById( final @PathVariable @NotNull String fittingOrderId ) {
 		return new ResponseEntity<>( null, HttpStatus.OK );
 	}
 }

@@ -19,7 +19,7 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.core.rest.NeoComCredent
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.domain.FittingIndustryJob;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.persistence.ActionPreferenceEntity;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.persistence.BuildActionPreferencesRepository;
-import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.rest.dao.FittingBuildOrderDao;
+import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.rest.dao.FittingBuildConfigurationDao;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.service.FittingBuildTransformationService;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComError;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
@@ -27,6 +27,8 @@ import org.dimensinfin.eveonline.neocom.infinity.core.security.CredentialDetails
 import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticationProvider;
 import org.dimensinfin.eveonline.neocom.infinity.datamanagement.industry.processor.IndustryBuildProcessor;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
+
+import static org.dimensinfin.eveonline.neocom.infinity.backend.industry.IndustryController.INDUSTRY_ERROR_CODE_PREFIX;
 
 /**
  * Fitting Build Orders are a complex data structure that represents the components and actions that that user preferences when building a determinate
@@ -38,85 +40,89 @@ import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
  * with other endpoints.
  */
 @Service
-public class FittingBuildOrderServiceV1 extends NeoComCredentialService {
+public class FittingBuildConfigurationServiceV1 extends NeoComCredentialService {
 	private static final String BUILD_FITTING_ACTION_PREFIX = "FB";
 
-	public static NeoComError error_FITTINGSEARCHRETURNEDFAILURE( final String message ) {
+	public static NeoComError Error_FITTINGSEARCHRETURNEDFAILURE( final String message ) {
 		return new NeoComError.Builder()
 				.withErrorName( "FITTING_SEARCH_FAILURE" )
 				.withHttpStatus( HttpStatus.NOT_FOUND )
-				.withErrorCode( "dimensinfin.neocom.industry.fitting.mismatch" )
+				.withErrorCode( INDUSTRY_ERROR_CODE_PREFIX + ".fitting.mismatch" )
 				.withMessage( message )
 				.build();
 	}
 
-	public static NeoComError error_FITTINGREQUESTNOTAUTHORIZED() {
-		return new NeoComError.Builder()
-				.withErrorName( "FITTING_UNAUTHORIZED" )
-				.withHttpStatus( HttpStatus.UNAUTHORIZED )
-				.withErrorCode( "dimensinfin.neocom.industry.fitting.notauthorized" )
-				.withMessage( "Fitting request not authorized." )
-				.build();
-	}
+//	public static NeoComError Error_FITTINGREQUESTNOTAUTHORIZED( final String message ) {
+//		return new NeoComError.Builder()
+//				.withErrorName( "FITTING_UNAUTHORIZED" )
+//				.withHttpStatus( HttpStatus.UNAUTHORIZED )
+//				.withErrorCode( INDUSTRY_ERROR_CODE_PREFIX + ".fitting.notauthorized" )
+//				.withMessage( MessageFormat.format( "Fitting request not authorized. {0}", message ) )
+//				.withCause( "Not found a valid Credential to authenticate the request." )
+//				.build();
+//	}
 
 	private final ESIDataProvider esiDataProvider;
 	private final LocationCatalogService locationCatalogService;
 	private final BuildActionPreferencesRepository buildActionPreferencesRepository;
 
 	// - C O N S T R U C T O R S
-	public FittingBuildOrderServiceV1( final @NotNull NeoComAuthenticationProvider neoComAuthenticationProvider,
-	                                   final @NotNull CredentialDetailsService credentialDetailsService,
-	                                   final @NotNull ESIDataProviderWrapper esiDataProviderWrapper,
-	                                   final @NotNull LocationCatalogServiceWrapper locationCatalogServiceWrapper,
-	                                   final @NotNull BuildActionPreferencesRepository buildActionPreferencesRepository ) {
-		super( null, neoComAuthenticationProvider, credentialDetailsService );
+	public FittingBuildConfigurationServiceV1( final @NotNull NeoComAuthenticationProvider neoComAuthenticationProvider,
+	                                           final @NotNull CredentialDetailsService credentialDetailsService,
+	                                           final @NotNull ESIDataProviderWrapper esiDataProviderWrapper,
+	                                           final @NotNull LocationCatalogServiceWrapper locationCatalogServiceWrapper,
+	                                           final @NotNull BuildActionPreferencesRepository buildActionPreferencesRepository ) {
+		super( neoComAuthenticationProvider, credentialDetailsService );
 		this.esiDataProvider = Objects.requireNonNull( esiDataProviderWrapper.getSingleton() );
 		this.locationCatalogService = Objects.requireNonNull( locationCatalogServiceWrapper.getSingleton() );
 		this.buildActionPreferencesRepository = buildActionPreferencesRepository;
 	}
 
-	/**
-	 * Generate the Fitting initial transformation and apply the list of preferences found at the repository.
-	 *
-	 * To get the final Fitting Build Order the list of steps is the next:
-	 * <ol>
-	 *     <li>Get the list of fitting for the logged Pilot from the authenticated Credential.</li>
-	 *     <li>Search for the target fitting identifier received as the parameter.</li>
-	 *     <li>Get the list of preferences for this precise fitting. If none means that this is a new Order instance.</li>
-	 *     <li>Apply the list of preferences to the to the target fitting job build process.</li>
-	 *     <li>If required convert the result before sending it back to the caller.</li>
-	 * </ol>
-	 *
-	 * @param fittingId the fitting unique identifier for the target fitting. Used to compose the unique order identifier
-	 */
-	public FittingBuildOrderDao getFittingBuildOrderById( final @NotNull Integer fittingId ) {
-		if (null != this.getAuthorizedCredential())
-			return new FittingBuildOrderDao.Builder()
+	public FittingBuildConfigurationDao getFittingBuildConfigurationById( final @NotNull Integer fittingId ) {
+//		try {
+			this.getAuthorizedCredential();
+			return new FittingBuildConfigurationDao.Builder()
 					.withSavedLink(
 							WebMvcLinkBuilder.linkTo(
-									WebMvcLinkBuilder.methodOn( FittingBuildOrderControllerV1.class )
-											.getFittingBuildOrderSavedConfiguration( fittingId )
+									WebMvcLinkBuilder.methodOn( FittingBuildConfigurationControllerV1.class )
+											.getFittingBuildConfigurationSavedConfiguration( fittingId )
 							).withSelfRel()
 					)
 					.withTargetLink(
 							WebMvcLinkBuilder.linkTo(
-									WebMvcLinkBuilder.methodOn( FittingBuildOrderControllerV1.class )
-											.getFittingBuildOrderTargetConfiguration( fittingId )
+									WebMvcLinkBuilder.methodOn( FittingBuildConfigurationControllerV1.class )
+											.getFittingBuildConfigurationTargetConfiguration( fittingId )
 							).withSelfRel()
 					)
 					.build();
-		else throw new NeoComRuntimeBackendException( error_FITTINGREQUESTNOTAUTHORIZED() );
+//		} catch (final NeoComRuntimeBackendException ncrex) {
+//			throw new NeoComRuntimeBackendException( Error_FITTINGREQUESTNOTAUTHORIZED(ncrex.getMessage()) );
+//		}
 	}
 
-	public FittingIndustryJob getFittingBuildOrderSavedConfiguration( final @NotNull Integer fittingId ) {
-		return fittingConfiguration( fittingId );
+	public FittingIndustryJob getFittingBuildConfigurationSavedConfiguration( final @NotNull Integer fittingId ) {
+		return fittingConfiguration( fittingId, true );
 	}
 
-	public FittingIndustryJob getFittingBuildOrderTargetConfiguration( final @NotNull Integer fittingId ) {
-		return fittingConfiguration( fittingId );
+	public FittingIndustryJob getFittingBuildConfigurationTargetConfiguration( final @NotNull Integer fittingId ) {
+		return fittingConfiguration( fittingId, false );
 	}
 
-	private FittingIndustryJob fittingConfiguration( final @NotNull int fittingId ) {
+	/**
+	 * Generate the Fitting initial transformation and apply the list of preferences found at the repository on a saved state.
+	 *
+	 * To get the final Fitting Build Configuration the list of steps is the next:
+	 * <ol>
+	 *     <li>Get the list of fitting for the logged Pilot from the authenticated Credential.</li>
+	 *     <li>Search for the target fitting identifier received as the parameter.</li>
+	 *     <li>Get the list of preferences for this precise fitting that are marked as SAVED. If none means that this is a new Order instance.</li>
+	 *     <li>Apply the list of preferences to the target fitting build process.</li>
+	 *     <li>If required convert the result before sending it back to the caller.</li>
+	 * </ol>
+	 *
+	 * @param fittingId the fitting unique identifier for the target fitting. Used to compose the unique configuration identifier
+	 */
+	private FittingIndustryJob fittingConfiguration( final @NotNull int fittingId, final boolean saved ) {
 		// Get the list of fitting for the logged Pilot from the authenticated Credential.
 		final List<GetCharactersCharacterIdFittings200Ok> fittingList = this.esiDataProvider.getCharactersCharacterIdFittings(
 				this.getAuthorizedCredential()
@@ -130,8 +136,8 @@ public class FittingBuildOrderServiceV1 extends NeoComCredentialService {
 				.filter( action -> ActionPreferenceEntity.uniqueIdConstructor(
 						BUILD_FITTING_ACTION_PREFIX,
 						this.getAuthorizedCredential().getAccountId(),
-						fittingId
-				).equalsIgnoreCase( action.getId() ) )
+						fittingId ).equalsIgnoreCase( action.getId() )
+				)
 				.collect( Collectors.toList() );
 
 		// Instantiate a processor to generate the required actions to complete the job.
@@ -146,22 +152,22 @@ public class FittingBuildOrderServiceV1 extends NeoComCredentialService {
 				.withFitting( targetFitting )
 				.withPreferences( actionPreferences )
 				.build();
-		return transformer.transformInitialState();
+		return saved ? transformer.transformInitialState() : transformer.transformTargetState();
 	}
 
 	/**
 	 * Check that only a single fitting and no less than a fitting matches the target fitting identifier.
 	 */
-	private <T> Collector<T, ?, T> toSingleton( final int fittingId ) throws NeoComRuntimeBackendException {
+	private <T> Collector<T, ?, T> toSingleton( final int fittingId ) {
 		return Collectors.collectingAndThen(
 				Collectors.toList(),
 				list -> {
 					if (list.isEmpty())
-						throw new NeoComRuntimeBackendException( error_FITTINGSEARCHRETURNEDFAILURE(
+						throw new NeoComRuntimeBackendException( Error_FITTINGSEARCHRETURNEDFAILURE(
 								MessageFormat.format( "There are more than one fitting matching the requested id {0}", fittingId )
 						) );
 					if (1 != list.size())
-						throw new NeoComRuntimeBackendException( error_FITTINGSEARCHRETURNEDFAILURE(
+						throw new NeoComRuntimeBackendException( Error_FITTINGSEARCHRETURNEDFAILURE(
 								MessageFormat.format( "There are no fitting matching the requested id {0}", fittingId )
 						) );
 					return list.get( 0 );
