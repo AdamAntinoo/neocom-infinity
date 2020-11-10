@@ -8,6 +8,10 @@
 * FittingBuildTransformationService
 * ActionPreferenceEntity
 * FittingIndustryJob
+* EsiItemModelSerializer
+* GetUniverseGroupsGroupIdOkSerializer
+* GetUniverseCategoriesCategoryIdOkSerializer
+* GetUniverseTypesTypeIdOkSerializer
 * **FittingIndustryJobDao**
 
 ## Previous
