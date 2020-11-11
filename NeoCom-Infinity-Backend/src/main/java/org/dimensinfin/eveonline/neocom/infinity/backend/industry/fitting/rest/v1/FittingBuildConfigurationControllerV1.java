@@ -10,9 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.IndustryController;
-import org.dimensinfin.eveonline.neocom.infinity.backend.industry.domain.FittingIndustryJob;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingBuildConfiguration;
-import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.rest.dao.FittingBuildConfigurationDao;
+import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingConfigurations;
 
 @RestController
 @Validated
@@ -27,7 +26,7 @@ public class FittingBuildConfigurationControllerV1 extends IndustryController {
 	@GetMapping(path = "/fittings/buildConfiguration/{fittingId}",
 			consumes = "application/json",
 			produces = "application/json")
-	public ResponseEntity<FittingBuildConfigurationDao> getFittingBuildConfigurationById( final @PathVariable @NotNull Integer fittingId ) {
+	public ResponseEntity<FittingConfigurations> getFittingBuildConfigurationById( final @PathVariable @NotNull Integer fittingId ) {
 		return new ResponseEntity<>( this.fittingBuildConfigurationServiceV1.getFittingBuildConfigurationById( fittingId ), HttpStatus.OK );
 	}
 

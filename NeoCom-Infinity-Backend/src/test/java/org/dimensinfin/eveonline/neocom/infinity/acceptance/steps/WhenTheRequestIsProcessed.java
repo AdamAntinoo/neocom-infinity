@@ -10,9 +10,11 @@ import org.springframework.http.ResponseEntity;
 
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.character.rest.v1.CharacterFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.character.rest.v2.CharacterFeignClientV2;
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.industry.rest.v1.IndustryFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.universe.rest.v2.UniverseFeignClientV2;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.character.fitting.domain.FittingModel;
+import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingConfigurations;
 import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.EsiItemModel;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
 import org.dimensinfin.eveonline.neocom.infinity.pilot.rest.representation.PilotModel;
@@ -28,18 +30,21 @@ public class WhenTheRequestIsProcessed extends StepSupport {
 	private final CharacterFeignClientV1 characterFeignClientV1;
 	private final CharacterFeignClientV2 characterFeignClientV2;
 	private final UniverseFeignClientV2 universeFeignClientV2;
+	private final IndustryFeignClientV1 industryFeignClientV1;
 
 	// - C O N S T R U C T O R S
 	public WhenTheRequestIsProcessed( final @NotNull NeoComWorld neoComWorld,
 	                                  final @NotNull AuthorizationFeignClientV1 authorizationFeignClient,
 	                                  final @NotNull CharacterFeignClientV1 characterFeignClientV1,
 	                                  final @NotNull CharacterFeignClientV2 characterFeignClientV2,
-	                                  final @NotNull UniverseFeignClientV2 universeFeignClientV2 ) {
+	                                  final @NotNull UniverseFeignClientV2 universeFeignClientV2,
+	                                  final @NotNull IndustryFeignClientV1 industryFeignClientV1 ) {
 		super( neoComWorld );
 		this.authorizationFeignClient = authorizationFeignClient;
 		this.characterFeignClientV1 = characterFeignClientV1;
 		this.characterFeignClientV2 = characterFeignClientV2;
 		this.universeFeignClientV2 = universeFeignClientV2;
+		this.industryFeignClientV1 = industryFeignClientV1;
 	}
 
 	@When("the Validate Authorization Token request is processed")
@@ -64,7 +69,11 @@ public class WhenTheRequestIsProcessed extends StepSupport {
 		this.neocomWorld.setPilotIdentifier( Integer.parseInt( pilotIdentifier ) );
 		this.processRequestByType( RequestType.GET_PILOT_DATA_ENDPOINT_NAME );
 	}
-
+	@When("the Get Fitting Build Configuration request with fitting identifier {int} is processed")
+	public void the_Get_Fitting_Build_Configuration_request_with_fitting_identifier_is_processed(final Integer fittingId) throws IOException {
+		this.neocomWorld.setFittingIdentifier( fittingId);
+		this.processRequestByType( RequestType.GET_INDUSTRY_FITTING_CONFIGURATIONS );
+	}
 	private ResponseEntity processRequest( final RequestType requestType ) throws IOException {
 		switch (requestType) {
 			case VALIDATE_AUTHORIZATION_TOKEN_ENDPOINT_NAME:
@@ -100,6 +109,15 @@ public class WhenTheRequestIsProcessed extends StepSupport {
 				Assertions.assertNotNull( itemResponseEntity );
 				this.neocomWorld.setItemResponseEntity( itemResponseEntity );
 				return itemResponseEntity;
+			case GET_INDUSTRY_FITTING_CONFIGURATIONS:
+				Assertions.assertNotNull( this.neocomWorld.getFittingIdentifier() );
+				final ResponseEntity<FittingConfigurations> fittingConfigurationsResponseEntity = this.industryFeignClientV1.getFittingConfigurations(
+								this.neocomWorld.getJwtAuthorizationToken(),
+						this.neocomWorld.getFittingIdentifier()
+						);
+				Assertions.assertNotNull( fittingConfigurationsResponseEntity );
+				this.neocomWorld.setFittingConfigurationsResponseEntity( fittingConfigurationsResponseEntity );
+				return fittingConfigurationsResponseEntity;
 			default:
 				throw new NotImplementedException( "Request {} not implemented.", requestType.name() );
 		}

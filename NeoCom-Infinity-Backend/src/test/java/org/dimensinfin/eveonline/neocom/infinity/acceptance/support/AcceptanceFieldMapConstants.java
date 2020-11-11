@@ -35,4 +35,7 @@ public class AcceptanceFieldMapConstants {
 	public static final String ESIITEM_INDUSTRY_GROUP = "industryGroup";
 	public static final String ESIITEM_HULL_GROUP = "hullGroup";
 	public static final String ESIITEM_URL_FORITEM = "urlforItem";
+
+	public static final String FITTING_BUILD_CONFIGURATIONS_SAVED = "savedBuildData";
+	public static final String FITTING_BUILD_CONFIGURATIONS_TARGET = "targetBuildData";
 }

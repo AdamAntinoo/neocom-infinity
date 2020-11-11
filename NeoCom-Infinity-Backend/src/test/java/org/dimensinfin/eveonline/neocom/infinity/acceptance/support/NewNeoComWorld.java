@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.character.fitting.domain.FittingModel;
+import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingConfigurations;
 import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.EsiItemModel;
 import org.dimensinfin.eveonline.neocom.infinity.pilot.rest.representation.PilotModel;
 
@@ -13,10 +14,29 @@ public class NewNeoComWorld extends CommonWorld {
 	private ResponseEntity<ValidateAuthorizationTokenResponse> validateAuthorizationTokenResponseEntity;
 	private ResponseEntity<PilotModel> pilotDataResponseEntity;
 	private ResponseEntity<List<FittingModel>> pilotFittingsResponseEntity;
-
+	private Integer fittingIdentifier;
+	private ResponseEntity<FittingConfigurations> fittingConfigurationsResponseEntity;
 	private ResponseEntity<EsiItemModel> itemResponseEntity;
 
 	// - G E T T E R S   &   S E T T E R S
+	public ResponseEntity<FittingConfigurations> getFittingConfigurationsResponseEntity() {
+		return this.fittingConfigurationsResponseEntity;
+	}
+
+	public NewNeoComWorld setFittingConfigurationsResponseEntity( final ResponseEntity<FittingConfigurations> fittingConfigurationsResponseEntity ) {
+		this.fittingConfigurationsResponseEntity = fittingConfigurationsResponseEntity;
+		return this;
+	}
+
+	public Integer getFittingIdentifier() {
+		return this.fittingIdentifier;
+	}
+
+	public NewNeoComWorld setFittingIdentifier( final Integer fittingIdentifier ) {
+		this.fittingIdentifier = fittingIdentifier;
+		return this;
+	}
+
 	public ResponseEntity<EsiItemModel> getItemResponseEntity() {
 		return this.itemResponseEntity;
 	}

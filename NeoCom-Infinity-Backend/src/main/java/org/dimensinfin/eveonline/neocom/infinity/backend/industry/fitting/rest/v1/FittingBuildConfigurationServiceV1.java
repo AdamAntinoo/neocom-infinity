@@ -22,7 +22,7 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.conver
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingBuildConfiguration;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.persistence.ActionPreferenceEntity;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.persistence.BuildActionPreferencesRepository;
-import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.rest.dao.FittingBuildConfigurationDao;
+import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingConfigurations;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.service.FittingBuildConfigurationGenerator;
 import org.dimensinfin.eveonline.neocom.infinity.backend.universe.item.rest.v2.EsiItemServiceV2;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComError;
@@ -88,10 +88,9 @@ public class FittingBuildConfigurationServiceV1 extends NeoComCredentialService 
 		this.itemFactory = itemFactory;
 	}
 
-	public FittingBuildConfigurationDao getFittingBuildConfigurationById( final @NotNull Integer fittingId ) {
-		//		try {
+	public FittingConfigurations getFittingBuildConfigurationById( final @NotNull Integer fittingId ) {
 		this.getAuthorizedCredential();
-		return new FittingBuildConfigurationDao.Builder()
+		return new FittingConfigurations.Builder()
 				.withSavedLink(
 						WebMvcLinkBuilder.linkTo(
 								WebMvcLinkBuilder.methodOn( FittingBuildConfigurationControllerV1.class )
@@ -105,9 +104,6 @@ public class FittingBuildConfigurationServiceV1 extends NeoComCredentialService 
 						).withSelfRel()
 				)
 				.build();
-		//		} catch (final NeoComRuntimeBackendException ncrex) {
-		//			throw new NeoComRuntimeBackendException( Error_FITTINGREQUESTNOTAUTHORIZED(ncrex.getMessage()) );
-		//		}
 	}
 
 	public FittingBuildConfiguration getFittingBuildConfigurationSavedConfiguration( final @NotNull Integer fittingId ) {

@@ -2,6 +2,7 @@
 ## 0.20.0
 * FittingV2
 * FittingInfo
+* FittingItemSerializer
 * FittingBuildOrderControllerV1
 * IndustryController
 * FittingBuildOrderServiceV1

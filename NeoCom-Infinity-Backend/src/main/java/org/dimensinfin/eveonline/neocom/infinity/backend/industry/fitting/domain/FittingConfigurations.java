@@ -1,15 +1,15 @@
-package org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.rest.dao;
+package org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain;
 
 import java.util.Objects;
 
 import org.springframework.hateoas.Link;
 
-public class FittingBuildConfigurationDao {
+public class FittingConfigurations {
 	private Link savedBuildData;
 	private Link targetBuildData;
 
 	// - C O N S T R U C T O R S
-	private FittingBuildConfigurationDao() {}
+	private FittingConfigurations() {}
 
 	// - G E T T E R S   &   S E T T E R S
 	public Link getSavedBuildData() {
@@ -22,23 +22,23 @@ public class FittingBuildConfigurationDao {
 
 	// - B U I L D E R
 	public static class Builder {
-		private final FittingBuildConfigurationDao onConstruction;
+		private final FittingConfigurations onConstruction;
 
 		// - C O N S T R U C T O R S
 		public Builder() {
-			this.onConstruction = new FittingBuildConfigurationDao();
+			this.onConstruction = new FittingConfigurations();
 		}
 
-		public FittingBuildConfigurationDao build() {
+		public FittingConfigurations build() {
 			return this.onConstruction;
 		}
 
-		public FittingBuildConfigurationDao.Builder withSavedLink( final Link saved ) {
+		public FittingConfigurations.Builder withSavedLink( final Link saved ) {
 			this.onConstruction.savedBuildData = Objects.requireNonNull( saved );
 			return this;
 		}
 
-		public FittingBuildConfigurationDao.Builder withTargetLink( final Link target ) {
+		public FittingConfigurations.Builder withTargetLink( final Link target ) {
 			this.onConstruction.targetBuildData = Objects.requireNonNull( target );
 			return this;
 		}

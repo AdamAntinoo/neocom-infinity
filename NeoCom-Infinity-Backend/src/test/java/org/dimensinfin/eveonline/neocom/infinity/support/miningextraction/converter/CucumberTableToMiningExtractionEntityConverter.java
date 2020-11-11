@@ -31,7 +31,7 @@ public class CucumberTableToMiningExtractionEntityConverter extends CucumberTabl
 				.withOwnerId( Integer.parseInt( cucumberRow.get( OWNER_ID ) ) )
 //				.withDelta( 0L )
 				.withSolarSystemId( Integer.parseInt( cucumberRow.get( SYSTEMID ) ) )
-				.withQuantity( Integer.parseInt( cucumberRow.get( QUANTITY ) ) )
+				.withQuantity( Long.parseLong( cucumberRow.get( QUANTITY ) ) )
 				.withExtractionDateName( cucumberRow.get( EXTRACTIONS_DATE ) )
 				.withExtractionHour( Integer.parseInt( cucumberRow.get( EXTRACTIONS_HOUR ) ) )
 				.build();

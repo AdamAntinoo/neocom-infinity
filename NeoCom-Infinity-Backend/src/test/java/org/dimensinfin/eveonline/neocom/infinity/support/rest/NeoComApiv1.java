@@ -6,6 +6,8 @@ import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.database.entities.MiningExtractionEntity;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialResponse;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
+import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingBuildConfiguration;
+import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingConfigurations;
 import org.dimensinfin.eveonline.neocom.infinity.support.corporation.rest.v1.CorporationResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.corporation.rest.v1.LocationAssetContainer;
 import org.dimensinfin.eveonline.neocom.infinity.support.fitting.rest.v1.FittingResponse;
@@ -15,6 +17,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -32,6 +35,21 @@ public interface NeoComApiv1 {
 	Call<CorporationResponse> getCorporationData( @Header("Content-Type") final String contentType,
 	                                              @Header("Authorization") final String authorization,
 	                                              @Path("corporationId") final Integer corporationId );
+
+	@Headers({ "Content-Type: application/json" })
+	@GET("/api/v1/neocom/industry/fittings/buildConfiguration/{fittingId}")
+	Call<FittingConfigurations> getFittingBuildConfigurationById( @Header("Authorization") final String authorization,
+	                                                              @Path("fittingId") Integer fittingId );
+
+	@Headers({ "Content-Type: application/json" })
+	@GET("/api/v1/neocom/industry/fittings/buildConfiguration/{fittingId}/savedConfiguration")
+	Call<FittingBuildConfiguration> getFittingBuildConfigurationSavedConfiguration( @Header("Authorization") final String authorization,
+	                                                                                @Path("fittingId") Integer fittingId );
+
+	@Headers({ "Content-Type: application/json" })
+	@GET("/api/v1/neocom/industry/fittings/buildConfiguration/{fittingId}/targetConfiguration")
+	Call<FittingBuildConfiguration> getFittingBuildConfigurationTargetConfiguration( @Header("Authorization") final String authorization,
+	                                                                                 @Path("fittingId") Integer fittingId );
 
 	@GET("/api/v1/neocom/pilots/{pilotId}")
 	Call<PilotResponse> getPilotData( @Header("Content-Type") final String contentType,
