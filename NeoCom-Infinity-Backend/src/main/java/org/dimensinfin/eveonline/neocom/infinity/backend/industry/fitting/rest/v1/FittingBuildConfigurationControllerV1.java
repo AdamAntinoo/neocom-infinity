@@ -26,8 +26,8 @@ public class FittingBuildConfigurationControllerV1 extends IndustryController {
 	@GetMapping(path = "/fittings/buildConfiguration/{fittingId}",
 			consumes = "application/json",
 			produces = "application/json")
-	public ResponseEntity<FittingConfigurations> getFittingBuildConfigurationById( final @PathVariable @NotNull Integer fittingId ) {
-		return new ResponseEntity<>( this.fittingBuildConfigurationServiceV1.getFittingBuildConfigurationById( fittingId ), HttpStatus.OK );
+	public ResponseEntity<FittingConfigurations> getFittingConfigurations( final @PathVariable @NotNull Integer fittingId ) {
+		return new ResponseEntity<>( this.fittingBuildConfigurationServiceV1.getFittingConfigurations( fittingId ), HttpStatus.OK );
 	}
 
 	@GetMapping(path = "/fittings/buildConfiguration/{fittingId}/savedConfiguration",

@@ -88,7 +88,7 @@ public class FittingBuildConfigurationServiceV1 extends NeoComCredentialService 
 		this.itemFactory = itemFactory;
 	}
 
-	public FittingConfigurations getFittingBuildConfigurationById( final @NotNull Integer fittingId ) {
+	public FittingConfigurations getFittingConfigurations( final @NotNull Integer fittingId ) {
 		this.getAuthorizedCredential();
 		return new FittingConfigurations.Builder()
 				.withSavedLink(

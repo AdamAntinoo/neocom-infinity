@@ -1,10 +1,13 @@
 package org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain;
 
 import java.util.Objects;
+import java.util.UUID;
 
 import org.dimensinfin.eveonline.neocom.domain.FittingItem;
+import org.dimensinfin.eveonline.neocom.infinity.datamanagement.industry.domain.IAction;
 
 public class FittingBuildContent {
+	private UUID id = UUID.randomUUID();
 	private FittingItem fittingItem;
 	private BuildAction action;
 
@@ -18,6 +21,10 @@ public class FittingBuildContent {
 
 	public FittingItem getFittingItem() {
 		return this.fittingItem;
+	}
+
+	public UUID getId() {
+		return this.id;
 	}
 
 	// - B U I L D E R

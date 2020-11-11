@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Assertions;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.Validator;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingConfigurations;
 
-import static org.dimensinfin.eveonline.neocom.infinity.acceptance.support.AcceptanceFieldMapConstants.ESIITEM_TYPE_ID;
 import static org.dimensinfin.eveonline.neocom.infinity.acceptance.support.AcceptanceFieldMapConstants.FITTING_BUILD_CONFIGURATIONS_SAVED;
 import static org.dimensinfin.eveonline.neocom.infinity.acceptance.support.AcceptanceFieldMapConstants.FITTING_BUILD_CONFIGURATIONS_TARGET;
 

@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.ITargetConfiguration;
+import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingBuildConfiguration;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingConfigurations;
 import org.dimensinfin.eveonline.neocom.infinity.support.core.CommonFeignClient;
 import org.dimensinfin.eveonline.neocom.infinity.support.rest.NeoComApiv1;
@@ -21,11 +22,28 @@ public class IndustryFeignClientV1 extends CommonFeignClient {
 		super( acceptanceTargetConfig );
 	}
 
+	public ResponseEntity<FittingBuildConfiguration> getFittingBuildConfigurationSavedConfiguration( final String authentication, final Integer fittingId ) throws IOException {
+		final String ENDPOINT_MESSAGE = "Request the Build Configurations for a Fitting.";
+		final Response<FittingBuildConfiguration> response = new Retrofit.Builder()
+				.baseUrl( this.acceptanceTargetConfig.getBackendServer() )
+				.addConverterFactory( GSON_CONVERTER_FACTORY )
+				.client( okHttpClient )
+				.build()
+				.create( NeoComApiv1.class )
+				.getFittingBuildConfigurationSavedConfiguration( authentication, fittingId )
+				.execute();
+		if (response.isSuccessful()) {
+			LogWrapper.info( ENDPOINT_MESSAGE );
+			return new ResponseEntity<>( response.body(), HttpStatus.valueOf( response.code() ) );
+		} else throw new IOException( ENDPOINT_MESSAGE + " Failed." );
+	}
+
 	public ResponseEntity<FittingConfigurations> getFittingConfigurations( final String authentication, final Integer fittingId ) throws IOException {
 		final String ENDPOINT_MESSAGE = "Request the Build Configurations for a Fitting.";
 		final Response<FittingConfigurations> response = new Retrofit.Builder()
 				.baseUrl( this.acceptanceTargetConfig.getBackendServer() )
 				.addConverterFactory( GSON_CONVERTER_FACTORY )
+				.client( okHttpClient )
 				.build()
 				.create( NeoComApiv1.class )
 				.getFittingBuildConfigurationById( authentication, fittingId )

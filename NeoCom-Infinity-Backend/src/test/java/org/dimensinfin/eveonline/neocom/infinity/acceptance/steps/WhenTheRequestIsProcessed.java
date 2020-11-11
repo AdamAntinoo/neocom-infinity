@@ -14,6 +14,7 @@ import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.industry.res
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.universe.rest.v2.UniverseFeignClientV2;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.character.fitting.domain.FittingModel;
+import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingBuildConfiguration;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingConfigurations;
 import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.EsiItemModel;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
@@ -58,6 +59,18 @@ public class WhenTheRequestIsProcessed extends StepSupport {
 		this.processRequestByType( RequestType.GET_ESIITEM_ENDPOINT_NAME );
 	}
 
+	@When("the Get Fitting Configurations request with fitting identifier {int} is processed")
+	public void the_Get_Fitting_Configurations_request_with_fitting_identifier_is_processed( final Integer fittingId ) throws IOException {
+		this.neocomWorld.setFittingIdentifier( fittingId );
+		this.processRequestByType( RequestType.GET_INDUSTRY_FITTING_CONFIGURATIONS );
+	}
+
+	@When("the Get Fitting Saved Configuration request with fitting identifier {int} is processed")
+	public void the_Get_Fitting_Saved_Configuration_request_with_fitting_identifier_is_processed( final Integer fittingId ) throws IOException {
+		this.neocomWorld.setFittingIdentifier( fittingId );
+		this.processRequestByType( RequestType.GET_INDUSTRY_FITTING_SAVED_CONFIGURATION );
+	}
+
 	@When("the Get Pilot Fittings request for pilot {string} is processed")
 	public void the_Get_Pilot_Fittings_request_for_pilot_is_processed( final String pilotIdentifier ) throws IOException {
 		this.neocomWorld.setPilotIdentifier( Integer.parseInt( pilotIdentifier ) );
@@ -69,11 +82,7 @@ public class WhenTheRequestIsProcessed extends StepSupport {
 		this.neocomWorld.setPilotIdentifier( Integer.parseInt( pilotIdentifier ) );
 		this.processRequestByType( RequestType.GET_PILOT_DATA_ENDPOINT_NAME );
 	}
-	@When("the Get Fitting Build Configuration request with fitting identifier {int} is processed")
-	public void the_Get_Fitting_Build_Configuration_request_with_fitting_identifier_is_processed(final Integer fittingId) throws IOException {
-		this.neocomWorld.setFittingIdentifier( fittingId);
-		this.processRequestByType( RequestType.GET_INDUSTRY_FITTING_CONFIGURATIONS );
-	}
+
 	private ResponseEntity processRequest( final RequestType requestType ) throws IOException {
 		switch (requestType) {
 			case VALIDATE_AUTHORIZATION_TOKEN_ENDPOINT_NAME:
@@ -110,14 +119,29 @@ public class WhenTheRequestIsProcessed extends StepSupport {
 				this.neocomWorld.setItemResponseEntity( itemResponseEntity );
 				return itemResponseEntity;
 			case GET_INDUSTRY_FITTING_CONFIGURATIONS:
+				try {
+					Assertions.assertNotNull( this.neocomWorld.getFittingIdentifier() );
+					final ResponseEntity<FittingConfigurations> fittingConfigurationsResponseEntity = this.industryFeignClientV1
+							.getFittingConfigurations(
+									this.neocomWorld.getJwtAuthorizationToken(),
+									this.neocomWorld.getFittingIdentifier()
+							);
+					Assertions.assertNotNull( fittingConfigurationsResponseEntity );
+					this.neocomWorld.setFittingConfigurationsResponseEntity( fittingConfigurationsResponseEntity );
+					return fittingConfigurationsResponseEntity;
+				} catch (final IOException ioe) {
+					LogWrapper.error( ioe );
+				}
+			case GET_INDUSTRY_FITTING_SAVED_CONFIGURATION:
 				Assertions.assertNotNull( this.neocomWorld.getFittingIdentifier() );
-				final ResponseEntity<FittingConfigurations> fittingConfigurationsResponseEntity = this.industryFeignClientV1.getFittingConfigurations(
+				final ResponseEntity<FittingBuildConfiguration> fittingBuildConfigurationResponseEntity = this.industryFeignClientV1
+						.getFittingBuildConfigurationSavedConfiguration(
 								this.neocomWorld.getJwtAuthorizationToken(),
-						this.neocomWorld.getFittingIdentifier()
+								this.neocomWorld.getFittingIdentifier()
 						);
-				Assertions.assertNotNull( fittingConfigurationsResponseEntity );
-				this.neocomWorld.setFittingConfigurationsResponseEntity( fittingConfigurationsResponseEntity );
-				return fittingConfigurationsResponseEntity;
+				Assertions.assertNotNull( fittingBuildConfigurationResponseEntity );
+				this.neocomWorld.setFittingBuildConfigurationResponseEntity( fittingBuildConfigurationResponseEntity );
+				return fittingBuildConfigurationResponseEntity;
 			default:
 				throw new NotImplementedException( "Request {} not implemented.", requestType.name() );
 		}

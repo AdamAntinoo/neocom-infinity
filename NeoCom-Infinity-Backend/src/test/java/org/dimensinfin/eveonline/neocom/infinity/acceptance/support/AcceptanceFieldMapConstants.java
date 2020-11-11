@@ -38,4 +38,13 @@ public class AcceptanceFieldMapConstants {
 
 	public static final String FITTING_BUILD_CONFIGURATIONS_SAVED = "savedBuildData";
 	public static final String FITTING_BUILD_CONFIGURATIONS_TARGET = "targetBuildData";
+
+	public static final String FITTING_BUILD_CONFIGURATION_FITTING_BUILD_ID = "fittingBuildId";
+	public static final String FITTING_BUILD_CONFIGURATION_FITTING_INFO = "fittingInfo";
+	public static final String FITTING_BUILD_CONFIGURATION_FITTING_CONTENTS = "contents";
+	public static final String FITTING_BUILD_CONFIGURATION_FITTING_CONTENTS_SIZE = "contents.size";
+
+	public static final String FITTING_INFO_FITTING = "fitting";
+	public static final String FITTING_INFO_HULL = "hull";
+	public static final String FITTING_INFO_HULL_ACTION = "hullAction";
 }

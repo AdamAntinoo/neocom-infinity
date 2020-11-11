@@ -3,10 +3,20 @@ package org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domai
 import java.util.Objects;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseTypesTypeIdOk;
 import org.dimensinfin.eveonline.neocom.infinity.datamanagement.industry.domain.ActionType;
 import org.dimensinfin.eveonline.neocom.infinity.datamanagement.industry.domain.IAction;
 
+
+@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS,
+		include = JsonTypeInfo.As.PROPERTY,
+		property = "type")
+@JsonSubTypes({
+		@JsonSubTypes.Type(value = BuyBuildAction.class),
+})
 public abstract class BuildAction implements IAction {
 	protected ActionType actionType = ActionType.BUY;
 	protected GetUniverseTypesTypeIdOk itemTarget;

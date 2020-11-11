@@ -71,7 +71,7 @@ dependencies {
     implementation 'org.bitbucket.dimensinfin:core-lib:3.2.1'
     implementation 'org.bitbucket.dimensinfin:annotations:0.3.1'
     // N E O C O M
-    implementation 'org.bitbucket.evedimensinfin:neocom-datamanagement:0.20.0'
+    implementation 'org.bitbucket.evedimensinfin:neocom-datamanagement:0.20.1'
     // Temporal until the datamanagement dependency is fixed
     implementation 'org.bitbucket.evedimensinfin.neocom-java-core:esi.swagger-api:0.20.0'
     implementation 'org.bitbucket.evedimensinfin.neocom-java-core:neocom-annotations:0.20.0'
