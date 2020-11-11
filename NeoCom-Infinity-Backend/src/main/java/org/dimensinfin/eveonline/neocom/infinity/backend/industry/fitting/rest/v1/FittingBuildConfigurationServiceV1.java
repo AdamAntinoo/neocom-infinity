@@ -18,6 +18,7 @@ import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataProviderWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.LocationCatalogServiceWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.backend.core.rest.NeoComCredentialService;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.domain.ItemFactory;
+import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.converter.GetCharactersCharacterIdFittingsToFittingV2Converter;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingBuildConfiguration;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.persistence.ActionPreferenceEntity;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.persistence.BuildActionPreferencesRepository;
@@ -137,9 +138,12 @@ public class FittingBuildConfigurationServiceV1 extends NeoComCredentialService 
 				this.getAuthorizedCredential()
 		);
 		// Search for the target fitting identifier received as the parameter.
-		final GetCharactersCharacterIdFittings200Ok targetFitting = fittingList.stream()
-				.filter( fitting -> fitting.getFittingId() == fittingId ) // Search for matching fitting
-				.collect( this.toSingleton( fittingId ) );
+		// Search for matching fitting
+		final FittingV2 targetFitting = new GetCharactersCharacterIdFittingsToFittingV2Converter( this.itemFactory )
+				.convert( fittingList.stream()
+						.filter( fitting -> fitting.getFittingId() == fittingId ) // Search for matching fitting
+						.collect( this.toSingleton( fittingId ) )
+				);
 		// Get the list of preferences for this precise fitting. If none means that this is a new Order instance.
 		final String actionFilter = FittingBuildConfiguration.uniqueIdConstructor( this.getAuthorizedCredential().getAccountId(), fittingId );
 		final List<ActionPreferenceEntity> actionPreferences = this.buildActionPreferencesRepository.findAll().stream()
@@ -155,12 +159,7 @@ public class FittingBuildConfigurationServiceV1 extends NeoComCredentialService 
 
 		final FittingBuildConfigurationGenerator transformer = new FittingBuildConfigurationGenerator.Builder()
 				.withIndustryBuildProcessor( industryBuildProcessor )
-				.withFitting(
-						new FittingV2.Builder()
-								.withFittingDescription( targetFitting )
-								.withShipHull( this.itemFactory.generateEsiItem( targetFitting.getShipTypeId() ) )
-								.build()
-				)
+				.withFitting( targetFitting )
 				.withPreferences( actionPreferences )
 				.build();
 		return saved ?

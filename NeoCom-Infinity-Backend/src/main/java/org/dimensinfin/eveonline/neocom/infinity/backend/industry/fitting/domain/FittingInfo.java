@@ -3,9 +3,11 @@ package org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domai
 import java.util.Objects;
 
 import org.dimensinfin.eveonline.neocom.domain.FittingV2;
+import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.EsiItem;
 
 public class FittingInfo {
 	private FittingV2 fitting;
+	private EsiItem hull;
 	private BuildAction hullAction;
 
 	// - C O N S T R U C T O R S
@@ -14,6 +16,10 @@ public class FittingInfo {
 	// - G E T T E R S   &   S E T T E R S
 	public FittingV2 getFitting() {
 		return this.fitting;
+	}
+
+	public EsiItem getHull() {
+		return this.hull;
 	}
 
 	public BuildAction getHullAction() {
@@ -37,6 +43,7 @@ public class FittingInfo {
 
 		public FittingInfo.Builder withFitting( final FittingV2 fitting ) {
 			this.onConstruction.fitting = Objects.requireNonNull( fitting );
+			this.onConstruction.hull = this.onConstruction.fitting.getShipHull();
 			return this;
 		}
 

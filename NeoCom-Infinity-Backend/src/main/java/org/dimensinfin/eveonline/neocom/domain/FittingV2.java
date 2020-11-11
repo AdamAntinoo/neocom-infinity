@@ -25,7 +25,7 @@ public class FittingV2 {
 
 	public String getGroupName() {return this.shipHull.getGroupName();}
 
-	public String getHullGroup() {return this.shipHull.getHullGroup();}
+	public String getHullGroup() {return this.shipHull.getHullGroup().toUpperCase();}
 
 	public String getName() {return this.fittingDescription.getName();}
 
