@@ -2,22 +2,42 @@ package org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domai
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
+import java.util.Objects;
+import javax.validation.constraints.NotNull;
 
-import org.springframework.hateoas.Link;
-
-import org.dimensinfin.eveonline.neocom.domain.Fitting;
-import org.dimensinfin.eveonline.neocom.domain.FittingItem;
-import org.dimensinfin.eveonline.neocom.domain.NeoItem;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.persistence.ActionPreferenceEntity;
-import org.dimensinfin.eveonline.neocom.infinity.datamanagement.industry.domain.ActionType;
 
 public class FittingBuildConfiguration {
+	private static final String BUILD_FITTING_ACTION_PREFIX = "FB";
+
+	public static String uniqueIdConstructor( final @NotNull Integer pilotId, final @NotNull Integer fittingId ) {
+		return BUILD_FITTING_ACTION_PREFIX + "." + pilotId + "-" + fittingId;
+	}
+
+	private String fittingBuildId;
 	private FittingInfo fittingInfo;
 	private List<FittingBuildContent> contents = new ArrayList<>();
 
 	// - C O N S T R U C T O R S
 	private FittingBuildConfiguration() {}
+
+	// - G E T T E R S   &   S E T T E R S
+	public List<FittingBuildContent> getContents() {
+		return this.contents;
+	}
+
+	public String getFittingBuildId() {
+		return this.fittingBuildId;
+	}
+
+	public FittingInfo getFittingInfo() {
+		return this.fittingInfo;
+	}
+
+	public FittingBuildConfiguration addFittingConfigurationContent( final FittingBuildContent contentRecord ) {
+		this.contents.add( contentRecord );
+		return this;
+	}
 
 	// - B U I L D E R
 	public static class Builder {
@@ -29,35 +49,25 @@ public class FittingBuildConfiguration {
 		}
 
 		public FittingBuildConfiguration build() {
+			Objects.requireNonNull( this.onConstruction.fittingBuildId );
+			Objects.requireNonNull( this.onConstruction.fittingInfo );
 			return this.onConstruction;
 		}
+
+		public FittingBuildConfiguration.Builder generateUniqueId( final int pilotId, final int fittingId ) {
+			this.onConstruction.fittingBuildId = uniqueIdConstructor( pilotId, fittingId );
+			return this;
+		}
+
+		public FittingBuildConfiguration.Builder withFittingInfo( final FittingInfo fittingInfo ) {
+			this.onConstruction.fittingInfo = Objects.requireNonNull( fittingInfo );
+			return this;
+		}
 	}
-}
-
-final class FittingInfo {
-	private String fittingBuildId;
-	private Fitting fitting;
-	private Link shipHullLink;
-	private BuildAction hullAction;
-}
-
-class BuildAction {
-	private UUID id;
-	private ActionType actionType = ActionType.BUY;
-	private ActionPreference action;
-	private NeoItem itemTarget;
-}
-
-final class BuyBuildAction extends BuildAction {
-	private MarketData marketData;
 }
 
 final class ActionPreference extends ActionPreferenceEntity {
 }
 
 final class MarketData {
-}
-final class FittingBuildContent{
-	private FittingItem fittingitem;
-	private BuildAction action;
 }

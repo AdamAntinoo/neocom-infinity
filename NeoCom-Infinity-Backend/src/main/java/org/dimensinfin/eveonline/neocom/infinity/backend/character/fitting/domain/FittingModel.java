@@ -9,11 +9,11 @@ import org.springframework.hateoas.RepresentationModel;
 import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.EsiItemModel;
 
 public class FittingModel extends RepresentationModel<FittingModel> {
-	private final List<FittingItemModel> fittingItems = new ArrayList<>();
 	private Integer fittingId;
 	private String name;
 	private String description;
 	private EsiItemModel shipHull;
+	private final List<FittingItemModel> fittingItems = new ArrayList<>();
 
 	// - C O N S T R U C T O R S
 	private FittingModel() {}

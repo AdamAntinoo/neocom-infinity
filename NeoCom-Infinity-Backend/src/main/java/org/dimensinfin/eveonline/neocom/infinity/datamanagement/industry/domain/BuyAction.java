@@ -35,6 +35,10 @@ public class BuyAction implements IAction {
 		return this.quantity * this.marketOrder.getPrice();
 	}
 
+	public int getHops() {
+		return 1;
+	}
+
 	public GetUniverseTypesTypeIdOk getItem() {
 		return this.item;
 	}

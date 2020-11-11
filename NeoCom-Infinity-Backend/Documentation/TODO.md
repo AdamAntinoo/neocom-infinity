@@ -1,5 +1,7 @@
 # Classes pending Unit Test completion
 ## 0.20.0
+* FittingV2
+* FittingInfo
 * FittingBuildOrderControllerV1
 * IndustryController
 * FittingBuildOrderServiceV1

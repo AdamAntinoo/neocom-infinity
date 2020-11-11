@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import org.dimensinfin.eveonline.neocom.domain.Fitting;
 import org.dimensinfin.eveonline.neocom.infinity.backend.character.fitting.domain.FittingModel;
 import org.dimensinfin.eveonline.neocom.infinity.datamanagement.industry.domain.IAction;
 
 public class FittingIndustryJob {
-	private FittingModel  fitting;
+	private FittingModel fitting;
 	private IAction hull;
 	private List<IAction> actions = new ArrayList<>();
 

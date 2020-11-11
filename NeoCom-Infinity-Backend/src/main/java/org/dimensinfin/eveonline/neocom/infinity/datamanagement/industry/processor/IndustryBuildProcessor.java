@@ -12,8 +12,9 @@ import org.dimensinfin.eveonline.neocom.domain.space.SpaceRegion;
 import org.dimensinfin.eveonline.neocom.domain.space.Station;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCorporationsCorporationIdOk;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetMarketsRegionIdOrders200Ok;
+import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.BuildAction;
+import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.BuyBuildAction;
 import org.dimensinfin.eveonline.neocom.infinity.datamanagement.converter.GetMarketsRegionIdOrdersToMarketOrderConverter;
-import org.dimensinfin.eveonline.neocom.infinity.datamanagement.industry.domain.BuyAction;
 import org.dimensinfin.eveonline.neocom.infinity.datamanagement.industry.domain.IAction;
 import org.dimensinfin.eveonline.neocom.infinity.datamanagement.services.MarketProvider;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
@@ -31,31 +32,25 @@ public class IndustryBuildProcessor {
 	private IndustryBuildProcessor() {}
 
 	// - G E T T E R S   &   S E T T E R S
-
 	/**
 	 * Generate a new industry BUY action for the specified item type id and the required quantity.
 	 *
 	 * @param typeId the type identifier for the item to be bought.
 	 * @return a BUY action with the requested information and corresponding market data.
 	 */
-	public IAction generateBuyAction( final int typeId, final int quantity ) {
+	public BuildAction generateBuyAction( final int typeId, final int quantity ) {
 		// Search and filter the SELL market orders at the specified market hub.
 		final MarketProvider marketService = new MarketProvider.Builder()
 				.withEsiDataProvider( this.esiDataProvider )
 				.withRegion( (SpaceRegion) this.locationCatalogService.searchLocation4Id( (long) this.accessCorporationHomeRegion().getRegionId() ) )
 				.build();
-		final List<GetMarketsRegionIdOrders200Ok> orders = marketService
-				.getOrders( typeId );
-//		.stream()
-//				.filter( order -> !order.getIsBuyOrder() )
-//				.sorted( Comparator.comparingDouble( GetMarketsRegionIdOrders200Ok::getPrice ) )
-//				.collect( Collectors.toList() );
+		final List<GetMarketsRegionIdOrders200Ok> orders = marketService.getOrders( typeId );
 		final GetMarketsRegionIdOrders200Ok markerOrderOk = marketService
 				.getOrders( typeId ).stream()
 				.filter( order -> !order.getIsBuyOrder() )
 				.sorted( Comparator.comparingDouble( GetMarketsRegionIdOrders200Ok::getPrice ) )
 				.collect( this.toSingleton() );
-		return new BuyAction.Builder()
+		return new BuyBuildAction.Builder()
 				.withItem( this.esiDataProvider.searchEsiItem4Id( typeId ) )
 				.withCorporationHome( this.accessCorporationHomeStation() )
 				.withMarketOrder( new GetMarketsRegionIdOrdersToMarketOrderConverter( this.locationCatalogService ).convert( markerOrderOk ) )

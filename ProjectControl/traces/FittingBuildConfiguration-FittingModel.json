@@ -1,0 +1,461 @@
+{
+    "fitting": {
+        "fittingId": 60320161,
+        "name": "VM Clearer A1",
+        "description": "",
+        "shipHull": {
+            "typeId": 32880,
+            "name": "Venture",
+            "group": {
+                "groupId": 25,
+                "groupName": "Frigate",
+                "groupCategoryId": 6
+            },
+            "category": {
+                "categoryId": 6,
+                "categoryName": "Ship"
+            },
+            "tech": "Tech I",
+            "volume": 29500.0,
+            "isBlueprint": false,
+            "urlforItem": "https://image.eveonline.com/Type/32880_64.png"
+        },
+        "fittingItems": [
+            {
+                "typeId": 2048,
+                "flag": "LOSLOT0",
+                "quantity": 1,
+                "typeData": {
+                    "rel": "self",
+                    "href": "http://localhost:9500/api/v1/universe/items/2048"
+                },
+                "links": []
+            },
+            {
+                "typeId": 5245,
+                "flag": "HISLOT0",
+                "quantity": 1,
+                "typeData": {
+                    "rel": "self",
+                    "href": "http://localhost:9500/api/v1/universe/items/5245"
+                },
+                "links": []
+            },
+            {
+                "typeId": 5245,
+                "flag": "HISLOT1",
+                "quantity": 1,
+                "typeData": {
+                    "rel": "self",
+                    "href": "http://localhost:9500/api/v1/universe/items/5245"
+                },
+                "links": []
+            },
+            {
+                "typeId": 8517,
+                "flag": "MEDSLOT1",
+                "quantity": 1,
+                "typeData": {
+                    "rel": "self",
+                    "href": "http://localhost:9500/api/v1/universe/items/8517"
+                },
+                "links": []
+            },
+            {
+                "typeId": 8517,
+                "flag": "MEDSLOT2",
+                "quantity": 1,
+                "typeData": {
+                    "rel": "self",
+                    "href": "http://localhost:9500/api/v1/universe/items/8517"
+                },
+                "links": []
+            },
+            {
+                "typeId": 10872,
+                "flag": "MEDSLOT0",
+                "quantity": 1,
+                "typeData": {
+                    "rel": "self",
+                    "href": "http://localhost:9500/api/v1/universe/items/10872"
+                },
+                "links": []
+            },
+            {
+                "typeId": 31358,
+                "flag": "RIGSLOT0",
+                "quantity": 1,
+                "typeData": {
+                    "rel": "self",
+                    "href": "http://localhost:9500/api/v1/universe/items/31358"
+                },
+                "links": []
+            }
+        ],
+        "shipTypeId": 32880,
+        "links": []
+    },
+    "hull": {
+        "item": {
+            "typeId": 32880,
+            "name": "Venture",
+            "description": "Recognizing the dire need for a ship capable of fast operation in unsafe territories, <a href=showinfo:30//500014>ORE</a> created the Venture. It was conceived as a vessel primed and ready for any capsuleer, no matter how new to the dangers of New Eden they might be, who wishes to engage in the respectable trade of mining.\r\n\r\nThe Venture has amazing abilities to quickly drill through to the ores and gases it's after, harvesting them at the speed necessary for mining in hostile space, and getting out relatively unscathed.",
+            "groupId": 25,
+            "marketGroupId": 1616,
+            "capacity": 50.0,
+            "mass": 1200000.0,
+            "packagedVolume": 2500.0,
+            "volume": 29500.0
+        },
+        "quantity": 1,
+        "corporationHome": {
+            "jsonClass": "Station",
+            "locationId": 60006610,
+            "regionId": 10000020,
+            "regionName": "Tash-Murkon",
+            "constellationId": 20000257,
+            "constellationName": "Peges",
+            "systemId": 30001736,
+            "systemName": "Esa",
+            "stationId": 60006610,
+            "stationName": "Esa VIII - Moon 2 - Viziam Warehouse"
+        },
+        "marketOrder": {
+            "station": {
+                "jsonClass": "Station",
+                "locationId": 60006724,
+                "regionId": 10000020,
+                "regionName": "Tash-Murkon",
+                "constellationId": 20000248,
+                "constellationName": "Mimishia",
+                "systemId": 30001677,
+                "systemName": "Thashkarai",
+                "stationId": 60006724,
+                "stationName": "Thashkarai VI - Zoar and Sons Factory"
+            },
+            "orderId": 5834645178,
+            "volumeRemain": 13,
+            "price": 350000.0,
+            "typeId": 32880
+        },
+        "cost": 350000.0
+    },
+    "actions": [
+        {
+            "item": {
+                "typeId": 2048,
+                "name": "Damage Control II",
+                "description": "Utilizes a combination of containment field emitters and redundancy systems to mitigate the impact of critical system damage. \r\n\r\nGrants a bonus to resistance for shield, armor and hull.\r\n\r\nOnly one Damage Control can be fit at a given time.",
+                "groupId": 60,
+                "marketGroupId": 615,
+                "capacity": 0.0,
+                "mass": 5000.0,
+                "packagedVolume": 5.0,
+                "volume": 5.0
+            },
+            "quantity": 1,
+            "corporationHome": {
+                "jsonClass": "Station",
+                "locationId": 60006610,
+                "regionId": 10000020,
+                "regionName": "Tash-Murkon",
+                "constellationId": 20000257,
+                "constellationName": "Peges",
+                "systemId": 30001736,
+                "systemName": "Esa",
+                "stationId": 60006610,
+                "stationName": "Esa VIII - Moon 2 - Viziam Warehouse"
+            },
+            "marketOrder": {
+                "station": {
+                    "jsonClass": "Station",
+                    "locationId": 60006223,
+                    "regionId": 10000020,
+                    "regionName": "Tash-Murkon",
+                    "constellationId": 20000247,
+                    "constellationName": "Arvachah",
+                    "systemId": 30001673,
+                    "systemName": "Shesha",
+                    "stationId": 60006223,
+                    "stationName": "Shesha III - Carthum Conglomerate Factory"
+                },
+                "orderId": 5842528403,
+                "volumeRemain": 23,
+                "price": 425000.0,
+                "typeId": 2048
+            },
+            "cost": 425000.0
+        },
+        {
+            "item": {
+                "typeId": 5245,
+                "name": "Particle Bore Compact Mining Laser",
+                "description": "Basic mining laser. Extracts common ore quickly, but has difficulty with the more rare types.",
+                "groupId": 54,
+                "marketGroupId": 1039,
+                "capacity": 0.0,
+                "mass": 0.0,
+                "packagedVolume": 5.0,
+                "volume": 5.0
+            },
+            "quantity": 1,
+            "corporationHome": {
+                "jsonClass": "Station",
+                "locationId": 60006610,
+                "regionId": 10000020,
+                "regionName": "Tash-Murkon",
+                "constellationId": 20000257,
+                "constellationName": "Peges",
+                "systemId": 30001736,
+                "systemName": "Esa",
+                "stationId": 60006610,
+                "stationName": "Esa VIII - Moon 2 - Viziam Warehouse"
+            },
+            "marketOrder": {
+                "station": {
+                    "jsonClass": "Station",
+                    "locationId": 60003631,
+                    "regionId": 10000020,
+                    "regionName": "Tash-Murkon",
+                    "constellationId": 20000245,
+                    "constellationName": "Mise",
+                    "systemId": 30001659,
+                    "systemName": "Sehmosh",
+                    "stationId": 60003631,
+                    "stationName": "Sehmosh VIII - Moon 22 - Caldari Business Tribunal Information Center"
+                },
+                "orderId": 5839827337,
+                "volumeRemain": 1,
+                "price": 16010.0,
+                "typeId": 5245
+            },
+            "cost": 16010.0
+        },
+        {
+            "item": {
+                "typeId": 5245,
+                "name": "Particle Bore Compact Mining Laser",
+                "description": "Basic mining laser. Extracts common ore quickly, but has difficulty with the more rare types.",
+                "groupId": 54,
+                "marketGroupId": 1039,
+                "capacity": 0.0,
+                "mass": 0.0,
+                "packagedVolume": 5.0,
+                "volume": 5.0
+            },
+            "quantity": 1,
+            "corporationHome": {
+                "jsonClass": "Station",
+                "locationId": 60006610,
+                "regionId": 10000020,
+                "regionName": "Tash-Murkon",
+                "constellationId": 20000257,
+                "constellationName": "Peges",
+                "systemId": 30001736,
+                "systemName": "Esa",
+                "stationId": 60006610,
+                "stationName": "Esa VIII - Moon 2 - Viziam Warehouse"
+            },
+            "marketOrder": {
+                "station": {
+                    "jsonClass": "Station",
+                    "locationId": 60003631,
+                    "regionId": 10000020,
+                    "regionName": "Tash-Murkon",
+                    "constellationId": 20000245,
+                    "constellationName": "Mise",
+                    "systemId": 30001659,
+                    "systemName": "Sehmosh",
+                    "stationId": 60003631,
+                    "stationName": "Sehmosh VIII - Moon 22 - Caldari Business Tribunal Information Center"
+                },
+                "orderId": 5839827337,
+                "volumeRemain": 1,
+                "price": 16010.0,
+                "typeId": 5245
+            },
+            "cost": 16010.0
+        },
+        {
+            "item": {
+                "typeId": 8517,
+                "name": "Medium F-S9 Regolith Compact Shield Extender",
+                "description": "Increases the maximum strength of the shield.",
+                "groupId": 38,
+                "marketGroupId": 606,
+                "capacity": 0.0,
+                "mass": 0.0,
+                "packagedVolume": 10.0,
+                "volume": 10.0
+            },
+            "quantity": 1,
+            "corporationHome": {
+                "jsonClass": "Station",
+                "locationId": 60006610,
+                "regionId": 10000020,
+                "regionName": "Tash-Murkon",
+                "constellationId": 20000257,
+                "constellationName": "Peges",
+                "systemId": 30001736,
+                "systemName": "Esa",
+                "stationId": 60006610,
+                "stationName": "Esa VIII - Moon 2 - Viziam Warehouse"
+            },
+            "marketOrder": {
+                "station": {
+                    "jsonClass": "Station",
+                    "locationId": 60007996,
+                    "regionId": 10000020,
+                    "regionName": "Tash-Murkon",
+                    "constellationId": 20000252,
+                    "constellationName": "Nasorin",
+                    "systemId": 30001703,
+                    "systemName": "Taru",
+                    "stationId": 60007996,
+                    "stationName": "Taru X - Moon 9 - Ministry of War Information Center"
+                },
+                "orderId": 5843774112,
+                "volumeRemain": 1,
+                "price": 4551000.0,
+                "typeId": 8517
+            },
+            "cost": 4551000.0
+        },
+        {
+            "item": {
+                "typeId": 8517,
+                "name": "Medium F-S9 Regolith Compact Shield Extender",
+                "description": "Increases the maximum strength of the shield.",
+                "groupId": 38,
+                "marketGroupId": 606,
+                "capacity": 0.0,
+                "mass": 0.0,
+                "packagedVolume": 10.0,
+                "volume": 10.0
+            },
+            "quantity": 1,
+            "corporationHome": {
+                "jsonClass": "Station",
+                "locationId": 60006610,
+                "regionId": 10000020,
+                "regionName": "Tash-Murkon",
+                "constellationId": 20000257,
+                "constellationName": "Peges",
+                "systemId": 30001736,
+                "systemName": "Esa",
+                "stationId": 60006610,
+                "stationName": "Esa VIII - Moon 2 - Viziam Warehouse"
+            },
+            "marketOrder": {
+                "station": {
+                    "jsonClass": "Station",
+                    "locationId": 60007996,
+                    "regionId": 10000020,
+                    "regionName": "Tash-Murkon",
+                    "constellationId": 20000252,
+                    "constellationName": "Nasorin",
+                    "systemId": 30001703,
+                    "systemName": "Taru",
+                    "stationId": 60007996,
+                    "stationName": "Taru X - Moon 9 - Ministry of War Information Center"
+                },
+                "orderId": 5843774112,
+                "volumeRemain": 1,
+                "price": 4551000.0,
+                "typeId": 8517
+            },
+            "cost": 4551000.0
+        },
+        {
+            "item": {
+                "typeId": 10872,
+                "name": "Medium C5-L Compact Shield Booster",
+                "description": "Expends energy to provide a quick boost in shield strength.",
+                "groupId": 40,
+                "marketGroupId": 610,
+                "capacity": 0.0,
+                "mass": 0.0,
+                "packagedVolume": 10.0,
+                "volume": 10.0
+            },
+            "quantity": 1,
+            "corporationHome": {
+                "jsonClass": "Station",
+                "locationId": 60006610,
+                "regionId": 10000020,
+                "regionName": "Tash-Murkon",
+                "constellationId": 20000257,
+                "constellationName": "Peges",
+                "systemId": 30001736,
+                "systemName": "Esa",
+                "stationId": 60006610,
+                "stationName": "Esa VIII - Moon 2 - Viziam Warehouse"
+            },
+            "marketOrder": {
+                "station": {
+                    "jsonClass": "Station",
+                    "locationId": 60007129,
+                    "regionId": 10000020,
+                    "regionName": "Tash-Murkon",
+                    "constellationId": 20000253,
+                    "constellationName": "Tsemshatel",
+                    "systemId": 30001715,
+                    "systemName": "Moutid",
+                    "stationId": 60007129,
+                    "stationName": "Moutid II - Moon 7 - Imperial Shipment Storage"
+                },
+                "orderId": 5805255620,
+                "volumeRemain": 2,
+                "price": 54500.0,
+                "typeId": 10872
+            },
+            "cost": 54500.0
+        },
+        {
+            "item": {
+                "typeId": 31358,
+                "name": "Small Ancillary Current Router I",
+                "description": "This ship modification is designed to increase a ship's powergrid capacity.",
+                "groupId": 781,
+                "marketGroupId": 1222,
+                "capacity": 0.0,
+                "mass": 200.0,
+                "packagedVolume": 5.0,
+                "volume": 5.0
+            },
+            "quantity": 1,
+            "corporationHome": {
+                "jsonClass": "Station",
+                "locationId": 60006610,
+                "regionId": 10000020,
+                "regionName": "Tash-Murkon",
+                "constellationId": 20000257,
+                "constellationName": "Peges",
+                "systemId": 30001736,
+                "systemName": "Esa",
+                "stationId": 60006610,
+                "stationName": "Esa VIII - Moon 2 - Viziam Warehouse"
+            },
+            "marketOrder": {
+                "station": {
+                    "jsonClass": "Station",
+                    "locationId": 60001096,
+                    "regionId": 10000020,
+                    "regionName": "Tash-Murkon",
+                    "constellationId": 20000247,
+                    "constellationName": "Arvachah",
+                    "systemId": 30001671,
+                    "systemName": "Tash-Murkon Prime",
+                    "stationId": 60001096,
+                    "stationName": "Tash-Murkon Prime II - Moon 1 - Kaalakiota Corporation Factory"
+                },
+                "orderId": 5839410494,
+                "volumeRemain": 18,
+                "price": 728900.0,
+                "typeId": 31358
+            },
+            "cost": 728900.0
+        }
+    ],
+    "fittingJobId": ""
+}

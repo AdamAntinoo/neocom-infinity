@@ -9,3 +9,5 @@ databaseChangeLog:
       file: db/changelog/dml-v0.20.0-04-credentials-data.yaml
   - include:
       file: db/changelog/ddl-v0.20.0-05-actionspreferences-table.yaml
+  - include:
+      file: db/changelog/ddl-v0.20.0-06-actionspreferences-altertable.yaml

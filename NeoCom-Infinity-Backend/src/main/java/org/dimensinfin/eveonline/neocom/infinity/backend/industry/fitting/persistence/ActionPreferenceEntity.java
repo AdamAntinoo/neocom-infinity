@@ -1,6 +1,7 @@
 package org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.persistence;
 
 import java.util.Objects;
+import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -15,15 +16,14 @@ import org.dimensinfin.eveonline.neocom.infinity.datamanagement.industry.domain.
 @Entity
 @Table(name = "ActionPreferences", schema = "neocom")
 public class ActionPreferenceEntity {
-	public static String uniqueIdConstructor( final @NotNull String prefix, final @NotNull Integer pilotId, final @NotNull Integer fittingId ) {
-		return prefix + "." + pilotId + "-" + fittingId;
-	}
-
 	@Id
 	@NotNull(message = "ActionPreference unique 'id' is a mandatory field and cannot be null.")
 	@Size(max = 32)
 	@Column(name = "id", updatable = false, nullable = false)
-	private String id;
+	private UUID id = UUID.randomUUID();
+	@NotNull(message = "FittingConfigurationId unique 'id' is a mandatory field and cannot be null.")
+	@Column(name = "fittingConfigurationId", nullable = false)
+	private String fittingConfigurationId;
 	@NotNull(message = "FittingId unique 'id' is a mandatory field and cannot be null.")
 	@Column(name = "fittingId", nullable = false)
 	private Integer fittingId;
@@ -44,11 +44,15 @@ public class ActionPreferenceEntity {
 		return this.action;
 	}
 
+	public String getFittingConfigurationId() {
+		return this.fittingConfigurationId;
+	}
+
 	public Integer getFittingId() {
 		return this.fittingId;
 	}
 
-	public String getId() {
+	public UUID getId() {
 		return this.id;
 	}
 
@@ -75,8 +79,15 @@ public class ActionPreferenceEntity {
 		}
 
 		public ActionPreferenceEntity build() {
-			Objects.requireNonNull( this.onConstruction.id );
+			Objects.requireNonNull( this.onConstruction.fittingConfigurationId );
+			Objects.requireNonNull( this.onConstruction.fittingId );
+			Objects.requireNonNull( this.onConstruction.typeId );
 			return this.onConstruction;
+		}
+
+		public ActionPreferenceEntity.Builder withFittingConfigurationId( final @NotNull String fittingConfigurationId ) {
+			this.onConstruction.fittingConfigurationId = Objects.requireNonNull( fittingConfigurationId );
+			return this;
 		}
 
 		public ActionPreferenceEntity.Builder withFittingId( final @NotNull Integer fittingId ) {
@@ -84,13 +95,13 @@ public class ActionPreferenceEntity {
 			return this;
 		}
 
-		public ActionPreferenceEntity.Builder withTypeId( final @NotNull Integer typeId ) {
-			this.onConstruction.typeId = Objects.requireNonNull( typeId );
+		public ActionPreferenceEntity.Builder withSetActionType( final ActionType actionType ) {
+			this.onConstruction.action = actionType;
 			return this;
 		}
 
-		public ActionPreferenceEntity.Builder withUniqueId( final @NotNull String uniqueId ) {
-			this.onConstruction.id = Objects.requireNonNull( uniqueId );
+		public ActionPreferenceEntity.Builder withTypeId( final @NotNull Integer typeId ) {
+			this.onConstruction.typeId = Objects.requireNonNull( typeId );
 			return this;
 		}
 	}

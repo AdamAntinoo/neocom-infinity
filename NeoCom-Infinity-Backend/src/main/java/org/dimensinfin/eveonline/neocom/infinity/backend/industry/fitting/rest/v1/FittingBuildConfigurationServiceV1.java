@@ -12,17 +12,17 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import org.dimensinfin.eveonline.neocom.adapter.LocationCatalogService;
-import org.dimensinfin.eveonline.neocom.domain.Fitting;
+import org.dimensinfin.eveonline.neocom.domain.FittingV2;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdFittings200Ok;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataProviderWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.LocationCatalogServiceWrapper;
-import org.dimensinfin.eveonline.neocom.infinity.backend.character.fitting.converter.EsiCharacterFittingToFittingModelConverter;
 import org.dimensinfin.eveonline.neocom.infinity.backend.core.rest.NeoComCredentialService;
-import org.dimensinfin.eveonline.neocom.infinity.backend.industry.domain.FittingIndustryJob;
+import org.dimensinfin.eveonline.neocom.infinity.backend.industry.domain.ItemFactory;
+import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingBuildConfiguration;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.persistence.ActionPreferenceEntity;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.persistence.BuildActionPreferencesRepository;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.rest.dao.FittingBuildConfigurationDao;
-import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.service.FittingBuildTransformationService;
+import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.service.FittingBuildConfigurationGenerator;
 import org.dimensinfin.eveonline.neocom.infinity.backend.universe.item.rest.v2.EsiItemServiceV2;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComError;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
@@ -69,6 +69,7 @@ public class FittingBuildConfigurationServiceV1 extends NeoComCredentialService 
 	private final LocationCatalogService locationCatalogService;
 	private final BuildActionPreferencesRepository buildActionPreferencesRepository;
 	private final EsiItemServiceV2 esiItemServiceV2;
+	private final ItemFactory itemFactory;
 
 	// - C O N S T R U C T O R S
 	public FittingBuildConfigurationServiceV1( final @NotNull NeoComAuthenticationProvider neoComAuthenticationProvider,
@@ -76,12 +77,14 @@ public class FittingBuildConfigurationServiceV1 extends NeoComCredentialService 
 	                                           final @NotNull ESIDataProviderWrapper esiDataProviderWrapper,
 	                                           final @NotNull LocationCatalogServiceWrapper locationCatalogServiceWrapper,
 	                                           final @NotNull BuildActionPreferencesRepository buildActionPreferencesRepository,
-	                                           final @NotNull EsiItemServiceV2 esiItemServiceV2 ) {
+	                                           final @NotNull EsiItemServiceV2 esiItemServiceV2,
+	                                           final @NotNull ItemFactory itemFactory ) {
 		super( neoComAuthenticationProvider, credentialDetailsService );
 		this.esiDataProvider = Objects.requireNonNull( esiDataProviderWrapper.getSingleton() );
 		this.locationCatalogService = Objects.requireNonNull( locationCatalogServiceWrapper.getSingleton() );
 		this.buildActionPreferencesRepository = buildActionPreferencesRepository;
 		this.esiItemServiceV2 = esiItemServiceV2;
+		this.itemFactory = itemFactory;
 	}
 
 	public FittingBuildConfigurationDao getFittingBuildConfigurationById( final @NotNull Integer fittingId ) {
@@ -106,11 +109,11 @@ public class FittingBuildConfigurationServiceV1 extends NeoComCredentialService 
 		//		}
 	}
 
-	public FittingIndustryJob getFittingBuildConfigurationSavedConfiguration( final @NotNull Integer fittingId ) {
+	public FittingBuildConfiguration getFittingBuildConfigurationSavedConfiguration( final @NotNull Integer fittingId ) {
 		return fittingConfiguration( fittingId, true );
 	}
 
-	public FittingIndustryJob getFittingBuildConfigurationTargetConfiguration( final @NotNull Integer fittingId ) {
+	public FittingBuildConfiguration getFittingBuildConfigurationTargetConfiguration( final @NotNull Integer fittingId ) {
 		return fittingConfiguration( fittingId, false );
 	}
 
@@ -128,7 +131,7 @@ public class FittingBuildConfigurationServiceV1 extends NeoComCredentialService 
 	 *
 	 * @param fittingId the fitting unique identifier for the target fitting. Used to compose the unique configuration identifier
 	 */
-	private FittingIndustryJob fittingConfiguration( final @NotNull int fittingId, final boolean saved ) {
+	private FittingBuildConfiguration fittingConfiguration( final @NotNull int fittingId, final boolean saved ) {
 		// Get the list of fitting for the logged Pilot from the authenticated Credential.
 		final List<GetCharactersCharacterIdFittings200Ok> fittingList = this.esiDataProvider.getCharactersCharacterIdFittings(
 				this.getAuthorizedCredential()
@@ -138,12 +141,9 @@ public class FittingBuildConfigurationServiceV1 extends NeoComCredentialService 
 				.filter( fitting -> fitting.getFittingId() == fittingId ) // Search for matching fitting
 				.collect( this.toSingleton( fittingId ) );
 		// Get the list of preferences for this precise fitting. If none means that this is a new Order instance.
+		final String actionFilter = FittingBuildConfiguration.uniqueIdConstructor( this.getAuthorizedCredential().getAccountId(), fittingId );
 		final List<ActionPreferenceEntity> actionPreferences = this.buildActionPreferencesRepository.findAll().stream()
-				.filter( action -> ActionPreferenceEntity.uniqueIdConstructor(
-						BUILD_FITTING_ACTION_PREFIX,
-						this.getAuthorizedCredential().getAccountId(),
-						fittingId ).equalsIgnoreCase( action.getId() )
-				)
+				.filter( action -> action.getFittingConfigurationId().equalsIgnoreCase( actionFilter ) )
 				.collect( Collectors.toList() );
 
 		// Instantiate a processor to generate the required actions to complete the job.
@@ -153,13 +153,19 @@ public class FittingBuildConfigurationServiceV1 extends NeoComCredentialService 
 				.withLocationCatalogService( this.locationCatalogService )
 				.build();
 
-		final FittingBuildTransformationService transformer = new FittingBuildTransformationService.Builder()
+		final FittingBuildConfigurationGenerator transformer = new FittingBuildConfigurationGenerator.Builder()
 				.withIndustryBuildProcessor( industryBuildProcessor )
 				.withFitting(
-						new EsiCharacterFittingToFittingModelConverter(  this.esiDataProvider, this.esiItemServiceV2).convert( targetFitting ))
+						new FittingV2.Builder()
+								.withFittingDescription( targetFitting )
+								.withShipHull( this.itemFactory.generateEsiItem( targetFitting.getShipTypeId() ) )
+								.build()
+				)
 				.withPreferences( actionPreferences )
 				.build();
-		return saved ? transformer.transformInitialState() : transformer.transformTargetState();
+		return saved ?
+				transformer.transformInitialState( this.getAuthorizedCredential().getAccountId() ) :
+				transformer.transformTargetState( this.getAuthorizedCredential().getAccountId() );
 	}
 
 	/**

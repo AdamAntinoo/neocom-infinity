@@ -1,0 +1,90 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0_20_0_601_neocom_drop_actionpreferences_table
+      author: NeoCom development team. Adam Antinoo (adamantinoo.git@gmail.com).
+      changes:
+        - dropTable:
+            schemaName: neocom
+            tableName: ActionPreferences
+  - changeSet:
+      id: 0_20_0_602_neocom_create_actionpreferences_table
+      author: NeoCom development team. Adam Antinoo (adamantinoo.git@gmail.com).
+      changes:
+        - createTable:
+            schemaName: neocom
+            tableName: ActionPreferences
+            remarks: This table stores the user configured preferences when processing fitting builds
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    updatable: false
+                  remarks: The unique properties and automatically generated at instance creation.
+              - column:
+                  name: fittingId
+                  type: int
+                  constraints:
+                    nullable: false
+                  remarks: The fitting identifier that this action affects.
+              - column:
+                  name: typeId
+                  type: int
+                  constraints:
+                    nullable: false
+                  remarks: The item type id affected by this action. This alloes to filter module by module.
+              - column:
+                  name: action
+                  type: neocom.ActionType
+                  constraints:
+                    nullable: false
+                  remarks: The action that modifies the default BUY or any other value set by other rules.
+              - column:
+                  name: saved
+                  type: boolean
+                  constraints:
+                    nullable: false
+                  remarks: A true on this field sets this rule as a saved rule to be applied to initial setup.
+
+              - column:
+                  name: creationTime
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: lastUpdateTime
+                  type: timestamp
+                  constraints:
+                    nullable: true
+  - changeSet:
+      id: 0_20_0_603_neocom_actionpreferences_defaults
+      author: NeoCom development team. Adam Antinoo (adamantinoo.git@gmail.com).
+      changes:
+        - addDefaultValue:
+            schemaName: neocom
+            tableName: ActionPreferences
+            columnName: action
+            columnDataType: neocom.ActionType
+            defaultValue: 'BUY'
+        - addDefaultValue:
+            schemaName: neocom
+            tableName: ActionPreferences
+            columnName: saved
+            columnDataType: boolean
+            defaultValueBoolean: false
+  - changeSet:
+      id: 0_20_0_604_neocom_actionpreferences_altertable
+      author: NeoCom development team. Adam Antinoo (adamantinoo.git@gmail.com).
+      changes:
+        - addColumn:
+            schemaName: neocom
+            tableName: ActionPreferences
+            columns:
+              - column:
+                  name: fittingConfigurationId
+                  type: varchar(64)
+                  constraints:
+                    nullable: false
+                  remarks: The Fitting Configuration unique identifier that is affected by this action.
