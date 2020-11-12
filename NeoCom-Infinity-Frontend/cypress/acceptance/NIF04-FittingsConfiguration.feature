@@ -25,14 +25,21 @@ Feature: [NIF04] The Fitting Build Configuration page allows the user to select 
     #     Then  the target has the title "FITTING TARGET CONFIGURATION"
 
     # - F I T T I N G   C O N F I G U R A T I O N
-    @NIF04.02
-    Scenario: [NIF04.02]-The Fitting Configuration panel of type Saved contains a user defined structure that is the Fitting Identification, the Hull and the Configuration grouped by module set or bay.
+    # @NIF04.02
+    # Scenario: [NIF04.02]-The Fitting Configuration panel of type Saved contains a user defined structure that is the Fitting Info and the Fitting Contents.
+    #     Given the target is the panel of type "fitting-saved-configuration"
+    #     Then the target has the title "FITTING SAVED CONFIGURATION"
+    #     # - Validate the contents for section 1 - Info
+    #     Given the target is the panel of type "fitting-saved-configuration"
+    #     Given the target section "Fitting Info"
+    #     # - Validate the contents for section 2 - Components
+    #     Given the target is the panel of type "fitting-saved-configuration"
+    #     Given the target section "Fitting Components"
+
+    @NIF04.03
+    Scenario: [NIF04.03]-Validate the contents for the Fitting Info. It shows the fitting name and the Hull data.
         Given the target is the panel of type "fitting-saved-configuration"
-        # Then the target is tagged "white"
-        Then the target has the title "FITTING SAVED CONFIGURATION"
-        # - Validate the contents for section 1 - Info
         Given the target section "Fitting Info"
-        # Then the target is tagged "orange"
         Then the target has the title "VM Clearer A1"
         And field named "shipType" with label "SHIP" has contents "Venture"
         And field named "hullClass" with label "HULL CLASS" has contents "FRIGATE"
@@ -42,9 +49,11 @@ Feature: [NIF04] The Fitting Build Configuration page allows the user to select 
         And field named "sellStation" with label "STATION" has contents "Zehru IX - Moon 10 - Viziam Warehouse"
         And field named "sellPrice" with label "PRICE" has contents "325,000.00 ISK"
         And field named "hopCount" with label "HOPS" has contents "3 jumps - 6 mins."
-        # - Validate the contents for section 2 - Components
+
+    @NIF04.04
+    Scenario: [NIF04.04]-The Fitting Contents has the fit modules grouped on some sets that should be verified for the simplest case.
         Given the target is the panel of type "fitting-saved-configuration"
-        Given the target section "Fitting Components"
+        Given the target is the panel of type "fitting-contents"
         Then the target has 4 groups
         # - High Slots
         Given the target the group identified "HIGH-GROUP"
@@ -61,7 +70,10 @@ Feature: [NIF04] The Fitting Build Configuration page allows the user to select 
         # - Rig Slots
         Given the target the group identified "RIG-GROUP"
         Then the target has the group title "Rigs"
-        # And the target has 1 "fitting-module"
+        # - Cargo hols
+        Given the target the group identified "CARGO-BAY"
+        Then the target has the group title "Cargo Bay"
+# And the target has 1 "fitting-module"
 
 # @NIF04.03
 # Scenario: [NIF04.03]-validate the contents and structure for one of the Fitting contents.
