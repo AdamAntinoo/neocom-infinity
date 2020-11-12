@@ -17,6 +17,7 @@ import { HALResolver } from '@app/services/HALResolver.service'
 import { FittingBuildConfigurationDao } from '@domain/industry/dao/FittingBuildConfigurationDao.dao'
 import { NCVariant } from '@env/NeoComVariants'
 import { FittingBuildContentDao } from '@domain/industry/dao/FittingBuildContentDao.dao'
+import { FittingGroup } from '@domain/industry/FittingGroup.domain'
 
 @Component({
     selector: 'v1-fitting-contents-panel',
@@ -25,9 +26,14 @@ import { FittingBuildContentDao } from '@domain/industry/dao/FittingBuildContent
 })
 export class V1FittingContentsPanelComponent extends AppPanelComponent implements OnInit, IRefreshable {
     @Input() contents: FittingBuildContentDao[] = []
-    private slotGroups: Map<string, FittingBuildContentDao[]> = new Map<string, FittingBuildContentDao[]>()
+    private slotGroups: FittingGroup[] = []
     constructor() {
         super()
+        // Initialize the list of fitting groups.
+        this.slotGroups.push( new FittingGroup().setName('HIGH-SLOTS').setWeight(100))
+        this.slotGroups.push( new FittingGroup().setName('MED-SLOTS').setWeight(200))
+        this.slotGroups.push( new FittingGroup().setName('LOW-SLOTS').setWeight(300))
+        this.slotGroups.push( new FittingGroup().setName('CARGO-BAY').setWeight(400))
     }
 
     public ngOnInit(): void {
@@ -36,7 +42,7 @@ export class V1FittingContentsPanelComponent extends AppPanelComponent implement
     }
     // - I R E F R E S H A B L E
     public clean(): void {
-        this.slotGroups = new Map<string, FittingBuildContentDao[]>()
+        this.slotGroups = []
         this.dataModelRoot = []
     }
     /**
@@ -46,15 +52,24 @@ export class V1FittingContentsPanelComponent extends AppPanelComponent implement
         for (const fittingContent of this.contents) {
             this.addToSlotGroup(fittingContent.getLocationGroup(), fittingContent)
         }
-        for (const group of this.slotGroups.values())
-            for (const item of group)
-                this.dataModelRoot.push(item)
-                this.completeDowload()
+        for (const group of this.sortByWeight(this.slotGroups))
+            this.dataModelRoot.push(group)
+        this.completeDowload()
     }
     private addToSlotGroup(slotGroup: string, item: FittingBuildContentDao): void {
-        let hit = this.slotGroups.get(slotGroup)
-        if (null == hit) hit = []
-        hit.push(item)
-        this.slotGroups.set(slotGroup, hit)
+        let hit = undefined
+        for (const group of this.slotGroups) {
+            if (group.name === slotGroup) hit = group
+        }
+        if (undefined == hit) {
+            hit = new FittingGroup().setName(slotGroup)
+            this.slotGroups.push(hit)
+        }
+        hit.addContent(item)
+    }
+    private sortByWeight ( input : FittingGroup[]): FittingGroup[]{
+        return input.sort((element1, element2) =>
+            0 - (element2.weight > element1.weight ? 1 : -1)
+        )
     }
 }

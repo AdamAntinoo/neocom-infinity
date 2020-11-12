@@ -46,9 +46,9 @@ Feature: [NIF04] The Fitting Build Configuration page allows the user to select 
         And field named "hullType" has contents "[32880]"
         And field named "hullTech" with label "TECH" has contents "Tech I"
         And image named "icon" has link "https://image.eveonline.com/Type/32880_64.png"
-        And field named "sellStation" with label "STATION" has contents "Zehru IX - Moon 10 - Viziam Warehouse"
-        And field named "sellPrice" with label "PRICE" has contents "325,000.00 ISK"
-        And field named "hopCount" with label "HOPS" has contents "3 jumps - 6 mins."
+        And field named "sellStation" with label "STATION" has contents "Thashkarai VI - Zoar and Sons Factory"
+        And field named "sellPrice" with label "PRICE" has contents "350,000.00 ISK"
+        And field named "hopCount" with label "HOPS" has contents "2 jumps - 3 mins."
 
     @NIF04.04
     Scenario: [NIF04.04]-The Fitting Contents has the fit modules grouped on some sets that should be verified for the simplest case.
@@ -56,20 +56,20 @@ Feature: [NIF04] The Fitting Build Configuration page allows the user to select 
         Given the target is the panel of type "fitting-contents"
         Then the target has 4 groups
         # - High Slots
-        Given the target the group identified "HIGH-GROUP"
+        Given the target the group identified "HIGH-SLOTS"
         Then the target has the group title "High Slots"
         And the target has 2 "fitting-module"
         # - Mid Slots
-        Given the target the group identified "MID-GROUP"
+        Given the target the group identified "MID-SLOTS"
         Then the target has the group title "Mid Slots"
         # And the target has 3 "fitting-module"
         # - Low Slots
-        Given the target the group identified "LOW-GROUP"
+        Given the target the group identified "LOW-SLOTS"
         Then the target has the group title "Low Slots"
         # And the target has 1 "fitting-module"
         # - Rig Slots
-        Given the target the group identified "RIG-GROUP"
-        Then the target has the group title "Rigs"
+        # Given the target the group identified "RIG-GROUP"
+        # Then the target has the group title "Rigs"
         # - Cargo hols
         Given the target the group identified "CARGO-BAY"
         Then the target has the group title "Cargo Bay"
