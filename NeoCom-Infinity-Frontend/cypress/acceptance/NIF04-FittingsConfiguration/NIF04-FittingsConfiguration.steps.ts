@@ -45,7 +45,7 @@ Then('the target has {int} groups', function (count: number) {
     cy.get('@target').find('.fitting-group').should('have.length', count)
 })
 Given('the target the group identified {string}', function (groupIdentifier: string) {
-    cy.get('@target').find('[cy-name="' + groupIdentifier + '"]').should('exist')
+    cy.get('@target').find('[id="' + groupIdentifier + '"]').should('exist')
 })
 Then('the target has the group title {string}', function (title: string) {
     cy.get('@target').find('.group-title').contains(title, { matchCase: false })

@@ -30,10 +30,11 @@ export class V1FittingContentsPanelComponent extends AppPanelComponent implement
     constructor() {
         super()
         // Initialize the list of fitting groups.
-        this.slotGroups.push( new FittingGroup().setName('HIGH-SLOTS').setWeight(100))
-        this.slotGroups.push( new FittingGroup().setName('MED-SLOTS').setWeight(200))
-        this.slotGroups.push( new FittingGroup().setName('LOW-SLOTS').setWeight(300))
-        this.slotGroups.push( new FittingGroup().setName('CARGO-BAY').setWeight(400))
+        this.slotGroups=[]
+        this.slotGroups.push(new FittingGroup().setId('HIGH-SLOTS').setName('High Slots').setWeight(100))
+        this.slotGroups.push(new FittingGroup().setId('MED-SLOTS').setName('Med Slots').setWeight(200))
+        this.slotGroups.push(new FittingGroup().setId('LOW-SLOTS').setName('Low Slots').setWeight(300))
+        this.slotGroups.push(new FittingGroup().setId('CARGO-BAY').setName('Cargo').setWeight(400))
     }
 
     public ngOnInit(): void {
@@ -59,15 +60,15 @@ export class V1FittingContentsPanelComponent extends AppPanelComponent implement
     private addToSlotGroup(slotGroup: string, item: FittingBuildContentDao): void {
         let hit = undefined
         for (const group of this.slotGroups) {
-            if (group.name === slotGroup) hit = group
+            if (group.getId() === slotGroup) hit = group
         }
         if (undefined == hit) {
-            hit = new FittingGroup().setName(slotGroup)
+            hit = new FittingGroup().setId(slotGroup).setName(slotGroup).setWeight(900)
             this.slotGroups.push(hit)
         }
         hit.addContent(item)
     }
-    private sortByWeight ( input : FittingGroup[]): FittingGroup[]{
+    private sortByWeight(input: FittingGroup[]): FittingGroup[] {
         return input.sort((element1, element2) =>
             0 - (element2.weight > element1.weight ? 1 : -1)
         )

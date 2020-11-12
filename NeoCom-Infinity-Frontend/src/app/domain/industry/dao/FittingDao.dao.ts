@@ -19,4 +19,8 @@ export class FittingDao {
     private transform () : void{
         if (null != this.shipHull) this.shipHull = new EveItemDao(this.shipHull)
     }
+    // -  G E T T E R S
+    public getHullGroup () : string {
+        return this.shipHull.hullGroup
+    }
 }

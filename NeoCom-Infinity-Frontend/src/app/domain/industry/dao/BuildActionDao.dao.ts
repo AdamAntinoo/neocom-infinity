@@ -1,16 +1,17 @@
 // - DOMAIN
 import { StationDao } from '@domain/core/dao/StationDao.dao'
+import { NeoCom } from '@domain/NeoCom.domain'
 import { MarketOrderDao } from './MarketOrderDao.dao'
 
-export class BuildActionDao {
+export class BuildActionDao extends NeoCom {
     private actionType: string = 'BUY'
     private corporationHome: StationDao
     private marketOrder: MarketOrderDao
 
     constructor(values: Object = {}) {
-        // super()
+        super()
         Object.assign(this, values)
-        // this.jsonClass = 'FittingBuildConfiguration'
+        this.jsonClass = 'BuildActionDao'
         this.transform()
     }
     private transform(): void {
@@ -34,7 +35,7 @@ export class BuildActionDao {
     public getPrice(): number {
         return this.marketOrder.getPrice()
     }
-    public getStationName () : string{
+    public getStationName(): string {
         return this.marketOrder.getStationName()
     }
     // public getHops(): number {

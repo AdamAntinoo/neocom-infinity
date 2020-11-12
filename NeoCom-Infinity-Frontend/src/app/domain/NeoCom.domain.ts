@@ -27,9 +27,11 @@ export class NeoCom implements INode, ICollaboration, IExpandable, ISelectable/*
     public getJsonClass(): string {
         return this.jsonClass;
     }
-
+    public isActive(): boolean {
+        return true;
+    }
     // -  I C O L L A B O R A T I O N
-    collaborate2View(): ICollaboration[] {
+    public collaborate2View(): ICollaboration[] {
         return [this];
     }
 
@@ -38,16 +40,19 @@ export class NeoCom implements INode, ICollaboration, IExpandable, ISelectable/*
         return false;
     }
     public isExpanded(): boolean {
-        return false;
+        return this.expanded;
     }
     public collapse(): boolean {
+        this.expanded = false;
         return this.isExpanded();
     }
     public expand(): boolean {
+        this.expanded = true;
         return this.isExpanded();
     }
     public toggleExpanded() {
-        return this.isExpanded();
+        this.expanded = !this.expanded;
+        console.log('toggleExpanded: ' + this.expanded)
     }
 
     // - I S E L E C T A B L E

@@ -36,44 +36,42 @@ Feature: [NIF04] The Fitting Build Configuration page allows the user to select 
     #     Given the target is the panel of type "fitting-saved-configuration"
     #     Given the target section "Fitting Components"
 
-    @NIF04.03
-    Scenario: [NIF04.03]-Validate the contents for the Fitting Info. It shows the fitting name and the Hull data.
-        Given the target is the panel of type "fitting-saved-configuration"
-        Given the target section "Fitting Info"
-        Then the target has the title "VM Clearer A1"
-        And field named "shipType" with label "SHIP" has contents "Venture"
-        And field named "hullClass" with label "HULL CLASS" has contents "FRIGATE"
-        And field named "hullType" has contents "[32880]"
-        And field named "hullTech" with label "TECH" has contents "Tech I"
-        And image named "icon" has link "https://image.eveonline.com/Type/32880_64.png"
-        And field named "sellStation" with label "STATION" has contents "Thashkarai VI - Zoar and Sons Factory"
-        And field named "sellPrice" with label "PRICE" has contents "350,000.00 ISK"
-        And field named "hopCount" with label "HOPS" has contents "2 jumps - 3 mins."
+    # @NIF04.03
+    # Scenario: [NIF04.03]-Validate the contents for the Fitting Info. It shows the fitting name and the Hull data.
+    #     Given the target is the panel of type "fitting-saved-configuration"
+    #     Given the target section "Fitting Info"
+    #     Then the target has the title "VM Clearer A1"
+    #     And field named "shipType" with label "SHIP" has contents "Venture"
+    #     And field named "hullClass" with label "HULL CLASS" has contents "FRIGATE"
+    #     And field named "hullType" has contents "[32880]"
+    #     And field named "hullTech" with label "TECH" has contents "Tech I"
+    #     And image named "icon" has link "https://image.eveonline.com/Type/32880_64.png"
+    #     And field named "sellStation" with label "STATION" has contents "Thashkarai VI - Zoar and Sons Factory"
+    #     And field named "sellPrice" with label "PRICE" has contents "350,000.00 ISK"
+    #     And field named "hopCount" with label "HOPS" has contents "2 jumps - 3 mins."
 
     @NIF04.04
     Scenario: [NIF04.04]-The Fitting Contents has the fit modules grouped on some sets that should be verified for the simplest case.
         Given the target is the panel of type "fitting-saved-configuration"
         Given the target is the panel of type "fitting-contents"
-        Then the target has 4 groups
+        Then the target has 4 "fitting-group"
+        And the target has 7 "fitting-build-content"
         # - High Slots
-        Given the target the group identified "HIGH-SLOTS"
-        Then the target has the group title "High Slots"
-        And the target has 2 "fitting-module"
+        Given the target the "fitting-group" with id "HIGH-SLOTS"
+        Then the target has the title "High Slots"
         # - Mid Slots
-        Given the target the group identified "MID-SLOTS"
-        Then the target has the group title "Mid Slots"
-        # And the target has 3 "fitting-module"
+        Given the target the "fitting-group" with id "MED-SLOTS"
+        Then the target has the title "Med Slots"
         # - Low Slots
-        Given the target the group identified "LOW-SLOTS"
-        Then the target has the group title "Low Slots"
-        # And the target has 1 "fitting-module"
+        Given the target the "fitting-group" with id "LOW-SLOTS"
+        Then the target has the title "Low Slots"
         # - Rig Slots
         # Given the target the group identified "RIG-GROUP"
         # Then the target has the group title "Rigs"
         # - Cargo hols
-        Given the target the group identified "CARGO-BAY"
-        Then the target has the group title "Cargo Bay"
-# And the target has 1 "fitting-module"
+        Given the target the "fitting-group" with id "CARGO-BAY"
+        Then the target has the title "Cargo"
+
 
 # @NIF04.03
 # Scenario: [NIF04.03]-validate the contents and structure for one of the Fitting contents.
