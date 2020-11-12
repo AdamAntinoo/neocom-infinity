@@ -8,4 +8,8 @@ public class TestDataConstants {
 		public static final Integer TEST_PILOT_ANCESTRY_ID = 5;
 		public static final Integer TEST_PILOT_BLOODLINE_ID = 6;
 	}
+
+	public static class FittingConstants {
+		public static final Integer TEST_FITTING_ID = 60320161;
+	}
 }

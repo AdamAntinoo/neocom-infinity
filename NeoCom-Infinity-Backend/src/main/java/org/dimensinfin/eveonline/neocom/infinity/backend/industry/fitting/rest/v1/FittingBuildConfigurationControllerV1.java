@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.dimensinfin.eveonline.neocom.infinity.backend.industry.IndustryController;
+import org.dimensinfin.eveonline.neocom.infinity.backend.industry.rest.IndustryControllerV1;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingBuildConfiguration;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingConfigurations;
 
 @RestController
 @Validated
-public class FittingBuildConfigurationControllerV1 extends IndustryController {
+public class FittingBuildConfigurationControllerV1 extends IndustryControllerV1 {
 	private final FittingBuildConfigurationServiceV1 fittingBuildConfigurationServiceV1;
 
 	// - C O N S T R U C T O R S

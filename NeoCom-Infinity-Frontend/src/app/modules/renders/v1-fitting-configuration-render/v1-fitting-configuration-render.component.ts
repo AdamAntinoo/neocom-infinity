@@ -2,8 +2,9 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Input } from '@angular/core';
-import { BuildActionDao } from '@domain/industry/BuildActionDao.dao';
-import { FittingBuildConfiguration } from '@domain/industry/FittingBuildConfiguration.domain';
+import { FittingBuildContentDao } from '@domain/industry/dao/FittingBuildContentDao.dao';
+import { FittingBuildConfigurationDao } from '@domain/industry/dao/FittingBuildConfigurationDao.dao';
+import { FittingInfoDao } from '@domain/industry/dao/FittingInfoDao.dao';
 
 @Component({
     selector: 'v1-fitting-configuration',
@@ -11,50 +12,52 @@ import { FittingBuildConfiguration } from '@domain/industry/FittingBuildConfigur
     styleUrls: ['./v1-fitting-configuration-render.component.scss']
 })
 export class V1FittingConfigurationRenderComponent {
-    @Input() node: FittingBuildConfiguration
+    @Input() node: FittingInfoDao
 
     // - G E T T E R S   &   S E T T E R S
-    public getNode(): FittingBuildConfiguration {
+    public getNode(): FittingInfoDao {
         return this.node
     }
     public getFittingName(): string {
         if (this.getNode()) {
-            return this.getNode().getFittingName()
+            return this.getNode().fitting.name
         } else return '-DOWNLOADING-'
     }
     public getHullURLIcon(): string {
-        return this.getNode().getHullURLIcon()
+        return this.getNode().fitting.shipHull['urlforItem']
     }
     public getHullClass(): string {
-        return this.getNode().getHullClass()
+        return this.getNode().fitting.shipHull['groupName']
     }
     public getHullGroup(): string {
-        return this.getNode().getHullGroup()
+        return this.getNode().fitting.shipHull['hullGroup']
     }
     public getHullTypeId(): number {
-        return this.getNode().getHullTypeId()
+        return this.getNode().fitting.shipHull['shipTypeId']
     }
     public getHullName(): string {
-        return 'HULL'
+        return this.getNode().fitting.shipHull['name']
     }
     public getHullTech(): string {
-        return this.getNode().getHullTech()
+        return 'Tech I'
     }
     public getHullPrice(): number {
-        return this.getNode().getHullPrice()
+        return this.getNode().hullAction.getPrice()
     }
     public getMarketStation(): string {
-        return this.getNode().getMarketStation()
+        return this.getNode().hullAction.getStationName()
     }
-    public getHullHops () : number {
-        return this.getNode().getHullHops()
+    public getHullHops(): number {
+        return 2
     }
     public getHullHopTime(): number {
-        return this.getNode().getHullHopTime()
+        return 3
     }
-
+    // public getFittingContents(): FittingBuildContentDao[] {
+    //     return this.getNode().getContents()
+    // }
     // - I N T E R A C T I O N S
-    public getFittingItems(group: string): BuildActionDao[] {
-        return [this.getNode().getFittingItem(group, 0), this.getNode().getFittingItem(group, 0)]
-    }
+    // public getFittingItems(group: string): BuildActionDao[] {
+    //     return [this.getNode().getFittingItem(group, 0), this.getNode().getFittingItem(group, 0)]
+    // }
 }

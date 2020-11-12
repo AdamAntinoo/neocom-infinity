@@ -10,7 +10,8 @@ import { SharedModule } from '@shared/shared.module'
 import { RendersModule } from '../renders/renders.module'
 // - COMPONENTS
 import { V1IndustryFittingBuildConfigurationPageComponent } from './pages/v1-industry-fitting-build-configuration-page/v1-industry-fitting-build-configuration-page.component'
-import { V1FittingConfigurationPanelComponent } from './panels/v1-fitting-configuration-panel/v1-fitting-configuration-panel.component'
+import { V1FittingConfigurationPanelComponent } from './panels/v1-fitting-configuration-panel/v1-fitting-configuration-panel.component';
+import { V1FittingContentsPanelComponent } from './panels/v1-fitting-contents-panel/v1-fitting-contents-panel.component'
 
 const routes: Routes = [
     { path: 'fittings/buildConfiguration/:fittingId', component: V1IndustryFittingBuildConfigurationPageComponent },
@@ -26,7 +27,8 @@ const routes: Routes = [
     ],
     declarations: [
         V1IndustryFittingBuildConfigurationPageComponent,
-        V1FittingConfigurationPanelComponent
+        V1FittingConfigurationPanelComponent,
+        V1FittingContentsPanelComponent
     ],
     exports: [RouterModule]
 })

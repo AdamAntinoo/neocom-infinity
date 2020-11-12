@@ -2,8 +2,8 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Input } from '@angular/core';
-import { BuildActionDao } from '@domain/industry/BuildActionDao.dao';
-import { FittingBuildConfiguration } from '@domain/industry/FittingBuildConfiguration.domain';
+import { BuildActionDao } from '@domain/industry/dao/BuildActionDao.dao';
+import { FittingBuildConfigurationDao } from '@domain/industry/dao/FittingBuildConfigurationDao.dao';
 
 @Component({
     selector: 'v1-fitting-item',
@@ -17,13 +17,13 @@ export class V1FittingItemRenderComponent {
         return this.node
     }
     public getName(): string {
-        return this.getNode().getModuleName()
+        return 'NAME'
     }
     public getTech(): string {
-        return this.getNode().getTech()
+        return 'Tech I'
     }
     public getURLIcon(): string {
-        return this.getNode().getURLIcon()
+        return 'default'
     }
     public getStationName(): string {
         return this.getNode().getStationName()
@@ -32,6 +32,6 @@ export class V1FittingItemRenderComponent {
         return this.getNode().getPrice()
     }
     public getDistanceHops() : number{
-        return this.getNode().getHops()
+        return 2
     }
 }

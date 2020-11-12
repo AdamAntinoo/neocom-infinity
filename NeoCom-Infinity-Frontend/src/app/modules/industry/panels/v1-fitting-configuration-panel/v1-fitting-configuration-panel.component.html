@@ -1,9 +1,10 @@
-<div>
+<div id="{{getUniqueId()}}">
     <div class="panel-title">{{getTitle()}}</div>
-    CALLING VIEWER PANEL
-    <viewer-panel [nodes2render]="getNodes2Render()" [downloadtitle]="'Downloading Fitting Build Configuration data...'" [downloader]="self" [variant]="getVariant()">
-    </viewer-panel>
     <div *ngIf="fittingData">
-        <v1-fitting-configuration [node]="fittingData"></v1-fitting-configuration>
+        <v1-fitting-configuration [node]="getFittingInfo()"></v1-fitting-configuration>
+        <div class="section neocom-panel panel-orange">
+            <div class="section-title orange-hue" cy-section-name="Fitting Components">Fitting Components</div>
+            <v1-fitting-contents-panel [contents]="getFittingContents()"></v1-fitting-contents-panel>
+        </div>
     </div>
 </div>

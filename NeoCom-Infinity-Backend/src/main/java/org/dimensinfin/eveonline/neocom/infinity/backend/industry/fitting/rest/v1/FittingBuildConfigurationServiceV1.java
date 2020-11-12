@@ -32,7 +32,7 @@ import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticat
 import org.dimensinfin.eveonline.neocom.infinity.datamanagement.industry.processor.IndustryBuildProcessor;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 
-import static org.dimensinfin.eveonline.neocom.infinity.backend.industry.IndustryController.INDUSTRY_ERROR_CODE_PREFIX;
+import static org.dimensinfin.eveonline.neocom.infinity.backend.industry.rest.IndustryControllerV1.INDUSTRY_ERROR_CODE_PREFIX;
 
 /**
  * Fitting Build Orders are a complex data structure that represents the components and actions that that user preferences when building a determinate
@@ -95,13 +95,13 @@ public class FittingBuildConfigurationServiceV1 extends NeoComCredentialService 
 						WebMvcLinkBuilder.linkTo(
 								WebMvcLinkBuilder.methodOn( FittingBuildConfigurationControllerV1.class )
 										.getFittingBuildConfigurationSavedConfiguration( fittingId )
-						).withSelfRel()
+						).withRel( "saved" )
 				)
 				.withTargetLink(
 						WebMvcLinkBuilder.linkTo(
 								WebMvcLinkBuilder.methodOn( FittingBuildConfigurationControllerV1.class )
 										.getFittingBuildConfigurationTargetConfiguration( fittingId )
-						).withSelfRel()
+						).withRel( "target" )
 				)
 				.build();
 	}
