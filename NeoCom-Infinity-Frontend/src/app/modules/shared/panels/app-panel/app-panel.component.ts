@@ -39,6 +39,7 @@ export class AppPanelComponent extends BackgroundEnabledComponent implements IVi
         this.downloading = false
     }
     public getNodes2Render(): ICollaboration[] {
+        console.log('>[AppPanelComponent.getNodes2Render]> Node count: ' + this.renderNodeList.length)
         return this.renderNodeList
     }
     public setVariant(variant: string): void {

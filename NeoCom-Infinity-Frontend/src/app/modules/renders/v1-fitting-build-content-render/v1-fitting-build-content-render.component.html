@@ -1,0 +1,5 @@
+<p>v1-fitting-build-content-render works!</p>
+<div id="{{getUniqueId()}}" class="neocom-panel panel-red" *ngIf="getVariant() === '-FITTING-CONFIGURATION-'">
+    {{getUniqueId()}}
+    <v1-fitting-item [node]="getFittingItem()"></v1-fitting-item>
+</div>

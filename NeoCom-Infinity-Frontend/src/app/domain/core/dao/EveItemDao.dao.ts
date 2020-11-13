@@ -15,4 +15,11 @@ export class EveItemDao {
         this.transform()
     }
     private transform(): void { }
+
+    public getName(): string {
+        return this.item['name']
+    }
+    public getURLIcon(): string {
+        return this.urlforItem
+    }
 }

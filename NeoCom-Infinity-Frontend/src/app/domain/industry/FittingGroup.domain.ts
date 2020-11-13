@@ -6,7 +6,7 @@ export class FittingGroup extends NeoCom {
     public id: string
     public name: string
     public weight: number = 100
-    private contents: ICollaboration[] = []
+    private contents: NeoCom[] = []
 
     constructor(values: Object = {}) {
         super()
@@ -20,7 +20,7 @@ export class FittingGroup extends NeoCom {
         this.id = newId
         return this
     }
-    public addContent(item: ICollaboration): FittingGroup {
+    public addContent(item: NeoCom): FittingGroup {
         this.contents.push(item)
         return this
     }
@@ -37,8 +37,8 @@ export class FittingGroup extends NeoCom {
     }
 
     // -  I C O L L A B O R A T I O N
-    public collaborate2View(): ICollaboration[] {
-        const collabration: ICollaboration[] = [this]
+    public collaborate2View(): NeoCom[] {
+        const collabration: NeoCom[] = [this]
         collabration.push(...this.contents)
         return collabration
     }

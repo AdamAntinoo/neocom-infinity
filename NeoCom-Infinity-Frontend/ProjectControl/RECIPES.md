@@ -18,12 +18,11 @@ Create acceptance support functions to search for panels and other elements duri
 or the direct access pattern so all code can use the same set of asserts.
 
 ## [ANGULAR SNIPPETS]
--- Return Observable
-return Observable.create((observer) => {
-		let service = new Medico(JSON.parse(serviceData));
-		observer.next(service);
-		observer.complete();
-});
+[OBSERVABLE]
+return  new Observable((observer) => {
+            observer.next(this.item.target)
+            observer.complete()
+    })
 
 [FILTER]
     this._filters.push(new Filter()

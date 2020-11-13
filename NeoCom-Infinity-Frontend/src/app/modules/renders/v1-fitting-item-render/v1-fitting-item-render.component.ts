@@ -2,36 +2,45 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Input } from '@angular/core';
+import { EveItemDao } from '@domain/core/dao/EveItemDao.dao';
+import { FittingItem } from '@domain/FittingItem.domain';
 import { BuildActionDao } from '@domain/industry/dao/BuildActionDao.dao';
 import { FittingBuildConfigurationDao } from '@domain/industry/dao/FittingBuildConfigurationDao.dao';
+import { FittingItemHAL } from '@domain/industry/hal/FittingItemHAL.hal';
+import { NodeContainerRenderComponent } from '@shared/renders/node-container-render/node-container-render.component';
+import { Observable } from 'rxjs';
+import { V2NodeContainerRenderComponent } from '../v2-node-container-render/v2-node-container-render.component';
 
 @Component({
     selector: 'v1-fitting-item',
     templateUrl: './v1-fitting-item-render.component.html',
     styleUrls: ['./v1-fitting-item-render.component.scss']
 })
-export class V1FittingItemRenderComponent {
-    @Input() node: BuildActionDao
-    
-    public getNode(): BuildActionDao {
-        return this.node
+export class V1FittingItemRenderComponent extends V2NodeContainerRenderComponent {
+    // - G E T T E R S
+    public getHalNode(): FittingItemHAL {
+        return this.node as FittingItemHAL
     }
     public getName(): string {
-        return 'NAME'
+        return 'hh' //this.getNode().getName()
     }
     public getTech(): string {
         return 'Tech I'
     }
-    public getURLIcon(): string {
-        return 'default'
+    public getItem() : Observable<EveItemDao>{
+        return this.getHalNode().getItem()
     }
+    // public getURLIcon(): string {
+    //     const item = this.getNode().getItem()
+    //     if (item) return item.getURLIcon()
+    // }
     public getStationName(): string {
-        return this.getNode().getStationName()
+        return 'hh' //this.getNode().getName()
     }
     public getPrice(): number {
-        return this.getNode().getPrice()
+        return 123
     }
-    public getDistanceHops() : number{
+    public getDistanceHops(): number {
         return 2
     }
 }

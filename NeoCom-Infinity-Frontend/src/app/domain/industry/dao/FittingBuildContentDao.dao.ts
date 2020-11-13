@@ -21,6 +21,9 @@ export class FittingBuildContentDao extends NeoCom {
         if (null != this.fittingItem) this.fittingItem = new FittingItemHAL(this.fittingItem)
         if (null != this.action) this.action = new BuildActionDao(this.action)
     }
+    public getId(): string {
+        return this.id
+    }
     /**
      * Calculates the name of the contents group that matches the location flag name. The groups are the HIGH, MID, LOW and RIGS groups plus the different cargo holds that can be defined inside a ship. The default for any unmapped location is the CARGO group location.
      */
@@ -40,5 +43,8 @@ export class FittingBuildContentDao extends NeoCom {
                 return 'HIGH-SLOTS'
             default: return 'CARGO-BAY'
         }
+    }
+    public getFittingItem(): FittingItemHAL {
+        return this.fittingItem
     }
 }

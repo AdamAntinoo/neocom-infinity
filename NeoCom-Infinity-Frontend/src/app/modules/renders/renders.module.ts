@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { AppCommonModule } from '../common/common.module';
 import { V2PilotRenderComponent } from './v2-pilot-render/v2-pilot-render.component';
 import { V1FittingItemRenderComponent } from './v1-fitting-item-render/v1-fitting-item-render.component';
-import { V1FittingContentRenderComponent } from './v1-fitting-content-render/v1-fitting-content-render.component';
+// import { V1FittingContentRenderComponent } from './v1-fitting-content-render/v1-fitting-content-render.component';
 import { V1FittingInfoRenderComponent } from './v1-fitting-info-render/v1-fitting-info-render.component';
 import { SharedModule } from '@shared/shared.module';
 import { V1FittingGroupRenderComponent } from './v1-fitting-group-render/v1-fitting-group-render.component';
@@ -24,7 +24,7 @@ import { V1FittingBuildContentRenderComponent } from './v1-fitting-build-content
         // NodeContainerRenderComponent,
         V2PilotRenderComponent,
         V1FittingItemRenderComponent,
-        V1FittingContentRenderComponent,
+        // V1FittingContentRenderComponent,
         V1FittingInfoRenderComponent,
         V1FittingGroupRenderComponent,
         V2NodeContainerRenderComponent,
@@ -35,7 +35,7 @@ import { V1FittingBuildContentRenderComponent } from './v1-fitting-build-content
         // NodeContainerRenderComponent,
         V2PilotRenderComponent,
         V1FittingItemRenderComponent,
-        V1FittingContentRenderComponent,
+        // V1FittingContentRenderComponent,
         V1FittingInfoRenderComponent,
         V1FittingGroupRenderComponent,
         V2NodeContainerRenderComponent,

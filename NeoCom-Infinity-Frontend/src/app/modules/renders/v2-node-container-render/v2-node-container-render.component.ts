@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Input } from '@angular/core';
 // - DOMAIN
 import { BackgroundEnabledComponent } from '@bit/innovative.innovative.innovative-core';
+import { HALNode } from '@domain/hal/HALNode.hal';
 import { IViewer } from '@domain/interfaces/IViewer.interface';
 import { NeoCom } from '@domain/NeoCom.domain';
 
@@ -13,7 +14,7 @@ import { NeoCom } from '@domain/NeoCom.domain';
 })
 export class V2NodeContainerRenderComponent extends BackgroundEnabledComponent {
     @Input() container: IViewer;
-    @Input() node: NeoCom;
+    @Input() node: NeoCom | HALNode;
     @Input() variant: string = '-DEFAULT-';
     @Input() index: number = 1;
     @Input() selectOnHover: boolean = false

@@ -4,8 +4,9 @@ import { Pilot } from './Pilot.domain';
 import { NeoCom } from './NeoCom.domain';
 import { neocom_constants } from '../platform/neocom-constants.platform';
 import { HALLink } from './hal/HALLink.hal';
+import { HALNode } from './hal/HALNode.hal';
 
-export class Corporation extends HALLink  {
+export class Corporation extends HALNode  {
     public corporationId: number;
     public corporationPublicData: any;
     public ceoPilotData: Pilot;
@@ -13,6 +14,7 @@ export class Corporation extends HALLink  {
     public alliance: Alliance;
     public url4Icon: string;
     // public homeStation: Location = new Location();
+    public href: string
 
     constructor(values: Object = {}) {
         super();
