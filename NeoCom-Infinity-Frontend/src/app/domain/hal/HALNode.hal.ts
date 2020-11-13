@@ -2,7 +2,6 @@
 import { Observable } from 'rxjs';
 // - DOMAIN
 import { HALResolver } from '@app/services/HALResolver.service';
-import { ResponseTransformer } from '@app/services/support/ResponseTransformer';
 import { NeoCom } from '@domain/NeoCom.domain';
 
 export class HALNode extends NeoCom {

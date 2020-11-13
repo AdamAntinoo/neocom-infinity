@@ -3,6 +3,7 @@ import { Observable } from 'rxjs'
 // - DOMAIN
 import { HALResolver } from '@app/services/HALResolver.service'
 import { NeoCom } from '@domain/NeoCom.domain'
+import { map } from 'rxjs/operators'
 
 export class HALLink<T> /*extends NeoCom*/ {
     public isDownloaded: boolean = false
@@ -10,17 +11,27 @@ export class HALLink<T> /*extends NeoCom*/ {
     public href: string
     public target: T
 
-    // public resolve(resolver: HALResolver): Observable<T> {
-    //     return resolver.resolve(this.href) as Observable<T>
-    // }
-    public access(resolver: HALResolver): Observable<T> {
+    constructor(values: Object = {}) {
+        Object.assign(this, values)
+    }
+
+    public access(resolver: HALResolver): Promise<T | any> {
         if (this.isDownloaded)
-            return new Observable((observer) => {
-                observer.next(this.target)
-                observer.complete()
-            })
+            return new Observable(subscriber => {
+                subscriber.next(this.target)
+                subscriber.complete()
+            }).toPromise()
         else {
-            return resolver.resolve(this.href) as Observable<T>
+            return new Observable(subscriber => {
+                if (null != resolver)
+                    resolver.resolve(this.href)
+                        .subscribe((entrydata: any): void => {
+                            this.target = entrydata
+                            subscriber.next(this.target)
+                            subscriber.complete();
+                        })
+                else subscriber.next(this.target)
+            }).toPromise()
         }
     }
 }

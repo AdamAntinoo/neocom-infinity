@@ -19,7 +19,7 @@ export class Corporation extends HALNode  {
     constructor(values: Object = {}) {
         super();
         Object.assign(this, values);
-        this.jsonClass = 'Corporation';
+        // this.jsonClass = 'Corporation';
         // Transform child instances to class objects.
         if (null != this.ceoPilotData) this.ceoPilotData = new Pilot(this.ceoPilotData);
         if (null != this.alliance) this.alliance = new Alliance(this.alliance);

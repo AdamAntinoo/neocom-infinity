@@ -18,8 +18,6 @@ import { FittingItemHAL } from '@domain/industry/hal/FittingItemHAL.hal';
     styleUrls: ['./v1-fitting-build-content-render.component.scss']
 })
 export class V1FittingBuildContentRenderComponent extends V2NodeContainerRenderComponent {
-    // private fittingItem: FittingItem
-
     constructor(protected resolver: HALResolver) { super() }
 
     public getNode(): FittingBuildContentDao {
@@ -28,11 +26,6 @@ export class V1FittingBuildContentRenderComponent extends V2NodeContainerRenderC
     public getUniqueId(): string {
         return this.getNode().getId()
     }
-    // public getFittingItem2(): FittingItem {
-    //     new FittingItem().fromHal(this.getNode().getFittingItem(), this.resolver)
-    //         .subscribe(eveItem => this.fittingItem = eveItem as EveItemDao)
-    //     return this.fittingItem
-    // }
     public getFittingItem(): FittingItemHAL {
         return this.getNode().getFittingItem()
     }

@@ -22,7 +22,7 @@ export class PilotV2 extends HALNode {
     public ancestryData: object
     public bloodlineData: object
 
-    private corpObservable: Observable<Corporation>
+    // private corpObservable: Observable<Corporation>
 
     constructor(values: Object = {}) {
         super()

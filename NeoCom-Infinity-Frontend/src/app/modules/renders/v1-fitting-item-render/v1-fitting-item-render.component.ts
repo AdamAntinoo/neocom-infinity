@@ -21,17 +21,24 @@ export class V1FittingItemRenderComponent extends V2NodeContainerRenderComponent
     public getHalNode(): FittingItemHAL {
         return this.node as FittingItemHAL
     }
-    public getName(): string {
-        return 'hh' //this.getNode().getName()
+    // public getName(): Promise<string> {
+    //     console.log('>[V1FittingItemRenderComponent.getName]>Name: ' + this.getHalNode().getName())
+    //     // return 'hh' //this.getNode().getName()
+    //     return this.getHalNode().getName()
+    // }
+    public async getName(): Promise<string> {
+        console.log('>[V1FittingItemRenderComponent.getName]>Name: ' + this.getHalNode().getName())
+        // return 'hh' //this.getNode().getName()
+        return await this.getHalNode().getName() +"jkhkjlhkj"
     }
     public getTech(): string {
         return 'Tech I'
     }
-    public getItem() : Observable<EveItemDao>{
-        return this.getHalNode().getItem()
-    }
-    // public getURLIcon(): string {
-    //     const item = this.getNode().getItem()
+    // public async getItem(): Promise<EveItemDao> {
+    //     return this.getHalNode().getItem()
+    // }
+    // public async getURLIcon(): Promise<string> {
+    //     const item = await this.getItem()
     //     if (item) return item.getURLIcon()
     // }
     public getStationName(): string {

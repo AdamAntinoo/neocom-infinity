@@ -2,6 +2,7 @@
 import { NeoCom } from '@domain/NeoCom.domain'
 import { BuildActionDao } from './BuildActionDao.dao'
 import { FittingItemHAL } from '../hal/FittingItemHAL.hal'
+import { HALResolver } from '@app/services/HALResolver.service'
 
 export class FittingBuildContentDao extends NeoCom {
     private id: string

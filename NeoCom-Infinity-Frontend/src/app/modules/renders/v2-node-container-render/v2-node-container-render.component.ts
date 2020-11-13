@@ -14,7 +14,7 @@ import { NeoCom } from '@domain/NeoCom.domain';
 })
 export class V2NodeContainerRenderComponent extends BackgroundEnabledComponent {
     @Input() container: IViewer;
-    @Input() node: NeoCom | HALNode;
+    @Input() node: NeoCom;
     @Input() variant: string = '-DEFAULT-';
     @Input() index: number = 1;
     @Input() selectOnHover: boolean = false

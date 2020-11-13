@@ -21,6 +21,7 @@ export class HALResolver {
         return target
     }
     public resolve(link: string): Observable<any> {
+        console.log('>[HALResolver.resolve]>Link: ' + link)
         // Add mandatory headers to access backend
         let newheaders = this.wrapHttpSecureHeaders();
         return this.httpClient.get(link, { headers: newheaders })

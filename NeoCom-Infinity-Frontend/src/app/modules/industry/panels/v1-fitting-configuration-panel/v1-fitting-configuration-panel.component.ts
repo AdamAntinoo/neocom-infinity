@@ -39,7 +39,7 @@ export class V1FittingConfigurationPanelComponent extends BackgroundEnabledCompo
             return this.fittingData.getFittingId()
         else return '-'
     }
-    public getFittingInfo () : FittingInfoDao{
+    public getFittingInfo(): FittingInfoDao {
         if (this.fittingData) return this.fittingData.getFittingInfo()
         else return undefined
     }
@@ -56,6 +56,7 @@ export class V1FittingConfigurationPanelComponent extends BackgroundEnabledCompo
                 this.halResolver.resolve(this.link)
                     .subscribe((response: any) => {
                         this.fittingData = new FittingBuildConfigurationDao(response)
+                        if (this.fittingData.isHalCompliant()) this.fittingData.injectResolver(this.halResolver)
                     })
             )
     }

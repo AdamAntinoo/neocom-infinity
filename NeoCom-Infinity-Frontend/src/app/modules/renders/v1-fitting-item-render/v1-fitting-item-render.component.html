@@ -1,11 +1,11 @@
 <div class="neocom-panel panel-green row">
     <div class="neocom-icon iconsize-36">
-        <img src="{{getitem().getURLIcon()}}" alt="Eve Item Image">
+        <img src="{{getName()}}" alt="Eve Item Image">
     </div>
     <div class="column">
         <div class="field">
             <span cy-field-label="moduleName" class="label">NAME</span><br>
-            <span cy-field-value="moduleName" class="">{{getitem().getName()}}</span>
+            <span cy-field-value="moduleName" class="">{{getName() | async}}</span>
         </div>
         <div class="field">
             <span cy-field-label="hullTech" class="label">TECH</span><br>

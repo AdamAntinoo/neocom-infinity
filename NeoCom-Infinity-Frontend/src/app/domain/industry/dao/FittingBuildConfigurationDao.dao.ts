@@ -6,6 +6,7 @@ import { BuildActionDao } from './BuildActionDao.dao'
 import { FittingBuildContentDao } from './FittingBuildContentDao.dao'
 import { HullDao } from './HullDao.dao'
 import { FittingInfoDao } from './FittingInfoDao.dao'
+import { HALResolver } from '@app/services/HALResolver.service'
 /**
  * This class contains all the Fitting data hierarchy as processed from the backend.
  * It uses the Node factory to collaborate contents to the automatic node render factory so content management is simple to render and control.
@@ -36,12 +37,22 @@ export class FittingBuildConfigurationDao {
         if (null != this.contents) {
             const transformedContents: FittingBuildContentDao[] = []
             this.contents.forEach(content => {
-                transformedContents.push(new FittingBuildContentDao(content))
+                const buildContent = new FittingBuildContentDao(content)
+                transformedContents.push(buildContent)
             })
             this.contents = transformedContents
         }
     }
 
+    // - H A L C O M P L I A N T
+    public isHalCompliant(): boolean {
+        return true
+    }
+    public injectResolver(resolver: HALResolver): void {
+        for (const content of this.contents) {
+            content.getFittingItem().setResolver(resolver)
+        }
+    }
     // - I C O L L A B O R A T I O N
     // public collaborate2View(): ICollaboration[] {
     //     return [this];
@@ -50,7 +61,7 @@ export class FittingBuildConfigurationDao {
     public getFittingId(): string {
         return this.fittingBuildId
     }
-    public getFittingInfo () : FittingInfoDao{
+    public getFittingInfo(): FittingInfoDao {
         return this.fittingInfo
     }
     // public getHullURLIcon(): string {
