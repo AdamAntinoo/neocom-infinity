@@ -2,10 +2,8 @@
 import { Observable } from 'rxjs'
 // - DOMAIN
 import { HALResolver } from '@app/services/HALResolver.service'
-import { NeoCom } from '@domain/NeoCom.domain'
-import { map } from 'rxjs/operators'
 
-export class HALLink<T> /*extends NeoCom*/ {
+export class HALLink<T> {
     public isDownloaded: boolean = false
     public rel: string
     public href: string
@@ -27,6 +25,7 @@ export class HALLink<T> /*extends NeoCom*/ {
                     resolver.resolve(this.href)
                         .subscribe((entrydata: any): void => {
                             this.target = entrydata
+                            this.isDownloaded = true
                             subscriber.next(this.target)
                             subscriber.complete();
                         })

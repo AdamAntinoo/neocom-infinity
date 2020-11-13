@@ -20,6 +20,22 @@ export class FittingItemHAL extends HALNode {
     private transform(): void {
         if (null != this.item) this.item = new HALLink<EveItemDao>(this.item)
     }
+    // - G E T T E R S
+    public getName(): string {
+        if (this.item.isDownloaded) {
+            console.log('>[FittingItemHAL.getName]>Name: ' + this.item.target.getName())
+            return this.item.target.getName()
+        } else return '-DOWNLOADING-'
+    }
+    public getURLIcon(): string {
+        if (this.item.isDownloaded)
+            return this.item.target.urlforItem
+    }
+    public getModuleGroup(): string {
+        if (this.item.isDownloaded)
+            return this.item.target.group['groupName']
+    }
+
     // public resolve(): Observable<FittingItemHAL> {
     //     this.item.resolve()
     //         .subscribe(itemData => {
@@ -31,10 +47,10 @@ export class FittingItemHAL extends HALNode {
         return await this.item.access(this.getResolver())
     }
     public accessItem(): Promise<EveItemDao> {
-        console.log('Resolver: ' + this.getResolver())
+        // console.log('Resolver: ' + this.getResolver())
         return this.item.access(this.getResolver())
     }
-    public async getName(): Promise<string> {
+    public async getName2(): Promise<string> {
         const halItem: EveItemDao = new EveItemDao(await this.getItem())
         if (null != halItem) return halItem.getName()
     }
@@ -42,9 +58,6 @@ export class FittingItemHAL extends HALNode {
     //     const item = await this.getItem()
     //     return item.getName()
     // }
-    public async getURLIcon(): Promise<string> {
-        return await (await this.getItem()).getURLIcon()
-    }
     //     public async accessItem () : Promise<EveItemDao>{
     // if ( this.item.isDownloaded)
     //         // if (undefined == this.corporation.href)

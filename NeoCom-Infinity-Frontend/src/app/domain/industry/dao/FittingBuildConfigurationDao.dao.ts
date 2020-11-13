@@ -13,21 +13,12 @@ import { FittingItem } from '@domain/FittingItem.domain'
  * It uses the Node factory to collaborate contents to the automatic node render factory so content management is simple to render and control.
  */
 export class FittingBuildConfigurationDao {
-    // public name: string
-    // public description: string
-    // public hullGroup: string
-    // public hops: number
-    // private hull: HullDao
-    // private actions: BuildActionDao[]
-
     private fittingBuildId: string
     private fittingInfo: FittingInfoDao
     private contents: FittingBuildContentDao[]
 
     constructor(values: Object = {}) {
-        // super()
         Object.assign(this, values)
-        // this.jsonClass = 'FittingBuildConfiguration'
         this.transform()
     }
     /**
@@ -46,22 +37,15 @@ export class FittingBuildConfigurationDao {
     }
 
     // - H A L C O M P L I A N T
-    public isHalCompliant(): boolean {
-        return true
-    }
-    public injectResolver(resolver: HALResolver): void {
-        for (const content of this.contents) {
-            content.fittingItem.setResolver(resolver)
-            new FittingItem().fromHal(content.fittingItem)
-                .then(item => {
-                    content.realFittingItem = item
-                })
-        }
-    }
-    // - I C O L L A B O R A T I O N
-    // public collaborate2View(): ICollaboration[] {
-    //     return [this];
+    // public isHalCompliant(): boolean {
+    //     return true
     // }
+    // public injectResolver(resolver: HALResolver): void {
+    //     for (const content of this.contents) {
+    //         content.fittingItem.setResolver(resolver)
+    //     }
+    // }
+
     // - G E T T E R S   &   S E T T E R S
     public getFittingId(): string {
         return this.fittingBuildId
@@ -69,41 +53,7 @@ export class FittingBuildConfigurationDao {
     public getFittingInfo(): FittingInfoDao {
         return this.fittingInfo
     }
-    // public getHullURLIcon(): string {
-    //     return this.hull.getHullURLIcon()
-    // }
-    // public getHullClass(): string {
-    //     return this.hull.getHullClass()
-    // }
-    // public getFittingName(): string {
-    //     return this.name
-    // }
-    // public getHullGroup(): string {
-    //     return this.hullGroup
-    // }
     public getContents(): FittingBuildContentDao[] {
         return this.contents
     }
-    // - D E L E G A T E D
-    // public getHullTypeId(): number {
-    //     return this.hull.getHullTypeId()
-    // }
-    // public getHullTech(): string {
-    //     return this.hull.getTech()
-    // }
-    // public getHullPrice(): number {
-    //     return this.hull.getPrice()
-    // }
-    // public getMarketStation(): string {
-    //     return this.hull.getMarketStation()
-    // }
-    // public getHullHops(): number {
-    //     return this.hull.getHullHops()
-    // }
-    // public getHullHopTime(): number {
-    //     return this.hull.getHullHopTime()
-    // }
-    // public getFittingItem(group: string, index: number): BuildActionDao {
-    //     return new BuildActionDao(this.actions[index])
-    // }
 }

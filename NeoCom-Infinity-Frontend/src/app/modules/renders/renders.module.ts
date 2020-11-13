@@ -12,6 +12,7 @@ import { V1FittingGroupRenderComponent } from './v1-fitting-group-render/v1-fitt
 import { V2NodeContainerRenderComponent } from './v2-node-container-render/v2-node-container-render.component';
 import { V1BuildActionRenderComponent } from './v1-build-action-render/v1-build-action-render.component';
 import { V1FittingBuildContentRenderComponent } from './v1-fitting-build-content-render/v1-fitting-build-content-render.component';
+import { V1MarketDataRenderComponent } from './v1-market-data-render/v1-market-data-render.component';
 // import { NodeContainerRenderComponent } from './node-container-render/node-container-render.component';
 
 @NgModule({
@@ -29,7 +30,8 @@ import { V1FittingBuildContentRenderComponent } from './v1-fitting-build-content
         V1FittingGroupRenderComponent,
         V2NodeContainerRenderComponent,
         V1BuildActionRenderComponent,
-        V1FittingBuildContentRenderComponent
+        V1FittingBuildContentRenderComponent,
+        V1MarketDataRenderComponent
     ],
     exports: [
         // NodeContainerRenderComponent,
@@ -40,7 +42,8 @@ import { V1FittingBuildContentRenderComponent } from './v1-fitting-build-content
         V1FittingGroupRenderComponent,
         V2NodeContainerRenderComponent,
         V1BuildActionRenderComponent,
-        V1FittingBuildContentRenderComponent
+        V1FittingBuildContentRenderComponent,
+        V1MarketDataRenderComponent
     ]
 })
 export class RendersModule { }
