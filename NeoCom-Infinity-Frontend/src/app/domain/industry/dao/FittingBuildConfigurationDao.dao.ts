@@ -7,6 +7,7 @@ import { FittingBuildContentDao } from './FittingBuildContentDao.dao'
 import { HullDao } from './HullDao.dao'
 import { FittingInfoDao } from './FittingInfoDao.dao'
 import { HALResolver } from '@app/services/HALResolver.service'
+import { FittingItem } from '@domain/FittingItem.domain'
 /**
  * This class contains all the Fitting data hierarchy as processed from the backend.
  * It uses the Node factory to collaborate contents to the automatic node render factory so content management is simple to render and control.
@@ -50,7 +51,11 @@ export class FittingBuildConfigurationDao {
     }
     public injectResolver(resolver: HALResolver): void {
         for (const content of this.contents) {
-            content.getFittingItem().setResolver(resolver)
+            content.fittingItem.setResolver(resolver)
+            new FittingItem().fromHal(content.fittingItem)
+                .then(item => {
+                    content.realFittingItem = item
+                })
         }
     }
     // - I C O L L A B O R A T I O N

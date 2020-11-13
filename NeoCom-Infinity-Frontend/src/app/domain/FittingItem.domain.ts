@@ -16,13 +16,16 @@ export class FittingItem extends NeoCom {
         Object.assign(this, values);
         this.jsonClass = 'FittingItem';
     }
-    // public fromHal(fittingItemHal: FittingItemHAL, resolver: HALResolver): Observable<FittingItem> {
-    //     this.typeId = fittingItemHal.typeId
-    //     this.name = fittingItemHal.name
-    //     this.location = fittingItemHal.location
-    //     fittingItemHal.setResolver(resolver)
-    //     return fittingItemHal.resolve(fittingItemHal.item)
-    // }
+    public fromHal(fittingItemHal: FittingItemHAL): FittingItem {
+        this.typeId = fittingItemHal.typeId
+        this.name = fittingItemHal.name
+        this.location = fittingItemHal.location
+        fittingItemHal.accessItem()
+            .then(item => {
+                this.item = new EveItemDao(item)
+            })
+        return this
+    }
 
     // - G E T T E R S
     public getName(): string {

@@ -30,6 +30,10 @@ export class FittingItemHAL extends HALNode {
         console.log('Resolver: ' + this.getResolver())
         return await this.item.access(this.getResolver())
     }
+    public accessItem(): Promise<EveItemDao> {
+        console.log('Resolver: ' + this.getResolver())
+        return this.item.access(this.getResolver())
+    }
     public async getName(): Promise<string> {
         const halItem: EveItemDao = new EveItemDao(await this.getItem())
         if (null != halItem) return halItem.getName()

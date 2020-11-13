@@ -18,18 +18,22 @@ import { V2NodeContainerRenderComponent } from '../v2-node-container-render/v2-n
 })
 export class V1FittingItemRenderComponent extends V2NodeContainerRenderComponent {
     // - G E T T E R S
-    public getHalNode(): FittingItemHAL {
-        return this.node as FittingItemHAL
+    public getNode(): FittingItem {
+        return this.node as FittingItem
     }
     // public getName(): Promise<string> {
     //     console.log('>[V1FittingItemRenderComponent.getName]>Name: ' + this.getHalNode().getName())
     //     // return 'hh' //this.getNode().getName()
     //     return this.getHalNode().getName()
     // }
-    public async getName(): Promise<string> {
-        console.log('>[V1FittingItemRenderComponent.getName]>Name: ' + this.getHalNode().getName())
-        // return 'hh' //this.getNode().getName()
-        return await this.getHalNode().getName() +"jkhkjlhkj"
+    // public async getName(): Promise<string> {
+    //     console.log('>[V1FittingItemRenderComponent.getName]>Name: ' + this.getHalNode().getName())
+    //     // return 'hh' //this.getNode().getName()
+    //     return await this.getHalNode().getName() +"jkhkjlhkj"
+    // }
+    public getName(): string {
+        const node = this.getNode()
+        if (null != node) return node.getName()
     }
     public getTech(): string {
         return 'Tech I'

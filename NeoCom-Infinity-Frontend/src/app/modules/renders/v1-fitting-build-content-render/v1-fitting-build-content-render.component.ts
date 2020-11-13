@@ -26,7 +26,7 @@ export class V1FittingBuildContentRenderComponent extends V2NodeContainerRenderC
     public getUniqueId(): string {
         return this.getNode().getId()
     }
-    public getFittingItem(): FittingItemHAL {
+    public getFittingItem(): FittingItem {
         return this.getNode().getFittingItem()
     }
 }
