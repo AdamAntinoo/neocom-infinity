@@ -38,6 +38,9 @@ export class BuildActionDao extends NeoCom {
     public getStationName(): string {
         return this.marketOrder.getStationName()
     }
+    public getMarketOrder(): MarketOrderDao{
+        return this.marketOrder
+    } 
     // public getHops(): number {
     //     return this.hops
     // }

@@ -1,5 +1,17 @@
-<p>v1-fitting-build-content-render works!</p>
-<div id="{{getUniqueId()}}" class="neocom-panel panel-red" *ngIf="getVariant() === '-FITTING-CONFIGURATION-'">
-    {{getUniqueId()}}
+<div id="{{getUniqueId()}}" class="neocom-panel panel-red row" *ngIf="getVariant() === '-FITTING-CONFIGURATION-'">
+    <!-- <div *ngIf="!downloading; else downloadingData"> -->
     <v1-fitting-item [node]="getFittingItem()"></v1-fitting-item>
+    <!-- </div> -->
+    <!-- D O W N L O A D I N G   S P I N N E R -->
+    <ng-template #downloadingData class="download-spinner">
+        <div class="index-loading">
+            <div class="loading-box">
+                <span>Downloading Item data...</span>
+            </div>
+        </div>
+    </ng-template>
+
+    <div class="separator-4"></div>
+    <div class="separator-4"></div>
+    <v1-market-data [marketData]="getMarketData()"></v1-market-data>
 </div>

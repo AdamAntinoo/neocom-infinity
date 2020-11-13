@@ -2,13 +2,11 @@
 import { NeoCom } from '@domain/NeoCom.domain'
 import { BuildActionDao } from './BuildActionDao.dao'
 import { FittingItemHAL } from '../hal/FittingItemHAL.hal'
-import { HALResolver } from '@app/services/HALResolver.service'
-import { FittingItem } from '@domain/FittingItem.domain'
+import { MarketOrderDao } from './MarketOrderDao.dao'
 
 export class FittingBuildContentDao extends NeoCom {
     private id: string
-    public fittingItem: FittingItemHAL
-    public realFittingItem : FittingItem
+    private fittingItem: FittingItemHAL
     private action: BuildActionDao
 
     constructor(values: Object = {}) {
@@ -47,7 +45,10 @@ export class FittingBuildContentDao extends NeoCom {
             default: return 'CARGO-BAY'
         }
     }
-    public getFittingItem(): FittingItem {
-        return this.realFittingItem
+    public getFittingItem(): FittingItemHAL {
+        return this.fittingItem
+    }
+    public getMarketOrder(): MarketOrderDao {
+        return this.action.getMarketOrder()
     }
 }
