@@ -18,9 +18,13 @@ import { V2NodeContainerRenderComponent } from '../v2-node-container-render/v2-n
     styleUrls: ['./v1-fitting-item-render.component.scss']
 })
 export class V1FittingItemRenderComponent extends V2NodeContainerRenderComponent {
+    @Input() id : string
     // - G E T T E R S
     public getNode(): FittingItemHAL {
         return this.node as FittingItemHAL
+    }
+    public getUniqueId() : string{
+        return this.id
     }
     public getName(): string {
         if (this.node) return this.getNode().getName()

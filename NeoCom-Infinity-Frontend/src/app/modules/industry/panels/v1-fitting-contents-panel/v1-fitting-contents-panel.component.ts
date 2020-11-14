@@ -34,7 +34,8 @@ export class V1FittingContentsPanelComponent extends AppPanelComponent implement
         this.slotGroups.push(new FittingGroup().setId('HIGH-SLOTS').setName('High Slots').setWeight(100))
         this.slotGroups.push(new FittingGroup().setId('MED-SLOTS').setName('Med Slots').setWeight(200))
         this.slotGroups.push(new FittingGroup().setId('LOW-SLOTS').setName('Low Slots').setWeight(300))
-        this.slotGroups.push(new FittingGroup().setId('CARGO-BAY').setName('Cargo').setWeight(400))
+        this.slotGroups.push(new FittingGroup().setId('RIG-SLOTS').setName('Rigs').setWeight(400))
+        this.slotGroups.push(new FittingGroup().setId('CARGO-BAY').setName('Cargo').setWeight(500))
     }
 
     public ngOnInit(): void {

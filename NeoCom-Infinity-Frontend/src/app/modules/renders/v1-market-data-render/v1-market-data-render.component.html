@@ -1,14 +1,14 @@
-<div class="column">
+<div id="{{getUniqueId()}}" class="column">
     <div class="field">
         <span cy-field-label="sellStation" class="label">STATION</span><br>
         <span cy-field-value="sellStation" class="">{{getStationName()}}</span>
     </div>
     <div class="field">
         <span cy-field-label="sellPrice" class="label">PRICE</span><br>
-        <span cy-field-value="sellPrice" class="">{{getPrice()}}</span>
+        <span cy-field-value="sellPrice" class="">{{getPrice() | number:'1.2-2'}} ISK</span>
     </div>
     <div class="field">
         <span cy-field-label="hopCount" class="label">HOPS</span><br>
-        <span cy-field-value="hopCount" class="">{{getDistanceHops()}}</span>
+        <span cy-field-value="hopCount" class="">{{getDistanceHops()}} jumps - {{getHopTime()}} mins.</span>
     </div>
 </div>

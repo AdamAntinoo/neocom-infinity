@@ -36,12 +36,18 @@ export class FittingBuildContentDao extends NeoCom {
                 return 'LOW-SLOTS'
             case 'MEDSLOT0':
             case 'MEDSLOT1':
+            case 'MEDSLOT2':
+            case 'MEDSLOT3':
                 return 'MED-SLOTS'
             case 'HISLOT0':
             case 'HISLOT1':
             case 'HISLOT2':
             case 'HISLOT3':
                 return 'HIGH-SLOTS'
+            case 'RIGSLOT0':
+            case 'RIGSLOT1':
+            case 'RIGSLOT2':
+                return 'RIG-SLOTS'
             default: return 'CARGO-BAY'
         }
     }

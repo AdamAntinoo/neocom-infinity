@@ -7,8 +7,12 @@ import { MarketOrderDao } from '@domain/industry/dao/MarketOrderDao.dao';
     styleUrls: ['./v1-market-data-render.component.scss']
 })
 export class V1MarketDataRenderComponent {
+    @Input() id: string
     @Input() marketData: MarketOrderDao
 
+    public getUniqueId(): string {
+        return this.id
+    }
     public getStationName(): string {
         return this.marketData.getStationName()
     }
@@ -17,5 +21,8 @@ export class V1MarketDataRenderComponent {
     }
     public getDistanceHops(): number {
         return 2
+    }
+    public getHopTime(): number {
+        return 3
     }
 }

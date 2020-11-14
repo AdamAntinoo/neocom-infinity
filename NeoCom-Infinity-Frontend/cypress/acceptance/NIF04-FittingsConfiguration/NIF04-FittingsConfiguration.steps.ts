@@ -59,6 +59,11 @@ Then('field named {string} has contents {string}',
                 .find('[cy-field-value="' + fieldName + '"]').contains(fieldValue, { matchCase: false })
         })
     })
+Then('image named {string} is visible', function (imageName: string) {
+    cy.get('@target').find('[alt="' + imageName + '"]').should('be.visible')
+})
+
+// - D E P R E C A T E D
 Then('image named {string} has link {string}', function (imageName: string, imageURL: string) {
     cy.get('@target').find('.neocom-icon').find('img')
         .should('be.visible')

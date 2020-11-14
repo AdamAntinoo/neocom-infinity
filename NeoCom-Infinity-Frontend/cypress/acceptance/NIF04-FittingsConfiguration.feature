@@ -76,9 +76,25 @@ Feature: [NIF04] The Fitting Build Configuration page allows the user to select 
     Scenario: [NIF04.05]-Validate the contents and structure for one of the Fitting contents.
         Given the target is the panel of type "fitting-saved-configuration"
         Given the target section "Fitting Components"
-        Given the target the "fitting-build-content" with id "01ddbb5f-1d2f-4572-ba56-e03964039460"
-        Then image named "neocom-icon" has link "https://image.eveonline.com/Type/5245_64.png"
-        And field named "moduleName" with label "NAME" has contents "Particle Bore Compact Mining Laser"
-        And field named "sellStation" with label "STATION" has contents "Sehmosh VIII - Moon 22 - Caldari Business Tribunal Information Center"
-        And field named "sellPrice" with label "PRICE" has contents "16,010.0 ISK"
-        And field named "hopCount" with label "HOPS" has contents "4 jumps"
+        Given the target the "fitting-build-content" with id "919aaadb-22c5-473c-a7ad-9aae914ff8dd"
+        Then the target has 1 "fitting-item"
+        Then the target has 1 "market-data"
+        # - Validate the target item info
+        Given the target the "fitting-item" with id "919aaadb-22c5-473c-a7ad-9aae914ff8dd"
+        Then image named "Eve Item Image" is visible
+        And field named "moduleName" with label "NAME" has contents "Medium F-S9 Regolith Compact Shield Extender"
+        And field named "moduleTech" with label "TECH" has contents "Tech I"
+        And field named "moduleGroup" with label "GROUP" has contents "Shield Extender"
+
+    @NIF04.06
+    Scenario: [NIF04.06]-Validate the fields for the item market data.
+        Given the target is the panel of type "fitting-saved-configuration"
+        Given the target section "Fitting Components"
+        Given the target the "fitting-build-content" with id "919aaadb-22c5-473c-a7ad-9aae914ff8dd"
+        Then the target has 1 "fitting-item"
+        Then the target has 1 "market-data"
+        # - Validate the target market data
+        Given the target the "market-data" with id "919aaadb-22c5-473c-a7ad-9aae914ff8dd"
+        And field named "sellStation" with label "STATION" has contents "Taru X - Moon 9 - Ministry of War Information Center"
+        And field named "sellPrice" with label "PRICE" has contents "4,302,000.00 ISK"
+        And field named "hopCount" with label "HOPS" has contents "2 jumps - 3 mins."

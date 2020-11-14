@@ -1,17 +1,19 @@
-<div id="{{getUniqueId()}}" class="neocom-panel panel-red row" *ngIf="getVariant() === '-FITTING-CONFIGURATION-'">
-    <!-- <div *ngIf="!downloading; else downloadingData"> -->
-    <v1-fitting-item [node]="getFittingItem()"></v1-fitting-item>
-    <!-- </div> -->
+<div id="{{getUniqueId()}}" class="neocom-panel panel-red" *ngIf="getVariant() === '-FITTING-CONFIGURATION-'">
+    <div *ngIf="!downloading; else downloadingData" class="row" style="flex-grow: 1;">
+        <v1-fitting-item [id]="getUniqueId()" [node]="getFittingItem()"></v1-fitting-item>
+        <div class="separator-4"></div>
+        <div class="separator-4"></div>
+        <div style="flex-grow: 1;">
+            <v1-market-data [id]="getUniqueId()" [marketData]="getMarketData()" style="flex-grow: 1;"></v1-market-data>
+        </div>
+    </div>
     <!-- D O W N L O A D I N G   S P I N N E R -->
     <ng-template #downloadingData class="download-spinner">
-        <div class="index-loading">
+        <div class="index-loading" id="{{getFittingItem()}}">
             <div class="loading-box">
                 <span>Downloading Item data...</span>
             </div>
         </div>
     </ng-template>
-
-    <div class="separator-4"></div>
-    <div class="separator-4"></div>
-    <v1-market-data [marketData]="getMarketData()"></v1-market-data>
+    <div style="visibility: hidden;">{{fireFittingResolution()}}</div>
 </div>
