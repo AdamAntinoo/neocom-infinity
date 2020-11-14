@@ -1,4 +1,4 @@
-export class EveItemDao {
+export class EveItemDto {
     public industryGroup: string
     public item: object
     public group: object

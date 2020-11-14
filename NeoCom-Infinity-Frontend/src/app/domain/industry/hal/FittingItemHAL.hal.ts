@@ -3,14 +3,14 @@ import { Observable } from 'rxjs';
 // - DOMAIN
 import { HALLink } from '@domain/hal/HALLink.hal';
 import { HALNode } from '@domain/hal/HALNode.hal';
-import { EveItemDao } from '@domain/core/dao/EveItemDao.dao';
+import { EveItemDto } from '@domain/core/dto/EveItemDto.dto';
 import { NeoCom } from '@domain/NeoCom.domain';
 
 export class FittingItemHAL extends HALNode {
     public typeId: number
     public name: string
     public location: string
-    public item: HALLink<EveItemDao>
+    public item: HALLink<EveItemDto>
 
     constructor(values: Object = {}) {
         super()
@@ -18,7 +18,7 @@ export class FittingItemHAL extends HALNode {
         this.transform()
     }
     private transform(): void {
-        if (null != this.item) this.item = new HALLink<EveItemDao>(this.item)
+        if (null != this.item) this.item = new HALLink<EveItemDto>(this.item)
     }
     // - G E T T E R S
     public getName(): string {
@@ -42,16 +42,16 @@ export class FittingItemHAL extends HALNode {
     //             this.item.isDownloaded = true
     //         })
     // }
-    public async getItem(): Promise<EveItemDao> {
+    public async getItem(): Promise<EveItemDto> {
         console.log('Resolver: ' + this.getResolver())
         return await this.item.access(this.getResolver())
     }
-    public accessItem(): Promise<EveItemDao> {
+    public accessItem(): Promise<EveItemDto> {
         // console.log('Resolver: ' + this.getResolver())
         return this.item.access(this.getResolver())
     }
     public async getName2(): Promise<string> {
-        const halItem: EveItemDao = new EveItemDao(await this.getItem())
+        const halItem: EveItemDto = new EveItemDto(await this.getItem())
         if (null != halItem) return halItem.getName()
     }
     // public async getSubName(): string {

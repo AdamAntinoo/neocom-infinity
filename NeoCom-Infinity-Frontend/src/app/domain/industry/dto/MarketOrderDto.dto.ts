@@ -1,8 +1,8 @@
 // - DOMAIN
-import { StationDao } from '@domain/core/dao/StationDao.dao'
+import { StationDto } from '@domain/core/dto/StationDto.dto'
 
-export class MarketOrderDao {
-    private station: StationDao
+export class MarketOrderDto {
+    private station: StationDto
     private orderId: number
     private volumeRemain: number
     private typeId: number

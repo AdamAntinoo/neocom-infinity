@@ -11,12 +11,12 @@ import { ActivatedRoute } from '@angular/router'
 import { BackgroundEnabledComponent } from '@bit/innovative.innovative.innovative-core'
 import { IRefreshable } from '@bit/innovative.innovative.innovative-core'
 // - COMPONENTS
-import { AppPanelComponent } from '@shared/panels/app-panel/app-panel.component'
+import { AppPanelComponent } from '@shared/core/app-panel/app-panel.component'
 import { BackendService } from '@app/services/backend.service'
 import { HALResolver } from '@app/services/HALResolver.service'
-import { FittingBuildConfigurationDao } from '@domain/industry/dao/FittingBuildConfigurationDao.dao'
+import { FittingBuildConfigurationDto } from '@domain/industry/dto/FittingBuildConfigurationDto.dto'
 import { NCVariant } from '@env/NeoComVariants'
-import { FittingBuildContentDao } from '@domain/industry/dao/FittingBuildContentDao.dao'
+import { FittingBuildContentDto } from '@domain/industry/dto/FittingBuildContentDto.dto'
 import { FittingGroup } from '@domain/industry/FittingGroup.domain'
 
 @Component({
@@ -25,7 +25,7 @@ import { FittingGroup } from '@domain/industry/FittingGroup.domain'
     styleUrls: ['./v1-fitting-contents-panel.component.scss']
 })
 export class V1FittingContentsPanelComponent extends AppPanelComponent implements OnInit, IRefreshable {
-    @Input() contents: FittingBuildContentDao[] = []
+    @Input() contents: FittingBuildContentDto[] = []
     private slotGroups: FittingGroup[] = []
     constructor() {
         super()
@@ -58,7 +58,7 @@ export class V1FittingContentsPanelComponent extends AppPanelComponent implement
             this.dataModelRoot.push(group)
         this.completeDowload()
     }
-    private addToSlotGroup(slotGroup: string, item: FittingBuildContentDao): void {
+    private addToSlotGroup(slotGroup: string, item: FittingBuildContentDto): void {
         let hit = undefined
         for (const group of this.slotGroups) {
             if (group.getId() === slotGroup) hit = group

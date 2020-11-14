@@ -1,17 +1,17 @@
-import { MarketOrderDao } from './MarketOrderDao.dao'
+import { MarketOrderDto } from './MarketOrderDto.dto'
 
-export class HullDao {
+export class HullDto {
     public item: any
     public quantity: number
     public corporationHome: object
-    public marketOrder: MarketOrderDao
+    public marketOrder: MarketOrderDto
 
     constructor(values: Object = {}) {
         Object.assign(this, values)
         this.transform()
     }
     private transform(): void {
-        if (null != this.marketOrder) this.marketOrder = new MarketOrderDao(this.marketOrder)
+        if (null != this.marketOrder) this.marketOrder = new MarketOrderDto(this.marketOrder)
     }
     public getHullClass(): string {
         if (null != this.item)

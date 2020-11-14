@@ -4,7 +4,7 @@ import { Input } from '@angular/core';
 // - DOMAIN
 import { BackgroundEnabledComponent } from '@bit/innovative.innovative.innovative-core';
 import { HALNode } from '@domain/hal/HALNode.hal';
-import { IViewer } from '@domain/interfaces/IViewer.interface';
+import { IViewer } from '@app/innovative-core/interfaces/IViewer.interface';
 import { NeoCom } from '@domain/NeoCom.domain';
 
 @Component({

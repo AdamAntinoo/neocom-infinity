@@ -1,7 +1,7 @@
 // - DOMAIN
 import { NeoCom } from '@domain/NeoCom.domain'
 
-export class StationDao {
+export class StationDto {
     public locationId: number
     public regionId: number
     public regionName: string

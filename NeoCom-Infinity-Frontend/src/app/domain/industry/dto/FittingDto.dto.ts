@@ -1,10 +1,10 @@
 // - DOMAIN
-import { EveItemDao } from '@domain/core/dao/EveItemDao.dao'
-import { HullDao } from './HullDao.dao'
+import { EveItemDto } from '@domain/core/dto/EveItemDto.dto'
+import { HullDto } from './HullDto.dto'
 
-export class FittingDao {
+export class FittingDto {
     public fittingItems: object[]
-    public shipHull: EveItemDao
+    public shipHull: EveItemDto
     public name: string
     public fittingId: number
     public shipTypeId: number
@@ -17,7 +17,7 @@ export class FittingDao {
         this.transform()
     }
     private transform () : void{
-        if (null != this.shipHull) this.shipHull = new EveItemDao(this.shipHull)
+        if (null != this.shipHull) this.shipHull = new EveItemDto(this.shipHull)
     }
     // -  G E T T E R S
     public getHullGroup () : string {

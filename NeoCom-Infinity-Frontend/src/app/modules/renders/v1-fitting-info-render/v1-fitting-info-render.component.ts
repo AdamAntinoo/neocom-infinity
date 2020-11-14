@@ -2,9 +2,9 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Input } from '@angular/core';
-import { FittingBuildContentDao } from '@domain/industry/dao/FittingBuildContentDao.dao';
-import { FittingBuildConfigurationDao } from '@domain/industry/dao/FittingBuildConfigurationDao.dao';
-import { FittingInfoDao } from '@domain/industry/dao/FittingInfoDao.dao';
+import { FittingBuildContentDto } from '@domain/industry/dto/FittingBuildContentDto.dto';
+import { FittingBuildConfigurationDto } from '@domain/industry/dto/FittingBuildConfigurationDto.dto';
+import { FittingInfoDto } from '@domain/industry/dto/FittingInfoDto.dto';
 
 @Component({
     selector: 'v1-fitting-info',
@@ -12,9 +12,9 @@ import { FittingInfoDao } from '@domain/industry/dao/FittingInfoDao.dao';
     styleUrls: ['./v1-fitting-info-render.component.scss']
 })
 export class V1FittingInfoRenderComponent {
-    @Input() info: FittingInfoDao
+    @Input() info: FittingInfoDto
     // - G E T T E R S   &   S E T T E R S
-    public getNode(): FittingInfoDao {
+    public getNode(): FittingInfoDto {
         return this.info
     }
     public getFittingName(): string {

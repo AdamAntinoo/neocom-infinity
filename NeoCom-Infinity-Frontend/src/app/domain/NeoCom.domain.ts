@@ -1,12 +1,12 @@
 // - DOMAIN
 import { INode } from './interfaces/INode.interface';
-import { ICollaboration } from './interfaces/ICollaboration.interface';
 import { IExpandable } from './interfaces/IExpandable.interface';
 import { ISelectable } from './interfaces/ISelectable.interface';
 import { IColorTheme } from './interfaces/IColorTheme.interface';
 import { ESeparator } from './interfaces/EPack.enumerated';
+import { ICollaboration } from '@app/innovative-core/interfaces/ICollaboration.interface';
 
-export class NeoCom implements INode, ICollaboration, IExpandable, ISelectable/*, IColorTheme*/ {
+export class NeoCom implements INode, ICollaboration, IExpandable, ISelectable {
     public jsonClass: string = 'NeoCom';
     protected expanded: boolean = false;
     protected selected: boolean = false;

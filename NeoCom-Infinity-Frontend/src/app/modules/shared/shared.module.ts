@@ -7,7 +7,7 @@ import { Routes } from '@angular/router';
 
 // - PAGES
 // - PANELS
-import { AppPanelComponent } from './panels/app-panel/app-panel.component';
+import { AppPanelComponent } from './core/app-panel/app-panel.component';
 import { ActionBarComponent } from './panels/action-bar/action-bar.component';
 import { TabContainerPanelComponent } from './panels/tab-container-panel/tab-container-panel.component';
 import { SpinnerPanelComponent } from './panels/spinner-panel/spinner-panel.component';

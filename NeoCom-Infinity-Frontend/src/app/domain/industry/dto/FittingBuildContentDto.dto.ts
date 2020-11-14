@@ -1,13 +1,13 @@
 // - DOMAIN
 import { NeoCom } from '@domain/NeoCom.domain'
-import { BuildActionDao } from './BuildActionDao.dao'
+import { BuildActionDto } from './BuildActionDto.dto'
 import { FittingItemHAL } from '../hal/FittingItemHAL.hal'
-import { MarketOrderDao } from './MarketOrderDao.dao'
+import { MarketOrderDto } from './MarketOrderDto.dto'
 
-export class FittingBuildContentDao extends NeoCom {
+export class FittingBuildContentDto extends NeoCom {
     private id: string
     private fittingItem: FittingItemHAL
-    private action: BuildActionDao
+    private action: BuildActionDto
 
     constructor(values: Object = {}) {
         super()
@@ -20,7 +20,7 @@ export class FittingBuildContentDao extends NeoCom {
      */
     protected transform(): void {
         if (null != this.fittingItem) this.fittingItem = new FittingItemHAL(this.fittingItem)
-        if (null != this.action) this.action = new BuildActionDao(this.action)
+        if (null != this.action) this.action = new BuildActionDto(this.action)
     }
     public getId(): string {
         return this.id
@@ -54,7 +54,7 @@ export class FittingBuildContentDao extends NeoCom {
     public getFittingItem(): FittingItemHAL {
         return this.fittingItem
     }
-    public getMarketOrder(): MarketOrderDao {
+    public getMarketOrder(): MarketOrderDto {
         return this.action.getMarketOrder()
     }
 }

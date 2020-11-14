@@ -2,11 +2,11 @@
 import { Component } from '@angular/core';
 import { Input } from '@angular/core';
 // - DOMAIN
-import { ICollaboration } from '@app/domain/interfaces/ICollaboration.interface';
 import { ESeparator } from '@app/domain/interfaces/EPack.enumerated';
-import { IViewer } from '@app/domain/interfaces/IViewer.interface';
+import { IViewer } from '@app/innovative-core/interfaces/IViewer.interface';
 import { NeoCom } from '@domain/NeoCom.domain';
 import { IColorTheme } from '@domain/interfaces/IColorTheme.interface';
+import { ICollaboration } from '@app/innovative-core/interfaces/ICollaboration.interface';
 
 @Component({
     selector: 'node-container',

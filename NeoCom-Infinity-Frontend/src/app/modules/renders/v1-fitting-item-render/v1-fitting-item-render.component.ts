@@ -2,11 +2,11 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Input } from '@angular/core';
-import { EveItemDao } from '@domain/core/dao/EveItemDao.dao';
+import { EveItemDto } from '@domain/core/dto/EveItemDto.dto';
 import { FittingItem } from '@domain/FittingItem.domain';
-import { BuildActionDao } from '@domain/industry/dao/BuildActionDao.dao';
-import { FittingBuildConfigurationDao } from '@domain/industry/dao/FittingBuildConfigurationDao.dao';
-import { MarketOrderDao } from '@domain/industry/dao/MarketOrderDao.dao';
+import { BuildActionDto } from '@domain/industry/dto/BuildActionDto.dto';
+import { FittingBuildConfigurationDto } from '@domain/industry/dto/FittingBuildConfigurationDto.dto';
+import { MarketOrderDto } from '@domain/industry/dto/MarketOrderDto.dto';
 import { FittingItemHAL } from '@domain/industry/hal/FittingItemHAL.hal';
 import { NodeContainerRenderComponent } from '@shared/renders/node-container-render/node-container-render.component';
 import { Observable } from 'rxjs';

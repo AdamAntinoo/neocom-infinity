@@ -6,11 +6,11 @@ import { ChangeDetectorRef } from '@angular/core';
 import { HALResolver } from '@app/services/HALResolver.service';
 // - DOMAIN
 import { FittingItem } from '@domain/FittingItem.domain';
-import { FittingBuildContentDao } from '@domain/industry/dao/FittingBuildContentDao.dao';
+import { FittingBuildContentDto } from '@domain/industry/dto/FittingBuildContentDto.dto';
 import { V2NodeContainerRenderComponent } from '../v2-node-container-render/v2-node-container-render.component';
-import { EveItemDao } from '@domain/core/dao/EveItemDao.dao';
+import { EveItemDto } from '@domain/core/dto/EveItemDto.dto';
 import { FittingItemHAL } from '@domain/industry/hal/FittingItemHAL.hal';
-import { MarketOrderDao } from '@domain/industry/dao/MarketOrderDao.dao';
+import { MarketOrderDto } from '@domain/industry/dto/MarketOrderDto.dto';
 
 @Component({
     selector: 'v1-fitting-build-content',
@@ -26,8 +26,8 @@ export class V1FittingBuildContentRenderComponent extends V2NodeContainerRenderC
         protected changeDetector: ChangeDetectorRef
     ) { super() }
 
-    public getNode(): FittingBuildContentDao {
-        return this.node as FittingBuildContentDao
+    public getNode(): FittingBuildContentDto {
+        return this.node as FittingBuildContentDto
     }
     public getUniqueId(): string {
         return this.getNode().getId()
@@ -44,7 +44,7 @@ export class V1FittingBuildContentRenderComponent extends V2NodeContainerRenderC
         else {
             console.log('>[V1FittingBuildContentRenderComponent.fireFittingResolution]>Accessing Item')
             fittingItem.accessItem().then(item => {
-                fittingItem.item.target = new EveItemDao(item)
+                fittingItem.item.target = new EveItemDto(item)
                 this.targetFittingItem = fittingItem
                 this.downloading = false
                 this.changeDetector.markForCheck()
@@ -73,7 +73,7 @@ export class V1FittingBuildContentRenderComponent extends V2NodeContainerRenderC
         // console.log('<[V1FittingBuildContentRenderComponent.getFittingItem]>FittingItem: ' + this.targetFittingItem)
         return this.targetFittingItem
     }
-    public getMarketData(): MarketOrderDao {
+    public getMarketData(): MarketOrderDto {
         if (this.node) return this.getNode().getMarketOrder()
     }
 }

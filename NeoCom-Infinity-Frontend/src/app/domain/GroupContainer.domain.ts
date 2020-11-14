@@ -1,4 +1,6 @@
 // - SERVICES
+import { ICollaboration } from '@app/innovative-core/interfaces/ICollaboration.interface';
+import { AppCoreStoreService } from '@app/innovative-core/services/AppCoreStoreService.service';
 import { AppStoreService } from '@app/services/appstore.service';
 // - DOMAIN
 import { ESeparator } from '@domain/interfaces/EPack.enumerated';
@@ -6,7 +8,6 @@ import { IIconReference } from './interfaces/IIconReference.interface';
 import { AssetGroupIconReference } from './interfaces/IIconReference.interface';
 import { NeoComExpandable } from './NeoComExpandable.domain';
 import { Separator } from './Separator.model';
-import { ICollaboration } from './interfaces/ICollaboration.interface';
 
 export class GroupContainer extends NeoComExpandable {
     private id: number = -1;
@@ -21,7 +22,7 @@ export class GroupContainer extends NeoComExpandable {
     }
 
     // - I C O L L A B O R A T I O N
-    public collaborate2View(appModelStore?: AppStoreService, variant?: string): ICollaboration[] {
+    public collaborate2View(appModelStore?: AppCoreStoreService, variant?: string): ICollaboration[] {
         console.log('>[GroupContainer.collaborate2View]');
         let collab: any = []; // Initialize the list to be output.
         // Check if the Node is expanded or not.
@@ -44,7 +45,7 @@ export class GroupContainer extends NeoComExpandable {
         return collab;
     }
     private collaborateContents(contentList: ICollaboration[],
-        appModelStore: AppStoreService,
+        appModelStore: AppCoreStoreService,
         variant: string): ICollaboration[] {
         let collaboration = [];
         // Process each Location for new collaborations.

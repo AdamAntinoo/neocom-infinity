@@ -1,5 +1,4 @@
 // - DOMAIN
-import { ICollaboration } from '@domain/interfaces/ICollaboration.interface';
 import { NeoCom } from '@domain/NeoCom.domain';
 
 export class FittingGroup extends NeoCom {

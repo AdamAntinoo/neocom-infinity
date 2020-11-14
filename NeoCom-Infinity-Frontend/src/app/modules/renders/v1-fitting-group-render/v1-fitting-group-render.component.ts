@@ -2,8 +2,8 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Input } from '@angular/core';
-import { BuildActionDao } from '@domain/industry/dao/BuildActionDao.dao';
-import { FittingBuildConfigurationDao } from '@domain/industry/dao/FittingBuildConfigurationDao.dao';
+import { BuildActionDto } from '@domain/industry/dto/BuildActionDto.dto';
+import { FittingBuildConfigurationDto } from '@domain/industry/dto/FittingBuildConfigurationDto.dto';
 import { FittingGroup } from '@domain/industry/FittingGroup.domain';
 import { NodeContainerRenderComponent } from '@shared/renders/node-container-render/node-container-render.component';
 import { V2NodeContainerRenderComponent } from '../v2-node-container-render/v2-node-container-render.component';

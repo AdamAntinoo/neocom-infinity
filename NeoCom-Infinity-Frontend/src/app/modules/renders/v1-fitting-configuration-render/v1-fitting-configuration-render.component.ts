@@ -2,7 +2,7 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Input } from '@angular/core';
-import { FittingInfoDao } from '@domain/industry/dao/FittingInfoDao.dao';
+import { FittingInfoDto } from '@domain/industry/dto/FittingInfoDto.dto';
 
 @Component({
     selector: 'v1-fitting-configuration',
@@ -10,10 +10,10 @@ import { FittingInfoDao } from '@domain/industry/dao/FittingInfoDao.dao';
     styleUrls: ['./v1-fitting-configuration-render.component.scss']
 })
 export class V1FittingConfigurationRenderComponent {
-    @Input() node: FittingInfoDao
+    @Input() node: FittingInfoDto
 
     // - G E T T E R S   &   S E T T E R S
-    public getNode(): FittingInfoDao {
+    public getNode(): FittingInfoDto {
         return this.node
     }
     public getFittingName(): string {

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MarketOrderDao } from '@domain/industry/dao/MarketOrderDao.dao';
+import { MarketOrderDto } from '@domain/industry/dto/MarketOrderDto.dto';
 
 @Component({
     selector: 'v1-market-data',
@@ -8,7 +8,7 @@ import { MarketOrderDao } from '@domain/industry/dao/MarketOrderDao.dao';
 })
 export class V1MarketDataRenderComponent {
     @Input() id: string
-    @Input() marketData: MarketOrderDao
+    @Input() marketData: MarketOrderDto
 
     public getUniqueId(): string {
         return this.id

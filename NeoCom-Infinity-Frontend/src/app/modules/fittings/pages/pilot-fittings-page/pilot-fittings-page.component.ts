@@ -2,7 +2,7 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 // - SERVICES
-import { AppPanelComponent } from '@app/modules/shared/panels/app-panel/app-panel.component';
+import { AppPanelComponent } from '@shared/core/app-panel/app-panel.component';
 import { AppStoreService } from '@app/services/appstore.service';
 import { ResponseTransformer } from '@app/services/support/ResponseTransformer';
 // - DOMAIN

@@ -3,10 +3,10 @@ import { Component } from '@angular/core'
 import { Input } from '@angular/core'
 // - INNOVATIVE
 import { BackgroundEnabledComponent } from '@bit/innovative.innovative.innovative-core'
+import { ICollaboration } from '@app/innovative-core/interfaces/ICollaboration.interface'
 // - DOMAIN
-import { ICollaboration } from '@domain/interfaces/ICollaboration.interface'
-import { IViewer } from '@domain/interfaces/IViewer.interface'
-import { NeoCom } from '@domain/NeoCom.domain'
+import { IViewer } from '@app/innovative-core/interfaces/IViewer.interface'
+// import { NeoCom } from '@domain/NeoCom.domain'
 import { platformConstants } from '@env/platform-constants'
 
 @Component({
@@ -20,7 +20,7 @@ export class AppPanelComponent extends BackgroundEnabledComponent implements IVi
     protected downloading: boolean = true
     protected dataModelRoot: ICollaboration[] = []
     private renderNodeList: ICollaboration[] = []
-    private target: NeoCom
+    private target: ICollaboration
 
     constructor() {
         super()
@@ -47,7 +47,7 @@ export class AppPanelComponent extends BackgroundEnabledComponent implements IVi
     }
 
     // - I V I E W E R
-    public enterSelected(node: NeoCom): void {
+    public enterSelected(node: ICollaboration): void {
         this.target = node
     }
     /**

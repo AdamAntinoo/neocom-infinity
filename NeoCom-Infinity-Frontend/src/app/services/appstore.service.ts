@@ -21,11 +21,12 @@ import { CorporationDataResponse } from '@app/domain/dto/CorporationDataResponse
 import { Pilot } from '@app/domain/Pilot.domain';
 import { ResponseTransformer } from './support/ResponseTransformer';
 import { Fitting } from '@app/domain/Fitting.domain';
+import { AppCoreStoreService } from '@app/innovative-core/services/AppCoreStoreService.service';
 
 @Injectable({
     providedIn: 'root'
 })
-export class AppStoreService {
+export class AppStoreService extends AppCoreStoreService {
     // - S T O R E   D A T A   S E C T I O N
     private corporationActiveCache: ActiveCacheWrapper<Corporation>;
     private pilotActiveCache: ActiveCacheWrapper<Pilot>;
@@ -37,6 +38,7 @@ export class AppStoreService {
         protected isolationService: IsolationService,
         protected backendService: BackendService,
         protected httpService: HttpClientWrapperService) {
+        super()
         // - S T O R E   D A T A   S E C T I O N
         this.corporationActiveCache = new ActiveCacheWrapper<Corporation>()
             .setTimedCache(false) // Contents do not expire.

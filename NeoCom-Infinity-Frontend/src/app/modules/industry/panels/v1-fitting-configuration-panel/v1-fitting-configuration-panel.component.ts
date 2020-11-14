@@ -6,9 +6,9 @@ import { BackgroundEnabledComponent } from '@bit/innovative.innovative.innovativ
 import { IRefreshable } from '@bit/innovative.innovative.innovative-core'
 // - COMPONENTS
 import { HALResolver } from '@app/services/HALResolver.service'
-import { FittingBuildConfigurationDao } from '@domain/industry/dao/FittingBuildConfigurationDao.dao'
-import { FittingBuildContentDao } from '@domain/industry/dao/FittingBuildContentDao.dao'
-import { FittingInfoDao } from '@domain/industry/dao/FittingInfoDao.dao'
+import { FittingBuildConfigurationDto } from '@domain/industry/dto/FittingBuildConfigurationDto.dto'
+import { FittingBuildContentDto } from '@domain/industry/dto/FittingBuildContentDto.dto'
+import { FittingInfoDto } from '@domain/industry/dto/FittingInfoDto.dto'
 
 @Component({
     selector: 'v1-fitting-configuration-panel',
@@ -18,7 +18,7 @@ import { FittingInfoDao } from '@domain/industry/dao/FittingInfoDao.dao'
 export class V1FittingConfigurationPanelComponent extends BackgroundEnabledComponent implements IRefreshable {
     @Input() title: string
     private link: string
-    public fittingData: FittingBuildConfigurationDao
+    public fittingData: FittingBuildConfigurationDto
 
     constructor(protected halResolver: HALResolver) {
         super()
@@ -39,11 +39,11 @@ export class V1FittingConfigurationPanelComponent extends BackgroundEnabledCompo
             return this.fittingData.getFittingId()
         else return '-'
     }
-    public getFittingInfo(): FittingInfoDao {
+    public getFittingInfo(): FittingInfoDto {
         if (this.fittingData) return this.fittingData.getFittingInfo()
         else return undefined
     }
-    public getFittingContents(): FittingBuildContentDao[] {
+    public getFittingContents(): FittingBuildContentDto[] {
         return this.fittingData.getContents()
     }
     // - I R E F R E S H A B L E
@@ -55,7 +55,7 @@ export class V1FittingConfigurationPanelComponent extends BackgroundEnabledCompo
             this.backendConnections.push( // Download the Fitting Build definition
                 this.halResolver.resolve(this.link)
                     .subscribe((response: any) => {
-                        this.fittingData = new FittingBuildConfigurationDao(response)
+                        this.fittingData = new FittingBuildConfigurationDto(response)
                         // if (this.fittingData.isHalCompliant()) this.fittingData.injectResolver(this.halResolver)
                     })
             )

@@ -1,9 +1,9 @@
 // - CORE
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 // - WEBSTORAGE
-import { StorageServiceModule } from 'angular-webstorage-service';
+// import { StorageServiceModule } from 'angular-webstorage-service';
 // import {  InMemoryStorageService } from 'angular-webstorage-service';
-import { WebStorageService } from 'angular-webstorage-service';
+// import { WebStorageService } from 'angular-webstorage-service';
 // - TESTING
 import { async } from '@angular/core/testing';
 import { fakeAsync } from '@angular/core/testing';
@@ -14,6 +14,8 @@ import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { RouteMockUpComponent } from '@app/testing/RouteMockUp.component';
 import { routes } from '@app/testing/RouteMockUp.component';
+import { StorageServiceModule } from 'ngx-webstorage-service';
+import { WebStorageService } from 'ngx-webstorage-service';
 // - PROVIDERS
 import { IsolationService } from './isolation.service';
 // import { ToastrModule } from 'ng6-toastr-notifications';
