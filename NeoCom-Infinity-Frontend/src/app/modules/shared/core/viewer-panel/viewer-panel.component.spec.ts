@@ -8,8 +8,6 @@ import { ComponentFixture } from '@angular/core/testing';
 import { TestBed } from '@angular/core/testing';
 // - PROVIDERS
 import { ViewerPanelComponent } from './viewer-panel.component';
-import { EVariant } from '@domain/interfaces/EPack.enumerated';
-import { Node } from '@domain/Node.domain';
 
 describe('PANEL ViewerPanelComponent [Module: CORE]', () => {
     let component: ViewerPanelComponent;
@@ -37,14 +35,15 @@ describe('PANEL ViewerPanelComponent [Module: CORE]', () => {
             expect(component.nodes2render.length).toBe(0);
             expect(component.downloadtitle).toBeUndefined();
             expect(component.downloader).toBeUndefined();
-            expect(component.variant).toBe(EVariant.DEFAULT)
+            expect(component.variant).toBe('-DEFAULT-')
             expect(component.index).toBe(1)
         });
     });
+
     // - C O D E   C O V E R A G E   P H A S E
     describe('Code Coverage Phase [getters]', () => {
         it('getVariant.success: check the variant field', () => {
-            const expected = EVariant.CATALOG
+            const expected = '-DEFAULT-'
             component.variant = expected;
             let obtained = component.getVariant();
             expect(obtained).toBe(expected);

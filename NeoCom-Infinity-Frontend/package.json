@@ -8,7 +8,8 @@
         "serve:dev": "ng serve --progress --proxy-config proxy.conf.json --port 5200 --base-href /app ",
         "build:dev": "ng build ",
         "build:stage": "ng build --aot --configuration=stage",
-        "build:prod": "ng build --aot --configuration=production"
+        "build:prod": "ng build --aot --configuration=production",
+        "test:dev": "ng test --code-coverage --watch --progress "
     },
     "private": true,
     "engines": {
