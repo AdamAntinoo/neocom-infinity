@@ -237,6 +237,12 @@ response:
 
 simlet: industry-fittings-buildConfiguration-60320161
 
+delay:
+  is: fixedDelay
+  timeUnit: milliseconds
+  initial: 1000
+  subsequent: 1000
+
 request:
   - method: GET
   - uriPathPattern: "/api/v1/neocom/industry/fittings/buildConfiguration/{fittingId}"
@@ -253,6 +259,12 @@ response:
 ---
 
 simlet: industry-fittings-buildConfiguration-60320161-savedConfiguration
+
+delay:
+  is: fixedDelay
+  timeUnit: milliseconds
+  initial: 5000
+  subsequent: 2000
 
 request:
   - method: GET

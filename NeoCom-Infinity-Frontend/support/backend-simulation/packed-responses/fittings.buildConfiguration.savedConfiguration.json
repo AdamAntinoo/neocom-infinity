@@ -8,7 +8,7 @@
                     "location": "LOSLOT0",
                     "item": {
                         "rel": "item",
-                        "href": "http://localhost:9500/api/v2/universe/items/2048"
+                        "href": "http://localhost:5200/api/v2/universe/items/2048"
                     }
                 },
                 {
@@ -17,7 +17,7 @@
                     "location": "HISLOT0",
                     "item": {
                         "rel": "item",
-                        "href": "http://localhost:9500/api/v2/universe/items/5245"
+                        "href": "http://localhost:5200/api/v2/universe/items/5245"
                     }
                 },
                 {
@@ -26,7 +26,7 @@
                     "location": "HISLOT1",
                     "item": {
                         "rel": "item",
-                        "href": "http://localhost:9500/api/v2/universe/items/5245"
+                        "href": "http://localhost:5200/api/v2/universe/items/5245"
                     }
                 },
                 {
@@ -35,7 +35,7 @@
                     "location": "MEDSLOT1",
                     "item": {
                         "rel": "item",
-                        "href": "http://localhost:9500/api/v2/universe/items/8517"
+                        "href": "http://localhost:5200/api/v2/universe/items/8517"
                     }
                 },
                 {
@@ -44,7 +44,7 @@
                     "location": "MEDSLOT2",
                     "item": {
                         "rel": "item",
-                        "href": "http://localhost:9500/api/v2/universe/items/8517"
+                        "href": "http://localhost:5200/api/v2/universe/items/8517"
                     }
                 },
                 {
@@ -53,7 +53,7 @@
                     "location": "MEDSLOT0",
                     "item": {
                         "rel": "item",
-                        "href": "http://localhost:9500/api/v2/universe/items/10872"
+                        "href": "http://localhost:5200/api/v2/universe/items/10872"
                     }
                 },
                 {
@@ -62,7 +62,7 @@
                     "location": "RIGSLOT0",
                     "item": {
                         "rel": "item",
-                        "href": "http://localhost:9500/api/v2/universe/items/31358"
+                        "href": "http://localhost:5200/api/v2/universe/items/31358"
                     }
                 }
             ],
@@ -175,7 +175,7 @@
                 "location": "LOSLOT0",
                 "item": {
                     "rel": "item",
-                    "href": "http://localhost:9500/api/v2/universe/items/2048"
+                    "href": "http://localhost:5200/api/v2/universe/items/2048"
                 }
             },
             "action": {
@@ -222,7 +222,7 @@
                 "location": "HISLOT0",
                 "item": {
                     "rel": "item",
-                    "href": "http://localhost:9500/api/v2/universe/items/5245"
+                    "href": "http://localhost:5200/api/v2/universe/items/5245"
                 }
             },
             "action": {
@@ -269,7 +269,7 @@
                 "location": "HISLOT1",
                 "item": {
                     "rel": "item",
-                    "href": "http://localhost:9500/api/v2/universe/items/5245"
+                    "href": "http://localhost:5200/api/v2/universe/items/5245"
                 }
             },
             "action": {
@@ -316,7 +316,7 @@
                 "location": "MEDSLOT1",
                 "item": {
                     "rel": "item",
-                    "href": "http://localhost:9500/api/v2/universe/items/8517"
+                    "href": "http://localhost:5200/api/v2/universe/items/8517"
                 }
             },
             "action": {
@@ -363,7 +363,7 @@
                 "location": "MEDSLOT2",
                 "item": {
                     "rel": "item",
-                    "href": "http://localhost:9500/api/v2/universe/items/8517"
+                    "href": "http://localhost:5200/api/v2/universe/items/8517"
                 }
             },
             "action": {
@@ -410,7 +410,7 @@
                 "location": "MEDSLOT0",
                 "item": {
                     "rel": "item",
-                    "href": "http://localhost:9500/api/v2/universe/items/10872"
+                    "href": "http://localhost:5200/api/v2/universe/items/10872"
                 }
             },
             "action": {
@@ -457,7 +457,7 @@
                 "location": "RIGSLOT0",
                 "item": {
                     "rel": "item",
-                    "href": "http://localhost:9500/api/v2/universe/items/31358"
+                    "href": "http://localhost:5200/api/v2/universe/items/31358"
                 }
             },
             "action": {
