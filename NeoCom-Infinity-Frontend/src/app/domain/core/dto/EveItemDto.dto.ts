@@ -1,4 +1,7 @@
-export class EveItemDto {
+// - INNOVATIVE
+import { IDtoCompliant } from '@app/innovative-core/interfaces/IDtoCompliant.interface'
+
+export class EveItemDto implements IDtoCompliant{
     public industryGroup: string
     public item: object
     public group: object
@@ -14,7 +17,8 @@ export class EveItemDto {
         Object.assign(this, values)
         this.transform()
     }
-    private transform(): void { }
+    // - I D T O C O M P L I A N T
+    public transform(): void { }
 
     public getName(): string {
         return this.item['name']
