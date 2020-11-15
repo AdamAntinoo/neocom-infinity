@@ -11,3 +11,7 @@ databaseChangeLog:
       file: db/changelog/ddl-v0.20.0-05-actionspreferences-table.yaml
   - include:
       file: db/changelog/ddl-v0.20.0-06-actionspreferences-altertable.yaml
+  - include:
+      file: db/changelog/ddl-v0.20.0-07-miningextractions-table.yaml
+  - include:
+      file: db/changelog/ddl-v0.20.0-08-miningextractions-index.yaml

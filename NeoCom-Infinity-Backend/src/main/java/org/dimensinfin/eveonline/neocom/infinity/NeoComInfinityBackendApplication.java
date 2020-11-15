@@ -11,12 +11,14 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.hateoas.LinkRelation;
 import org.springframework.hateoas.mediatype.hal.HalConfiguration;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.filter.ForwardedHeaderFilter;
 
 import org.dimensinfin.logging.LogWrapper;
 
 @SpringBootApplication
 @EnableDiscoveryClient
+@EnableScheduling
 @EnableAutoConfiguration
 public class NeoComInfinityBackendApplication {
 	public static final String APPLICATION_ERROR_CODE_PREFIX = "dimensinfin.eveonline.neocom";

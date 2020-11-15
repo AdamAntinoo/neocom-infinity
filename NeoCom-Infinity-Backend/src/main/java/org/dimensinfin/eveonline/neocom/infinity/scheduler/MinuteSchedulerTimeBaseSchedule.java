@@ -18,7 +18,6 @@ import org.dimensinfin.eveonline.neocom.infinity.adapter.CredentialRepositoryWra
 import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataProviderWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.LocationCatalogServiceWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.MiningRepositoryWrapper;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBConfigurationService;
 import org.dimensinfin.eveonline.neocom.infinity.scheduler.config.SchedulerConfiguration;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
@@ -36,7 +35,7 @@ public class MinuteSchedulerTimeBaseSchedule {
 	private ESIDataProvider esiDataProvider;
 	private LocationCatalogService locationCatalogService;
 
-// - C O N S T R U C T O R S
+	// - C O N S T R U C T O R S
 	@Autowired
 	public MinuteSchedulerTimeBaseSchedule( final ConfigurationServiceWrapper configurationServiceWrapper,
 	                                        final CredentialRepositoryWrapper credentialRepositoryWrapper,
@@ -80,7 +79,10 @@ public class MinuteSchedulerTimeBaseSchedule {
 
 	@Scheduled(initialDelay = 60000, fixedDelay = 60000) // One minute schedule.
 	private void timeBaseRun() {
-		LogWrapper.enter( MessageFormat.format( "{0}:{1}", LocalTime.now().getHour() + "", LocalTime.now().getMinute() + "" ) );
+		LogWrapper.enter( MessageFormat.format( "{0}:{1}",
+				String.format( "%02d", LocalTime.now().getHour() ),
+				String.format( "%02d", LocalTime.now().getMinute() ) )
+		);
 		if (this.allowed2Run()) { // Check if the properties allow scheduler to run
 			this.printSchedulerJobsReport();
 			JobScheduler.getJobScheduler().runSchedule(); // Run the list of jobs registered for time launch hits.

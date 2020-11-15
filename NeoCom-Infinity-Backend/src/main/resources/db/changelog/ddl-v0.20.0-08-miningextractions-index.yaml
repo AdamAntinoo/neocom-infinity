@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0_20_0_801_neocom_create_miningextractions_index
+      author: NeoCom development team. Adam Antinoo (adamantinoo.git@gmail.com).
+      changes:
+        - createIndex:
+            schemaName: neocom
+            tableName: MiningExtractions
+            columns:
+              - column:
+                  name: extractionDateName
+            indexName: idx_miningextractions_extractiondatename
+        - createIndex:
+            schemaName: neocom
+            tableName: MiningExtractions
+            columns:
+              - column:
+                  name: ownerId
+            indexName: idx_miningextractions_ownerid

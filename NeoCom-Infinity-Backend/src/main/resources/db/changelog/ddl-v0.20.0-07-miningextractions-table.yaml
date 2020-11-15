@@ -1,9 +1,10 @@
 databaseChangeLog:
   - changeSet:
-      id: 0401_neocom_create_miningextractions_table
+      id: 0_20_0_701_neocom_create_miningextractions_table
       author: NeoCom development team. Adam Antinoo (adamantinoo.git@gmail.com).
       changes:
         - createTable:
+            schemaName: neocom
             tableName: MiningExtractions
             columns:
               - column:
@@ -46,3 +47,30 @@ databaseChangeLog:
                   type: int
                   constraints:
                     nullable: false
+              - column:
+                  name: creationTime
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: lastUpdateTime
+                  type: bigint
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 0_20_0_702_neocom_create_miningextractions_defaultvalues
+      author: NeoCom development team. Adam Antinoo (adamantinoo.git@gmail.com).
+      changes:
+        - addDefaultValue:
+            schemaName: neocom
+            tableName: MiningExtractions
+            columnName: quantity
+            columnDataType: int
+            defaultValue: 0
+        - addDefaultValue:
+            schemaName: neocom
+            tableName: MiningExtractions
+            columnName: extractionHour
+            columnDataType: int
+            defaultValue: 24
