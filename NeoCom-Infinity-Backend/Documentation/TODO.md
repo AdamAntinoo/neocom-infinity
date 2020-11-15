@@ -2,6 +2,9 @@
 ## 0.20.0
 * FittingV2
 * FittingInfo
+* CredentialJobGenerator
+* CronScheduleProperty
+* MinuteSchedulerTimeBase
 * FittingItemSerializer
 * FittingBuildOrderControllerV1
 * IndustryController

@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.scheduler.rest;
+package org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.rest;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
-import org.dimensinfin.eveonline.neocom.infinity.scheduler.MinuteSchedulerTimeBaseSchedule;
+import org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.MinuteSchedulerTimeBaseSchedule;
 import org.dimensinfin.eveonline.neocom.infinity.support.client.ScheduleJobCountResponse;
 import org.dimensinfin.eveonline.neocom.service.scheduler.JobScheduler;
 import org.dimensinfin.eveonline.neocom.service.scheduler.domain.JobRecord;

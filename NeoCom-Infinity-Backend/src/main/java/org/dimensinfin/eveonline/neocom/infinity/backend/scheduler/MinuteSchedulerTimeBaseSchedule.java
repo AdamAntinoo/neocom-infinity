@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.scheduler;
+package org.dimensinfin.eveonline.neocom.infinity.backend.scheduler;
 
 import java.text.MessageFormat;
 import java.time.LocalTime;
@@ -18,13 +18,13 @@ import org.dimensinfin.eveonline.neocom.infinity.adapter.CredentialRepositoryWra
 import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataProviderWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.LocationCatalogServiceWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.MiningRepositoryWrapper;
-import org.dimensinfin.eveonline.neocom.infinity.scheduler.config.SchedulerConfiguration;
+import org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.config.SchedulerConfiguration;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 import org.dimensinfin.eveonline.neocom.service.scheduler.JobScheduler;
 import org.dimensinfin.logging.LogWrapper;
 
-import static org.dimensinfin.eveonline.neocom.infinity.scheduler.CronSchedulePropertyDefinitions.CRON_SCHEDULE_CREDENTIAL_JOB_GENERATOR;
+import static org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.CronSchedulePropertyDefinitions.CRON_SCHEDULE_CREDENTIAL_JOB_GENERATOR;
 
 @Component
 public class MinuteSchedulerTimeBaseSchedule {

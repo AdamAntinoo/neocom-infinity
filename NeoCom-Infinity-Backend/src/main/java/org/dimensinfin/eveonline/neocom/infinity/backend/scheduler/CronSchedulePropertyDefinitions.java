@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.scheduler;
+package org.dimensinfin.eveonline.neocom.infinity.backend.scheduler;
 
 public class CronSchedulePropertyDefinitions {
 	public static final String CRON_SCHEDULE_CREDENTIAL_JOB_GENERATOR="P.scheduler.cron.credentialjobgenerator.schedule";

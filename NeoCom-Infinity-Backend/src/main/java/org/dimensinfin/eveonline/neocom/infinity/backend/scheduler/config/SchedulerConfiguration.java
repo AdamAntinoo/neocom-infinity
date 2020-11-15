@@ -1,6 +1,8 @@
-package org.dimensinfin.eveonline.neocom.infinity.scheduler.config;
+package org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.config;
 
 import java.util.Objects;
+
+import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -10,13 +12,13 @@ import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBConfigur
 
 @Component
 public class SchedulerConfiguration {
-	private static final String ALLOWED_TORUN_SETTING = "S.scheduler.allowedtorun";
+	private static final String ALLOWED_TO_RUN_SETTING = "S.scheduler.allowedtorun";
 	private static final String ALLOWED_MININGEXTRACTIONS_SETTING = "S.scheduler.allowedminingextractions";
 	private SBConfigurationService configurationService;
 
 	// - C O N S T R U C T O R S
 	@Autowired
-	protected SchedulerConfiguration( final ConfigurationServiceWrapper configurationServiceWrapper ) {
+	protected SchedulerConfiguration( final @NotNull ConfigurationServiceWrapper configurationServiceWrapper ) {
 		this.configurationService = (SBConfigurationService) Objects.requireNonNull( configurationServiceWrapper.getSingleton() );
 	}
 
@@ -26,6 +28,6 @@ public class SchedulerConfiguration {
 	}
 
 	public Boolean getAllowedToRun() {
-		return this.configurationService.getResourceBoolean( ALLOWED_TORUN_SETTING );
+		return this.configurationService.getResourceBoolean( ALLOWED_TO_RUN_SETTING );
 	}
 }

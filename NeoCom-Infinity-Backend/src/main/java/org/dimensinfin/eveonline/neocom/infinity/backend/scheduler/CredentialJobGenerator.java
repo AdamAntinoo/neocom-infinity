@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.scheduler;
+package org.dimensinfin.eveonline.neocom.infinity.backend.scheduler;
 
 import java.util.Objects;
 
@@ -9,14 +9,14 @@ import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.database.repositories.CredentialRepository;
 import org.dimensinfin.eveonline.neocom.database.repositories.MiningRepository;
 import org.dimensinfin.eveonline.neocom.infinity.mining.MiningExtractionsProcess;
-import org.dimensinfin.eveonline.neocom.infinity.scheduler.config.SchedulerConfiguration;
+import org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.config.SchedulerConfiguration;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 import org.dimensinfin.eveonline.neocom.service.logger.NeoComLogger;
 import org.dimensinfin.eveonline.neocom.service.scheduler.JobScheduler;
 import org.dimensinfin.eveonline.neocom.service.scheduler.domain.Job;
 
-import static org.dimensinfin.eveonline.neocom.infinity.scheduler.CronSchedulePropertyDefinitions.CRON_SCHEDULE_MINING_EXTRACTIONS;
+import static org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.CronSchedulePropertyDefinitions.CRON_SCHEDULE_MINING_EXTRACTIONS;
 
 public class CredentialJobGenerator extends Job {
 	private IConfigurationService configurationService;

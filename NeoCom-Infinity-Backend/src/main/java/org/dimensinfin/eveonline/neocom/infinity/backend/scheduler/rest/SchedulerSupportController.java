@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.scheduler.rest;
+package org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.rest;
 
 import java.util.List;
 
