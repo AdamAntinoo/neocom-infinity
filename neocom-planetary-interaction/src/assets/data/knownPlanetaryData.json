@@ -26,5 +26,32 @@
         "resourceLevel": 1.5
       }
     ]
+  },{
+    "name": "AUNER",
+    "planetSuffix": "I",
+    "planetType": "barren",
+    "planetTax": 1.0,
+    "planetResourcws": [
+      {
+        "resourceName": "Aqueous Liquids R0",
+        "resourceLevel": 1.5
+      },
+      {
+        "resourceName": "Base Metals R0",
+        "resourceLevel": 3.3
+      },
+      {
+        "resourceName": "Carbon Compounds R0",
+        "resourceLevel": 3.8
+      },
+      {
+        "resourceName": "Micro Organisms R0",
+        "resourceLevel": 4.0
+      },
+      {
+        "resourceName": "Noble Metals R0",
+        "resourceLevel": 1.5
+      }
+    ]
   }
 ]
