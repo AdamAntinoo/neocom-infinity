@@ -23,4 +23,12 @@ export class PlanetaryDataRecord {
       this.planetResources = resources
     }
   }
+
+  public getPlanetType(): string {
+    if (this.planetType) return this.planetType
+    else return '-'
+  }
+  public getResources(): PlanetaryResource[] {
+    return this.planetResources
+  }
 }

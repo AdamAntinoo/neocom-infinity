@@ -1,2 +1,9 @@
 <p>v1-planet-t2-resources-render works!</p>
   planet t2 render
+
+
+  <div *ngFor="let resource of t2Resources">
+    T2 RESOURCE {{resource.getName()}}
+
+    <npi-v1-resource [resource]="resource"></npi-v1-resource>
+  </div>
