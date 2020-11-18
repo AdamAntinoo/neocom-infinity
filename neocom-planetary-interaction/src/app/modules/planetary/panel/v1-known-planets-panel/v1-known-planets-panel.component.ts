@@ -1,0 +1,36 @@
+// - CORE
+import { Component } from '@angular/core';
+import { OnInit } from '@angular/core';
+// - APP
+import { DataService } from '@app/services/data-service.service';
+import { BackgroundEnabledComponent } from '@bit/innovative.innovative.innovative-core';
+// - DOMAIN
+import { PlanetaryDataRecord } from '@domain/planetary-data-record';
+
+@Component({
+  selector: 'npi-v1-known-planets-panel',
+  templateUrl: './v1-known-planets-panel.component.html',
+  styleUrls: ['./v1-known-planets-panel.component.scss']
+})
+export class V1KnownPlanetsPanelComponent extends BackgroundEnabledComponent implements OnInit {
+  public planetList: PlanetaryDataRecord[] =[]
+  constructor(protected dataService: DataService) {
+    super();
+  }
+
+  public ngOnInit(): void {
+    this.refresh();
+  }
+  private clear(): void { }
+  private refresh(): void {
+    this.backendConnections.push(
+      this.dataService.apiGetPlanetPIInformation().subscribe((dataList) => {
+        for (let index = 0; index < dataList.length; index++) {
+          const element = dataList[index];
+          const planetData: PlanetaryDataRecord = new PlanetaryDataRecord(element)
+          this.planetList.push(planetData)
+        }
+      })
+    )
+  }
+}

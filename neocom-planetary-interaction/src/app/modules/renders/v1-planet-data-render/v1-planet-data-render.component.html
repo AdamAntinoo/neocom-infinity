@@ -1,0 +1,25 @@
+<div class="neocom-panel panel-red" *ngIf="planet">
+    <div class="row">
+        <div class="field">
+            <span cy-field-label="planetName" class="label">NAME</span><br>
+            <span cy-field-value="planetName" class="planet-name">{{getPlanetName()}}</span>
+        </div>
+        <div class="separator-4"></div>
+        <div class="field">
+            <span cy-field-label="planetClass" class="label">CLASS</span><br>
+            <span cy-field-value="planetClass" class="planet-class">[{{getPlanetClass()}}]</span>
+        </div>
+    </div>
+    <div class="column">
+        <div class="section-title">PLANET RESOURCES / LEVELS</div>
+        <div *ngIf="planet">
+            <div class="row">
+                <div cy-field-label="resourceLevel" class="label">RESOURCE NAME</div>
+                <div cy-field-label="resourceLevel" class="label right">RESOURCE LEVEL</div>
+            </div>
+            <div *ngFor="let resource of getPlanetResources()">
+                <npi-v1-resource [resource]="resource"></npi-v1-resource>
+            </div>
+        </div>
+    </div>
+</div>

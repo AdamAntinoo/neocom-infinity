@@ -4,7 +4,7 @@
     "planetSuffix": "I",
     "planetType": "barren",
     "planetTax": 1.0,
-    "planetResourcws": [
+    "planetResources": [
       {
         "resourceName": "Aqueous Liquids R0",
         "resourceLevel": 1.5
@@ -18,7 +18,7 @@
         "resourceLevel": 3.8
       },
       {
-        "resourceName": "Micro Organisms R0",
+        "resourceName": "Microorganisms R0",
         "resourceLevel": 4.0
       },
       {
@@ -26,12 +26,13 @@
         "resourceLevel": 1.5
       }
     ]
-  },{
+  },
+  {
     "name": "AUNER",
-    "planetSuffix": "I",
+    "planetSuffix": "II",
     "planetType": "barren",
     "planetTax": 1.0,
-    "planetResourcws": [
+    "planetResources": [
       {
         "resourceName": "Aqueous Liquids R0",
         "resourceLevel": 1.5
@@ -45,12 +46,40 @@
         "resourceLevel": 3.8
       },
       {
-        "resourceName": "Micro Organisms R0",
+        "resourceName": "Microorganisms R0",
         "resourceLevel": 4.0
       },
       {
         "resourceName": "Noble Metals R0",
         "resourceLevel": 1.5
+      }
+    ]
+  },
+  {
+    "name": "PVH8-0",
+    "planetSuffix": "I",
+    "planetType": "barren",
+    "planetTax": 10.0,
+    "planetResources": [
+      {
+        "resourceName": "Aqueous Liquids R0",
+        "resourceLevel": 30
+      },
+      {
+        "resourceName": "Base Metals R0",
+        "resourceLevel": 55
+      },
+      {
+        "resourceName": "Carbon Compounds R0",
+        "resourceLevel": 59
+      },
+      {
+        "resourceName": "Microorganisms R0",
+        "resourceLevel": 68
+      },
+      {
+        "resourceName": "Noble Metals R0",
+        "resourceLevel": 39
       }
     ]
   }

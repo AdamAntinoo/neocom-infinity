@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "scripts": {
     "cucumber": "$(npm bin)/cucumber-js ./cypress/**/*.feature --no-strict --tags @NIF04.05",
-    "serve:dev": "ng serve --live-reload --port 5300"
+    "serve:dev": "ng serve --live-reload --watch --port 5300"
   },
   "private": true,
   "dependencies": {

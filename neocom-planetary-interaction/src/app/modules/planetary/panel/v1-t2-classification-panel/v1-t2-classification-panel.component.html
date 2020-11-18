@@ -1,4 +1,7 @@
-<p>v1-t2-classification-panel works!</p>
+<div class="title">T2 RESOURCES REQUIRED</div>
 <div *ngFor="let planet of planetList">
-  <npi-v1-planet-t2-resources [planet]="planet"></npi-v1-planet-t2-resources>
+  <div class="row">
+    <npi-v1-planet-data [planet]="planet"></npi-v1-planet-data>
+    <!-- <npi-v1-planet-t2-resources [planet]="planet"></npi-v1-planet-t2-resources> -->
+  </div>
 </div>
