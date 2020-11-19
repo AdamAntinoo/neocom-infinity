@@ -1,7 +1,6 @@
-<div class="title">T2 RESOURCES REQUIRED</div>
-<div *ngFor="let planet of planetList">
-  <div class="row">
-    <npi-v1-planet-data [planet]="planet"></npi-v1-planet-data>
-    <!-- <npi-v1-planet-t2-resources [planet]="planet"></npi-v1-planet-t2-resources> -->
+<div class="panel-title">T2 RESOURCES AVAILABLE</div>
+<div *ngIf="t2Resources">
+  <div *ngFor="let resource of t2Resources">
+    <npi-v1-t2-generated-resource [resource]="resource"></npi-v1-t2-generated-resource>
   </div>
 </div>

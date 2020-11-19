@@ -7,23 +7,23 @@
     "planetResources": [
       {
         "resourceName": "Aqueous Liquids R0",
-        "resourceLevel": 1.5
+        "resourceLevel": 15
       },
       {
         "resourceName": "Base Metals R0",
-        "resourceLevel": 3.3
+        "resourceLevel": 33
       },
       {
         "resourceName": "Carbon Compounds R0",
-        "resourceLevel": 3.8
+        "resourceLevel": 38
       },
       {
         "resourceName": "Microorganisms R0",
-        "resourceLevel": 4.0
+        "resourceLevel": 40
       },
       {
         "resourceName": "Noble Metals R0",
-        "resourceLevel": 1.5
+        "resourceLevel": 15
       }
     ]
   },
@@ -35,29 +35,29 @@
     "planetResources": [
       {
         "resourceName": "Aqueous Liquids R0",
-        "resourceLevel": 1.5
+        "resourceLevel": 15
       },
       {
         "resourceName": "Base Metals R0",
-        "resourceLevel": 3.3
+        "resourceLevel": 33
       },
       {
         "resourceName": "Carbon Compounds R0",
-        "resourceLevel": 3.8
+        "resourceLevel": 38
       },
       {
         "resourceName": "Microorganisms R0",
-        "resourceLevel": 4.0
+        "resourceLevel": 40
       },
       {
         "resourceName": "Noble Metals R0",
-        "resourceLevel": 1.5
+        "resourceLevel": 15
       }
     ]
   },
   {
     "name": "PVH8-0",
-    "planetSuffix": "I",
+    "planetSuffix": "III",
     "planetType": "barren",
     "planetTax": 10.0,
     "planetResources": [
@@ -80,6 +80,34 @@
       {
         "resourceName": "Noble Metals R0",
         "resourceLevel": 39
+      }
+    ]
+  },
+  {
+    "name": "PVH8-0",
+    "planetSuffix": "IV",
+    "planetType": "plasma",
+    "planetTax": 10.0,
+    "planetResources": [
+      {
+        "resourceName": "Base Metals R0",
+        "resourceLevel": 30
+      },
+      {
+        "resourceName": "Hevy Metals R0",
+        "resourceLevel": 40
+      },
+      {
+        "resourceName": "Noble Metals R0",
+        "resourceLevel": 60
+      },
+      {
+        "resourceName": "Non-CS Crystals R0",
+        "resourceLevel": 40
+      },
+      {
+        "resourceName": "Suspended Plasma R0",
+        "resourceLevel": 12
       }
     ]
   }
