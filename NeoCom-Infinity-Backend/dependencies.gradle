@@ -58,6 +58,7 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion" // OAuth2 authentication
     implementation "com.squareup.retrofit2:converter-jackson:$retrofitVersion" // HTTP encapsulation and swagger support
     implementation "com.squareup.retrofit2:converter-gson:2.4.0"
+    compile 'com.google.inject:guice:4.1.0'
     // M E T R I C S
     runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
     // L O G G I N G
