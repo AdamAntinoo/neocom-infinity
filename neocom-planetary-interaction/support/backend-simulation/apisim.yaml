@@ -1,0 +1,100 @@
+simlet: account-colonies
+
+delay:
+  is: fixedDelay
+  timeUnit: milliseconds
+  initial: 1000
+  subsequent: 1000
+
+request:
+  - method: GET
+  - uriPathPattern: "/api/v1/neocom/account/A/colonies"
+
+response:
+  from: stub
+  status: 200
+  headers:
+    - "Content-Type: application/json; Cookie: jwtToken=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6OTgzODQ3MjYsImFjY291bnROYW1lIjoiQmV0aCBSaXBsZXkiLCJpc3MiOiJOZW9Db20uSW5maW5pdHkuQmFja2VuZCIsInVuaXF1ZUlkIjoidHJhbnF1aWxpdHkvOTIyMjM2NDciLCJwaWxvdElkIjo5MjIyMzY0N30.Qom8COyZB2sW3bCGm9pnGcIOqw-E2yKDsmGklQW6r9Fhu8jJpkNUv5TUhU2cJjIg5jX3082bZ6eKtRZ3z10vGw"
+    - "Decoded-Content: {
+      sub: ESI OAuth2 Authentication,
+      corporationId: 98384726,
+      accountName: Testing Character Account,
+      iss: NeoCom.Infinity.Backend,
+      uniqueId: tranquility/93813310,
+      pilotId: 93813310
+      }"
+  body: |+
+    [
+      {
+        "pilotId": 92002067,
+        "colonies": {
+          "rel": "colony",
+          "link": "/api/v1/neocom/pilot/92002067/colonies"
+        }
+      },
+      {
+        "pilotId": 9222647,
+        "colonies": {
+          "rel": "colony",
+          "link": "/api/v1/neocom/pilot/92002067/colonies"
+        }
+      }
+    ]
+---
+simlet: colonies-92002067
+
+delay:
+  is: fixedDelay
+  timeUnit: milliseconds
+  initial: 1000
+  subsequent: 1000
+
+request:
+  - method: GET
+  - uriPathPattern: "/api/v1/neocom/pilot/92002067/colonies"
+
+response:
+  from: stub
+  status: 200
+  headers:
+    - "Content-Type: application/json; Cookie: jwtToken=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6OTgzODQ3MjYsImFjY291bnROYW1lIjoiQmV0aCBSaXBsZXkiLCJpc3MiOiJOZW9Db20uSW5maW5pdHkuQmFja2VuZCIsInVuaXF1ZUlkIjoidHJhbnF1aWxpdHkvOTIyMjM2NDciLCJwaWxvdElkIjo5MjIyMzY0N30.Qom8COyZB2sW3bCGm9pnGcIOqw-E2yKDsmGklQW6r9Fhu8jJpkNUv5TUhU2cJjIg5jX3082bZ6eKtRZ3z10vGw"
+    - "Decoded-Content: {
+      sub: ESI OAuth2 Authentication,
+      corporationId: 98384726,
+      accountName: Testing Character Account,
+      iss: NeoCom.Infinity.Backend,
+      uniqueId: tranquility/93813310,
+      pilotId: 93813310
+      }"
+  body:
+    type: text
+    file: "${sim.path}/packed-responses/colonies.92002067.json"
+---
+simlet: account-colonies-92223647
+
+delay:
+  is: fixedDelay
+  timeUnit: milliseconds
+  initial: 1000
+  subsequent: 1000
+
+request:
+  - method: GET
+  - uriPathPattern: "/api/v1/neocom/pilot/92223647/colonies"
+
+response:
+  from: stub
+  status: 200
+  headers:
+    - "Content-Type: application/json; Cookie: jwtToken=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6OTgzODQ3MjYsImFjY291bnROYW1lIjoiQmV0aCBSaXBsZXkiLCJpc3MiOiJOZW9Db20uSW5maW5pdHkuQmFja2VuZCIsInVuaXF1ZUlkIjoidHJhbnF1aWxpdHkvOTIyMjM2NDciLCJwaWxvdElkIjo5MjIyMzY0N30.Qom8COyZB2sW3bCGm9pnGcIOqw-E2yKDsmGklQW6r9Fhu8jJpkNUv5TUhU2cJjIg5jX3082bZ6eKtRZ3z10vGw"
+    - "Decoded-Content: {
+      sub: ESI OAuth2 Authentication,
+      corporationId: 98384726,
+      accountName: Testing Character Account,
+      iss: NeoCom.Infinity.Backend,
+      uniqueId: tranquility/93813310,
+      pilotId: 93813310
+      }"
+  body:
+    type: text
+    file: "${sim.path}/packed-responses/colonies.92223647.json"
