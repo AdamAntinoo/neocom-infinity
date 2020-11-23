@@ -8,10 +8,15 @@
     font-weight: 600;
     color: grey;
 }
-.insets{
+.insets {
     margin: 2px;
-}.resource-name{
+}
+.resource-name {
     font-size: 13px;
-}.resource-level-width{
-    margin-left:4px;
+}
+.resource-name-width {
+    min-width: 150px;
+}
+.resource-level-width {
+    margin-left: 4px;
 }
