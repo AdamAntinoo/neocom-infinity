@@ -8,6 +8,7 @@ import { RendersModule } from '../renders/renders.module';
 import { V1KnownPlanetsPanelComponent } from './panel/v1-known-planets-panel/v1-known-planets-panel.component';
 import { V1SelectedPlanetaryResourcesPanelComponent } from './panel/v1-selected-planetary-resources-panel/v1-selected-planetary-resources-panel.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { V1SelectedPlanetsPanelComponent } from './panel/v1-selected-planets-panel/v1-selected-planets-panel.component';
 
 
 @NgModule({
@@ -17,6 +18,6 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     PlanetaryRoutingModule,
     RendersModule
   ],
-  declarations: [V1T2ClassificationPanelComponent, V1PlanetaryPageComponent, V1KnownPlanetsPanelComponent, V1SelectedPlanetaryResourcesPanelComponent],
+  declarations: [V1T2ClassificationPanelComponent, V1PlanetaryPageComponent, V1KnownPlanetsPanelComponent, V1SelectedPlanetaryResourcesPanelComponent, V1SelectedPlanetsPanelComponent],
 })
 export class PlanetaryModule { }

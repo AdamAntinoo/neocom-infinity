@@ -1,6 +1,9 @@
 <div class="panel-title">KNOWN PLANETS</div>
-<div *ngFor="let planet of planetList">
-    <div class="row">
-        <npi-v1-planet-data class="planet-data-panel" [planet]="planet"></npi-v1-planet-data>
+<div *ngIf="planetList" cdkDropList #planetList="cdkDropList" [cdkDropListData]="planetList"
+    [cdkDropListConnectedTo]="[selectedPlanetsList]" class="" (cdkDropListDropped)="drop($event)">
+    <div *ngFor="let planet of getPlanetList()">
+        <div class="row" cdkDrag>
+            <npi-v1-planet-data class="planet-data-panel" [planet]="planet"></npi-v1-planet-data>
+        </div>
     </div>
 </div>

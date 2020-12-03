@@ -3,23 +3,24 @@
     <div class="row">
         <npi-v1-known-planets-panel></npi-v1-known-planets-panel>
         <div class="separator-8"></div>
-        <!-- <npi-v1-t2-classification-panel></npi-v1-t2-classification-panel> -->
+        <npi-v1-selected-planets-panel></npi-v1-selected-planets-panel>
+        <div class="separator-8"></div>
         <div class="column">
             <div class="panel-title">T2 RESOURCES AVAILABLE</div>
-            <div *ngIf="t2Resources" cdkDropList #todoList="cdkDropList" [cdkDropListData]="t2Resources"
-                [cdkDropListConnectedTo]="[doneList]" (cdkDropListDropped)="drop($event)">
-                <div *ngFor="let resource of t2Resources" cdkDrag   >
+            <div *ngIf="t2Resources" cdkDropList #resourcesAvailable="cdkDropList" [cdkDropListData]="t2Resources"
+                [cdkDropListConnectedTo]="[selectedResources]" (cdkDropListDropped)="drop($event)">
+                <div *ngFor="let resource of t2Resources" cdkDrag>
                     <npi-v1-t2-generated-resource [resource]="resource"></npi-v1-t2-generated-resource>
                 </div>
             </div>
         </div>
         <div class="separator-8"></div>
-        <!-- <npi-v1-selected-planetary-resources-panel></npi-v1-selected-planetary-resources-panel> -->
         <div class="column">
             <div class="panel-title">T2 RESOURCES SELECTED</div>
-            <div class="drop-receiver" cdkDropList #doneList="cdkDropList" [cdkDropListData]="selectedResources"
-                [cdkDropListConnectedTo]="[todoList]" (cdkDropListDropped)="drop($event)">
-                <div *ngFor="let resource of getSelectedResources()" cdkDrag>
+            <div class="drop-receiver" *ngIf="t2Resources" cdkDropList #selectedResources="cdkDropList"
+                [cdkDropListData]="selectedResources" [cdkDropListConnectedTo]="[resourcesAvailable]"
+                (cdkDropListDropped)="drop($event)">
+                <div *ngFor="let resource of selectedResources" cdkDrag>
                     <npi-v1-t2-generated-resource [resource]="resource"></npi-v1-t2-generated-resource>
                 </div>
             </div>

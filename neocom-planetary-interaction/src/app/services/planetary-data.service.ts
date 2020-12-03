@@ -17,7 +17,7 @@ export class PlanetaryDataService {
         // Initialize planetary data conversion structures.
         this.planetIconTranslationTable.set('barren', 'planet_barren_102_128_3.png')
         this.planetIconTranslationTable.set('gas', 'planet_gas_103_128_3.png')
-        this.planetIconTranslationTable.set('ice', 'planet_ice_102_128_1.png')
+        this.planetIconTranslationTable.set('ice', 'planet_ice_103_128_1.png')
         this.planetIconTranslationTable.set('lava', 'planet_lava_102_128_1.png')
     }
 

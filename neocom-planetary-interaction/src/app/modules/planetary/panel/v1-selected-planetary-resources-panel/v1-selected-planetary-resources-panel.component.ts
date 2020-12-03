@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./v1-selected-planetary-resources-panel.component.scss']
 })
 export class V1SelectedPlanetaryResourcesPanelComponent {
+	public todoList:any
 	public getSelectedResources(): string[] {
 		return ["Selecte one", "Selected two"]
 	}
+	public drop (event : any) : void  {}
 }
