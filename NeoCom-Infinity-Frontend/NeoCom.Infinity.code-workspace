@@ -8,6 +8,9 @@
         },
         {
             "path": "../../../InnovativeDimensionProjects/Innovative-AngularCore"
+        },
+        {
+            "path": "../neocom-planetary-interaction"
         }
     ],
 	"settings": {

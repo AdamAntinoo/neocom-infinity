@@ -1,9 +1,17 @@
 <div class="panel-title">KNOWN PLANETS</div>
-<div *ngIf="planetList" cdkDropList #planetList="cdkDropList" [cdkDropListData]="planetList"
-    [cdkDropListConnectedTo]="[selectedPlanetsList]" class="" (cdkDropListDropped)="drop($event)">
+<smooth-dnd-container (drop)="onDrop($event)" [groupName]="planetList">
+    <smooth-dnd-draggable *ngFor="let planet of getPlanetList()">
+        <div class="row draggable-item">
+            <npi-v1-planet-data class="planet-data-panel" [planet]="planet"></npi-v1-planet-data>
+        </div>
+    </smooth-dnd-draggable>
+</smooth-dnd-container>
+
+
+<!-- <div *ngIf="planetList" cdkDropList #planetList="cdkDropList" [cdkDropListData]="planetList" [cdkDropListConnectedTo]="[selectedPlanetsList]" class="" (cdkDropListDropped)="drop($event)">
     <div *ngFor="let planet of getPlanetList()">
         <div class="row" cdkDrag>
             <npi-v1-planet-data class="planet-data-panel" [planet]="planet"></npi-v1-planet-data>
         </div>
     </div>
-</div>
+</div> -->

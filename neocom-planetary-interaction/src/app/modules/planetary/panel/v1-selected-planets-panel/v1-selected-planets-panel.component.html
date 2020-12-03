@@ -1,12 +1,12 @@
 <p>v1-selected-planets-panel works!</p>
-<div *ngIf="getSelectedPlanets().length > 0; else selectedListEmpty" cdkDropList #selectedPlanetsList="cdkDropList"
-    [cdkDropListData]="selectedPlanets" [cdkDropListConnectedTo]="[planetList]" class=""
-    (cdkDropListDropped)="drop($event)">
-    <div *ngFor="let planet of getSelectedPlanets()">
-        <div class="row">
-            <npi-v1-planet-data class="planet-data-panel" [planet]="planet"></npi-v1-planet-data>
+<div *ngIf="getSelectedPlanets().length > 0; else selectedListEmpty">
+    <smooth-dnd-container (drop)="onDrop($event)" [groupName]="planetList">
+        <div *ngFor="let planet of getSelectedPlanets()">
+            <div class="row">
+                <npi-v1-planet-data class="planet-data-panel" [planet]="planet"></npi-v1-planet-data>
+            </div>
         </div>
-    </div>
+    </smooth-dnd-container>
 </div>
 <ng-template #selectedListEmpty>
     <div class="loading-label">- SELECT PLANET LIST EMPTY -</div>
