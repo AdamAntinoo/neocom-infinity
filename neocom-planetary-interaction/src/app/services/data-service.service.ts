@@ -269,12 +269,6 @@ export class DataService {
 	public apiGetPlanetPIInformation(): Observable<any> {
 		const request = this.DATAV1 + 'knownPlanetaryData.json'
 		return this.wrapHttpRESOURCECall(request)
-		// .pipe(map((data: any) => {
-		//     // console.log(">[BackendService.apiIndustryGetFittingDefinition_v1]> Transformation: " +
-		//     //     transformer.description)
-		//     // const response = transformer.transform(data) as Fitting[]
-		//     return data
-		// }))
 	}
 	public getT1Resource4R0(resource: PlanetaryResource): PlanetaryResource {
 		const hit = this.r02T1ResourceConversion.get(resource.getName())

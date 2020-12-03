@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { DataService } from './services/data-service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PlanetaryDataService } from './services/planetary-data.service';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   providers: [
     { provide: DataService, useClass: DataService },
+    { provide: PlanetaryDataService, useClass: PlanetaryDataService },
   ],
   bootstrap: [AppComponent]
 })

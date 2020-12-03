@@ -1,25 +1,29 @@
 <div class="neocom-panel panel-red" *ngIf="planet">
-    <div class="insets">
-        <div class="row">
-            <div class="field">
-                <span cy-field-label="planetName" class="label">NAME</span>
-                <span cy-field-value="planetName" class="planet-name">{{getPlanetName()}}</span>
-            </div>
-            <div class="separator-4"></div>
-            <div class="field">
-                <span cy-field-label="planetClass" class="label">CLASS</span>
-                <span cy-field-value="planetClass" class="planet-class">[{{getPlanetClass()}}]</span>
-            </div>
-        </div>
-        <div class="column">
-            <!-- <div class="section-title">PLANET RESOURCES / LEVELS</div> -->
-            <div *ngIf="planet">
-                <div class="row">
-                    <div cy-field-label="resourceLevel" class="label">RESOURCE NAME</div>
-                    <div cy-field-label="resourceLevel" class="label right">RESOURCE LEVEL</div>
+    <div class="insets row ">
+        <img class="neocom-icon iconsize-60" src="{{getPlanetIcon()}}">
+        <div class="separator-4"></div>
+        <div class="column" style="width: 100%;">
+            <div class="row">
+                <div class="field">
+                    <span cy-field-label="planetName" class="label">NAME</span>
+                    <span cy-field-value="planetName" class="planet-name">{{getPlanetName()}}</span>
                 </div>
-                <div *ngFor="let resource of getPlanetResources()">
-                    <npi-v1-resource [resource]="resource"></npi-v1-resource>
+                <div class="separator-4"></div>
+                <div class="field">
+                    <span cy-field-label="planetClass" class="label">CLASS</span>
+                    <span cy-field-value="planetClass" class="planet-class">[{{getPlanetClass()}}]</span>
+                </div>
+            </div>
+            <div class="column">
+                <!-- <div class="section-title">PLANET RESOURCES / LEVELS</div> -->
+                <div *ngIf="planet">
+                    <div class="row">
+                        <div cy-field-label="resourceLevel" class="label">RESOURCE NAME</div>
+                        <div cy-field-label="resourceLevel" class="label right">RESOURCE LEVEL</div>
+                    </div>
+                    <div *ngFor="let resource of getPlanetResources()">
+                        <npi-v1-resource [resource]="resource"></npi-v1-resource>
+                    </div>
                 </div>
             </div>
         </div>

@@ -6,6 +6,7 @@
     "planetTax": 1.0,
     "planetResources": [
       {
+        "resourceId": 100,
         "resourceName": "Aqueous Liquids R0",
         "resourceLevel": 15
       },
