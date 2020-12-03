@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { PlanetaryDataRecord } from 'src/app/domain/planetary-data-record';
 import { DataService } from 'src/app/services/data-service.service';
 import { BackgroundEnabledComponent } from '@bit/innovative.innovative.innovative-core'
@@ -15,6 +15,7 @@ import { GeneratedResource } from '@domain/generated-resource';
  * 
  */
 export class V1T2ClassificationPanelComponent extends BackgroundEnabledComponent implements OnInit {
+    @Input() planets :  PlanetaryDataRecord[]=[]
 	public planetList: PlanetaryDataRecord[] = []
 	public t2Resources: GeneratedResource[] = []
 
@@ -26,7 +27,7 @@ export class V1T2ClassificationPanelComponent extends BackgroundEnabledComponent
 		this.refresh();
 	}
 	private clear(): void { }
-	private refresh(): void {
+	public refresh(): void {
 		this.backendConnections.push(
 			this.dataService.apiGetPlanetPIInformation().subscribe((dataList) => {
 				for (let index = 0; index < dataList.length; index++) {
@@ -37,10 +38,14 @@ export class V1T2ClassificationPanelComponent extends BackgroundEnabledComponent
 				this.t2Resources = this.sortByLevelDesc(this.processT2List()) // Get the list of T2 products available
 			})
 		)
+    }
+    public getSelectedResources(): GeneratedResource[] {
+		return this.t2Resources
 	}
+
 	private processT2List(): GeneratedResource[] {
 		const t2List: GeneratedResource[] = []
-		for (let planet of this.planetList) {
+		for (let planet of this.planets) {
 			console.log('>processT2List>Processing planet: '+planet.getPlanetName())
 			const t2calculated = this.dataService.getT2Resources4Planet(planet)
 			for (let t2 of t2calculated)

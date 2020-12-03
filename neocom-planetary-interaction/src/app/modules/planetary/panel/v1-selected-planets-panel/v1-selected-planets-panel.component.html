@@ -1,5 +1,5 @@
 <div class="panel-title">KNOWN PLANETS</div>
-<div droppable [dropScope]="'PLANET'" [dragOverClass]="'drag-over'" [dragHintClass]=" 'drag-hint'" (onDrop)="onDrop($event)">
+<div class="dropable-area" droppable [dropScope]="'PLANET'" [dragOverClass]="'drag-over'" [dragHintClass]=" 'drag-hint'" (onDrop)="onDrop($event)">
     <div cy-name="dropContents" class="request-part" *ngIf="getSelectedPlanets().length > 0; else selectedListEmpty">
         <div *ngFor="let planet of getSelectedPlanets()">
             <div class="row">
