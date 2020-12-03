@@ -54,6 +54,29 @@ jobs:
           working_directory: NeoCom-Infinity-Frontend
           command: |
             npm run build:prod
+  compile-planetary-job:
+    docker:
+      - image: circleci/node:12.16.3-browsers
+    environment:
+      BIT_TOKEN: d47a8f17-636f-4bda-aad9-ac9fa27fe26d
+    steps:
+      - checkout
+      - run:
+          name: PLANETARY - Configure BIT as a source for npm
+          working_directory: neocom-planetary-interaction
+          command: |
+            node -v
+            npm config set @bit:registry https://node.bitsrc.io
+      - run:
+          name: PLANETARY - Install the framework
+          working_directory: neocom-planetary-interaction
+          command: |
+            npm install
+      - run:
+          name: PLANETARY - Compile Angular application
+          working_directory: neocom-planetary-interaction
+          command: |
+            npm run build:prod
   compile-backend-job:
     docker:
       - image: circleci/openjdk:11-jdk
@@ -107,6 +130,37 @@ jobs:
                 -Dsonar.sources=. \
                 -Dsonar.host.url=https://sonarcloud.io
 
+  stage-planetary-to-heroku:
+    docker:
+      - image: circleci/node:12.16.3-browsers
+    steps:
+      - checkout
+      - run:
+          name: PLANETARY - Generate deploy code for Development
+          working_directory: neocom-planetary-interaction
+          command: |
+            node -v
+            sed -i '/bahmutov.add/d' package.json
+      - run:
+          name: PLANETARY - Clone Heroku repository
+          working_directory: neocom-planetary-interaction
+          command: |
+            git config --global user.email "adamantinoo.git@gmail.com"
+            git config --global user.name "Adam antinoo"
+            git init
+            rm -rf .gitignore
+            git add *.*
+            git add config
+            git add src
+            git commit -m "-[HEROKU] Commiting code for deployment at development"
+      - run:
+          name: PLANETARY - Deploy Master to Heroku
+          environment:
+            HEROKU_FRONTEND_APP_NAME: neocom-planetary-development
+            HEROKU_FRONTEND_API_KEY: 95200331-6841-4afc-87c5-cae0a859d08f
+          working_directory: neocom-planetary-interaction
+          command: |
+            git push https://heroku:$HEROKU_FRONTEND_API_KEY@git.heroku.com/$HEROKU_FRONTEND_APP_NAME.git master --force
   stage-to-heroku:
     docker:
       - image: circleci/node:12.16.3-browsers
@@ -135,7 +189,7 @@ jobs:
           name: FRONTEND - Deploy Master to Heroku
           environment:
             HEROKU_FRONTEND_APP_NAME: printer3d-frontend-stage
-            HEROKU_FRONTEND_API_KEY: 0898c4c7-7389-4023-940b-ba5d7d799f73
+            HEROKU_FRONTEND_API_KEY: 95200331-6841-4afc-87c5-cae0a859d08f
           working_directory: Printer3D-frontend
           command: |
             git push https://heroku:$HEROKU_FRONTEND_API_KEY@git.heroku.com/$HEROKU_FRONTEND_APP_NAME.git master --force
@@ -151,6 +205,7 @@ workflows:
                 - experimental
                 - development
                 - test
+                - planetary
                 - hotfix
                 - master
 
@@ -169,9 +224,21 @@ workflows:
             branches:
               only:
                 - experimental
+      - compile-planetary-job:
+          requires:
+            - start-job
+          filters:
+            branches:
+              only:
+                - planetary
 
   neocom-infinity-deploy:
     jobs:
+      - compile-planetary-job:
+          filters:
+            branches:
+              only:
+                - planetary
       - test-frontend-job:
           filters:
             tags:
@@ -187,6 +254,13 @@ workflows:
               only: /0.*/
             branches:
               ignore: /.*/
+      - stage-planetary-to-heroku:
+          requires:
+            - compile-planetary-job
+          filters:
+            branches:
+              only:
+                - planetary
       - stage-to-heroku:
           requires:
             - test-frontend-job
