@@ -18,7 +18,7 @@
     "@angular/platform-browser-dynamic": "~11.0.0",
     "@angular/router": "~11.0.0",
     "@bit/innovative.innovative.innovative-core": "^0.2.3",
-    "ngx-smooth-dnd": "^0.4.1",
+    "ng-drag-drop": "^5.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

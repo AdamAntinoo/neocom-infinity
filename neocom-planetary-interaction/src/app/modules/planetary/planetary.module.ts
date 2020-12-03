@@ -9,15 +9,15 @@ import { V1KnownPlanetsPanelComponent } from './panel/v1-known-planets-panel/v1-
 import { V1SelectedPlanetaryResourcesPanelComponent } from './panel/v1-selected-planetary-resources-panel/v1-selected-planetary-resources-panel.component';
 // import { DragDropModule } from '@angular/cdk/drag-drop';
 import { V1SelectedPlanetsPanelComponent } from './panel/v1-selected-planets-panel/v1-selected-planets-panel.component';
-import { NgxSmoothDnDModule } from 'ngx-smooth-dnd/src/ngx-smooth-dnd.module';
 // import { NgxSmoothDnDModule } from 'ngx-smooth-dnd/src/ngx-smooth-dnd.module';
-
+// import { NgxSmoothDnDModule } from 'ngx-smooth-dnd/src/ngx-smooth-dnd.module';
+import { NgDragDropModule } from 'ng-drag-drop';
 
 @NgModule({
   imports: [
     CommonModule,
     // DragDropModule,
-    NgxSmoothDnDModule,
+    NgDragDropModule.forRoot(),
     PlanetaryRoutingModule,
     RendersModule
   ],

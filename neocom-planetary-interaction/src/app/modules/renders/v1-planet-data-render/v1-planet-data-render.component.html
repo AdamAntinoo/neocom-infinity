@@ -1,4 +1,4 @@
-<div class="neocom-panel panel-red" *ngIf="planet">
+<div class="neocom-panel panel-red" *ngIf="planet" draggable [dragData]="planet" [dragScope]="'PLANET'" [dragClass]="'part-selected'">
     <div class="insets row ">
         <img class="neocom-icon iconsize-60" src="{{getPlanetIcon()}}">
         <div class="separator-4"></div>

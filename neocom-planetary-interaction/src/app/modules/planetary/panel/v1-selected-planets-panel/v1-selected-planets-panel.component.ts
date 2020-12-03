@@ -31,14 +31,10 @@ export class V1SelectedPlanetsPanelComponent implements OnInit {
 		if (this.selectedPlanets.length > 0) return this.selectedPlanets
 		else return []
 	}
-	public drop(event: CdkDragDrop<PlanetaryDataRecord[]>) {
-		if (event.previousContainer === event.container) {
-			moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-		} else {
-			transferArrayItem(event.previousContainer.data,
-				event.container.data,
-				event.previousIndex,
-				event.currentIndex);
-		}
-	}
+	public onDrop(drop: any) {
+        console.log('>[V1SelectedPlanetsPanelComponent.onDrop]> Drop: ' + JSON.stringify(drop))
+        if (drop.dragData instanceof PlanetaryDataRecord) this.selectedPlanets.push(drop.dragData)
+        // if (drop.dragData instanceof Model) this.request.addContent(drop.dragData)
+        console.log('<>>[V1NewRequestPanelComponent.onDrop]')
+    }
 }
