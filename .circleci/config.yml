@@ -173,7 +173,6 @@ jobs:
             git init
             rm -rf .gitignore
             git add *.*
-            git add config
             git add src
             git commit -m "-[HEROKU] Commiting code for deployment at development"
       - run:
