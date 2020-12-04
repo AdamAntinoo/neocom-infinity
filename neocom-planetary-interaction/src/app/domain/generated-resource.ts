@@ -3,6 +3,7 @@ import { PlanetaryResource } from './planetary-resource';
 
 export class GeneratedResource extends PlanetaryResource {
     public planet: PlanetaryDataRecord | undefined
+    public selected: boolean = false
 
     constructor(values: Object = {}) {
         super(values)
@@ -21,5 +22,14 @@ export class GeneratedResource extends PlanetaryResource {
     public getPlanetClass(): string {
         if (this.planet) return this.planet.getPlanetType().toUpperCase()
         else return '-'
+    }
+    public select(): void {
+        this.selected = true
+    }
+    public isEqual(instance: GeneratedResource): boolean {
+        if (this.planet) {
+            if (this.planet.isEqual(instance.planet)) return true
+        }
+        return false
     }
 }

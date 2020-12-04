@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { GeneratedResource } from '@domain/generated-resource';
-import { PlanetaryResource } from '@domain/planetary-resource';
 
 @Component({
     selector: 'npi-v1-t2-generated-resource',
@@ -14,5 +13,9 @@ export class V1T2GeneratedResourceRenderComponent {
     public getPlanetName(): string {
         if (this.resource) return this.resource.getPlanetName()
         else return '-'
+    }
+    public isSelected(): boolean {
+        if (this.resource) return this.resource.selected
+        return false
     }
 }
