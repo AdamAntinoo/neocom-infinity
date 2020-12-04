@@ -5,23 +5,8 @@
         <div class="separator-8"></div>
         <npi-v1-selected-planets-panel [store]="self"></npi-v1-selected-planets-panel>
         <div class="separator-8"></div>
-        <npi-v1-t2-classification-panel [planets]="getSelectedPlanets()"></npi-v1-t2-classification-panel>
-        <!-- <div class="column">
-            <div class="panel-title">T2 RESOURCES AVAILABLE</div>
-            <div *ngIf="t2Resources">
-                <div *ngFor="let resource of t2Resources">
-                    <npi-v1-t2-generated-resource [resource]="resource"></npi-v1-t2-generated-resource>
-                </div>
-            </div>
-        </div> -->
+        <npi-v1-t2-classification-panel [store]="self"></npi-v1-t2-classification-panel>
         <div class="separator-8"></div>
-        <div class="column">
-            <div class="panel-title">T2 RESOURCES SELECTED</div>
-            <div>
-                <div *ngFor="let resource of selectedResources">
-                    <npi-v1-t2-generated-resource [resource]="resource"></npi-v1-t2-generated-resource>
-                </div>
-            </div>
-        </div>
+        <npi-v1-selected-planetary-resources-panel [store]="self"></npi-v1-selected-planetary-resources-panel>
     </div>
 </div>

@@ -10,6 +10,7 @@ import { BackgroundEnabledComponent } from '@bit/innovative.innovative.innovativ
 // - DOMAIN
 import { PlanetaryDataRecord } from '@domain/planetary-data-record';
 import { V1PlanetaryPageComponent } from '../../pages/v1-planetary-page/v1-planetary-page.component';
+import { PlanetaryDataService } from '@app/services/planetary-data.service';
 
 @Component({
     selector: 'npi-v1-selected-planets-panel',
@@ -19,14 +20,15 @@ import { V1PlanetaryPageComponent } from '../../pages/v1-planetary-page/v1-plane
 export class V1SelectedPlanetsPanelComponent implements OnInit {
     @Input() store: V1PlanetaryPageComponent | undefined
     public selectedPlanets: PlanetaryDataRecord[] = []
-    constructor() { }
+
+    constructor(protected planetaryDataService: PlanetaryDataService) { }
 
     public ngOnInit(): void {
         this.refresh()
     }
     public refresh(): void {
         // Load the list of already selected planets. This is stored on local storage.
-
+        this.selectedPlanets = this.planetaryDataService.getSelectedPlanets()
     }
     // - I N T E R A C T I O N S
     public getSelectedPlanets(): PlanetaryDataRecord[] {
@@ -37,9 +39,9 @@ export class V1SelectedPlanetsPanelComponent implements OnInit {
         console.log('>[V1SelectedPlanetsPanelComponent.onDrop]> Drop: ' + JSON.stringify(drop))
         if (drop.dragData instanceof PlanetaryDataRecord) {
             this.selectedPlanets.push(drop.dragData)
-            if (this.store) this.store.updatePlanetList(this.selectedPlanets)
+            this.planetaryDataService.updateSelectedPlanets(this.selectedPlanets)
+            if (null != this.store) this.store.processEvent()
         }
-        // if (drop.dragData instanceof Model) this.request.addContent(drop.dragData)
-        console.log('<>>[V1NewRequestPanelComponent.onDrop]')
+        console.log('<[V1SelectedPlanetsPanelComponent.onDrop]')
     }
 }

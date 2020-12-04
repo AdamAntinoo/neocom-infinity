@@ -44,15 +44,4 @@ export class V1KnownPlanetsPanelComponent extends BackgroundEnabledComponent imp
 		if (this.planetList.length > 0) return this.planetList
 		else return []
 	}
-	// - D R A G   I N T E R A C T I O N S
-	public drop(event: CdkDragDrop<PlanetaryDataRecord[]>) {
-		if (event.previousContainer === event.container) {
-			moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-		} else {
-			transferArrayItem(event.previousContainer.data,
-				event.container.data,
-				event.previousIndex,
-				event.currentIndex);
-		}
-	}
 }

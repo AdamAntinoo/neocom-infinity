@@ -6,5 +6,10 @@
 		{
 			"path": "NeoCom-Infinity-Frontend"
 		}
-	]
+	],
+	"settings": {
+		"editor.codeActionsOnSave": null,
+		"editor.formatOnSave": true,
+		"editor.detectIndentation": false
+	}
 }

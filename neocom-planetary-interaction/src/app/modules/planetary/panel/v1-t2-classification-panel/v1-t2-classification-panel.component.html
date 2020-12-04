@@ -1,5 +1,5 @@
 <div class="panel-title">T2 RESOURCES AVAILABLE</div>
-<div *ngIf="t2Resources">
+<div *ngIf="t2Resources.length > 0">
     <div *ngFor="let resource of getSelectedResources()">
         <npi-v1-t2-generated-resource [resource]="resource"></npi-v1-t2-generated-resource>
     </div>
