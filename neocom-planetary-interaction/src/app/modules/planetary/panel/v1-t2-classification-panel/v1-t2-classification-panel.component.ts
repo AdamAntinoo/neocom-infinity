@@ -34,8 +34,7 @@ export class V1T2ClassificationPanelComponent extends BackgroundEnabledComponent
     public refresh(): void {
         this.planetList = this.planetaryDataService.getSelectedPlanets()
         this.t2Resources = this.sortByLevelDesc(this.processT2List()) // Get the list of T2 products available
-                // })
-        // )
+        this.filterOutResources()
     }
     public getSelectedResources(): GeneratedResource[] {
         return this.t2Resources
@@ -63,5 +62,16 @@ export class V1T2ClassificationPanelComponent extends BackgroundEnabledComponent
         return inputs.sort((element1, element2) =>
             0 - (element2.getLevel() > element1.getLevel() ? -1 : 1)
         )
+    }
+    private filterOutResources(): void {
+        const selectedResources = this.planetaryDataService.getSelectedResources()
+        for (let resource of this.t2Resources) {
+            if (this.isSelected(resource, selectedResources)) resource.select()
+        }
+    }
+    private isSelected(resource: GeneratedResource, selectionList: GeneratedResource[]): boolean {
+        for (let target of selectionList)
+            if (resource.isEqual(target)) return true
+        return false
     }
 }
