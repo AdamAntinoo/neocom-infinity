@@ -44,6 +44,9 @@ export class PlanetaryDataService {
         console.log('V1PlanetaryPageComponent.updateResourceList')
         this.selectedResources = newSelectedResourceList
     }
+    /**
+     * Load the list of already selected planets. This is stored on local storage.
+     */
     public getSelectedPlanets(): PlanetaryDataRecord[] {
         return this.selectedPlanets
     }

@@ -27,7 +27,6 @@ export class V1SelectedPlanetsPanelComponent implements OnInit {
         this.refresh()
     }
     public refresh(): void {
-        // Load the list of already selected planets. This is stored on local storage.
         this.selectedPlanets = this.planetaryDataService.getSelectedPlanets()
     }
     // - I N T E R A C T I O N S
