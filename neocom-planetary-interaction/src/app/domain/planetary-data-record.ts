@@ -1,17 +1,21 @@
 import { PlanetaryResource } from './planetary-resource';
+import { v4 as uuidv4 } from 'uuid';
 
 export class PlanetaryDataRecord {
-    public jsonClass: string | undefined
-    private name: string | undefined
-    private planetSuffix: string | undefined
-    private planetType: string | undefined
+    public jsonClass: string
+    private id: string
+    private name!: string
+    private planetSuffix!: string
+    private planetType!: string
     private planetTax: number = 10.0
     private planetResources: PlanetaryResource[] = []
+    public selected: boolean = false
 
     constructor(values: Object = {}) {
         Object.assign(this, values);
         this.jsonClass = 'PlanetaryDataRecord'
         this.decode()
+        this.id= uuidv4()
     }
     private decode(): void {
         if (null != this.planetResources) {
@@ -24,6 +28,15 @@ export class PlanetaryDataRecord {
         }
     }
 
+    public select(): void {
+        this.selected = true
+    }
+    public deselect(): void {
+        this.selected = false
+    }
+    public toggleSelect(): void {
+        this.selected = !this.selected
+    }
     public getPlanetName(): string {
         if (this.name) return this.name
         else return '-'
