@@ -1,9 +1,8 @@
 // - SERVICES
-import { IsolationService } from '@app/platform/isolation.service';
 import { environment } from '@env/environment';
 
 export class GlobalService {
-    constructor(protected isolation: IsolationService) { }
+    constructor() { }
 
     // - E N V I R O N M E N T    C A L L S
     public getApplicationName(): string {
@@ -12,12 +11,6 @@ export class GlobalService {
     public getApplicationVersion(): string {
         return this.getAppVersion();
     }
-    // public inDevelopment(): boolean {
-    //     return this.isolation.inDevelopment();
-    // }
-    // public showExceptions(): boolean {
-    //     return this.isolation.showExceptions();
-    // }
     public getAppName(): string {
         return environment.appName;
     }

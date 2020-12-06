@@ -57,21 +57,12 @@ export class HttpClientWrapperService {
     /**
      * This is the common code to all secure calls. It will check if the call can use the mockup system and if that system has a mockup destionation for the request.
      * This call also should create a new set of headers to be used on the next call and should put inside the current authentication data.
+     * This is the default version that does not add any headers. This method should be overrided by application specific implementations.
      *
      * @param [_requestHeaders]
      * @returns the new list of headers.
      */
     protected wrapHttpSecureHeaders(requestHeaders?: HttpHeaders): HttpHeaders {
-        let headers = new HttpHeaders()
-            .set('Content-Type', 'application/json; charset=utf-8')
-            .set('xApp-Signature', 'S0000.0016.0001')
-            .set('xApp-Signature', 'S0000.0019.0001');
-        if (null != requestHeaders) { // Copy in additional headers.
-            for (let key of requestHeaders.keys()) {
-                const headerValue: any = requestHeaders.get(key)
-                if (null != headerValue) headers = headers.set(key, headerValue);
-            }
-        }
-        return headers;
+         return headers;
     }
 }
