@@ -2,6 +2,11 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 // import { platformconstants } from '../platform/platform-constants';
 // - TESTING
+import { async } from '@angular/core/testing';
+import { fakeAsync } from '@angular/core/testing';
+import { inject } from '@angular/core/testing';
+import { tick } from '@angular/core/testing';
+import { ComponentFixture } from '@angular/core/testing';
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { RouteMockUpComponent } from '../testing/RouteMockUp.component';
@@ -19,8 +24,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 // import { ToastrTestingModule } from '@app/testing/ToastrTestingModule.mock';
 // import { SupportToastConfig } from '@app/testing/SupportToastConfig.service';
 
-const DOCK_CURRENT_CONFIGURATION_KEY = '-DOCK_CURRENT_CONFIGURATION_KEY-'
-
 describe('SERVICE IsolationService [Module: PLATFORM]', () => {
     const TEST_MESSAGE = '-TEST_MESSAGE-';
     const TEST_TITLE = '-TEST_TITLE-';
@@ -32,13 +35,15 @@ describe('SERVICE IsolationService [Module: PLATFORM]', () => {
             schemas: [NO_ERRORS_SCHEMA],
             imports: [
                 RouterTestingModule.withRoutes(routes),
-                // ToastrTestingModule
+                StorageServiceModule,
+                // ToastrModule.forRoot()
             ],
             declarations: [
                 RouteMockUpComponent,
                 // ToastrModuleComponent
             ],
             providers: [
+                { provide: WebStorageService, useClass: StorageServiceModule },
                 { provide: LOCAL_STORAGE, useClass: SupportLocalStorage },
                 { provide: ToastrService, useClass: SupportToastrService },
                 // ToastrModuleService
@@ -58,6 +63,12 @@ describe('SERVICE IsolationService [Module: PLATFORM]', () => {
         });
     });
     // - C O D E   C O V E R A G E   P H A S E
+    describe('Code Coverage Phase [JWT]', () => {
+        it('JWTDecode: check JWT decode api', () => {
+            const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6OTgzODQ3MjYsImFjY291bnROYW1lIjoiVGVzdGluZyBDaGFyYWN0ZXIgQWNjb3VudCIsImlzcyI6Ik5lb0NvbS5JbmZpbml0eS5CYWNrZW5kIiwidW5pcXVlSWQiOiJ0cmFucXVpbGl0eS85MzgxMzMxMCIsInBpbG90SWQiOjkzODEzMzEwfQ.eJvBC2144s7sKv5rxSUVEjNbP2BpQJlJhmTOu4AJ9eJj9so_WcrAthbvwgYM4BqyBSNZAjw7bVegieWqx8IX8Q';
+            expect(service.JWTDecode(token)).toBeDefined();
+        });
+    });
     describe('Code Coverage Phase [Exceptions]', async function () {
         it('processException.404: report detected exception', () => {
             const exception = new HttpErrorResponse({
@@ -127,6 +138,22 @@ describe('SERVICE IsolationService [Module: PLATFORM]', () => {
             const obtained = service.removeFromStorage(DOCK_CURRENT_CONFIGURATION_KEY)
             expect(obtained).toBeDefined();
             expect(service.getFromStorage(DOCK_CURRENT_CONFIGURATION_KEY)).toBeNull();
+        });
+        it('getFromSession: check Session api', () => {
+            const key = service.generateRandomString(12);
+            const value = service.generateRandomString(12);
+            expect(service.getFromSession(key)).toBeNull();
+            service.setToSession(key, value);
+            expect(service.getFromSession(key)).toBe(value);
+        });
+        it('removeFromSession: check Session api', () => {
+            const key = service.generateRandomString(12);
+            const value = service.generateRandomString(12);
+            expect(service.getFromSession(key)).toBeNull();
+            service.setToSession(key, value);
+            expect(service.getFromSession(key)).toBe(value);
+            service.removeFromSession(key);
+            expect(service.getFromSession(key)).toBeNull();
         });
     });
     describe('Code Coverage Phase [Notifications]', async function () {

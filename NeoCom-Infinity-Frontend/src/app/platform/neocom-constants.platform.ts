@@ -5,6 +5,6 @@ export const neocom_constants = {
     CREDENTIAL_KEY: '-CREDENTIAL-KEY-',
     VALID_STATE: 'LU5FT0NPTS5JTkZJTklUWS1ERVZFTE9QTUVOVC1WQUxJRCBTVEFURSBTVFJJTkct',
     DEFAULT_ICON_PLACEHOLDER: '/assets/media/defaulticonplaceholder.png',
-    DEFAULT_AVATAR_PLACEHOLDER: '/assets/media/defaulticonplaceholder.png',
+    DEFAULT_AVATAR_PLACEHOLDER: '/assets/media/defaultavatarplaceholder.png',
     DEFAULT_CORPORATION_AVATAR_PLACEHOLDER: '/assets/media/defaultcorporationavatar.png'
 }

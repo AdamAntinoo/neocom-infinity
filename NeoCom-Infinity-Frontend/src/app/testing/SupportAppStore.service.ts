@@ -12,7 +12,7 @@ import * as jwt_decode from 'jwt-decode';
 // - ROUTER
 import { Router } from '@angular/router';
 // - SERVICES
-import { GlobalService } from '@app/platform/global.service';
+import { GlobalService } from '@innovative/services/global.service';
 import { IsolationService } from '@app/platform/isolation.service';
 import { BackendService } from '@app/services/backend.service';
 // - DOMAIN
