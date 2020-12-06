@@ -32,6 +32,12 @@
             "@shared/*": [
                 "src/app/modules/shared/*"
             ],
+            "@innovative/*": [
+                "src/app/modules/innovative-core/*"
+            ],
+            "@common/*": [
+                "src/app/modules/common/*"
+            ],
             "@app/*": [
                 "src/app/*"
             ],
