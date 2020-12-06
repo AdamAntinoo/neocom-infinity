@@ -21,6 +21,7 @@ import { RouteMockUpComponent } from './testing/RouteMockUp.component';
         // AppPanelComponent,
         BackgroundEnabledComponent,
         RouteMockUpComponent,
+        // ICollaboration
         // ViewerPanelComponent
     ]
 })
