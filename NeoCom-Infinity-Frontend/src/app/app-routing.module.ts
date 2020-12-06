@@ -14,7 +14,7 @@ import { ExceptionInformationPageComponent } from './pages/exception-information
 const routes: Routes = [
     {
         path: '',
-        redirectTo: '/dashboard',
+        redirectTo: '/planetary/dashboard',
         pathMatch: 'full'
     },
     // - LOGIN PAGES
@@ -30,6 +30,8 @@ const routes: Routes = [
     // },
     // - I N D U S T R Y
     { path: 'industry', loadChildren: () => import('./modules/industry/industry.module').then(m => m.IndustryModule) },
+    // - P L A N E T A R Y
+    { path: 'planetary', loadChildren: () => import('./modules/planetary/planetary.module').then(m => m.PlanetaryModule) },
     // - REDIRECT NOT FOUND PAGES
     // { path: '**', component: NotFoundPage }
     // -  F I T T I N G S
