@@ -2,12 +2,13 @@
 import { Component } from '@angular/core'
 import { Input } from '@angular/core'
 // - INNOVATIVE
-import { BackgroundEnabledComponent } from '@bit/innovative.innovative.innovative-core'
-import { ICollaboration } from '@app/innovative-core/interfaces/ICollaboration.interface'
+import { IsolationService } from '@innovative/services/isolation.service';
+import { BackgroundEnabledComponent } from '@innovative/components/background-enabled/background-enabled.component';
 // - DOMAIN
-import { IViewer } from '@app/innovative-core/interfaces/IViewer.interface'
 // import { NeoCom } from '@domain/NeoCom.domain'
 import { platformConstants } from '@env/platform-constants'
+import { IViewer } from '@innovative/domain/interfaces/IViewer.interface';
+import { ICollaboration } from '@innovative/domain/interfaces/ICollaboration.interface';
 
 @Component({
     selector: 'app-panel',

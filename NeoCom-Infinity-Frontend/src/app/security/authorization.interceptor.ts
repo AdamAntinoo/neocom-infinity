@@ -7,7 +7,7 @@ import { HttpRequest } from '@angular/common/http';
 import { HttpHandler } from '@angular/common/http';
 import { HttpEvent } from '@angular/common/http';
 // - SERVICES
-import { IsolationService } from '@app/platform/isolation.service';
+import { IsolationService } from '@innovative/services/isolation.service';
 import { neocom_constants } from '@app/platform/neocom-constants.platform';
 
 @Injectable({

@@ -8,10 +8,10 @@ import { HttpErrorResponse } from '@angular/common/http'
 // - ROUTER
 import { ActivatedRoute } from '@angular/router'
 // - INNOVATIVE
-import { BackgroundEnabledComponent } from '@bit/innovative.innovative.innovative-core'
-import { IRefreshable } from '@bit/innovative.innovative.innovative-core'
+import { IsolationService } from '@innovative/services/isolation.service'
+import { BackgroundEnabledComponent } from '@innovative/components/background-enabled/background-enabled.component'
+import { IRefreshable } from '@innovative/domain/interfaces/core/IRefreshable.interface'
 // - SERVICES
-import { IsolationService } from '@app/platform/isolation.service'
 import { BackendService } from '@app/services/backend.service'
 import { ResponseTransformer } from '@app/services/support/ResponseTransformer'
 import { V1FittingConfigurationPanelComponent } from '../../panels/v1-fitting-configuration-panel/v1-fitting-configuration-panel.component'

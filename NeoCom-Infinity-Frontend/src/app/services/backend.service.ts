@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http'
 import { HttpErrorResponse } from '@angular/common/http'
 import { HttpHeaders } from '@angular/common/http'
 // - SERVICES
-import { IsolationService } from '@app/platform/isolation.service'
+import { IsolationService } from '@innovative/services/isolation.service';
 import { HttpClientWrapperService } from './httpclientwrapper.service'
 // - DOMAIN
 import { ValidateAuthorizationTokenResponse } from '@app/domain/dto/ValidateAuthorizationTokenResponse'

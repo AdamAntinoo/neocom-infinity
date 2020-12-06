@@ -2,7 +2,6 @@
 import { Component } from '@angular/core';
 import { environment } from '@env/environment';
 // - SERVICES
-import { IsolationService } from '@app/platform/isolation.service';
 
 @Component({
     selector: 'app-info-panel',

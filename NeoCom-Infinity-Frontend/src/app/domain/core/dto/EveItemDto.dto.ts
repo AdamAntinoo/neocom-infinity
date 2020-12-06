@@ -1,5 +1,5 @@
 // - INNOVATIVE
-import { IDtoCompliant } from '@app/innovative-core/interfaces/IDtoCompliant.interface'
+import { IDtoCompliant } from '@innovative/domain/interfaces/IDtoCompliant.interface'
 
 export class EveItemDto implements IDtoCompliant{
     public industryGroup: string

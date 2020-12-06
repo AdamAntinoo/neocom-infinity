@@ -9,7 +9,6 @@ import { HttpClient } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 // - SERVICES
-import { IsolationService } from '@app/platform/isolation.service';
 
 @Injectable({
     providedIn: 'root'
