@@ -4,10 +4,10 @@ COMMAND=$1
 
 SERVICE_PORT=6099
 ADMIN_PORT=$(($SERVICE_PORT + 100))
-SIMULATION_NAME='backend-simulation'
+SIMULATION_NAME=$2
 
-WORKING_DIRECTORY="/home/adam/Development/NeoCom0.20/NeoCom-Infinity-frontend"
-APISIMULATOR_COMMAND="${WORKING_DIRECTORY}/support/apisimulator-http-1.4/bin/apisimulator"
+WORKING_DIRECTORY="/home/adam/Development/NeoCom0.20/NeoCom-Infinity/NeoCom-Infinity-Frontend"
+APISIMULATOR_COMMAND="${WORKING_DIRECTORY}/support/apisimulator-http-1.6.1/bin/apisimulator"
 export APISIMULATOR_LOG_LEVEL=debug
 
 export APISIMULATOR_JAVA='/usr/lib/jvm/default-java'
@@ -16,6 +16,8 @@ export APISIMULATOR_JAVA='/usr/lib/jvm/default-java'
 start() {
   cd ${WORKING_DIRECTORY}
   APISIMULATOR_SIMULATION="${WORKING_DIRECTORY}/support/$SIMULATION_NAME"
+  figlet $2
+  figlet "start"
   echo ">> Starting api simulator with: $APISIMULATOR_SIMULATION"
   echo ">>> Service port: $SERVICE_PORT"
   echo ">>> Administration port: $ADMIN_PORT"
