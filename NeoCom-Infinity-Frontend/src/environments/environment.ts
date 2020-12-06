@@ -11,6 +11,7 @@ export const environment = {
     appVersion: require('../../package.json').version + " dev",
     apiVersion1: '/api/v1/neocom',
     apiVersion2: '/api/v2/neocom',
+    esiData : 'https://esi.evetech.net/latest/',
 
     mockStatus: true,
     serverName: '',
