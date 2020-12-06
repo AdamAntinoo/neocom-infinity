@@ -1,14 +1,17 @@
 // - CORE
-import { Injectable } from '@angular/core';
-import { Inject } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
-import { ToastrService } from 'ngx-toastr';
-// import * as jwt_decode from 'jwt-decode'
+import { Injectable } from '@angular/core'
+import { Inject } from '@angular/core'
+import { HttpErrorResponse } from '@angular/common/http'
+import { ToastrService } from 'ngx-toastr'
+import * as jwt_decode from 'jwt-decode'
 // - STORAGE
-import { LOCAL_STORAGE } from 'ngx-webstorage-service';
-import { SESSION_STORAGE } from 'ngx-webstorage-service';
-import { StorageService } from 'ngx-webstorage-service';
+import { LOCAL_STORAGE } from 'ngx-webstorage-service'
+import { SESSION_STORAGE } from 'ngx-webstorage-service'
+import { StorageService } from 'ngx-webstorage-service'
 
+/**
+ * The responsibility for this service is to isolate the internal application api from the external implementation when using libraries that can change over time like the Toaster. It will also provide a simplification when accessing some common features like the environment, global functions or storage.
+ */
 @Injectable({
     providedIn: 'root'
 })
@@ -36,24 +39,29 @@ export class IsolationService {
     }
 
     // - J W T
-    // public JWTDecode(token: string): any {
-    //     return jwt_decode(token);
-    // }
+    public JWTDecode(token: string): any {
+        return jwt_decode(token);
+    }
 
     // - S T O R A G E
-    public getFromStorage(key: string): string {
-        return this.storage.get(key);
+    public getFromStorage(_key: string): any {
+        return this.storage.get(_key);
     }
-    public setToStorage(key: string, object: any): void {
-        this.storage.set(key, object);
+    public setToStorage(_key: string, _content: any): any {
+        return this.storage.set(_key, _content)
     }
-    public setToStorageObject(key: string, object: any): void {
-        this.storage.set(key, JSON.stringify(object));
+    public removeFromStorage(_key: string): any {
+        this.storage.remove(_key);
     }
-    public removeFromStorage(key: string): string {
-        const data = this.storage.get(key);
-        this.storage.remove(key);
-        return data;
+    public getFromSession(_key: string): any {
+        console.log('>[AppStoreService.getFromSession]> key: ' + _key);
+        return this.sessionStorage.get(_key);
+    }
+    public setToSession(_key: string, _content: any): any {
+        return this.sessionStorage.set(_key, _content)
+    }
+    public removeFromSession(_key: string): any {
+        this.sessionStorage.remove(_key);
     }
 
     // - N O T I F I C A T I O N S
