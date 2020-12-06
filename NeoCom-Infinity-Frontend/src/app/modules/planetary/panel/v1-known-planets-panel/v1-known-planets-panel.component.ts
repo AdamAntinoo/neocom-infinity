@@ -6,9 +6,9 @@ import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { transferArrayItem } from '@angular/cdk/drag-drop';
 // - APP
 import { DataService } from '@app/services/data-service.service';
-import { BackgroundEnabledComponent } from '@bit/innovative.innovative.innovative-core';
 // - DOMAIN
 import { PlanetaryDataRecord } from '@domain/planetary-data-record';
+import { BackgroundEnabledComponent } from '@innovative/components/background-enabled/background-enabled.component';
 
 @Component({
 	selector: 'npi-v1-known-planets-panel',
