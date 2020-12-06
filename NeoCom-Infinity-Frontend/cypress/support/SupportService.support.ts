@@ -9,6 +9,7 @@ export class SupportService {
         // - PAGES
         this.translationTable['Dashboard'] = 'dashboard-home-page'
         this.translationTable['Fitting Build Configuration'] = 'v1-industry-fitting-build-configuration-page'
+        this.translationTable['Planetary Dashboard Page'] = 'dashboard-page'
         // - PANELS
         this.translationTable['app-component'] = 'app-root'
         this.translationTable['pilot-panel'] = 'v2-pilot-public-data-panel'
@@ -30,7 +31,7 @@ export class SupportService {
         // - RENDERS
         this.translationTable['exception'] = 'div'
         this.translationTable['pilot'] = 'pilot-render'
-        // this.translationTable['job'] = 'v1-pending-job'
+        this.translationTable['feature-button'] = 'v1-feature-button'
         // this.translationTable['machine'] = 'v3-machine'
         // this.translationTable['part'] = 'v1-part'
         // this.translationTable['request'] = 'v1-request'
@@ -52,6 +53,7 @@ export class SupportService {
 
         // -  R O U T E S
         this.routeTranslationTable['Dashboard'] = '/dashboard'
+        this.routeTranslationTable['Planetary Dashboard Page'] = '/planetary/dashboard'
     }
     /**
      * Replaces symbolic names by the application names so if there are version changes the acceptance scritps should not change.

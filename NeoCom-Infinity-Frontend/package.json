@@ -1,8 +1,8 @@
 {
-    "name": "neocom-infinity-frontend",
+    "name": "neocom-infinity",
     "version": "0.20.0",
     "scripts": {
-        "cucumber": "$(npm bin)/cucumber-js ./cypress/**/*.feature --no-strict --tags @NIF04.05",
+        "cucumber": "$(npm bin)/cucumber-js ./cypress/**/*.feature --no-strict --tags @NIF05.01",
         "docker:start": "docker-compose -f ./support/docker/docker-compose.yml up & ",
         "docker:stop": "docker-compose -f ./support/docker/docker-compose.yml down ",
         "serve:dev": "ng serve --progress --proxy-config proxy.conf.json --port 5200 --base-href /app ",

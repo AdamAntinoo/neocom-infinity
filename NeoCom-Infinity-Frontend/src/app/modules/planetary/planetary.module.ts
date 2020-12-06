@@ -10,6 +10,8 @@ import { SharedModule } from '@shared/shared.module'
 import { RendersModule } from '../renders/renders.module'
 // - COMPONENTS
 import { DashboardPageComponent } from './page/dashboard-page/dashboard-page.component';
+import { HeaderModule } from '../header/header.module'
+import { AppCommonModule } from '@common/common.module'
 
 const routes: Routes = [
     { path: 'dashboard', component: DashboardPageComponent },
@@ -20,6 +22,8 @@ const routes: Routes = [
         CommonModule,
         FormsModule,
         RouterModule.forChild(routes),
+        AppCommonModule,
+        HeaderModule
     ],
     declarations: [DashboardPageComponent],
     exports: [RouterModule]
