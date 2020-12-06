@@ -10,6 +10,7 @@ import { V2PilotPublicDataPanelComponent } from './panels/v2-pilot-public-data-p
 import { SharedModule } from '../shared/shared.module';
 import { RendersModule } from '../renders/renders.module';
 import { InnovativeCoreModule } from '@innovative/innovative-core.module';
+import { V1FeatureButtonComponent } from './components/v1-feature-button/v1-feature-button.component';
 
 @NgModule({
     imports: [
@@ -22,13 +23,15 @@ import { InnovativeCoreModule } from '@innovative/innovative-core.module';
         CapitalizeLetterPipe,
         ISKNoDecimalsPipe,
         IskScaledPipe,
-        V2PilotPublicDataPanelComponent
+        V2PilotPublicDataPanelComponent,
+        V1FeatureButtonComponent
     ],
     exports: [
         CapitalizeLetterPipe,
         ISKNoDecimalsPipe,
         IskScaledPipe,
-        V2PilotPublicDataPanelComponent
+        V2PilotPublicDataPanelComponent,
+        V1FeatureButtonComponent
     ]
 })
 export class AppCommonModule { }
