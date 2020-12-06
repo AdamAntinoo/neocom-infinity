@@ -13,7 +13,7 @@ import { HttpClientWrapperService } from '@app/services/httpclientwrapper.servic
 import { ActiveCacheWrapper } from '@app/modules/shared/support/ActiveCacheWrapper';
 // - DOMAIN
 import { Credential } from '../domain/Credential.domain';
-import { IsolationService } from '@app/platform/isolation.service';
+import { IsolationService } from '@innovative/services/isolation.service';
 import { NeoComException } from '@app/platform/NeoComException';
 import { ExceptionCatalog } from '@app/platform/ExceptionCatalog';
 import { Corporation } from '@app/domain/Corporation.domain';
@@ -21,7 +21,7 @@ import { CorporationDataResponse } from '@app/domain/dto/CorporationDataResponse
 import { Pilot } from '@app/domain/Pilot.domain';
 import { ResponseTransformer } from './support/ResponseTransformer';
 import { Fitting } from '@app/domain/Fitting.domain';
-import { AppCoreStoreService } from '@app/innovative-core/services/AppCoreStoreService.service';
+import { AppCoreStoreService } from '@innovative/services/AppCoreStoreService.service';
 
 @Injectable({
     providedIn: 'root'

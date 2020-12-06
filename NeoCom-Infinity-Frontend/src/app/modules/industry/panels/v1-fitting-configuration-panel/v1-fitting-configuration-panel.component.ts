@@ -2,8 +2,8 @@
 import { Component } from '@angular/core'
 import { Input } from '@angular/core'
 // - INNOVATIVE
-import { BackgroundEnabledComponent } from '@bit/innovative.innovative.innovative-core'
-import { IRefreshable } from '@bit/innovative.innovative.innovative-core'
+import { BackgroundEnabledComponent } from '@innovative/components/background-enabled/background-enabled.component'
+import { IRefreshable } from '@innovative/domain/interfaces/core/IRefreshable.interface'
 // - COMPONENTS
 import { HALResolver } from '@app/services/HALResolver.service'
 import { FittingBuildConfigurationDto } from '@domain/industry/dto/FittingBuildConfigurationDto.dto'

@@ -1,9 +1,9 @@
 // - CORE
 import { Injectable } from '@angular/core';
 // - SERVICES
-import { IsolationService } from '@app/platform/isolation.service';
 import { TimeUnit } from '@app/platform/TimeUnit';
 import { neocom_constants } from '@app/platform/neocom-constants.platform';
+import { IsolationService } from '@innovative/services/isolation.service';
 
 @Injectable({
     providedIn: 'root'

@@ -6,10 +6,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 // - SERVICES
 import { environment } from '@env/environment';
-import { IsolationService } from '@app/platform/isolation.service'
+import { IsolationService } from '@innovative/services/isolation.service';
 import { BackendService } from '@app/services/backend.service'
 // - INNOVATIVE
-import { BackgroundEnabledComponent } from '@bit/innovative.innovative.innovative-core';
+import { BackgroundEnabledComponent } from '@innovative/components/background-enabled/background-enabled.component';
 // - DOMAIN
 import { PilotV2 } from '@domain/PilotV2.domain'
 import { ResponseTransformer } from '@app/services/support/ResponseTransformer';

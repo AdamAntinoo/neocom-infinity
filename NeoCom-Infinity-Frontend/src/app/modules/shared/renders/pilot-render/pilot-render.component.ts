@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Input } from '@angular/core';
 // - SERVICES
-import { IsolationService } from '@app/platform/isolation.service';
 // - DOMAIN
 import { Pilot } from '@app/domain/Pilot.domain';
 import { RenderComponent } from '../render/render.component';

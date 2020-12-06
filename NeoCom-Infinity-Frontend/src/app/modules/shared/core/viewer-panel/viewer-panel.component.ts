@@ -2,9 +2,9 @@
 import { Component } from '@angular/core';
 import { Input } from '@angular/core';
 import { ChangeDetectionStrategy } from '@angular/core';
+import { ICollaboration } from '@innovative/domain/interfaces/ICollaboration.interface';
 // - DOMAIN
 import { AppPanelComponent } from '@shared/core/app-panel/app-panel.component';
-import { ICollaboration } from '@app/innovative-core/interfaces/ICollaboration.interface';
 
 @Component({
     selector: 'viewer-panel',

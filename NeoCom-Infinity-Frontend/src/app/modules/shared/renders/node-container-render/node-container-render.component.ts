@@ -3,10 +3,10 @@ import { Component } from '@angular/core';
 import { Input } from '@angular/core';
 // - DOMAIN
 import { ESeparator } from '@app/domain/interfaces/EPack.enumerated';
-import { IViewer } from '@app/innovative-core/interfaces/IViewer.interface';
 import { NeoCom } from '@domain/NeoCom.domain';
 import { IColorTheme } from '@domain/interfaces/IColorTheme.interface';
-import { ICollaboration } from '@app/innovative-core/interfaces/ICollaboration.interface';
+import { IViewer } from '@innovative/domain/interfaces/IViewer.interface';
+import { ICollaboration } from '@innovative/domain/interfaces/ICollaboration.interface';
 
 @Component({
     selector: 'node-container',

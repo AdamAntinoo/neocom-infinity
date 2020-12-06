@@ -14,7 +14,7 @@ import { BackendService } from '@app/services/backend.service';
 import { NeoComException } from '@app/platform/NeoComException';
 // - DOMAIN
 import { Credential } from '../../domain/Credential.domain';
-import { IsolationService } from '@app/platform/isolation.service';
+import { IsolationService } from '@innovative/services/isolation.service';
 import { neocom_constants } from '@app/platform/neocom-constants.platform';
 import { ResponseTransformer } from '@app/services/support/ResponseTransformer';
 import { ValidateAuthorizationTokenResponse } from '@app/domain/dto/ValidateAuthorizationTokenResponse';

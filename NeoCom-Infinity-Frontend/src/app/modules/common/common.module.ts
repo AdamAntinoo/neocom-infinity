@@ -8,8 +8,8 @@ import { IskScaledPipe } from './pipes/iskscaled.pipe';
 // - COMPONENTS
 import { V2PilotPublicDataPanelComponent } from './panels/v2-pilot-public-data-panel/v2-pilot-public-data-panel.component';
 import { SharedModule } from '../shared/shared.module';
-import { InnovativeCoreModule } from '@bit/innovative.innovative.innovative-core';
 import { RendersModule } from '../renders/renders.module';
+import { InnovativeCoreModule } from '@innovative/innovative-core.module';
 
 @NgModule({
     imports: [

@@ -1,9 +1,8 @@
 // - SERVICES
-import { ICollaboration } from '@app/innovative-core/interfaces/ICollaboration.interface';
-import { AppCoreStoreService } from '@app/innovative-core/services/AppCoreStoreService.service';
-import { AppStoreService } from '@app/services/appstore.service';
 // - DOMAIN
 import { ESeparator } from '@domain/interfaces/EPack.enumerated';
+import { ICollaboration } from '@innovative/domain/interfaces/ICollaboration.interface';
+import { AppCoreStoreService } from '@innovative/services/AppCoreStoreService.service';
 import { IIconReference } from './interfaces/IIconReference.interface';
 import { AssetGroupIconReference } from './interfaces/IIconReference.interface';
 import { NeoComExpandable } from './NeoComExpandable.domain';

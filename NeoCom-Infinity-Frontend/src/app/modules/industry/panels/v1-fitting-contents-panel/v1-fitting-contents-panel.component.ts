@@ -8,8 +8,8 @@ import { HttpErrorResponse } from '@angular/common/http'
 // - ROUTER
 import { ActivatedRoute } from '@angular/router'
 // - INNOVATIVE
-import { BackgroundEnabledComponent } from '@bit/innovative.innovative.innovative-core'
-import { IRefreshable } from '@bit/innovative.innovative.innovative-core'
+import { BackgroundEnabledComponent } from '@innovative/components/background-enabled/background-enabled.component'
+import { IRefreshable } from '@innovative/domain/interfaces/core/IRefreshable.interface'
 // - COMPONENTS
 import { AppPanelComponent } from '@shared/core/app-panel/app-panel.component'
 import { BackendService } from '@app/services/backend.service'

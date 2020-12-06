@@ -2,9 +2,11 @@
 import { Component } from '@angular/core';
 import { Input } from '@angular/core';
 // - DOMAIN
-import { BackgroundEnabledComponent } from '@bit/innovative.innovative.innovative-core';
+import { IsolationService } from '@innovative/services/isolation.service'
+import { BackgroundEnabledComponent } from '@innovative/components/background-enabled/background-enabled.component'
+import { IRefreshable } from '@innovative/domain/interfaces/core/IRefreshable.interface'
 import { HALNode } from '@domain/hal/HALNode.hal';
-import { IViewer } from '@app/innovative-core/interfaces/IViewer.interface';
+import { IViewer } from '@innovative/domain/interfaces/IViewer.interface';
 import { NeoCom } from '@domain/NeoCom.domain';
 
 @Component({

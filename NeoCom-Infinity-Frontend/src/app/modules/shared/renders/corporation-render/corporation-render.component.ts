@@ -4,7 +4,6 @@ import { OnInit } from '@angular/core';
 import { Input } from '@angular/core';
 import { environment } from '@env/environment';
 // - SERVICES
-import { IsolationService } from '@app/platform/isolation.service';
 // - DOMAIN
 import { Corporation } from '@app/domain/Corporation.domain';
 import { Alliance } from '@app/domain/Alliance.domain';
