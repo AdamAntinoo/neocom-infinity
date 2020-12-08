@@ -13,6 +13,7 @@ import { V2NodeContainerRenderComponent } from './v2-node-container-render/v2-no
 import { V1BuildActionRenderComponent } from './v1-build-action-render/v1-build-action-render.component';
 import { V1FittingBuildContentRenderComponent } from './v1-fitting-build-content-render/v1-fitting-build-content-render.component';
 import { V1MarketDataRenderComponent } from './v1-market-data-render/v1-market-data-render.component';
+import { V2FeatureRenderComponent } from './v2-feature-render/v2-feature-render.component';
 // import { NodeContainerRenderComponent } from './node-container-render/node-container-render.component';
 
 @NgModule({
@@ -31,7 +32,8 @@ import { V1MarketDataRenderComponent } from './v1-market-data-render/v1-market-d
         V2NodeContainerRenderComponent,
         V1BuildActionRenderComponent,
         V1FittingBuildContentRenderComponent,
-        V1MarketDataRenderComponent
+        V1MarketDataRenderComponent,
+        V2FeatureRenderComponent
     ],
     exports: [
         // NodeContainerRenderComponent,
@@ -43,7 +45,8 @@ import { V1MarketDataRenderComponent } from './v1-market-data-render/v1-market-d
         V2NodeContainerRenderComponent,
         V1BuildActionRenderComponent,
         V1FittingBuildContentRenderComponent,
-        V1MarketDataRenderComponent
+        V1MarketDataRenderComponent,
+        V2FeatureRenderComponent
     ]
 })
 export class RendersModule { }

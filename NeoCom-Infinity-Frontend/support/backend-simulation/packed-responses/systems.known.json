@@ -1,0 +1,19 @@
+[{
+    "systemId": 60006610,
+    "systemName": "Esa",
+    "constellationId": 20000257,
+    "constellationName": "Peges",
+    "regionId": 10000020,
+    "regionName": "Tash-Murkon",
+    "securityLevel": 0.8,
+    "securityClass": "B1"
+}, {
+    "systemId": 30002059,
+    "systemName": "Auner",
+    "constellationId": 20000303,
+    "constellationName": "Tiat",
+    "regionId": 10000042,
+    "regionName": "Metropolis",
+    "securityLevel": 0.4,
+    "securityClass": "E"
+}]

@@ -17,6 +17,7 @@ import { V1KnownPlanetsPanelComponent } from './panel/v1-known-planets-panel/v1-
 import { V1SelectedPlanetsPanelComponent } from './panel/v1-selected-planets-panel/v1-selected-planets-panel.component'
 import { PlanetaryDataService } from './service/PlanetaryData.service';
 import { V1EnterPlanetDataPageComponent } from './page/v1-enter-planet-data-page/v1-enter-planet-data-page.component'
+import { NgDragDropModule } from 'ng-drag-drop'
 
 const routes: Routes = [
     { path: 'dashboard', component: DashboardPageComponent },
@@ -29,8 +30,10 @@ const routes: Routes = [
         CommonModule,
         FormsModule,
         RouterModule.forChild(routes),
+        NgDragDropModule.forRoot(),
         AppCommonModule,
-        HeaderModule
+        HeaderModule,
+        RendersModule
     ],
     declarations: [
         DashboardPageComponent, 
