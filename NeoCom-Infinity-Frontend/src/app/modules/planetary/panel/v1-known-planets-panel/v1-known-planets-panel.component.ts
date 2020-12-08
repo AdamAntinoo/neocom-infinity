@@ -5,10 +5,10 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { transferArrayItem } from '@angular/cdk/drag-drop';
 // - APP
-import { DataService } from '@app/services/data-service.service';
 // - DOMAIN
-import { PlanetaryDataRecord } from '@domain/planetary-data-record';
 import { BackgroundEnabledComponent } from '@innovative/components/background-enabled/background-enabled.component';
+import { PlanetaryDataRecord } from '@domain/planetary/planetary-data-record';
+import { PlanetaryDataService } from '../../service/PlanetaryData.service';
 
 @Component({
 	selector: 'npi-v1-known-planets-panel',
@@ -18,7 +18,7 @@ import { BackgroundEnabledComponent } from '@innovative/components/background-en
 export class V1KnownPlanetsPanelComponent extends BackgroundEnabledComponent implements OnInit {
 	public planetList: PlanetaryDataRecord[] = []
 
-	constructor(protected dataService: DataService) {
+	constructor(protected planetaryDataService: PlanetaryDataService) {
 		super();
 	}
 
@@ -29,14 +29,14 @@ export class V1KnownPlanetsPanelComponent extends BackgroundEnabledComponent imp
 	private refresh(): void {
 		this.clear()
 		this.backendConnections.push(
-			this.dataService.apiGetPlanetPIInformation().subscribe((dataList) => {
-				console.log('Processing planet data')
-				for (let index = 0; index < dataList.length; index++) {
-					const element = dataList[index];
-					const planetData: PlanetaryDataRecord = new PlanetaryDataRecord(element)
-					this.planetList.push(planetData)
-				}
-			})
+			// this.planetaryDataService.apiGetPlanetPIInformation().subscribe((dataList) => {
+			// 	console.log('Processing planet data')
+			// 	for (let index = 0; index < dataList.length; index++) {
+			// 		const element = dataList[index];
+			// 		const planetData: PlanetaryDataRecord = new PlanetaryDataRecord(element)
+			// 		this.planetList.push(planetData)
+			// 	}
+			// })
 		)
 	}
 	// - I N T E R A C T I O N S

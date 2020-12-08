@@ -4,12 +4,10 @@ import { OnInit } from '@angular/core';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { transferArrayItem } from '@angular/cdk/drag-drop';
-// - APP
-import { DataService } from '@app/services/data-service.service';
 // - DOMAIN
-import { V1PlanetaryPageComponent } from '../../pages/v1-planetary-page/v1-planetary-page.component';
-import { PlanetaryDataService } from '@app/services/planetary-data.service';
 import { PlanetaryDataRecord } from '@domain/planetary/planetary-data-record';
+import { PlanetaryDataService } from '../../service/PlanetaryData.service';
+import { DashboardPageComponent } from '../../page/dashboard-page/dashboard-page.component';
 
 @Component({
     selector: 'npi-v1-selected-planets-panel',
@@ -17,7 +15,7 @@ import { PlanetaryDataRecord } from '@domain/planetary/planetary-data-record';
     styleUrls: ['./v1-selected-planets-panel.component.scss']
 })
 export class V1SelectedPlanetsPanelComponent implements OnInit {
-    @Input() store: V1PlanetaryPageComponent | undefined
+    @Input() store: DashboardPageComponent | undefined
     public selectedPlanets: PlanetaryDataRecord[] = []
 
     constructor(protected planetaryDataService: PlanetaryDataService) { }

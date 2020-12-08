@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+// - CORE
+import { Component } from '@angular/core';
+import { ViewChild } from '@angular/core';
+// import { Component } from '@angular/core';
 import { V1SelectedPlanetsPanelComponent } from '../../panel/v1-selected-planets-panel/v1-selected-planets-panel.component';
+import { PlanetaryDataService } from '../../service/PlanetaryData.service';
 
 @Component({
   selector: 'v1-planet-search-page',
@@ -12,16 +16,14 @@ export class V1PlanetSearchPageComponent  {
     // @ViewChild(V1SelectedPlanetaryResourcesPanelComponent) selectedT2ResourcesComponent: V1SelectedPlanetaryResourcesPanelComponent | undefined
     public self: V1PlanetSearchPageComponent | undefined
 
-    constructor(
-        protected dataService: DataService,
-        protected planetaryDataService: PlanetaryDataService) {
-        super();
+    constructor(protected planetaryDataService: PlanetaryDataService) {
+        // super();
         this.self = this
     }
 
     public processEvent(): void {
         if (this.selectedPlanetsComponent) this.selectedPlanetsComponent.refresh()
-        if (this.availableT2ResourcesComponent) this.availableT2ResourcesComponent.refresh()
-        if (this.availableT2ResourcesComponent) this.availableT2ResourcesComponent.refresh()
+        // if (this.availableT2ResourcesComponent) this.availableT2ResourcesComponent.refresh()
+        // if (this.availableT2ResourcesComponent) this.availableT2ResourcesComponent.refresh()
     }
 }
