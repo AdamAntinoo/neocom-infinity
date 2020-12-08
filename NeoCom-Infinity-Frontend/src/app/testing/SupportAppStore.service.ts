@@ -20,7 +20,7 @@ import { Credential } from '@app/domain/Credential.domain';
 import { Corporation } from '@app/domain/Corporation.domain';
 import { Pilot } from '@app/domain/Pilot.domain';
 import { CorporationDataResponse } from '@app/domain/dto/CorporationDataResponse.dto';
-import { ResponseTransformer } from '@app/services/support/ResponseTransformer';
+import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer';
 import { Fitting } from '@domain/Fitting.domain';
 
 @Injectable({

@@ -14,7 +14,7 @@ import { ValidateAuthorizationTokenResponse } from '@app/domain/dto/ValidateAuth
 import { environment } from '@env/environment.prod';
 import { NeoComResponse } from '@app/domain/dto/NeoComResponse.dto';
 import { NeoComException } from '@app/platform/NeoComException';
-import { ResponseTransformer } from '@app/services/support/ResponseTransformer';
+import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer';
 import { Corporation } from '@app/domain/Corporation.domain';
 import { SupportAppStoreService } from './SupportAppStore.service';
 import { Pilot } from '@app/domain/Pilot.domain';
