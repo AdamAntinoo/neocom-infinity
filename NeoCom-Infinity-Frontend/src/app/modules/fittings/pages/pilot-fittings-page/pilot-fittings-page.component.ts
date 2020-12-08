@@ -4,7 +4,7 @@ import { OnInit } from '@angular/core';
 // - SERVICES
 import { AppPanelComponent } from '@shared/core/app-panel/app-panel.component';
 import { AppStoreService } from '@app/services/appstore.service';
-import { ResponseTransformer } from '@app/services/support/ResponseTransformer';
+import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer';
 // - DOMAIN
 import { Fitting } from '../../../../domain/Fitting.domain';
 import { GroupContainer } from '@domain/GroupContainer.domain';

@@ -6,7 +6,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { HALNode } from '@domain/hal/HALNode.hal';
 import { Observable } from 'rxjs';
-import { ResponseTransformer } from './support/ResponseTransformer';
 import { environment } from '@env/environment';
 
 @Injectable({
