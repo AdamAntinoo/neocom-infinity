@@ -9,7 +9,7 @@ import { Pilot } from './Pilot.domain';
 import { Corporation } from './Corporation.domain';
 import { HALNode } from './hal/HALNode.hal';
 import { HALLink } from './hal/HALLink.hal';
-import { ResponseTransformer } from '@app/services/support/ResponseTransformer';
+import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer';
 
 export class PilotV2 extends HALNode {
     public pilotId: number
