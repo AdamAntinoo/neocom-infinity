@@ -63,6 +63,6 @@ export class HttpClientWrapperService {
      * @returns the new list of headers.
      */
     protected wrapHttpSecureHeaders(requestHeaders?: HttpHeaders): HttpHeaders {
-         return headers;
+         return requestHeaders;
     }
 }

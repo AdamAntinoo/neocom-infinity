@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators'
 import { environment } from '@env/environment'
 // - HTTP PACKAGE
-import { ESIUniverseHttpWrapper } from './esiuniverse.httpwrapper.service'
+import { ESIUniverseHttpWrapper } from './ESUniverse.HttpWrapper.service'
 // - DOMAIN
 import { UniverseSystem } from '@domain/esi/UniverseSystem.esi';
 import { UniversePlanet } from '@domain/esi/UniversePlanet.esi';

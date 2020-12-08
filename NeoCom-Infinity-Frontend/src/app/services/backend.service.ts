@@ -9,14 +9,14 @@ import { HttpErrorResponse } from '@angular/common/http'
 import { HttpHeaders } from '@angular/common/http'
 // - SERVICES
 import { IsolationService } from '@innovative/services/isolation.service';
-import { HttpClientWrapperService } from './httpclientwrapper.service'
+import { BackendHttpWrapper } from './Backend.HttpWrapper.service'
 // - DOMAIN
 import { ValidateAuthorizationTokenResponse } from '@app/domain/dto/ValidateAuthorizationTokenResponse'
 import { Pilot } from '@app/domain/Pilot.domain'
-import { ResponseTransformer } from './support/ResponseTransformer'
 import { Corporation } from '@app/domain/Corporation.domain'
 import { ServerStatus } from '@app/domain/ServerStatus.domain'
 import { Fitting } from '@app/domain/Fitting.domain'
+import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer'
 
 @Injectable({
     providedIn: 'root'
@@ -27,7 +27,7 @@ export class BackendService {
 
     constructor(
         protected isolation: IsolationService,
-        protected httpService: HttpClientWrapperService) {
+        protected httpService: BackendHttpWrapper) {
         this.APIV1 = environment.serverName + environment.apiVersion1
         this.APIV2 = environment.serverName + environment.apiVersion2
     }

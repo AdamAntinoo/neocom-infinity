@@ -9,7 +9,6 @@ import { environment } from '@env/environment';
 import { Router } from '@angular/router';
 // - SERVICES
 import { BackendService } from '@app/services/backend.service';
-import { HttpClientWrapperService } from '@app/services/httpclientwrapper.service';
 import { ActiveCacheWrapper } from '@app/modules/shared/support/ActiveCacheWrapper';
 // - DOMAIN
 import { Credential } from '../domain/Credential.domain';
@@ -19,9 +18,10 @@ import { ExceptionCatalog } from '@app/platform/ExceptionCatalog';
 import { Corporation } from '@app/domain/Corporation.domain';
 import { CorporationDataResponse } from '@app/domain/dto/CorporationDataResponse.dto';
 import { Pilot } from '@app/domain/Pilot.domain';
-import { ResponseTransformer } from './support/ResponseTransformer';
 import { Fitting } from '@app/domain/Fitting.domain';
 import { AppCoreStoreService } from '@innovative/services/AppCoreStoreService.service';
+import { BackendHttpWrapper } from './Backend.HttpWrapper.service';
+import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer';
 
 @Injectable({
     providedIn: 'root'
@@ -37,7 +37,7 @@ export class AppStoreService extends AppCoreStoreService {
         protected router: Router,
         protected isolationService: IsolationService,
         protected backendService: BackendService,
-        protected httpService: HttpClientWrapperService) {
+        protected httpService: BackendHttpWrapper) {
         super()
         // - S T O R E   D A T A   S E C T I O N
         this.corporationActiveCache = new ActiveCacheWrapper<Corporation>()
