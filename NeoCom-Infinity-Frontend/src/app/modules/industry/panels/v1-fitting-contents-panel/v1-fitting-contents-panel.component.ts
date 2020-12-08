@@ -18,6 +18,7 @@ import { FittingBuildConfigurationDto } from '@domain/industry/dto/FittingBuildC
 import { NCVariant } from '@env/NeoComVariants'
 import { FittingBuildContentDto } from '@domain/industry/dto/FittingBuildContentDto.dto'
 import { FittingGroup } from '@domain/industry/FittingGroup.domain'
+import { ICollaboration } from '@innovative/domain/interfaces/ICollaboration.interface'
 
 @Component({
     selector: 'v1-fitting-contents-panel',
@@ -27,6 +28,7 @@ import { FittingGroup } from '@domain/industry/FittingGroup.domain'
 export class V1FittingContentsPanelComponent extends AppPanelComponent implements OnInit, IRefreshable {
     @Input() contents: FittingBuildContentDto[] = []
     private slotGroups: FittingGroup[] = []
+    private fittinContents : ICollaboration[]=[]
     constructor() {
         super()
         // Initialize the list of fitting groups.
@@ -55,8 +57,8 @@ export class V1FittingContentsPanelComponent extends AppPanelComponent implement
             this.addToSlotGroup(fittingContent.getLocationGroup(), fittingContent)
         }
         for (const group of this.sortByWeight(this.slotGroups))
-            this.dataModelRoot.push(group)
-        this.completeDowload()
+            this.fittinContents.push(group)
+        this.completeDowload(this.fittinContents)
     }
     private addToSlotGroup(slotGroup: string, item: FittingBuildContentDto): void {
         let hit = undefined

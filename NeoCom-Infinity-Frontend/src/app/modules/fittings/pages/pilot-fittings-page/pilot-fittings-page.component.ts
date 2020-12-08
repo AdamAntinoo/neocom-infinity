@@ -10,6 +10,7 @@ import { Fitting } from '../../../../domain/Fitting.domain';
 import { GroupContainer } from '@domain/GroupContainer.domain';
 import { URLGroupIconReference, AssetGroupIconReference } from '@domain/interfaces/IIconReference.interface';
 import { NCVariant } from '@env/NeoComVariants';
+import { ICollaboration } from '@innovative/domain/interfaces/ICollaboration.interface';
 
 @Component({
     selector: 'pilot-fittings-page',
@@ -19,6 +20,7 @@ import { NCVariant } from '@env/NeoComVariants';
 export class PilotFittingsPageComponent extends AppPanelComponent implements OnInit {
     private hullCategories: Map<string, GroupContainer> = new Map<string, GroupContainer>();
     private shipClasses: Map<string, GroupContainer> = new Map<string, GroupContainer>();
+    private fittingList : ICollaboration[]=[]
 
     constructor(protected appStoreService: AppStoreService) { super(); }
 
@@ -43,8 +45,8 @@ export class PilotFittingsPageComponent extends AppPanelComponent implements OnI
                 // console.log('-[PilotFittingsPageComponent.ngOnInit]> response: ' + JSON.stringify(response));
                 // Process the list of fittings into the ship type groupings.
                 this.classifyFittings(response);
-                console.log('-[PilotFittingsPageComponent.ngOnInit]> nodes processed: ' + this.dataModelRoot.length);
-                this.completeDowload();    // Notify the completion of the download.
+                console.log('-[PilotFittingsPageComponent.ngOnInit]> nodes processed: ' + this.fittingList.length);
+                this.completeDowload(this.fittingList);    // Notify the completion of the download.
             });
         console.log("<[PilotFittingsPageComponent.ngOnInit]");
     }
@@ -84,7 +86,7 @@ export class PilotFittingsPageComponent extends AppPanelComponent implements OnI
                         .setTitle(hullCategory)
                         .setGroupIcon(new AssetGroupIconReference(fit.getHullCategory() + "_64"));
                     this.hullCategories.set(hullCategory, hitHullCategory);
-                    this.dataModelRoot.push(hitHullCategory);
+                    this.fittingList.push(hitHullCategory);
                 }
                 hitHullCategory.addContent(hitShipClass);
             }

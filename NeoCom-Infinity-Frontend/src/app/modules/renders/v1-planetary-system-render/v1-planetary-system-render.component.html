@@ -1,0 +1,15 @@
+<p>v1-planetary-system-render works!</p>
+<div id="{{getUniqueId()}}" class="cornered-panel" *ngIf="getVariant() === '-COIL-LIST-'">
+    <div cy-name="systemName" class="field material-width">
+        <span cy-field-label="systemName" class="label">SYSTEM NAME</span><br>
+        <span cy-field-value="systemName" class="field-height">{{getSystemName()}}</span>
+    </div>
+    <div cy-name="at" class="field material-width">
+        <span cy-field-label="at" class="label">LOCATION</span><br>
+        <span cy-field-value="at" class="field-height">{{getSystemName()}}</span>
+    </div>
+    <div cy-name="security" class="field material-width">
+        <span cy-field-label="security" class="label">SECURITY</span><br>
+        <span cy-field-value="security" class="field-height">{{getSecurity()}}</span>
+    </div>
+</div>

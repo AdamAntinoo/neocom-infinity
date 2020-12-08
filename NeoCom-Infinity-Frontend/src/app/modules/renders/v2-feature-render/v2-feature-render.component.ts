@@ -42,7 +42,7 @@ export class V2FeatureRenderComponent {
     }
     private activateFeature(target: NeoComFeature): void {
         console.log('><[V2FeatureRenderComponent.activateFeature]> Feature: ' + JSON.stringify(target));
-        if (null == target)
+        if (target)
             this.pageChange(target.getRoute());
     }
     /**
