@@ -17,12 +17,14 @@ import { V1KnownPlanetsPanelComponent } from './panel/v1-known-planets-panel/v1-
 import { V1SelectedPlanetsPanelComponent } from './panel/v1-selected-planets-panel/v1-selected-planets-panel.component'
 import { PlanetaryDataService } from './service/PlanetaryData.service';
 import { V1EnterPlanetDataPageComponent } from './page/v1-enter-planet-data-page/v1-enter-planet-data-page.component'
-import { NgDragDropModule } from 'ng-drag-drop'
+import { NgDragDropModule } from 'ng-drag-drop';
+import { V1ResourceResearchPageComponent } from './page/v1-resource-research-page/v1-resource-research-page.component';
+import { V1KnownSystemsPanelComponent } from './panel/v1-known-systems-panel/v1-known-systems-panel.component'
 
 const routes: Routes = [
     { path: 'dashboard', component: DashboardPageComponent },
     { path: 'planet-data', component: V1EnterPlanetDataPageComponent },
-    { path: 'resource-search', component: V1PlanetSearchPageComponent },
+    { path: 'resource-research', component: V1ResourceResearchPageComponent },
 ]
 
 @NgModule({
@@ -33,14 +35,17 @@ const routes: Routes = [
         NgDragDropModule.forRoot(),
         AppCommonModule,
         HeaderModule,
-        RendersModule
+        RendersModule,
+        SharedModule
     ],
     declarations: [
         DashboardPageComponent, 
         V1PlanetSearchPageComponent,
         V1KnownPlanetsPanelComponent,
         V1SelectedPlanetsPanelComponent,
-        V1EnterPlanetDataPageComponent
+        V1EnterPlanetDataPageComponent,
+        V1ResourceResearchPageComponent,
+       V1KnownSystemsPanelComponent
     ],
     exports: [RouterModule],
     providers: [

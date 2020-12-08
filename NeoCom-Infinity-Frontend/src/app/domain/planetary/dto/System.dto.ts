@@ -1,5 +1,6 @@
 // - DOMAIN
 import { IDtoCompliant } from '@innovative/domain/interfaces/IDtoCompliant.interface'
+
 export class SystemDto implements IDtoCompliant {
     public systemId: number
     public systemName : string

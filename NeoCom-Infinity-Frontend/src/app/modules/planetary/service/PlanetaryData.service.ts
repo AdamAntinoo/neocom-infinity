@@ -12,6 +12,7 @@ import { PlanetaryResource } from '@domain/planetary/planetary-resource';
 import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer';
 import { constants } from 'fs';
 import { NeoComFeature } from '@domain/ui/NeoComFeature.domain';
+import { KnownSystem } from '@domain/planetary/KnownSystem.domain';
 
 @Injectable({
     providedIn: 'root'
@@ -68,7 +69,7 @@ export class PlanetaryDataService {
     }
 
     // - C O N F I G U R A T I O N
-    public readPlanetaryFeatures (transformer: ResponseTransformer) :  Observable<NeoComFeature[]>{
+    public readPlanetaryFeatures(transformer: ResponseTransformer): Observable<NeoComFeature[]> {
         const request = '/assets/properties/planetary-features.json'
         return this.httpService.wrapHttpRESOURCECall(request)
             .pipe(
@@ -83,12 +84,12 @@ export class PlanetaryDataService {
     /**
      * Get the list of System records with the systems where we have any kind of Planet data available. The returned information is the minumun data required for rendering a list of data to be selected by the user at the UI.
      */
-    public apiv1_GetKnownPlanetSystems(transformer: ResponseTransformer): Observable<any> {
-        const request = this.APIV1 + "/server/datasource/" + environment.ESIDataSource.toLowerCase()
+    public apiv1_GetKnownPlanetSystems(transformer: ResponseTransformer): Observable<KnownSystem[]> {
+        const request = this.APIV1 + '/planetary/systems'
         return this.httpService.wrapHttpGETCall(request)
             .pipe(map((data: any) => {
-                console.log(">[BackendService.apiGetServerInfo_v1]> Transformation: " + transformer.description)
-                const response = transformer.transform(data) 
+                console.log(">[PlanetaryDataService.apiv1_GetKnownPlanetSystems]> Transformation: " + transformer.description)
+                const response = transformer.transform(data) as KnownSystem[]
                 return response
             }))
     }

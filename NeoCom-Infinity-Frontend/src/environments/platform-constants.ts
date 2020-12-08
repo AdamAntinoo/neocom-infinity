@@ -6,5 +6,7 @@ export const platformConstants = {
     VALID_STATE: 'LU5FT0NPTS5JTkZJTklUWS1ERVZFTE9QTUVOVC1WQUxJRCBTVEFURSBTVFJJTkct',
     DEFAULT_ICON_PLACEHOLDER: '/assets/media/defaulticonplaceholder.png',
     DEFAULT_AVATAR_PLACEHOLDER: '/assets/media/defaultavatarplaceholder.png',
-    DEFAULT_VARIANT: '-DEFAULT-'
+    DEFAULT_VARIANT: '-DEFAULT-',
+    // - V A R I A N T S
+    KNOWN_SYSTEMS: '-KNOWN_SYSTEMS-'
 }
