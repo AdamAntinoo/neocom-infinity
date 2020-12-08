@@ -12,7 +12,7 @@ import { IsolationService } from '@innovative/services/isolation.service';
 import { BackgroundEnabledComponent } from '@innovative/components/background-enabled/background-enabled.component';
 // - DOMAIN
 import { PilotV2 } from '@domain/PilotV2.domain'
-import { ResponseTransformer } from '@app/services/support/ResponseTransformer';
+import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer';
 import { HALResolver } from '@app/services/HALResolver.service';
 import { Credential } from '@app/domain/Credential.domain';
 import { NeoComException } from '@domain/core/NeoComException.core';

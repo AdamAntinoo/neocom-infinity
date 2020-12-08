@@ -13,8 +13,8 @@ import { BackgroundEnabledComponent } from '@innovative/components/background-en
 import { IRefreshable } from '@innovative/domain/interfaces/core/IRefreshable.interface'
 // - SERVICES
 import { BackendService } from '@app/services/backend.service'
-import { ResponseTransformer } from '@app/services/support/ResponseTransformer'
 import { V1FittingConfigurationPanelComponent } from '../../panels/v1-fitting-configuration-panel/v1-fitting-configuration-panel.component'
+import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer'
 
 @Component({
     selector: 'v1-industry-fitting-build-configuration-page',

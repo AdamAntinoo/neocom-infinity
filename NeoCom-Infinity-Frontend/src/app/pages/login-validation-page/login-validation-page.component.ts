@@ -16,9 +16,9 @@ import { NeoComException } from '@app/platform/NeoComException';
 import { Credential } from '../../domain/Credential.domain';
 import { IsolationService } from '@innovative/services/isolation.service';
 import { neocom_constants } from '@app/platform/neocom-constants.platform';
-import { ResponseTransformer } from '@app/services/support/ResponseTransformer';
 import { ValidateAuthorizationTokenResponse } from '@app/domain/dto/ValidateAuthorizationTokenResponse';
 import { ExceptionCatalog } from '@app/platform/ExceptionCatalog';
+import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer';
 
 @Component({
     selector: 'app-login-validation-page',

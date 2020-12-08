@@ -105,6 +105,6 @@ registerLocaleData(localeEs);
         // { provide: HTTP_INTERCEPTORS, useClass: AuthorizationInterceptor, multi: true },
         // { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }
     ],
-  bootstrap: [AppComponent]
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

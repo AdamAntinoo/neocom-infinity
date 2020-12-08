@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 // - DOMAIN
 import { BackendService } from '@app/services/backend.service';
 import { environment } from '@env/environment';
-import { ResponseTransformer } from '@app/services/support/ResponseTransformer';
+import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer';
 import { ServerStatus } from '@app/domain/ServerStatus.domain';
 
 @Component({
