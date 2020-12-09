@@ -1,0 +1,8 @@
+{
+    "settings": {
+        "backendproxy": "https://neocom-backend-stage.herokuapp.com/"
+    },
+    "pages": {
+        "homepage": "/home-development.html"
+    }
+}
