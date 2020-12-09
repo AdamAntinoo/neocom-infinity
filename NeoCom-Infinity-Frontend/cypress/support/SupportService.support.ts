@@ -24,7 +24,7 @@ export class SupportService {
         this.translationTable['fitting-item'] = 'v1-fitting-item'
         this.translationTable['market-data'] = 'v1-market-data'
         this.translationTable['known-systems'] = 'v1-known-systems'
-        // this.translationTable['model-detail'] = 'v1-new-model-panel'
+        this.translationTable['system-planets'] = 'v1-known-planets-panel'
         // this.translationTable['open-requests'] = 'v1-open-requests-panel'
         // this.translationTable['request-details'] = 'v1-request-detail-panel'
         // this.translationTable['jobs-list'] = 'v1-pending-jobs-panel'

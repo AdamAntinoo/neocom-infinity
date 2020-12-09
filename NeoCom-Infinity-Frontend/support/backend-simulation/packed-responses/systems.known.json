@@ -6,7 +6,8 @@
     "regionId": 10000020,
     "regionName": "Tash-Murkon",
     "securityLevel": 0.8,
-    "securityClass": "B1"
+    "securityClass": "B1",
+    "planetCount": 3
 }, {
     "systemId": 30002059,
     "systemName": "Auner",
@@ -15,5 +16,6 @@
     "regionId": 10000042,
     "regionName": "Metropolis",
     "securityLevel": 0.4,
-    "securityClass": "E"
+    "securityClass": "E",
+    "planetCount": 3
 }]

@@ -13,6 +13,7 @@ import { ResponseTransformer } from '@innovative/services/support/ResponseTransf
 import { constants } from 'fs';
 import { NeoComFeature } from '@domain/ui/NeoComFeature.domain';
 import { KnownSystem } from '@domain/planetary/KnownSystem.domain';
+import { PlanetaryData } from '@domain/planetary/PlanetaryData.domain';
 
 @Injectable({
     providedIn: 'root'
@@ -21,6 +22,7 @@ export class PlanetaryDataService {
     private APIV1: string
     private APIV2: string
     private planetIconTranslationTable: Map<string, string> = new Map<string, string>()
+    private planetRawResourcesTable: Map<string, PlanetaryResource[]> = new Map<string, PlanetaryResource[]>()
     private r0T1ResourceConversion: Map<string, PlanetaryResource> = new Map<string, PlanetaryResource>()
     private t1R0ResourceConversion: Map<string, PlanetaryResource> = new Map<string, PlanetaryResource>()
     private selectedPlanets: PlanetaryDataRecord[] = []
@@ -31,6 +33,7 @@ export class PlanetaryDataService {
         this.APIV2 = environment.serverName + environment.apiVersion2
         // Initialize planetary data conversion structures.
         this.initPlanetIcons()
+        this.initPlanetRawResourcesMap()
         this.initPlanetaryDependencyMaps()
     }
     private initPlanetIcons(): void {
@@ -42,6 +45,15 @@ export class PlanetaryDataService {
         this.planetIconTranslationTable.set('plasma', 'planet_plasma_103_128_2.png')
         this.planetIconTranslationTable.set('storm', 'planet_storm_102_128_2.png')
         this.planetIconTranslationTable.set('temperate', 'planet_temperate_102_128_4.png')
+    }
+    private initPlanetRawResourcesMap(): void {
+        this.planetRawResourcesTable.set('barren', [
+            new PlanetaryResource({ resourceName: 'Aqueous Liquids R0' }),
+            new PlanetaryResource({ resourceName: 'Base Metals R0' }),
+            new PlanetaryResource({ resourceName: 'Carbon Compounds R0' }),
+            new PlanetaryResource({ resourceName: 'Microorganisms R0' }),
+            new PlanetaryResource({ resourceName: 'Noble Metals R0' }),
+        ])
     }
     private initPlanetaryDependencyMaps(): void {
         // Initialize the R0 -> T1 conversion table
@@ -93,7 +105,22 @@ export class PlanetaryDataService {
                 return response
             }))
     }
+    public apiv1_GetPlanets4System(systemId: number, transformer: ResponseTransformer): Observable<PlanetaryData[]> {
+        const request = this.APIV1 + '/planetary/planets/' + systemId
+        return this.httpService.wrapHttpGETCall(request)
+            .pipe(map((data: any) => {
+                console.log(">[PlanetaryDataService.apiv1_GetPlanets4System]> Transformation: " + transformer.description)
+                const response = transformer.transform(data) as PlanetaryData[]
+                return response
+            }))
+    }
 
+    // - D A T A   A C C E S S 
+    public getPlanetResource4PlanetType(planetType: string, resourceIndex: number): PlanetaryResource | undefined{
+        const hit = this.planetRawResourcesTable.get(planetType)
+        if (hit) return hit[resourceIndex]
+        else return undefined
+    }
 
     public getPlanetIconByType(type: string): string {
         const hit = this.planetIconTranslationTable.get(type)
