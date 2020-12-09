@@ -54,7 +54,7 @@ jobs:
           working_directory: NeoCom-Infinity-Frontend
           command: |
             npm run build:prod
-  compile-planetary-job:
+  build-frontend-job:
     docker:
       - image: circleci/node:12.16.3-browsers
     environment:
@@ -62,42 +62,19 @@ jobs:
     steps:
       - checkout
       - run:
-          name: PLANETARY - Configure BIT as a source for npm
-          working_directory: neocom-planetary-interaction
+          name: FRONTEND - Configure BIT as a source for npm
+          working_directory: NeoCom-Infinity-Frontend
           command: |
             node -v
             npm config set @bit:registry https://node.bitsrc.io
       - run:
-          name: PLANETARY - Install the framework
-          working_directory: neocom-planetary-interaction
+          name: FRONTEND - Install the framework
+          working_directory: NeoCom-Infinity-Frontend
           command: |
             npm install
       - run:
-          name: PLANETARY - Compile Angular application
-          working_directory: neocom-planetary-interaction
-          command: |
-            npm run build:dev
-  build-planetary-job:
-    docker:
-      - image: circleci/node:12.16.3-browsers
-    environment:
-      BIT_TOKEN: d47a8f17-636f-4bda-aad9-ac9fa27fe26d
-    steps:
-      - checkout
-      - run:
-          name: PLANETARY - Configure BIT as a source for npm
-          working_directory: neocom-planetary-interaction
-          command: |
-            node -v
-            npm config set @bit:registry https://node.bitsrc.io
-      - run:
-          name: PLANETARY - Install the framework
-          working_directory: neocom-planetary-interaction
-          command: |
-            npm install
-      - run:
-          name: PLANETARY - Compile Angular application
-          working_directory: neocom-planetary-interaction
+          name: FRONTEND - Compile Angular application
+          working_directory: NeoCom-Infinity-Frontend
           command: |
             npm run build:prod
   compile-backend-job:
@@ -153,20 +130,20 @@ jobs:
                 -Dsonar.sources=. \
                 -Dsonar.host.url=https://sonarcloud.io
 
-  stage-planetary-to-heroku:
+  stage-frontend-to-heroku:
     docker:
       - image: circleci/node:12.16.3-browsers
     steps:
       - checkout
       - run:
-          name: PLANETARY - Generate deploy code for Development
-          working_directory: neocom-planetary-interaction
+          name: FRONTEND - Generate deploy code for Development
+          working_directory: NeoCom-Infinity-Frontend
           command: |
             node -v
             sed -i '/bahmutov.add/d' package.json
       - run:
-          name: PLANETARY - Clone Heroku repository
-          working_directory: neocom-planetary-interaction
+          name: FRONTEND - Clone Heroku repository
+          working_directory: NeoCom-Infinity-Frontend
           command: |
             git config --global user.email "adamantinoo.git@gmail.com"
             git config --global user.name "Adam antinoo"
@@ -176,11 +153,11 @@ jobs:
             git add src
             git commit -m "-[HEROKU] Commiting code for deployment at development"
       - run:
-          name: PLANETARY - Deploy Master to Heroku
+          name: FRONTEND - Deploy Master to Heroku
           environment:
-            HEROKU_FRONTEND_APP_NAME: neocom-planetary-development
+            HEROKU_FRONTEND_APP_NAME: neocom-frontend-dev
             HEROKU_FRONTEND_API_KEY: 95200331-6841-4afc-87c5-cae0a859d08f
-          working_directory: neocom-planetary-interaction
+          working_directory: NeoCom-Infinity-Frontend
           command: |
             git push https://heroku:$HEROKU_FRONTEND_API_KEY@git.heroku.com/$HEROKU_FRONTEND_APP_NAME.git master --force
   stage-to-heroku:
@@ -246,17 +223,10 @@ workflows:
             branches:
               only:
                 - experimental
-      - compile-planetary-job:
-          requires:
-            - start-job
-          filters:
-            branches:
-              only:
-                - planetary
 
   neocom-infinity-deploy:
     jobs:
-      - compile-planetary-job:
+      - compile-frontend-job:
           filters:
             branches:
               only:
@@ -276,9 +246,9 @@ workflows:
               only: /0.*/
             branches:
               ignore: /.*/
-      - stage-planetary-to-heroku:
+      - stage-frontend-to-heroku:
           requires:
-            - compile-planetary-job
+            - compile-frontend-job
           filters:
             branches:
               only:
