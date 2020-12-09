@@ -12,7 +12,6 @@ import { RendersModule } from '../renders/renders.module'
 import { DashboardPageComponent } from './page/dashboard-page/dashboard-page.component';
 import { HeaderModule } from '../header/header.module'
 import { AppCommonModule } from '@common/common.module';
-import { V1PlanetSearchPageComponent } from './page/v1-planet-search-page/v1-planet-search-page.component'
 import { V1KnownPlanetsPanelComponent } from './panel/v1-known-planets-panel/v1-known-planets-panel.component'
 import { V1SelectedPlanetsPanelComponent } from './panel/v1-selected-planets-panel/v1-selected-planets-panel.component'
 import { PlanetaryDataService } from './service/PlanetaryData.service';
@@ -40,7 +39,6 @@ const routes: Routes = [
     ],
     declarations: [
         DashboardPageComponent, 
-        V1PlanetSearchPageComponent,
         V1KnownPlanetsPanelComponent,
         V1SelectedPlanetsPanelComponent,
         V1EnterPlanetDataPageComponent,
@@ -50,7 +48,7 @@ const routes: Routes = [
     exports: [RouterModule],
     providers: [
         // - SERVICES
-        { provide: PlanetaryDataService, useClass: PlanetaryDataService },
+        { provide: PlanetaryDataService, useClass: PlanetaryDataService }
     ],
 })
 export class PlanetaryModule { }

@@ -314,7 +314,7 @@ delay:
 
 request:
   - method: GET
-  - uriPathPattern: "/api/v1/neocom/planetary/planets/30002059"
+  - uriPathPattern: "/api/v1/neocom/planetary/planets/60006610"
 
 response:
   from: template
