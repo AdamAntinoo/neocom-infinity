@@ -15,6 +15,7 @@ import { V1FittingBuildContentRenderComponent } from './v1-fitting-build-content
 import { V1MarketDataRenderComponent } from './v1-market-data-render/v1-market-data-render.component';
 import { V2FeatureRenderComponent } from './v2-feature-render/v2-feature-render.component';
 import { V1PlanetarySystemRenderComponent } from './v1-planetary-system-render/v1-planetary-system-render.component';
+import { V1PlanetDataRenderComponent } from './v1-planet-data-render/v1-planet-data-render.component';
 
 @NgModule({
     imports: [
@@ -35,6 +36,7 @@ import { V1PlanetarySystemRenderComponent } from './v1-planetary-system-render/v
         V1MarketDataRenderComponent,
         V2FeatureRenderComponent,
         V1PlanetarySystemRenderComponent,
+        V1PlanetDataRenderComponent,
     ],
     exports: [
         // NodeContainerRenderComponent,
@@ -49,6 +51,7 @@ import { V1PlanetarySystemRenderComponent } from './v1-planetary-system-render/v
         V1MarketDataRenderComponent,
         V2FeatureRenderComponent,
         V1PlanetarySystemRenderComponent,
+        V1PlanetDataRenderComponent,
     ]
 })
 export class RendersModule { }

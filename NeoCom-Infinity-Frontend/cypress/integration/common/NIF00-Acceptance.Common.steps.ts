@@ -68,6 +68,11 @@ Given('the target the {string} with id {string}', function (symbolicName: string
         .should('exist')
 });
 
+// - T A R G E T   I N T E R A C T I O N
+When('the target is clicked', function () {
+    cy.get('@target').scrollIntoView().click()
+});
+
 // - T A R G E T   C O N T E N T S
 Then('the target has the title {string}', function (title: string) {
     cy.get('@target').find('.panel-title').contains(title, { matchCase: false })

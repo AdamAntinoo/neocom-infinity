@@ -9,6 +9,7 @@ export class KnownSystem extends NeoCom {
     public regionName: string
     public securityLevel: number
     public securityClass: string
+    public planetCount: number
 
     constructor(values: Object = {}) {
         super()

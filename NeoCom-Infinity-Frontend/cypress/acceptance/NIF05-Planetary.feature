@@ -38,3 +38,16 @@ Feature: [NIF05] The Planetary is a new addon that does not require authenticati
         Then field named "systemName" with label "SYSTEM NAME" and value "Auner"
         And field named "at" with label "LOCATION" and value "Metropolis > Tiat"
         And field named "security" with label "SECURITY" and value "E - 0.4"
+        And field named "planetCount" with label "PLANETS" and value 3
+    @NIF05.06
+    Scenario: [NIF05.06]-If one system element is clocked then there another panel with the planets for that system.
+        Given the page "Resource Research Page" is activated
+        Given the target is the panel of type "known-systems"
+        Given the target the "planetary-system" with id 30002059
+        When the target is clicked
+        Given the page "Resource Research Page" is activated
+        Then the target has 2 columns
+        Given the target is the panel of type "known-systems"
+        Then the target has the title "KNOWN SYSTEMS"
+        Given the target is the panel of type "system-planets"
+        Then the target has the title "AUNER PLANETS"

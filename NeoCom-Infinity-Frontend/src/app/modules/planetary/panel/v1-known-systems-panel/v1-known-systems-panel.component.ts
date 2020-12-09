@@ -14,6 +14,7 @@ import { KnownSystem } from '@domain/planetary/KnownSystem.domain';
 import { environment } from '@env/environment';
 import { HttpErrorResponse } from '@angular/common/http';
 import { IsolationService } from '@innovative/services/isolation.service';
+import { V1ResourceResearchPageComponent } from '../../page/v1-resource-research-page/v1-resource-research-page.component';
 
 @Component({
     selector: 'v1-known-systems-panel',
@@ -21,6 +22,9 @@ import { IsolationService } from '@innovative/services/isolation.service';
     styleUrls: ['./v1-known-systems-panel.component.scss']
 })
 export class V1KnownSystemsPanelComponent extends AppPanelComponent implements OnInit, IRefreshable {
+    @Input() store: V1ResourceResearchPageComponent
+    // private selectedSystem: KnownSystem
+
     constructor(
         protected isolationService: IsolationService,
         protected planetaryService: PlanetaryDataService) {
@@ -32,6 +36,11 @@ export class V1KnownSystemsPanelComponent extends AppPanelComponent implements O
         this.setVariant(platformConstants.KNOWN_SYSTEMS)
         this.refresh();
         console.log("<[V1KnownSystemsPanelComponent.ngOnInit]");
+    }
+    // - A P I
+    public setSelectedSystem(system: KnownSystem): void {
+        // this.selectedSystem = system
+        this.store.setSelectedSystem(system)
     }
     // - R E F R E S H A B L E
     public clean(): void {
