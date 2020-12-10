@@ -1,0 +1,21 @@
+.planet-name {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.planet-class {
+    font-size: 13px;
+    font-weight: 600;
+    color: grey;
+}
+
+.insets {
+    margin: 4px;
+}
+
+.panel-green:hover {
+    // background-color: #031300;
+    background-color: #0b3d03;
+    /* HOVER ON */
+    transition: background-color 1s;
+}

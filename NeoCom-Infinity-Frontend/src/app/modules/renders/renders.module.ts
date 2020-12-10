@@ -16,12 +16,14 @@ import { V1MarketDataRenderComponent } from './v1-market-data-render/v1-market-d
 import { V2FeatureRenderComponent } from './v2-feature-render/v2-feature-render.component';
 import { V1PlanetarySystemRenderComponent } from './v1-planetary-system-render/v1-planetary-system-render.component';
 import { V1PlanetDataRenderComponent } from './v1-planet-data-render/v1-planet-data-render.component';
+import { V1PlanetaryResourceRenderComponent } from './v1-planetary-resource-render/v1-planetary-resource-render.component';
+import { NgDragDropModule } from 'ng-drag-drop';
 
 @NgModule({
     imports: [
         CommonModule,
         AppCommonModule,
-        // SharedModule
+        NgDragDropModule.forRoot()
     ],
     declarations: [
         // NodeContainerRenderComponent,
@@ -37,6 +39,7 @@ import { V1PlanetDataRenderComponent } from './v1-planet-data-render/v1-planet-d
         V2FeatureRenderComponent,
         V1PlanetarySystemRenderComponent,
         V1PlanetDataRenderComponent,
+        V1PlanetaryResourceRenderComponent,
     ],
     exports: [
         // NodeContainerRenderComponent,
@@ -52,6 +55,7 @@ import { V1PlanetDataRenderComponent } from './v1-planet-data-render/v1-planet-d
         V2FeatureRenderComponent,
         V1PlanetarySystemRenderComponent,
         V1PlanetDataRenderComponent,
+        V1PlanetaryResourceRenderComponent,
     ]
 })
 export class RendersModule { }

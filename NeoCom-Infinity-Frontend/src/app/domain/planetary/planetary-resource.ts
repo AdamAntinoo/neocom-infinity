@@ -1,12 +1,21 @@
-export class PlanetaryResource {
-    public jsonClass: string;
-    private resourceName: string | undefined
-    private resourceLevel: number | undefined
+import { NeoCom } from '@domain/NeoCom.domain';
+
+export class PlanetaryResource extends NeoCom {
+    private resourceId!: number
+    private resourceName!: string
+    private resourceLevel!: number
     private dependencies: PlanetaryResource[] = []
 
     constructor(values: Object = {}) {
+        super()
         Object.assign(this, values);
         this.jsonClass = 'PlanetaryResource';
+    }
+
+    // - G E T T E R S
+    public getTypeId(): number {
+        if (this.resourceId) return this.resourceId
+        else return 34
     }
     public getName(): string {
         if (this.resourceName) return this.resourceName
@@ -22,5 +31,8 @@ export class PlanetaryResource {
     public setLevel(level: number): PlanetaryResource {
         this.resourceLevel = level
         return this
+    }
+    public getURLIcon(): string {
+        return 'https://image.eveonline.com/Type/' + this.resourceId + '_64.png'
     }
 }
