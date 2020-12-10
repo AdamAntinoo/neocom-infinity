@@ -1,0 +1,91 @@
+[{
+        "name": "PVH8-0",
+        "planetSuffix": "I",
+        "planetType": "barren",
+        "planetTax": 10.0,
+        "planetResourceLevels": [
+            30, 56, 59, 68, 39
+        ]
+    },
+    {
+        "name": "PVH8-0",
+        "planetSuffix": "II",
+        "planetType": "lava",
+        "planetTax": 10.0,
+        "planetResourceLevels": [
+            31, 51, 69, 52, 38
+        ]
+    },
+    {
+        "name": "PVH8-0",
+        "planetSuffix": "III",
+        "planetType": "barren",
+        "planetTax": 10.0,
+        "planetResourceLevels": [
+            28, 59, 63, 62, 56
+        ]
+    },
+    {
+        "name": "PVH8-0",
+        "planetSuffix": "IV",
+        "planetType": "plasma",
+        "planetTax": 10.0,
+        "planetResourceLevels": [
+            31, 40, 72, 46, 11
+        ]
+    },
+    {
+        "name": "PVH8-0",
+        "planetSuffix": "V",
+        "planetType": "gas",
+        "planetTax": 10.0,
+        "planetResourceLevels": [
+            47, 55, 51, 59, 25
+        ]
+    },
+    {
+        "name": "PVH8-0",
+        "planetSuffix": "VI",
+        "planetType": "gas",
+        "planetTax": 10.0,
+        "planetResourceLevels": [
+            48, 54, 51, 58, 23
+        ]
+    },
+    {
+        "name": "PVH8-0",
+        "planetSuffix": "VII",
+        "planetType": "gas",
+        "planetTax": 10.0,
+        "planetResourceLevels": [
+            48, 55, 51, 60, 31
+        ]
+    },
+    {
+        "name": "PVH8-0",
+        "planetSuffix": "VIII",
+        "planetType": "gas",
+        "planetTax": 10.0,
+        "planetResourceLevels": [
+            47, 55, 50, 60, 19
+        ]
+    },
+    {
+        "name": "PVH8-0",
+        "planetSuffix": "IX",
+        "planetType": "ice",
+        "planetTax": 10.0,
+        "planetResourceLevels": [
+            95, 91, 49, 34, 46
+        ]
+    },
+    {
+        "name": "PVH8-0",
+        "planetSuffix": "X",
+        "planetType": "oceanic",
+        "planetTax": 10.0,
+        "planetResourceLevels": [
+            99, 40, 57, 77, 57
+        ]
+    }
+]

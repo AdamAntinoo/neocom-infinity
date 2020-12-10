@@ -26,8 +26,12 @@ export class PlanetaryData extends NeoCom {
                 const transformedResources: PlanetaryResource[] = []
                 for (let index = 0; index < this.planetResourceLevels.length; index++) {
                     const level = this.planetResourceLevels[index]
-                    const resource = planetaryService.getPlanetResource4PlanetType(this.planetType, index)
-                    if (resource) this.planetResources.push(resource.setLevel(level))
+                    const targetResource = planetaryService.getPlanetResource4PlanetType(this.planetType, index)
+                    if (targetResource) {
+                        const resource = new PlanetaryResource(targetResource)
+                        console.log('-[]>Transformation: ' + this.planetType + ' - ' + level)
+                        if (resource) this.planetResources.push(resource.setLevel(level))
+                    }
                 }
             }
         return this

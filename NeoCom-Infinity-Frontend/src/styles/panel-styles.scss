@@ -152,7 +152,9 @@ $panel-background-hover-blue: #0B3D03;
 }
 
 .panel-orange:hover {
+    background-color: $panel-orange-10;
     opacity: $panel-hover-opacity;
+    transition: background-color 1s;
 }
 
 .panel-orange-expanded {
@@ -248,7 +250,9 @@ $panel-background-hover-blue: #0B3D03;
 }
 
 .panel-lime:hover {
+    background-color: $panel-yellow-10;
     opacity: $panel-hover-opacity;
+    transition: background-color 1s;
 }
 
 .panel-lime-expanded {

@@ -68,14 +68,14 @@ export class V1OutputResourcesPanelComponent extends NodeContainerRenderComponen
         )
     }
     private filterOutResources(): void {
-        // const selectedResources = this.planetaryService.getSelectedResources()
-        // for (let resource of this.t2Resources) {
-        //     if (this.isSelected(resource, selectedResources)) resource.select()
-        // }
+        const selectedResources = this.planetaryService.getSelectedResources()
+        for (let resource of this.t2Resources) {
+            if (this.isSelected(resource, selectedResources)) resource.select()
+        }
     }
     private isSelected(resource: GeneratedResource, selectionList: GeneratedResource[]): boolean {
         for (let target of selectionList)
-            if (resource.isEqual(target)) return true
+            if (resource.getTypeId() == target.getTypeId()) return true
         return false
     }
 }

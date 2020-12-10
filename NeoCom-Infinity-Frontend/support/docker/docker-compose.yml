@@ -9,15 +9,15 @@ services:
       # WARNING - Use full absolute paths to make this work.
       - /home/adam/Development/NeoCom0.20/NeoCom-Infinity/NeoCom-Infinity-Frontend/support/backend-simulation:/backend-simulation
     command: "bin/apisimulator start /backend-simulation -p 6090"
-  neocom-frontend-esidata-simulator:
-    container_name: neocom-frontend-esidata-simulator
-    image: apimastery/apisimulator:1.6
-    ports:
-      - "5212:6090"
-    volumes:
-      # WARNING - Use full absolute paths to make this work.
-      - /home/adam/Development/NeoCom0.20/NeoCom-Infinity/NeoCom-Infinity-Frontend/support/esidata-simulation:/esidata-simulation
-    command: "bin/apisimulator start /esidata-simulation -p 6090"
+  # neocom-frontend-esidata-simulator:
+  #   container_name: neocom-frontend-esidata-simulator
+  #   image: apimastery/apisimulator:1.6
+  #   ports:
+  #     - "5212:6090"
+  #   volumes:
+  #     # WARNING - Use full absolute paths to make this work.
+  #     - /home/adam/Development/NeoCom0.20/NeoCom-Infinity/NeoCom-Infinity-Frontend/support/esidata-simulation:/esidata-simulation
+  #   command: "bin/apisimulator start /esidata-simulation -p 6090"
 
   # neocom-frontend-postgres:
   #   container_name: neocom-frontend-postgres

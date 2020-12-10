@@ -1,18 +1,7 @@
 <div id="{{getUniqueId()}}" *ngIf="getVariant() === '-KNOWN-PLANETS-'">
     <div class="row">
         <img class="neocom-icon-noborder iconsize-16" src="{{getResourceIcon()}}">
-        <div class="field resource-name" style="flex-grow: 2;">
-            <span cy-field-value="resourceName" class="resource-name">{{getName()}}</span>
-        </div>
-        <div class="field resource-level">
-            <span cy-field-value="resourceLevel" class="resource-level">[{{getLevel()}}]</span>
-        </div>
-    </div>
-</div>
-<div *ngIf="getVariant() === '-OUTPUT-RESOURCES-'">
-    <div class="row">
-        <img class="neocom-icon iconsize-16" src="{{getResourceIcon()}}">
-        <div class="field resource-name" style="flex-grow: 2;">
+        <div class="field resource-name">
             <span cy-field-value="resourceName" class="resource-name">{{getName()}}</span>
         </div>
         <div class="field resource-level">
