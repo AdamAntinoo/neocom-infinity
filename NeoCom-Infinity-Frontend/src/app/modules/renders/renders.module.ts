@@ -18,6 +18,7 @@ import { V1PlanetarySystemRenderComponent } from './v1-planetary-system-render/v
 import { V1PlanetDataRenderComponent } from './v1-planet-data-render/v1-planet-data-render.component';
 import { V1PlanetaryResourceRenderComponent } from './v1-planetary-resource-render/v1-planetary-resource-render.component';
 import { NgDragDropModule } from 'ng-drag-drop';
+import { V1OutputResourceRenderComponent } from './v1-output-resource-render/v1-output-resource-render.component';
 
 @NgModule({
     imports: [
@@ -40,6 +41,7 @@ import { NgDragDropModule } from 'ng-drag-drop';
         V1PlanetarySystemRenderComponent,
         V1PlanetDataRenderComponent,
         V1PlanetaryResourceRenderComponent,
+        V1OutputResourceRenderComponent,
     ],
     exports: [
         // NodeContainerRenderComponent,
@@ -56,6 +58,7 @@ import { NgDragDropModule } from 'ng-drag-drop';
         V1PlanetarySystemRenderComponent,
         V1PlanetDataRenderComponent,
         V1PlanetaryResourceRenderComponent,
+        V1OutputResourceRenderComponent,
     ]
 })
 export class RendersModule { }

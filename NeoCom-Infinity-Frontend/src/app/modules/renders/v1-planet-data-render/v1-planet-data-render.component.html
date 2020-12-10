@@ -1,3 +1,4 @@
+<!-- K N O W N   P L A N E T S -->
 <div id="{{getUniqueId()}}" class="panel-green" *ngIf="getVariant() === '-KNOWN-PLANETS-'">
     <div class="insets row" draggable [dragData]="node" [dragScope]="'PLANET'" [dragClass]="'planet-selected'">
         <img class="neocom-icon iconsize-60" src="{{getPlanetIcon()}}">
@@ -28,6 +29,7 @@
         </div>
     </div>
 </div>
+<!-- S E L E C T E D   P L A N E T S -->
 <div id="{{getUniqueId()}}" class="panel-yellow" *ngIf="getVariant() === '-SELECTED-PLANETS-'">
     <div class="insets row">
         <img class="neocom-icon iconsize-36" src="{{getPlanetIcon()}}">

@@ -26,7 +26,6 @@ export class PlanetaryDataService {
     private r0T1ResourceConversion: Map<string, PlanetaryResource> = new Map<string, PlanetaryResource>()
     private t1R0ResourceConversion: Map<string, PlanetaryResource> = new Map<string, PlanetaryResource>()
     private planet2T2ResourceMap: Map<string, PlanetaryResource[]> = new Map<string, PlanetaryResource[]>()
-	// private t1R0ResourceConversion: Map<string, PlanetaryResource> = new Map<string, PlanetaryResource>()
 
     private selectedPlanets: PlanetaryData[] = []
     private selectedResources: GeneratedResource[] = []
@@ -56,7 +55,42 @@ export class PlanetaryDataService {
             new PlanetaryResource({ resourceId: 2267, resourceName: 'Base Metals R0' }),
             new PlanetaryResource({ resourceId: 2288, resourceName: 'Carbon Compounds R0' }),
             new PlanetaryResource({ resourceId: 2073, resourceName: 'Microorganisms R0' }),
+            new PlanetaryResource({ resourceId: 2270, resourceName: 'Noble Metals R0' })
+        ])
+        this.planetRawResourcesTable.set('gas', [
+            new PlanetaryResource({ resourceId: 2268, resourceName: 'Aqueous Liquids R0' }),
+            new PlanetaryResource({ resourceId: 2267, resourceName: 'Base Metals R0' }),
+            new PlanetaryResource({ resourceId: 2309, resourceName: 'Ionic Solutions R0' }),
+            new PlanetaryResource({ resourceId: 2310, resourceName: 'Noble Gas R0' }),
+            new PlanetaryResource({ resourceId: 2311, resourceName: 'Reactive Gas R0' })
+        ])
+        this.planetRawResourcesTable.set('ice', [
+            new PlanetaryResource({ resourceId: 2268, resourceName: 'Aqueous Liquids R0' }),
+            new PlanetaryResource({ resourceId: 2272, resourceName: 'Heavy Metals R0' }),
+            new PlanetaryResource({ resourceId: 2073, resourceName: 'Microorganisms R0' }),
+            new PlanetaryResource({ resourceId: 2310, resourceName: 'Noble Gas R0' }),
+            new PlanetaryResource({ resourceId: 2286, resourceName: 'Planktik Colonies R0' })
+        ])
+        this.planetRawResourcesTable.set('lava', [
+            new PlanetaryResource({ resourceId: 2267, resourceName: 'Base Metals R0' }),
+            new PlanetaryResource({ resourceId: 2307, resourceName: 'Felsic Magma R0' }),
+            new PlanetaryResource({ resourceId: 2272, resourceName: 'Heavy Metals R0' }),
+            new PlanetaryResource({ resourceId: 2306, resourceName: 'Non-CS Crystals R0' }),
+            new PlanetaryResource({ resourceId: 2308, resourceName: 'Suspended Plasma R0' })
+        ])
+        this.planetRawResourcesTable.set('oceanic', [
+            new PlanetaryResource({ resourceId: 2268, resourceName: 'Aqueous Liquids R0' }),
+            new PlanetaryResource({ resourceId: 2288, resourceName: 'Carbon Compounds R0' }),
+            new PlanetaryResource({ resourceId: 2287, resourceName: 'Complex Organisms R0' }),
+            new PlanetaryResource({ resourceId: 2073, resourceName: 'Microorganisms R0' }),
+            new PlanetaryResource({ resourceId: 2286, resourceName: 'Planktik Colonies R0' })
+        ])
+        this.planetRawResourcesTable.set('plasma', [
+            new PlanetaryResource({ resourceId: 2267, resourceName: 'Base Metals R0' }),
+            new PlanetaryResource({ resourceId: 2272, resourceName: 'Heavy Metals R0' }),
             new PlanetaryResource({ resourceId: 2270, resourceName: 'Noble Metals R0' }),
+            new PlanetaryResource({ resourceId: 2306, resourceName: 'Non-CS Crystals R0' }),
+            new PlanetaryResource({ resourceId: 2308, resourceName: 'Suspended Plasma R0' })
         ])
     }
     private initPlanetaryDependencyMaps(): void {
@@ -89,6 +123,7 @@ export class PlanetaryDataService {
     private initPlanetOutputT2List():void{
  		this.planet2T2ResourceMap.set('barren', [
 			new PlanetaryResource({
+                resourceId: 229,
 				resourceName: 'Biocells T2',
 				dependencies: [
 					new PlanetaryResource({ resourceName: 'Biofuels T1' }),
@@ -96,13 +131,15 @@ export class PlanetaryDataService {
 				]
 			}),
 			new PlanetaryResource({
-				resourceName: 'Mechanical Parts T2',
+                resourceId: 3689,
+                	resourceName: 'Mechanical Parts T2',
 				dependencies: [
 					new PlanetaryResource({ resourceName: 'Reactive Metals T1' }),
 					new PlanetaryResource({ resourceName: 'Precious Metals T1' })
 				]
 			}),
 			new PlanetaryResource({
+                resourceId: 2463,
 				resourceName: 'Nanites T2',
 				dependencies: [
 					new PlanetaryResource({ resourceName: 'Reactive Metals T1' }),
@@ -110,6 +147,7 @@ export class PlanetaryDataService {
 				]
 			}),
 			new PlanetaryResource({
+                resourceId: 2319,
 				resourceName: 'Test Cultures T2',
 				dependencies: [
 					new PlanetaryResource({ resourceName: 'Water T1' }),
@@ -117,6 +155,7 @@ export class PlanetaryDataService {
 				]
 			}),
 			new PlanetaryResource({
+                resourceId: 228,
 				resourceName: 'Water-Cooled CPU T2',
 				dependencies: [
 					new PlanetaryResource({ resourceName: 'Reactive Metals T1' }),
@@ -126,6 +165,7 @@ export class PlanetaryDataService {
 		])
 		this.planet2T2ResourceMap.set('plasma', [
 			new PlanetaryResource({
+                resourceId: 3828,
 				resourceName: 'Construction Blocks T2',
 				dependencies: [
 					new PlanetaryResource({ resourceName: 'Reactive Metals T1' }),
@@ -133,6 +173,7 @@ export class PlanetaryDataService {
 				]
 			}),
 			new PlanetaryResource({
+                resourceId: 9836,
 				resourceName: 'Consumer Electronics T2',
 				dependencies: [
 					new PlanetaryResource({ resourceName: 'Toxic Metals T1' }),
@@ -140,6 +181,7 @@ export class PlanetaryDataService {
 				]
 			}),
 			new PlanetaryResource({
+                resourceId: 44,
 				resourceName: 'Enriched Uranium T2',
 				dependencies: [
 					new PlanetaryResource({ resourceName: 'Toxic Metals T1' }),
@@ -147,6 +189,7 @@ export class PlanetaryDataService {
 				]
 			}),
 			new PlanetaryResource({
+                resourceId: 3689,
 				resourceName: 'Mechanical Parts T2',
 				dependencies: [
 					new PlanetaryResource({ resourceName: 'Reactive Metals T1' }),
@@ -154,6 +197,7 @@ export class PlanetaryDataService {
 				]
 			}),
 			new PlanetaryResource({
+                resourceId: 9840,
 				resourceName: 'Transmitter T2',
 				dependencies: [
 					new PlanetaryResource({ resourceName: 'Chiral Structures T1' }),
@@ -163,6 +207,7 @@ export class PlanetaryDataService {
 		])
 		this.planet2T2ResourceMap.set('gas', [
 			new PlanetaryResource({
+                resourceId: 9832,
 				resourceName: 'Coolant T2',
 				dependencies: [
 					new PlanetaryResource({ resourceName: 'Water T1' }),
@@ -170,6 +215,7 @@ export class PlanetaryDataService {
 				]
 			}),
 			new PlanetaryResource({
+                resourceId: 2317,
 				resourceName: 'Oxides T2',
 				dependencies: [
 					new PlanetaryResource({ resourceName: 'Oxygen T1' }),
@@ -177,6 +223,7 @@ export class PlanetaryDataService {
 				]
 			}),
 			new PlanetaryResource({
+                resourceId: 3691,
 				resourceName: 'Synthetic Oil T2',
 				dependencies: [
 					new PlanetaryResource({ resourceName: 'Electrolytes T1' }),
@@ -184,6 +231,7 @@ export class PlanetaryDataService {
 				]
 			}),
 			new PlanetaryResource({
+                resourceId: 2328,
 				resourceName: 'Water-Cooled CPU T2',
 				dependencies: [
 					new PlanetaryResource({ resourceName: 'Water T1' }),
@@ -193,27 +241,31 @@ export class PlanetaryDataService {
 		])
 		this.planet2T2ResourceMap.set('oceanic', [
 			new PlanetaryResource({
-				resourceName: 'Fertilizer T2',
+                resourceId: 3693,
+                resourceName: 'Fertilizer T2',
 				dependencies: [
 					new PlanetaryResource({ resourceName: 'Proteins T1' }),
 					new PlanetaryResource({ resourceName: 'Bacteria T1' })
 				]
 			}),
 			new PlanetaryResource({
-				resourceName: 'Genetically Enhanced Livestock T2',
+                resourceId: 15317,
+                resourceName: 'Genetically Enhanced Livestock T2',
 				dependencies: [
 					new PlanetaryResource({ resourceName: 'Proteins T1' }),
 					new PlanetaryResource({ resourceName: 'Biomass T1' })
 				]
 			}),
 			new PlanetaryResource({
-				resourceName: 'Livestock T2',
+                resourceId: 3725,
+                resourceName: 'Livestock T2',
 				dependencies: [
 					new PlanetaryResource({ resourceName: 'Biofuels T1' }),
 					new PlanetaryResource({ resourceName: 'Proteins T1' })
 				]
 			}),
 			new PlanetaryResource({
+                resourceId: 2319,
 				resourceName: 'Test Cultures T2',
 				dependencies: [
 					new PlanetaryResource({ resourceName: 'Water T1' }),
@@ -221,6 +273,7 @@ export class PlanetaryDataService {
 				]
 			}),
 			new PlanetaryResource({
+                resourceId: 3775,
 				resourceName: 'Viral Agent T2',
 				dependencies: [
 					new PlanetaryResource({ resourceName: 'Bacteria T1' }),
@@ -230,6 +283,7 @@ export class PlanetaryDataService {
 		])
 		this.planet2T2ResourceMap.set('lava', [
 			new PlanetaryResource({
+                resourceId: 9836,
 				resourceName: 'Consumer Electronics T2',
 				dependencies: [
 					new PlanetaryResource({ resourceName: 'Toxic Metals T1' }),
@@ -237,6 +291,7 @@ export class PlanetaryDataService {
 				]
 			}),
 			new PlanetaryResource({
+                resourceId: 9842,
 				resourceName: 'Miniature Electronics T2',
 				dependencies: [
 					new PlanetaryResource({ resourceName: 'Silicon T1' }),
@@ -244,6 +299,7 @@ export class PlanetaryDataService {
 				]
 			}),
 			new PlanetaryResource({
+                resourceId: 9840,
 				resourceName: 'Transmitter T2',
 				dependencies: [
 					new PlanetaryResource({ resourceName: 'Chiral Structures T1' }),
@@ -251,6 +307,7 @@ export class PlanetaryDataService {
 				]
 			}),
 			new PlanetaryResource({
+                resourceId: 3689,
 				resourceName: 'Mechanical Parts T2',
 				dependencies: [
 					new PlanetaryResource({ resourceName: 'Reactive Metals T1' }),
@@ -366,7 +423,7 @@ export class PlanetaryDataService {
     }
 
     // - D A T A   A C C E S S 
-    public getPlanetResource4PlanetType(planetType: string, resourceIndex: number): PlanetaryResource | undefined{
+    public getPlanetResource4PlanetType(planetType: string, resourceIndex: number): PlanetaryResource {
         const hit = this.planetRawResourcesTable.get(planetType)
         if (hit) return hit[resourceIndex]
         else return undefined
@@ -399,31 +456,31 @@ export class PlanetaryDataService {
         return this.selectedResources
     }
     public getT2Resources4Planet(planet: PlanetaryData): GeneratedResource[] {
-		const hit = this.planet2T2ResourceMap.get(planet.getPlanetType().toLowerCase())
-		if (hit) {
-            console.log('-[getT2Resources4Planet]>Processing type: '+planet.getPlanetType())
-			const t2Resource: GeneratedResource[] = []
-			for (let t2r of hit)
-				t2Resource.push(new GeneratedResource(t2r).setPlanet(planet))  // Duplicate the resource to be added to the list
-			for (const resource of t2Resource) {
-				console.log('-[getT2Resources4Planet]> Processing resource: ' + resource.getName() + " - " + resource.getDependencies().length)
-				resource.setLevel(0.0)
-				for (const dependency of resource.getDependencies()) {
-					const r0Index = this.getR0Resource4T1(dependency)
-					const r0 = planet.getResource(r0Index.getName())
-					if (r0) {
-						const level = r0.getLevel()
-						resource.setLevel(resource.getLevel() + level)
-					}
-				}
-			}
-			return t2Resource
-		}
-		else throw new Error('The T2 resource ' + planet.getPlanetName() + ' map was not found on the conversion list.')
+        const hit = this.planet2T2ResourceMap.get(planet.getPlanetType().toLowerCase())
+        if (hit) {
+            console.log('-[getT2Resources4Planet]>Processing type: ' + planet.getPlanetType())
+            const t2Resource: GeneratedResource[] = []
+            for (let t2r of hit)
+                t2Resource.push(new GeneratedResource(t2r).setPlanet(planet))  // Duplicate the resource to be added to the list
+            for (const resource of t2Resource) {
+                console.log('-[getT2Resources4Planet]> Processing resource: ' + resource.getName() + " - " + resource.getDependencies().length)
+                resource.setLevel(0.0)
+                for (const dependency of resource.getDependencies()) {
+                    const r0Index = this.getR0Resource4T1(dependency)
+                    const r0 = planet.getResource(r0Index.getName())
+                    if (r0) {
+                        const level = r0.getLevel()
+                        resource.setLevel(resource.getLevel() + level)
+                    }
+                }
+            }
+            return t2Resource
+        }
+        else throw new Error('The T2 resource ' + planet.getPlanetName() + ' map was not found on the conversion list.')
     }
     public getR0Resource4T1(resource: PlanetaryResource): PlanetaryResource {
-		const hit = this.t1R0ResourceConversion.get(resource.getName())
-		if (hit) return hit.setLevel(resource.getLevel())
-		else throw new Error('The T1 resource ' + resource.getName() + ' was not found on the conversion list.')
-	}
+        const hit = this.t1R0ResourceConversion.get(resource.getName())
+        if (hit) return hit.setLevel(resource.getLevel())
+        else throw new Error('The T1 resource ' + resource.getName() + ' was not found on the conversion list.')
+    }
 }

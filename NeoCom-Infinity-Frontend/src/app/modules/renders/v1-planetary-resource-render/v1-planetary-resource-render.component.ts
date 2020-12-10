@@ -24,6 +24,10 @@ export class V1PlanetaryResourceRenderComponent extends NodeContainerRenderCompo
         if (this.node) return this.getNode().getLevel() + ''
         else return '[-]'
     }
+    public getLevelValue(): number {
+        if (this.node) return this.getNode().getLevel()
+        else return 0
+    }
     public getResourceIcon(): string {
         if (this.node) return this.getNode().getURLIcon()
         else return platformConstants.DEFAULT_ICON_PLACEHOLDER
