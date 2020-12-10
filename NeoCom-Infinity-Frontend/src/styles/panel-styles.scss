@@ -18,6 +18,9 @@ $panel-hover-opacity: 1.0;
 $panel-corner-marker-size: 6px;
 $panel-corner-marker-thickness: 1px;
 $panel-corner-marker-displacement: -1px;
+// - PANEL COLORS
+$panel-background-hover-green: #0B3D03;
+$panel-background-hover-blue: #0B3D03;
 //  A L L   P A N E L S
 .panel-red,
 .panel-pink,
@@ -37,6 +40,7 @@ $panel-corner-marker-displacement: -1px;
     line-height: $neocom-line-height;
     opacity: $panel-default-opacity;
     position: relative;
+    transition: opacity 1s;
 }
 
 // R E D
@@ -292,7 +296,9 @@ $panel-corner-marker-displacement: -1px;
 }
 
 .panel-green:hover {
+    background-color: $panel-green-10;
     opacity: $panel-hover-opacity;
+    transition: background-color 1s;
 }
 
 .panel-green-expanded {
@@ -388,7 +394,9 @@ $panel-corner-marker-displacement: -1px;
 }
 
 .panel-blue:hover {
+    background-color: $panel-blue-20;
     opacity: $panel-hover-opacity;
+    transition: background-color 1s;
 }
 
 .panel-blue-expanded {

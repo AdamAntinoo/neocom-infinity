@@ -5,6 +5,7 @@ import { PlanetaryDataService } from '@app/modules/planetary/service/PlanetaryDa
 
 export class PlanetaryData extends NeoCom {
     private id: string
+    private planetId: number
     private name!: string
     private planetSuffix!: string
     private planetType!: string
@@ -26,13 +27,16 @@ export class PlanetaryData extends NeoCom {
                 for (let index = 0; index < this.planetResourceLevels.length; index++) {
                     const level = this.planetResourceLevels[index]
                     const resource = planetaryService.getPlanetResource4PlanetType(this.planetType, index)
-                    this.planetResources.push(resource.setLevel(level))
+                    if (resource) this.planetResources.push(resource.setLevel(level))
                 }
             }
         return this
     }
 
     // - G E T T E R S
+    public getPlanetId(): number {
+        return this.planetId
+    }
     public getPlanetName(): string {
         if (this.name) return this.name
         else return '-'
@@ -44,6 +48,9 @@ export class PlanetaryData extends NeoCom {
     public getPlanetType(): string {
         if (this.planetType) return this.planetType
         else return '-'
+    }
+    public getPlanetResources(): PlanetaryResource[] {
+        return this.planetResources
     }
     public isEqual(target: PlanetaryData | undefined): boolean {
         if (target) {

@@ -48,11 +48,11 @@ export class PlanetaryDataService {
     }
     private initPlanetRawResourcesMap(): void {
         this.planetRawResourcesTable.set('barren', [
-            new PlanetaryResource({ resourceName: 'Aqueous Liquids R0' }),
-            new PlanetaryResource({ resourceName: 'Base Metals R0' }),
-            new PlanetaryResource({ resourceName: 'Carbon Compounds R0' }),
-            new PlanetaryResource({ resourceName: 'Microorganisms R0' }),
-            new PlanetaryResource({ resourceName: 'Noble Metals R0' }),
+            new PlanetaryResource({ resourceId: 2268, resourceName: 'Aqueous Liquids R0' }),
+            new PlanetaryResource({ resourceId: 2267, resourceName: 'Base Metals R0' }),
+            new PlanetaryResource({ resourceId: 2288, resourceName: 'Carbon Compounds R0' }),
+            new PlanetaryResource({ resourceId: 2073, resourceName: 'Microorganisms R0' }),
+            new PlanetaryResource({ resourceId: 2270, resourceName: 'Noble Metals R0' }),
         ])
     }
     private initPlanetaryDependencyMaps(): void {

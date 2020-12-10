@@ -28,6 +28,7 @@ Feature: [NIF05] The Planetary is a new addon that does not require authenticati
         Then the target has 1 columns
         Given the target is the panel of type "known-systems"
         Then the target has the title "KNOWN SYSTEMS"
+
     @NIF05.05
     Scenario: [NIF05.05]-The list of known systems has some elements and contains the planet identification and the number of planets known.
         Given the page "Resource Research Page" is activated
@@ -39,8 +40,9 @@ Feature: [NIF05] The Planetary is a new addon that does not require authenticati
         And field named "at" with label "LOCATION" and value "Metropolis > Tiat"
         And field named "security" with label "SECURITY" and value "E - 0.4"
         And field named "planetCount" with label "PLANETS" and value 3
+
     @NIF05.06
-    Scenario: [NIF05.06]-If one system element is clocked then there another panel with the planets for that system.
+    Scenario: [NIF05.06]-If one system element is clicked then there is another panel with the planets for that system.
         Given the page "Resource Research Page" is activated
         Given the target is the panel of type "known-systems"
         Given the target the "planetary-system" with id 30002059
@@ -51,3 +53,14 @@ Feature: [NIF05] The Planetary is a new addon that does not require authenticati
         Then the target has the title "KNOWN SYSTEMS"
         Given the target is the panel of type "system-planets"
         Then the target has the title "AUNER PLANETS"
+
+    @NIF05.07
+    Scenario: [NIF05.07]-Hovering over a system will change its render.
+    @NIF05.08
+    Scenario: [NIF05.08]-When a system is selected and the planets are shown then that system is visually resalted.
+   @NIF05.09
+    Scenario: [NIF05.09]-Each planet block contains the name, type and the resources generated.
+       @NIF05.10
+    Scenario: [NIF05.10]-Planets with no data registered on the database show a button to go to the data registration page.
+       @NIF05.11
+    Scenario: [NIF05.11]-Planets with no data registered have a different rendering and are dimmed.
