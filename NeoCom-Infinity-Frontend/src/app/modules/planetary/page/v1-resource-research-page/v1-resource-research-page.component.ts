@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { ViewChild } from '@angular/core';
 import { KnownSystem } from '@domain/planetary/KnownSystem.domain';
 import { V1KnownPlanetsPanelComponent } from '../../panel/v1-known-planets-panel/v1-known-planets-panel.component';
+import { V1OutputResourcesPanelComponent } from '../../panel/v1-output-resources-panel/v1-output-resources-panel.component';
 import { V1SelectedPlanetsPanelComponent } from '../../panel/v1-selected-planets-panel/v1-selected-planets-panel.component';
 import { PlanetaryDataService } from '../../service/PlanetaryData.service';
 
@@ -14,7 +15,7 @@ import { PlanetaryDataService } from '../../service/PlanetaryData.service';
 export class V1ResourceResearchPageComponent {
     @ViewChild(V1KnownPlanetsPanelComponent) knownPlanetsComponent: V1KnownPlanetsPanelComponent
     @ViewChild(V1SelectedPlanetsPanelComponent) selectedPlanetsComponent: V1SelectedPlanetsPanelComponent 
-    // @ViewChild(V1SelectedPlanetaryResourcesPanelComponent) selectedT2ResourcesComponent: V1SelectedPlanetaryResourcesPanelComponent | undefined
+    @ViewChild(V1OutputResourcesPanelComponent) outputResourcesComponent: V1OutputResourcesPanelComponent 
     public self: V1ResourceResearchPageComponent
     public selectedSystem: KnownSystem
 
@@ -31,7 +32,7 @@ export class V1ResourceResearchPageComponent {
 
     public processEvent(): void {
         if (this.selectedPlanetsComponent) this.selectedPlanetsComponent.refresh()
-        // if (this.availableT2ResourcesComponent) this.availableT2ResourcesComponent.refresh()
+        if (this.outputResourcesComponent) this.outputResourcesComponent.refresh()
         // if (this.availableT2ResourcesComponent) this.availableT2ResourcesComponent.refresh()
     }
 }

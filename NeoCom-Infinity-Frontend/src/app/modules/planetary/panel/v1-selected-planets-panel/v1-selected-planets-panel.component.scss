@@ -1,12 +1,18 @@
+.planet-data-panel {
+    width: 100%;
+}
+
 .dropable-area {
-    border: 1px solid white;
+    // border: 1px dashed white;
     height: 100vh;
 }
 
 .drag-over {
-    background-color: greenyellow;
+    // border: 1px dashed white;
+    // height: 100vh;
+    background-color: #001A00;
 }
 
 .drag-hint {
-    border: 2px solid green;
+    border: 1px solid green;
 }

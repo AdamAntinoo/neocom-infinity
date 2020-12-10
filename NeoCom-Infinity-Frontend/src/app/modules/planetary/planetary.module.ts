@@ -18,7 +18,8 @@ import { PlanetaryDataService } from './service/PlanetaryData.service';
 import { V1EnterPlanetDataPageComponent } from './page/v1-enter-planet-data-page/v1-enter-planet-data-page.component'
 import { NgDragDropModule } from 'ng-drag-drop';
 import { V1ResourceResearchPageComponent } from './page/v1-resource-research-page/v1-resource-research-page.component';
-import { V1KnownSystemsPanelComponent } from './panel/v1-known-systems-panel/v1-known-systems-panel.component'
+import { V1KnownSystemsPanelComponent } from './panel/v1-known-systems-panel/v1-known-systems-panel.component';
+import { V1OutputResourcesPanelComponent } from './panel/v1-output-resources-panel/v1-output-resources-panel.component'
 
 const routes: Routes = [
     { path: 'dashboard', component: DashboardPageComponent },
@@ -43,7 +44,8 @@ const routes: Routes = [
         V1SelectedPlanetsPanelComponent,
         V1EnterPlanetDataPageComponent,
         V1ResourceResearchPageComponent,
-       V1KnownSystemsPanelComponent
+       V1KnownSystemsPanelComponent,
+       V1OutputResourcesPanelComponent
     ],
     exports: [RouterModule],
     providers: [

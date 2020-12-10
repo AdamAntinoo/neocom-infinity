@@ -1,8 +1,9 @@
 import { PlanetaryDataRecord } from './planetary-data-record';
 import { PlanetaryResource } from './planetary-resource';
+import { PlanetaryData } from './PlanetaryData.domain';
 
 export class GeneratedResource extends PlanetaryResource {
-    public planet: PlanetaryDataRecord | undefined
+    public planet: PlanetaryData
     public selected: boolean = false
 
     constructor(values: Object = {}) {
@@ -11,7 +12,7 @@ export class GeneratedResource extends PlanetaryResource {
         this.jsonClass = 'GeneratedResource';
     }
 
-    public setPlanet(planet: PlanetaryDataRecord): GeneratedResource {
+    public setPlanet(planet: PlanetaryData): GeneratedResource {
         this.planet = planet
         return this
     }

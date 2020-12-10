@@ -52,6 +52,12 @@ export class PlanetaryData extends NeoCom {
     public getPlanetResources(): PlanetaryResource[] {
         return this.planetResources
     }
+    public getResource(name: string): PlanetaryResource {
+        for (let resource of this.planetResources) {
+            if (resource.getName() == name) return resource
+        }
+        return undefined
+    }
     public isEqual(target: PlanetaryData | undefined): boolean {
         if (target) {
             if (this.getPlanetType() != target.getPlanetType()) return false
