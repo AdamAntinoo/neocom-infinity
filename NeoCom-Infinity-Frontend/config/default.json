@@ -3,7 +3,7 @@
         "appname": "NeoCom.Infinity",
         "version": "v0.20.0",
         "port": 8080,
-        "applicationhome": "/dist/NeoCom-Infinity",
+        "applicationhome": "/dist/NeoComInfinityFrontend",
         "backendproxy": "http://localhost:5210",
         "apppath": "/app",
         "apipath": "/api"
