@@ -2,15 +2,17 @@
     <app-info-panel id="appinfo-panel" class="neocom-panel app-info-panel"></app-info-panel>
     <server-info-panel id="server-info-panel" class="neocom-panel server-info-panel"></server-info-panel>
 </div>
-<p>v1-resource-research-page works!</p>
-<p>v1-planet-search-page works!</p>
 <div class="column">
     <div class="page-title">PLANETARY RESOURCE RESEARCH ENGINE</div>
     <div class="row">
         <v1-known-systems-panel [store]="self"></v1-known-systems-panel>
         <div class="separator-8"></div>
-        <div *ngIf="selectedSystem">
+        <div class="row" *ngIf="selectedSystem">
             <v1-known-planets-panel [system]="selectedSystem"></v1-known-planets-panel>
+            <div class="separator-8"></div>
+            <v1-selected-planets-panel [store]="self"></v1-selected-planets-panel>
+            <div class="separator-8"></div>
+            <v1-output-resources-panel [store]="self"></v1-output-resources-panel>
         </div>
         <!--   <npi-v1-selected-planets-panel [store]="self"></npi-v1-selected-planets-panel> -->
         <!-- <div class="separator-8"></div>
