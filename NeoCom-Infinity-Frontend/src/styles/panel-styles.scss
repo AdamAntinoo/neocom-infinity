@@ -6,7 +6,8 @@ $panel-border-color: #404040;
 $panel-opacity: 0.8;
 $panel-corner-height: 6px;
 $panel-corner-width: 6px;
-$panel-repositioning: -1px; // %panelborder {
+$panel-repositioning: -1px;
+$change-time: 0.5s;
 // - PANEL MARGIN VARIABLES
 $panel-default-font: 'Din-1451';
 $panel-margin: 2px;
@@ -56,7 +57,9 @@ $panel-background-hover-blue: #0B3D03;
 }
 
 .panel-red:hover {
+    background-color: $panel-red-10;
     opacity: $panel-hover-opacity;
+    transition: background-color $change-time;
 }
 
 .panel-red-expanded {
@@ -104,7 +107,9 @@ $panel-background-hover-blue: #0B3D03;
 }
 
 .panel-pink:hover {
+    background-color: $panel-pink-10;
     opacity: $panel-hover-opacity;
+    transition: background-color $change-time;
 }
 
 .panel-pink-expanded {
@@ -154,7 +159,7 @@ $panel-background-hover-blue: #0B3D03;
 .panel-orange:hover {
     background-color: $panel-orange-10;
     opacity: $panel-hover-opacity;
-    transition: background-color 1s;
+    transition: background-color $change-time;
 }
 
 .panel-orange-expanded {
@@ -202,7 +207,9 @@ $panel-background-hover-blue: #0B3D03;
 }
 
 .panel-yellow:hover {
+    background-color: $panel-yellow-10;
     opacity: $panel-hover-opacity;
+    transition: background-color $change-time;
 }
 
 .panel-yellow-expanded {
@@ -250,9 +257,9 @@ $panel-background-hover-blue: #0B3D03;
 }
 
 .panel-lime:hover {
-    background-color: $panel-yellow-10;
+    background-color: $panel-lime-10;
     opacity: $panel-hover-opacity;
-    transition: background-color 1s;
+    transition: background-color $change-time;
 }
 
 .panel-lime-expanded {
@@ -302,7 +309,7 @@ $panel-background-hover-blue: #0B3D03;
 .panel-green:hover {
     background-color: $panel-green-10;
     opacity: $panel-hover-opacity;
-    transition: background-color 1s;
+    transition: background-color $change-time;
 }
 
 .panel-green-expanded {
@@ -350,7 +357,9 @@ $panel-background-hover-blue: #0B3D03;
 }
 
 .panel-lightblue:hover {
+    background-color: $panel-lightblue-10;
     opacity: $panel-hover-opacity;
+    transition: background-color $change-time;
 }
 
 .panel-lightblue-expanded {
@@ -400,7 +409,7 @@ $panel-background-hover-blue: #0B3D03;
 .panel-blue:hover {
     background-color: $panel-blue-20;
     opacity: $panel-hover-opacity;
-    transition: background-color 1s;
+    transition: background-color $change-time;
 }
 
 .panel-blue-expanded {
@@ -448,7 +457,9 @@ $panel-background-hover-blue: #0B3D03;
 }
 
 .panel-violet:hover {
+    background-color: $panel-violet-10;
     opacity: $panel-hover-opacity;
+    transition: background-color $change-time;
 }
 
 .panel-violet-expanded {
@@ -496,7 +507,9 @@ $panel-background-hover-blue: #0B3D03;
 }
 
 .panel-white:hover {
+    background-color: $panel-white-10;
     opacity: $panel-hover-opacity;
+    transition: background-color $change-time;
 }
 
 .panel-white-expanded {
@@ -536,7 +549,7 @@ $panel-background-hover-blue: #0B3D03;
     background-color: $panel-red-90;
 }
 
-.panel-pink-draggable:hover {
+.panel-pink-draggable {
     background-color: $panel-pink-90;
 }
 
