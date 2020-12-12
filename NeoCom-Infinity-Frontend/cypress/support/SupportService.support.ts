@@ -28,8 +28,8 @@ export class SupportService {
         this.translationTable['known-systems'] = 'v1-known-systems-panel'
         this.translationTable['system-planets'] = 'v1-known-planets-panel'
         this.translationTable['selected-planets'] = 'v1-selected-planets-panel'
-        // this.translationTable['jobs-list'] = 'v1-pending-jobs-panel'
-        // this.translationTable['work-load'] = 'v1-work-load-panel'
+        this.translationTable['output-resources'] = 'v1-output-resources-panel'
+        this.translationTable['selected-resources'] = 'v1-selected-resources-panel'
         // - RENDERS
         this.translationTable['exception'] = 'div'
         this.translationTable['pilot'] = 'pilot-render'

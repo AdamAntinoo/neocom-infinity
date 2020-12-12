@@ -8,13 +8,13 @@
         <v1-known-systems-panel class="panel" [store]="self"></v1-known-systems-panel>
         <div class="separator-8"></div>
         <div class="row" *ngIf="selectedSystem">
-            <v1-known-planets-panel [system]="selectedSystem"></v1-known-planets-panel>
+            <v1-known-planets-panel class="panel" [system]="selectedSystem"></v1-known-planets-panel>
             <div class="separator-8"></div>
-            <v1-selected-planets-panel [store]="self"></v1-selected-planets-panel>
+            <v1-selected-planets-panel class="panel" [store]="self"></v1-selected-planets-panel>
             <div class="separator-8"></div>
-            <v1-output-resources-panel [store]="self"></v1-output-resources-panel>
+            <v1-output-resources-panel class="panel" [store]="self"></v1-output-resources-panel>
             <div class="separator-8"></div>
-            <v1-selected-resources-panel [store]="self"></v1-selected-resources-panel>
+            <v1-selected-resources-panel class="panel" [store]="self"></v1-selected-resources-panel>
         </div>
     </div>
 </div>
