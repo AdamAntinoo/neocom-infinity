@@ -8,6 +8,9 @@
         },
         {
             "path": "../../../InnovativeDimensionProjects/Innovative-AngularCore"
+        },
+        {
+            "path": "../../../DimensinfinSoftware/Dimensinfin3D/Printer3D-frontend"
         }
     ],
 	"settings": {
