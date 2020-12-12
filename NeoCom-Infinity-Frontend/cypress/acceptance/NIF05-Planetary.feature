@@ -3,8 +3,6 @@ Feature: [NIF05] The Planetary is a new addon that does not require authenticati
 
     [STORY] When the Planetary landing page is reached there are the standard application header and a panel with buttons to access
     the different planetary functionalities.
-    [STORY] The Planet Search page has some different panels. Not all of them are visible on entering the page. The initial one is
-    the list of eve systems that have any planet data on the repository.
 
     Background: Planetary landing page
         Given the application NeoCom-Infinity
@@ -13,7 +11,13 @@ Feature: [NIF05] The Planetary is a new addon that does not require authenticati
     # - D A S H B O A R D   P A G E   S T R U C T U R E
     @NIF05.01
     Scenario: [NIF05.01]-Validate that there are two buttons.
-        Then the target has 2 "feature-button"
+        Then the target has 2 "feature"
 
-    # @NIF05.02
-    # Scenario: [NIF05.02]-Check that each button changes to the correct page.
+    @NIF05.02
+    Scenario: [NIF05.02]-Check that each button changes to the correct page.
+        Given the page "Planetary Dashboard Page" is activated
+        When the Feature with label "Enter Planet Data" is clicked the destination is the Page "Enter Planet Data Page"
+        And the page "Enter Planet Data Page" has 1 panels
+        Given the page "Planetary Dashboard Page" is activated
+        When the Feature with label "Resource Search" is clicked the destination is the Page "Resource Research Page"
+        And the page "Resource Research Page" has 1 panels

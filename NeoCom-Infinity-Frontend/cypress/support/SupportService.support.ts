@@ -10,9 +10,11 @@ export class SupportService {
         this.translationTable['Dashboard'] = 'dashboard-home-page'
         this.translationTable['Fitting Build Configuration'] = 'v1-industry-fitting-build-configuration-page'
         this.translationTable['Planetary Dashboard Page'] = 'dashboard-page'
+        this.translationTable['Enter Planet Data Page'] = 'v1-enter-planet-data-page'
         this.translationTable['Resource Research Page'] = 'v1-resource-research-page'
         // - PANELS
         this.translationTable['app-component'] = 'app-root'
+        this.translationTable['feature'] = 'v2-feature'
         this.translationTable['pilot-panel'] = 'v2-pilot-public-data-panel'
         this.translationTable['fitting-summary'] = 'v1-fitting-summary-panel'
         this.translationTable['fitting-saved-configuration'] = 'v1-fitting-configuration-panel'
@@ -26,7 +28,6 @@ export class SupportService {
         this.translationTable['known-systems'] = 'v1-known-systems'
         this.translationTable['system-planets'] = 'v1-known-planets-panel'
         this.translationTable['selected-planets'] = 'v1-selected-planets-panel'
-        // this.translationTable['request-details'] = 'v1-request-detail-panel'
         // this.translationTable['jobs-list'] = 'v1-pending-jobs-panel'
         // this.translationTable['work-load'] = 'v1-work-load-panel'
         // - RENDERS

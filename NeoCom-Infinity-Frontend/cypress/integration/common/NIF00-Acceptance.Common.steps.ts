@@ -3,10 +3,7 @@ import { Given } from "cypress-cucumber-preprocessor/steps";
 import { When } from "cypress-cucumber-preprocessor/steps";
 import { Then } from "cypress-cucumber-preprocessor/steps";
 // - SERVICE
-// import { IsolationService } from '../../support/IsolationService.support';
 import { SupportService } from '../../support/SupportService.support';
-// import { max } from 'cypress/types/lodash';
-// import { clear } from 'console';
 
 const TITLE_VALIDATION = 'NeoCom.Infinity';
 const supportService = new SupportService();
@@ -29,12 +26,12 @@ Given('the application NeoCom-Infinity-frontend', function () {
 // - P A G E   A C T I V A T I O N
 Then('the page {string} is activated', function (symbolicName: string) {
     const tag = supportService.translateTag(symbolicName) // Do name replacement
-    const route = supportService.translateRoute(symbolicName) // Gdt the route for this page name
+    const route = supportService.translateRoute(symbolicName) // Get the route for this page name
     cy.log('>[Translation]> ' + symbolicName + ': ' + tag)
     cy.log('>[Route]> ' + route)
+    cy.visit(route)
     cy.get('app-root').find(tag).as('target-page').as('target')
         .should('exist')
-    cy.visit(route)
 });
 /**
  * On the NeoCom application panels may be on a hierarchical setup and not only as la row list.
@@ -83,7 +80,7 @@ Then('the target has {int} {string}', function (count: number, symbolicName: str
     cy.get('@target').within(($item) => {
         cy.get(tag).should('have.length', count)
     })
-});
+})
 
 // - F I E L D S
 Then('field named {string} with label {string} has contents {string}',
@@ -95,4 +92,15 @@ Then('field named {string} with label {string} has contents {string}',
             cy.get('.label').contains(fieldLabel, { matchCase: false }).parent()
                 .find('[cy-field-value="' + fieldName + '"]').contains(fieldValue, { matchCase: false })
         })
-    });
+    })
+
+// - F E A T U R E   S E L E C T I O N
+When('the Feature with label {string} is clicked the destination is the Page {string}', 
+function (label: string, destinationTag: string) {
+    const destination = supportService.translateTag(destinationTag)
+    cy.get('@target-page')
+        .find(supportService.translateTag('feature'))
+        .contains(label, { matchCase: false }).parent()
+        .scrollIntoView().click();
+    cy.get('app-root').find(destination).as('target-page').as('target').should('exist')
+})

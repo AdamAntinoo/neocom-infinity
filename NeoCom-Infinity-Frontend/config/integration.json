@@ -1,6 +1,6 @@
 {
     "settings": {
-        "backendproxy": "https://neocom-backend.herokuapp.com"
+        "backendproxy": "http://localhost:5210/"
     },
     "pages": {
         "homepage": "/home.html"
