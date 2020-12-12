@@ -17,7 +17,7 @@
     "regionName": "Metropolis",
     "securityLevel": 0.4,
     "securityClass": "E",
-    "planetCount": 3
+    "planetCount": 9
 }, {
     "systemId": 30003283,
     "systemName": "PVH8-0",
@@ -27,7 +27,7 @@
     "regionName": "Metropolis",
     "securityLevel": 0.4,
     "securityClass": "E",
-    "planetCount": 3
+    "planetCount": 10
 }, {
     "systemId": 30003280,
     "systemName": "6-CZ49",
@@ -37,5 +37,5 @@
     "regionName": "Metropolis",
     "securityLevel": 0.4,
     "securityClass": "E",
-    "planetCount": 3
+    "planetCount": 7
 }]

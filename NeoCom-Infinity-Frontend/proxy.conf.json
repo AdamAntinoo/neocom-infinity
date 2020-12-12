@@ -3,12 +3,14 @@
         "target": "http://localhost:5211",
         "secure": false,
         "logLevel": "debug",
+        "timeout": 30000,
         "changeOrigin": true
     },
     "/api/*": {
         "target": "http://localhost:5210",
         "secure": false,
         "logLevel": "debug",
+        "timeout": 30000,
         "changeOrigin": true
     }
 }

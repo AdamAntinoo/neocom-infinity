@@ -6,30 +6,26 @@ Feature: [NIF06] The Planetary Research page allow to seach for the best planet 
 
     Background: Planetary landing page
         Given the application NeoCom-Infinity
-        Given the page "Resource Research Page" is activated
 
     # - R E S O U R C E   S E A R C H   P A G E
     @NIF06.01
     Scenario: [NIF06.01]-When the Resource Research page is entered the only visible panel is the list of known systems.
-        Given the page "Resource Research Page" is activated
-        Then the page has the title "PLANETARY RESOURCE RESEARCH ENGINE"
-        And the loading panel shows "Downloading known planetary data..."
-        When the loading panel completes
-        And the page "Resource Research Page" has 1 panels
+        When activate the page Resource Research Page
+        Then the page "Resource Research Page" has 1 panels
         Given the target is the panel of type "known-systems"
         Then the target has the title "KNOWN SYSTEMS"
 
-# @NIF06.02
-# Scenario: [NIF06.02]-The list of known systems has some elements and contains the planet identification and the number of planets known.
-#     Given the page "Resource Research Page" is activated
-#     Given the target is the panel of type "known-systems"
-#     Then the target has the title "KNOWN SYSTEMS"
-#     Then the target has 2 "planetary-system"
-#     Given the target the "planetary-system" with id 30002059
-#     Then field named "systemName" with label "SYSTEM NAME" and value "Auner"
-#     And field named "at" with label "LOCATION" and value "Metropolis > Tiat"
-#     And field named "security" with label "SECURITY" and value "E - 0.4"
-#     And field named "planetCount" with label "PLANETS" and value 3
+    @NIF06.02
+    Scenario: [NIF06.02]-The list of known systems has some elements and contains the planet identification and the number of planets known.
+        When activate the page Resource Research Page
+        Given the target is the panel of type "known-systems"
+        Then the target has the title "KNOWN SYSTEMS"
+        Then the target has 4 "planetary-system"
+        Given the target the "planetary-system" with id "30003280"
+        Then field named "systemName" with label "SYSTEM NAME" has contents "6-CZ49"
+        And field named "at" with label "LOCATION" has contents "Metropolis > Tiat"
+        And field named "security" with label "SECURITY" has contents "E - 0.4"
+        And field named "planetCount" with label "PLANETS" has contents "7"
 
 # @NIF06.03
 # Scenario: [NIF06.03]-If one system element is clicked then there is another panel with the planets for that system.
