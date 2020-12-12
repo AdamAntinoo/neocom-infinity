@@ -25,7 +25,7 @@ export class SupportService {
         this.translationTable['fitting-build-content'] = 'v1-fitting-build-content'
         this.translationTable['fitting-item'] = 'v1-fitting-item'
         this.translationTable['market-data'] = 'v1-market-data'
-        this.translationTable['known-systems'] = 'v1-known-systems'
+        this.translationTable['known-systems'] = 'v1-known-systems-panel'
         this.translationTable['system-planets'] = 'v1-known-planets-panel'
         this.translationTable['selected-planets'] = 'v1-selected-planets-panel'
         // this.translationTable['jobs-list'] = 'v1-pending-jobs-panel'
@@ -56,6 +56,7 @@ export class SupportService {
         // -  R O U T E S
         this.routeTranslationTable['Dashboard'] = '/dashboard'
         this.routeTranslationTable['Planetary Dashboard Page'] = '/planetary/dashboard'
+        this.routeTranslationTable['Resource Research Page'] = '/planetary/resource-research'
     }
     /**
      * Replaces symbolic names by the application names so if there are version changes the acceptance scritps should not change.

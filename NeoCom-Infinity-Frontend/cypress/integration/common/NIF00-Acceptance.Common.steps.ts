@@ -33,6 +33,10 @@ Then('the page {string} is activated', function (symbolicName: string) {
     cy.get('app-root').find(tag).as('target-page').as('target')
         .should('exist')
 });
+Then('the page has the title {string}', function (title: string) {
+    cy.get('@target-page').find('.page-title').contains(title, { matchCase: false })
+});
+
 /**
  * On the NeoCom application panels may be on a hierarchical setup and not only as la row list.
  */
@@ -44,8 +48,8 @@ Then('the page {string} has {int} panels', function (symbolicName: string, panel
 
 // - S P I N N E R
 Then('the loading panel shows {string}', function (loadingMessage: string) {
-    cy.get('@target-page').find('.index-loading')
-        .contains(loadingMessage)
+    cy.get('@target-page').find('.loading-message')
+        .contains(loadingMessage, { matchCase: false })
 });
 When('the loading panel completes', function () {
     cy.wait(2000)
@@ -95,12 +99,12 @@ Then('field named {string} with label {string} has contents {string}',
     })
 
 // - F E A T U R E   S E L E C T I O N
-When('the Feature with label {string} is clicked the destination is the Page {string}', 
-function (label: string, destinationTag: string) {
-    const destination = supportService.translateTag(destinationTag)
-    cy.get('@target-page')
-        .find(supportService.translateTag('feature'))
-        .contains(label, { matchCase: false }).parent()
-        .scrollIntoView().click();
-    cy.get('app-root').find(destination).as('target-page').as('target').should('exist')
-})
+When('the Feature with label {string} is clicked the destination is the Page {string}',
+    function (label: string, destinationTag: string) {
+        const destination = supportService.translateTag(destinationTag)
+        cy.get('@target-page')
+            .find(supportService.translateTag('feature'))
+            .contains(label, { matchCase: false }).parent()
+            .scrollIntoView().click();
+        cy.get('app-root').find(destination).as('target-page').as('target').should('exist')
+    })
