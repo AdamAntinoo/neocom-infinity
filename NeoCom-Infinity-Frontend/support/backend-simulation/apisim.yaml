@@ -286,7 +286,7 @@ simlet: planetary-known-systems
 delay:
   is: fixedDelay
   timeUnit: milliseconds
-  initial: 5000
+  initial: 3000
   subsequent: 2000
 
 request:
@@ -309,8 +309,8 @@ simlet: planetary-known-planets-30002059
 delay:
   is: fixedDelay
   timeUnit: milliseconds
-  initial: 5000
-  subsequent: 2000
+  initial: 2000
+  subsequent: 1000
 
 request:
   - method: GET
@@ -332,8 +332,8 @@ simlet: planetary-known-planets-30002059
 delay:
   is: fixedDelay
   timeUnit: milliseconds
-  initial: 5000
-  subsequent: 2000
+  initial: 2000
+  subsequent: 1000
 
 request:
   - method: GET
@@ -355,8 +355,8 @@ simlet: planetary-known-planets-30003283
 delay:
   is: fixedDelay
   timeUnit: milliseconds
-  initial: 5000
-  subsequent: 2000
+  initial: 2000
+  subsequent: 1000
 
 request:
   - method: GET
@@ -378,8 +378,8 @@ simlet: planetary-known-planets-30003280
 delay:
   is: fixedDelay
   timeUnit: milliseconds
-  initial: 5000
-  subsequent: 2000
+  initial: 2000
+  subsequent: 1000
 
 request:
   - method: GET

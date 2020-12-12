@@ -38,6 +38,9 @@ export class V1PlanetarySystemRenderComponent extends NodeContainerRenderCompone
         if (this.node) return this.getNode().planetCount + ''
         else return '-'
     }
+    public planetInfoCount () : number{
+        return 1
+    }
 
     public selectSystem(): void {
         console.log('>[V1PlanetarySystemRenderComponent.selectSystem]> Name: ' + this.getNode().getName())

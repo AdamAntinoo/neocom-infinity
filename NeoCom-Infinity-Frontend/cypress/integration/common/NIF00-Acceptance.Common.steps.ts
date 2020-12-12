@@ -52,7 +52,7 @@ Then('the loading panel shows {string}', function (loadingMessage: string) {
         .contains(loadingMessage, { matchCase: false })
 });
 When('the loading panel completes', function () {
-    cy.wait(2000)
+    cy.wait(3000)
 });
 
 // - T A R G E T   S E L E C T I O N

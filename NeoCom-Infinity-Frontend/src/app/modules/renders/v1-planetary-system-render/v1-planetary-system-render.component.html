@@ -1,18 +1,28 @@
 <div id="{{getUniqueId()}}" class="neocom-panel panel-blue" *ngIf="getVariant() === '-COIL-LIST-'" (click)="selectSystem()">
-    <div cy-name="systemName" class="field material-width">
-        <span cy-field-label="systemName" class="label">SYSTEM NAME</span><br>
-        <span cy-field-value="systemName" class="field-height">{{getSystemName()}}</span>
-    </div>
-    <div cy-name="at" class="field material-width">
-        <span cy-field-label="at" class="label">LOCATION</span><br>
-        <span cy-field-value="at" class="field-height">{{getLocation()}}</span>
-    </div>
-    <div cy-name="security" class="field material-width">
-        <span cy-field-label="security" class="label">SECURITY</span><br>
-        <span cy-field-value="security" class="field-height">{{getSecurity()}}</span>
-    </div>
-    <div cy-name="planetCount" class="field material-width">
-        <span cy-field-label="planetCount" class="label">PLANETS</span><br>
-        <span cy-field-value="planetCount" class="field-height">{{getPlanetCount()}}</span>
+    <div class="insets row">
+        <img class="neocom-icon iconsize-60" src="assets/res-sde/drawable/systems.png">
+        <div class="separator-4"></div>
+        <div class="column complete">
+            <div cy-name="systemName" class="field">
+                <span cy-field-label="systemName" class="label">SYSTEM NAME</span><br>
+                <span cy-field-value="systemName">{{getSystemName()}}</span>
+            </div>
+            <div cy-name="at" class="field">
+                <span cy-field-label="at" class="label">LOCATION</span><br>
+                <span cy-field-value="at">{{getLocation()}}</span>
+            </div>
+            <div class="row">
+                <div cy-name="security" class="field">
+                    <span cy-field-label="security" class="label">SECURITY</span><br>
+                    <span cy-field-value="security">{{getSecurity()}}</span>
+                </div>
+                <div cy-name="planetCount" class="fiel right">
+                    <span cy-field-label="planetCount" class="label">PLANETS</span><br>
+                    <div cy-field-value="planetCount" class="planet-count">
+                        <span class="planet-count">{{getPlanetCount()}}</span> / <span class="planet-info-count">{{planetInfoCount()}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
