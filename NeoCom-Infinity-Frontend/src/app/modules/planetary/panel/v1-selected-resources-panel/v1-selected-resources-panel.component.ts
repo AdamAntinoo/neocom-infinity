@@ -38,4 +38,8 @@ export class V1SelectedResourcesPanelComponent {
         }
         console.log('<[V1SelectedPlanetaryResourcesPanelComponent.onDrop]')
     }
+    public clearSelection ()   : void {
+        this.selectedResources=[]
+        this.planetaryService.updateResourceList(this.selectedResources)      
+    }
 }
