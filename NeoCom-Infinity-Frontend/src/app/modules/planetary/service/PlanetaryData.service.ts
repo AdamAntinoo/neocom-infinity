@@ -92,6 +92,20 @@ export class PlanetaryDataService {
             new PlanetaryResource({ resourceId: 2306, resourceName: 'Non-CS Crystals R0' }),
             new PlanetaryResource({ resourceId: 2308, resourceName: 'Suspended Plasma R0' })
         ])
+        this.planetRawResourcesTable.set('storm', [
+            new PlanetaryResource({ resourceId: 2268, resourceName: 'Aqueous Liquids R0' }),
+            new PlanetaryResource({ resourceId: 2267, resourceName: 'Base Metals R0' }),
+            new PlanetaryResource({ resourceId: 2309, resourceName: 'Ionic Solutions R0' }),
+            new PlanetaryResource({ resourceId: 2310, resourceName: 'Noble Gas R0' }),
+            new PlanetaryResource({ resourceId: 2308, resourceName: 'Suspended Plasma R0' })
+        ])
+        this.planetRawResourcesTable.set('temperate', [
+            new PlanetaryResource({ resourceId: 2268, resourceName: 'Aqueous Liquids R0' }),
+            new PlanetaryResource({ resourceId: 2305, resourceName: 'Autotrophs R0' }),
+            new PlanetaryResource({ resourceId: 2288, resourceName: 'Carbon Compounds R0' }),
+            new PlanetaryResource({ resourceId: 2287, resourceName: 'Complex Organisms R0' }),
+            new PlanetaryResource({ resourceId: 2073, resourceName: 'Microorganisms R0' })
+        ])
     }
     private initPlanetaryDependencyMaps(): void {
         // Initialize the R0 -> T1 conversion table
@@ -163,48 +177,6 @@ export class PlanetaryDataService {
 				]
 			})
 		])
-		this.planet2T2ResourceMap.set('plasma', [
-			new PlanetaryResource({
-                resourceId: 3828,
-				resourceName: 'Construction Blocks T2',
-				dependencies: [
-					new PlanetaryResource({ resourceName: 'Reactive Metals T1' }),
-					new PlanetaryResource({ resourceName: 'Toxic Metals T1' })
-				]
-			}),
-			new PlanetaryResource({
-                resourceId: 9836,
-				resourceName: 'Consumer Electronics T2',
-				dependencies: [
-					new PlanetaryResource({ resourceName: 'Toxic Metals T1' }),
-					new PlanetaryResource({ resourceName: 'Chiral Structures T1' })
-				]
-			}),
-			new PlanetaryResource({
-                resourceId: 44,
-				resourceName: 'Enriched Uranium T2',
-				dependencies: [
-					new PlanetaryResource({ resourceName: 'Toxic Metals T1' }),
-					new PlanetaryResource({ resourceName: 'Precious Metals T1' })
-				]
-			}),
-			new PlanetaryResource({
-                resourceId: 3689,
-				resourceName: 'Mechanical Parts T2',
-				dependencies: [
-					new PlanetaryResource({ resourceName: 'Reactive Metals T1' }),
-					new PlanetaryResource({ resourceName: 'Precious Metals T1' })
-				]
-			}),
-			new PlanetaryResource({
-                resourceId: 9840,
-				resourceName: 'Transmitter T2',
-				dependencies: [
-					new PlanetaryResource({ resourceName: 'Chiral Structures T1' }),
-					new PlanetaryResource({ resourceName: 'Plasmoids T1' })
-				]
-			})
-		])
 		this.planet2T2ResourceMap.set('gas', [
 			new PlanetaryResource({
                 resourceId: 9832,
@@ -239,29 +211,13 @@ export class PlanetaryDataService {
 				]
 			})
 		])
-		this.planet2T2ResourceMap.set('oceanic', [
+		this.planet2T2ResourceMap.set('ice', [
 			new PlanetaryResource({
-                resourceId: 3693,
-                resourceName: 'Fertilizer T2',
+                resourceId: 2312,
+				resourceName: 'Supertensile Plastics T2',
 				dependencies: [
-					new PlanetaryResource({ resourceName: 'Proteins T1' }),
-					new PlanetaryResource({ resourceName: 'Bacteria T1' })
-				]
-			}),
-			new PlanetaryResource({
-                resourceId: 15317,
-                resourceName: 'Genetically Enhanced Livestock T2',
-				dependencies: [
-					new PlanetaryResource({ resourceName: 'Proteins T1' }),
+					new PlanetaryResource({ resourceName: 'Oxygen T1' }),
 					new PlanetaryResource({ resourceName: 'Biomass T1' })
-				]
-			}),
-			new PlanetaryResource({
-                resourceId: 3725,
-                resourceName: 'Livestock T2',
-				dependencies: [
-					new PlanetaryResource({ resourceName: 'Biofuels T1' }),
-					new PlanetaryResource({ resourceName: 'Proteins T1' })
 				]
 			}),
 			new PlanetaryResource({
@@ -315,8 +271,135 @@ export class PlanetaryDataService {
 				]
 			})
 		])
+		this.planet2T2ResourceMap.set('oceanic', [
+			new PlanetaryResource({
+                resourceId: 3693,
+                resourceName: 'Fertilizer T2',
+				dependencies: [
+					new PlanetaryResource({ resourceName: 'Proteins T1' }),
+					new PlanetaryResource({ resourceName: 'Bacteria T1' })
+				]
+			}),
+			new PlanetaryResource({
+                resourceId: 15317,
+                resourceName: 'Genetically Enhanced Livestock T2',
+				dependencies: [
+					new PlanetaryResource({ resourceName: 'Proteins T1' }),
+					new PlanetaryResource({ resourceName: 'Biomass T1' })
+				]
+			}),
+			new PlanetaryResource({
+                resourceId: 3725,
+                resourceName: 'Livestock T2',
+				dependencies: [
+					new PlanetaryResource({ resourceName: 'Biofuels T1' }),
+					new PlanetaryResource({ resourceName: 'Proteins T1' })
+				]
+			}),
+			new PlanetaryResource({
+                resourceId: 2319,
+				resourceName: 'Test Cultures T2',
+				dependencies: [
+					new PlanetaryResource({ resourceName: 'Water T1' }),
+					new PlanetaryResource({ resourceName: 'Bacteria T1' })
+				]
+			}),
+			new PlanetaryResource({
+                resourceId: 3775,
+				resourceName: 'Viral Agent T2',
+				dependencies: [
+					new PlanetaryResource({ resourceName: 'Bacteria T1' }),
+					new PlanetaryResource({ resourceName: 'Biomass T1' })
+				]
+			})
+		])
+		this.planet2T2ResourceMap.set('plasma', [
+			new PlanetaryResource({
+                resourceId: 3828,
+				resourceName: 'Construction Blocks T2',
+				dependencies: [
+					new PlanetaryResource({ resourceName: 'Reactive Metals T1' }),
+					new PlanetaryResource({ resourceName: 'Toxic Metals T1' })
+				]
+			}),
+			new PlanetaryResource({
+                resourceId: 9836,
+				resourceName: 'Consumer Electronics T2',
+				dependencies: [
+					new PlanetaryResource({ resourceName: 'Toxic Metals T1' }),
+					new PlanetaryResource({ resourceName: 'Chiral Structures T1' })
+				]
+			}),
+			new PlanetaryResource({
+                resourceId: 44,
+				resourceName: 'Enriched Uranium T2',
+				dependencies: [
+					new PlanetaryResource({ resourceName: 'Toxic Metals T1' }),
+					new PlanetaryResource({ resourceName: 'Precious Metals T1' })
+				]
+			}),
+			new PlanetaryResource({
+                resourceId: 3689,
+				resourceName: 'Mechanical Parts T2',
+				dependencies: [
+					new PlanetaryResource({ resourceName: 'Reactive Metals T1' }),
+					new PlanetaryResource({ resourceName: 'Precious Metals T1' })
+				]
+			}),
+			new PlanetaryResource({
+                resourceId: 9840,
+				resourceName: 'Transmitter T2',
+				dependencies: [
+					new PlanetaryResource({ resourceName: 'Chiral Structures T1' }),
+					new PlanetaryResource({ resourceName: 'Plasmoids T1' })
+				]
+			})
+		])
+		this.planet2T2ResourceMap.set('storm', [
+			new PlanetaryResource({
+                resourceId: 9832,
+				resourceName: 'Coolant T2',
+				dependencies: [
+					new PlanetaryResource({ resourceName: 'Water T1' }),
+					new PlanetaryResource({ resourceName: 'Electrolytes T1' })
+				]
+			}),
+			new PlanetaryResource({
+                resourceId: 9830,
+				resourceName: 'Rocket Fuel T2',
+				dependencies: [
+					new PlanetaryResource({ resourceName: 'Electrolytes T1' }),
+					new PlanetaryResource({ resourceName: 'Plasmoids T1' })
+				]
+			}),
+			new PlanetaryResource({
+                resourceId: 9838,
+				resourceName: 'Superconductors T2',
+				dependencies: [
+					new PlanetaryResource({ resourceName: 'Water T1' }),
+					new PlanetaryResource({ resourceName: 'Plasmoids T1' })
+				]
+			}),
+			new PlanetaryResource({
+                resourceId: 3691,
+				resourceName: 'Synthetic Oil T2',
+				dependencies: [
+					new PlanetaryResource({ resourceName: 'Electrolytes T1' }),
+					new PlanetaryResource({ resourceName: 'Oxygen T1' })
+				]
+			}),
+			new PlanetaryResource({
+                resourceId: 2328,
+				resourceName: 'Water-Cooled CPU T2',
+				dependencies: [
+					new PlanetaryResource({ resourceName: 'Water T1' }),
+					new PlanetaryResource({ resourceName: 'Reactive Metals T1' })
+				]
+			})
+		])
 		this.planet2T2ResourceMap.set('temperate', [
 			new PlanetaryResource({
+                resourceId: 3693,
 				resourceName: 'Fertilizer T2',
 				dependencies: [
 					new PlanetaryResource({ resourceName: 'Proteins T1' }),
@@ -324,6 +407,7 @@ export class PlanetaryDataService {
 				]
 			}),
 			new PlanetaryResource({
+                resourceId: 3725,
 				resourceName: 'Livestock T2',
 				dependencies: [
 					new PlanetaryResource({ resourceName: 'Biofuels T1' }),
@@ -331,6 +415,7 @@ export class PlanetaryDataService {
 				]
 			}),
 			new PlanetaryResource({
+                resourceId: 3695,
 				resourceName: 'Polytextiles T2',
 				dependencies: [
 					new PlanetaryResource({ resourceName: 'Industrial Fibers T1' }),
@@ -338,33 +423,11 @@ export class PlanetaryDataService {
 				]
 			}),
 			new PlanetaryResource({
+                resourceId: 2319,
 				resourceName: 'Test Cultures T2',
 				dependencies: [
 					new PlanetaryResource({ resourceName: 'Water T1' }),
 					new PlanetaryResource({ resourceName: 'Bacteria T1' })
-				]
-			})
-		])
-		this.planet2T2ResourceMap.set('ice', [
-			new PlanetaryResource({
-				resourceName: 'Supertensile Plastics T2',
-				dependencies: [
-					new PlanetaryResource({ resourceName: 'Oxygen T1' }),
-					new PlanetaryResource({ resourceName: 'Biomass T1' })
-				]
-			}),
-			new PlanetaryResource({
-				resourceName: 'Test Cultures T2',
-				dependencies: [
-					new PlanetaryResource({ resourceName: 'Water T1' }),
-					new PlanetaryResource({ resourceName: 'Bacteria T1' })
-				]
-			}),
-			new PlanetaryResource({
-				resourceName: 'Viral Agent T2',
-				dependencies: [
-					new PlanetaryResource({ resourceName: 'Bacteria T1' }),
-					new PlanetaryResource({ resourceName: 'Biomass T1' })
 				]
 			})
 		])
