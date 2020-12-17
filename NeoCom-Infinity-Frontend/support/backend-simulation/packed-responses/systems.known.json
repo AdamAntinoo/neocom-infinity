@@ -38,4 +38,14 @@
     "securityLevel": 0.4,
     "securityClass": "E",
     "planetCount": 7
+}, {
+    "systemId": 30003543,
+    "systemName": "Zanka",
+    "constellationId": 20000516,
+    "constellationName": "Mofa",
+    "regionId": 10000042,
+    "regionName": "Domain",
+    "securityLevel": 0.3798784017562866,
+    "securityClass": "B2",
+    "planetCount": 8
 }]
