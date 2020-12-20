@@ -22,8 +22,7 @@ export class AppPanelComponent extends BackgroundEnabledComponent implements IVi
     protected downloading: boolean = true
     protected dataModelRoot: ICollaboration[] = []
     private renderNodeList: ICollaboration[] = []
-    private target: ICollaboration
-    // protected selection: SingleSelection = new SingleSelection();
+    protected target: ICollaboration
 
     constructor() {
         super()
@@ -57,6 +56,7 @@ export class AppPanelComponent extends BackgroundEnabledComponent implements IVi
     // - I V I E W E R
     public enterSelected(node: ICollaboration): void {
         this.target = node
+        this.fireSelectionChanged()
     }
     // public addSelection(node: ISelectable): void {
     //     this.selection.addSelection(node)

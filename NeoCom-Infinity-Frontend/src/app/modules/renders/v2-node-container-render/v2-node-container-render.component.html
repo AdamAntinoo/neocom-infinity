@@ -2,6 +2,12 @@
     <div class="row node-panel body-box">
         <!-- BODY -->
         <div style="width: 100%;">
+            <!-- I N D U S T R Y -->
+            <v1-bomresource *ngIf="node.jsonClass === 'IndustryResource'" [container]="container" [node]="node" [variant]="variant">
+            </v1-bomresource>
+            <v1-bomgroup *ngIf="node.jsonClass === 'BOMGroup'" [container]="container" [node]="node" [variant]="variant">
+            </v1-bomgroup>
+            <!-- F I T T I N G -->
             <v1-fitting-group *ngIf="node.jsonClass === 'FittingGroup'" [container]="container" [node]="node" [variant]="variant">
             </v1-fitting-group>
             <v1-fitting-build-content *ngIf="node.jsonClass === 'FittingBuildContentDao'" [container]="container" [node]="node" [variant]="variant">

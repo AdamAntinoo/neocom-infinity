@@ -5,10 +5,10 @@
 <div class="column">
     <div class="page-title">MANUFACTURE RESEARCH ENGINE</div>
     <div class="row">
-        <v1-top-bompanel></v1-top-bompanel>
+        <v1-top-bompanel [container]="self"></v1-top-bompanel>
         <div class="separator-8"></div>
         <div class="row" *ngIf="hoveringTarget">
-            <!-- <v1-known-planets-panel class="panel" [system]="selectedSystem"></v1-known-planets-panel> -->
+            <v1-target-additional-data-panel class="panel" [target]="hoveringTarget"></v1-target-additional-data-panel>
             <div class="separator-8"></div>
             <!-- <v1-selected-planets-panel class="panel" [store]="self"></v1-selected-planets-panel> -->
             <div class="separator-8"></div>

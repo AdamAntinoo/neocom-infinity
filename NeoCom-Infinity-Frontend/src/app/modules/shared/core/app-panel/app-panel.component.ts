@@ -57,6 +57,7 @@ export class AppPanelComponent2 extends BackgroundEnabledComponent implements IV
     // - I V I E W E R
     public enterSelected(node: ICollaboration): void {
         this.target = node
+        this.fireSelectionChanged()
     }
     // public addSelection(node: ISelectable): void {
     //     this.selection.addSelection(node)

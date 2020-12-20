@@ -8,6 +8,7 @@ import { IRefreshable } from '@innovative/domain/interfaces/core/IRefreshable.in
 import { HALNode } from '@domain/hal/HALNode.hal';
 import { IViewer } from '@innovative/domain/interfaces/IViewer.interface';
 import { NeoCom } from '@domain/NeoCom.domain';
+import { ICollaboration } from '@innovative/domain/interfaces/ICollaboration.interface';
 
 @Component({
     selector: 'v2-node-container',
@@ -32,8 +33,9 @@ export class V2NodeContainerRenderComponent extends BackgroundEnabledComponent {
      * Pass the container panel the node that is being entered so if there is additional data it can be exported to another panel.
      * @param target target node that is being entered by the cursor.
      */
-    public mouseEnter(target: any) {
-        // if (this.selectOnHover) this.container.addSelection(target as ISelectable);
+    public mouseEnter(target: ICollaboration) {
+        console.log('>Selecting target')
+        if (this.selectOnHover) this.container.enterSelected(target);
     }
     public toggleExpanded(): void {
         if (null != this.node) {
