@@ -2,11 +2,12 @@
 import { NeoCom } from "@domain/NeoCom.domain";
 import { ICollaboration } from "@innovative/domain/interfaces/ICollaboration.interface";
 import { AppCoreStoreService } from "@innovative/services/AppCoreStoreService.service";
+import { BOMResource } from "./V1BOMResource.domain";
 import { IndustryResource } from "./V1IndustryResource.domain";
 
 export class BOMGroup extends NeoCom {
     private label: string
-    private contents: IndustryResource[] = []
+    private contents: BOMResource[] = []
     private totalCost: number = 0.0
 
     constructor(values: Object = {}) {
@@ -25,10 +26,10 @@ export class BOMGroup extends NeoCom {
     public getTotalCost () : number {
         return this.totalCost
     }
-    public addResource(resource: IndustryResource): void {
+    public addResource(resource: BOMResource): void {
         this.contents.push(resource)
     }
-    public getResouces(): IndustryResource[] {
+    public getResouces(): BOMResource[] {
         return this.contents
     }
 

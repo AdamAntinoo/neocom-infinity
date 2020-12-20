@@ -22,6 +22,8 @@ import { BOMGroup, BOMGroupBuilder } from '../../domain/V1BOMGroup.domain'
 import { IndustryResource } from '../../domain/V1IndustryResource.domain'
 import { AppPanelComponent } from '@innovative/components/app-panel/app-panel.component'
 import { V1ManufactureResearchPageComponent } from '../../pages/v1-manufacture-research-page/v1-manufacture-research-page.component'
+import { BOMResource, BOMResourceBuilder } from '../../domain/V1BOMResource.domain'
+import { BuildActionDto } from '@domain/industry/dto/BuildActionDto.dto'
 
 @Component({
     selector: 'v1-top-bompanel',
@@ -43,7 +45,7 @@ export class V1TopBOMPanelComponent extends AppPanelComponent implements OnInit,
     // - I V I E W E R
     public fireSelectionChanged(): void {
         this.container.activateTarget(this.target)
-     }
+    }
 
     // - I R E F R E S H A B L E
     public clean(): void {
@@ -57,39 +59,44 @@ export class V1TopBOMPanelComponent extends AppPanelComponent implements OnInit,
     public refresh(): void {
         this.clean()
         const precursorsGroup: BOMGroup = new BOMGroupBuilder().withLabel('Precursors').build()
-        precursorsGroup.addResource(new IndustryResource({
+        precursorsGroup.addResource(new BOMResourceBuilder({
             typeId: 655,
             name: 'Epithal',
             quantity: 1,
             price: 1100000
-        }))
+        }).withBuildAction(new BuildActionDto({ actionType: 'BUILD' }))
+            .build())
         const mineralsGroup: BOMGroup = new BOMGroupBuilder().withLabel('Minerals').build()
-        mineralsGroup.addResource(new IndustryResource({
+        mineralsGroup.addResource(new BOMResourceBuilder({
             typeId: 11399,
             name: 'Morphite',
             quantity: 104,
             price: 52910
-        }))
+        }).withBuildAction(new BuildActionDto({ actionType: 'BUY' }))
+            .build())
         const planetaryGroup: BOMGroup = new BOMGroupBuilder().withLabel('Planetary Resources').build()
-        planetaryGroup.addResource(new IndustryResource({
+        planetaryGroup.addResource(new BOMResourceBuilder({
             typeId: 3828,
             name: 'Construction Blocks',
             quantity: 223,
             price: 6899
-        }))
+        }).withBuildAction(new BuildActionDto({ actionType: 'BUY' }))
+            .build())
         const moonGroup: BOMGroup = new BOMGroupBuilder().withLabel('Advanced Moon Materials').build()
-        moonGroup.addResource(new IndustryResource({
+        moonGroup.addResource(new BOMResourceBuilder({
             typeId: 655,
             name: 'Ion Thruster',
             quantity: 75,
             price: 46290
-        }))
-        moonGroup.addResource(new IndustryResource({
+        }).withBuildAction(new BuildActionDto({ actionType: 'BUY' }))
+            .build())
+        moonGroup.addResource(new BOMResourceBuilder({
             typeId: 11535,
             name: 'Magnetometric Sensor Cluster',
             quantity: 134,
             price: 38400
-        }))
+        }).withBuildAction(new BuildActionDto({ actionType: 'BUY' }))
+            .build())
 
         this.bomGroups.push(precursorsGroup)
         this.bomGroups.push(planetaryGroup)
