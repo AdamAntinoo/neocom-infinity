@@ -3,34 +3,13 @@
 
 
 <div> SELECTED BLUEPRINT
-    <div class="neocom-panel panel-white">
-        <div class="insets row">
-            <img class="neocom-icon iconsize-60" src="https://image.eveonline.com/Type/12746_64.png">
-            <div class="separator-4"></div>
-            <div class="column complete">
-                <div class="row">
-                    <div cy-name="systemName" class="field">
-                        <span cy-field-label="systemName" class="label">BLUEPRINT NAME</span><br>
-                        <span cy-field-value="systemName">Occator</span>
-                    </div>
-                    <div class="separator-4"></div>
-                    <div cy-name="at" class="field">
-                        <span cy-field-label="at" class="label">GROUP TYPE</span><br>
-                        <span cy-field-value="at">Industrial / T2</span>
-                    </div>
-                </div>
-                <div cy-name="security" class="field">
-                    <span cy-field-label="security" class="label">MARKET PRICE</span><br>
-                    <span cy-field-value="security" class="right">268M ISK</span>
-                </div>
-                <div cy-name="security" class="field">
-                    <span cy-field-label="security" class="label">MANUFACTURE PRICE</span><br>
-                    <span cy-field-value="security" class="right">265M ISK</span>
-                </div>
-            </div>
-        </div>
-    </div>
+    <v1-blueprint></v1-blueprint>
     BILL OF MATERIALS
+    <viewer-panel [nodes2render]="getNodes2Render()" [downloadtitle]="'Generating BOM for blueprint...'" [downloader]="self" [variant]="getVariant()">
+    </viewer-panel>
+
+
+
     <div class="resource-type">PRECURSORS</div>
     <div class="neocom-panel panel-red">
         <!-- <div> -->
@@ -106,18 +85,6 @@
             <div class="field resource-level right">
                 <span cy-field-label="security" class="label">RESOURCE PRICE</span><br>
                 <!-- <span cy-field-value="resourceLevel" class="resource-level right">46.290 ISK</span> -->
-            </div>
-        </div>
-        <div class="row dragable-blue" draggable [dragData]="node" [dragScope]="'PLANET'" [dragClass]="'resource-selected'">
-            <img class="neocom-icon-noborder iconsize-16" src="https://image.eveonline.com/Type/11531_64.png">
-            <div class="field resource-name-width line-centered">
-                <span cy-field-value="resourceName" class="resource-name">Ion Thruster</span>
-            </div>
-            <div class="field resource-quantity-width line-centered">
-                <span cy-field-value="resourceName" class="resource-name right">75</span>
-            </div>
-            <div class="field resource-level right line-centered">
-                <span cy-field-value="resourceLevel" class="resource-name right">46.290 ISK</span>
             </div>
         </div>
         <div class="row">
