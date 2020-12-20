@@ -7,6 +7,7 @@ import { IndustryResource } from "./V1IndustryResource.domain";
 export class BOMGroup extends NeoCom {
     private label: string
     private contents: IndustryResource[] = []
+    private totalCost: number = 0.0
 
     constructor(values: Object = {}) {
         super()
@@ -21,6 +22,9 @@ export class BOMGroup extends NeoCom {
         if (label) this.label = label
         return this
     }
+    public getTotalCost () : number {
+        return this.totalCost
+    }
     public addResource(resource: IndustryResource): void {
         this.contents.push(resource)
     }
@@ -31,9 +35,11 @@ export class BOMGroup extends NeoCom {
     // - I C O L L A B O R A T I O N
     public collaborate2View(appModelStore?: AppCoreStoreService, variant?: string): ICollaboration[] {
         const collaboration = []
+        this.totalCost = 0.0
         collaboration.push(this)
         this.contents.forEach(element => {
             collaboration.push(element)
+            this.totalCost += element.price * element.quantity
         });
         return collaboration
     }

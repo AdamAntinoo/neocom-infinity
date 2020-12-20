@@ -19,6 +19,9 @@ import { V1PlanetDataRenderComponent } from './v1-planet-data-render/v1-planet-d
 import { V1PlanetaryResourceRenderComponent } from './v1-planetary-resource-render/v1-planetary-resource-render.component';
 import { NgDragDropModule } from 'ng-drag-drop';
 import { V1OutputResourceRenderComponent } from './v1-output-resource-render/v1-output-resource-render.component';
+import { V1BlueprintRenderComponent } from './v1-blueprint-render/v1-blueprint-render.component';
+import { V1BOMResourceRenderComponent } from './v1-bomresource-render/v1-bomresource-render.component';
+import { V1BOMGroupRenderComponent } from './v1-bomgroup-render/v1-bomgroup-render.component';
 
 @NgModule({
     imports: [
@@ -41,6 +44,11 @@ import { V1OutputResourceRenderComponent } from './v1-output-resource-render/v1-
         V1PlanetDataRenderComponent,
         V1PlanetaryResourceRenderComponent,
         V1OutputResourceRenderComponent,
+        // - INDUSTRY
+        V1BlueprintRenderComponent,
+        V1BOMResourceRenderComponent,
+        V1BOMGroupRenderComponent
+
     ],
     exports: [
         NeocomViewerPanelComponent,
@@ -57,6 +65,10 @@ import { V1OutputResourceRenderComponent } from './v1-output-resource-render/v1-
         V1PlanetDataRenderComponent,
         V1PlanetaryResourceRenderComponent,
         V1OutputResourceRenderComponent,
+        // - INDUSTRY
+        V1BlueprintRenderComponent,
+        V1BOMResourceRenderComponent,
+        V1BOMGroupRenderComponent
     ]
 })
 export class RendersModule { }

@@ -21,6 +21,7 @@ import { ICollaboration } from '@innovative/domain/interfaces/ICollaboration.int
 import { BOMGroup, BOMGroupBuilder } from '../../domain/V1BOMGroup.domain'
 import { IndustryResource } from '../../domain/V1IndustryResource.domain'
 import { AppPanelComponent } from '@innovative/components/app-panel/app-panel.component'
+import { V1ManufactureResearchPageComponent } from '../../pages/v1-manufacture-research-page/v1-manufacture-research-page.component'
 
 @Component({
     selector: 'v1-top-bompanel',
@@ -28,7 +29,9 @@ import { AppPanelComponent } from '@innovative/components/app-panel/app-panel.co
     styleUrls: ['./v1-top-bompanel.component.scss']
 })
 export class V1TopBOMPanelComponent extends AppPanelComponent implements OnInit, IRefreshable {
+    @Input() container: V1ManufactureResearchPageComponent
     private bomGroups: BOMGroup[]
+
     public ngOnInit(): void {
         console.log(">[V1TopBOMPanelComponent.ngOnInit]");
         this.startDownloading();
@@ -36,6 +39,12 @@ export class V1TopBOMPanelComponent extends AppPanelComponent implements OnInit,
         this.refresh();
         console.log("<[V1TopBOMPanelComponent.ngOnInit]");
     }
+
+    // - I V I E W E R
+    public fireSelectionChanged(): void {
+        this.container.activateTarget(this.target)
+     }
+
     // - I R E F R E S H A B L E
     public clean(): void {
         this.bomGroups = []
@@ -48,13 +57,44 @@ export class V1TopBOMPanelComponent extends AppPanelComponent implements OnInit,
     public refresh(): void {
         this.clean()
         const precursorsGroup: BOMGroup = new BOMGroupBuilder().withLabel('Precursors').build()
-        precursorsGroup.addResource( new IndustryResource ({
-            typeId : 655,
-            name : 'Epithal',
-            quantity : 1,
-            price : 1100000
+        precursorsGroup.addResource(new IndustryResource({
+            typeId: 655,
+            name: 'Epithal',
+            quantity: 1,
+            price: 1100000
         }))
+        const mineralsGroup: BOMGroup = new BOMGroupBuilder().withLabel('Minerals').build()
+        mineralsGroup.addResource(new IndustryResource({
+            typeId: 11399,
+            name: 'Morphite',
+            quantity: 104,
+            price: 52910
+        }))
+        const planetaryGroup: BOMGroup = new BOMGroupBuilder().withLabel('Planetary Resources').build()
+        planetaryGroup.addResource(new IndustryResource({
+            typeId: 3828,
+            name: 'Construction Blocks',
+            quantity: 223,
+            price: 6899
+        }))
+        const moonGroup: BOMGroup = new BOMGroupBuilder().withLabel('Advanced Moon Materials').build()
+        moonGroup.addResource(new IndustryResource({
+            typeId: 655,
+            name: 'Ion Thruster',
+            quantity: 75,
+            price: 46290
+        }))
+        moonGroup.addResource(new IndustryResource({
+            typeId: 11535,
+            name: 'Magnetometric Sensor Cluster',
+            quantity: 134,
+            price: 38400
+        }))
+
         this.bomGroups.push(precursorsGroup)
+        this.bomGroups.push(planetaryGroup)
+        this.bomGroups.push(mineralsGroup)
+        this.bomGroups.push(moonGroup)
         this.completeDowload(this.bomGroups)
     }
 }

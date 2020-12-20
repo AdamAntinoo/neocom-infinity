@@ -1,0 +1,17 @@
+<div class="neocom-panel panel-red" draggable [dragData]="node" [dragScope]="'RESOURCE'" [dragClass]="'resource-selected'">
+    <div class="row">
+        <img class="neocom-icon-noborder iconsize-16" src="{{getURLIcon()}}">
+        <div class="field resource-name-width">
+            <span cy-field-label="security" class="label">RESOURCE NAME</span><br>
+            <span cy-field-value="resourceName" class="resource-name">{{getName()}}</span>
+        </div>
+        <div class="field resource-quantity-width">
+            <span cy-field-label="security" class="label">QUANTITY</span><br>
+            <span cy-field-value="resourceName" class="resource-name right">{{getQuantity()}}</span>
+        </div>
+        <div class="field resource-level right">
+            <span cy-field-label="security" class="label">RESOURCE PRICE</span><br>
+            <span cy-field-value="resourceLevel" class="resource-level">{{getPrice()}}</span>
+        </div>
+    </div>
+</div>

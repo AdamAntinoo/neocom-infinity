@@ -10,7 +10,7 @@ import { AppPanelComponent } from '@innovative/components/app-panel/app-panel.co
     selector: 'neocom-viewer-panel',
     templateUrl: './neocom-viewer-panel.component.html',
     styleUrls: ['./neocom-viewer-panel.component.scss'],
-      changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NeocomViewerPanelComponent {
     @Input() nodes2render: ICollaboration[] = [];
