@@ -11,10 +11,17 @@ import { RendersModule } from '../renders/renders.module'
 // - COMPONENTS
 import { V1IndustryFittingBuildConfigurationPageComponent } from './pages/v1-industry-fitting-build-configuration-page/v1-industry-fitting-build-configuration-page.component'
 import { V1FittingConfigurationPanelComponent } from './panels/v1-fitting-configuration-panel/v1-fitting-configuration-panel.component';
-import { V1FittingContentsPanelComponent } from './panels/v1-fitting-contents-panel/v1-fitting-contents-panel.component'
+import { V1FittingContentsPanelComponent } from './panels/v1-fitting-contents-panel/v1-fitting-contents-panel.component';
+import { V1ManufactureResearchPageComponent } from './pages/v1-manufacture-research-page/v1-manufacture-research-page.component'
+import { NgDragDropModule } from 'ng-drag-drop'
+import { AppCommonModule } from '@common/common.module'
+import { HeaderModule } from '../header/header.module';
+import { V1TopBOMPanelComponent } from './panel/v1-top-bompanel/v1-top-bompanel.component';
+import { V1BlueprintRenderComponent } from './render/v1-blueprint-render/v1-blueprint-render.component'
 
 const routes: Routes = [
     { path: 'fittings/buildConfiguration/:fittingId', component: V1IndustryFittingBuildConfigurationPageComponent },
+    { path: 'manufacture/research/:blueprintId', component: V1ManufactureResearchPageComponent },
 ]
 
 @NgModule({
@@ -22,14 +29,20 @@ const routes: Routes = [
         CommonModule,
         FormsModule,
         RouterModule.forChild(routes),
+        NgDragDropModule.forRoot(),
+        AppCommonModule,
+        HeaderModule,
         RendersModule,
         SharedModule
     ],
     declarations: [
         V1IndustryFittingBuildConfigurationPageComponent,
         V1FittingConfigurationPanelComponent,
-        V1FittingContentsPanelComponent
+        V1FittingContentsPanelComponent,
+        V1ManufactureResearchPageComponent,
+        V1TopBOMPanelComponent,
+        V1BlueprintRenderComponent
     ],
-    exports: [RouterModule]
+    exports: [RouterModule, V1BlueprintRenderComponent]
 })
 export class IndustryModule { }
