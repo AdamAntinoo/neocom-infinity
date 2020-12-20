@@ -11,6 +11,12 @@
         },
         {
             "path": "../../../DimensinfinSoftware/Dimensinfin3D/Printer3D-frontend"
+        },
+        {
+            "path": "../../../../Public/neocom-infinity-closed/POCScheduler"
+        },
+        {
+            "path": "../../../../Public/neocom-datamanagement-stage"
         }
     ],
 	"settings": {

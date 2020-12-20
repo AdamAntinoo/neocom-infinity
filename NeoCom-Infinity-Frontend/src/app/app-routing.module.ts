@@ -14,7 +14,7 @@ import { ExceptionInformationPageComponent } from './pages/exception-information
 const routes: Routes = [
     {
         path: '',
-        redirectTo: '/planetary/dashboard',
+        redirectTo: '/manufacture/research/123',
         pathMatch: 'full'
     },
     // - LOGIN PAGES
