@@ -5,7 +5,6 @@ import { OnDestroy } from '@angular/core';
 import { Input } from '@angular/core';
 import { Subscription } from 'rxjs';
 // - DOMAIN
-import { AppPanelComponent } from '@shared/core/app-panel/app-panel.component';
 import { IRefreshable } from '@innovative/domain/interfaces/core/IRefreshable.interface';
 import { platformConstants } from '@env/platform-constants';
 import { PlanetaryDataService } from '../../service/PlanetaryData.service';
@@ -15,6 +14,8 @@ import { environment } from '@env/environment';
 import { HttpErrorResponse } from '@angular/common/http';
 import { IsolationService } from '@innovative/services/isolation.service';
 import { V1ResourceResearchPageComponent } from '../../page/v1-resource-research-page/v1-resource-research-page.component';
+import { NCVariant } from '@env/NeoComVariants';
+import { AppPanelComponent } from '@innovative/components/app-panel/app-panel.component';
 
 @Component({
     selector: 'v1-known-systems-panel',
@@ -33,7 +34,7 @@ export class V1KnownSystemsPanelComponent extends AppPanelComponent implements O
     public ngOnInit(): void {
         console.log(">[V1KnownSystemsPanelComponent.ngOnInit]");
         this.startDownloading();
-        this.setVariant(platformConstants.KNOWN_SYSTEMS)
+        this.setVariant(NCVariant.KNOWN_SYSTEMS)
         this.refresh();
         console.log("<[V1KnownSystemsPanelComponent.ngOnInit]");
     }

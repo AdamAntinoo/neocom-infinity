@@ -2,7 +2,6 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 // - SERVICES
-import { AppPanelComponent } from '@shared/core/app-panel/app-panel.component';
 import { AppStoreService } from '@app/services/appstore.service';
 import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer';
 // - DOMAIN
@@ -11,6 +10,7 @@ import { GroupContainer } from '@domain/GroupContainer.domain';
 import { URLGroupIconReference, AssetGroupIconReference } from '@domain/interfaces/IIconReference.interface';
 import { NCVariant } from '@env/NeoComVariants';
 import { ICollaboration } from '@innovative/domain/interfaces/ICollaboration.interface';
+import { AppPanelComponent } from '@innovative/components/app-panel/app-panel.component';
 
 @Component({
     selector: 'pilot-fittings-page',

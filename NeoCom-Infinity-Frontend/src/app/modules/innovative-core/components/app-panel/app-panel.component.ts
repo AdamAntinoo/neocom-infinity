@@ -16,8 +16,8 @@ import { ISelectable } from '@domain/interfaces/ISelectable.interface';
     templateUrl: './app-panel.component.html',
     styleUrls: ['./app-panel.component.scss']
 })
-export class AppPanelComponent2 extends BackgroundEnabledComponent implements IViewer {
-    @Input() self: AppPanelComponent2
+export class AppPanelComponent extends BackgroundEnabledComponent implements IViewer {
+    @Input() self: AppPanelComponent
     @Input() variant: string = platformConstants.DEFAULT_VARIANT
     protected downloading: boolean = true
     protected dataModelRoot: ICollaboration[] = []

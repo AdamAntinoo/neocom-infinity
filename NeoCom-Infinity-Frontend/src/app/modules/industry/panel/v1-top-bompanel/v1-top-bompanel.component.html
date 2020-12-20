@@ -5,14 +5,13 @@
 <div> SELECTED BLUEPRINT
     <v1-blueprint></v1-blueprint>
     BILL OF MATERIALS
-    <viewer-panel [nodes2render]="getNodes2Render()" [downloadtitle]="'Generating BOM for blueprint...'" [downloader]="self" [variant]="getVariant()">
-    </viewer-panel>
+    <neocom-viewer-panel [nodes2render]="getNodes2Render()" [downloadtitle]="'Generating BOM for blueprint...'" [downloader]="self" [variant]="getVariant()">
+    </neocom-viewer-panel>
 
 
 
-    <div class="resource-type">PRECURSORS</div>
+    <!-- <div class="resource-type">PRECURSORS</div>
     <div class="neocom-panel panel-red">
-        <!-- <div> -->
         <div class="row">
             <img class="neocom-icon-noborder iconsize-16" src="https://image.eveonline.com/Type/655_64.png">
             <div class="field resource-name-width">
@@ -28,8 +27,7 @@
                 <span cy-field-value="resourceLevel" class="resource-level">1.100.000 ISK</span>
             </div>
         </div>
-        <!-- </div> -->
-    </div>
+    </div> -->
     <div class="resource-type">PLANETARY MATERIALS</div>
     <div class="neocom-panel panel-blue">
         <!-- <div> -->
