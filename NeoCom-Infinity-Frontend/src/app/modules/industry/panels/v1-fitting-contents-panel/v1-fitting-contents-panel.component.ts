@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router'
 import { BackgroundEnabledComponent } from '@innovative/components/background-enabled/background-enabled.component'
 import { IRefreshable } from '@innovative/domain/interfaces/core/IRefreshable.interface'
 // - COMPONENTS
-import { AppPanelComponent } from '@shared/core/app-panel/app-panel.component'
+import { AppPanelComponent } from '@innovative/components/app-panel/app-panel.component'
 import { BackendService } from '@app/services/backend.service'
 import { HALResolver } from '@app/services/HALResolver.service'
 import { FittingBuildConfigurationDto } from '@domain/industry/dto/FittingBuildConfigurationDto.dto'

@@ -2,18 +2,17 @@
 import { Component } from '@angular/core';
 import { Input } from '@angular/core';
 import { ChangeDetectionStrategy } from '@angular/core';
-import { AppPanelComponent } from '@innovative/components/app-panel/app-panel.component';
 import { ICollaboration } from '@innovative/domain/interfaces/ICollaboration.interface';
 // - DOMAIN
-// import { AppPanelComponent } from '@shared/core/app-panel/app-panel.component';
+import { AppPanelComponent } from '@innovative/components/app-panel/app-panel.component';
 
 @Component({
-    selector: 'viewer-panel',
-    templateUrl: './viewer-panel.component.html',
-    styleUrls: ['./viewer-panel.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'neocom-viewer-panel',
+    templateUrl: './neocom-viewer-panel.component.html',
+    styleUrls: ['./neocom-viewer-panel.component.scss'],
+      changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ViewerPanelComponent {
+export class NeocomViewerPanelComponent {
     @Input() nodes2render: ICollaboration[] = [];
     @Input() downloadtitle: string;
     @Input() downloader: AppPanelComponent;

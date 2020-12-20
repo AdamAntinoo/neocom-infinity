@@ -7,7 +7,7 @@ import { Routes } from '@angular/router';
 
 // - PAGES
 // - PANELS
-import { AppPanelComponent } from './core/app-panel/app-panel.component';
+// import { AppPanelComponent } from './core/app-panel/app-panel.component';
 import { ActionBarComponent } from './panels/action-bar/action-bar.component';
 import { TabContainerPanelComponent } from './panels/tab-container-panel/tab-container-panel.component';
 import { SpinnerPanelComponent } from './panels/spinner-panel/spinner-panel.component';
@@ -39,7 +39,7 @@ import { RendersModule } from '../renders/renders.module';
     ],
     declarations: [
         // - PANELS
-        AppPanelComponent,
+        // AppPanelComponent,
         ActionBarComponent,
         TabContainerPanelComponent,
         ViewerPanelComponent,
@@ -58,7 +58,7 @@ import { RendersModule } from '../renders/renders.module';
     exports: [
         RouterModule,
         // - PANELS
-        AppPanelComponent,
+        // AppPanelComponent,
         ActionBarComponent,
         TabContainerPanelComponent,
         ViewerPanelComponent,
