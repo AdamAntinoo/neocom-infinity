@@ -21,6 +21,8 @@ import { ICollaboration } from '@innovative/domain/interfaces/ICollaboration.int
 import { BOMGroup, BOMGroupBuilder } from '../../domain/V1BOMGroup.domain'
 import { IndustryResource } from '../../domain/V1IndustryResource.domain'
 import { AppPanelComponent } from '@innovative/components/app-panel/app-panel.component'
+import { BOMResource } from '../../domain/V1BOMResource.domain'
+import { ESIUniverseDataService } from '@app/services/ESIUniverseData.service'
 
 @Component({
     selector: 'v1-target-additional-data-panel',
@@ -28,7 +30,10 @@ import { AppPanelComponent } from '@innovative/components/app-panel/app-panel.co
     styleUrls: ['./v1-target-additional-data-panel.component.scss']
 })
 export class V1TargetAdditionalDataPanelComponent implements IRefreshable {
-    @Input() target: IndustryResource
+    @Input() target: BOMResource
+
+    constructor(protected esiDataService: ESIUniverseDataService) { }
+
     public clean(): void {
         throw new Error('Method not implemented.')
     }
@@ -37,7 +42,31 @@ export class V1TargetAdditionalDataPanelComponent implements IRefreshable {
     }
 
     public activate(): boolean {
-        if (this.target) return true
-        else return false
+        if (this.target) {
+            if (this.target instanceof BOMResource) return true
+        } else return false
+    }
+    public getActionType(): string {
+        if (this.target) {
+            console.log('>type: ' + this.target.jsonClass)
+            console.log('>Action Type: ' + this.target.getAction().getActionTypeName())
+            return this.target.getAction().getActionTypeName()
+        } else return '-'
+    }
+    public getMarketPrice(): number {
+        if (this.activate()) {
+            this.esiDataService.apiMarketSearchRegionOrders(10000043, this.target.getTypeId())
+                .subscribe(marketData => {
+                    console.log('>Market data count:' + marketData.length)
+                    for (let index = 0; index < marketData.length; index++) {
+                        const element = marketData[index];
+                        if (element["location_id"] == 60008494) {
+                            console.log('> market entry located: ' + element['price'])
+                        }
+                    }
+                    // 60008494
+                })
+            return 100
+        } return 0
     }
 }
