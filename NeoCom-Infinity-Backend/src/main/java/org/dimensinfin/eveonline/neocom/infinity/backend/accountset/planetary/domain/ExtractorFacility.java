@@ -7,12 +7,12 @@ import java.util.Objects;
 import org.joda.time.DateTime;
 
 import org.dimensinfin.core.interfaces.ICollaboration;
-import org.dimensinfin.eveonline.neocom.R;
 import org.dimensinfin.eveonline.neocom.domain.NeoItem;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdPlanetsPlanetIdOkExtractorDetails;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdPlanetsPlanetIdOkPins;
-import org.dimensinfin.eveonline.neocom.planetary.PlanetaryFacilityWrapper;
 import org.dimensinfin.eveonline.neocom.planetary.domain.PlanetaryFacility;
+
+import liquibase.pro.packaged.R;
 
 public class ExtractorFacility extends PlanetaryFacilityWrapper {
 	public enum ExtractorState {
@@ -32,7 +32,7 @@ public class ExtractorFacility extends PlanetaryFacilityWrapper {
 	}
 
 	public ExtractorFacility setInstallTime( final DateTime installTime ) {
-		this.planetaryFacility.pinDelegate.setInstallTime(installTime);
+//		this.planetaryFacility.pinDelegate.setInstallTime(installTime);
 		this.state = ExtractorState.EXTRACTING;
 		return this;
 	}
@@ -56,7 +56,7 @@ public class ExtractorFacility extends PlanetaryFacilityWrapper {
 
 	public String getExtractingResourceName() {
 		//		final GetCharactersCharacterIdPlanetsPlanetIdOkExtractorDetails details = this.extractorDetails();
-		this.extractionType = new EveItem(this.extractorDetails.getProductTypeId());
+//		this.extractionType = new EveItem(this.extractorDetails.getProductTypeId());
 		return this.extractionType.getName();
 	}
 
@@ -78,15 +78,15 @@ public class ExtractorFacility extends PlanetaryFacilityWrapper {
 		else return 0;
 	}
 
-	@Override
-	public int getIconReferenceId() {
-		return R.drawable.extractor80_white;
-	}
-
-	@Override
-	public int getIconColorReference() {
-		return R.color.pi_extractoriconcolor;
-	}
+//	@Override
+//	public int getIconReferenceId() {
+//		return R.drawable.extractor80_white;
+//	}
+//
+//	@Override
+//	public int getIconColorReference() {
+//		return R.color.pi_extractoriconcolor;
+//	}
 
 	@Override
 	public int getCpuUsage() {
@@ -159,7 +159,7 @@ public class ExtractorFacility extends PlanetaryFacilityWrapper {
 		private void setExtractionProductType() {
 			final Integer extractTypeId = this.onConstruction.extractorDetails.getProductTypeId();
 			if (null == extractTypeId) return;
-			this.onConstruction.extractionType = new EveItem(extractTypeId);
+//			this.onConstruction.extractionType = new EveItem(extractTypeId);
 		}
 	}
 }
