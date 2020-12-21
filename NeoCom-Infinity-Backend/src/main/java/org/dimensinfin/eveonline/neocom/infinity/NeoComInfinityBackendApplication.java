@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,6 +16,7 @@ import org.springframework.hateoas.mediatype.hal.HalConfiguration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.filter.ForwardedHeaderFilter;
 
+import org.dimensinfin.eveonline.neocom.infinity.backend.NeoComInfinityBackendDependenciesModule;
 import org.dimensinfin.logging.LogWrapper;
 
 @SpringBootApplication
@@ -22,12 +25,19 @@ import org.dimensinfin.logging.LogWrapper;
 @EnableAutoConfiguration
 public class NeoComInfinityBackendApplication {
 	public static final String APPLICATION_ERROR_CODE_PREFIX = "dimensinfin.eveonline.neocom";
+	public static Injector injector;
 
 	public static void main( String[] args ) {
 		LogWrapper.enter();
+		initializeDependencies();
 		SpringApplication.run( NeoComInfinityBackendApplication.class, args );
 		new LogoPrinter().print();
 		LogWrapper.exit();
+	}
+
+	private static void initializeDependencies() {
+		LogWrapper.info( "Initilizing Guize dependencies for Data Management library." );
+		injector = Guice.createInjector( new NeoComInfinityBackendDependenciesModule() );
 	}
 
 	@Bean
