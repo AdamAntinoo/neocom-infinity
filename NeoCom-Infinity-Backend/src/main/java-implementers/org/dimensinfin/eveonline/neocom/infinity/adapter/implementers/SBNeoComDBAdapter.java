@@ -6,15 +6,21 @@ import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
+import javax.validation.constraints.NotNull;
+
+import com.google.inject.Inject;
+import com.google.inject.name.Named;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcPooledConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
 
+import org.dimensinfin.eveonline.neocom.database.NeoComDatabaseService;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.database.entities.DatabaseVersion;
 import org.dimensinfin.eveonline.neocom.database.entities.MiningExtractionEntity;
 import org.dimensinfin.eveonline.neocom.database.entities.NeoAsset;
+import org.dimensinfin.eveonline.neocom.database.entities.PilotPreferencesEntity;
 import org.dimensinfin.logging.LogWrapper;
 
 /**
@@ -32,7 +38,7 @@ import org.dimensinfin.logging.LogWrapper;
  *
  * @author Adam Antinoo
  */
-public class SBNeoComDBAdapter {
+public class SBNeoComDBAdapter implements NeoComDatabaseService {
 	private String databaseConnectionDescriptor;
 	private int databaseVersion = 0;
 	private boolean isOpen = false;
@@ -43,11 +49,17 @@ public class SBNeoComDBAdapter {
 	private Dao<Credential, String> credentialDao;
 	private Dao<NeoAsset, UUID> assetDao;
 	private Dao<MiningExtractionEntity, String> miningExtractionDao;
+	private Dao<PilotPreferencesEntity, UUID> pilotPreferencesDao;
 
 	// - C O N S T R U C T O R S
+	@Inject
+	public SBNeoComDBAdapter ( final @NotNull @Named("NeoComDatabaseConnection")  String databaseConnectionDescriptor ){
+		this.databaseConnectionDescriptor=Objects.requireNonNull  (databaseConnectionDescriptor);
+	}
 	protected SBNeoComDBAdapter() { }
 
 	// - G E T T E R S   &   S E T T E R S
+	@Override
 	public Dao<NeoAsset, UUID> getAssetDao() throws SQLException {
 		if (null == this.assetDao) {
 			this.assetDao = DaoManager.createDao( this.getConnectionSource(), NeoAsset.class );
@@ -60,6 +72,7 @@ public class SBNeoComDBAdapter {
 		return this.connectionSource;
 	}
 
+	@Override
 	public Dao<Credential, String> getCredentialDao() throws SQLException {
 		if (null == this.credentialDao) {
 			this.credentialDao = DaoManager.createDao( this.getConnectionSource(), Credential.class );
@@ -67,11 +80,20 @@ public class SBNeoComDBAdapter {
 		return this.credentialDao;
 	}
 
+	@Override
 	public Dao<MiningExtractionEntity, String> getMiningExtractionDao() throws SQLException {
 		if (null == this.miningExtractionDao) {
 			this.miningExtractionDao = DaoManager.createDao( this.getConnectionSource(), MiningExtractionEntity.class );
 		}
 		return this.miningExtractionDao;
+	}
+
+	@Override
+	public Dao<PilotPreferencesEntity, UUID> getPilotPreferencesDao() throws SQLException {
+		if (null == this.pilotPreferencesDao) {
+			this.pilotPreferencesDao = DaoManager.createDao( this.getConnectionSource(), PilotPreferencesEntity.class );
+		}
+		return this.pilotPreferencesDao;
 	}
 
 	public Dao<DatabaseVersion, String> getVersionDao() throws SQLException {
