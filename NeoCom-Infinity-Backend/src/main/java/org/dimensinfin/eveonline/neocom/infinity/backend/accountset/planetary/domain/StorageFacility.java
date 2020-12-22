@@ -1,20 +1,16 @@
 package org.dimensinfin.eveonline.neocom.infinity.backend.accountset.planetary.domain;
 
-import org.dimensinfin.android.mvc.domain.Spacer;
-import org.dimensinfin.android.mvc.domain.SpacerType;
 import org.dimensinfin.core.interfaces.ICollaboration;
-import org.dimensinfin.eveonline.neocom.R;
-import org.dimensinfin.eveonline.neocom.app.PageNamesType;
 import org.dimensinfin.eveonline.neocom.planetary.IPlanetaryStorage;
 import org.dimensinfin.eveonline.neocom.planetary.PlanetType;
 import org.dimensinfin.eveonline.neocom.planetary.PlanetaryFacilityType;
-import org.dimensinfin.eveonline.neocom.planetary.PlanetaryFacilityWrapper;
-import org.dimensinfin.eveonline.neocom.planetary.PlanetaryStorage;
 import org.dimensinfin.eveonline.neocom.planetary.domain.PlanetaryFacility;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import liquibase.pro.packaged.R;
 
 public class StorageFacility extends PlanetaryFacilityWrapper implements IPlanetaryStorage {
 	private PlanetaryStorage planetaryStorage;
@@ -37,27 +33,27 @@ public class StorageFacility extends PlanetaryFacilityWrapper implements IPlanet
 	 *
 	 * @return the storage type icon reference identifier.
 	 */
-	@Override
-	public int getIconReferenceId() {
-		if (this.getFacilityType() == PlanetaryFacilityType.STORAGE)
-			return R.drawable.storage80_white;
-		if (this.getFacilityType() == PlanetaryFacilityType.LAUNCHPAD)
-			return R.drawable.launchpad80_white;
-		return R.drawable.storage80_white;
-	}
-
-	@Override
-	public int getIconColorReference() {
-		return R.color.pi_storageiconcolor;
-	}
+//	@Override
+//	public int getIconReferenceId() {
+//		if (this.getFacilityType() == PlanetaryFacilityType.STORAGE)
+//			return R.drawable.storage80_white;
+//		if (this.getFacilityType() == PlanetaryFacilityType.LAUNCHPAD)
+//			return R.drawable.launchpad80_white;
+//		return R.drawable.storage80_white;
+//	}
+//
+//	@Override
+//	public int getIconColorReference() {
+//		return R.color.pi_storageiconcolor;
+//	}
 
 	// - I C O L L A B O R A T I O N
 	@Override
 	public List<ICollaboration> collaborate2Model( final String variant ) {
-		if (variant.equalsIgnoreCase(PageNamesType.PLANET_FACILITIES_LAYOUT.name())) return new ArrayList<>();
+		if (variant.equalsIgnoreCase("PageNamesType.PLANET_FACILITIES_LAYOUT.name()")) return new ArrayList<>();
 		else {
 			final List<ICollaboration> collaboration = new ArrayList<>(this.planetaryStorage.getContents());
-			collaboration.add(new Spacer.Builder().withType(SpacerType.LINE_YELLOW).build());
+//			collaboration.add(new Spacer.Builder().withType(SpacerType.LINE_YELLOW).build());
 			return collaboration;
 		}
 	}

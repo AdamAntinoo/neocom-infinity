@@ -1,5 +1,6 @@
 package org.dimensinfin.eveonline.neocom.infinity.backend.accountset.planetary.rest.v1;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -26,7 +27,7 @@ public class PilotPlanetsServiceV1 extends NeoComCredentialService {
 	                              final @NotNull CredentialDetailsService credentialDetailsService,
 	                              final @NotNull ColonyFactory colonyFactory,
 	                              final @NotNull ESIDataProvider esiDataProvider ) {
-		this.super( neoComAuthenticationProvider, credentialDetailsService );
+		super( neoComAuthenticationProvider, credentialDetailsService );
 		this.colonyFactory = colonyFactory;
 		this.esiDataProvider = esiDataProvider;
 	}
@@ -36,9 +37,10 @@ public class PilotPlanetsServiceV1 extends NeoComCredentialService {
 	 */
 	public List<ColonyDto> getPilotPlanets( final @NotNull Integer pilotId ) {
 		final ColonyToColonyDtoConverter colonyDtoConverter = new ColonyToColonyDtoConverter();
-		return Objects.requireNonNull( this.esiDataProvider.getCharactersCharacterIdPlanets( this.getAuthorizedCredential() ) )
-				.stream()
-				.map( planet -> colonyDtoConverter.convert( this.colonyFactory.convertColony( planet ) ) )
-				.collect( Collectors.toList() );
+		return new ArrayList<>();
+//		return Objects.requireNonNull( this.esiDataProvider.getCharactersCharacterIdPlanets( this.getAuthorizedCredential() ) )
+//				.stream()
+//				.map( planet -> colonyDtoConverter.convert( this.colonyFactory.convertColony( planet ) ) )
+//				.collect( Collectors.toList() );
 	}
 }

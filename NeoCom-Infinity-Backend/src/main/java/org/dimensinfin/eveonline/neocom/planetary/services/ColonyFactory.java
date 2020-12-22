@@ -49,12 +49,12 @@ public class ColonyFactory {
 		final ColonyPack colony = new ColonyPack.Builder()
 				.withPilotIdentifier( credential.getAccountId() )
 				.withPlanetFacilities( structureContainer )
-				.withColony( esiColonyData )
+//				.withColony( esiColonyData )
 				.withPlanetData( planetData )
 				.withFacilities( this.facilities )
 				.build();
 		//		colony.timeStamp();
-		colonyCache.put( esiColonyData.getPlanetId(), colony );
-		return colony;
+//		colonyCache.put( esiColonyData.getPlanetId(), colony );
+		return null;
 	}
 }

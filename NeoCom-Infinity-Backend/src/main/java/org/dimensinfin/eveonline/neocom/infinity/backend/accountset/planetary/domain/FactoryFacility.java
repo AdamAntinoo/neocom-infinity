@@ -6,16 +6,16 @@ import java.util.List;
 import java.util.Objects;
 
 import org.dimensinfin.core.interfaces.ICollaboration;
-import org.dimensinfin.eveonline.neocom.R;
 import org.dimensinfin.eveonline.neocom.database.repositories.PlanetaryRepository;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdPlanetsPlanetIdOkContents;
 import org.dimensinfin.eveonline.neocom.planetary.FactoryType;
-import org.dimensinfin.eveonline.neocom.planetary.PlanetaryFacilityWrapper;
-import org.dimensinfin.eveonline.neocom.planetary.PlanetaryResource;
 import org.dimensinfin.eveonline.neocom.planetary.PlanetaryResourceTierType;
 import org.dimensinfin.eveonline.neocom.planetary.PlanetarySchematic;
 import org.dimensinfin.eveonline.neocom.planetary.Schematics;
 import org.dimensinfin.eveonline.neocom.planetary.domain.PlanetaryFacility;
+import org.dimensinfin.eveonline.neocom.planetary.domain.PlanetaryResource;
+
+import liquibase.pro.packaged.R;
 
 public class FactoryFacility extends PlanetaryFacilityWrapper {
 	private static final long serialVersionUID = -4614362639541002313L;
@@ -55,15 +55,15 @@ public class FactoryFacility extends PlanetaryFacilityWrapper {
 		return this.schematic.getInputRequiredQuantity();
 	}
 
-	@Override
-	public int getIconReferenceId() {
-		return R.drawable.facility80_white;
-	}
-
-	@Override
-	public int getIconColorReference() {
-		return R.color.pi_factoryiconcolor;
-	}
+//	@Override
+//	public int getIconReferenceId() {
+//		return R.drawable.facility80_white;
+//	}
+//
+//	@Override
+//	public int getIconColorReference() {
+//		return R.color.pi_factoryiconcolor;
+//	}
 
 	// - B U I L D E R
 	public static class Builder {
@@ -125,7 +125,7 @@ public class FactoryFacility extends PlanetaryFacilityWrapper {
 
 		FactoryInput( final GetCharactersCharacterIdPlanetsPlanetIdOkContents content ) {
 			this.planetaryContent = content;
-			this.resource = new PlanetaryResource(this.planetaryContent.getTypeId(), this.planetaryContent.getAmount().intValue());
+//			this.resource = new PlanetaryResource(this.planetaryContent.getTypeId(), this.planetaryContent.getAmount().intValue());
 		}
 
 		public int getTypeId() {
