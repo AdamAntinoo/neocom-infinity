@@ -58,7 +58,7 @@ public class MarketData {
 				final double priceLimit = sellOrders.get( 0 ).getPrice() * MARKET_DEEP_RANGE;
 				return sellOrders.stream()
 						.filter( order -> order.getPrice() >= priceLimit )
-						.map( GetMarketsRegionIdOrders200Ok::getVolumeRemain )
+						.mapToInt( GetMarketsRegionIdOrders200Ok::getVolumeRemain )
 						.sum();
 			} else return 0;
 		}
