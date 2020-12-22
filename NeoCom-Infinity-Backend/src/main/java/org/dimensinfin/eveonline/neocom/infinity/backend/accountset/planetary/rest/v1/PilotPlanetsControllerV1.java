@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.dimensinfin.eveonline.neocom.infinity.backend.accountset.planetary.domain.ColonyDto;
 import org.dimensinfin.eveonline.neocom.infinity.backend.core.rest.NeoComAuthenticatedController;
 import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticationProvider;
 import org.dimensinfin.eveonline.neocom.planetary.ColonyPack;
+import org.dimensinfin.eveonline.neocom.planetary.domain.Colony;
 
 @RestController
 @Validated
@@ -30,7 +32,7 @@ public class PilotPlanetsControllerV1 extends NeoComAuthenticatedController {
 	@GetMapping(path = "/pilots/{pilotId}/planets",
 			consumes = "application/json",
 			produces = "application/json")
-	public ResponseEntity<List<ColonyPack>> getPilotPlanets( final @PathVariable @NotNull Integer pilotId ) {
+	public ResponseEntity<List<ColonyDto>> getPilotPlanets( final @PathVariable @NotNull Integer pilotId ) {
 		this.validateAuthorizedPilot( pilotId );
 		return new ResponseEntity<>( this.pilotPlanetsServiceV1.getPilotPlanets( pilotId ), HttpStatus.OK );
 	}
