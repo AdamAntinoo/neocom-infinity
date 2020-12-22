@@ -667,3 +667,65 @@ response:
     - "Content-Type: application/json"
   body: |+
     []
+
+---
+
+simlet: market-domain-11535-page1
+
+request:
+  - method: GET
+  - uriPathPattern: "/markets/10000043/orders/"
+  - where: uriQueryParameter
+    named: "page"
+    equals: 1
+  - where: uriQueryParameter
+    named: "type_id"
+    equals: 11535
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "access-control-allow-credentials: true
+        access-control-allow-headers: Content-Type,Authorization,If-None-Match,X-User-Agent
+        access-control-allow-methods: GET,HEAD,OPTIONS
+        access-control-allow-origin: *
+        access-control-expose-headers: Content-Type,Warning,ETag,X-Pages,X-ESI-Error-Limit-Remain,X-ESI-Error-Limit-Reset
+        access-control-max-age: 600
+        allow: GET,HEAD,OPTIONS
+        cache-control: public
+        content-encoding: gzip
+        content-length: 736
+        content-type: application/json; charset=UTF-8
+        date: Tue, 22 Dec 2020 13:12:35 GMT
+        etag: \"51f30fc34ba95c0477b5d9ef01afe9eff477ef7636ae077ee9462ca7\"
+        expires: Tue, 22 Dec 2020 13:17:35 GMT
+        last-modified: Tue, 22 Dec 2020 13:12:35 GMT
+        strict-transport-security: max-age=31536000
+        vary: Accept-Encoding
+        x-esi-error-limit-remain: 100
+        x-esi-error-limit-reset: 25
+        x-esi-request-id: 7c2098f2-3b19-46ae-b0eb-7cfd520e1099
+        x-pages: 1 "
+  body:
+    type: text
+    file: "${sim.path}/esiresponses/market.domain.11535.json"
+
+---
+
+simlet: market-domain-11535-page2
+
+request:
+  - method: GET
+  - uriPathPattern: "/markets/10000043/orders/"
+  - where: uriQueryParameter
+    named: "page"
+    equals: 2
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body: |+
+    []
