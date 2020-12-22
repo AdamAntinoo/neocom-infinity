@@ -8,7 +8,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import javax.validation.constraints.NotNull;
 
-import com.google.inject.name.Named;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import org.dimensinfin.eveonline.neocom.adapter.LocationCatalogService;
@@ -37,11 +37,12 @@ public class MarketServiceV1 extends NeoComCredentialService {
 	private final PilotPreferencesRepository pilotPreferencesRepository;
 
 	// - C O N S T R U C T O R S
+	@Autowired
 	public MarketServiceV1( final @NotNull NeoComAuthenticationProvider neoComAuthenticationProvider,
 	                        final @NotNull CredentialDetailsService credentialDetailsService,
-	                        final @NotNull @Named("ESIDataService") ESIDataService esiDataService,
-	                        final @NotNull @Named("LocationCatalogService") LocationCatalogService locationCatalogService,
-	                        final @NotNull @Named("PilotPreferencesRepository") PilotPreferencesRepository pilotPreferencesRepository ) {
+	                        final @NotNull ESIDataService esiDataService,
+	                        final @NotNull LocationCatalogService locationCatalogService,
+	                        final @NotNull PilotPreferencesRepository pilotPreferencesRepository ) {
 		super( neoComAuthenticationProvider, credentialDetailsService );
 		this.esiDataService = esiDataService;
 		this.locationCatalogService = locationCatalogService;
