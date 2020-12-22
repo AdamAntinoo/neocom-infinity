@@ -29,7 +29,26 @@ public class NeoComWorld extends NewNeoComWorld {
 	//		return this;
 	//	}
 	private Integer itemIdentifier;
+	private Integer regionId;
+	private Integer typeId;
 
+	public Integer getRegionId() {
+		return this.regionId;
+	}
+
+	public NeoComWorld setRegionId( final Integer regionId ) {
+		this.regionId = regionId;
+		return this;
+	}
+
+	public Integer getTypeId() {
+		return this.typeId;
+	}
+
+	public NeoComWorld setTypeId( final Integer typeId ) {
+		this.typeId = typeId;
+		return this;
+	}
 
 	private HttpStatus httpStatusCode;
 	private int httpStatusCodeValue;

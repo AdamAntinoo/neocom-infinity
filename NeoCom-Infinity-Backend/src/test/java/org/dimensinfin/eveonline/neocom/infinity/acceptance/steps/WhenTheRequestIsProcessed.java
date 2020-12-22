@@ -52,7 +52,12 @@ public class WhenTheRequestIsProcessed extends StepSupport {
 	public void the_Accounting_Week_Income_request_is_processed() throws IOException {
 		this.processRequestByType( RequestType.VALIDATE_AUTHORIZATION_TOKEN_ENDPOINT_NAME );
 	}
-
+	@When("the Get Market Consolidated request with region identifier {int} and item type {int}")
+	public void the_Get_Market_Consolidated_request_with_region_identifier_and_item_type(final Integer regionId, final Integer typeId) throws IOException {
+		this.neocomWorld.setRegionId(regionId);
+		this.neocomWorld.setTypeId(typeId);
+		this.processRequestByType( RequestType.GET_MARKET_CONSOLIDATED );
+	}
 	@When("the Get EsiItem with item id {int} request is processed")
 	public void the_Get_EsiItem_with_item_id_request_is_processed( final Integer itemId ) throws IOException {
 		this.neocomWorld.setItemIdentifier( itemId );
