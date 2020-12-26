@@ -15,20 +15,20 @@ public class MarketOrder {
 	private MarketOrder() {}
 
 	// - G E T T E R S   &   S E T T E R S
-	@ApiModelProperty(example = "null", required = true, value = "order_id integer")
+//	@ApiModelProperty(example = "null", required = true, value = "order_id integer")
 	public Long getOrderId() {return this.orderData.getOrderId();}
 
-	@ApiModelProperty(example = "null", required = true, value = "price number")
+//	@ApiModelProperty(example = "null", required = true, value = "price number")
 	public Double getPrice() {return this.orderData.getPrice();}
 
 	public Station getStation() {
 		return this.station;
 	}
 
-	@ApiModelProperty(example = "null", required = true, value = "type_id integer")
+//	@ApiModelProperty(example = "null", required = true, value = "type_id integer")
 	public Integer getTypeId() {return this.orderData.getTypeId();}
 
-	@ApiModelProperty(example = "null", required = true, value = "volume_remain integer")
+//	@ApiModelProperty(example = "null", required = true, value = "volume_remain integer")
 	public Integer getVolumeRemain() {return this.orderData.getVolumeRemain();}
 
 	public GetMarketsRegionIdOrders200Ok isBuyOrder( final Boolean isBuyOrder ) {return this.orderData.isBuyOrder( isBuyOrder );}

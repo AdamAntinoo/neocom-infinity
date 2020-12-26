@@ -34,6 +34,9 @@ info:
     market information the response will just report a link. Following that link we get the item and from it we can get any market additional data
     is really required.
 
+    ## CHANGES:
+    * [20201226] *Introduced the new Market Data endpoints both for authenticated and universal access.*
+
     ## TODO:
     * [20201019] *Replace old api endpoints by the new HAL endpoints and also document the corrent exception responses.*
     * [20191025] *Complete the definition for the NeoComExceptionResponse once I have the correct serialization data.*
@@ -43,15 +46,16 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   version: '0.20.0'
 servers:
-  - url: https://printer3d-backend-stage.herokuapp.com
-    description: OpenAPI 0.12.0 for 3D Printer Queue Management Backend Service. Stage environment
-  - url: https://printer3d-backend.herokuapp.com
-    description: OpenAPI 0.12.0 for 3D Printer Queue Management Backend Service. Production
+  - url: https://neocom-backend-stage.herokuapp.com
+    description: OpenAPI 0.20.0 for NeoCom Infinity Backend Service. Stage environment
+  - url: https://neocom-backend.com
+    description: OpenAPI 0.20.0 for NeoCom Infinity Backend Service. Production
 
 tags:
   - name: neocom
     description: >
-      NeoCom Infinity Backend (NIB). This is the group of endpoints related to Eve Online backend access.
+      NeoCom Infinity Backend (NIB). This is the group of endpoints related to Eve Online backend access for authenticated access. This set of
+      endpoints require that a valid JWT token to identify the requester.
   - name: universe
     description: >
       Universe (U). The group for not authenticated eve online data access endpoints. Any data that does not require authentication and that is
@@ -178,10 +182,10 @@ paths:
       parameters:
         - in: path
           name: corporationId
+          description: The unique game corporation identifier.
           required: true
           style: simple
           explode: false
-          description: The unique game corporation identifier.
           schema:
             type: integer
             format: int64
@@ -196,6 +200,47 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CorporationModel'
+
+  # - U N I V E R S E
+  /api/v1/universe/market/consolidated/byregion/{regionId}/{typeId}:
+    get:
+      tags:
+        - universe
+      operationId: getMarketConsolidatedByRegion4TypeId
+      parameters:
+        - in: path
+          name: regionId
+          description: >
+            The region unique identifier for the region where to search for the market data.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            format: int32
+          example:
+            10000043
+        - in: path
+          name: typeId
+          description: >
+            The type id for the item data to search for market data. For some types there would not be any data so there is not null validations.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            format: int32
+          example:
+            11535
+      responses:
+        200:
+          description: >
+            A consolidated market data record with some data aggregations and some calculations that represents the market information
+            for the selected type id on the target region.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MarketData'
 
 components:
   schemas:
@@ -277,6 +322,69 @@ components:
           example:
             94726838
 
+    # - U N I V E R S E
+    MarketData:
+      type: object
+      required:
+        - typeId
+        - sellOrders
+        - sellDeep
+        - sellAverage
+        - marketWidth
+      properties:
+        typeId:
+          type: integer
+          format: int32
+          description: >
+            The type identifier for the requested type whose market data is on the record.
+          example:
+            11535
+        bestSellOrder:
+          $ref: '#/components/schemas/MarketOrder'
+        bestBuyOrder:
+          $ref: '#/components/schemas/MarketOrder'
+        sellOrders:
+          type: array
+          items:
+            $ref: '#/components/schemas/GetMarketsRegionIdOrders200Ok'
+        sellDeep:
+          type: integer
+          format: int32
+          description: >
+            Represents the number of items selling that match the best sell price or are inside a predefined range usually of the 5% more that this
+            best sell price.
+          example:
+            12097
+        sellAverage:
+          type: number
+          format: double
+          description: >
+            The average price for the sell items on the market deep range. This is the prices of the sell elements on the 5% range dicided by the
+            market sell deep.
+          example:
+            39735.0
+        marketWidth:
+          type: number
+          format: double
+          description: >
+            The price difference between the best sell price and the highest buy price if both exist. A negative values means that som of the sell
+            or buy prices does not exists and so the width cannot be calculated.
+          example:
+            12.65
+    MarketOrder:
+      type: object
+      required:
+        - orderData
+      properties:
+        orderData:
+          $ref: '#/components/schemas/GetMarketsRegionIdOrders200Ok'
+        station:
+          $ref: '#/components/schemas/Station'
+    GetMarketsRegionIdOrders200Ok:
+      type: object
+    Station:
+      type: object
+
     Link:
       type: object
       properties:
@@ -300,6 +408,7 @@ components:
           description: |
             The classification type of the response so the client can use the right deserializer.
           example: 'ValidateAuthorizationTokenResponse'
+
     NeoComExceptionResponse:
       type: object
       required:
