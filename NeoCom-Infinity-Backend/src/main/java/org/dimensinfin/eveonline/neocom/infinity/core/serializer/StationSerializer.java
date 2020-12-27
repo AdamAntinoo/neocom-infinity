@@ -25,8 +25,8 @@ public class StationSerializer extends JsonSerializer<Station> {
 		jgen.writeStringField( "regionName", value.getRegionName() );
 		jgen.writeNumberField( "constellationId", value.getConstellationId() );
 		jgen.writeStringField( "constellationName", value.getConstellationName() );
-		jgen.writeNumberField( "systemId", value.getSolarSystemId() );
-		jgen.writeStringField( "systemName", value.getSolarSystemName() );
+		jgen.writeNumberField( "solarSystemId", value.getSolarSystemId() );
+		jgen.writeStringField( "solarSystemName", value.getSolarSystemName() );
 		jgen.writeNumberField( "stationId", value.getStationId() );
 		jgen.writeStringField( "stationName", value.getStationName() );
 

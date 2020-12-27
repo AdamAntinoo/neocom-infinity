@@ -5,33 +5,41 @@ import java.util.Objects;
 import org.dimensinfin.eveonline.neocom.domain.space.Station;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetMarketsRegionIdOrders200Ok;
 
-import io.swagger.annotations.ApiModelProperty;
-
 public class MarketOrder {
-	private GetMarketsRegionIdOrders200Ok orderData;
 	private Station station;
+	private long orderId;
+	private double price;
+	private int typeId;
+	private int volumeRemain;
+	private int volumeTotal;
 
 	// - C O N S T R U C T O R S
 	private MarketOrder() {}
 
 	// - G E T T E R S   &   S E T T E R S
-//	@ApiModelProperty(example = "null", required = true, value = "order_id integer")
-	public Long getOrderId() {return this.orderData.getOrderId();}
+	public long getOrderId() {
+		return this.orderId;
+	}
 
-//	@ApiModelProperty(example = "null", required = true, value = "price number")
-	public Double getPrice() {return this.orderData.getPrice();}
+	public double getPrice() {
+		return this.price;
+	}
 
 	public Station getStation() {
 		return this.station;
 	}
 
-//	@ApiModelProperty(example = "null", required = true, value = "type_id integer")
-	public Integer getTypeId() {return this.orderData.getTypeId();}
+	public int getTypeId() {
+		return this.typeId;
+	}
 
-//	@ApiModelProperty(example = "null", required = true, value = "volume_remain integer")
-	public Integer getVolumeRemain() {return this.orderData.getVolumeRemain();}
+	public int getVolumeRemain() {
+		return this.volumeRemain;
+	}
 
-	public GetMarketsRegionIdOrders200Ok isBuyOrder( final Boolean isBuyOrder ) {return this.orderData.isBuyOrder( isBuyOrder );}
+	public int getVolumeTotal() {
+		return this.volumeTotal;
+	}
 
 	// - B U I L D E R
 	public static class Builder {
@@ -47,7 +55,12 @@ public class MarketOrder {
 		}
 
 		public MarketOrder.Builder withOrderData( final GetMarketsRegionIdOrders200Ok orderData ) {
-			this.onConstruction.orderData = Objects.requireNonNull( orderData );
+			Objects.requireNonNull( orderData );
+			this.onConstruction.orderId = orderData.getOrderId();
+			this.onConstruction.price = orderData.getPrice();
+			this.onConstruction.typeId = orderData.getTypeId();
+			this.onConstruction.volumeRemain = orderData.getVolumeRemain();
+			this.onConstruction.volumeTotal = orderData.getVolumeTotal();
 			return this;
 		}
 
