@@ -13,6 +13,7 @@ import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCr
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialResponse;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
+import org.dimensinfin.eveonline.neocom.infinity.backend.market.domain.MarketData;
 import org.dimensinfin.eveonline.neocom.infinity.support.corporation.rest.v1.CorporationResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.corporation.rest.v1.LocationAssetContainer;
 import org.dimensinfin.eveonline.neocom.infinity.support.fitting.rest.v1.FittingResponse;
@@ -31,6 +32,16 @@ public class NeoComWorld extends NewNeoComWorld {
 	private Integer itemIdentifier;
 	private Integer regionId;
 	private Integer typeId;
+	private ResponseEntity<MarketData> marketDataResponseEntity;
+
+	public ResponseEntity<MarketData> getMarketDataResponseEntity() {
+		return this.marketDataResponseEntity;
+	}
+
+	public NeoComWorld setMarketDataResponseEntity( final ResponseEntity<MarketData> marketDataResponseEntity ) {
+		this.marketDataResponseEntity = marketDataResponseEntity;
+		return this;
+	}
 
 	public Integer getRegionId() {
 		return this.regionId;

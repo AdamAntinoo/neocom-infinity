@@ -11,11 +11,14 @@ import org.springframework.http.ResponseEntity;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.character.rest.v1.CharacterFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.character.rest.v2.CharacterFeignClientV2;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.industry.rest.v1.IndustryFeignClientV1;
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.market.rest.v1.MarketFeignClientV1;
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.universe.rest.v1.UniverseFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.universe.rest.v2.UniverseFeignClientV2;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.character.fitting.domain.FittingModel;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingBuildConfiguration;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingConfigurations;
+import org.dimensinfin.eveonline.neocom.infinity.backend.market.domain.MarketData;
 import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.EsiItemModel;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
 import org.dimensinfin.eveonline.neocom.infinity.pilot.rest.representation.PilotModel;
@@ -30,34 +33,35 @@ public class WhenTheRequestIsProcessed extends StepSupport {
 	private final AuthorizationFeignClientV1 authorizationFeignClient;
 	private final CharacterFeignClientV1 characterFeignClientV1;
 	private final CharacterFeignClientV2 characterFeignClientV2;
+	private final UniverseFeignClientV1 universeFeignClientV1;
 	private final UniverseFeignClientV2 universeFeignClientV2;
 	private final IndustryFeignClientV1 industryFeignClientV1;
+	private final MarketFeignClientV1 marketFeignClientV1;
 
 	// - C O N S T R U C T O R S
 	public WhenTheRequestIsProcessed( final @NotNull NeoComWorld neoComWorld,
 	                                  final @NotNull AuthorizationFeignClientV1 authorizationFeignClient,
 	                                  final @NotNull CharacterFeignClientV1 characterFeignClientV1,
 	                                  final @NotNull CharacterFeignClientV2 characterFeignClientV2,
+	                                  final @NotNull UniverseFeignClientV1 universeFeignClientV1,
 	                                  final @NotNull UniverseFeignClientV2 universeFeignClientV2,
-	                                  final @NotNull IndustryFeignClientV1 industryFeignClientV1 ) {
+	                                  final @NotNull IndustryFeignClientV1 industryFeignClientV1,
+	                                  final @NotNull MarketFeignClientV1 marketFeignClientV1 ) {
 		super( neoComWorld );
 		this.authorizationFeignClient = authorizationFeignClient;
 		this.characterFeignClientV1 = characterFeignClientV1;
 		this.characterFeignClientV2 = characterFeignClientV2;
+		this.universeFeignClientV1 = universeFeignClientV1;
 		this.universeFeignClientV2 = universeFeignClientV2;
 		this.industryFeignClientV1 = industryFeignClientV1;
+		this.marketFeignClientV1 = marketFeignClientV1;
 	}
 
 	@When("the Validate Authorization Token request is processed")
 	public void the_Accounting_Week_Income_request_is_processed() throws IOException {
 		this.processRequestByType( RequestType.VALIDATE_AUTHORIZATION_TOKEN_ENDPOINT_NAME );
 	}
-	@When("the Get Market Consolidated request with region identifier {int} and item type {int}")
-	public void the_Get_Market_Consolidated_request_with_region_identifier_and_item_type(final Integer regionId, final Integer typeId) throws IOException {
-		this.neocomWorld.setRegionId(regionId);
-		this.neocomWorld.setTypeId(typeId);
-		this.processRequestByType( RequestType.GET_MARKET_CONSOLIDATED );
-	}
+
 	@When("the Get EsiItem with item id {int} request is processed")
 	public void the_Get_EsiItem_with_item_id_request_is_processed( final Integer itemId ) throws IOException {
 		this.neocomWorld.setItemIdentifier( itemId );
@@ -76,6 +80,12 @@ public class WhenTheRequestIsProcessed extends StepSupport {
 		this.processRequestByType( RequestType.GET_INDUSTRY_FITTING_SAVED_CONFIGURATION );
 	}
 
+	@When("the Get Market Consolidated request with item type {int}")
+	public void the_Get_Market_Consolidated_request_with_item_type( final Integer typeId ) throws IOException {
+		this.neocomWorld.setTypeId( typeId );
+		this.processRequestByType( RequestType.GET_MARKET_CONSOLIDATED );
+	}
+
 	@When("the Get Pilot Fittings request for pilot {string} is processed")
 	public void the_Get_Pilot_Fittings_request_for_pilot_is_processed( final String pilotIdentifier ) throws IOException {
 		this.neocomWorld.setPilotIdentifier( Integer.parseInt( pilotIdentifier ) );
@@ -86,6 +96,13 @@ public class WhenTheRequestIsProcessed extends StepSupport {
 	public void the_Get_Pilot_Public_Data_with_pilot_identifier_request_is_processed( final String pilotIdentifier ) throws IOException {
 		this.neocomWorld.setPilotIdentifier( Integer.parseInt( pilotIdentifier ) );
 		this.processRequestByType( RequestType.GET_PILOT_DATA_ENDPOINT_NAME );
+	}
+
+	@When("the Get Universe Market Consolidated request with region identifier {int} and item type {int}")
+	public void the_Get_Universe_Market_Consolidated_request_with_region_identifier_and_item_type( final Integer regionId, final Integer typeId ) throws IOException {
+		this.neocomWorld.setRegionId( regionId );
+		this.neocomWorld.setTypeId( typeId );
+		this.processRequestByType( RequestType.GET_UNIVERSE_MARKET_CONSOLIDATED );
 	}
 
 	private ResponseEntity processRequest( final RequestType requestType ) throws IOException {
@@ -147,6 +164,27 @@ public class WhenTheRequestIsProcessed extends StepSupport {
 				Assertions.assertNotNull( fittingBuildConfigurationResponseEntity );
 				this.neocomWorld.setFittingBuildConfigurationResponseEntity( fittingBuildConfigurationResponseEntity );
 				return fittingBuildConfigurationResponseEntity;
+			case GET_MARKET_CONSOLIDATED:
+				Assertions.assertNotNull( this.neocomWorld.getTypeId() );
+				final ResponseEntity<MarketData> marketDataResponseEntity = this.marketFeignClientV1
+						.getMarketConsolidated4ItemId(
+								this.neocomWorld.getJwtAuthorizationToken(),
+								this.neocomWorld.getTypeId()
+						);
+				Assertions.assertNotNull( marketDataResponseEntity );
+				this.neocomWorld.setMarketDataResponseEntity( marketDataResponseEntity );
+				return marketDataResponseEntity;
+			case GET_UNIVERSE_MARKET_CONSOLIDATED:
+				Assertions.assertNotNull( this.neocomWorld.getRegionId() );
+				Assertions.assertNotNull( this.neocomWorld.getTypeId() );
+				final ResponseEntity<MarketData> marketDataUniverseResponseEntity = this.universeFeignClientV1
+						.getMarketConsolidatedByRegion4ItemId(
+								this.neocomWorld.getRegionId(),
+								this.neocomWorld.getTypeId()
+						);
+				Assertions.assertNotNull( marketDataUniverseResponseEntity );
+				this.neocomWorld.setMarketDataResponseEntity( marketDataUniverseResponseEntity );
+				return marketDataUniverseResponseEntity;
 			default:
 				throw new NotImplementedException( "Request {} not implemented.", requestType.name() );
 		}

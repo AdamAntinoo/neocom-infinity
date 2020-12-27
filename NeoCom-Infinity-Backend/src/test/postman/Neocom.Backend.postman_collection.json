@@ -100,8 +100,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "BackendApiSimulator",
@@ -185,8 +184,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "ESIDataServiceApiSImulator",
@@ -303,8 +301,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "NeoComSupport",
@@ -473,11 +470,10 @@
 					"response": []
 				}
 			],
-			"description": "NeoCom backend support call to be used on acceptance tests.",
-			"protocolProfileBehavior": {}
+			"description": "NeoCom backend support call to be used on acceptance tests."
 		},
 		{
-			"name": "NeoComService",
+			"name": "NeoCom.Service",
 			"item": [
 				{
 					"name": "Validate Authorization Token",
@@ -485,7 +481,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "c753a21a-7d09-41fe-ba25-2e9350805847",
 								"exec": [
 									"//var jsonData = JSON.parse(responseBody);",
 									"//pm.environment.set(\"jwtToken\", jsonData.jwtToken);",
@@ -756,34 +751,6 @@
 					"response": []
 				},
 				{
-					"name": "Get Server Status",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{backendServer}}{{apiv1}}/server/datasource/tranquility",
-							"host": [
-								"{{backendServer}}{{apiv1}}"
-							],
-							"path": [
-								"server",
-								"datasource",
-								"tranquility"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Get Pilot Fittings",
 					"request": {
 						"auth": {
@@ -908,10 +875,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"jsonClass\": \"Credential\",\n    \"className\": \"org.dimensinfin.eveonline.neocom.infinity.authorization.rest.CredentialTransport\",\n    \"accountId\": 93813310,\n    \"accountName\": \"Adam Antinoo\",\n    \"corporationId\": 7654321,\n    \"assetsCount\": 3000\n}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{\n\t\"jsonClass\": \"Credential\",\n    \"className\": \"org.dimensinfin.eveonline.neocom.infinity.authorization.rest.CredentialTransport\",\n    \"accountId\": 93813310,\n    \"accountName\": \"Adam Antinoo\",\n    \"corporationId\": 7654321,\n    \"assetsCount\": 3000\n}"
 						},
 						"url": {
 							"raw": "{{backendServer}}{{apiv1}}/neocom/credentials/93813310",
@@ -953,10 +917,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {}
-							}
+							"raw": ""
 						},
 						"url": {
 							"raw": "{{backendServer}}{{apiv1}}/neocom/miningextractions/pilot/{{pilotIdentifier}}/today",
@@ -1087,7 +1048,7 @@
 					"response": []
 				},
 				{
-					"name": "Get Fitting Build Order",
+					"name": "Get Fitting Build Configurations",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -1103,29 +1064,97 @@
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
+								"type": "text",
+								"value": "application/json"
 							}
 						],
 						"url": {
-							"raw": "{{backendServer}}{{apiv1}}/neocom/industry/fitting/buildOrder/{{fittingId}}",
+							"raw": "{{backendServer}}{{apiv1}}/neocom/industry/fittings/buildConfiguration/{{fittingId}}",
 							"host": [
 								"{{backendServer}}{{apiv1}}"
 							],
 							"path": [
 								"neocom",
 								"industry",
-								"fitting",
-								"buildOrder",
+								"fittings",
+								"buildConfiguration",
 								"{{fittingId}}"
 							]
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get Fitting Build Saved Configuration",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{apiv1}}/neocom/industry/fittings/buildConfiguration/{{fittingId}}/savedConfiguration",
+							"host": [
+								"{{backendServer}}{{apiv1}}"
+							],
+							"path": [
+								"neocom",
+								"industry",
+								"fittings",
+								"buildConfiguration",
+								"{{fittingId}}",
+								"savedConfiguration"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetMarketConsolidated",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{backendServer}}{{apiv1}}/neocom/market/consolidated/{{itemId}}",
+							"host": [
+								"{{backendServer}}{{apiv1}}"
+							],
+							"path": [
+								"neocom",
+								"market",
+								"consolidated",
+								"{{itemId}}"
+							]
+						},
+						"description": "This endpoint reads the Pilot configuration to identify the target market station where to read the market information. Then using that market hub reads and consolidates the market data into an instance that contains some data."
+					},
+					"response": []
 				}
 			],
-			"description": "Has the endpoints declared at the NeoCom service.",
-			"protocolProfileBehavior": {}
+			"description": "Has the endpoints declared at the NeoCom service."
 		},
 		{
 			"name": "NeoCom.Universe",
@@ -1179,10 +1208,36 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get Server Status",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{apiv1}}/server/datasource/tranquility",
+							"host": [
+								"{{backendServer}}{{apiv1}}"
+							],
+							"path": [
+								"server",
+								"datasource",
+								"tranquility"
+							]
+						}
+					},
+					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }

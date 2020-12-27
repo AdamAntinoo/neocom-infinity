@@ -22,11 +22,11 @@ public class MarketOrderValidator implements Validator<MarketOrder> {
 			);
 		if (null != rowData.get( MARKETORDER_PRICE ))
 			Assertions.assertEquals( Double.parseDouble( rowData.get( MARKETORDER_PRICE ) ),
-					record.getTypeId(),
+					record.getPrice(),
 					0.01
 			);
 		if (null != rowData.get( MARKETORDER_ORDER_ID ))
-			Assertions.assertEquals( Integer.parseInt( rowData.get( MARKETORDER_ORDER_ID ) ),
+			Assertions.assertEquals( Long.parseLong( rowData.get( MARKETORDER_ORDER_ID ) ),
 					record.getOrderId()
 			);
 		if (null != rowData.get( MARKETORDER_VOLUME_REMAIN ))
