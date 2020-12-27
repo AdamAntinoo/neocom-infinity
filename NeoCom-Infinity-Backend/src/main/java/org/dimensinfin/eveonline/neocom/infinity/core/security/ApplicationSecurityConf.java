@@ -16,6 +16,7 @@ import org.dimensinfin.eveonline.neocom.infinity.core.security.CredentialDetails
 import org.dimensinfin.eveonline.neocom.infinity.core.security.JWTAuthorizationFilter;
 import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticationProvider;
 
+import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.ACTUATORS_URL;
 import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.CREDENTIAL_SUPPORT_URL;
 import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.GET_ITEM;
 import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.ITEMSV1_URL;
@@ -48,7 +49,9 @@ public class ApplicationSecurityConf extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure( HttpSecurity http ) throws Exception {
 		http.cors().and().csrf().disable().authorizeRequests()
-				.antMatchers( LOGIN_VERIFICATION_URL, STORE_CREDENTIAL_URL, SERVER_STATUS_URL, CREDENTIAL_SUPPORT_URL,
+				.antMatchers(
+						ACTUATORS_URL,
+						LOGIN_VERIFICATION_URL, STORE_CREDENTIAL_URL, SERVER_STATUS_URL, CREDENTIAL_SUPPORT_URL,
 						ITEMSV1_URL, ITEMSV2_URL,
 						UNIVERSEV1_URL,
 						SPACELOCATIONS_URL,
