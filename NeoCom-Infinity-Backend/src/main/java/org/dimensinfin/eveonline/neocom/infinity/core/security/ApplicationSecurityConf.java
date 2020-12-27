@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.core.config;
+package org.dimensinfin.eveonline.neocom.infinity.core.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -24,6 +24,7 @@ import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityCo
 import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.SERVER_STATUS_URL;
 import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.SPACELOCATIONS_URL;
 import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.STORE_CREDENTIAL_URL;
+import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.UNIVERSEV1_URL;
 
 @Configuration
 @EnableWebSecurity
@@ -48,7 +49,9 @@ public class ApplicationSecurityConf extends WebSecurityConfigurerAdapter {
 	protected void configure( HttpSecurity http ) throws Exception {
 		http.cors().and().csrf().disable().authorizeRequests()
 				.antMatchers( LOGIN_VERIFICATION_URL, STORE_CREDENTIAL_URL, SERVER_STATUS_URL, CREDENTIAL_SUPPORT_URL,
-						ITEMSV1_URL, ITEMSV2_URL, SPACELOCATIONS_URL,
+						ITEMSV1_URL, ITEMSV2_URL,
+						UNIVERSEV1_URL,
+						SPACELOCATIONS_URL,
 						GET_ITEM ).permitAll()
 				.anyRequest().authenticated()
 				.and()

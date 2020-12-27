@@ -32,7 +32,7 @@ public class NIB10Market extends SupportSteps {
 	}
 
 	@Then("the resulting Market Data Best Sell Order contains")
-	public void the_resulting_Market_Data_Best_Sell_Order_contains(final List<Map<String, String>> dataTable ) {
+	public void the_resulting_Market_Data_Best_Sell_Order_contains( final List<Map<String, String>> dataTable ) {
 		Objects.requireNonNull( this.neocomWorld.getMarketDataResponseEntity() );
 		Objects.requireNonNull( this.neocomWorld.getMarketDataResponseEntity().getBody() );
 		final MarketData marketData = this.neocomWorld.getMarketDataResponseEntity().getBody();
@@ -40,11 +40,19 @@ public class NIB10Market extends SupportSteps {
 	}
 
 	@Then("the resulting Market Data contents")
-	public void the_resulting_Market_Data_contents(final List<Map<String, String>> dataTable ) {
+	public void the_resulting_Market_Data_contents( final List<Map<String, String>> dataTable ) {
 		Objects.requireNonNull( this.neocomWorld.getMarketDataResponseEntity() );
 		Objects.requireNonNull( this.neocomWorld.getMarketDataResponseEntity().getBody() );
 		final MarketData marketData = this.neocomWorld.getMarketDataResponseEntity().getBody();
 		Assert.assertTrue( new MarketDataValidator().validate( dataTable.get( 0 ), marketData ) );
+	}
+
+	@Then("the resulting Market Data has a Best Buy Order")
+	public void the_resulting_Market_Data_has_a_Best_Buy_Order() {
+		Objects.requireNonNull( this.neocomWorld.getMarketDataResponseEntity() );
+		Objects.requireNonNull( this.neocomWorld.getMarketDataResponseEntity().getBody() );
+		final MarketData marketData = this.neocomWorld.getMarketDataResponseEntity().getBody();
+		Assertions.assertNotNull( marketData.getBestBuyOrder() );
 	}
 
 	@Then("the resulting Market Data has a Best Sell Order")

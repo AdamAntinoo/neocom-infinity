@@ -17,5 +17,6 @@ public class SecurityConstants {
 	public static final String SERVER_STATUS_URL = "/api/v1/neocom/server**";
 	public static final String ITEMSV1_URL = "/api/v1/universe/items/**";
 	public static final String ITEMSV2_URL = "/api/v2/universe/items/**";
+	public static final String UNIVERSEV1_URL = "/api/v1/universe/**";
 	public static final String SPACELOCATIONS_URL = "/api/v1/universe/spacelocations/**";
 }
