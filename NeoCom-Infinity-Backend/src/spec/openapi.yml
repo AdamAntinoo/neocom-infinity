@@ -374,10 +374,43 @@ components:
     MarketOrder:
       type: object
       required:
-        - orderData
+        - station
       properties:
-        orderData:
-          $ref: '#/components/schemas/GetMarketsRegionIdOrders200Ok'
+        orderId:
+          type: integer
+          format: int32
+          description: >
+            This is the internal identifier on CCP servers for the market order instance.
+          example:
+            5880091755
+        price:
+          type: number
+          format: double
+          description: >
+            The original market order price as recorded on the game.
+          example:
+            39000.0
+        typeId:
+          type: integer
+          format: int32
+          description: >
+            The type identifier for the item being traded.
+          example:
+            11535
+        volumeRemain:
+          type: integer
+          format: int32
+          description: >
+            The number of items still left on the market order.
+          example:
+            120
+        volumeTotal:
+          type: integer
+          format: int32
+          description: >
+            The original number of items set on the market order when created.
+          example:
+            130
         station:
           $ref: '#/components/schemas/Station'
     GetMarketsRegionIdOrders200Ok:
