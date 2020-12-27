@@ -53,7 +53,7 @@ public interface NeoComApiv1 {
 	                                                                                 @Path("fittingId") Integer fittingId );
 
 	@Headers({ "Content-Type: application/json" })
-	@GET("/api/v1/neocom/consolidated/{itemId}")
+	@GET("/api/v1/neocom/market/consolidated/{itemId}")
 	Call<MarketData> getMarketConsolidated4ItemId( @Header("Authorization") final String authorization,
 	                                               @Path("itemId") final Integer itemId );
 

@@ -19,7 +19,6 @@ import io.cucumber.java.en.Then;
 public class NIB09MiningExtractions extends SupportSteps {
 	private final MiningExtractionsFeignClientSupport miningExtractionsFeignClientSupport;
 
-	@Autowired
 	public NIB09MiningExtractions( final ConverterContainer cucumberTableToRequestConverters,
 	                               final NeoComWorld neocomWorld,
 	                               final MiningExtractionsFeignClientSupport miningExtractionsFeignClientSupport ) {

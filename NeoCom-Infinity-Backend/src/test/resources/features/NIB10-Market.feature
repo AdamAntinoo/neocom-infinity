@@ -17,16 +17,16 @@ Feature: [FEATURE] New endpoints to retrieve processed and digested market data.
     Then there is a valid response with return code of "200 OK"
     And the resulting Market Data contents
       | typeId | sellDeep | sellAverage | marketWidth |
-      | 11535  | 12097    | 39735.0     | 120.4       |
+      | 11535  | 11679    | 39588.0     | 11000.0     |
     And the resulting Market Data has a Best Sell Order
     And the resulting Market Data Best Sell Order Station matches a Station with data
       | locationId | regionId | regionName | constellationId | constellationName | systemId | systemName | stationId | stationName                                |
       | 60008494   | 10000043 | Domain     | 20000322        | Throne Worlds     | 30002187 | Amarr      | 60008494  | Amarr VIII (Oris) - Emperor Family Academy |
     And the resulting Market Data Best Sell Order contains
-      | typeId | price   | orderId    | volumeRemain |
-      | 11535  | 39000.0 | 5875551341 | 7061         |
-    And the resulting Market Data has not a Best Buy Order
-    And the resulting Market Data has 4 entries on the Sell Orders list
+      | typeId | price   | orderId    | volumeRemain | volumeTotal |
+      | 11535  | 39000.0 | 5880091755 | 1366         | 1366        |
+    And the resulting Market Data has a Best Buy Order
+    And the resulting Market Data has 5 entries on the Sell Orders list
 
   @NIB10.02 @Market
   Scenario: [NIB10.02] Validate the market data returned when the open endpoint is called with a region and a type identifier.
@@ -42,5 +42,5 @@ Feature: [FEATURE] New endpoints to retrieve processed and digested market data.
     And the resulting Market Data Best Sell Order contains
       | typeId | price   | orderId    | volumeRemain | volumeTotal |
       | 11535  | 39000.0 | 5880091755 | 1366         | 1366        |
-    And the resulting Market Data has not a Best Buy Order
-    And the resulting Market Data has 4 entries on the Sell Orders list
+    And the resulting Market Data has a Best Buy Order
+    And the resulting Market Data has 5 entries on the Sell Orders list

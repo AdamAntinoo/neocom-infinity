@@ -69,5 +69,5 @@ public class FittingBuildConfiguration {
 final class ActionPreference extends ActionPreferenceEntity {
 }
 
-final class MarketData {
-}
+//final class MarketData {
+//}
