@@ -24,7 +24,7 @@ public class MarketData {
 	// - C O N S T R U C T O R S
 	private MarketData() {}
 
-// - G E T T E R S   &   S E T T E R S
+	// - G E T T E R S   &   S E T T E R S
 	@Nullable
 	public MarketOrder getBestBuyOrder() {
 		return this.bestBuyOrder;
@@ -33,6 +33,10 @@ public class MarketData {
 	@Nullable
 	public MarketOrder getBestSellOrder() {
 		return this.bestSellOrder;
+	}
+
+	public double getMarketWidth() {
+		return this.marketWidth;
 	}
 
 	public double getSellAverage() {
@@ -47,6 +51,10 @@ public class MarketData {
 		return this.sellOrders;
 	}
 
+	public int getTypeId() {
+		return this.typeId;
+	}
+
 	// - B U I L D E R
 	public static class Builder {
 		private final MarketData onConstruction;
@@ -58,7 +66,7 @@ public class MarketData {
 
 		public MarketData build() {
 			Objects.requireNonNull( this.onConstruction.typeId );
-			this.onConstruction.marketWidth = this.calculateMarketWidth( this.onConstruction.bestSellOrder, this.onConstruction.bestBuyOrder);
+			this.onConstruction.marketWidth = this.calculateMarketWidth( this.onConstruction.bestSellOrder, this.onConstruction.bestBuyOrder );
 			return this.onConstruction;
 		}
 
