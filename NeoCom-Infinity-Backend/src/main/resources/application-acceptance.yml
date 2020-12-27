@@ -7,7 +7,7 @@ endpoints:
     sensitive: false
     enabled: true
   info:
-    id: health
+    id: info
     sensitive: false
     enabled: true
 

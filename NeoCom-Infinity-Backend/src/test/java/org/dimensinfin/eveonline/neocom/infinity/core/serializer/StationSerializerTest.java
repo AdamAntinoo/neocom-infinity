@@ -44,7 +44,7 @@ class StationSerializerTest {
 				.withStation( station )
 				.build();
 		Assert.assertNotNull( stationImplementation );
-		final String expected = "{\"jsonClass\":\"Station\",\"locationId\":0,\"regionId\":0,\"regionName\":null,\"constellationId\":0,\"constellationName\":null,\"systemId\":0,\"systemName\":null,\"stationId\":0,\"stationName\":null}";
+		final String expected = "{\"jsonClass\":\"Station\",\"locationId\":0,\"regionId\":0,\"regionName\":null,\"constellationId\":0,\"constellationName\":null,\"solarSystemId\":0,\"solarSystemName\":null,\"stationId\":0,\"stationName\":null}";
 
 		String obtained = objectMapper.writeValueAsString( stationImplementation );
 		Assertions.assertEquals( expected, obtained );

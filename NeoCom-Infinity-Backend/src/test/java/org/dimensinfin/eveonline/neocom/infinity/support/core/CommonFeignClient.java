@@ -37,7 +37,6 @@ public class CommonFeignClient {
 							.registerTypeAdapter( NeoItem.class, new GSONNeoItemDeserializer() )
 							.registerTypeAdapter( BuildAction.class, new GSONBuildActionDeserializer() )
 							.registerTypeAdapter( Station.class, new GSONStationDeserializer() )
-//							.registerTypeAdapter( StationImplementation.class, new GSONStationDeserializer() )
 							.create() );
 	public static final OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
 			.connectTimeout( 60, TimeUnit.SECONDS )

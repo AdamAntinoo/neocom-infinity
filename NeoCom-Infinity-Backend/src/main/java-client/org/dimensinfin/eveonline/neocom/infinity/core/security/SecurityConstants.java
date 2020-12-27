@@ -10,6 +10,7 @@ public class SecurityConstants {
 	public static final String SECRET = "The secret phrase to be used for JWT generation.";
 	public static final String TOKEN_PREFIX = "Bearer ";
 	public static final String AUTHORIZATION_HEADER_STRING = "Authorization";
+	public static final String ACTUATORS_URL = "/actuator/**";
 	public static final String LOGIN_VERIFICATION_URL = "/api/v1/neocom/validateAuthorizationToken";
 	public static final String CREDENTIAL_SUPPORT_URL = "/api/v1/neocom/support/**";
 	public static final String GET_ITEM = "/api/v1/neoitem/item/**";
