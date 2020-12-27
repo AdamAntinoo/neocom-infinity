@@ -8,6 +8,7 @@ import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCr
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingBuildConfiguration;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingConfigurations;
+import org.dimensinfin.eveonline.neocom.infinity.backend.market.domain.MarketData;
 import org.dimensinfin.eveonline.neocom.infinity.support.corporation.rest.v1.CorporationResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.corporation.rest.v1.LocationAssetContainer;
 import org.dimensinfin.eveonline.neocom.infinity.support.fitting.rest.v1.FittingResponse;
@@ -50,6 +51,11 @@ public interface NeoComApiv1 {
 	@GET("/api/v1/neocom/industry/fittings/buildConfiguration/{fittingId}/targetConfiguration")
 	Call<FittingBuildConfiguration> getFittingBuildConfigurationTargetConfiguration( @Header("Authorization") final String authorization,
 	                                                                                 @Path("fittingId") Integer fittingId );
+
+	@Headers({ "Content-Type: application/json" })
+	@GET("/api/v1/neocom/consolidated/{itemId}")
+	Call<MarketData> getMarketConsolidated4ItemId( @Header("Authorization") final String authorization,
+	                                               @Path("itemId") final Integer itemId );
 
 	@GET("/api/v1/neocom/pilots/{pilotId}")
 	Call<PilotResponse> getPilotData( @Header("Content-Type") final String contentType,
