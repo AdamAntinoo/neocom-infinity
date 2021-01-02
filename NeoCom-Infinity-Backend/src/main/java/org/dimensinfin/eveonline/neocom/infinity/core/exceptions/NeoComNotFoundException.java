@@ -9,6 +9,7 @@ public class NeoComNotFoundException extends RuntimeException {
 	private ErrorInfo errorInfo;
 	private String message;
 
+	// - C O N S T R U C T O R S
 	private NeoComNotFoundException() {
 		final StackTraceElement[] stacktrace = Thread.currentThread().getStackTrace();
 		final StackTraceElement stackElement = stacktrace[3]; // This is to check if we are using Dalvik
@@ -22,14 +23,13 @@ public class NeoComNotFoundException extends RuntimeException {
 		this.message = this.prepareMessage( arguments );
 	}
 
-	public String getMessage() {
-		return this.message;
+	// - G E T T E R S   &   S E T T E R S
+	public HttpStatus getHttpStatus() {
+		return this.errorInfo.status;
 	}
 
-	private String prepareMessage( final String... arguments ) {
-		if (arguments.length < 1) return this.errorInfo.getErrorMessage( "<undefined>", "0" );
-		if (arguments.length < 2) return this.errorInfo.getErrorMessage( arguments[0], "0" );
-		return this.errorInfo.getErrorMessage( arguments );
+	public String getMessage() {
+		return this.message;
 	}
 
 	public String getSourceClass() {
@@ -40,7 +40,9 @@ public class NeoComNotFoundException extends RuntimeException {
 		return this.sourceMethod;
 	}
 
-	public HttpStatus getHttpStatus() {
-		return this.errorInfo.status;
+	private String prepareMessage( final String... arguments ) {
+		if (arguments.length < 1) return this.errorInfo.getErrorMessage( "<undefined>" + " " + "0" );
+		if (arguments.length < 2) return this.errorInfo.getErrorMessage( arguments[0] + " " + "0" );
+		return this.errorInfo.getErrorMessage( arguments[0] + " " + arguments[1] );
 	}
 }

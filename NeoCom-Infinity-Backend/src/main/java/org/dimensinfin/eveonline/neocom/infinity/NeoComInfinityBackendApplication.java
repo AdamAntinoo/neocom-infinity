@@ -19,7 +19,7 @@ import org.dimensinfin.logging.LogWrapper;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-//@EnableScheduling
+@EnableScheduling
 @EnableAutoConfiguration
 public class NeoComInfinityBackendApplication {
 	public static final String APPLICATION_ERROR_CODE_PREFIX = "dimensinfin.eveonline.neocom";

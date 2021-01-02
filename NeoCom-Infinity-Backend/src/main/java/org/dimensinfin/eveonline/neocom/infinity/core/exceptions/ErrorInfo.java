@@ -14,9 +14,9 @@ public enum ErrorInfo {
 	AUTHORIZATION_TRANSLATION( HttpStatus.BAD_REQUEST,
 			"neocom.error.authorization.translation",
 			"TokenTranslationResponse response is not valid." ),
-//	NOT_MATCHING_AUTHORIZATION_REQUEST( HttpStatus.UNAUTHORIZED,
-//			"neocom.error.authorization.validation",
-//			"Unauthorized request because a field does not match the validation procedures." ),
+	//	NOT_MATCHING_AUTHORIZATION_REQUEST( HttpStatus.UNAUTHORIZED,
+	//			"neocom.error.authorization.validation",
+	//			"Unauthorized request because a field does not match the validation procedures." ),
 	VERIFICATION_RESPONSE( HttpStatus.BAD_REQUEST,
 			"neocom.error.authorization.verification",
 			"VerifyCharacterResponse response is not valid." ),
@@ -46,13 +46,15 @@ public enum ErrorInfo {
 	public final String errorCode;
 	public final String errorMessage;
 
+	// - C O N S T R U C T O R S
 	ErrorInfo( final HttpStatus status, final String errorCode, final String errorMessage ) {
 		this.status = status;
 		this.errorCode = errorCode;
 		this.errorMessage = errorMessage;
 	}
 
-	public String getErrorMessage( final String... arguments ) {
+	@Deprecated
+	public String getErrorMessage( final String arguments ) {
 		return MessageFormat.format( this.errorMessage, arguments );
 	}
 }
