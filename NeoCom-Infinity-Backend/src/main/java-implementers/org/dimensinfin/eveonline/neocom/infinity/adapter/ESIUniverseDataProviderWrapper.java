@@ -10,11 +10,12 @@ import org.springframework.stereotype.Component;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBConfigurationService;
 import org.dimensinfin.eveonline.neocom.provider.ESIUniverseDataProvider;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
+import org.dimensinfin.eveonline.neocom.provider.IFileSystem;
 
 @Component
 public class ESIUniverseDataProviderWrapper {
 	private final IConfigurationService configurationService;
-	private final FileSystemWrapper fileSystemAdapter;
+	private final IFileSystem fileSystemAdapter;
 	private final RetrofitFactoryWrapper retrofitFactoryWrapper;
 	private final StoreCacheManagerWrapper storeCacheManagerWrapper;
 	private ESIUniverseDataProvider singleton;
@@ -22,7 +23,7 @@ public class ESIUniverseDataProviderWrapper {
 	// - C O N S T R U C T O R S
 	@Autowired
 	public ESIUniverseDataProviderWrapper( final ConfigurationServiceWrapper configurationServiceWrapper,
-	                                       final FileSystemWrapper fileSystemAdapter,
+	                                       final IFileSystem fileSystemAdapter,
 	                                       final RetrofitFactoryWrapper retrofitFactoryWrapper,
 	                                       final StoreCacheManagerWrapper storeCacheManagerWrapper ) {
 		this.configurationService = configurationServiceWrapper.getSingleton();

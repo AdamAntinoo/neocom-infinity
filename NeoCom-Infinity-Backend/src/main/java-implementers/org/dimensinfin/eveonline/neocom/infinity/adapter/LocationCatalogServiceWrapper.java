@@ -9,11 +9,12 @@ import org.springframework.stereotype.Component;
 import org.dimensinfin.eveonline.neocom.adapter.LocationCatalogService;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBConfigurationService;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
+import org.dimensinfin.eveonline.neocom.provider.IFileSystem;
 
 @Component
 public class LocationCatalogServiceWrapper {
 	private final IConfigurationService configurationService;
-	private final FileSystemWrapper fileSystemAdapter;
+	private final IFileSystem fileSystemAdapter;
 	private final ESIUniverseDataProviderWrapper esiUniverseDataProviderWrapper;
 	private final RetrofitFactoryWrapper retrofitFactoryWrapper;
 	private final StoreCacheManagerWrapper storeCacheManagerWrapper;
@@ -22,7 +23,7 @@ public class LocationCatalogServiceWrapper {
 	// - C O N S T R U C T O R S
 	@Autowired
 	public LocationCatalogServiceWrapper( final ConfigurationServiceWrapper configurationServiceWrapper,
-	                                      final FileSystemWrapper fileSystemAdapter,
+	                                      final IFileSystem fileSystemAdapter,
 	                                      final ESIUniverseDataProviderWrapper esiUniverseDataProviderWrapper,
 	                                      final RetrofitFactoryWrapper retrofitFactoryWrapper,
 	                                      final StoreCacheManagerWrapper storeCacheManagerWrapper ) {

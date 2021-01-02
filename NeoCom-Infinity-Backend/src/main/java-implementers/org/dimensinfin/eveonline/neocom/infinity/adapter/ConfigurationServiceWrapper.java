@@ -36,6 +36,6 @@ public class ConfigurationServiceWrapper {
 		this.singleton = new SBConfigurationService.Builder()
 				.optionalPropertiesDirectory( this.propertiesDirectory )
 				.build();
-		this.singleton.readAllProperties();
+//		this.singleton.readAllProperties();
 	}
 }

@@ -9,7 +9,10 @@ import java.io.OutputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.text.MessageFormat;
+import javax.validation.constraints.NotNull;
 
+import com.google.inject.Inject;
+import com.google.inject.name.Named;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -25,12 +28,16 @@ import org.dimensinfin.logging.LogWrapper;
  *
  * @author Adam Antinoo
  */
+//@Component
 public class SBFileSystemAdapter implements IFileSystem {
 	private static final String DIRECTORY_SEPARATOR = "/";
 	protected String applicationDirectory = "./NeoCom.Infinity";
 
 	// - C O N S T R U C T O R S
-	protected SBFileSystemAdapter() {}
+	@Inject
+	public SBFileSystemAdapter( final @NotNull @Named("ApplicationDirectory") String applicationDirectory ) {
+		if (null != applicationDirectory) this.applicationDirectory = applicationDirectory;
+	}
 
 	@Override
 	public InputStream openResource4Input( final String filePath ) throws IOException {
@@ -90,21 +97,21 @@ public class SBFileSystemAdapter implements IFileSystem {
 	}
 
 	// - B U I L D E R
-	public static class Builder {
-		private SBFileSystemAdapter onConstruction;
-
-// - C O N S T R U C T O R S
-		public Builder() {
-			this.onConstruction = new SBFileSystemAdapter();
-		}
-
-		public SBFileSystemAdapter build() {
-			return this.onConstruction;
-		}
-
-		public SBFileSystemAdapter.Builder optionalApplicationDirectory( final String applicationDirectory ) {
-			if (null != applicationDirectory) this.onConstruction.applicationDirectory = applicationDirectory;
-			return this;
-		}
-	}
+	//	public static class Builder {
+	//		private SBFileSystemAdapter onConstruction;
+	//
+	//		// - C O N S T R U C T O R S
+	//		public Builder() {
+	//			this.onConstruction = new SBFileSystemAdapter();
+	//		}
+	//
+	//		public SBFileSystemAdapter build() {
+	//			return this.onConstruction;
+	//		}
+	//
+	//		public SBFileSystemAdapter.Builder optionalApplicationDirectory( final String applicationDirectory ) {
+	//			if (null != applicationDirectory) this.onConstruction.applicationDirectory = applicationDirectory;
+	//			return this;
+	//		}
+	//	}
 }

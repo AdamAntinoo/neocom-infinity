@@ -20,7 +20,7 @@ public class RetrofitFactoryWrapper {
 	// - C O N S T R U C T O R S
 	@Autowired
 	public RetrofitFactoryWrapper( final ConfigurationServiceWrapper configurationServiceWrapper,
-	                               final FileSystemWrapper fileSystemAdapter ) {
+	                               final IFileSystem fileSystemAdapter ) {
 		this.configurationService = configurationServiceWrapper.getSingleton();
 		this.fileSystemAdapter = fileSystemAdapter;
 	}

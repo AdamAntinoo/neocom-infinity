@@ -1,21 +1,19 @@
-package org.dimensinfin.eveonline.neocom.infinity.backend.core.config;
+package org.dimensinfin.eveonline.neocom.infinity.config;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;
 
-import org.dimensinfin.eveonline.neocom.adapter.LocationCatalogService;
-import org.dimensinfin.eveonline.neocom.adapter.StoreCacheManager;
 import org.dimensinfin.eveonline.neocom.database.NeoComDatabaseService;
 import org.dimensinfin.eveonline.neocom.database.core.ISDEDatabaseService;
+import org.dimensinfin.eveonline.neocom.database.repositories.SDERepository;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBConfigurationService;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBFileSystemAdapter;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBNeoComDBAdapter;
 import org.dimensinfin.eveonline.neocom.infinity.backend.sde.service.SBSDEDatabaseService;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 import org.dimensinfin.eveonline.neocom.provider.IFileSystem;
-import org.dimensinfin.eveonline.neocom.provider.RetrofitFactory;
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
 import org.dimensinfin.eveonline.neocom.service.IStoreCache;
 import org.dimensinfin.eveonline.neocom.service.MemoryStoreCacheService;
@@ -38,7 +36,7 @@ public class NeoComInfinityBackendDependenciesModule extends AbstractModule {
 		String sdeDatabasePath = System.getProperty( ENV_SDE_DATABASE );
 		if (null == propDirectory) propDirectory = "/src/integration/resources/properties";
 		if (null == appDirectory) appDirectory = "appDir";
-		if (null == sdeDatabasePath) sdeDatabasePath = "/src/integration/resources/sde.db";
+		if (null == sdeDatabasePath) sdeDatabasePath = "sde.db";
 		bind( String.class )
 				.annotatedWith( Names.named( "PropertiesDirectory" ) )
 				.toInstance( propDirectory );
@@ -60,29 +58,29 @@ public class NeoComInfinityBackendDependenciesModule extends AbstractModule {
 				.in( Singleton.class );
 
 		// Bind DM services until this is declared on the DM library.
-		bind( RetrofitService.class )
-				.annotatedWith( Names.named( "RetrofitService" ) )
-				.to( RetrofitService.class )
-				.in( Singleton.class );
-		bind( ISDEDatabaseService.class )
-				.annotatedWith( Names.named( "ISDEDatabaseService" ) )
-				.to( SBSDEDatabaseService.class )
-				.in( Singleton.class );
 		bind( IStoreCache.class )
 				.annotatedWith( Names.named( "IStoreCache" ) )
 				.to( MemoryStoreCacheService.class )
+				.in( Singleton.class );
+		bind( RetrofitService.class )
+				.annotatedWith( Names.named( "RetrofitService" ) )
+				.to( RetrofitService.class )
 				.in( Singleton.class );
 		bind( ESIDataService.class )
 				.annotatedWith( Names.named( "ESIDataService" ) )
 				.to( ESIDataService.class )
 				.in( Singleton.class );
+		bind( ISDEDatabaseService.class )
+				.annotatedWith( Names.named( "ISDEDatabaseService" ) )
+				.to( SBSDEDatabaseService.class )
+				.in( Singleton.class );
 		bind( ResourceFactory.class )
 				.annotatedWith( Names.named( "ResourceFactory" ) )
 				.to( ResourceFactory.class )
 				.in( Singleton.class );
-		bind( NeoComDatabaseService.class )
-				.annotatedWith( Names.named( "NeoComDatabaseService" ) )
-				.to( SBNeoComDBAdapter.class )
-				.in( Scopes.SINGLETON );
+//		bind( SDERepository.class )
+//				.annotatedWith( Names.named( "SDERepository" ) )
+//				.to( SDERepository.class )
+//				.in( Singleton.class );
 	}
 }
