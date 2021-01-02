@@ -1,0 +1,94 @@
+package org.dimensinfin.eveonline.neocom.infinity.backend;
+
+import com.google.inject.AbstractModule;
+import com.google.inject.Scopes;
+import com.google.inject.Singleton;
+import com.google.inject.name.Names;
+
+import org.dimensinfin.eveonline.neocom.adapter.LocationCatalogService;
+import org.dimensinfin.eveonline.neocom.adapter.StoreCacheManager;
+import org.dimensinfin.eveonline.neocom.database.NeoComDatabaseService;
+import org.dimensinfin.eveonline.neocom.database.core.ISDEDatabaseService;
+import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBConfigurationService;
+import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBFileSystemAdapter;
+import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBNeoComDBAdapter;
+import org.dimensinfin.eveonline.neocom.infinity.backend.sde.service.SBSDEDatabaseService;
+import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
+import org.dimensinfin.eveonline.neocom.provider.IFileSystem;
+import org.dimensinfin.eveonline.neocom.provider.RetrofitFactory;
+import org.dimensinfin.eveonline.neocom.service.ESIDataService;
+import org.dimensinfin.eveonline.neocom.service.IStoreCache;
+import org.dimensinfin.eveonline.neocom.service.MemoryStoreCacheService;
+import org.dimensinfin.eveonline.neocom.service.RetrofitService;
+
+public class NeoComInfinityBackendDependenciesModule extends AbstractModule {
+	private static final String ENV_PROPERTIES_DIRECTORY = "PROPERTIES_DIRECTORY";
+	private static final String ENV_APPLICATION_DIRECTORY = "APPLICATION_DIRECTORY";
+	private static final String ENV_SDE_DATABASE = "SDE_DATABASE_PATH";
+	private static final String DEFAULT_PROPERTIES_DIRECTORY = "/src/integration/resources/properties";
+	private static final String DEFAULT_APPLICATION_DIRECTORY = "appDir";
+	private static final String DEFAULT_SDE_DATABASE = "sde.db";
+
+	@Override
+	protected void configure() {
+		// Bing configuration environment defined settings.
+		String propDirectory = System.getProperty( ENV_PROPERTIES_DIRECTORY );
+		String appDirectory = System.getProperty( ENV_APPLICATION_DIRECTORY );
+		String sdeDatabasePath = System.getProperty( ENV_SDE_DATABASE );
+		if (null == propDirectory) propDirectory = "/src/integration/resources/properties";
+		if (null == appDirectory) appDirectory = "appDir";
+		if (null == sdeDatabasePath) sdeDatabasePath = "/src/integration/resources/sde.db";
+		bind( String.class )
+				.annotatedWith( Names.named( "PropertiesDirectory" ) )
+				.toInstance( propDirectory );
+		bind( String.class )
+				.annotatedWith( Names.named( "ApplicationDirectory" ) )
+				.toInstance( appDirectory );
+		bind( String.class )
+				.annotatedWith( Names.named( "SDEDatabasePath" ) )
+				.toInstance( sdeDatabasePath );
+
+		// Bing platform specific implementations.
+		bind( IConfigurationService.class )
+				.annotatedWith( Names.named( "IConfigurationService" ) )
+				.to( SBConfigurationService.class )
+				.in( Singleton.class );
+		bind( IFileSystem.class )
+				.annotatedWith( Names.named( "IFileSystem" ) )
+				.to( SBFileSystemAdapter.class )
+				.in( Singleton.class );
+
+		// Bind DM services until this is declared on the DM library.
+		bind( RetrofitService.class )
+				.annotatedWith( Names.named( "RetrofitService" ) )
+				.to( RetrofitService.class )
+				.in( Singleton.class );
+		bind( ISDEDatabaseService.class )
+				.annotatedWith( Names.named( "ISDEDatabaseService" ) )
+				.to( SBSDEDatabaseService.class )
+				.in( Singleton.class );
+		bind( IStoreCache.class )
+				.annotatedWith( Names.named( "IStoreCache" ) )
+				.to( MemoryStoreCacheService.class )
+				.in( Singleton.class );
+
+
+
+		bind( RetrofitFactory.class )
+				.annotatedWith( Names.named( "RetrofitFactory" ) )
+				.to( RetrofitFactory.class )
+				.in( Scopes.SINGLETON );
+		bind( LocationCatalogService.class )
+				.annotatedWith( Names.named( "LocationCatalogService" ) )
+				.to( LocationCatalogService.class )
+				.in( Scopes.SINGLETON );
+		bind( ESIDataService.class )
+				.annotatedWith( Names.named( "ESIDataService" ) )
+				.to( ESIDataService.class )
+				.in( Scopes.SINGLETON );
+		bind( NeoComDatabaseService.class )
+				.annotatedWith( Names.named( "NeoComDatabaseService" ) )
+				.to( SBNeoComDBAdapter.class )
+				.in( Scopes.SINGLETON );
+	}
+}
