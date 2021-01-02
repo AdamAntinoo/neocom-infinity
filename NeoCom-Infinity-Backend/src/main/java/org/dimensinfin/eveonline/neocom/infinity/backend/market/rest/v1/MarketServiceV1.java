@@ -17,7 +17,6 @@ import org.dimensinfin.eveonline.neocom.domain.space.SpaceLocation;
 import org.dimensinfin.eveonline.neocom.domain.space.Station;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCorporationsCorporationIdOk;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetMarketsRegionIdOrders200Ok;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataServiceWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.LocationCatalogServiceWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.backend.core.rest.NeoComCredentialService;
 import org.dimensinfin.eveonline.neocom.infinity.backend.market.domain.MarketData;
@@ -40,11 +39,13 @@ public class MarketServiceV1 extends NeoComCredentialService {
 	@Autowired
 	public MarketServiceV1( final @NotNull NeoComAuthenticationProvider neoComAuthenticationProvider,
 	                        final @NotNull CredentialDetailsService credentialDetailsService,
-	                        final @NotNull ESIDataServiceWrapper esiDataServiceWrapper,
+	                        //	                        final @NotNull ESIDataServiceWrapper esiDataServiceWrapper,
+	                        final @NotNull ESIDataService esiDataService,
 	                        final @NotNull LocationCatalogServiceWrapper locationCatalogServiceWrapper/*,
 	                        final @NotNull PilotPreferencesRepository pilotPreferencesRepository */ ) {
 		super( neoComAuthenticationProvider, credentialDetailsService );
-		this.esiDataService = Objects.requireNonNull( esiDataServiceWrapper.getSingleton() );
+		this.esiDataService = esiDataService;
+		//		this.esiDataService = Objects.requireNonNull( esiDataServiceWrapper.getSingleton() );
 		this.locationCatalogService = Objects.requireNonNull( locationCatalogServiceWrapper.getSingleton() );
 		//		this.pilotPreferencesRepository = pilotPreferencesRepository;
 	}

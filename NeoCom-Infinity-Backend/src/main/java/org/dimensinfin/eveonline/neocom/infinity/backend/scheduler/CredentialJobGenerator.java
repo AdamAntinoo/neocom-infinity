@@ -8,15 +8,20 @@ import org.dimensinfin.eveonline.neocom.adapter.LocationCatalogService;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.database.repositories.CredentialRepository;
 import org.dimensinfin.eveonline.neocom.database.repositories.MiningRepository;
+import org.dimensinfin.eveonline.neocom.database.repositories.SDERepository;
+import org.dimensinfin.eveonline.neocom.infinity.backend.core.service.DataStoreService;
+import org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.jobs.BlueprintProcessorJob;
 import org.dimensinfin.eveonline.neocom.infinity.mining.MiningExtractionsProcess;
 import org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.config.SchedulerConfiguration;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
+import org.dimensinfin.eveonline.neocom.service.ESIDataService;
 import org.dimensinfin.eveonline.neocom.service.logger.NeoComLogger;
 import org.dimensinfin.eveonline.neocom.service.scheduler.JobScheduler;
 import org.dimensinfin.eveonline.neocom.service.scheduler.domain.Job;
 
-import static org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.CronSchedulePropertyDefinitions.CRON_SCHEDULE_MINING_EXTRACTIONS;
+import static org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.config.CronSchedulePropertyDefinitions.CRON_SCHEDULE_MINING_EXTRACTIONS;
+import static org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.config.CronSchedulePropertyDefinitions.CRON_SCHEDULE_PROCESSING_BLUEPRINTS;
 
 public class CredentialJobGenerator extends Job {
 	private IConfigurationService configurationService;
@@ -25,6 +30,9 @@ public class CredentialJobGenerator extends Job {
 	private MiningRepository miningRepository;
 	private ESIDataProvider esiDataProvider;
 	private LocationCatalogService locationCatalogService;
+	private ESIDataService esiDataService;
+	private SDERepository sdeRepository;
+	private DataStoreService dataStoreService;
 
 	private CredentialJobGenerator() {
 		this.setSchedule( "0/5 - *" );
@@ -61,6 +69,13 @@ public class CredentialJobGenerator extends Job {
 							.withMiningRepository( this.miningRepository )
 							.addCronSchedule( this.configurationService.getResourceString( CRON_SCHEDULE_MINING_EXTRACTIONS, "* - *" ) )
 							.build() );
+			if (this.schedulerConfiguration.getAllowedProcessingBlueprints())
+				JobScheduler.getJobScheduler().registerJob( new BlueprintProcessorJob.Builder()
+						.withCredential( credential )
+						.withEsiDataService( this.esiDataService )
+						.withSDERepository( this.sdeRepository )
+						.addCronSchedule( this.configurationService.getResourceString( CRON_SCHEDULE_PROCESSING_BLUEPRINTS, "* - 0" ) )
+						.build() );
 		}
 		NeoComLogger.exit();
 		return true;
@@ -113,7 +128,19 @@ public class CredentialJobGenerator extends Job {
 			this.onConstruction.esiDataProvider = esiDataProvider;
 			return this;
 		}
+		public CredentialJobGenerator.Builder withEsiDataService( final ESIDataService esiDataService ) {
+			this.onConstruction.esiDataService = Objects.requireNonNull( esiDataService );
+			return this;
+		}
 
+		public CredentialJobGenerator.Builder withSDERepository ( final SDERepository sdeRepository){
+			this.onConstruction.sdeRepository = Objects.requireNonNull( sdeRepository );
+			return this;
+		}
+		public CredentialJobGenerator.Builder withDataStore( final DataStoreService dataStoreService ){
+			this.onConstruction.dataStoreService = Objects.requireNonNull( dataStoreService );
+			return this;
+		}
 		public CredentialJobGenerator.Builder withLocationCatalogService( final LocationCatalogService locationCatalogService ) {
 			Objects.requireNonNull( locationCatalogService );
 			this.onConstruction.locationCatalogService = locationCatalogService;

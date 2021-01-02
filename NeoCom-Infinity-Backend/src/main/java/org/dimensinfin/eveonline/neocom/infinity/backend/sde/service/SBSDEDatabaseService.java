@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.text.MessageFormat;
 import javax.validation.constraints.NotNull;
 
+import com.google.inject.Inject;
+import com.google.inject.name.Named;
 import org.springframework.core.io.ClassPathResource;
 
 import org.dimensinfin.eveonline.neocom.database.core.ISDEDatabaseService;
@@ -19,7 +21,8 @@ public class SBSDEDatabaseService implements ISDEDatabaseService {
 	private Connection connectionSource;
 
 	// - C O N S T R U C T O R S
-	public SBSDEDatabaseService( final @NotNull String databasePath ) throws SQLException {
+	@Inject
+	public SBSDEDatabaseService( final @NotNull @Named("SDEDatabasePath") String databasePath ) throws SQLException {
 		this.databasePath = databasePath;
 		this.openSDEDB();
 	}

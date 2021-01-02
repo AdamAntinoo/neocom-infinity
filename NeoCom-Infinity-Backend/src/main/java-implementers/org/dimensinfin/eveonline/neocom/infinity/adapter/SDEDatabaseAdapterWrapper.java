@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBSDEDatabaseAdapter;
+import org.dimensinfin.eveonline.neocom.provider.IFileSystem;
 
 @Component
 public class SDEDatabaseAdapterWrapper extends SBSDEDatabaseAdapter {
@@ -17,7 +18,7 @@ public class SDEDatabaseAdapterWrapper extends SBSDEDatabaseAdapter {
 	@Autowired
 	public SDEDatabaseAdapterWrapper( @Value("${neocom.sde.database.path}") final String databasePath,
 	                                  @Value("${neocom.sde.database.name}") final String databaseName,
-	                                  final FileSystemWrapper fileSystemAdapter ) {
+	                                  final IFileSystem fileSystemAdapter ) {
 		this.databasePath = databasePath;
 		this.databaseName = databaseName;
 		this.fileSystemAdapter = fileSystemAdapter;

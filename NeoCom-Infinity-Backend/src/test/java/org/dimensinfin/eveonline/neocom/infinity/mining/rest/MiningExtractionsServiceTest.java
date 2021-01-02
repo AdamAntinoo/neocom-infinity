@@ -19,6 +19,7 @@ import org.dimensinfin.eveonline.neocom.infinity.core.security.CredentialDetails
 import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticationProvider;
 import org.dimensinfin.eveonline.neocom.infinity.mining.rest.v1.MiningExtractionsService;
 import org.dimensinfin.eveonline.neocom.miningextraction.domain.MiningExtraction;
+import org.dimensinfin.eveonline.neocom.service.ResourceFactory;
 
 public class MiningExtractionsServiceTest {
 
@@ -26,6 +27,7 @@ public class MiningExtractionsServiceTest {
 	private CredentialDetailsService credentialDetailsService;
 	private MiningRepositoryWrapper miningRepositoryWrapper;
 	private MiningRepository miningRepository;
+	private ResourceFactory resourceFactory;
 
 	@BeforeEach
 	public void beforeEach() {
@@ -33,6 +35,7 @@ public class MiningExtractionsServiceTest {
 		this.credentialDetailsService = Mockito.mock( CredentialDetailsService.class );
 		this.miningRepositoryWrapper = Mockito.mock( MiningRepositoryWrapper.class );
 		this.miningRepository = Mockito.mock( MiningRepository.class );
+		this.resourceFactory = Mockito.mock(ResourceFactory.class);
 	}
 
 	@Test
@@ -40,7 +43,8 @@ public class MiningExtractionsServiceTest {
 		final MiningExtractionsService miningExtractionsService = new MiningExtractionsService(
 				this.authenticationProvider,
 				this.credentialDetailsService,
-				this.miningRepositoryWrapper );
+				this.miningRepositoryWrapper,
+				this.resourceFactory );
 		Assertions.assertNotNull( miningExtractionsService );
 	}
 
@@ -104,7 +108,8 @@ public class MiningExtractionsServiceTest {
 		final MiningExtractionsService miningExtractionsService = new MiningExtractionsService(
 				this.authenticationProvider,
 				this.credentialDetailsService,
-				this.miningRepositoryWrapper );
+				this.miningRepositoryWrapper,
+				this.resourceFactory );
 		final List<MiningExtractionEntity> obtained = miningExtractionsService.getTodayMiningExtractions4Pilot();
 		// Assertions
 		Assertions.assertNotNull( obtained );

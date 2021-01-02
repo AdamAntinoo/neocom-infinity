@@ -11,8 +11,8 @@ import com.j256.ormlite.support.ConnectionSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.dimensinfin.eveonline.neocom.database.ISDEDatabaseAdapter;
-import org.dimensinfin.eveonline.neocom.database.SBRawStatement;
+import org.dimensinfin.eveonline.neocom.database.core.ISDEDatabaseAdapter;
+import org.dimensinfin.eveonline.neocom.infinity.backend.sde.service.SBRawStatement;
 import org.dimensinfin.eveonline.neocom.provider.IFileSystem;
 
 /**
@@ -51,6 +51,29 @@ public class SBSDEDatabaseAdapter implements ISDEDatabaseAdapter {
 	//	}
 
 	// - G E T T E R S   &   S E T T E R S
+	@Override
+	public String getDatabaseVersion() {
+		return "development";
+	}
+
+	/**
+	 * This is the specific SpringBoot implementation for the SDE database adaptation. We can create compatible
+	 * <code>RawStatements</code> that can isolate the generic database access code from the platform specific. This
+	 * statement uses the database connection to create a generic JDBC Java statement.
+	 */
+	public SBRawStatement constructStatement( final String query, final String[] parameters ) throws SQLException {
+		return new SBRawStatement( this.getSDEDatabase(), query, parameters );
+	}
+
+	private void createConnectionSource() throws SQLException {
+		this.connectionSource = new JdbcPooledConnectionSource( this.getConnectionDescriptor() );
+		this.connectionSource
+				.setMaxConnectionAgeMillis( TimeUnit.MINUTES.toMillis( 5 ) ); // Keep the connections open for 5 minutes
+		this.connectionSource.setCheckConnectionsEveryMillis( TimeUnit.SECONDS.toMillis( 60 ) );
+		this.connectionSource.setTestBeforeGet(
+				true ); // Enable the testing of connections right before they are handed to the user
+	}
+
 	private String getConnectionDescriptor() {
 		return this.schema + ":" + this.databasePath + this.databaseName;
 	}
@@ -69,36 +92,7 @@ public class SBSDEDatabaseAdapter implements ISDEDatabaseAdapter {
 		return ((null != this.databasePath) && (null != this.databaseName));
 	}
 
-	/**
-	 * This is the specific SpringBoot implementation for the SDE database adaptation. We can create compatible
-	 * <code>RawStatements</code> that can isolate the generic database access code from the platform specific. This
-	 * statement uses the database connection to create a generic JDBC Java statement.
-	 */
-	public SBRawStatement constructStatement( final String query, final String[] parameters ) throws SQLException {
-		return new SBRawStatement( this.getSDEDatabase(), query, parameters );
-	}
-
-	@Override
-	public Integer getDatabaseVersion() {
-		return null;
-	}
-
-	//	@Override
-	//	public Dao<EsiLocation, Long> getLocationDao() throws NeoComRuntimeException {
-	//		return null;
-	//	}
-
-	private void createConnectionSource() throws SQLException {
-		this.connectionSource = new JdbcPooledConnectionSource( this.getConnectionDescriptor() );
-		this.connectionSource
-				.setMaxConnectionAgeMillis( TimeUnit.MINUTES.toMillis( 5 ) ); // Keep the connections open for 5 minutes
-		this.connectionSource.setCheckConnectionsEveryMillis( TimeUnit.SECONDS.toMillis( 60 ) );
-		this.connectionSource.setTestBeforeGet(
-				true ); // Enable the testing of connections right before they are handed to the user
-	}
-
 	// - I S D E D A T A B A S E A D A P T E R
-
 	private void onCreate( final ConnectionSource databaseConnection ) {
 		logger.info( ">> [SDEDatabaseAdapter.onCreate]" );
 		// Create the tables that do not exist
