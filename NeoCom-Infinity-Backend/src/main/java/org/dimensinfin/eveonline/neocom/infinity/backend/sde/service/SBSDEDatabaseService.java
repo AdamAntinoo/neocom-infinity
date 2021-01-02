@@ -1,5 +1,6 @@
 package org.dimensinfin.eveonline.neocom.infinity.backend.sde.service;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -69,12 +70,12 @@ public class SBSDEDatabaseService implements ISDEDatabaseService {
 		} catch (final ClassNotFoundException cnfe) {
 			throw new SQLException( MessageFormat.format( "Cannot create connection. {0}.", cnfe.getMessage() ) );
 		}
-		try {
-			final String dbPath = new ClassPathResource( this.databasePath ).getFile().getAbsolutePath();
+//		try {
+			final String dbPath = new File( System.getProperty( "user.dir" ) + this.databasePath ).getAbsolutePath();
 			this.connectionSource = DriverManager.getConnection( "jdbc:sqlite:" + dbPath );
 			this.connectionSource.setAutoCommit( false );
-		} catch (IOException e) {
-			throw new SQLException( MessageFormat.format( "Cannot open resource file {0}.", this.databasePath ) );
-		}
+//		} catch (IOException e) {
+//			throw new SQLException( MessageFormat.format( "Cannot open resource file {0}.", this.databasePath ) );
+//		}
 	}
 }
