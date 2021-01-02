@@ -1,21 +1,21 @@
-package org.dimensinfin.eveonline.neocom.infinity.core.config;
+package org.dimensinfin.eveonline.neocom.infinity.backend.core.config;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.google.inject.Key;
+import com.google.inject.name.Names;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import org.dimensinfin.eveonline.neocom.adapter.LocationCatalogService;
-import org.dimensinfin.eveonline.neocom.adapter.StoreCacheManager;
-import org.dimensinfin.eveonline.neocom.database.NeoComDatabaseService;
-import org.dimensinfin.eveonline.neocom.database.repositories.PilotPreferencesRepository;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBConfigurationService;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBFileSystemAdapter;
-import org.dimensinfin.eveonline.neocom.infinity.backend.NeoComInfinityBackendDependenciesModule;
+import org.dimensinfin.eveonline.neocom.infinity.backend.sde.service.SBSDEDatabaseService;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 import org.dimensinfin.eveonline.neocom.provider.IFileSystem;
-import org.dimensinfin.eveonline.neocom.provider.RetrofitFactory;
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
+import org.dimensinfin.eveonline.neocom.service.IStoreCache;
+import org.dimensinfin.eveonline.neocom.service.MemoryStoreCacheService;
+import org.dimensinfin.eveonline.neocom.service.RetrofitService;
 
 /**
  * Configure the Guide dependencies defined at the Data Management library.
@@ -32,42 +32,47 @@ public class NeoComDependencyConfiguration {
 	}
 
 	@Bean
-	public IConfigurationService configurationServiceAccess() {
-		return injector.getInstance( SBConfigurationService.class );
+	public String dependencyApplicationDirectory() {
+		return this.injector.getInstance( Key.get( String.class, Names.named( "ApplicationDirectory" ) ) );
 	}
 
 	@Bean
-	public ESIDataService esiDataServiceAccess() {
+	public ESIDataService dependencyESIDataService() {
 		return injector.getInstance( ESIDataService.class );
 	}
 
 	@Bean
-	public IFileSystem fileSystemAccess() {
+	public IConfigurationService dependencyIConfigurationService() {
+		return injector.getInstance( SBConfigurationService.class );
+	}
+
+	@Bean
+	public IFileSystem dependencyIFileSystem() {
 		return injector.getInstance( SBFileSystemAdapter.class );
 	}
 
 	@Bean
-	public LocationCatalogService locationCatalogServiceAccess() {
-		return injector.getInstance( LocationCatalogService.class );
+	public SBSDEDatabaseService dependencyISDEDatabaseService() {
+		return injector.getInstance( SBSDEDatabaseService.class );
 	}
 
 	@Bean
-	public NeoComDatabaseService neoComDatabaseServiceAccess() {
-		return injector.getInstance( NeoComDatabaseService.class );
+	public IStoreCache dependencyIStoreCache() {
+		return injector.getInstance( MemoryStoreCacheService.class );
 	}
 
 	@Bean
-	public PilotPreferencesRepository pilotPreferencesRepositoryAccess() {
-		return injector.getInstance( PilotPreferencesRepository.class );
+	public String dependencyPropertiesDirectory() {
+		return this.injector.getInstance( Key.get( String.class, Names.named( "PropertiesDirectory" ) ) );
 	}
 
 	@Bean
-	public RetrofitFactory retrofitFactoryAccess() {
-		return injector.getInstance( RetrofitFactory.class );
+	public RetrofitService dependencyRetrofitService() {
+		return injector.getInstance( RetrofitService.class );
 	}
 
 	@Bean
-	public StoreCacheManager storeCacheManagerAccess() {
-		return injector.getInstance( StoreCacheManager.class );
+	public String dependencySDEDatabasePath() {
+		return this.injector.getInstance( Key.get( String.class, Names.named( "SDEDatabasePath" ) ) );
 	}
 }

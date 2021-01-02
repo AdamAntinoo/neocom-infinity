@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.backend;
+package org.dimensinfin.eveonline.neocom.infinity.backend.core.config;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
@@ -19,6 +19,7 @@ import org.dimensinfin.eveonline.neocom.provider.RetrofitFactory;
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
 import org.dimensinfin.eveonline.neocom.service.IStoreCache;
 import org.dimensinfin.eveonline.neocom.service.MemoryStoreCacheService;
+import org.dimensinfin.eveonline.neocom.service.ResourceFactory;
 import org.dimensinfin.eveonline.neocom.service.RetrofitService;
 
 public class NeoComInfinityBackendDependenciesModule extends AbstractModule {
@@ -31,7 +32,7 @@ public class NeoComInfinityBackendDependenciesModule extends AbstractModule {
 
 	@Override
 	protected void configure() {
-		// Bing configuration environment defined settings.
+		// Bind configuration environment defined settings.
 		String propDirectory = System.getProperty( ENV_PROPERTIES_DIRECTORY );
 		String appDirectory = System.getProperty( ENV_APPLICATION_DIRECTORY );
 		String sdeDatabasePath = System.getProperty( ENV_SDE_DATABASE );
@@ -48,7 +49,7 @@ public class NeoComInfinityBackendDependenciesModule extends AbstractModule {
 				.annotatedWith( Names.named( "SDEDatabasePath" ) )
 				.toInstance( sdeDatabasePath );
 
-		// Bing platform specific implementations.
+		// Bind platform specific implementations.
 		bind( IConfigurationService.class )
 				.annotatedWith( Names.named( "IConfigurationService" ) )
 				.to( SBConfigurationService.class )
@@ -71,21 +72,14 @@ public class NeoComInfinityBackendDependenciesModule extends AbstractModule {
 				.annotatedWith( Names.named( "IStoreCache" ) )
 				.to( MemoryStoreCacheService.class )
 				.in( Singleton.class );
-
-
-
-		bind( RetrofitFactory.class )
-				.annotatedWith( Names.named( "RetrofitFactory" ) )
-				.to( RetrofitFactory.class )
-				.in( Scopes.SINGLETON );
-		bind( LocationCatalogService.class )
-				.annotatedWith( Names.named( "LocationCatalogService" ) )
-				.to( LocationCatalogService.class )
-				.in( Scopes.SINGLETON );
 		bind( ESIDataService.class )
 				.annotatedWith( Names.named( "ESIDataService" ) )
 				.to( ESIDataService.class )
-				.in( Scopes.SINGLETON );
+				.in( Singleton.class );
+		bind( ResourceFactory.class )
+				.annotatedWith( Names.named( "ResourceFactory" ) )
+				.to( ResourceFactory.class )
+				.in( Singleton.class );
 		bind( NeoComDatabaseService.class )
 				.annotatedWith( Names.named( "NeoComDatabaseService" ) )
 				.to( SBNeoComDBAdapter.class )
