@@ -36,7 +36,7 @@ public class NeoComInfinityBackendDependenciesModule extends AbstractModule {
 		String sdeDatabasePath = System.getProperty( ENV_SDE_DATABASE );
 		if (null == propDirectory) propDirectory = "/src/integration/resources/properties";
 		if (null == appDirectory) appDirectory = "appDir";
-		if (null == sdeDatabasePath) sdeDatabasePath = "sde.db";
+		if (null == sdeDatabasePath) sdeDatabasePath = "./build/resources/main/sde.db";
 		bind( String.class )
 				.annotatedWith( Names.named( "PropertiesDirectory" ) )
 				.toInstance( propDirectory );
