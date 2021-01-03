@@ -2,14 +2,14 @@
   <configuration default="false" name="NeoCom.Infinity-backend [DEV]" type="Application" factoryName="Application">
     <option name="ALTERNATIVE_JRE_PATH" value="11-OpenJDK" />
     <envs>
-      <env name="PORT" value="9500" />
+      <env name="PORT" value="5240" />
       <env name="JDBC_DATABASE_URL" value="jdbc:postgresql://0.0.0.0:5432/postgres" />
       <env name="DB_USER" value="adamantinoo" />
       <env name="DB_PASSWORD" value="z.iliada.2020" />
       <env name="NEOCOM_DATABASE_URL" value="jdbc:postgresql://localhost:5432/postgres?user=adamantinoo&amp;password=z.iliada.2020" />
       <env name="NEOCOM_BANNER_LOCATION" value="./build/resources/main/app-banner.txt" />
       <env name="PROPERTIES_DIRECTORY" value="/build/resources/main/properties-dev" />
-      <env name="APPLICATION_DIRECTORY" value="/build/NeoCom.Infinity.Development" />
+      <env name="APPLICATION_DIRECTORY" value="./build/NeoCom.Infinity.Development" />
       <env name="SDE_DATABASE_PATH" value="/build/resources/main/sde.db" />
       <env name="PROFILE" value="development" />
     </envs>

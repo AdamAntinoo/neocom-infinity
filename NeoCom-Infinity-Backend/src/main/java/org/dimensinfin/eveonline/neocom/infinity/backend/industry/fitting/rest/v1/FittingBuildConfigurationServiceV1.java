@@ -32,7 +32,7 @@ import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticat
 import org.dimensinfin.eveonline.neocom.infinity.datamanagement.industry.processor.IndustryBuildProcessor;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 
-import static org.dimensinfin.eveonline.neocom.infinity.backend.industry.rest.IndustryControllerV1.INDUSTRY_ERROR_CODE_PREFIX;
+import static org.dimensinfin.eveonline.neocom.infinity.backend.industry.IndustryControllerV1.INDUSTRY_ERROR_CODE_PREFIX;
 
 /**
  * Fitting Build Orders are a complex data structure that represents the components and actions that that user preferences when building a determinate
