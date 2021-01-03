@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import org.dimensinfin.eveonline.neocom.infinity.adapter.ConfigurationServiceWrapper;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBConfigurationService;
+import org.dimensinfin.eveonline.neocom.infinity.service.SBConfigurationService;
 
 @Component
 public class SchedulerConfiguration {

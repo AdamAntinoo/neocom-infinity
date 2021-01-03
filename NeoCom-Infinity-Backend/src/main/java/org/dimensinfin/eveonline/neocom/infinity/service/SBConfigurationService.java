@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.adapter.implementers;
+package org.dimensinfin.eveonline.neocom.infinity.service;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,27 +8,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Properties;
+import javax.validation.constraints.NotNull;
 
 import com.annimon.stream.Stream;
+import com.google.inject.Inject;
+import com.google.inject.name.Named;
 
 import org.dimensinfin.eveonline.neocom.provider.AConfigurationService;
 import org.dimensinfin.logging.LogWrapper;
 
 public class SBConfigurationService extends AConfigurationService {
-	public void setProperty( final String propertyName, final String value ) {
-		this.configurationProperties.setProperty( propertyName, value );
-	}
-
-	/**
-	 * Reads all the files found on the parameter directory path. Because the directory is read as a stream the method to read
-	 * the directory does not use the file system isolation.
-	 */
-	protected List<String> getResourceFiles( final String initialPath ) throws IOException {
-		final File rootFolder = new File( System.getProperty( "user.dir" ) + initialPath );
-		LogWrapper.info( MessageFormat.format( "User directory: {0}", System.getProperty( "user.dir" ) ) );
-		LogWrapper.info( MessageFormat.format( "Configured path: {0}", initialPath ) );
-		LogWrapper.info( MessageFormat.format( "Root directory: {0}", rootFolder.toString() ) );
-		return this.listFilesForFolder( rootFolder );
+	// - C O N S T R U C T O R S
+	@Inject
+	public SBConfigurationService( final @NotNull @Named("PropertiesDirectory") String propertiesDirectory ) {
+		if (null != propertiesDirectory) this.configuredPropertiesDirectory = propertiesDirectory;
+		this.readAllProperties();
 	}
 
 	public void readAllProperties() {
@@ -57,6 +51,22 @@ public class SBConfigurationService extends AConfigurationService {
 		LogWrapper.exit( MessageFormat.format( "> Total properties number: {0}", this.contentCount() + "" ) );
 	}
 
+	/**
+	 * Reads all the files found on the parameter directory path. Because the directory is read as a stream the method to read
+	 * the directory does not use the file system isolation.
+	 */
+	protected List<String> getResourceFiles( final String initialPath ) throws IOException {
+		final File rootFolder = new File( System.getProperty( "user.dir" ) + initialPath );
+		LogWrapper.info( MessageFormat.format( "User directory: {0}", System.getProperty( "user.dir" ) ) );
+		LogWrapper.info( MessageFormat.format( "Configured path: {0}", initialPath ) );
+		LogWrapper.info( MessageFormat.format( "Root directory: {0}", rootFolder.toString() ) );
+		return this.listFilesForFolder( rootFolder );
+	}
+
+	public void setProperty( final String propertyName, final String value ) {
+		this.configurationProperties.setProperty( propertyName, value );
+	}
+
 	private List<String> listFilesForFolder( final File folder ) throws IOException {
 		final List<String> filenames = new ArrayList<>();
 		try {
@@ -71,20 +81,20 @@ public class SBConfigurationService extends AConfigurationService {
 		return filenames;
 	}
 
-	// - B U I L D E R
-	public static class Builder extends AConfigurationService.Builder<SBConfigurationService, SBConfigurationService.Builder> {
-		private SBConfigurationService onConstruction;
-
-		// - G E T T E R S   &   S E T T E R S
-		@Override
-		protected SBConfigurationService getActual() {
-			if (null == this.onConstruction) this.onConstruction = new SBConfigurationService();
-			return this.onConstruction;
-		}
-
-		@Override
-		protected SBConfigurationService.Builder getActualBuilder() {
-			return this;
-		}
-	}
+	//	// - B U I L D E R
+	//	public static class Builder extends AConfigurationService.Builder<SBConfigurationService, SBConfigurationService.Builder> {
+	//		private SBConfigurationService onConstruction;
+	//
+	//		// - G E T T E R S   &   S E T T E R S
+	//		@Override
+	//		protected SBConfigurationService getActual() {
+	//			if (null == this.onConstruction) this.onConstruction = new SBConfigurationService();
+	//			return this.onConstruction;
+	//		}
+	//
+	//		@Override
+	//		protected SBConfigurationService.Builder getActualBuilder() {
+	//			return this;
+	//		}
+	//	}
 }

@@ -6,7 +6,6 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBConfigurationService;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 import org.dimensinfin.eveonline.neocom.provider.IFileSystem;
 import org.dimensinfin.eveonline.neocom.provider.RetrofitFactory;
@@ -19,9 +18,9 @@ public class RetrofitFactoryWrapper {
 
 	// - C O N S T R U C T O R S
 	@Autowired
-	public RetrofitFactoryWrapper( final ConfigurationServiceWrapper configurationServiceWrapper,
+	public RetrofitFactoryWrapper( final IConfigurationService configurationServiceWrapper,
 	                               final IFileSystem fileSystemAdapter ) {
-		this.configurationService = configurationServiceWrapper.getSingleton();
+		this.configurationService = configurationServiceWrapper;
 		this.fileSystemAdapter = fileSystemAdapter;
 	}
 
