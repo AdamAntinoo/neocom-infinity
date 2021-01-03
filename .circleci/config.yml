@@ -274,6 +274,7 @@ workflows:
             branches:
               only:
                 - experimental
+                - development
 
       - test-backend-job:
           requires:
