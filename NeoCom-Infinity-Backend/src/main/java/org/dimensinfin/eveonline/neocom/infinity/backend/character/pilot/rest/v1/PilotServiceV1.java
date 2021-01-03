@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.dimensinfin.eveonline.neocom.domain.Pilot;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdOk;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataProviderWrapper;
-import org.dimensinfin.eveonline.neocom.infinity.backend.core.rest.NeoComAuthenticatedService;
+import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComAuthenticatedService;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 

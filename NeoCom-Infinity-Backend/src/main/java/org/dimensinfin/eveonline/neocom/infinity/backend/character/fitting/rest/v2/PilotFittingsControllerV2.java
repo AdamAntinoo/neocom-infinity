@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import org.dimensinfin.eveonline.neocom.infinity.backend.character.fitting.domain.FittingModel;
-import org.dimensinfin.eveonline.neocom.infinity.backend.core.rest.NeoComAuthenticatedController;
+import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComAuthenticatedController;
 import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticationProvider;
 
 @RestController

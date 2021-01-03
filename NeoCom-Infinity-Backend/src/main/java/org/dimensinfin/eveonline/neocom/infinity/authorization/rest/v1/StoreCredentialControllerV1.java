@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialResponse;
-import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.ErrorInfo;
-import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.NeoComSBException;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.ErrorInfo;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComSBException;
 
 @RestController
 @CrossOrigin()

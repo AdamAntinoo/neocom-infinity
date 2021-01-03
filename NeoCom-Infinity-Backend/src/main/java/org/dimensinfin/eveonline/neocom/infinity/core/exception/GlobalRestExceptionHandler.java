@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.backend.core.exception;
+package org.dimensinfin.eveonline.neocom.infinity.core.exception;
 
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;

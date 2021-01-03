@@ -7,7 +7,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.dimensinfin.eveonline.neocom.adapter.LocationCatalogService;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.database.repositories.MiningRepository;
-import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.NeoComSBException;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComSBException;
 import org.dimensinfin.eveonline.neocom.miningextraction.service.MiningExtractionDownloader;
 import org.dimensinfin.eveonline.neocom.miningextraction.service.MiningExtractionPersistent;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;

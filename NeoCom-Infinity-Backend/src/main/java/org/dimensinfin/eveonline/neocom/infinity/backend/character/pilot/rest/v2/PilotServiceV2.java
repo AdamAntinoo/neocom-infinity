@@ -9,7 +9,7 @@ import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterI
 import org.dimensinfin.eveonline.neocom.infinity.adapter.ConfigurationServiceWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataProviderWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.backend.character.pilot.converter.EsiPilotDataToPilotModelConverter;
-import org.dimensinfin.eveonline.neocom.infinity.backend.core.rest.NeoComAuthenticatedService;
+import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComAuthenticatedService;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
 import org.dimensinfin.eveonline.neocom.infinity.pilot.rest.representation.PilotModel;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;

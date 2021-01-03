@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
-import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.NeoComSBException;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComSBException;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.support.SupportCredentialRepositoryWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.support.client.CredentialCountResponse;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.support.SupportCredentialRepository;

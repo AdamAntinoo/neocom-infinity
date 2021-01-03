@@ -10,7 +10,7 @@ import org.mockito.Mockito;
 import org.springframework.http.ResponseEntity;
 
 import org.dimensinfin.eveonline.neocom.database.entities.MiningExtractionEntity;
-import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.NeoComAuthorizationException;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComAuthorizationException;
 import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticationProvider;
 import org.dimensinfin.eveonline.neocom.infinity.mining.rest.v1.MiningExtractionsController;
 import org.dimensinfin.eveonline.neocom.infinity.mining.rest.v1.MiningExtractionsService;

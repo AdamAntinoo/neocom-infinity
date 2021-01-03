@@ -3,6 +3,9 @@ package org.dimensinfin.eveonline.neocom.infinity.core.exceptions;
 import org.junit.Assert;
 import org.junit.Test;
 
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.ErrorInfo;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComNotFoundException;
+
 public class NeoComNotFoundExceptionTest {
 	@Test
 	public void constructorsContract() {

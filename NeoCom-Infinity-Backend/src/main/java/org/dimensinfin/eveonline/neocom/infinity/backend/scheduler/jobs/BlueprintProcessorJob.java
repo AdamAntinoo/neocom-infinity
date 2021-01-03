@@ -9,7 +9,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.database.repositories.SDERepository;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdBlueprints200Ok;
-import org.dimensinfin.eveonline.neocom.infinity.backend.core.service.DataStoreService;
+import org.dimensinfin.eveonline.neocom.infinity.service.DataStoreService;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.domain.ProcessedBlueprint;
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
 import org.dimensinfin.eveonline.neocom.service.scheduler.domain.Job;
