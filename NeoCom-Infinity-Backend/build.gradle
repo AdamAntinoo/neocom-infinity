@@ -27,7 +27,6 @@ configurations {
     runtimeClasspath {
         extendsFrom developmentOnly
     }
-//    deploy
 }
 
 repositories {

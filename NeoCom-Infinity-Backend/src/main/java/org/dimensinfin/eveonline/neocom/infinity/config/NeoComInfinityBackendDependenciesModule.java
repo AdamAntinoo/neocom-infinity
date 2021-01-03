@@ -21,8 +21,8 @@ public class NeoComInfinityBackendDependenciesModule extends AbstractModule {
 	private static final String ENV_APPLICATION_DIRECTORY = "APPLICATION_DIRECTORY";
 	private static final String ENV_SDE_DATABASE = "SDE_DATABASE_PATH";
 	private static final String DEFAULT_PROPERTIES_DIRECTORY = "/build/resources/main/properties";
-	private static final String DEFAULT_APPLICATION_DIRECTORY = "appDir";
-	private static final String DEFAULT_SDE_DATABASE = "sde.db";
+	private static final String DEFAULT_APPLICATION_DIRECTORY = "/build/NeoCom.Infinity.Development";
+	private static final String DEFAULT_SDE_DATABASE = "/build/resources/main/sde.db";
 
 	@Override
 	protected void configure() {
@@ -31,8 +31,8 @@ public class NeoComInfinityBackendDependenciesModule extends AbstractModule {
 		String appDirectory = System.getenv( ENV_APPLICATION_DIRECTORY );
 		String sdeDatabasePath = System.getenv( ENV_SDE_DATABASE );
 		if (null == propDirectory) propDirectory = DEFAULT_PROPERTIES_DIRECTORY;
-		if (null == appDirectory) appDirectory = "build/NeoCom.Infinity.Development";
-		if (null == sdeDatabasePath) sdeDatabasePath = "/build/resources/main/sde.db";
+		if (null == appDirectory) appDirectory = DEFAULT_APPLICATION_DIRECTORY;
+		if (null == sdeDatabasePath) sdeDatabasePath = DEFAULT_SDE_DATABASE;
 		bind( String.class )
 				.annotatedWith( Names.named( "PropertiesDirectory" ) )
 				.toInstance( propDirectory );
