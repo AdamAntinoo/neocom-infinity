@@ -19,7 +19,7 @@ public class GetUniverseTypesTypeIdOkSerializer extends JsonSerializer<GetUniver
 		jgen.writeNumberField( "typeId", value.getTypeId() );
 		jgen.writeStringField( "name", value.getName() );
 		jgen.writeStringField( "description", value.getDescription() );
-		jgen.writeNumberField( "groupId", value.getGroupId() );
+//		jgen.writeNumberField( "groupId", value.getGroupId() );
 		jgen.writeNumberField( "marketGroupId", value.getMarketGroupId() );
 		jgen.writeNumberField( "capacity", value.getCapacity() );
 		jgen.writeNumberField( "mass", value.getMass() );

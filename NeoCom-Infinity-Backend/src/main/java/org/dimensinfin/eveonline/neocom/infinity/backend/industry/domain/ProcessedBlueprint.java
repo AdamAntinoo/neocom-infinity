@@ -12,6 +12,14 @@ public class ProcessedBlueprint {
 	// - C O N S T R U C T O R S
 	private ProcessedBlueprint() {}
 
+	public int getBlueprintType() {
+		return this.blueprintType;
+	}
+
+	public List<Resource> getBom() {
+		return this.bom;
+	}
+
 	// - B U I L D E R
 	public static class Builder {
 		private final ProcessedBlueprint onConstruction;
