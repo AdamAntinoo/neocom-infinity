@@ -15,7 +15,6 @@ import org.dimensinfin.eveonline.neocom.database.repositories.MiningRepository;
 @Component
 public class MiningRepositoryWrapper {
 	private final Dao<MiningExtractionEntity, String> miningExtractionDao;
-//	private final ConnectionSource connection4Transaction;
 	private final LocationCatalogServiceWrapper locationCatalogServiceWrapper;
 	private MiningRepository singleton;
 
@@ -23,7 +22,6 @@ public class MiningRepositoryWrapper {
 	public MiningRepositoryWrapper( final NeoComDBWrapper neocomDBAdapter,
 	                                final LocationCatalogServiceWrapper locationCatalogServiceWrapper ) throws SQLException {
 		this.miningExtractionDao = neocomDBAdapter.getSingleton().getMiningExtractionDao();
-//		this.connection4Transaction = neocomDBAdapter.getSingleton().getConnectionSource();
 		this.locationCatalogServiceWrapper = locationCatalogServiceWrapper;
 	}
 

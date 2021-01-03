@@ -1,6 +1,7 @@
 package org.dimensinfin.eveonline.neocom.infinity.support.rest;
 
 import java.io.IOException;
+import java.text.MessageFormat;
 import java.util.List;
 
 import com.google.gson.GsonBuilder;
@@ -32,6 +33,7 @@ public class NeoComSupportFeignClient {
 							.registerTypeAdapter( LocalDate.class, new GSONLocalDateDeserializer() )
 							.create() );
 
+// - G E T T E R S   &   S E T T E R S
 	public List<JobRecord> getRegisteredJobs() throws IOException {
 		final Response<List<JobRecord>> response = new Retrofit.Builder()
 				.baseUrl( NeoComApiv1.NEOCOM_BACKEND_APP_HOST )
@@ -56,8 +58,8 @@ public class NeoComSupportFeignClient {
 				.execute();
 		if (response.isSuccessful()) {
 			final CredentialCountResponse credentialCountResponse = response.body();
-			NeoComLogger.info( "Request to count credentials {}. Response is 200 OK.",
-					credentialCountResponse.getCredentialCount() + "" );
+			NeoComLogger.info( MessageFormat.format( "Request to count credentials {0}. Response is 200 OK.",
+					credentialCountResponse.getCredentialCount() ) );
 			return credentialCountResponse.getCredentialCount();
 		} else throw new IOException( "Request to count credentials failed." );
 	}
@@ -72,8 +74,8 @@ public class NeoComSupportFeignClient {
 				.execute();
 		if (response.isSuccessful()) {
 			final ScheduleJobCountResponse scheduleJobCountResponse = response.body();
-			NeoComLogger.info( "Request to count scheduled jobs {}. Response is 200 OK.",
-					scheduleJobCountResponse.getSchedulerJobCount() + "" );
+			NeoComLogger.info( MessageFormat.format( "Request to count scheduled jobs {0}. Response is 200 OK.",
+					scheduleJobCountResponse.getSchedulerJobCount() ) );
 			return scheduleJobCountResponse.getSchedulerJobCount();
 		} else throw new IOException( "Request to count jobs failed." );
 	}
@@ -88,8 +90,8 @@ public class NeoComSupportFeignClient {
 				.execute();
 		if (response.isSuccessful()) {
 			final CredentialCountResponse credentialCountResponse = response.body();
-			NeoComLogger.info( "Request to count credentials {}. Response is 200 OK.",
-					credentialCountResponse.getCredentialCount() + "" );
+			NeoComLogger.info( MessageFormat.format( "Request to count credentials {0}. Response is 200 OK.",
+					credentialCountResponse.getCredentialCount() ) );
 			return credentialCountResponse.getCredentialCount();
 		} else throw new IOException( "Request to delete all credentials failed." );
 	}
@@ -103,7 +105,7 @@ public class NeoComSupportFeignClient {
 				.findCredentialById( NeoComApiv1.NEOCOM_BACKEND_ACCEPTED_CONTENT_TYPE, credentialId )
 				.execute();
 		if (response.isSuccessful()) {
-			NeoComLogger.info( "Request to get credential by id {0}. Response is 200 OK.", credentialId );
+			NeoComLogger.info( MessageFormat.format( "Request to get credential by id {0}. Response is 200 OK.", credentialId ) );
 			return response.body();
 		} else throw new IOException( "Request to get credential by id failed." );
 	}
@@ -118,8 +120,8 @@ public class NeoComSupportFeignClient {
 				.execute();
 		if (response.isSuccessful()) {
 			final ScheduleJobCountResponse scheduleJobCountResponse = response.body();
-			NeoComLogger.info( "Request to count scheduled jobs {}. Response is 200 OK.",
-					scheduleJobCountResponse.getSchedulerJobCount() + "" );
+			NeoComLogger.info( MessageFormat.format( "Request to count scheduled jobs {0}. Response is 200 OK.",
+					scheduleJobCountResponse.getSchedulerJobCount() ) );
 			return scheduleJobCountResponse.getSchedulerJobCount();
 		} else throw new IOException( "Request to reinitialize the scheduler failed." );
 	}
@@ -135,8 +137,8 @@ public class NeoComSupportFeignClient {
 						storeCredentialRequest.getCredential() )
 				.execute();
 		if (response.isSuccessful()) {
-			NeoComLogger.info( "Request to store the credential {}. Response is 200 OK.",
-					storeCredentialRequest.getCredential().getAccountId() + "" );
+			NeoComLogger.info( MessageFormat.format( "Request to store the credential {0}. Response is 200 OK.",
+					storeCredentialRequest.getCredential().getAccountId() ) );
 			return response.body();
 		} else throw new IOException( "Request to store credential failed." );
 	}

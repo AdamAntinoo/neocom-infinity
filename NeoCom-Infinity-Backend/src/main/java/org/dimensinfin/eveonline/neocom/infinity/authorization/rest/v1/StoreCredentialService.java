@@ -8,7 +8,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import org.dimensinfin.eveonline.neocom.annotation.LogEnterExit;
+import org.dimensinfin.annotation.LogEnterExit;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.database.repositories.CredentialRepository;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.CredentialRepositoryWrapper;

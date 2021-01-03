@@ -56,7 +56,8 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion" // OAuth2 authentication
     implementation "com.squareup.retrofit2:converter-jackson:$retrofitVersion" // HTTP encapsulation and swagger support
     implementation "com.squareup.retrofit2:converter-gson:2.4.0"
-    compile 'com.google.inject:guice:4.1.0'
+    implementation 'com.google.inject:guice:4.1.0' // Google guice dependency injection framework
+    implementation 'com.jcabi:jcabi-aspects:0.22.6' // Useful annotations for methods
     // M E T R I C S
     runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
     // L O G G I N G
@@ -78,6 +79,7 @@ dependencies {
     // D I M E N S I N F I N
     implementation 'org.bitbucket.dimensinfin:core-lib:3.2.1'
     implementation 'org.bitbucket.dimensinfin:annotations:0.3.1'
+    implementation 'org.bitbucket.evedimensinfin.neocom-java-core:esi.swagger-api:0.20.0'
 }
 // - C U C U M B E R
 ext {

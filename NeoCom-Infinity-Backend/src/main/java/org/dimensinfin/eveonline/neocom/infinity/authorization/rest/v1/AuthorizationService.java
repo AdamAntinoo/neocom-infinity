@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import org.dimensinfin.eveonline.neocom.annotation.TimeElapsed;
+import org.dimensinfin.annotation.TimeElapsed;
 import org.dimensinfin.eveonline.neocom.auth.NeoComOAuth2Flow;
 import org.dimensinfin.eveonline.neocom.auth.TokenTranslationResponse;
 import org.dimensinfin.eveonline.neocom.auth.TokenVerification;

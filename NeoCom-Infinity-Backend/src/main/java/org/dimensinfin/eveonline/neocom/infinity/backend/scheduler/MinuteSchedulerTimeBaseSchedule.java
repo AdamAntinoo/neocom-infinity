@@ -45,7 +45,7 @@ public class MinuteSchedulerTimeBaseSchedule {
 
 	// - C O N S T R U C T O R S
 	@Autowired
-	public MinuteSchedulerTimeBaseSchedule( final @NotNull ConfigurationServiceWrapper configurationServiceWrapper,
+	public MinuteSchedulerTimeBaseSchedule( final @NotNull IConfigurationService configurationService,
 	                                        final @NotNull CredentialRepositoryWrapper credentialRepositoryWrapper,
 	                                        final @NotNull SchedulerConfiguration schedulerConfiguration,
 	                                        final @NotNull MiningRepositoryWrapper miningRepositoryWrapper,
@@ -54,7 +54,7 @@ public class MinuteSchedulerTimeBaseSchedule {
 	                                        final @NotNull ESIDataService esiDataService,
 	                                        final @NotNull SDERepository sdeRepository,
 	                                        final @NotNull DataStoreService dataStoreService ) {
-		this.configurationService = configurationServiceWrapper.getSingleton();
+		this.configurationService = configurationService;
 		this.credentialRepository = credentialRepositoryWrapper.getSingleton();
 		this.schedulerConfiguration = schedulerConfiguration;
 		this.miningRepository = miningRepositoryWrapper.getSingleton();

@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.backend.industry.rest;
+package org.dimensinfin.eveonline.neocom.infinity.backend.industry;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

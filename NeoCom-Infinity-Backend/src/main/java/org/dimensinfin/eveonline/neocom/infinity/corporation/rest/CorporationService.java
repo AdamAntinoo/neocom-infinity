@@ -1,5 +1,6 @@
 package org.dimensinfin.eveonline.neocom.infinity.corporation.rest;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +34,7 @@ import org.dimensinfin.eveonline.neocom.infinity.corporation.domain.ShippingYard
 import org.dimensinfin.eveonline.neocom.infinity.backend.character.pilot.rest.v1.PilotServiceV1;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 import org.dimensinfin.eveonline.neocom.service.logger.NeoComLogger;
+import org.dimensinfin.logging.LogWrapper;
 
 @Service
 public class CorporationService {
@@ -136,8 +138,8 @@ public class CorporationService {
 						}
 					}
 				// Check if this asset is located on Corporation premises.
-				NeoComLogger.info( "Yard found: {0} - {1}", asset.getName(), asset.getUserLabel() );
-				NeoComLogger.info( "Location data: {0}", asset.getLocationId().getType().name() );
+				LogWrapper.info( MessageFormat.format("Yard found: {0} - {1}", asset.getName(), asset.getUserLabel() ));
+				LogWrapper.info( MessageFormat.format("Location data: {0}", asset.getLocationId().getType().name() ));
 			}
 		}
 		return new ResponseEntity<>( yards, HttpStatus.OK );
