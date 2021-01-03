@@ -8,6 +8,7 @@ ext {
     springfox = '2.9.2'
     jodaTimeVersion = '2.10.5'
     jacksonVersion = '2.9.8'
+    dataManagementVersion='0.20.2'
 }
 
 // - S P R I N G B O O T
@@ -47,7 +48,6 @@ dependencyManagement {
 
 // - C O R E
 dependencies {
-    // - C O R E
     implementation 'javax.validation:validation-api:2.0.1.Final'
     implementation 'com.annimon:stream:1.1.9'
     implementation 'org.apache.commons:commons-lang3:3.9'
@@ -66,15 +66,6 @@ dependencies {
     runtimeOnly 'org.postgresql:postgresql'
     implementation "com.j256.ormlite:ormlite-jdbc:$ormliteVersion"
     implementation 'org.xerial:sqlite-jdbc:3.16.1' // Database dependency to read sde sqlite database.
-    // D I M E N S I N F I N
-    implementation 'org.bitbucket.dimensinfin:core-lib:3.2.1'
-    implementation 'org.bitbucket.dimensinfin:annotations:0.3.1'
-    // N E O C O M
-//    implementation 'org.bitbucket.evedimensinfin:neocom-datamanagement:0.20.0'
-//    implementation 'org.dimensinfin.neocom:neocom-datamanagement:0.20.0'
-    // Temporal until the datamanagement dependency is fixed
-    implementation 'org.bitbucket.evedimensinfin.neocom-java-core:esi.swagger-api:0.20.0'
-    implementation 'org.bitbucket.evedimensinfin.neocom-java-core:neocom-annotations:0.20.0'
 }
 // - T E M P O R A L   D E P E N D E N C I E S
 dependencies {
@@ -82,7 +73,12 @@ dependencies {
     implementation "com.fasterxml.jackson.datatype:jackson-datatype-joda:$jacksonVersion"
     implementation "com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion"
 }
-
+// - D I M E N S I N F I N
+dependencies {
+    // D I M E N S I N F I N
+    implementation 'org.bitbucket.dimensinfin:core-lib:3.2.1'
+    implementation 'org.bitbucket.dimensinfin:annotations:0.3.1'
+}
 // - C U C U M B E R
 ext {
     cucumberVersion = '5.6.0'
@@ -105,36 +101,10 @@ dependencies {
     testImplementation 'org.junit.vintage:junit-vintage-engine:5.4.2'
     testImplementation 'org.mockito:mockito-core:3.3.3'
     testImplementation 'com.openpojo:openpojo:0.8.12'
-//    // - S P R I N G B O O T
-//    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-//        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-//    }
-//    testImplementation  'com.h2database:h2:1.4.194'
-    // NEOCOM
-//    testImplementation 'org.dimensinfin:ESI.SwaggerApi:4.18.0'
 }
-
-dependencies {
-//    // CORE
-//    testImplementation "com.fasterxml.jackson.datatype:jackson-datatype-joda:$jacksonVersion"
-//    testImplementation 'org.apache.commons:commons-lang3:3.9'
-//    testImplementation 'com.squareup.okhttp3:okhttp:3.12.0'
-//    testImplementation "com.squareup.retrofit2:retrofit:$retrofitVersion" // OAuth2 authentication
-//    testImplementation "com.squareup.retrofit2:converter-jackson:$retrofitVersion" // HTTP encapsulation and swagger support
-//    testImplementation 'com.auth0:java-jwt:3.3.0'
-////    testImplementation 'org.dimensinfin:NeoCom.Annotations:0.19.0'
-////    testImplementation 'org.dimensinfin:NeoCom.DataManagement:0.19.4'
-//    // TESTING
-//    testImplementation "org.testcontainers:testcontainers:1.12.3"
-//    testImplementation "org.testcontainers:postgresql:1.9.1"
-//    testImplementation 'org.mockito:mockito-core:2.23.4'
-}
-
 
 // - E N V I R O N M E N T   D E P E N D E N C I E S
-def envScript = file("development-dependencies.gradle")
-//if (environment.exists()) {
-//    envScript = file("$environment-dependencies.gradle")
-//}
+def profile = System.getenv('PROFILE') ?: "development"
+def envScript = file("$profile-dependencies.gradle")
+println "Applying [$profile] configuration"
 apply from: envScript
-

@@ -83,7 +83,7 @@ jobs:
           name: BACKEND - Compile SpringBoot code
           working_directory: NeoCom-Infinity-Backend
           environment:
-            environment: "production"
+            PROFILE: "production"
           command: |
             ./gradlew clean bootJar
 
