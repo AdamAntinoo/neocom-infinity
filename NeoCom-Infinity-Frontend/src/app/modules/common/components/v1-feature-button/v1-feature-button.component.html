@@ -1,3 +1,6 @@
-<div class="neocom-icon feature-box imageContainer">
-    <img src="{{getFeatureImage()}}">
+<div class="feature-box" (click)="onClick()">
+    <div class="neocom-icon imageContainer">
+        <img src="{{getFeatureImage()}}">
+    </div>
+    <div class="feature-label">{{getFeatureLabel()}}</div>
 </div>

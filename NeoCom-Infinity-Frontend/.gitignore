@@ -6,6 +6,7 @@ node_modules/
 dist/
 src/styles/fonts
 coverage/
+documentation/
 
 # - Ignore temporary GIT repository
 .xgit/
