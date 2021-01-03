@@ -1,12 +1,5 @@
 package org.dimensinfin.eveonline.neocom.infinity.adapter;
 
-import java.io.IOException;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
-import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBConfigurationService;
-
 public class SBConfigurationServiceTest {
 //	@Test
 //	public void buildCompleteConfigured() {

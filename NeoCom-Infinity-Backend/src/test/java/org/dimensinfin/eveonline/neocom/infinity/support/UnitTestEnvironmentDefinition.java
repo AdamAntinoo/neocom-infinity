@@ -3,12 +3,11 @@ package org.dimensinfin.eveonline.neocom.infinity.support;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.testcontainers.containers.BindMode;
 import org.testcontainers.containers.GenericContainer;
 
-import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBConfigurationService;
+import org.dimensinfin.eveonline.neocom.infinity.service.SBConfigurationService;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBFileSystemAdapter;
 import org.dimensinfin.eveonline.neocom.provider.IFileSystem;
 import org.dimensinfin.eveonline.neocom.provider.RetrofitFactory;

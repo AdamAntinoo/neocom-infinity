@@ -1,16 +1,12 @@
 package org.dimensinfin.eveonline.neocom.infinity.config;
 
 import com.google.inject.AbstractModule;
-import com.google.inject.Scopes;
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;
 
-import org.dimensinfin.eveonline.neocom.database.NeoComDatabaseService;
 import org.dimensinfin.eveonline.neocom.database.core.ISDEDatabaseService;
-import org.dimensinfin.eveonline.neocom.database.repositories.SDERepository;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBConfigurationService;
+import org.dimensinfin.eveonline.neocom.infinity.service.SBConfigurationService;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBFileSystemAdapter;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBNeoComDBAdapter;
 import org.dimensinfin.eveonline.neocom.infinity.backend.sde.service.SBSDEDatabaseService;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 import org.dimensinfin.eveonline.neocom.provider.IFileSystem;
@@ -24,19 +20,19 @@ public class NeoComInfinityBackendDependenciesModule extends AbstractModule {
 	private static final String ENV_PROPERTIES_DIRECTORY = "PROPERTIES_DIRECTORY";
 	private static final String ENV_APPLICATION_DIRECTORY = "APPLICATION_DIRECTORY";
 	private static final String ENV_SDE_DATABASE = "SDE_DATABASE_PATH";
-	private static final String DEFAULT_PROPERTIES_DIRECTORY = "/src/integration/resources/properties";
+	private static final String DEFAULT_PROPERTIES_DIRECTORY = "/build/resources/main/properties";
 	private static final String DEFAULT_APPLICATION_DIRECTORY = "appDir";
 	private static final String DEFAULT_SDE_DATABASE = "sde.db";
 
 	@Override
 	protected void configure() {
 		// Bind configuration environment defined settings.
-		String propDirectory = System.getProperty( ENV_PROPERTIES_DIRECTORY );
-		String appDirectory = System.getProperty( ENV_APPLICATION_DIRECTORY );
-		String sdeDatabasePath = System.getProperty( ENV_SDE_DATABASE );
-		if (null == propDirectory) propDirectory = "/src/integration/resources/properties";
-		if (null == appDirectory) appDirectory = "appDir";
-		if (null == sdeDatabasePath) sdeDatabasePath = "./build/resources/main/sde.db";
+		String propDirectory = System.getenv( ENV_PROPERTIES_DIRECTORY );
+		String appDirectory = System.getenv( ENV_APPLICATION_DIRECTORY );
+		String sdeDatabasePath = System.getenv( ENV_SDE_DATABASE );
+		if (null == propDirectory) propDirectory = DEFAULT_PROPERTIES_DIRECTORY;
+		if (null == appDirectory) appDirectory = "build/NeoCom.Infinity.Development";
+		if (null == sdeDatabasePath) sdeDatabasePath = "/build/resources/main/sde.db";
 		bind( String.class )
 				.annotatedWith( Names.named( "PropertiesDirectory" ) )
 				.toInstance( propDirectory );

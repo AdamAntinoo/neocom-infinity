@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 import org.dimensinfin.eveonline.neocom.database.core.ISDEDatabaseService;
 import org.dimensinfin.eveonline.neocom.database.repositories.SDERepository;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBConfigurationService;
+import org.dimensinfin.eveonline.neocom.infinity.service.SBConfigurationService;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBFileSystemAdapter;
 import org.dimensinfin.eveonline.neocom.infinity.backend.sde.service.SBSDEDatabaseService;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
@@ -58,7 +58,10 @@ public class NeoComDependencyConfiguration {
 	@Bean
 	public IConfigurationService dependency_01_IConfigurationService() {
 		LogWrapper.enter();
-		return injector.getInstance( SBConfigurationService.class );
+		final SBConfigurationService configurationService = injector.getInstance( SBConfigurationService.class );
+//		configurationService.readAllProperties();
+		LogWrapper.exit();
+		return configurationService;
 	}
 
 	@Bean

@@ -74,6 +74,7 @@ public class CredentialJobGenerator extends Job {
 						.withCredential( credential )
 						.withEsiDataService( this.esiDataService )
 						.withSDERepository( this.sdeRepository )
+						.withDataStore( this.dataStoreService )
 						.addCronSchedule( this.configurationService.getResourceString( CRON_SCHEDULE_PROCESSING_BLUEPRINTS, "* - 0" ) )
 						.build() );
 		}
