@@ -7,6 +7,7 @@
         "docker:stop": "docker-compose -f ./support/docker/docker-compose.yml down ",
         "serve:dev": "ng serve --progress --proxy-config proxy.conf.json --port 5200 --base-href /app ",
         "build:dev": "ng build ",
+        "document:dev": "compodoc -p tsconfig.json src",
         "build:stage": "ng build --aot --configuration=stage",
         "build:prod": "ng build --aot --configuration=production",
         "test:dev": "ng test --code-coverage --watch --progress ",

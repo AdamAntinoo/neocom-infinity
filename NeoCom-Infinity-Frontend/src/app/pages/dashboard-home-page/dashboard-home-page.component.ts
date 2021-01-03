@@ -19,6 +19,7 @@ import { NeoComException } from '@domain/core/NeoComException.core';
 import { NeoComCredential } from '@domain/NeoComCredential.domain';
 import { Corporation } from '@domain/Corporation.domain';
 import { Alliance } from '@domain/Alliance.domain';
+import { NeoComFeature } from '@domain/ui/NeoComFeature.domain';
 /**
  * This is the landing page for a login. The page has teh next structure:
  * ROW 1 - The application header and the current server status.
@@ -41,6 +42,7 @@ export class DashboardHomePageComponent extends BackgroundEnabledComponent imple
     public corporation: Corporation
     private ceo: PilotV2
     private alliance: Alliance
+    public blueprintListFeature: NeoComFeature // The feature to open the list of current pilot blueprints
 
     private credential: NeoComCredential
     public corpFuture: Promise<Corporation>
@@ -50,6 +52,14 @@ export class DashboardHomePageComponent extends BackgroundEnabledComponent imple
         protected backendService: BackendService,
         protected halResolver: HALResolver) {
         super()
+        // Build the page features.
+        this.blueprintListFeature = new NeoComFeature({
+            label: "Blueprint Catalog",
+            enabled: true,
+            interaction: 'PAGEROUTE',
+            route: "/industry/manufacture/blueprints",
+            imageRef: 'assets/media/blueprints-feature.jpeg'
+        })
     }
 
     public ngOnInit() {
@@ -127,7 +137,7 @@ export class DashboardHomePageComponent extends BackgroundEnabledComponent imple
         // )
         this.corpFuture = this.pilot.getCorporation()
     }
-    public async testPromise () {
+    public async testPromise() {
         this.corpFuture = await this.pilot.getCorporation()
         const i = 6
     }

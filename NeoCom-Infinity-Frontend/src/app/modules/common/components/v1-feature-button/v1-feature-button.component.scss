@@ -12,7 +12,6 @@
     font-size: 0;
     text-align: center;
     width: 200px;
-    /* Container's dimensions */
     height: 150px;
 }
 
@@ -21,6 +20,8 @@ img {
     vertical-align: middle;
     max-height: 100%;
     max-width: 100%;
+    width: 200px;
+    height: 150px;
 }
 
 .imageContainer:before {
@@ -28,4 +29,12 @@ img {
     display: inline-block;
     vertical-align: middle;
     height: 150px;
+}
+
+.feature-label {
+    text-align: center;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-top: 4px;
 }
