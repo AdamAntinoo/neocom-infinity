@@ -18,13 +18,11 @@ import { AppCommonModule } from '@common/common.module'
 import { HeaderModule } from '../header/header.module';
 import { V1TopBOMPanelComponent } from './panel/v1-top-bompanel/v1-top-bompanel.component';
 import { V1TargetAdditionalDataPanelComponent } from './panel/v1-target-additional-data-panel/v1-target-additional-data-panel.component';
-// import { V1BlueprintRenderComponent } from './render/v1-blueprint-render/v1-blueprint-render.component';
-// import { V1IndustryNodeContainerRenderComponent } from './render/v1-industry-node-container-render/v1-industry-node-container-render.component';
-// import { V1BOMResourceRenderComponent } from './render/v1-bomresource-render/v1-bomresource-render.component'
 
 const routes: Routes = [
     { path: 'fittings/buildConfiguration/:fittingId', component: V1IndustryFittingBuildConfigurationPageComponent },
     { path: 'manufacture/research/:blueprintId', component: V1ManufactureResearchPageComponent },
+    { path: '/industry/manufacture', loadChildren: () => import('../../manufacture/manufacture.module').then(m => m.ManufactureModule) },
 ]
 
 @NgModule({
