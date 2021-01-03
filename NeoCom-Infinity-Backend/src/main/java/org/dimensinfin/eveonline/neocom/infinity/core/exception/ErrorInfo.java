@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.core.exceptions;
+package org.dimensinfin.eveonline.neocom.infinity.core.exception;
 
 import java.text.MessageFormat;
 

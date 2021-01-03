@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.dimensinfin.eveonline.neocom.infinity.backend.core.rest.NeoComController;
+import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComController;
 import org.dimensinfin.eveonline.neocom.infinity.universe.client.v1.ServerStatus;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 

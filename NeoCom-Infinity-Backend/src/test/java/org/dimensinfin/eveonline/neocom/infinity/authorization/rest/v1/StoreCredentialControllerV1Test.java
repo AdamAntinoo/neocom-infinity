@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialResponse;
-import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.NeoComSBException;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComSBException;
 
 public class StoreCredentialControllerV1Test {
 	private static final String TEST_JWT_TOKEN = "-TEST-JWT-TOKEN-";

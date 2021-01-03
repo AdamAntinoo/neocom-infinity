@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import org.dimensinfin.eveonline.neocom.database.entities.MiningExtractionEntity;
-import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.ErrorInfo;
-import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.NeoComAuthorizationException;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.ErrorInfo;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComAuthorizationException;
 import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticationProvider;
 
 /**

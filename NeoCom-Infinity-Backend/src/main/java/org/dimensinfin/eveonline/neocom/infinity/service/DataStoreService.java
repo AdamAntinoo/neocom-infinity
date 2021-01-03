@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.backend.core.service;
+package org.dimensinfin.eveonline.neocom.infinity.service;
 
 import java.util.HashMap;
 import java.util.List;

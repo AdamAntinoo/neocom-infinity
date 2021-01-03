@@ -21,7 +21,7 @@ import org.dimensinfin.eveonline.neocom.infinity.adapter.CredentialRepositoryWra
 import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataProviderWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.LocationCatalogServiceWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.MiningRepositoryWrapper;
-import org.dimensinfin.eveonline.neocom.infinity.backend.core.service.DataStoreService;
+import org.dimensinfin.eveonline.neocom.infinity.service.DataStoreService;
 import org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.config.SchedulerConfiguration;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;

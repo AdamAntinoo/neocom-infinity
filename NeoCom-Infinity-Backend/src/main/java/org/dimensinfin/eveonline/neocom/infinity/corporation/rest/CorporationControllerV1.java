@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import org.dimensinfin.eveonline.neocom.asset.domain.LocationAssetContainer;
 import org.dimensinfin.eveonline.neocom.domain.Corporation;
-import org.dimensinfin.eveonline.neocom.infinity.backend.core.rest.NeoComController;
-import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.ErrorInfo;
-import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.NeoComAuthorizationException;
+import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComController;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.ErrorInfo;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComAuthorizationException;
 import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticationProvider;
 import org.dimensinfin.eveonline.neocom.infinity.corporation.domain.ShippingYardLocation;
 

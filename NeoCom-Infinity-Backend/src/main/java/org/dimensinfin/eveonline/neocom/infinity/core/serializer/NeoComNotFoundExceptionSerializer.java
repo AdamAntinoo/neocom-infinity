@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import org.springframework.boot.jackson.JsonComponent;
 
-import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.NeoComNotFoundException;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComNotFoundException;
 
 @JsonComponent
 public class NeoComNotFoundExceptionSerializer extends JsonSerializer<NeoComNotFoundException> {

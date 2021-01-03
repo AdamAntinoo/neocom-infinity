@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.backend.core.rest;
+package org.dimensinfin.eveonline.neocom.infinity.core.rest;
 
 import java.text.MessageFormat;
 import java.util.Objects;

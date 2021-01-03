@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import org.dimensinfin.eveonline.neocom.infinity.backend.accountset.planetary.domain.ColonyDto;
-import org.dimensinfin.eveonline.neocom.infinity.backend.core.rest.NeoComAuthenticatedController;
+import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComAuthenticatedController;
 import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticationProvider;
-import org.dimensinfin.eveonline.neocom.planetary.ColonyPack;
 import org.dimensinfin.eveonline.neocom.planetary.domain.Colony;
 
 @RestController

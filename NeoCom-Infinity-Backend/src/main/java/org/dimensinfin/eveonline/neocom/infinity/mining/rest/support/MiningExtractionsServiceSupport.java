@@ -5,14 +5,11 @@ import java.sql.SQLException;
 import org.springframework.stereotype.Service;
 
 import org.dimensinfin.eveonline.neocom.database.entities.MiningExtractionEntity;
-import org.dimensinfin.eveonline.neocom.database.repositories.MiningRepository;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.MiningRepositoryWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.support.SupportMiningRepository;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.support.SupportMiningRepositoryWrapper;
-import org.dimensinfin.eveonline.neocom.infinity.core.exceptions.NeoComSBException;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComSBException;
 import org.dimensinfin.eveonline.neocom.infinity.core.security.CredentialDetailsService;
 import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticationProvider;
-import org.dimensinfin.eveonline.neocom.infinity.support.client.CredentialCountResponse;
 import org.dimensinfin.eveonline.neocom.service.logger.NeoComLogger;
 
 @Service
