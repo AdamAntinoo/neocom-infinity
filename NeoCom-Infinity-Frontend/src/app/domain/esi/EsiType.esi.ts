@@ -15,4 +15,10 @@ export class EsiType extends EsiNode {
     public getName(): string {
         return this.name
     }
+    public getTypeId(): number {
+        return this.typeId
+    }
+    public getTypeIconURL(): string {
+        return 'https://image.eveonline.com/Type/' + this.typeId + '_64.png'
+    }
 }

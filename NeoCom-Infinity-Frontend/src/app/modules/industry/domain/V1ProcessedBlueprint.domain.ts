@@ -7,12 +7,21 @@ export class ProcessedBlueprint extends NeoCom {
     public type: EsiType
     public bom: Resource[]
 
-    // constructor(values: Object = {}) {
-    //     super(values)
-    // }
+    constructor(values: Object = {}) {
+        super(values)
+        this.jsonClass = 'ProcessedBlueprint'
+    }
 
     // - G E T T E R S
     public getName(): string {
         if (this.type) return this.type.getName()
+    }
+    public getUniqueId(): string {
+        if (this.type) return this.type.getTypeId() + ''
+        else return '-'
+    }
+    public getTypeIconURL(): string {
+        if (this.type) return this.type.getTypeIconURL()
+        else return '-'
     }
 }
