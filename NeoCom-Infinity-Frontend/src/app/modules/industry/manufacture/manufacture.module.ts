@@ -14,6 +14,7 @@ import { V1AvailableBlueprintsPanelComponent } from './panels/v1-available-bluep
 import { V1ManufactureResearchPageComponent } from '../pages/v1-manufacture-research-page/v1-manufacture-research-page.component';
 import { V1TopBOMPanelComponent } from '../panel/v1-top-bompanel/v1-top-bompanel.component';
 import { SharedModule } from '@shared/shared.module';
+import { V1BlueprintBOMPanelComponent } from './panels/v1-blueprint-bompanel/v1-blueprint-bompanel.component';
 
 const routes: Routes = [
   { path: 'blueprints', component: V1BlueprintListPageComponent },
@@ -33,7 +34,8 @@ const routes: Routes = [
     V1BlueprintListPageComponent,
     V1ManufactureResearchPageComponent,
     V1TopBOMPanelComponent,
-    V1AvailableBlueprintsPanelComponent
+    V1AvailableBlueprintsPanelComponent,
+    V1BlueprintBOMPanelComponent
 ],
     exports: [RouterModule]
 })

@@ -1,15 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+// - CORE
+import { Component } from '@angular/core';
+import { ViewChild } from '@angular/core';
+import { ProcessedBlueprint } from '@app/modules/industry/domain/V1ProcessedBlueprint.domain';
+import { ProcessedBlueprintDto } from '@app/modules/industry/dto/ProcessedBlueprintDto.dto';
+import { V1AvailableBlueprintsPanelComponent } from '../../panels/v1-available-blueprints-panel/v1-available-blueprints-panel.component';
 
 @Component({
-  selector: 'v1-blueprint-list-page',
-  templateUrl: './v1-blueprint-list-page.component.html',
-  styleUrls: ['./v1-blueprint-list-page.component.scss']
+    selector: 'v1-blueprint-list-page',
+    templateUrl: './v1-blueprint-list-page.component.html',
+    styleUrls: ['./v1-blueprint-list-page.component.scss']
 })
-export class V1BlueprintListPageComponent implements OnInit {
+export class V1BlueprintListPageComponent {
+    @ViewChild(V1AvailableBlueprintsPanelComponent) availableBlueprints: V1AvailableBlueprintsPanelComponent
+    public self: V1BlueprintListPageComponent
+    public blueprintSelected: boolean = false
+    public selectedBlueprint: ProcessedBlueprint
 
-  constructor() { }
+    constructor() {
+        this.self = this
+    }
 
-  ngOnInit(): void {
-  }
-
+    public signalSelection(target: ProcessedBlueprint): void {
+        if (target) {
+            console.log('[signalSelection]')
+            this.selectedBlueprint = target
+            this.blueprintSelected = true
+        }
+    }
 }

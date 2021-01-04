@@ -12,6 +12,7 @@ export class SupportService {
         this.translationTable['Planetary Dashboard Page'] = 'dashboard-page'
         this.translationTable['Enter Planet Data Page'] = 'v1-enter-planet-data-page'
         this.translationTable['Resource Research Page'] = 'v1-resource-research-page'
+        this.translationTable['Blueprint Manufacture CostIndex'] = 'v1-blueprint-list-page'
         // - PANELS
         this.translationTable['app-component'] = 'app-root'
         this.translationTable['feature'] = 'v2-feature'
@@ -20,6 +21,7 @@ export class SupportService {
         this.translationTable['fitting-saved-configuration'] = 'v1-fitting-configuration-panel'
         this.translationTable['fitting-target-configuration'] = 'v1-fitting-configuration-panel'
         this.translationTable['fitting-contents'] = 'v1-fitting-contents-panel'
+        this.translationTable['available-blueprints'] = 'v1-available-blueprints-panel'
         // this.translationTable['fitting-module'] = 'v1-fitting-item'
         this.translationTable['fitting-group'] = 'v1-fitting-group'
         this.translationTable['fitting-build-content'] = 'v1-fitting-build-content'
@@ -57,6 +59,7 @@ export class SupportService {
         this.routeTranslationTable['Dashboard'] = '/dashboard'
         this.routeTranslationTable['Planetary Dashboard Page'] = '/planetary/dashboard'
         this.routeTranslationTable['Resource Research Page'] = '/planetary/resource-research'
+        this.routeTranslationTable['Blueprint Manufacture CostIndex'] = '/industry/manufacture/blueprints'
     }
     /**
      * Replaces symbolic names by the application names so if there are version changes the acceptance scritps should not change.
