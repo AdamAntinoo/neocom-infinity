@@ -7,6 +7,8 @@
             </v1-bomresource>
             <v1-bomgroup *ngIf="node.jsonClass === 'BOMGroup'" [container]="container" [node]="node" [variant]="variant">
             </v1-bomgroup>
+            <v1-blueprint *ngIf="node.jsonClass === 'ProcessedBlueprint'" [container]="container" [node]="node" [variant]="variant">
+            </v1-blueprint>
             <!-- F I T T I N G -->
             <v1-fitting-group *ngIf="node.jsonClass === 'FittingGroup'" [container]="container" [node]="node" [variant]="variant">
             </v1-fitting-group>

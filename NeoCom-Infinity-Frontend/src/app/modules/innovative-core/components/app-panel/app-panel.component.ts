@@ -28,7 +28,14 @@ export class AppPanelComponent extends BackgroundEnabledComponent implements IVi
         super()
         this.self = this
     }
-
+    public ngOnInit(): void {
+        console.log(">[AppPanelComponent.ngOnInit]");
+        this.startDownloading();
+        this.refresh();
+        console.log("<[AppPanelComponent.ngOnInit]");
+    }
+public refresh () : void{        console.log(">[AppPanelComponent.refresh]");
+}
     // - G E T T E R S
     public getVariant(): string {
         return this.variant

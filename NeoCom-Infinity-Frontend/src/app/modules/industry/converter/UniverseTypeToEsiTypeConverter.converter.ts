@@ -1,6 +1,9 @@
-export class UniverseTypeToEsiTypeConverter<T extends object> {
+// - DOMAIN
+import { EsiType } from "@domain/esi/EsiType.esi";
+
+export class UniverseTypeToEsiTypeConverter {
     public convert(input: any): T {
-        const result: T = <T>{
+        const result: EsiType = new EsiType({
             typeId: input.type_id,
             name: input.name,
             description: input.description,
@@ -9,8 +12,8 @@ export class UniverseTypeToEsiTypeConverter<T extends object> {
             mass: input.mass,
             packagedVolume: input.packaged_volume,
             volume: input.volume
-        }
-        console.log('>[UniverseTypeToEsiTypeConverter.convert]> Result: ' + JSON.stringify(result));
+        })
+        console.log('>[UniverseTypeToEsiTypeConverter.convert]> Result: ' + JSON.stringify(result))
         return result;
     }
 }
