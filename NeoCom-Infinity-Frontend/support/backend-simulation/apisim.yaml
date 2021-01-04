@@ -424,8 +424,8 @@ simlet: industry.manufacture.blueprints.costindex
 delay:
   is: fixedDelay
   timeUnit: milliseconds
-  initial: 4000
-  subsequent: 3000
+  initial: 2000
+  subsequent: 2000
 
 request:
   - method: GET

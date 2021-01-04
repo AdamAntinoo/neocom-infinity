@@ -22,8 +22,8 @@ import { ResponseTransformer } from '@innovative/services/support/ResponseTransf
     providedIn: 'root'
 })
 export class BackendService {
-    private APIV1: string
-    private APIV2: string
+    protected APIV1: string
+    protected APIV2: string
 
     constructor(
         protected isolation: IsolationService,
