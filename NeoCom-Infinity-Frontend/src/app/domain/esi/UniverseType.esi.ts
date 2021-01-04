@@ -4,6 +4,7 @@ export class UniverseType {
     public graphic_id: number
     public group_id: number
     public icon_id: number
+    public market_group_id: number
     public mass: number
     public name: string
     public packaged_volume: number
