@@ -1,2 +1,14 @@
-<p>v1-blueprint-list-page works!</p>
-<v1-available-blueprints-panel></v1-available-blueprints-panel>
+<div class="row">
+    <app-info-panel id="appinfo-panel" class="neocom-panel app-info-panel"></app-info-panel>
+    <server-info-panel id="server-info-panel" class="neocom-panel server-info-panel"></server-info-panel>
+</div>
+<div class="column">
+    <div class="page-title">BLUEPRINT MANUFACTURE COSTINDEX</div>
+    <div class="row">
+        <v1-available-blueprints-panel class="panel" [container]="self"></v1-available-blueprints-panel>
+        <div class="separator-8"></div>
+        <div class="row" *ngIf="blueprintSelected">
+            <v1-blueprint-bompanel></v1-blueprint-bompanel>>
+        </div>
+    </div>
+</div>

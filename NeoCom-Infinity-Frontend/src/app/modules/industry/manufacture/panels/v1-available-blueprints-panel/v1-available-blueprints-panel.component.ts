@@ -22,6 +22,7 @@ import { HttpErrorResponse } from '@angular/common/http'
 import { environment } from '@env/environment'
 import { ProcessedBlueprintDto } from '@app/modules/industry/dto/ProcessedBlueprintDto.dto'
 import { ESIUniverseDataService } from '@app/services/ESIUniverseData.service'
+import { V1BlueprintListPageComponent } from '../../pages/v1-blueprint-list-page/v1-blueprint-list-page.component'
 
 @Component({
     selector: 'v1-available-blueprints-panel',
@@ -29,7 +30,10 @@ import { ESIUniverseDataService } from '@app/services/ESIUniverseData.service'
     styleUrls: ['./v1-available-blueprints-panel.component.scss']
 })
 export class V1AvailableBlueprintsPanelComponent extends AppPanelComponent implements OnInit, IRefreshable {
+    @Input() container: V1BlueprintListPageComponent
+
     private processedBlueprintTransformer: ResponseTransformer
+    private blueprintList: ProcessedBlueprint[] = []
 
     constructor(
         protected isolationService: IsolationService,
@@ -44,7 +48,7 @@ export class V1AvailableBlueprintsPanelComponent extends AppPanelComponent imple
                     for (let key in entrydata)
                         results.push(new ProcessedBlueprintDto(entrydata[key]).transform(this.universeService))
                 } else
-                    results.push(new ProcessedBlueprintDto(entrydata[key]).transform(this.universeService))
+                    results.push(new ProcessedBlueprintDto(entrydata).transform(this.universeService))
                 return results
             })
     }
@@ -55,6 +59,17 @@ export class V1AvailableBlueprintsPanelComponent extends AppPanelComponent imple
         console.log("<[V1AvailableBlueprintsPanelComponent.ngOnInit]")
     }
 
+    // - I V I E W E R
+    /**
+     * When the user hovers over a blueprint item on the list there is an event and that blueprint node element is received on this method. On this moment we should open a second panel and disply the BOM for the target blueprint.
+     * @param target the node hovered.
+     */
+    public enterSelected(target: any): void {
+        console.log(">[enterSelected.enterSelected]")
+        if (target instanceof ProcessedBlueprint) {
+            if (this.container) this.container.signalSelection(target)
+        }
+    }
     // - R E F R E S H A B L E
     public clean(): void {
     }
@@ -64,15 +79,19 @@ export class V1AvailableBlueprintsPanelComponent extends AppPanelComponent imple
         this.accessBlueprintList()
         console.log("<[V1AvailableBlueprintsPanelComponent.refresh]")
     }
+    /**
+     * Download the list of blueprints, converting them into a list of <code>ProcessedBlueprint</code> that can be rendered to show the manufacture costs and its comparison to the manufactured item cost.
+     * During blueprint processing there are pending events that complete when the blueprint item is downloaded. This should fire some sort of refresh event that should redraw the page.
+     */
     private accessBlueprintList(): void {
         console.log(">[V1AvailableBlueprintsPanelComponent.accessKnownSystems]")
         this.backendConnections.push(
             this.industryService.apiv1_GetProcessedBlueprints(this.processedBlueprintTransformer)
                 .subscribe((response: ProcessedBlueprint[]) => {
-                    const blueprintList = this.sortBlueprintByName(response)
+                    this.blueprintList = this.sortBlueprintByName(response)
                     console.log('-[V1AvailableBlueprintsPanelComponent.accessBlueprintList]> Nodes downloaded: ' +
-                        blueprintList.length)
-                    this.completeDowload(blueprintList) // Notify the completion of the download.
+                        this.blueprintList.length)
+                    this.completeDowload(this.blueprintList) // Notify the completion of the download.
                 }, (error) => {
                     console.log('-[V1KnownSystemsPanelComponent.accessKnownSystems.exception]> Error message: ' +
                         JSON.stringify(error.error))

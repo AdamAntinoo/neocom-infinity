@@ -25,4 +25,12 @@ export class V1BlueprintRenderComponent extends V2NodeContainerRenderComponent {
             if (this.getNode().type) return this.getNode().getTypeIconURL()
         } else return platformConstants.DEFAULT_ICON_PLACEHOLDER
     }
+    public getName() :string{
+        if (this.node)
+            if (this.getNode().type) return this.getNode().getName()
+        return '-'
+    }
+    public getModuleName():string{
+        return this.getName()
+    }
 }

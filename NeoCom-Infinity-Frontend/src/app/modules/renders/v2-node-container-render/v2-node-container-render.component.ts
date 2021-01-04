@@ -35,7 +35,7 @@ export class V2NodeContainerRenderComponent extends BackgroundEnabledComponent {
      */
     public mouseEnter(target: ICollaboration) {
         console.log('>Selecting target')
-        if (this.selectOnHover) this.container.enterSelected(target);
+        if (this.selectOnHover) this.container.enterSelected(target)
     }
     public toggleExpanded(): void {
         if (null != this.node) {
