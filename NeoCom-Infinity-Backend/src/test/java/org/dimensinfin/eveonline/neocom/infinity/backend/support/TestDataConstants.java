@@ -12,4 +12,7 @@ public class TestDataConstants {
 	public static class FittingConstants {
 		public static final Integer TEST_FITTING_ID = 60320161;
 	}
+	public static class ProcessedBlueprintConstants{
+		public static final Integer TEST_PROCESSED_BLUEPRINT_ID = 31717;
+	}
 }

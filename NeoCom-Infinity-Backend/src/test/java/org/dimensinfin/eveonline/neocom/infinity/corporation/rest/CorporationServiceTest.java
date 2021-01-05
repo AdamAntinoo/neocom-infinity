@@ -9,7 +9,6 @@ import org.mockito.Mockito;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import org.dimensinfin.eveonline.neocom.adapter.LocationCatalogService;
 import org.dimensinfin.eveonline.neocom.asset.service.AssetDownloadProcessorJob;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.database.repositories.AssetRepository;
@@ -27,6 +26,7 @@ import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticat
 import org.dimensinfin.eveonline.neocom.infinity.corporation.domain.ShippingYardLocation;
 import org.dimensinfin.eveonline.neocom.infinity.backend.character.pilot.rest.v1.PilotServiceV1;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
+import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;
 
 public class CorporationServiceTest {
 	private static final int TEST_CORPORATION_IDENTIFIER = 98384726;
@@ -39,7 +39,7 @@ public class CorporationServiceTest {
 	private AssetRepository assetRepository;
 	private CredentialRepositoryWrapper credentialRepositoryWrapper;
 	private CredentialRepository credentialRepository;
-	private LocationCatalogServiceWrapper locationCatalogServiceWrapper;
+	private LocationCatalogService locationCatalogServiceWrapper;
 	private LocationCatalogService locationCatalogService;
 	private CredentialDetailsService credentialDetailsService;
 	private NeoComAuthenticationProvider neoComAuthenticationProvider;
@@ -53,7 +53,7 @@ public class CorporationServiceTest {
 		this.assetRepository = Mockito.mock( AssetRepository.class );
 		this.credentialRepositoryWrapper = Mockito.mock( CredentialRepositoryWrapper.class );
 		this.credentialRepository = Mockito.mock( CredentialRepository.class );
-		this.locationCatalogServiceWrapper = Mockito.mock( LocationCatalogServiceWrapper.class );
+		this.locationCatalogServiceWrapper = Mockito.mock( LocationCatalogService.class );
 		this.locationCatalogService = Mockito.mock( LocationCatalogService.class );
 		this.credentialDetailsService = Mockito.mock( CredentialDetailsService.class );
 		this.neoComAuthenticationProvider = Mockito.mock( NeoComAuthenticationProvider.class );
@@ -61,7 +61,7 @@ public class CorporationServiceTest {
 		Mockito.when( esiDataProviderWrapper.getSingleton() ).thenReturn( esiDataProvider );
 		Mockito.when( assetRepositoryWrapper.getSingleton() ).thenReturn( assetRepository );
 		Mockito.when( credentialRepositoryWrapper.getSingleton() ).thenReturn( credentialRepository );
-		Mockito.when( locationCatalogServiceWrapper.getSingleton() ).thenReturn( locationCatalogService );
+		Mockito.when( locationCatalogServiceWrapper ).thenReturn( locationCatalogService );
 	}
 
 	@Test

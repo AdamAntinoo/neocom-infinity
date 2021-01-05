@@ -8,16 +8,16 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import org.dimensinfin.eveonline.neocom.adapter.LocationCatalogService;
 import org.dimensinfin.eveonline.neocom.database.entities.MiningExtractionEntity;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBNeoComDBAdapter;
+import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;
 
 public class MiningRepositoryWrapperTest {
 
 	private NeoComDBWrapper neocomDBAdapter;
 	private SBNeoComDBAdapter sbNeoComDBAdapter;
 	private Dao<MiningExtractionEntity, String> miningExtractionDao;
-	private LocationCatalogServiceWrapper locationCatalogServiceWrapper;
+//	private LocationCatalogService locationCatalogServiceWrapper;
 	private LocationCatalogService locationCatalogService;
 
 	@BeforeEach
@@ -26,12 +26,12 @@ public class MiningRepositoryWrapperTest {
 		this.neocomDBAdapter = Mockito.mock( NeoComDBWrapper.class );
 		this.sbNeoComDBAdapter = Mockito.mock( SBNeoComDBAdapter.class );
 		this.miningExtractionDao = Mockito.mock( Dao.class );
-		this.locationCatalogServiceWrapper = Mockito.mock( LocationCatalogServiceWrapper.class );
+//		this.locationCatalogServiceWrapper = Mockito.mock( LocationCatalogServiceWrapper.class );
 		this.locationCatalogService = Mockito.mock( LocationCatalogService.class );
 		// When
 		Mockito.when( this.neocomDBAdapter.getSingleton() ).thenReturn( this.sbNeoComDBAdapter );
 		Mockito.when( this.sbNeoComDBAdapter.getMiningExtractionDao() ).thenReturn( this.miningExtractionDao );
-		Mockito.when( this.locationCatalogServiceWrapper.getSingleton() ).thenReturn( this.locationCatalogService );
+//		Mockito.when( this.locationCatalogService ).thenReturn( this.locationCatalogService );
 	}
 
 	@Test
@@ -39,7 +39,7 @@ public class MiningRepositoryWrapperTest {
 		// Test
 		final MiningRepositoryWrapper miningRepositoryWrapper = new MiningRepositoryWrapper(
 				this.neocomDBAdapter,
-				this.locationCatalogServiceWrapper
+				this.locationCatalogService
 		);
 		// Assertions
 		Assertions.assertNotNull( miningRepositoryWrapper );
@@ -50,7 +50,7 @@ public class MiningRepositoryWrapperTest {
 		// Test
 		final MiningRepositoryWrapper miningRepositoryWrapper = new MiningRepositoryWrapper(
 				this.neocomDBAdapter,
-				this.locationCatalogServiceWrapper
+				this.locationCatalogService
 		);
 		miningRepositoryWrapper.build();
 		// Assertions
