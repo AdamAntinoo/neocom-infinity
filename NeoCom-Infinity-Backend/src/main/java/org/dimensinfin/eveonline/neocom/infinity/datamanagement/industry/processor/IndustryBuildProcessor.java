@@ -6,7 +6,6 @@ import java.util.Objects;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-import org.dimensinfin.eveonline.neocom.adapter.LocationCatalogService;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.domain.space.SpaceRegion;
 import org.dimensinfin.eveonline.neocom.domain.space.Station;
@@ -15,9 +14,9 @@ import org.dimensinfin.eveonline.neocom.esiswagger.model.GetMarketsRegionIdOrder
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.BuildAction;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.BuyBuildAction;
 import org.dimensinfin.eveonline.neocom.infinity.datamanagement.converter.GetMarketsRegionIdOrdersToMarketOrderConverter;
-import org.dimensinfin.eveonline.neocom.infinity.datamanagement.industry.domain.IAction;
 import org.dimensinfin.eveonline.neocom.infinity.datamanagement.services.MarketProvider;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
+import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;
 
 public class IndustryBuildProcessor {
 	public static final String ORDER_TYPE = "ORDER_TYPE";

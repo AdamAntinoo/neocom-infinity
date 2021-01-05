@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import org.dimensinfin.eveonline.neocom.adapter.LocationCatalogService;
 import org.dimensinfin.eveonline.neocom.asset.domain.LocationAssetContainer;
 import org.dimensinfin.eveonline.neocom.asset.service.AssetProvider;
 import org.dimensinfin.eveonline.neocom.asset.service.NetworkAssetSource;
@@ -33,7 +32,7 @@ import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticat
 import org.dimensinfin.eveonline.neocom.infinity.corporation.domain.ShippingYardLocation;
 import org.dimensinfin.eveonline.neocom.infinity.backend.character.pilot.rest.v1.PilotServiceV1;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
-import org.dimensinfin.eveonline.neocom.service.logger.NeoComLogger;
+import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;
 import org.dimensinfin.logging.LogWrapper;
 
 @Service
@@ -52,14 +51,14 @@ public class CorporationService {
 	                           final PilotServiceV1 pilotServiceV1,
 	                           final AssetRepositoryWrapper assetRepositoryWrapper,
 	                           final CredentialRepositoryWrapper credentialRepositoryWrapper,
-	                           final LocationCatalogServiceWrapper locationCatalogServiceWrapper,
+	                           final LocationCatalogService locationCatalogService,
 	                           final CredentialDetailsService credentialDetailsService,
 	                           final NeoComAuthenticationProvider neoComAuthenticationProvider ) {
 		this.esiDataProvider = esiDataProviderWrapper.getSingleton();
 		this.pilotServiceV1 = pilotServiceV1;
 		this.assetRepository = assetRepositoryWrapper.getSingleton();
 		this.credentialRepository = credentialRepositoryWrapper.getSingleton();
-		this.locationCatalogService = locationCatalogServiceWrapper.getSingleton();
+		this.locationCatalogService = locationCatalogService;
 		this.credentialDetailsService = credentialDetailsService;
 		this.neoComAuthenticationProvider = neoComAuthenticationProvider;
 	}

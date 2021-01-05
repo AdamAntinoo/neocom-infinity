@@ -4,13 +4,12 @@ import java.util.Objects;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import org.dimensinfin.eveonline.neocom.adapter.LocationCatalogService;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 import org.dimensinfin.eveonline.neocom.provider.IFileSystem;
+import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;
 
-@Component
+//@Component
+@Deprecated
 public class LocationCatalogServiceWrapper {
 	private final IConfigurationService configurationService;
 	private final IFileSystem fileSystemAdapter;
@@ -37,13 +36,13 @@ public class LocationCatalogServiceWrapper {
 		return Objects.requireNonNull( this.singleton );
 	}
 
-	@PostConstruct
+//	@PostConstruct
 	void build() {
-		this.singleton = new LocationCatalogService.Builder()
-				.withConfigurationProvider( this.configurationService )
-				.withFileSystemAdapter( this.fileSystemAdapter )
-				.withESIUniverseDataProvider( this.esiUniverseDataProviderWrapper.getSingleton() )
-				.withRetrofitFactory( this.retrofitFactoryWrapper.getSingleton() )
-				.build();
+//		this.singleton = new LocationCatalogService.Builder()
+//				.withConfigurationProvider( this.configurationService )
+//				.withFileSystemAdapter( this.fileSystemAdapter )
+//				.withESIUniverseDataProvider( this.esiUniverseDataProviderWrapper.getSingleton() )
+//				.withRetrofitFactory( this.retrofitFactoryWrapper.getSingleton() )
+//				.build();
 	}
 }

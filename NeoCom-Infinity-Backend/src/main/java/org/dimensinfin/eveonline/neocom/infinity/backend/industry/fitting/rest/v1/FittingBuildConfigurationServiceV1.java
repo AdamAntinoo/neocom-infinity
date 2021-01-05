@@ -11,7 +11,6 @@ import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import org.dimensinfin.eveonline.neocom.adapter.LocationCatalogService;
 import org.dimensinfin.eveonline.neocom.domain.FittingV2;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdFittings200Ok;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataProviderWrapper;
@@ -31,6 +30,7 @@ import org.dimensinfin.eveonline.neocom.infinity.core.security.CredentialDetails
 import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticationProvider;
 import org.dimensinfin.eveonline.neocom.infinity.datamanagement.industry.processor.IndustryBuildProcessor;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
+import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;
 
 import static org.dimensinfin.eveonline.neocom.infinity.backend.industry.IndustryControllerV1.INDUSTRY_ERROR_CODE_PREFIX;
 
@@ -76,13 +76,13 @@ public class FittingBuildConfigurationServiceV1 extends NeoComCredentialService 
 	public FittingBuildConfigurationServiceV1( final @NotNull NeoComAuthenticationProvider neoComAuthenticationProvider,
 	                                           final @NotNull CredentialDetailsService credentialDetailsService,
 	                                           final @NotNull ESIDataProviderWrapper esiDataProviderWrapper,
-	                                           final @NotNull LocationCatalogServiceWrapper locationCatalogServiceWrapper,
+	                                           final @NotNull LocationCatalogService locationCatalogService,
 	                                           final @NotNull BuildActionPreferencesRepository buildActionPreferencesRepository,
 	                                           final @NotNull EsiItemServiceV2 esiItemServiceV2,
 	                                           final @NotNull ItemFactory itemFactory ) {
 		super( neoComAuthenticationProvider, credentialDetailsService );
 		this.esiDataProvider = Objects.requireNonNull( esiDataProviderWrapper.getSingleton() );
-		this.locationCatalogService = Objects.requireNonNull( locationCatalogServiceWrapper.getSingleton() );
+		this.locationCatalogService = Objects.requireNonNull( locationCatalogService );
 		this.buildActionPreferencesRepository = buildActionPreferencesRepository;
 		this.esiItemServiceV2 = esiItemServiceV2;
 		this.itemFactory = itemFactory;
