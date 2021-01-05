@@ -9,13 +9,14 @@ import org.springframework.context.annotation.Configuration;
 
 import org.dimensinfin.eveonline.neocom.database.core.ISDEDatabaseService;
 import org.dimensinfin.eveonline.neocom.database.repositories.SDERepository;
-import org.dimensinfin.eveonline.neocom.infinity.service.SBConfigurationService;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBFileSystemAdapter;
 import org.dimensinfin.eveonline.neocom.infinity.backend.sde.service.SBSDEDatabaseService;
+import org.dimensinfin.eveonline.neocom.infinity.service.SBConfigurationService;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 import org.dimensinfin.eveonline.neocom.provider.IFileSystem;
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
 import org.dimensinfin.eveonline.neocom.service.IStoreCache;
+import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;
 import org.dimensinfin.eveonline.neocom.service.MemoryStoreCacheService;
 import org.dimensinfin.eveonline.neocom.service.ResourceFactory;
 import org.dimensinfin.eveonline.neocom.service.RetrofitService;
@@ -58,10 +59,7 @@ public class NeoComDependencyConfiguration {
 	@Bean
 	public IConfigurationService dependency_01_IConfigurationService() {
 		LogWrapper.enter();
-		final SBConfigurationService configurationService = injector.getInstance( SBConfigurationService.class );
-//		configurationService.readAllProperties();
-		LogWrapper.exit();
-		return configurationService;
+		return this.injector.getInstance( SBConfigurationService.class );
 	}
 
 	@Bean
@@ -71,13 +69,7 @@ public class NeoComDependencyConfiguration {
 	}
 
 	@Bean
-	public ESIDataService dependency_02_ESIDataService() {
-		LogWrapper.enter();
-		return injector.getInstance( ESIDataService.class );
-	}
-
-	@Bean
-	public IStoreCache dependency_02_IStoreCache() {
+	public IStoreCache dependency_01_IStoreCache() {
 		LogWrapper.enter();
 		return injector.getInstance( MemoryStoreCacheService.class );
 	}
@@ -95,13 +87,25 @@ public class NeoComDependencyConfiguration {
 	}
 
 	@Bean
-	public ResourceFactory dependency_04_ResourceFactory() {
+	public LocationCatalogService dependency_03_LocationCatalogService() {
+		LogWrapper.enter();
+		return injector.getInstance( LocationCatalogService.class );
+	}
+
+	@Bean
+	public ESIDataService dependency_04_ESIDataService() {
+		LogWrapper.enter();
+		return injector.getInstance( ESIDataService.class );
+	}
+
+	@Bean
+	public ResourceFactory dependency_06_ResourceFactory() {
 		LogWrapper.enter();
 		return injector.getInstance( ResourceFactory.class );
 	}
 
 	@Bean
-	public SDERepository dependency_05_SDERepository() {
+	public SDERepository dependency_07_SDERepository() {
 		LogWrapper.enter();
 		return injector.getInstance( SDERepository.class );
 	}

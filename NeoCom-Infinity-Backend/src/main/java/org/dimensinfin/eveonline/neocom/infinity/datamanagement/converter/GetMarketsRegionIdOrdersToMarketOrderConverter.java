@@ -3,10 +3,10 @@ package org.dimensinfin.eveonline.neocom.infinity.datamanagement.converter;
 import javax.validation.constraints.NotNull;
 
 import org.dimensinfin.core.interfaces.Converter;
-import org.dimensinfin.eveonline.neocom.adapter.LocationCatalogService;
 import org.dimensinfin.eveonline.neocom.domain.space.Station;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetMarketsRegionIdOrders200Ok;
 import org.dimensinfin.eveonline.neocom.infinity.datamanagement.domain.MarketOrder;
+import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;
 
 public class GetMarketsRegionIdOrdersToMarketOrderConverter implements Converter<GetMarketsRegionIdOrders200Ok, MarketOrder> {
 	private final LocationCatalogService locationCatalogService;

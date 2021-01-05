@@ -10,7 +10,6 @@ import javax.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import org.dimensinfin.eveonline.neocom.adapter.LocationCatalogService;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.database.entities.PilotPreferencesEntity;
 import org.dimensinfin.eveonline.neocom.domain.space.SpaceLocation;
@@ -24,6 +23,7 @@ import org.dimensinfin.eveonline.neocom.infinity.core.security.CredentialDetails
 import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticationProvider;
 import org.dimensinfin.eveonline.neocom.infinity.datamanagement.converter.GetMarketsRegionIdOrdersToMarketOrderConverter;
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
+import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;
 import org.dimensinfin.logging.LogWrapper;
 
 import static org.dimensinfin.eveonline.neocom.infinity.backend.market.domain.MarketData.MARKET_DEEP_RANGE;
@@ -41,12 +41,12 @@ public class MarketServiceV1 extends NeoComCredentialService {
 	                        final @NotNull CredentialDetailsService credentialDetailsService,
 	                        //	                        final @NotNull ESIDataServiceWrapper esiDataServiceWrapper,
 	                        final @NotNull ESIDataService esiDataService,
-	                        final @NotNull LocationCatalogServiceWrapper locationCatalogServiceWrapper/*,
+	                        final @NotNull LocationCatalogService locationCatalogService/*,
 	                        final @NotNull PilotPreferencesRepository pilotPreferencesRepository */ ) {
 		super( neoComAuthenticationProvider, credentialDetailsService );
 		this.esiDataService = esiDataService;
 		//		this.esiDataService = Objects.requireNonNull( esiDataServiceWrapper.getSingleton() );
-		this.locationCatalogService = Objects.requireNonNull( locationCatalogServiceWrapper.getSingleton() );
+		this.locationCatalogService = Objects.requireNonNull( locationCatalogService );
 		//		this.pilotPreferencesRepository = pilotPreferencesRepository;
 	}
 

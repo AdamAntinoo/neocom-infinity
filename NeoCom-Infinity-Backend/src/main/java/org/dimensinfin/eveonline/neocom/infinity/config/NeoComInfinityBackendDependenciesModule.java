@@ -5,13 +5,15 @@ import com.google.inject.Singleton;
 import com.google.inject.name.Names;
 
 import org.dimensinfin.eveonline.neocom.database.core.ISDEDatabaseService;
-import org.dimensinfin.eveonline.neocom.infinity.service.SBConfigurationService;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBFileSystemAdapter;
 import org.dimensinfin.eveonline.neocom.infinity.backend.sde.service.SBSDEDatabaseService;
+import org.dimensinfin.eveonline.neocom.infinity.service.SBConfigurationService;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 import org.dimensinfin.eveonline.neocom.provider.IFileSystem;
+import org.dimensinfin.eveonline.neocom.service.DMServicesDependenciesModule;
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
 import org.dimensinfin.eveonline.neocom.service.IStoreCache;
+import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;
 import org.dimensinfin.eveonline.neocom.service.MemoryStoreCacheService;
 import org.dimensinfin.eveonline.neocom.service.ResourceFactory;
 import org.dimensinfin.eveonline.neocom.service.RetrofitService;
@@ -45,38 +47,39 @@ public class NeoComInfinityBackendDependenciesModule extends AbstractModule {
 
 		// Bind platform specific implementations.
 		bind( IConfigurationService.class )
-				.annotatedWith( Names.named( "IConfigurationService" ) )
+				.annotatedWith( Names.named( DMServicesDependenciesModule.ICONFIGURATION_SERVICE ) )
 				.to( SBConfigurationService.class )
 				.in( Singleton.class );
 		bind( IFileSystem.class )
-				.annotatedWith( Names.named( "IFileSystem" ) )
+				.annotatedWith( Names.named( DMServicesDependenciesModule.IFILE_SYSTEM ) )
 				.to( SBFileSystemAdapter.class )
+				.in( Singleton.class );
+		bind( IStoreCache.class )
+				.annotatedWith( Names.named( DMServicesDependenciesModule.ISTORE_CACHE ) )
+				.to( MemoryStoreCacheService.class )
 				.in( Singleton.class );
 
 		// Bind DM services until this is declared on the DM library.
-		bind( IStoreCache.class )
-				.annotatedWith( Names.named( "IStoreCache" ) )
-				.to( MemoryStoreCacheService.class )
-				.in( Singleton.class );
 		bind( RetrofitService.class )
-				.annotatedWith( Names.named( "RetrofitService" ) )
+				.annotatedWith( Names.named( DMServicesDependenciesModule.RETROFIT_SERVICE ) )
 				.to( RetrofitService.class )
 				.in( Singleton.class );
+		bind( LocationCatalogService.class )
+				.annotatedWith( Names.named( DMServicesDependenciesModule.LOCATION_CATALOG_SERVICE ) )
+				.to( LocationCatalogService.class )
+				.in( Singleton.class );
 		bind( ESIDataService.class )
-				.annotatedWith( Names.named( "ESIDataService" ) )
+				.annotatedWith( Names.named( DMServicesDependenciesModule.ESIDATA_SERVICE ) )
 				.to( ESIDataService.class )
 				.in( Singleton.class );
+		bind( ResourceFactory.class )
+				.annotatedWith( Names.named( DMServicesDependenciesModule.RESOURCE_FACTORY ) )
+				.to( ResourceFactory.class )
+				.in( Singleton.class );
+
 		bind( ISDEDatabaseService.class )
 				.annotatedWith( Names.named( "ISDEDatabaseService" ) )
 				.to( SBSDEDatabaseService.class )
 				.in( Singleton.class );
-		bind( ResourceFactory.class )
-				.annotatedWith( Names.named( "ResourceFactory" ) )
-				.to( ResourceFactory.class )
-				.in( Singleton.class );
-//		bind( SDERepository.class )
-//				.annotatedWith( Names.named( "SDERepository" ) )
-//				.to( SDERepository.class )
-//				.in( Singleton.class );
 	}
 }

@@ -12,11 +12,9 @@ import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import org.dimensinfin.eveonline.neocom.adapter.LocationCatalogService;
 import org.dimensinfin.eveonline.neocom.database.repositories.CredentialRepository;
 import org.dimensinfin.eveonline.neocom.database.repositories.MiningRepository;
 import org.dimensinfin.eveonline.neocom.database.repositories.SDERepository;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.ConfigurationServiceWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.CredentialRepositoryWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataProviderWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.LocationCatalogServiceWrapper;
@@ -26,6 +24,7 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.config.Schedu
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
+import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;
 import org.dimensinfin.eveonline.neocom.service.scheduler.JobScheduler;
 import org.dimensinfin.logging.LogWrapper;
 
@@ -50,7 +49,7 @@ public class MinuteSchedulerTimeBaseSchedule {
 	                                        final @NotNull SchedulerConfiguration schedulerConfiguration,
 	                                        final @NotNull MiningRepositoryWrapper miningRepositoryWrapper,
 	                                        final @NotNull ESIDataProviderWrapper esiDataProviderWrapper,
-	                                        final @NotNull LocationCatalogServiceWrapper locationCatalogServiceWrapper,
+	                                        final @NotNull LocationCatalogService locationCatalogService,
 	                                        final @NotNull ESIDataService esiDataService,
 	                                        final @NotNull SDERepository sdeRepository,
 	                                        final @NotNull DataStoreService dataStoreService ) {
@@ -59,7 +58,7 @@ public class MinuteSchedulerTimeBaseSchedule {
 		this.schedulerConfiguration = schedulerConfiguration;
 		this.miningRepository = miningRepositoryWrapper.getSingleton();
 		this.esiDataProvider = esiDataProviderWrapper.getSingleton();
-		this.locationCatalogService = locationCatalogServiceWrapper.getSingleton();
+		this.locationCatalogService = locationCatalogService;
 		this.esiDataService = esiDataService;
 		this.sdeRepository = sdeRepository;
 		this.dataStoreService = dataStoreService;

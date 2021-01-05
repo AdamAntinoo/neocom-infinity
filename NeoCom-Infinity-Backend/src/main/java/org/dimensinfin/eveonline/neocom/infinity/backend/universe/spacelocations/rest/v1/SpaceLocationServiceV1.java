@@ -6,9 +6,8 @@ import javax.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import org.dimensinfin.eveonline.neocom.adapter.LocationCatalogService;
 import org.dimensinfin.eveonline.neocom.domain.space.SpaceLocation;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.LocationCatalogServiceWrapper;
+import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;
 
 @Service
 public class SpaceLocationServiceV1 {
@@ -16,8 +15,8 @@ public class SpaceLocationServiceV1 {
 
 	// - C O N S T R U C T O R S
 	@Autowired
-	private SpaceLocationServiceV1( @NotNull final LocationCatalogServiceWrapper locationCatalogServiceWrapper ) {
-		this.locationCatalogService = Objects.requireNonNull( locationCatalogServiceWrapper ).getSingleton();
+	private SpaceLocationServiceV1( @NotNull final LocationCatalogService locationCatalogService ) {
+		this.locationCatalogService = Objects.requireNonNull( locationCatalogService );
 	}
 
 	public SpaceLocation getLocationById( final Long locationId ) {
