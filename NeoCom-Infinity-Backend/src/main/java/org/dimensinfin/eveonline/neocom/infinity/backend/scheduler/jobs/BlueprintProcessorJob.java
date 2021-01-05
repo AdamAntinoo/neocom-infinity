@@ -9,9 +9,10 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.database.repositories.SDERepository;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdBlueprints200Ok;
-import org.dimensinfin.eveonline.neocom.infinity.service.DataStoreService;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.domain.ProcessedBlueprint;
+import org.dimensinfin.eveonline.neocom.infinity.service.DataStoreService;
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
+import org.dimensinfin.eveonline.neocom.service.ResourceFactory;
 import org.dimensinfin.eveonline.neocom.service.scheduler.domain.Job;
 
 public class BlueprintProcessorJob extends Job {
@@ -19,12 +20,12 @@ public class BlueprintProcessorJob extends Job {
 	private ESIDataService esiDataService;
 	private SDERepository sdeRepository;
 	private DataStoreService dataStoreService;
+	private ResourceFactory resourceFactory;
 
 	// - C O N S T R U C T O R S
 	private BlueprintProcessorJob() {}
 
 	// - G E T T E R S   &   S E T T E R S
-	// - J O B
 	@Override
 	public int getUniqueIdentifier() {
 		return new HashCodeBuilder( 19, 137 )
@@ -32,6 +33,8 @@ public class BlueprintProcessorJob extends Job {
 				.append( this.getClass().getSimpleName() )
 				.toHashCode();
 	}
+
+	// - J O B
 
 	/**
 	 * The blueprint processor will get all the blueprints for a credential, then filter them to keep only distinct blueprint types and finally
@@ -48,6 +51,9 @@ public class BlueprintProcessorJob extends Job {
 				.map( blueprintType -> new ProcessedBlueprint.Builder()
 						.withType( blueprintType.intValue() )
 						.withBOM( this.sdeRepository.accessBillOfMaterials( blueprintType ) )
+						.withOutput( this.resourceFactory.generateType4Id(
+								this.sdeRepository.accessModule4Blueprint( blueprintType.intValue() )
+						) )
 						.build() )
 				.collect( Collectors.toList() );
 		this.dataStoreService.updateProcessedBlueprint( credential, processedBlueprints );
@@ -75,6 +81,11 @@ public class BlueprintProcessorJob extends Job {
 
 		public BlueprintProcessorJob.Builder withEsiDataService( final ESIDataService esiDataService ) {
 			this.onConstruction.esiDataService = Objects.requireNonNull( esiDataService );
+			return this;
+		}
+
+		public BlueprintProcessorJob.Builder withResourceFactory( final ResourceFactory resourceFactory ) {
+			this.onConstruction.resourceFactory = Objects.requireNonNull( resourceFactory );
 			return this;
 		}
 

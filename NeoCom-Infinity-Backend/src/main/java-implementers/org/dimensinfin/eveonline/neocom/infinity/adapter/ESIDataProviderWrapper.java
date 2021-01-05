@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 import org.dimensinfin.eveonline.neocom.provider.IFileSystem;
+import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;
 import org.dimensinfin.eveonline.neocom.service.RetrofitService;
 
 @Component
@@ -18,7 +19,7 @@ public class ESIDataProviderWrapper {
 	private final IFileSystem fileSystemAdapter;
 //	private final RetrofitFactoryWrapper retrofitFactoryWrapper;
 	private final RetrofitService retrofitService;
-	private final LocationCatalogServiceWrapper locationCatalogServiceWrapper;
+	private final LocationCatalogService locationCatalogService;
 	private final StoreCacheManagerWrapper storeCacheManagerWrapper;
 	private ESIDataProvider singleton;
 
@@ -27,14 +28,14 @@ public class ESIDataProviderWrapper {
 	public ESIDataProviderWrapper( final IConfigurationService configurationService,
 	                               final IFileSystem fileSystemAdapter,
 	                               final RetrofitService retrofitService,
-	                               final LocationCatalogServiceWrapper locationCatalogServiceWrapper,
+	                               final LocationCatalogService locationCatalogService,
 	                               final StoreCacheManagerWrapper storeCacheManagerWrapper ) {
 //		this.configurationServiceWrapper = configurationServiceWrapper;
 		this.configurationService=configurationService;
 		this.fileSystemAdapter = fileSystemAdapter;
 //		this.retrofitFactoryWrapper = retrofitFactoryWrapper;
 		this.retrofitService=retrofitService;
-		this.locationCatalogServiceWrapper = locationCatalogServiceWrapper;
+		this.locationCatalogService = locationCatalogService;
 		this.storeCacheManagerWrapper = storeCacheManagerWrapper;
 	}
 
@@ -48,7 +49,7 @@ public class ESIDataProviderWrapper {
 				.withConfigurationProvider( this.configurationService )
 				.withFileSystemAdapter( this.fileSystemAdapter )
 				.withRetrofitFactory( this.retrofitService )
-				.withLocationCatalogService( this.locationCatalogServiceWrapper.getSingleton() )
+				.withLocationCatalogService( this.locationCatalogService )
 				.withStoreCacheManager( this.storeCacheManagerWrapper.getSingleton() )
 				.build();
 	}
