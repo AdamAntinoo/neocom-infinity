@@ -10,20 +10,20 @@ import org.springframework.hateoas.Link;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 
 import org.dimensinfin.eveonline.neocom.core.EveGlobalConstants;
+import org.dimensinfin.eveonline.neocom.domain.EsiType;
 import org.dimensinfin.eveonline.neocom.domain.Resource;
 import org.dimensinfin.eveonline.neocom.infinity.backend.universe.market.rest.v1.UniverseMarketControllerV1;
 
 @JsonComponent
-public class ResourceSerializer extends JsonSerializer<Resource> {
+public class EsiTypeSerializer extends JsonSerializer<EsiType> {
 	@Override
-	public void serialize( final Resource value, final JsonGenerator jgen, final SerializerProvider provider )
+	public void serialize( final EsiType value, final JsonGenerator jgen, final SerializerProvider provider )
 			throws IOException {
 		jgen.writeStartObject();
 
 		jgen.writeStringField( "jsonClass", value.getJsonClass() );
 		jgen.writeNumberField( "typeId", value.getTypeId() );
 		jgen.writeStringField( "name", value.getName() );
-		jgen.writeNumberField( "quantity", value.getQuantity() );
 		jgen.writeObjectField( "group", value.getGroup() );
 		jgen.writeObjectField( "category", value.getCategory() );
 		jgen.writeObjectField( "type", value.getItem() );
