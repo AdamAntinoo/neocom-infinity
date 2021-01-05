@@ -10,24 +10,20 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import org.dimensinfin.eveonline.neocom.provider.IFileSystem;
-import org.dimensinfin.eveonline.neocom.service.scheduler.JobScheduler;
 
 public class SBFileSystemAdapterTest {
-	private SBFileSystemAdapter fileSystemAdapter4Test ;
+	private static final String TEST_APPLICATION_DIRECTORY = "-TEST-APPLICATION-DIRECTORY-";
+	private SBFileSystemAdapter fileSystemAdapter4Test;
 
 	@BeforeEach
 	public void beforeEach() {
-		this.fileSystemAdapter4Test = new SBFileSystemAdapter.Builder()
-				.optionalApplicationDirectory( "./open/application.directory/NeoCom.Infinity.unittesting" )
-				.build();
+		this.fileSystemAdapter4Test = new SBFileSystemAdapter( TEST_APPLICATION_DIRECTORY );
 	}
 
 	@Test
-	public void buildComplete() {
-		final SBFileSystemAdapter fileSystemAdapter = new SBFileSystemAdapter.Builder()
-				.optionalApplicationDirectory( "APPLICATION-DIRECTORY" )
-				.build();
-		Assertions.assertNotNull(fileSystemAdapter);
+	public void constructorContract() {
+		final SBFileSystemAdapter fileSystemAdapter = new SBFileSystemAdapter( TEST_APPLICATION_DIRECTORY );
+		Assertions.assertNotNull( fileSystemAdapter );
 	}
 
 	@Test
@@ -42,9 +38,7 @@ public class SBFileSystemAdapterTest {
 
 	@Test
 	public void openResource4Output() throws IOException {
-		final IFileSystem fileSystem = new SBFileSystemAdapter.Builder()
-				.optionalApplicationDirectory( "./src/test" )
-				.build();
+		final IFileSystem fileSystem = new SBFileSystemAdapter( "./src/test" );
 		final OutputStream file = fileSystem.openResource4Output( "FILE.test" );
 		Assertions.assertNotNull( file );
 	}

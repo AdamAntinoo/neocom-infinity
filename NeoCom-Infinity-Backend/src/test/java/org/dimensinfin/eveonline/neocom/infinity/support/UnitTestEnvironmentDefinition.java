@@ -103,16 +103,16 @@ public class UnitTestEnvironmentDefinition {
 //		Mockito.when( credential4Test.getDataSource() ).thenReturn( "tranquility" );
 //		Mockito.when( credential4Test.setMiningResourcesEstimatedValue( Mockito.anyDouble() ) ).thenReturn( credential4Test );
 
-		this.itConfigurationProvider = new SBConfigurationService.Builder()
-				.optionalPropertiesDirectory( "/src/test/resources/properties.unittest" ).build();
+//		this.itConfigurationProvider = new SBConfigurationService.Builder()
+//				.optionalPropertiesDirectory( "/src/test/resources/properties.unittest" ).build();
 		this.itConfigurationProvider.setProperty( ESI_TRANQUILITY_AUTHORIZATION_SERVER_URL,
 				"http://" +
 						esioauthsimulator.getContainerIpAddress() +
 						":" +
 						esioauthsimulator.getMappedPort( ESIOAUTH_UNITTESTING_PORT ) );
-		this.itFileSystemAdapter = new SBFileSystemAdapter.Builder()
-				.optionalApplicationDirectory( "./src/test/NeoCom.UnitTesting/" )
-				.build();
+//		this.itFileSystemAdapter = new SBFileSystemAdapter.Builder()
+//				.optionalApplicationDirectory( "./src/test/NeoCom.UnitTesting/" )
+//				.build();
 //		final String databaseHostName = this.itConfigurationProvider.getResourceString( "P.database.neocom.databasehost" );
 //		final String databasePath = this.itConfigurationProvider.getResourceString( "P.database.neocom.databasepath" );
 //		final String databaseUser = this.itConfigurationProvider.getResourceString( "P.database.neocom.databaseuser" );

@@ -36,7 +36,7 @@ public class SBFileSystemAdapter implements IFileSystem {
 	// - C O N S T R U C T O R S
 	@Inject
 	public SBFileSystemAdapter( final @NotNull @Named("ApplicationDirectory") String applicationDirectory ) {
-		if (null != applicationDirectory) this.applicationDirectory = applicationDirectory;
+		this.applicationDirectory = applicationDirectory;
 	}
 
 	@Override
@@ -95,23 +95,4 @@ public class SBFileSystemAdapter implements IFileSystem {
 				.append( "applicationDirectory", this.applicationDirectory )
 				.toString();
 	}
-
-	// - B U I L D E R
-	//	public static class Builder {
-	//		private SBFileSystemAdapter onConstruction;
-	//
-	//		// - C O N S T R U C T O R S
-	//		public Builder() {
-	//			this.onConstruction = new SBFileSystemAdapter();
-	//		}
-	//
-	//		public SBFileSystemAdapter build() {
-	//			return this.onConstruction;
-	//		}
-	//
-	//		public SBFileSystemAdapter.Builder optionalApplicationDirectory( final String applicationDirectory ) {
-	//			if (null != applicationDirectory) this.onConstruction.applicationDirectory = applicationDirectory;
-	//			return this;
-	//		}
-	//	}
 }

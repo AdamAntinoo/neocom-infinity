@@ -5,26 +5,28 @@ import java.util.Objects;
 import javax.annotation.PostConstruct;
 
 import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.support.ConnectionSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import org.dimensinfin.eveonline.neocom.database.entities.MiningExtractionEntity;
 import org.dimensinfin.eveonline.neocom.database.repositories.MiningRepository;
+import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;
 
 @Component
 public class MiningRepositoryWrapper {
 	private final Dao<MiningExtractionEntity, String> miningExtractionDao;
-	private final LocationCatalogServiceWrapper locationCatalogServiceWrapper;
+	private final LocationCatalogService locationCatalogService;
 	private MiningRepository singleton;
 
+	// - C O N S T R U C T O R S
 	@Autowired
 	public MiningRepositoryWrapper( final NeoComDBWrapper neocomDBAdapter,
-	                                final LocationCatalogServiceWrapper locationCatalogServiceWrapper ) throws SQLException {
+	                                final LocationCatalogService locationCatalogService ) throws SQLException {
 		this.miningExtractionDao = neocomDBAdapter.getSingleton().getMiningExtractionDao();
-		this.locationCatalogServiceWrapper = locationCatalogServiceWrapper;
+		this.locationCatalogService = locationCatalogService;
 	}
 
+	// - G E T T E R S   &   S E T T E R S
 	public MiningRepository getSingleton() {
 		return Objects.requireNonNull( this.singleton );
 	}
@@ -33,7 +35,7 @@ public class MiningRepositoryWrapper {
 	void build() {
 		this.singleton = new MiningRepository.Builder()
 				.withMiningExtractionDao( this.miningExtractionDao )
-				.withLocationCatalogService( this.locationCatalogServiceWrapper.getSingleton() )
+				.withLocationCatalogService( this.locationCatalogService )
 				.build();
 	}
 }
