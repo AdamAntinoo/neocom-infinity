@@ -16,6 +16,7 @@ import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
 import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;
+import org.dimensinfin.eveonline.neocom.service.ResourceFactory;
 import org.dimensinfin.eveonline.neocom.service.logger.NeoComLogger;
 import org.dimensinfin.eveonline.neocom.service.scheduler.JobScheduler;
 import org.dimensinfin.eveonline.neocom.service.scheduler.domain.Job;
@@ -33,6 +34,7 @@ public class CredentialJobGenerator extends Job {
 	private ESIDataService esiDataService;
 	private SDERepository sdeRepository;
 	private DataStoreService dataStoreService;
+	private ResourceFactory resourceFactory;
 
 	private CredentialJobGenerator() {
 		this.setSchedule( "0/5 - *" );
@@ -75,6 +77,7 @@ public class CredentialJobGenerator extends Job {
 						.withEsiDataService( this.esiDataService )
 						.withSDERepository( this.sdeRepository )
 						.withDataStore( this.dataStoreService )
+						.withResourceFactory( this.resourceFactory )
 						.addCronSchedule( this.configurationService.getResourceString( CRON_SCHEDULE_PROCESSING_BLUEPRINTS, "* - 0" ) )
 						.build() );
 		}
@@ -145,6 +148,10 @@ public class CredentialJobGenerator extends Job {
 		public CredentialJobGenerator.Builder withLocationCatalogService( final LocationCatalogService locationCatalogService ) {
 			Objects.requireNonNull( locationCatalogService );
 			this.onConstruction.locationCatalogService = locationCatalogService;
+			return this;
+		}
+		public CredentialJobGenerator.Builder withResourceFactory( final ResourceFactory resourceFactory ) {
+			this.onConstruction.resourceFactory = Objects.requireNonNull( resourceFactory );
 			return this;
 		}
 

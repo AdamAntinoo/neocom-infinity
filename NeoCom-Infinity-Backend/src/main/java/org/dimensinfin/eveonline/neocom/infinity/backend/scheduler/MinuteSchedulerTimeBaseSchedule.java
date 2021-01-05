@@ -17,7 +17,6 @@ import org.dimensinfin.eveonline.neocom.database.repositories.MiningRepository;
 import org.dimensinfin.eveonline.neocom.database.repositories.SDERepository;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.CredentialRepositoryWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataProviderWrapper;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.LocationCatalogServiceWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.MiningRepositoryWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.service.DataStoreService;
 import org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.config.SchedulerConfiguration;
@@ -25,6 +24,7 @@ import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
 import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;
+import org.dimensinfin.eveonline.neocom.service.ResourceFactory;
 import org.dimensinfin.eveonline.neocom.service.scheduler.JobScheduler;
 import org.dimensinfin.logging.LogWrapper;
 
@@ -41,6 +41,7 @@ public class MinuteSchedulerTimeBaseSchedule {
 	private final ESIDataService esiDataService;
 	private final SDERepository sdeRepository;
 	private final DataStoreService dataStoreService;
+	private final ResourceFactory resourceFactory;
 
 	// - C O N S T R U C T O R S
 	@Autowired
@@ -52,7 +53,8 @@ public class MinuteSchedulerTimeBaseSchedule {
 	                                        final @NotNull LocationCatalogService locationCatalogService,
 	                                        final @NotNull ESIDataService esiDataService,
 	                                        final @NotNull SDERepository sdeRepository,
-	                                        final @NotNull DataStoreService dataStoreService ) {
+	                                        final @NotNull DataStoreService dataStoreService,
+	                                        final ResourceFactory resourceFactory ) {
 		this.configurationService = configurationService;
 		this.credentialRepository = credentialRepositoryWrapper.getSingleton();
 		this.schedulerConfiguration = schedulerConfiguration;
@@ -62,6 +64,7 @@ public class MinuteSchedulerTimeBaseSchedule {
 		this.esiDataService = esiDataService;
 		this.sdeRepository = sdeRepository;
 		this.dataStoreService = dataStoreService;
+		this.resourceFactory = resourceFactory;
 	}
 
 	/**
@@ -80,6 +83,7 @@ public class MinuteSchedulerTimeBaseSchedule {
 				.withEsiDataService( this.esiDataService )
 				.withSDERepository( this.sdeRepository )
 				.withDataStore( this.dataStoreService )
+				.withResourceFactory( this.resourceFactory )
 				.addCronSchedule( this.configurationService.getResourceString( CRON_SCHEDULE_CREDENTIAL_JOB_GENERATOR, "* - *" ) )
 				.build() );
 		LogWrapper.exit();

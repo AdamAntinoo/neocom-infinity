@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.dimensinfin.eveonline.neocom.domain.FittingV2;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdFittings200Ok;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataProviderWrapper;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.LocationCatalogServiceWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComCredentialService;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.domain.ItemFactory;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.converter.GetCharactersCharacterIdFittingsToFittingV2Converter;

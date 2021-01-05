@@ -23,7 +23,6 @@ import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCorporationsCorporat
 import org.dimensinfin.eveonline.neocom.infinity.adapter.AssetRepositoryWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.CredentialRepositoryWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataProviderWrapper;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.LocationCatalogServiceWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.ErrorInfo;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComNotFoundException;
 import org.dimensinfin.eveonline.neocom.infinity.core.security.CredentialDetails;
