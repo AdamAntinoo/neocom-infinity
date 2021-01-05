@@ -43,17 +43,17 @@ public class POCDependenciesModule extends AbstractModule {
 				.in( Singleton.class );
 
 		// Bind DM services until this is declared on the DM library.
-		bind( RetrofitService.class )
-				.annotatedWith( Names.named( "RetrofitService" ) )
-				.to( RetrofitService.class )
-				.in( Singleton.class );
+//		bind( RetrofitService.class )
+//				.annotatedWith( Names.named( "RetrofitService" ) )
+//				.to( RetrofitService.class )
+//				.in( Singleton.class );
 		bind( IStoreCache.class )
 				.annotatedWith( Names.named( "IStoreCache" ) )
 				.to( MemoryStoreCacheService.class )
 				.in( Singleton.class );
-		bind( ESIDataService.class )
-				.annotatedWith( Names.named( "ESIDataService" ) )
-				.to( ESIDataService.class )
-				.in( Singleton.class );
+//		bind( ESIDataService.class )
+//				.annotatedWith( Names.named( "ESIDataService" ) )
+//				.to( ESIDataService.class )
+//				.in( Singleton.class );
 	}
 }
