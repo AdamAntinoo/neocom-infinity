@@ -34,8 +34,9 @@ export class AppPanelComponent extends BackgroundEnabledComponent implements IVi
         this.refresh();
         console.log("<[AppPanelComponent.ngOnInit]");
     }
-public refresh () : void{        console.log(">[AppPanelComponent.refresh]");
-}
+    public refresh(): void {
+        console.log(">[AppPanelComponent.refresh]");
+    }
     // - G E T T E R S
     public getVariant(): string {
         return this.variant

@@ -17,6 +17,7 @@ import { ServerStatus } from '@app/domain/ServerStatus.domain'
 import { Fitting } from '@app/domain/Fitting.domain'
 import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer'
 import { EsiType } from '@domain/esi/EsiType.esi'
+import { platformConstants } from '@env/platform-constants'
 
 @Injectable({
     providedIn: 'root'
@@ -31,8 +32,8 @@ export class UniverseService {
     // - U N I V E R S E   A P I
     public apiv1_GetUniverseType(typeId: number): Observable<EsiType> {
         console.log(">[UniverseService.apiv1_GetUniverseType]> typeId: " + typeId)
-        const request = this.UNIVERSEV1 + "/types/" + typeId
-        return this.httpUniverseService.wrapHttpGETCall(request, headers)
+        const request = platformConstants.UNIVERSE_V1 + "/types/" + typeId
+        return this.httpUniverseService.wrapHttpGETCall(request)
             .pipe(map((data: any) => {
                 return new EsiType(data)
             }))

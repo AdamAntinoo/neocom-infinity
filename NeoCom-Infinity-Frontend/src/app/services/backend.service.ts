@@ -29,8 +29,8 @@ export class BackendService extends UniverseService {
 
     constructor(
         protected httpUniverseService: UniverseHttpWrapper,
-        protected isolation: IsolationService,
-        protected httpService: BackendHttpWrapper) {
+        protected httpService: BackendHttpWrapper,
+        protected isolation: IsolationService) {
         super(httpUniverseService)
         this.APIV1 = environment.serverName + environment.apiVersion1
         this.APIV2 = environment.serverName + environment.apiVersion2

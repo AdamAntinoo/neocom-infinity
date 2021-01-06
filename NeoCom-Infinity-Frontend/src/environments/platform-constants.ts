@@ -1,5 +1,6 @@
 export const platformConstants = {
     // - C O N S T A N T S
+    UNIVERSE_V1: '/api/v1/universe',
     JWTTOKEN_KEY: '-JWTTOKEN_KEY-',
     JWTTOKEN_EXPIRATION_TIME_KEY: '-JWTTOKEN_EXPIRATION_TIME_KEY-',
     CREDENTIAL_KEY: '-CREDENTIAL-KEY-',

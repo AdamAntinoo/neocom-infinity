@@ -37,7 +37,7 @@ export class SupportService {
         this.translationTable['pilot'] = 'pilot-render'
         this.translationTable['feature-button'] = 'v1-feature-button'
         this.translationTable['planetary-system'] = 'v1-planetary-system'
-        // this.translationTable['part'] = 'v1-part'
+        this.translationTable['processed-blueprint'] = 'v1-blueprint'
         // this.translationTable['request'] = 'v1-request'
         // this.translationTable['coil'] = 'v1-coil'
         // this.translationTable['build-countdown-timer'] = 'v1-build-countdown-timer'

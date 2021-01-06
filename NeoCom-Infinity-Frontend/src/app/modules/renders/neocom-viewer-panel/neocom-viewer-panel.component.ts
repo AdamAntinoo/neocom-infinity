@@ -9,8 +9,8 @@ import { AppPanelComponent } from '@innovative/components/app-panel/app-panel.co
 @Component({
     selector: 'neocom-viewer-panel',
     templateUrl: './neocom-viewer-panel.component.html',
-    styleUrls: ['./neocom-viewer-panel.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    styleUrls: ['./neocom-viewer-panel.component.scss']/*,
+    changeDetection: ChangeDetectionStrategy.OnPush*/
 })
 export class NeocomViewerPanelComponent {
     @Input() nodes2render: ICollaboration[] = [];
@@ -28,8 +28,11 @@ export class NeocomViewerPanelComponent {
         console.log('><[ViewerPanelComponent.getNodes2Render]> count: ' + this.nodes2render.length)
         return this.nodes2render;
     }
+    /**
+     * This feature is deprecated since it changes values of renders after checked. Review this functionality use.
+     */
     public getNextIndex(): number {
-        return this.index++;
+        return 1;
     }
     public getVariant(): string {
         return this.variant;
