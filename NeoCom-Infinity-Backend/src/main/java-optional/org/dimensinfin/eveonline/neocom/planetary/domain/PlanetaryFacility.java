@@ -83,8 +83,8 @@ public class PlanetaryFacility extends NeoComNode implements IPlanetaryFacility,
 
 	// - D E L E G A T I O N
 	@Override
-	public String getURLForItem() {
-		return this.planetItemDelegate.getURLForItem();
+	public String getTypeIconURL() {
+		return this.planetItemDelegate.getTypeIconURL();
 	}
 
 	public String getName() {

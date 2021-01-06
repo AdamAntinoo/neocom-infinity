@@ -61,7 +61,7 @@ public class ExtractorFacility extends PlanetaryFacilityWrapper {
 	}
 
 	public String getExtractingResourceURLForItem() {
-		return this.extractionType.getURLForItem();
+		return this.extractionType.getTypeIconURL();
 	}
 
 	public int getNextOutput() {

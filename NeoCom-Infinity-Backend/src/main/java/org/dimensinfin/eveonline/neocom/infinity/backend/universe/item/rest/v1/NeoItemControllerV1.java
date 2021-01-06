@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import org.dimensinfin.eveonline.neocom.domain.NeoItem;
 import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComController;
-
+@Deprecated
 @RestController
 @Validated
 @RequestMapping("/api/v1/universe")
