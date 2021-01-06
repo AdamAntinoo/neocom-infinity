@@ -8,8 +8,10 @@ import { HttpClient } from '@angular/common/http'
 import { HttpErrorResponse } from '@angular/common/http'
 import { HttpHeaders } from '@angular/common/http'
 // - SERVICES
+import { UniverseService } from './universe.service'
 import { IsolationService } from '@innovative/services/isolation.service';
-import { BackendHttpWrapper } from './Backend.HttpWrapper.service'
+import { BackendHttpWrapper } from './backend.httpwrapper'
+import { UniverseHttpWrapper } from './universe.httpwrapper'
 // - DOMAIN
 import { ValidateAuthorizationTokenResponse } from '@app/domain/dto/ValidateAuthorizationTokenResponse'
 import { Pilot } from '@app/domain/Pilot.domain'
@@ -21,13 +23,15 @@ import { ResponseTransformer } from '@innovative/services/support/ResponseTransf
 @Injectable({
     providedIn: 'root'
 })
-export class BackendService {
+export class BackendService extends UniverseService {
     protected APIV1: string
     protected APIV2: string
 
     constructor(
+        protected httpUniverseService: UniverseHttpWrapper,
         protected isolation: IsolationService,
         protected httpService: BackendHttpWrapper) {
+        super(httpUniverseService)
         this.APIV1 = environment.serverName + environment.apiVersion1
         this.APIV2 = environment.serverName + environment.apiVersion2
     }
