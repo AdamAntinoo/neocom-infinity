@@ -8,10 +8,10 @@ import { HttpClientWrapperService } from '@innovative/services/httpclientwrapper
 @Injectable({
     providedIn: 'root'
 })
-export class BackendHttpWrapper extends HttpClientWrapperService {
+export class UniverseHttpWrapper extends HttpClientWrapperService {
     /**
-     * This method implementation adds the common headers required by any call to the neocom springboot backend services.
-     * Common headers to be added are the security eaders and the application identification.
+     * This method implementation adds the common headers required by any call to the universe springboot backend services.
+     * Common headers to be added are the content type and the application identification.
      *
      * @param [requestHeaders] the optional user added list of headers.
      * @returns the new list of headers.

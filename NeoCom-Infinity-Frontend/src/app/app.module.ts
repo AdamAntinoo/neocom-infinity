@@ -45,6 +45,7 @@ import { LoginValidationExceptionComponent } from './panels/login-validation-exc
 // - LOCALES
 import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
+import { UniverseService } from './services/universe.service';
 registerLocaleData(localeEs);
 
 // // - ERROR INTERCEPTION
@@ -96,6 +97,7 @@ registerLocaleData(localeEs);
         // - SERVICES
         // { provide: IsolationService, useClass: IsolationService },
         { provide: AppStoreService, useClass: AppStoreService },
+        { provide: UniverseService, useClass: UniverseService },
         { provide: BackendService, useClass: BackendService },
         { provide: AuthenticationService, useClass: AuthenticationService },
         // - ERROR INTERCEPTION

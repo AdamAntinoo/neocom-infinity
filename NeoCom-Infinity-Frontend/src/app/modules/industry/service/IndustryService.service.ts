@@ -9,7 +9,7 @@ import { HttpErrorResponse } from '@angular/common/http'
 import { HttpHeaders } from '@angular/common/http'
 // - SERVICES
 import { BackendService } from "@app/services/backend.service";
-import { BackendHttpWrapper } from '@app/services/Backend.HttpWrapper.service'
+import { BackendHttpWrapper } from '@app/services/backend.httpwrapper'
 import { IsolationService } from '@innovative/services/isolation.service';
 // - DOMAIN
 import { ValidateAuthorizationTokenResponse } from '@app/domain/dto/ValidateAuthorizationTokenResponse'

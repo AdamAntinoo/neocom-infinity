@@ -4,5 +4,5 @@ export class EsiNode {
         this.decode()
     }
 
-    private decode(): void { }
+    public decode(): void { }
 }

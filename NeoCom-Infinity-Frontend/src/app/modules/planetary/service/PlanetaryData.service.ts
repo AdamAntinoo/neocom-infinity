@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators'
 import { environment } from '@env/environment'
 // - SERVICES
-import { BackendHttpWrapper } from '@app/services/Backend.HttpWrapper.service';
+import { BackendHttpWrapper } from '@app/services/backend.httpwrapper';
 // - DOMAIN
 import { GeneratedResource } from '@domain/planetary/generated-resource';
 import { PlanetaryDataRecord } from '@domain/planetary/planetary-data-record';
