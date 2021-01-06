@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import org.dimensinfin.eveonline.neocom.domain.NeoItem;
 
+@Deprecated
 @Service
 public class NeoItemServiceV1 {
 	public NeoItem getItem( final Integer itemId ) {

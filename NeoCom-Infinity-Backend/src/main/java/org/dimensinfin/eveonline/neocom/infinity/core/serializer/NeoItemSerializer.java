@@ -9,6 +9,7 @@ import org.springframework.boot.jackson.JsonComponent;
 
 import org.dimensinfin.eveonline.neocom.domain.NeoItem;
 
+@Deprecated
 @JsonComponent
 public class NeoItemSerializer extends JsonSerializer<NeoItem> {
 	@Override
@@ -27,7 +28,7 @@ public class NeoItemSerializer extends JsonSerializer<NeoItem> {
 		jgen.writeNumberField( "volume", value.getVolume() );
 		jgen.writeNumberField( "price", value.getPrice() );
 		jgen.writeBooleanField( "isBlueprint", value.isBlueprint() );
-		jgen.writeStringField( "urlforItem", value.getURLForItem() );
+		jgen.writeStringField( "urlforItem", value.getTypeIconURL() );
 
 		jgen.writeEndObject();
 	}

@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.backend.universe.item.rest.v2;
+package org.dimensinfin.eveonline.neocom.infinity.backend.universe.tpe.rest.v1;
 
 import javax.validation.constraints.NotNull;
 
@@ -10,22 +10,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.dimensinfin.eveonline.neocom.domain.NeoItem;
+import org.dimensinfin.eveonline.neocom.domain.EsiType;
 import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.EsiItemModel;
 
-@Deprecated
 @RestController
 @Validated
-@RequestMapping("/api/v2/universe")
-public class EsiItemControllerV2 {
-	private final EsiItemServiceV2 esiItemServiceV2;
+@RequestMapping("/api/v1/universe")
+public class EsiTypeControllerV1 {
+	private final EsiTypeServiceV1 esiTypeServiceV1;
 
-	public EsiItemControllerV2( final @NotNull EsiItemServiceV2 esiItemServiceV2 ) {this.esiItemServiceV2 = esiItemServiceV2;}
+	// - C O N S T R U C T O R S
+	public EsiTypeControllerV1( final @NotNull EsiTypeServiceV1 esiTypeServiceV1 ) {this.esiTypeServiceV1 = esiTypeServiceV1;}
 
-	@GetMapping(path = "/items/{itemId}",
+	@GetMapping(path = "/types/{typeId}",
 			consumes = "application/json",
 			produces = "application/json")
-	public ResponseEntity<EsiItemModel> getItem( final  @PathVariable @NotNull Integer itemId ) {
-		return new ResponseEntity<>( this.esiItemServiceV2.getItem( itemId ), HttpStatus.OK );
+	public ResponseEntity<EsiType> getItem( final @PathVariable @NotNull Integer typeId ) {
+		return new ResponseEntity<>( this.esiTypeServiceV1.getEsiType( typeId ), HttpStatus.OK );
 	}
 }

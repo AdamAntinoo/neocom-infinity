@@ -26,9 +26,9 @@ public class EsiTypeSerializer extends JsonSerializer<EsiType> {
 		jgen.writeStringField( "name", value.getName() );
 		jgen.writeObjectField( "group", value.getGroup() );
 		jgen.writeObjectField( "category", value.getCategory() );
-		jgen.writeObjectField( "type", value.getItem() );
-		jgen.writeStringField( "tech", "Tech I" );
-		jgen.writeNumberField( "volume", value.getItem().getVolume() );
+		jgen.writeObjectField( "type", value.getType() );
+		jgen.writeStringField( "tech", value.getTech() );
+		jgen.writeNumberField( "volume", value.getType().getVolume() );
 		jgen.writeBooleanField( "isBlueprint", value.getCategoryName().equalsIgnoreCase( EveGlobalConstants.Blueprint ) );
 		jgen.writeStringField( "typeIconURL", value.getTypeIconURL() );
 

@@ -94,6 +94,6 @@ public abstract class PlanetaryFacilityWrapper extends NeoComNode /*implements I
 	// -  I I T E M F A C E T
 //	@Override
 	public String getURLForItem() {
-		return this.planetaryFacility.getURLForItem();
+		return this.planetaryFacility.getTypeIconURL();
 	}
 }
