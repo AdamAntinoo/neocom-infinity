@@ -1,5 +1,6 @@
 <div (mouseenter)="mouseEnter(node)" style="position: relative;" (click)="onClick()">
     <div class="row node-panel body-box">
+        <!-- {{node.jsonClass}} -->
         <!-- BODY -->
         <div style="width: 100%;">
             <!-- I N D U S T R Y -->
@@ -9,6 +10,8 @@
             </v1-bomgroup>
             <v1-blueprint *ngIf="node.jsonClass === 'ProcessedBlueprint'" [container]="container" [node]="node" [variant]="variant">
             </v1-blueprint>
+            <v1-bomresource *ngIf="node.jsonClass === 'IndustryResource'" [container]="container" [node]="node" [variant]="variant">
+            </v1-bomresource>
             <!-- F I T T I N G -->
             <v1-fitting-group *ngIf="node.jsonClass === 'FittingGroup'" [container]="container" [node]="node" [variant]="variant">
             </v1-fitting-group>

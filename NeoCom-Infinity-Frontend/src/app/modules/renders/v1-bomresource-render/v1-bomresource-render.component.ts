@@ -1,5 +1,7 @@
 // - CORE
 import { Component } from '@angular/core';
+import { Resource } from '@app/modules/industry/domain/Resource.domain';
+import { BOMResource } from '@app/modules/industry/domain/V1BOMResource.domain';
 import { IndustryResource } from '@app/modules/industry/domain/V1IndustryResource.domain';
 import { platformConstants } from '@env/platform-constants';
 // - DOMAIN
