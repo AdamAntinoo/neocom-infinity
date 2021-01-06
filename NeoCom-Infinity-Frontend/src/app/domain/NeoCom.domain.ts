@@ -1,7 +1,7 @@
 // - DOMAIN
 import { INode } from './interfaces/INode.interface';
 import { IExpandable } from './interfaces/IExpandable.interface';
-import { ISelectable } from './interfaces/ISelectable.interface';
+import { ISelectable } from '../modules/innovative-core/domain/interfaces/ISelectable.interface';
 import { ESeparator } from './interfaces/EPack.enumerated';
 import { ICollaboration } from '@innovative/domain/interfaces/ICollaboration.interface';
 

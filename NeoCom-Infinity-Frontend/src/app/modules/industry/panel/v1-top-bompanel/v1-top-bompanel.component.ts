@@ -9,7 +9,7 @@ import { HttpErrorResponse } from '@angular/common/http'
 import { ActivatedRoute } from '@angular/router'
 // - INNOVATIVE
 import { BackgroundEnabledComponent } from '@innovative/components/background-enabled/background-enabled.component'
-import { IRefreshable } from '@innovative/domain/interfaces/core/IRefreshable.interface'
+import { IRefreshable } from '@innovative/domain/interfaces/IRefreshable.interface'
 // - COMPONENTS
 import { BackendService } from '@app/services/backend.service'
 import { HALResolver } from '@app/services/HALResolver.service'

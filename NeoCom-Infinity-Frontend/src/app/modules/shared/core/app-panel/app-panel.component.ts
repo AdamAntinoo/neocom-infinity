@@ -9,7 +9,7 @@ import { BackgroundEnabledComponent } from '@innovative/components/background-en
 import { platformConstants } from '@env/platform-constants'
 import { IViewer } from '@innovative/domain/interfaces/IViewer.interface';
 import { ICollaboration } from '@innovative/domain/interfaces/ICollaboration.interface';
-import { ISelectable } from '@domain/interfaces/ISelectable.interface';
+import { ISelectable } from '@innovative/domain/interfaces/ISelectable.interface';
 
 @Component({
     selector: 'app-panel',

@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs'
 import { AppPanelComponent } from '@innovative/components/app-panel/app-panel.component';
 import { V1BlueprintListPageComponent } from '../../pages/v1-blueprint-list-page/v1-blueprint-list-page.component'
 import { BOMGroup } from '@app/modules/industry/domain/V1BOMGroup.domain'
-import { IRefreshable } from '@innovative/domain/interfaces/core/IRefreshable.interface'
+import { IRefreshable } from '@innovative/domain/interfaces/IRefreshable.interface'
 import { NCVariant } from '@env/NeoComVariants'
 
 @Component({

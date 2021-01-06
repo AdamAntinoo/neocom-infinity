@@ -9,7 +9,8 @@ import { BackgroundEnabledComponent } from '@innovative/components/background-en
 import { platformConstants } from '@env/platform-constants'
 import { IViewer } from '@innovative/domain/interfaces/IViewer.interface';
 import { ICollaboration } from '@innovative/domain/interfaces/ICollaboration.interface';
-import { ISelectable } from '@domain/interfaces/ISelectable.interface';
+import { ISelectable } from '@innovative/domain/interfaces/ISelectable.interface';
+import { SingleSelectionManager } from '@innovative/domain/SingleSelectionManager';
 
 @Component({
     selector: 'app-panel',
@@ -23,6 +24,7 @@ export class AppPanelComponent extends BackgroundEnabledComponent implements IVi
     protected dataModelRoot: ICollaboration[] = []
     private renderNodeList: ICollaboration[] = []
     protected target: ICollaboration
+    protected selectionManager: SingleSelectionManager = new SingleSelectionManager()
 
     constructor() {
         super()
@@ -65,6 +67,13 @@ export class AppPanelComponent extends BackgroundEnabledComponent implements IVi
     public enterSelected(node: ICollaboration): void {
         this.target = node
         this.fireSelectionChanged()
+    }
+    /**
+     * Depending on the selector managet this method will add/remove the node from the selection or completely replace the selection contents. The default Selectormanager is a single selection so a new selected node will replace the previous one and a unselect of the current selected node will empty the selection.
+     * @param node The node to update the selection. If the node is unselected then it is removed from the selection. If selected then it is added.
+     */
+    public updateSelection(node: ISelectable): void {
+        this.selectionManager.updateSelection(node)
     }
     // public addSelection(node: ISelectable): void {
     //     this.selection.addSelection(node)

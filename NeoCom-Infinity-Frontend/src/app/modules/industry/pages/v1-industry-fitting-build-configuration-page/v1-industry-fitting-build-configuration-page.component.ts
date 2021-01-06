@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router'
 // - INNOVATIVE
 import { IsolationService } from '@innovative/services/isolation.service'
 import { BackgroundEnabledComponent } from '@innovative/components/background-enabled/background-enabled.component'
-import { IRefreshable } from '@innovative/domain/interfaces/core/IRefreshable.interface'
+import { IRefreshable } from '@innovative/domain/interfaces/IRefreshable.interface'
 // - SERVICES
 import { BackendService } from '@app/services/backend.service'
 import { V1FittingConfigurationPanelComponent } from '../../panels/v1-fitting-configuration-panel/v1-fitting-configuration-panel.component'
