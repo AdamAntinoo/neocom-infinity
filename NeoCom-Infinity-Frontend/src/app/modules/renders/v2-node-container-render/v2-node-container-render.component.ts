@@ -9,6 +9,7 @@ import { HALNode } from '@domain/hal/HALNode.hal';
 import { IViewer } from '@innovative/domain/interfaces/IViewer.interface';
 import { NeoCom } from '@domain/NeoCom.domain';
 import { ICollaboration } from '@innovative/domain/interfaces/ICollaboration.interface';
+import { NeoComDelayed } from '@domain/core/NeoComDelayed.domain';
 
 @Component({
     selector: 'v2-node-container',
@@ -28,6 +29,12 @@ export class V2NodeContainerRenderComponent extends BackgroundEnabledComponent {
     }
     public getVariant(): string {
         return this.variant;
+    }
+    public isReady(): boolean {
+        if (this.node instanceof NeoComDelayed) {
+            const delayed = <NeoComDelayed>this.node
+            return delayed.isReady()
+        } else return true
     }
     /**
      * Pass the container panel the node that is being entered so if there is additional data it can be exported to another panel.

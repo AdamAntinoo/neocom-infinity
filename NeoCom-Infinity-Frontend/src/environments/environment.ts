@@ -23,9 +23,7 @@ export const environment = {
     JWTTOKEN_KEY: '-JWTTOKEN_KEY-',
     JWTTOKEN_EXPIRATION_TIME_KEY: '-JWTTOKEN_EXPIRATION_TIME_KEY-',
     CREDENTIAL_KEY: '-CREDENTIAL-KEY-',
-    VALID_STATE: 'LU5FT0NPTS5JTkZJTklUWS1ERVZFTE9QTUVOVC1WQUxJRCBTVEFURSBTVFJJTkct',
-    DEFAULT_ICON_PLACEHOLDER: '/assets/media/defaulticonplaceholder.png',
-    DEFAULT_AVATAR_PLACEHOLDER: '/assets/media/defaultavatarplaceholder.png'
+    VALID_STATE: 'LU5FT0NPTS5JTkZJTklUWS1ERVZFTE9QTUVOVC1WQUxJRCBTVEFURSBTVFJJTkct'
 };
 
 import 'zone.js/dist/zone';  // Included with Angular CLI.

@@ -407,9 +407,9 @@ $panel-background-hover-blue: #0B3D03;
 }
 
 .panel-blue:hover {
-    // background-color: $panel-blue-20;
+    background-color: $panel-blue-20;
     opacity: $panel-hover-opacity;
-    // transition: background-color $change-time;
+    transition: background-color $change-time;
 }
 
 .panel-blue-expanded {

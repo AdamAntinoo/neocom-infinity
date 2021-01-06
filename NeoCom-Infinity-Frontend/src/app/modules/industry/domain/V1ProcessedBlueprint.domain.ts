@@ -1,10 +1,12 @@
 // - DOMAIN
+import { NeoComDelayed } from "@domain/core/NeoComDelayed.domain";
 import { EsiType } from "@domain/esi/EsiType.esi"
 import { NeoCom } from "@domain/NeoCom.domain";
 import { Resource } from "./Resource.domain"
 
-export class ProcessedBlueprint extends NeoCom {
+export class ProcessedBlueprint extends NeoComDelayed {
     public type: EsiType
+    public output: EsiType
     public bom: Resource[]
 
     constructor(values: Object = {}) {
@@ -22,6 +24,10 @@ export class ProcessedBlueprint extends NeoCom {
     }
     public getTypeIconURL(): string {
         if (this.type) return this.type.getTypeIconURL()
+        else return '-'
+    }
+    public getModuleName(): string {
+        if (this.output) return this.output.getName()
         else return '-'
     }
 }

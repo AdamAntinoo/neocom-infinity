@@ -20,7 +20,7 @@ import { CorporationDataResponse } from '@app/domain/dto/CorporationDataResponse
 import { Pilot } from '@app/domain/Pilot.domain';
 import { Fitting } from '@app/domain/Fitting.domain';
 import { AppCoreStoreService } from '@innovative/services/AppCoreStoreService.service';
-import { BackendHttpWrapper } from './Backend.HttpWrapper.service';
+import { BackendHttpWrapper } from './backend.httpwrapper';
 import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer';
 
 @Injectable({

@@ -17,7 +17,7 @@ export class V1BlueprintRenderComponent extends V2NodeContainerRenderComponent {
     }
     public getUniqueId(): string {
         if (this.node)
-            if (this.getNode().type) return this.getNode().getUniqueId()
+            if (this.getNode().type) return 'typeid-' + this.getNode().getUniqueId()
         return '-'
     }
     public getTypeIconUrl(): string {
@@ -25,12 +25,14 @@ export class V1BlueprintRenderComponent extends V2NodeContainerRenderComponent {
             if (this.getNode().type) return this.getNode().getTypeIconURL()
         } else return platformConstants.DEFAULT_ICON_PLACEHOLDER
     }
-    public getName() :string{
+    public getName(): string {
         if (this.node)
             if (this.getNode().type) return this.getNode().getName()
         return '-'
     }
-    public getModuleName():string{
-        return this.getName()
+    public getModuleName(): string {
+        if (this.node)
+            if (this.getNode().type) return this.getNode().getModuleName()
+        return '-'
     }
 }

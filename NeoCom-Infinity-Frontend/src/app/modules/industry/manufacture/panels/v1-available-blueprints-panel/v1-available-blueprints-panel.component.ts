@@ -37,7 +37,6 @@ export class V1AvailableBlueprintsPanelComponent extends AppPanelComponent imple
 
     constructor(
         protected isolationService: IsolationService,
-        protected universeService: ESIUniverseDataService,
         protected industryService: IndustryService) {
         super()
         this.processedBlueprintTransformer = new ResponseTransformer()
@@ -46,9 +45,9 @@ export class V1AvailableBlueprintsPanelComponent extends AppPanelComponent imple
                 let results: ProcessedBlueprint[] = []
                 if (entrydata instanceof Array) {
                     for (let key in entrydata)
-                        results.push(new ProcessedBlueprintDto(entrydata[key]).transform(this.universeService))
+                        results.push(new ProcessedBlueprintDto(entrydata[key]).transform(this.industryService))
                 } else
-                    results.push(new ProcessedBlueprintDto(entrydata).transform(this.universeService))
+                    results.push(new ProcessedBlueprintDto(entrydata).transform(this.industryService))
                 return results
             })
     }
