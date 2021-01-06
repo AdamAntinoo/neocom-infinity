@@ -12,7 +12,7 @@ import { PlanetaryDataRecord } from '@domain/planetary/planetary-data-record';
 import { PlanetaryDataService } from '../../service/PlanetaryData.service';
 import { KnownSystem } from '@domain/planetary/KnownSystem.domain';
 import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer';
-import { IRefreshable } from '@innovative/domain/interfaces/core/IRefreshable.interface';
+import { IRefreshable } from '@innovative/domain/interfaces/IRefreshable.interface';
 import { PlanetaryData } from '@domain/planetary/PlanetaryData.domain';
 
 @Component({

@@ -6,7 +6,7 @@ import { Input } from '@angular/core'
 import { Subscription } from 'rxjs'
 // - DOMAIN
 import { AppPanelComponent } from '@innovative/components/app-panel/app-panel.component'
-import { IRefreshable } from '@innovative/domain/interfaces/core/IRefreshable.interface'
+import { IRefreshable } from '@innovative/domain/interfaces/IRefreshable.interface'
 import { platformConstants } from '@env/platform-constants'
 import { ValidateAuthorizationTokenResponse } from '@app/domain/dto/ValidateAuthorizationTokenResponse'
 import { Pilot } from '@app/domain/Pilot.domain'
