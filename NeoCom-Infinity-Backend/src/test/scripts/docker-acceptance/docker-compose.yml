@@ -30,7 +30,7 @@ services:
     container_name: postgres-acceptance
     image: "postgres:11.2"
     ports:
-      - "5230:5432"
+      - "5231:5432"
     environment:
       - CURRENT_UID=1000
       - POSTGRES_DB=postgres
@@ -41,7 +41,7 @@ services:
     container_name: neocom-infinity-backend-acceptance
     image: neocom/neocom-infinity.backend
     ports:
-      - "5240:9500"
+      - "5221:9500"
     environment:
       - SPRING_PROFILES_ACTIVE=acceptance
       - NEOCOM_DATABASE_URL=jdbc:postgresql://postgres-acceptance:5432/postgres?user=neocom-user&password=neocom-password
@@ -51,8 +51,8 @@ services:
       - DEFAULT_BACKEND_SERVER="http://localhost:"
       - NEOCOM_BANNER_LOCATION=./app-banner.txt
 
-  apisimulator-esi-oauth:
-    container_name: apisimulator-esi-oauth
+  backend-apisimulator-esi-oauth:
+    container_name: backend-apisimulator-esi-oauth
     image: apimastery/apisimulator
     ports:
       - "5250:6090"
@@ -61,8 +61,8 @@ services:
       - /home/adam/Development/NeoCom0.20/NeoCom-Infinity/NeoCom-Infinity-Backend/src/test/resources/esioauth-simulation:/esioauth-simulation
     command: "bin/apisimulator start /esioauth-simulation -p 6090"
 
-  apisimulator-esi-data:
-    container_name: apisimulator-esi-data
+  backend-apisimulator-esi-data:
+    container_name: backend-apisimulator-esi-data
     image: apimastery/apisimulator
     ports:
       - "5251:6090"

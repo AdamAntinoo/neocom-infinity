@@ -9,10 +9,16 @@
 
 #### 5200 - [DEVELOPMENT] Frontend Node server
 #### 5210 - [DEVELOPMENT] Frontend ApiSimulator backed server
-#### 5220 - [DEVELOPMENT] Backend SB application server
-#### 5230 - [DEVELOPMENT] ApiSimulator Eve Online authentication server
-#### 5240 - [DEVELOPMENT] ApiSimulator ESI Universe Data Server
-#### 5250 - [DEVELOPMENT] ApiSimulator ESI Data Server
+#### 5220 - [DEVELOPMENT] Frontend Backend SB application server
+#### 5230 - [DEVELOPMENT] Frontend Postgres DB
+#### 5240 - [DEVELOPMENT] Backend SB application server
+#### 5250 - [DEVELOPMENT] Backend ApiSimulator Eve Online authentication server
+#### 5260 - [DEVELOPMENT] Backend ApiSimulator ESI Universe Data Server
+#### 5270 - [DEVELOPMENT] Backend ApiSimulator ESI Data Server
+#### 5280 - [DEVELOPMENT] Backend Postgres DB
+
+#### 5221 - [ACCEPTANCE] Backend SB application server
+#### 5231 - [ACCEPTANCE] Backend Postgres DB
 
 
 5230 - [DEVELOPMENT] Application backend server
