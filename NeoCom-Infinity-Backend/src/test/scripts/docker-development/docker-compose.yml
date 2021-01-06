@@ -26,11 +26,11 @@
 version: '3.8'
 
 services:
-  apisimulator-esi-oauth:
+  backend-apisimulator-esi-oauth:
     container_name: apisimulator-esi-oauth-development
     image: apimastery/apisimulator
     ports:
-      - "5230:6090"
+      - "5250:6090"
     volumes:
       # WARNING - Use full absolute paths to make this work.
       - /home/adam/Development/NeoCom0.20/NeoCom-Infinity/NeoCom-Infinity-Backend/src/test/resources/esioauth-simulation:/esioauth-simulation
@@ -40,17 +40,17 @@ services:
 #    container_name: apisimulator-esi-universe-development
 #    image: apimastery/apisimulator
 #    ports:
-#      - "5240:6090"
+#      - "5260:6090"
 #    volumes:
 #      # WARNING - Use full absolute paths to make this work.
 #      - /home/adam/Development/NeoCom0.20/NeoCom-Infinity/NeoCom-Infinity-Backend/src/test/resources/esidata-simulation:/esidata-simulation
 #    command: "bin/apisimulator start /esidata-simulation -p 6090"
 
-  apisimulator-esi-data:
+  backend-apisimulator-esi-data:
     container_name: apisimulator-esi-data-development
     image: apimastery/apisimulator
     ports:
-      - "5250:6090"
+      - "5270:6090"
     volumes:
       # WARNING - Use full absolute paths to make this work.
       - /home/adam/Development/NeoCom0.20/NeoCom-Infinity/NeoCom-Infinity-Backend/src/test/resources/esidata-simulation:/esidata-simulation
