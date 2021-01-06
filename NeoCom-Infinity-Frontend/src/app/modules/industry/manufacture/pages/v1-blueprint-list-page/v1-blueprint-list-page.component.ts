@@ -13,7 +13,6 @@ import { V1AvailableBlueprintsPanelComponent } from '../../panels/v1-available-b
 export class V1BlueprintListPageComponent {
     @ViewChild(V1AvailableBlueprintsPanelComponent) availableBlueprints: V1AvailableBlueprintsPanelComponent
     public self: V1BlueprintListPageComponent
-    public blueprintSelected: boolean = false
     public selectedBlueprint: ProcessedBlueprint
 
     constructor() {
@@ -22,9 +21,11 @@ export class V1BlueprintListPageComponent {
 
     public signalSelection(target: ProcessedBlueprint): void {
         if (target) {
-            console.log('[signalSelection]')
+            console.log('-[V1BlueprintListPageComponent.signalSelection]> Select')
             this.selectedBlueprint = target
-            this.blueprintSelected = true
+        } else {
+            console.log('-[V1BlueprintListPageComponent.signalSelection]> UnSelect')
+            this.selectedBlueprint = undefined
         }
     }
 }

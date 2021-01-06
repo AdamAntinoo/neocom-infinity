@@ -7,4 +7,6 @@ export interface IViewer {
     notifyDataChanged(): void
     redirectPage(route: any): void
     updateSelection(node: ISelectable): void
+    fireSelectionChanged(): void
+    getSelection(): ISelectable[]
 }

@@ -69,6 +69,20 @@ export class V1AvailableBlueprintsPanelComponent extends AppPanelComponent imple
             if (this.container) this.container.signalSelection(target)
         }
     }
+    /**
+     * When the selection changes this method is calles. Use the message to notify the page of the current selected blueprint if any.
+     */
+    public fireSelectionChanged(): void {
+        const targetList = this.getSelection()
+        if (targetList && targetList.length > 0) {
+            const target = targetList[0]
+            if (target) {
+                if (target instanceof ProcessedBlueprint)
+                    this.container.signalSelection(target)
+            } else this.container.signalSelection(undefined)
+        }
+    }
+
     // - R E F R E S H A B L E
     public clean(): void {
     }
