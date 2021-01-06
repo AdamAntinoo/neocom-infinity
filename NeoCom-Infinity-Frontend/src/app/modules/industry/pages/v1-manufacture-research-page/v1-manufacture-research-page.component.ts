@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { ViewChild } from '@angular/core';
 import { KnownSystem } from '@domain/planetary/KnownSystem.domain';
 import { ICollaboration } from '@innovative/domain/interfaces/ICollaboration.interface';
-import { V1TargetAdditionalDataPanelComponent } from '../../panel/v1-target-additional-data-panel/v1-target-additional-data-panel.component';
+// import { V1TargetAdditionalDataPanelComponent } from '../../panel/v1-target-additional-data-panel/v1-target-additional-data-panel.component';
 
 @Component({
     selector: 'v1-manufacture-research-page',
@@ -11,7 +11,7 @@ import { V1TargetAdditionalDataPanelComponent } from '../../panel/v1-target-addi
     styleUrls: ['./v1-manufacture-research-page.component.scss']
 })
 export class V1ManufactureResearchPageComponent {
-    @ViewChild(V1TargetAdditionalDataPanelComponent) additionalData: V1TargetAdditionalDataPanelComponent
+    // @ViewChild(V1TargetAdditionalDataPanelComponent) additionalData: V1TargetAdditionalDataPanelComponent
     public self: V1ManufactureResearchPageComponent
     public hoveringTarget: ICollaboration
 
@@ -23,7 +23,7 @@ export class V1ManufactureResearchPageComponent {
         console.log('>Canging target')
         if (target) {
             this.hoveringTarget = target
-            this.additionalData.refresh()
+            // this.additionalData.refresh()
         }
     }
 }
