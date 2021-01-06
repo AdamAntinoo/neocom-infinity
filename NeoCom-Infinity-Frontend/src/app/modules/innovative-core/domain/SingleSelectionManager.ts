@@ -10,7 +10,7 @@ export class SingleSelectionManager {
      */
     public updateSelection(node: ISelectable): ISelectable {
         if (node.isSelected()) {
-            this.selection.unselect()
+            if (this.selection) this.selection.unselect()
             this.selection = node
         } else
             if (!this.selection.isSelected()) this.selection = undefined

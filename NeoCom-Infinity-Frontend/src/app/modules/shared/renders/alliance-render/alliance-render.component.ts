@@ -8,6 +8,7 @@ import { environment } from '@env/environment';
 import { Corporation } from '@app/domain/Corporation.domain';
 import { Alliance } from '@app/domain/Alliance.domain';
 import { RenderComponent } from '../render/render.component';
+import { platformConstants } from '@env/platform-constants';
 
 @Component({
     selector: 'alliance-render',
@@ -23,6 +24,6 @@ export class AllianceRenderComponent extends RenderComponent {
     }
     public getAllianceIcon(): string {
         if (null != this.node) return this.node.getAllianceIcon();
-        else return environment.DEFAULT_AVATAR_PLACEHOLDER;
+        else return platformConstants.DEFAULT_AVATAR_PLACEHOLDER;
     }
 }

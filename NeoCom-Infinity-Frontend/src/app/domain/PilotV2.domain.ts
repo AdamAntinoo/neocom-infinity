@@ -10,6 +10,7 @@ import { Corporation } from './Corporation.domain';
 import { HALNode } from './hal/HALNode.hal';
 import { HALLink } from './hal/HALLink.hal';
 import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer';
+import { platformConstants } from '@env/platform-constants';
 
 export class PilotV2 extends HALNode {
     public pilotId: number
@@ -38,7 +39,7 @@ export class PilotV2 extends HALNode {
         return this.pilotPublicData.corporation_id
     }
     public getPilotIcon(): string {
-        if (null == this.url4Icon) return environment.DEFAULT_AVATAR_PLACEHOLDER;
+        if (null == this.url4Icon) return platformConstants.DEFAULT_AVATAR_PLACEHOLDER;
         else return this.url4Icon;
     }
     public getLastKnownLocation(): string {

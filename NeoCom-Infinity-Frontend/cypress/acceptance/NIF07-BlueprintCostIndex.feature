@@ -17,7 +17,7 @@ Feature: [NIF07] The analisys for the list of blueprints available to a Pilot. O
         Then the target has the title "AVAILABLE BLUEPRINTS"
 
     @NIF07.02
-    Scenario: [NIF07.02]-On this page there is a list of Blueprints. Validate the content information for each of the blueprints.
+    Scenario: [NIF07.02]-On this page there is a list of Blueprints. Validate the content information for any of the blueprints.
         When activate the page Industry Manufacture Blueprints Page
         Given the target is the panel of type "available-blueprints"
         Then the target has the title "AVAILABLE BLUEPRINTS"
@@ -25,4 +25,4 @@ Feature: [NIF07] The analisys for the list of blueprints available to a Pilot. O
         Given the target the "processed-blueprint" with id "typeid-31395"
         Then field named "blueprintName" with label "BLUEPRINT NAME" has contents "Small Powergrid Subroutine Maximizer I Blueprint"
         And field named "moduleProduced" with label "MODULE PRODUCED" has contents "Small Powergrid Subroutine Maximizer I"
-        And field named "manufactureCost" with label "MANUFACTURE COST" has contents "1.234.654,00 ISK"
+        And field named "manufactureCost" with label "MANUFACTURE COST" has contents "ISK"

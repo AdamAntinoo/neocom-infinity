@@ -417,7 +417,8 @@ $panel-background-hover-blue: #0B3D03;
 }
 
 .panel-blue-selected {
-    border-left: 3px solid $panel-blue;
+    background-color: $panel-blue-30;
+    opacity: $panel-hover-opacity;
 }
 
 .panel-blue:before {

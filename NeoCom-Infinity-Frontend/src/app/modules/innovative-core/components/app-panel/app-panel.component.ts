@@ -75,14 +75,7 @@ export class AppPanelComponent extends BackgroundEnabledComponent implements IVi
     public updateSelection(node: ISelectable): void {
         this.selectionManager.updateSelection(node)
     }
-    // public addSelection(node: ISelectable): void {
-    //     this.selection.addSelection(node)
-    //     this.fireSelectionChanged();
-    // }
-    // public subtractSelection(node: ISelectable): void {
-    //     if (this.selection.subtractSelection(node))
-    //         this.fireSelectionChanged()
-    // }
+
     /**
      * This is an abstract methods that should be implemented by panels that require to support selections.
      */
