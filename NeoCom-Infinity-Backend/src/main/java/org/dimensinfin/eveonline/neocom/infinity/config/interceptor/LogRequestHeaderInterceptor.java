@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.core.config.interceptor;
+package org.dimensinfin.eveonline.neocom.infinity.config.interceptor;
 
 import java.util.Enumeration;
 import javax.servlet.http.HttpServletRequest;

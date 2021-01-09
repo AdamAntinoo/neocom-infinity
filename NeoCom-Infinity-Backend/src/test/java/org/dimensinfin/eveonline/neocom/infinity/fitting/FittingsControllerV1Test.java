@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.dimensinfin.eveonline.neocom.domain.Fitting;
 import org.dimensinfin.eveonline.neocom.infinity.backend.character.fitting.rest.v1.FittingsControllerV1;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComAuthorizationException;
-import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticationProvider;
+import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
 
 public class FittingsControllerV1Test {
 	@Test

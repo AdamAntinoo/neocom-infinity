@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.core.security;
+package org.dimensinfin.eveonline.neocom.infinity.config.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -12,20 +12,16 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import org.dimensinfin.eveonline.neocom.infinity.core.security.CredentialDetailsService;
-import org.dimensinfin.eveonline.neocom.infinity.core.security.JWTAuthorizationFilter;
-import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticationProvider;
-
-import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.ACTUATORS_URL;
-import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.CREDENTIAL_SUPPORT_URL;
-import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.GET_ITEM;
-import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.ITEMSV1_URL;
-import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.ITEMSV2_URL;
-import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.LOGIN_VERIFICATION_URL;
-import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.SERVER_STATUS_URL;
-import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.SPACELOCATIONS_URL;
-import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.STORE_CREDENTIAL_URL;
-import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.UNIVERSEV1_URL;
+import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.ACTUATORS_URL;
+import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.CREDENTIAL_SUPPORT_URL;
+import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.GET_ITEM;
+import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.ITEMSV1_URL;
+import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.ITEMSV2_URL;
+import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.LOGIN_VERIFICATION_URL;
+import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.SERVER_STATUS_URL;
+import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.SPACELOCATIONS_URL;
+import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.STORE_CREDENTIAL_URL;
+import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.UNIVERSEV1_URL;
 
 @Configuration
 @EnableWebSecurity

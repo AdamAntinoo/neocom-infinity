@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 
 import org.dimensinfin.eveonline.neocom.infinity.backend.accountset.planetary.domain.ColonyDto;
 import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComCredentialService;
-import org.dimensinfin.eveonline.neocom.infinity.core.security.CredentialDetailsService;
-import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticationProvider;
+import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetailsService;
+import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
 import org.dimensinfin.eveonline.neocom.planetary.converter.ColonyToColonyDtoConverter;
 import org.dimensinfin.eveonline.neocom.planetary.services.ColonyFactory;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;

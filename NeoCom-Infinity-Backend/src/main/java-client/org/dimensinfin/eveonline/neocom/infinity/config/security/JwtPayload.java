@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.core.security;
+package org.dimensinfin.eveonline.neocom.infinity.config.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

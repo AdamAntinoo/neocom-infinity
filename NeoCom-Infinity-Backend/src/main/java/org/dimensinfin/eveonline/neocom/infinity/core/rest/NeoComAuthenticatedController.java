@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComError;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
-import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticationProvider;
+import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
 
 public abstract class NeoComAuthenticatedController extends NeoComController {
 	public static NeoComError errorPILOTIDNOTAUTHORIZED() {
