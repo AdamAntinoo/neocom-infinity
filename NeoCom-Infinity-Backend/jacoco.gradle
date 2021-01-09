@@ -24,16 +24,3 @@ test {
 plugins.withType(JacocoPlugin) {
     tasks["test"].finalizedBy 'jacocoTestReport'
 }
-
-// - S O N A R C L O U D
-sonarqube {
-    properties {
-        property "sonar.host.url", "https://sonarcloud.io"
-        property "sonar.organization", "evedimensinfin"
-        property "sonar.projectKey", "evedimensinfin_neocom-infinity-backend"
-        property "sonar.projectName", "NeoCom-Infinity-Backend"
-        property "sonar.projectVersion", project.version
-        property "sonar.projectDescription", "Back end Spring Boot server to service NeoCom Infinity data."
-        property "sonar.sourceEncoding","UTF-8"
-    }
-}
