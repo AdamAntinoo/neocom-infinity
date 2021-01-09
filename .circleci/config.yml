@@ -113,7 +113,7 @@ jobs:
             npm run cypress:run
       - store_test_results:
           path: ~/project/Printer3D-frontend/cypress/cucumber-json
-  test-backend-job:
+  unittest-backend-job:
     docker:
       - image: circleci/openjdk:11-jdk
         environment:
@@ -126,25 +126,25 @@ jobs:
           POSTGRES_DB: inno-password
     steps:
       - checkout
-      - run:
-          name: BACKEND - Start the application in local profile
-          working_directory: NeoCom-Infinity-Backend
-          environment:
-            PORT: 5240 # This is the port configured on the AcceptancetargetConfig
-            JDBC_DATABASE_URL: "jdbc:postgresql://0.0.0.0:5432/postgres"
-            DB_USER: inno-user
-            DB_PASSWORD: inno-password
-            SPRING_PROFILES_ACTIVE: acceptance
-          command: |
-            ./gradlew bootRun
-          background: true
-      - run:
-          name: BACKEND - Waiting for application start
-          environment:
-            PORT: 5240
-          working_directory: NeoCom-Infinity-Backend
-          command: |
-            dockerize -wait tcp://localhost:${PORT}/actuator/health -timeout 3m
+      # - run:
+      #     name: BACKEND - Start the application in local profile
+      #     working_directory: NeoCom-Infinity-Backend
+      #     environment:
+      #       PORT: 5240 # This is the port configured on the AcceptancetargetConfig
+      #       JDBC_DATABASE_URL: "jdbc:postgresql://0.0.0.0:5432/postgres"
+      #       DB_USER: inno-user
+      #       DB_PASSWORD: inno-password
+      #       SPRING_PROFILES_ACTIVE: acceptance
+      #     command: |
+      #       ./gradlew bootRun
+      #     background: true
+      # - run:
+      #     name: BACKEND - Waiting for application start
+      #     environment:
+      #       PORT: 5240
+      #     working_directory: NeoCom-Infinity-Backend
+      #     command: |
+      #       dockerize -wait tcp://localhost:${PORT}/actuator/health -timeout 3m
       - run:
           name: BACKEND - Unit Testing application
           working_directory: NeoCom-Infinity-Backend
@@ -276,7 +276,7 @@ workflows:
                 - experimental
                 - development
 
-      - test-backend-job:
+      - unittest-backend-job:
           requires:
             - start-job
             - compile-backend-job

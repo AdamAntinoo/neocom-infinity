@@ -30,7 +30,7 @@ services:
     container_name: postgres-acceptance
     image: "postgres:11.2"
     ports:
-      - "5231:5432"
+      - "5281:5432"
     environment:
       - CURRENT_UID=1000
       - POSTGRES_DB=postgres
@@ -41,7 +41,7 @@ services:
     container_name: neocom-infinity-backend-acceptance
     image: neocom/neocom-infinity.backend
     ports:
-      - "5221:9500"
+      - "5241:9500"
     environment:
       - SPRING_PROFILES_ACTIVE=acceptance
       - NEOCOM_DATABASE_URL=jdbc:postgresql://postgres-acceptance:5432/postgres?user=neocom-user&password=neocom-password
@@ -52,20 +52,30 @@ services:
       - NEOCOM_BANNER_LOCATION=./app-banner.txt
 
   backend-apisimulator-esi-oauth:
-    container_name: backend-apisimulator-esi-oauth
+    container_name: neocom-backend-apisimulator-esi-oauth
     image: apimastery/apisimulator
     ports:
-      - "5250:6090"
+      - "5251:6090"
     volumes:
       # WARNING - Use full absolute paths to make this work.
       - /home/adam/Development/NeoCom0.20/NeoCom-Infinity/NeoCom-Infinity-Backend/src/test/resources/esioauth-simulation:/esioauth-simulation
     command: "bin/apisimulator start /esioauth-simulation -p 6090"
 
-  backend-apisimulator-esi-data:
-    container_name: backend-apisimulator-esi-data
+  backend-apisimulator-esi-universe-data:
+    container_name: neocom-backend-apisimulator-esi-universe-data
     image: apimastery/apisimulator
     ports:
-      - "5251:6090"
+      - "5261:6090"
+    volumes:
+      # WARNING - Use full absolute paths to make this work.
+      - /home/adam/Development/NeoCom0.20/NeoCom-Infinity/NeoCom-Infinity-Backend/src/test/resources/esidata-simulation:/esidata-simulation
+    command: "bin/apisimulator start /esidata-simulation -p 6090"
+
+  backend-apisimulator-esi-data:
+    container_name: neocom-backend-apisimulator-esi-data
+    image: apimastery/apisimulator
+    ports:
+      - "5271:6090"
     volumes:
       # WARNING - Use full absolute paths to make this work.
       - /home/adam/Development/NeoCom0.20/NeoCom-Infinity/NeoCom-Infinity-Backend/src/test/resources/esidata-simulation:/esidata-simulation

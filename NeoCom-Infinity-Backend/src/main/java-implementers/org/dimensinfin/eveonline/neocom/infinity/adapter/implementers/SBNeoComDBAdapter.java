@@ -5,7 +5,6 @@ import java.text.MessageFormat;
 import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
-
 import javax.validation.constraints.NotNull;
 
 import com.google.inject.Inject;
@@ -21,6 +20,7 @@ import org.dimensinfin.eveonline.neocom.database.entities.DatabaseVersion;
 import org.dimensinfin.eveonline.neocom.database.entities.MiningExtractionEntity;
 import org.dimensinfin.eveonline.neocom.database.entities.NeoAsset;
 import org.dimensinfin.eveonline.neocom.database.entities.PilotPreferencesEntity;
+import org.dimensinfin.eveonline.neocom.industry.persistence.JobEntity;
 import org.dimensinfin.logging.LogWrapper;
 
 /**
@@ -50,12 +50,14 @@ public class SBNeoComDBAdapter implements NeoComDatabaseService {
 	private Dao<NeoAsset, UUID> assetDao;
 	private Dao<MiningExtractionEntity, String> miningExtractionDao;
 	private Dao<PilotPreferencesEntity, UUID> pilotPreferencesDao;
+	private Dao<JobEntity, String> industryJobDao;
 
 	// - C O N S T R U C T O R S
 	@Inject
-	public SBNeoComDBAdapter ( final @NotNull @Named("NeoComDatabaseConnection")  String databaseConnectionDescriptor ){
-		this.databaseConnectionDescriptor=Objects.requireNonNull  (databaseConnectionDescriptor);
+	public SBNeoComDBAdapter( final @NotNull @Named("NeoComDatabaseConnection") String databaseConnectionDescriptor ) {
+		this.databaseConnectionDescriptor = Objects.requireNonNull( databaseConnectionDescriptor );
 	}
+
 	protected SBNeoComDBAdapter() { }
 
 	// - G E T T E R S   &   S E T T E R S
@@ -67,17 +69,20 @@ public class SBNeoComDBAdapter implements NeoComDatabaseService {
 		return this.assetDao;
 	}
 
-	public ConnectionSource getConnectionSource() throws SQLException {
-		if (null == this.connectionSource) this.openNeoComDB();
-		return this.connectionSource;
-	}
-
 	@Override
 	public Dao<Credential, String> getCredentialDao() throws SQLException {
 		if (null == this.credentialDao) {
 			this.credentialDao = DaoManager.createDao( this.getConnectionSource(), Credential.class );
 		}
 		return this.credentialDao;
+	}
+
+	@Override
+	public Dao<JobEntity, String> getIndustryJobDao() throws SQLException {
+		if (null == this.industryJobDao) {
+			this.industryJobDao = DaoManager.createDao( this.getConnectionSource(), JobEntity.class );
+		}
+		return this.industryJobDao;
 	}
 
 	@Override
@@ -101,6 +106,11 @@ public class SBNeoComDBAdapter implements NeoComDatabaseService {
 			this.versionDao = DaoManager.createDao( this.getConnectionSource(), DatabaseVersion.class );
 		}
 		return this.versionDao;
+	}
+
+	public ConnectionSource getConnectionSource() throws SQLException {
+		if (null == this.connectionSource) this.openNeoComDB();
+		return this.connectionSource;
 	}
 
 	public void onCreate( final ConnectionSource connectionSource ) {
@@ -149,8 +159,8 @@ public class SBNeoComDBAdapter implements NeoComDatabaseService {
 			this.onConstruction = new SBNeoComDBAdapter();
 		}
 
-		public SBNeoComDBAdapter build() /*throws SQLException */{
-//			LogWrapper.info( MessageFormat.format( "Database URL in use: {0}", this.onConstruction.databaseConnectionDescriptor ) );
+		public SBNeoComDBAdapter build() /*throws SQLException */ {
+			//			LogWrapper.info( MessageFormat.format( "Database URL in use: {0}", this.onConstruction.databaseConnectionDescriptor ) );
 			return this.onConstruction;
 		}
 
