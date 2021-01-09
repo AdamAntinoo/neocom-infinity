@@ -1,21 +1,27 @@
 package org.dimensinfin.eveonline.neocom.infinity.config.interceptor;
 
+import java.text.MessageFormat;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.web.servlet.HandlerInterceptor;
 
-import org.dimensinfin.eveonline.neocom.infinity.core.NeoComInterceptor;
+import org.dimensinfin.logging.LogWrapper;
 
-public class LogRequestInterceptor extends NeoComInterceptor {
-	private ObjectMapper mapper = new ObjectMapper();
+public class LogRequestInterceptor implements HandlerInterceptor {
+	private final ObjectMapper mapper = new ObjectMapper();
 
 	@Override
-	public boolean preHandle( final HttpServletRequest request, final HttpServletResponse response, final Object handler ) {
+	public boolean preHandle( @NotNull final HttpServletRequest request,
+	                          @NotNull final HttpServletResponse response,
+	                          @NotNull final Object handler ) {
 		try {
-			logger.info( "[REQUEST]> {}", mapper.writeValueAsString( request ) );
+			LogWrapper.info( MessageFormat.format( "[REQUEST]> {0}", mapper.writeValueAsString( request ) ) );
 		} catch (final JsonProcessingException jsone) {
+			LogWrapper.error( jsone );
 		}
 		return true;
 	}
