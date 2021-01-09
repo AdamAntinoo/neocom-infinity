@@ -2,12 +2,13 @@ package org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domai
 
 import java.util.Objects;
 
+import org.dimensinfin.eveonline.neocom.domain.EsiType;
 import org.dimensinfin.eveonline.neocom.domain.FittingV2;
 import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.EsiItem;
 
 public class FittingInfo {
 	private FittingV2 fitting;
-	private EsiItem hull;
+	private EsiType hull;
 	private BuildAction hullAction;
 
 	// - C O N S T R U C T O R S
@@ -18,7 +19,7 @@ public class FittingInfo {
 		return this.fitting;
 	}
 
-	public EsiItem getHull() {
+	public EsiType getHull() {
 		return this.hull;
 	}
 

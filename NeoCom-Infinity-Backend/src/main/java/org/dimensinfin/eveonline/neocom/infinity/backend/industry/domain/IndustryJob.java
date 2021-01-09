@@ -1,18 +1,17 @@
 package org.dimensinfin.eveonline.neocom.infinity.backend.industry.domain;
 
+import org.dimensinfin.eveonline.neocom.domain.EsiType;
 import org.dimensinfin.eveonline.neocom.domain.Pilot;
 import org.dimensinfin.eveonline.neocom.domain.space.SpaceLocation;
 import org.dimensinfin.eveonline.neocom.industry.persistence.JobEntity;
-import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.EsiItem;
 
 public class IndustryJob {
 	private JobEntity job;
 	private Pilot installer;
-	private EsiItem blueprintItem;
-	private SpaceLocation blueprintLocation = null;
-	private SpaceLocation jobLocation = null;
-	//		private  NeoComNode jobOutputLocation = null;
-	private EsiItem productItem = null;
+	private EsiType blueprintItem;
+	private SpaceLocation blueprintLocation;
+	private SpaceLocation jobLocation;
+	private EsiType productItem = null;
 
 	// - C O N S T R U C T O R S
 	private IndustryJob() {}
