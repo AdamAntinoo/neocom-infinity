@@ -16,11 +16,11 @@ import org.dimensinfin.eveonline.neocom.domain.NeoItem;
 import org.dimensinfin.eveonline.neocom.domain.space.Station;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.BuildAction;
 
-import acceptance.support.ITargetConfiguration;
-import acceptance.support.character.rest.deserializer.GSONLinkDeserializer;
-import acceptance.support.character.rest.deserializer.GSONNeoItemDeserializer;
-import acceptance.support.industry.deserializer.GSONBuildActionDeserializer;
-import acceptance.support.industry.deserializer.GSONStationDeserializer;
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.ITargetConfiguration;
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.character.rest.deserializer.GSONLinkDeserializer;
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.character.rest.deserializer.GSONNeoItemDeserializer;
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.industry.deserializer.GSONBuildActionDeserializer;
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.industry.deserializer.GSONStationDeserializer;
 import okhttp3.OkHttpClient;
 import retrofit2.Converter;
 import retrofit2.converter.gson.GsonConverterFactory;

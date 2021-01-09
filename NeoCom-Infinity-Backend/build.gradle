@@ -58,12 +58,12 @@ sourceSets {
         java {
             compileClasspath += main.output + test.output + integration.output
             runtimeClasspath += main.output + test.output + integration.output
-            srcDirs += 'src/acceptance/java'
+            srcDirs += 'src/org.dimensinfin.eveonline.neocom.infinity.acceptance/java'
         }
     }
     acceptance {
         resources {
-            srcDirs += 'src/acceptance/resources'
+            srcDirs += 'src/org.dimensinfin.eveonline.neocom.infinity.acceptance/resources'
         }
     }
 }

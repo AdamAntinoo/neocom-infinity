@@ -2,6 +2,12 @@
   <configuration default="false" name="NeoCom.Infinity.Backend.backend.App UnitTest" type="JUnit" factoryName="JUnit">
     <module name="NeoCom.Infinity.Backend.test" />
     <useClassPathOnly />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="org.dimensinfin.eveonline.neocom.infinity.acceptance.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
     <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
     <option name="ALTERNATIVE_JRE_PATH" value="11-OpenJDK" />
     <option name="PACKAGE_NAME" value="" />
