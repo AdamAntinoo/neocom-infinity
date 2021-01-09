@@ -2,7 +2,9 @@
 WORKING_DIRECTORY=$(pwd)
 
 downloadFiles() {
+  mkdir --parents "${WORKING_DIRECTORY}/downloads"
   cd "${WORKING_DIRECTORY}/downloads" || exit 1
+  rm *.*
   allFiles=("mapRegions" "mapConstellations" "mapSolarSystems" "staStationTypes" "planetSchematicsPinMap" "planetSchematicsTypeMap" "invTypes"
   "industryActivityMaterials" "industryActivitySkills" "industryActivityProducts")
 
@@ -13,7 +15,6 @@ downloadFiles() {
 decompress() {
   cd "${WORKING_DIRECTORY}/downloads" || exit 1
   bzip2 -d *.bz2
-#  mv *.csv ../
 }
 
 figlet UpdateSDE
