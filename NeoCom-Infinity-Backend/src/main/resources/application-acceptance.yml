@@ -36,4 +36,4 @@ P:
   runtime:
     configuration:
       properties:
-        path: "/build/resources/main/properties-acceptance"
+        path: "/build/resources/main/properties-org.dimensinfin.eveonline.neocom.infinity.acceptance"

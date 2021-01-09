@@ -19,7 +19,7 @@ import org.dimensinfin.eveonline.neocom.infinity.support.fitting.rest.v1.Fitting
 import org.dimensinfin.eveonline.neocom.infinity.support.neoitem.rest.v1.NeoItemTransport;
 import org.dimensinfin.eveonline.neocom.infinity.support.pilot.rest.v1.PilotResponse;
 
-import acceptance.support.NewNeoComWorld;
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.NewNeoComWorld;
 
 public class NeoComWorld extends NewNeoComWorld {
 	//	public String getJwtAuthorizationToken() {

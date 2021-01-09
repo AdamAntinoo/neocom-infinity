@@ -18,8 +18,8 @@
 # 5200 - reserved for frontend
 # 5210 - [backend-simulator] backend api simulator services
 # 5220 - application backend local server
-# 5230 - [postgres-acceptance] acceptance postgres database
-# 5240 - [acceptance] acceptance application backend server
+# 5230 - [postgres-org.dimensinfin.eveonline.neocom.infinity.acceptance] org.dimensinfin.eveonline.neocom.infinity.acceptance postgres database
+# 5240 - [org.dimensinfin.eveonline.neocom.infinity.acceptance] org.dimensinfin.eveonline.neocom.infinity.acceptance application backend server
 # 5250 - [apisimulator-esi-oauth] esi-oauth api simulator service
 # 5251 - [apisimulator-esi-data] esi eve online data server api simulator service
 
@@ -27,7 +27,7 @@ version: '3.8'
 
 services:
   postgres-acceptance:
-    container_name: postgres-acceptance
+    container_name: postgres-org.dimensinfin.eveonline.neocom.infinity.acceptance
     image: "postgres:11.2"
     ports:
       - "5281:5432"
@@ -38,14 +38,14 @@ services:
       - POSTGRES_PASSWORD=neocom-password
 
   acceptance:
-    container_name: neocom-infinity-backend-acceptance
+    container_name: neocom-infinity-backend-org.dimensinfin.eveonline.neocom.infinity.acceptance
     image: neocom/neocom-infinity.backend
     ports:
       - "5241:9500"
     environment:
-      - SPRING_PROFILES_ACTIVE=acceptance
-      - NEOCOM_DATABASE_URL=jdbc:postgresql://postgres-acceptance:5432/postgres?user=neocom-user&password=neocom-password
-      - JDBC_DATABASE_URL=jdbc:postgresql://postgres-acceptance:5432/postgres
+      - SPRING_PROFILES_ACTIVE=org.dimensinfin.eveonline.neocom.infinity.acceptance
+      - NEOCOM_DATABASE_URL=jdbc:postgresql://postgres-org.dimensinfin.eveonline.neocom.infinity.acceptance:5432/postgres?user=neocom-user&password=neocom-password
+      - JDBC_DATABASE_URL=jdbc:postgresql://postgres-org.dimensinfin.eveonline.neocom.infinity.acceptance:5432/postgres
       - DB_USER=neocom-user
       - DB_PASSWORD=neocom-password
       - DEFAULT_BACKEND_SERVER="http://localhost:"

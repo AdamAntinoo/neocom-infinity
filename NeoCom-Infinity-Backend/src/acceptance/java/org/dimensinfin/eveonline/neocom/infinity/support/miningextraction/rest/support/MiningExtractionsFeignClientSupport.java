@@ -13,7 +13,7 @@ import org.dimensinfin.eveonline.neocom.infinity.support.core.CommonFeignClient;
 import org.dimensinfin.eveonline.neocom.infinity.support.rest.NeoComApiv1;
 import org.dimensinfin.eveonline.neocom.service.logger.NeoComLogger;
 
-import acceptance.support.ITargetConfiguration;
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.ITargetConfiguration;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
