@@ -4,7 +4,6 @@ import java.util.Objects;
 
 import org.dimensinfin.eveonline.neocom.domain.EsiType;
 import org.dimensinfin.eveonline.neocom.domain.FittingV2;
-import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.EsiItem;
 
 public class FittingInfo {
 	private FittingV2 fitting;
