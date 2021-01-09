@@ -48,7 +48,7 @@ public class MiningExtractionsServiceTest {
 		Assertions.assertNotNull( miningExtractionsService );
 	}
 
-	@Test
+//	@Test
 	public void getTodayMiningExtractions4Pilot() {
 		// Given
 		final CredentialDetails credentialDetails = Mockito.mock( CredentialDetails.class );

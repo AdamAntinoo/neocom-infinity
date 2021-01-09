@@ -128,10 +128,10 @@ public class UnitTestEnvironmentDefinition {
 //		Mockito.doAnswer( ( credential ) -> {
 //			return null;
 //		} ).when( this.itCredentialRepository ).persist( Mockito.any( Credential.class ) );
-		this.itRetrofitFactory = new RetrofitFactory.Builder()
-				.withConfigurationProvider( this.itConfigurationProvider )
-				.withFileSystemAdapter( this.itFileSystemAdapter )
-				.build();
+//		this.itRetrofitFactory = new RetrofitFactory.Builder()
+//				.withConfigurationProvider( this.itConfigurationProvider )
+//				.withFileSystemAdapter( this.itFileSystemAdapter )
+//				.build();
 //		this.itStoreCacheManager = new StoreCacheManager.Builder()
 //				.withConfigurationProvider( this.itConfigurationProvider )
 //				.withFileSystemAdapter( this.itFileSystemAdapter )
