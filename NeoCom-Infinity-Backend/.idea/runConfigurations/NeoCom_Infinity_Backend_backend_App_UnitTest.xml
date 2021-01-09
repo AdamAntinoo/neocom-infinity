@@ -7,6 +7,14 @@
         <option name="PATTERN" value="org.dimensinfin.eveonline.neocom.infinity.acceptance.*" />
         <option name="ENABLED" value="true" />
       </pattern>
+      <pattern>
+        <option name="PATTERN" value="org.dimensinfin.eveonline.neocom.infinity.support.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+      <pattern>
+        <option name="PATTERN" value="org.dimensinfin.eveonline.neocom.infinity.integration.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
     </extension>
     <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
     <option name="ALTERNATIVE_JRE_PATH" value="11-OpenJDK" />
