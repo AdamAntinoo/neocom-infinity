@@ -24,9 +24,12 @@ jobs:
   start-job:
     docker:
       - image: circleci/node:12.16.3-browsers
+      - image: circleci/openjdk:11-jdk
     steps:
       - checkout
 
+
+  # - F R O N T E N D
   compile-frontend-job:
     docker:
       - image: circleci/node:12.16.3-browsers
@@ -73,20 +76,6 @@ jobs:
           working_directory: NeoCom-Infinity-Frontend
           command: |
             npm run build:prod
-
-  compile-backend-job:
-    docker:
-      - image: circleci/openjdk:11-jdk
-    steps:
-      - checkout
-      - run:
-          name: BACKEND - Compile SpringBoot code
-          working_directory: NeoCom-Infinity-Backend
-          environment:
-            PROFILE: "production"
-          command: |
-            ./gradlew clean bootJar
-
   test-frontend-job:
     docker:
       - image: circleci/node:12.16.3-browsers
@@ -113,20 +102,95 @@ jobs:
             npm run cypress:run
       - store_test_results:
           path: ~/project/Printer3D-frontend/cypress/cucumber-json
+
+  # - B A C K E N D
+  cache-dependencies-backend:
+    docker:
+      - image: circleci/openjdk:11-jdk
+    steps:
+      - checkout
+      - run: 
+          name: NEOCOM-BACKEND - Get and cache the backend compilation dependencies
+          command: |
+            ./gradlew dependencies
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: v1-dependencies-{{ checksum "dependencies.gradle" }}
+  compile-backend-job:
+    docker:
+      - image: circleci/openjdk:11-jdk
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "dependencies.gradle" }}
+          - v1-dependencies-
+      - run:
+          name: BACKEND - Compile SpringBoot code
+          working_directory: NeoCom-Infinity-Backend
+          environment:
+            PROFILE: "production"
+          command: |
+            ./gradlew clean bootJar
   unittest-backend-job:
     docker:
       - image: circleci/openjdk:11-jdk
         environment:
           _JAVA_OPTIONS: "-Xmx3g"
           GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2"
-          SPRING_PROFILES_ACTIVE: acceptance
-      - image: circleci/postgres:11.1
-        environment:
-          POSTGRES_USER: inno-user
-          POSTGRES_DB: inno-password
     steps:
       - checkout
-      # - run:
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "dependencies.gradle" }}
+          - v1-dependencies-
+      - run:
+          name: BACKEND - Unit Testing application
+          working_directory: NeoCom-Infinity-Backend
+          environment:
+            PORT: 5240
+            JDBC_DATABASE_URL: "jdbc:postgresql://0.0.0.0:5432/postgres"
+            DB_USER: inno-user
+            DB_PASSWORD: inno-password
+            SPRING_PROFILES_ACTIVE: test
+          command: |
+            ./gradlew test
+      - store_test_results:
+          path: ~/project/NeoCom-Infinity-Backend/build/test-results
+      - store_artifacts:  
+          path: ~/project/NeoCom-Infinity-Backend/build/libs
+      - save_cache:
+          paths:
+            - ~/.gradle
+            - ~/build
+            - ~/coverage
+          key: v1-build-{{ checksum "build.gradle" }}
+  quality-sonarcloud-backend:
+    docker:
+      - image: circleci/openjdk:11-jdk
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-build-{{ checksum "build.gradle" }}
+          - v1-build-
+      - run:
+          name: BACKEND - Update SonarQube statistics
+          environment:
+            SONAR_TOKEN: 9dfe678ad49842371e44396a40c663586d497c31
+          command: |
+            ./gradlew test jacocoTestReport sonarqube
+
+  integration-test-backend-job:
+    docker:
+      - image: circleci/openjdk:11-jdk
+        environment:
+          _JAVA_OPTIONS: "-Xmx3g"
+          GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2"
+    steps:
+      - checkout
+        # - run:
       #     name: BACKEND - Start the application in local profile
       #     working_directory: NeoCom-Infinity-Backend
       #     environment:
@@ -145,37 +209,15 @@ jobs:
       #     working_directory: NeoCom-Infinity-Backend
       #     command: |
       #       dockerize -wait tcp://localhost:${PORT}/actuator/health -timeout 3m
-      - run:
-          name: BACKEND - Unit Testing application
-          working_directory: NeoCom-Infinity-Backend
-          environment:
-            PORT: 5240
-            JDBC_DATABASE_URL: "jdbc:postgresql://0.0.0.0:5432/postgres"
-            DB_USER: inno-user
-            DB_PASSWORD: inno-password
-            SPRING_PROFILES_ACTIVE: test
-          command: |
-            ./gradlew test -Dcucumber.options="--tags @NIB00"
-      - store_test_results:
-          path: ~/project/NeoCom-Infinity-Backend/build/test-results
-      - store_artifacts:  
-          path: ~/project/NeoCom-Infinity-Backend/build/libs
-
-  quality-sonarcloud:
+  acceptance-test-backend-job:
     docker:
       - image: circleci/openjdk:11-jdk
+        environment:
+          _JAVA_OPTIONS: "-Xmx3g"
+          GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2"
     steps:
       - checkout
-      - run:
-          name: BACKEND - Update SonarQube statistics
-          environment:
-            SONAR_TOKEN: 9dfe678ad49842371e44396a40c663586d497c31
-          command: |
-              sonar-scanner \
-                -Dsonar.organization=evedimensinfin \
-                -Dsonar.projectKey=evedimensinfin_neocom-infinity-frontend \
-                -Dsonar.sources=. \
-                -Dsonar.host.url=https://sonarcloud.io
+
 
   stage-frontend-to-heroku:
     docker:
@@ -257,16 +299,7 @@ workflows:
                 - test
                 - hotfix
                 - master
-
-      - compile-backend-job:
-          requires:
-            - start-job
-          filters:
-            branches:
-              only:
-                - industry
-                - experimental
-                - development
+      # - FRONTEND
       - compile-frontend-job:
           requires:
             - start-job
@@ -275,7 +308,25 @@ workflows:
               only:
                 - experimental
                 - development
-
+      # - BACKEND
+      - cache-dependencies-backend:
+          filters:
+            branches:
+              only:
+                - experimental
+                - development
+                - test
+                - hotfix
+                - master
+      - compile-backend-job:
+          requires:
+            - start-job
+            - cache-dependencies-backend
+          filters:
+            branches:
+              only:
+                - experimental
+                - development
       - unittest-backend-job:
           requires:
             - start-job
@@ -283,27 +334,31 @@ workflows:
           filters:
             branches:
               only:
-                - industry
                 - test
                 - hotfix
+      - quality-sonarcloud-backend:
+          requires:
+            - unittest-backend-job
+          filters:
+            branches:
+              only:
+                - test
 
   neocom-infinity-deploy:
     jobs:
+      - start-job:
+          filters:
+            tags:
+              only: /0.*/
+            branches:
+              ignore: /.*/
+      # - FRONTEND
       - compile-frontend-job:
           filters:
             branches:
               only:
                 - planetary
       - test-frontend-job:
-          filters:
-            tags:
-              only: /0.*/
-            branches:
-              ignore: /.*/
-      - quality-sonarcloud:
-          context: SonarCloud
-          requires:
-            - test-frontend-job
           filters:
             tags:
               only: /0.*/
@@ -316,10 +371,28 @@ workflows:
             branches:
               only:
                 - planetary
+
+      # - BACKEND
+      - cache-dependencies-backend:
+          requires:
+            - start-job
+          filters:
+            tags:
+              only: /0.*/
+            branches:
+              ignore: /.*/
+      - quality-sonarcloud-backend:
+          requires:
+            - start-job
+          filters:
+            tags:
+              only: /0.*/
+            branches:
+              ignore: /.*/
       - stage-to-heroku:
           requires:
             - test-frontend-job
-            - quality-sonarcloud
+            - quality-sonarcloud-backend
           filters:
             tags:
               only: /0.*/
