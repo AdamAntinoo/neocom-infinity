@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Objects;
 
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdFittings200Ok;
-import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.EsiItem;
 
 public class FittingV2 {
 	private final List<FittingItem> fittingItems = new ArrayList<>();
