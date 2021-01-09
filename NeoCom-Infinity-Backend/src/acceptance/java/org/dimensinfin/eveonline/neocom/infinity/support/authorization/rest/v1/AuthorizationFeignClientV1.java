@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
-import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.ITargetConfiguration;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialResponse;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
@@ -18,6 +17,7 @@ import org.dimensinfin.eveonline.neocom.infinity.support.rest.NeoComApiv1;
 import org.dimensinfin.eveonline.neocom.service.logger.NeoComLogger;
 import org.dimensinfin.logging.LogWrapper;
 
+import acceptance.support.ITargetConfiguration;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;

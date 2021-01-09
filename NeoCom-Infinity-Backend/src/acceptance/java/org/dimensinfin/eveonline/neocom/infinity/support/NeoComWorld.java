@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.database.entities.MiningExtractionEntity;
-import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.NewNeoComWorld;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialResponse;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
@@ -19,6 +18,8 @@ import org.dimensinfin.eveonline.neocom.infinity.support.corporation.rest.v1.Loc
 import org.dimensinfin.eveonline.neocom.infinity.support.fitting.rest.v1.FittingResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.neoitem.rest.v1.NeoItemTransport;
 import org.dimensinfin.eveonline.neocom.infinity.support.pilot.rest.v1.PilotResponse;
+
+import acceptance.support.NewNeoComWorld;
 
 public class NeoComWorld extends NewNeoComWorld {
 	//	public String getJwtAuthorizationToken() {
