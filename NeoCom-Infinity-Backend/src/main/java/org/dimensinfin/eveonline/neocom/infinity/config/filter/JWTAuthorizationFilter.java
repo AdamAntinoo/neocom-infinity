@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.config.security;
+package org.dimensinfin.eveonline.neocom.infinity.config.filter;
 
 import java.io.IOException;
 import java.util.ArrayList;

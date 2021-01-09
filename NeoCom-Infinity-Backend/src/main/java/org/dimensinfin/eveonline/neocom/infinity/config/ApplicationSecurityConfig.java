@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.config.security;
+package org.dimensinfin.eveonline.neocom.infinity.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -11,6 +11,10 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetailsService;
+import org.dimensinfin.eveonline.neocom.infinity.config.filter.JWTAuthorizationFilter;
+import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
 
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.ACTUATORS_URL;
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.CREDENTIAL_SUPPORT_URL;
@@ -25,14 +29,14 @@ import static org.dimensinfin.eveonline.neocom.infinity.config.security.Security
 
 @Configuration
 @EnableWebSecurity
-public class ApplicationSecurityConf extends WebSecurityConfigurerAdapter {
+public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 	private NeoComAuthenticationProvider neoComAuthenticationProvider;
 	private CredentialDetailsService credentialDetailsService;
 
 	// - C O N S T R U C T O R S
 	@Autowired
-	public ApplicationSecurityConf( final CredentialDetailsService userDetailsService,
-	                                final NeoComAuthenticationProvider neoComAuthenticationProvider ) {
+	public ApplicationSecurityConfig( final CredentialDetailsService userDetailsService,
+	                                  final NeoComAuthenticationProvider neoComAuthenticationProvider ) {
 		this.neoComAuthenticationProvider = neoComAuthenticationProvider;
 		this.credentialDetailsService = userDetailsService;
 	}
