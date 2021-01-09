@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.config;
+package org.dimensinfin.eveonline.neocom.infinity;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;

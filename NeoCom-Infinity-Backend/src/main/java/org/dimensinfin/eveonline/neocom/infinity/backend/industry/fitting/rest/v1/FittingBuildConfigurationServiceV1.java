@@ -24,8 +24,8 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.servic
 import org.dimensinfin.eveonline.neocom.infinity.backend.universe.item.rest.v2.EsiItemServiceV2;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComError;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
-import org.dimensinfin.eveonline.neocom.infinity.core.security.CredentialDetailsService;
-import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticationProvider;
+import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetailsService;
+import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
 import org.dimensinfin.eveonline.neocom.infinity.datamanagement.industry.processor.IndustryBuildProcessor;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;

@@ -17,7 +17,7 @@ import org.dimensinfin.eveonline.neocom.domain.Corporation;
 import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComController;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.ErrorInfo;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComAuthorizationException;
-import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticationProvider;
+import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
 import org.dimensinfin.eveonline.neocom.infinity.corporation.domain.ShippingYardLocation;
 
 @RestController

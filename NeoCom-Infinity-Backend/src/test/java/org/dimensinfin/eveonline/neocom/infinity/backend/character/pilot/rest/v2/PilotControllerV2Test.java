@@ -7,7 +7,7 @@ import org.mockito.Mockito;
 import org.springframework.http.ResponseEntity;
 
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
-import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticationProvider;
+import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
 import org.dimensinfin.eveonline.neocom.infinity.pilot.rest.representation.PilotModel;
 
 import static org.dimensinfin.eveonline.neocom.infinity.backend.character.pilot.rest.v1.PilotControllerV1Test.INVALID_PILOT_ID;

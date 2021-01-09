@@ -18,13 +18,13 @@ import org.dimensinfin.eveonline.neocom.infinity.core.exception.ErrorInfo;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComSBException;
 import org.dimensinfin.eveonline.neocom.service.logger.NeoComLogger;
 
-import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.ISSUER;
-import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.SECRET;
-import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.SUBJECT;
-import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.TOKEN_ACCOUNT_NAME_FIELD_NAME;
-import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.TOKEN_CORPORATION_ID_FIELD_NAME;
-import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.TOKEN_PILOT_ID_FIELD_NAME;
-import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.TOKEN_UNIQUE_IDENTIFIER_FIELD_NAME;
+import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.ISSUER;
+import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.SECRET;
+import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.SUBJECT;
+import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.TOKEN_ACCOUNT_NAME_FIELD_NAME;
+import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.TOKEN_CORPORATION_ID_FIELD_NAME;
+import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.TOKEN_PILOT_ID_FIELD_NAME;
+import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.TOKEN_UNIQUE_IDENTIFIER_FIELD_NAME;
 
 @Service
 public class StoreCredentialService {

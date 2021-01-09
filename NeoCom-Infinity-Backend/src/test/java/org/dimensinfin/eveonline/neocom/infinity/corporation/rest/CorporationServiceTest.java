@@ -19,9 +19,9 @@ import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCorporationsCorporat
 import org.dimensinfin.eveonline.neocom.infinity.adapter.AssetRepositoryWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.CredentialRepositoryWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataProviderWrapper;
-import org.dimensinfin.eveonline.neocom.infinity.core.security.CredentialDetails;
-import org.dimensinfin.eveonline.neocom.infinity.core.security.CredentialDetailsService;
-import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticationProvider;
+import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetails;
+import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetailsService;
+import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
 import org.dimensinfin.eveonline.neocom.infinity.corporation.domain.ShippingYardLocation;
 import org.dimensinfin.eveonline.neocom.infinity.backend.character.pilot.rest.v1.PilotServiceV1;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;

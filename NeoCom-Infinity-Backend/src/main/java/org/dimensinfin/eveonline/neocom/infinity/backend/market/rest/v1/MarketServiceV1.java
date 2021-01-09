@@ -18,8 +18,8 @@ import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCorporationsCorporat
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetMarketsRegionIdOrders200Ok;
 import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComCredentialService;
 import org.dimensinfin.eveonline.neocom.infinity.backend.market.domain.MarketData;
-import org.dimensinfin.eveonline.neocom.infinity.core.security.CredentialDetailsService;
-import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticationProvider;
+import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetailsService;
+import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
 import org.dimensinfin.eveonline.neocom.infinity.datamanagement.converter.GetMarketsRegionIdOrdersToMarketOrderConverter;
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
 import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;

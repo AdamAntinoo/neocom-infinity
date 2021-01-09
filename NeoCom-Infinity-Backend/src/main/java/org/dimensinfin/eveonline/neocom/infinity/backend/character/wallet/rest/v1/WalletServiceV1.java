@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataProviderWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComCredentialService;
-import org.dimensinfin.eveonline.neocom.infinity.core.security.CredentialDetailsService;
-import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticationProvider;
+import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetailsService;
+import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 
 @Service

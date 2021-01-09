@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 import org.dimensinfin.eveonline.neocom.database.core.ISDEDatabaseService;
 import org.dimensinfin.eveonline.neocom.database.repositories.SDERepository;
+import org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendDependenciesModule;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBFileSystemAdapter;
 import org.dimensinfin.eveonline.neocom.infinity.backend.sde.service.SBSDEDatabaseService;
 import org.dimensinfin.eveonline.neocom.infinity.service.SBConfigurationService;
@@ -26,7 +27,7 @@ import org.dimensinfin.logging.LogWrapper;
  * Configure the Guide dependencies defined at the Data Management library.
  */
 @Configuration
-public class NeoComDependencyConfiguration {
+public class NeoComDependencyConfig {
 	private final Injector injector; // The global Guice injector singleton
 
 	// Guice modules are initialized before the spring context completes

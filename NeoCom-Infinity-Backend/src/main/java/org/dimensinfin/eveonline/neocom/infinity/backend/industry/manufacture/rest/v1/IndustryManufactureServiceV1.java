@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.domain.ProcessedBlueprint;
 import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComCredentialService;
-import org.dimensinfin.eveonline.neocom.infinity.core.security.CredentialDetailsService;
-import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticationProvider;
+import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetailsService;
+import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
 import org.dimensinfin.eveonline.neocom.infinity.service.DataStoreService;
 
 @Service

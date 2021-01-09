@@ -1,14 +1,14 @@
-package org.dimensinfin.eveonline.neocom.infinity.core.config;
+package org.dimensinfin.eveonline.neocom.infinity.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import org.dimensinfin.eveonline.neocom.infinity.core.config.interceptor.LogRequestHeaderInterceptor;
-import org.dimensinfin.eveonline.neocom.infinity.core.config.interceptor.LogRequestInterceptor;
-import org.dimensinfin.eveonline.neocom.infinity.core.config.interceptor.LogResponseInterceptor;
-import org.dimensinfin.eveonline.neocom.infinity.core.config.interceptor.LogTimingInterceptor;
+import org.dimensinfin.eveonline.neocom.infinity.config.interceptor.LogRequestHeaderInterceptor;
+import org.dimensinfin.eveonline.neocom.infinity.config.interceptor.LogRequestInterceptor;
+import org.dimensinfin.eveonline.neocom.infinity.config.interceptor.LogResponseInterceptor;
+import org.dimensinfin.eveonline.neocom.infinity.config.interceptor.LogTimingInterceptor;
 
 @Configuration
 public class InterceptorConfig implements WebMvcConfigurer {

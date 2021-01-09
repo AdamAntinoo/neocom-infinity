@@ -8,8 +8,8 @@ import org.dimensinfin.eveonline.neocom.database.entities.MiningExtractionEntity
 import org.dimensinfin.eveonline.neocom.infinity.adapter.support.SupportMiningRepository;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.support.SupportMiningRepositoryWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComSBException;
-import org.dimensinfin.eveonline.neocom.infinity.core.security.CredentialDetailsService;
-import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticationProvider;
+import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetailsService;
+import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
 import org.dimensinfin.eveonline.neocom.service.logger.NeoComLogger;
 
 @Service

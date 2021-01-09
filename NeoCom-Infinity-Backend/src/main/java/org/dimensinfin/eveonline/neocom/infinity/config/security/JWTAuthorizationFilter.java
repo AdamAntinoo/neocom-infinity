@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.core.security;
+package org.dimensinfin.eveonline.neocom.infinity.config.security;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,10 +16,10 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
-import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.AUTHORIZATION_HEADER_STRING;
-import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.SECRET;
-import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.SUBJECT;
-import static org.dimensinfin.eveonline.neocom.infinity.core.security.SecurityConstants.TOKEN_PREFIX;
+import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.AUTHORIZATION_HEADER_STRING;
+import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.SECRET;
+import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.SUBJECT;
+import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.TOKEN_PREFIX;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 	@Autowired
