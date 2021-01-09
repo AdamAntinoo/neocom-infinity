@@ -70,10 +70,15 @@ dependencies {
 }
 // - T E M P O R A L   D E P E N D E N C I E S
 dependencies {
-    implementation "joda-time:joda-time:$jodaTimeVersion" // Just use it until the next DataManagement version has the correct depenencies
+    implementation "joda-time:joda-time:$jodaTimeVersion" // Just use it until the next DataManagement version has the correct dependencies
     implementation "com.fasterxml.jackson.datatype:jackson-datatype-joda:$jacksonVersion"
     implementation "com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion"
 }
+// - E N V I R O N M E N T   D E P E N D E N C I E S
+def profile = System.getenv('PROFILE') ?: "development"
+def envScript = file("$profile-dependencies.gradle")
+println "Applying [$profile] configuration"
+apply from: envScript
 // - D I M E N S I N F I N
 dependencies {
     // D I M E N S I N F I N
@@ -81,19 +86,11 @@ dependencies {
     implementation 'org.bitbucket.dimensinfin:annotations:0.3.1'
     implementation 'org.bitbucket.evedimensinfin.neocom-java-core:esi.swagger-api:0.20.0'
 }
-// - C U C U M B E R
-ext {
-    cucumberVersion = '5.6.0'
-}
-dependencies {
-    testImplementation "io.cucumber:cucumber-java:$cucumberVersion"
-    testImplementation "io.cucumber:cucumber-junit:$cucumberVersion"
-    testImplementation "io.cucumber:cucumber-picocontainer:$cucumberVersion"
-}
 
 // - U N I T   T E S T I N G
 test {
     useJUnitPlatform()
+    systemProperty "cucumber.options", System.getProperty("cucumber.options")
 }
 dependencies {
     // C O R E
@@ -105,8 +102,18 @@ dependencies {
     testImplementation 'com.openpojo:openpojo:0.8.12'
 }
 
-// - E N V I R O N M E N T   D E P E N D E N C I E S
-def profile = System.getenv('PROFILE') ?: "development"
-def envScript = file("$profile-dependencies.gradle")
-println "Applying [$profile] configuration"
-apply from: envScript
+// - I N T E G R A T I O N   T E S T I N G
+dependencies {
+//    integrationImplementation "com.j256.ormlite:ormlite-jdbc:$ormliteVersion"
+//    integrationImplementation "org.xerial:sqlite-jdbc:3.25.2"
+}
+
+// - A C C E P T A N C E   T E S T I N G
+ext {
+    cucumberVersion = '5.6.0'
+}
+dependencies {
+    acceptanceImplementation "io.cucumber:cucumber-java:$cucumberVersion"
+    acceptanceImplementation "io.cucumber:cucumber-junit:$cucumberVersion"
+    acceptanceImplementation "io.cucumber:cucumber-picocontainer:$cucumberVersion"
+}

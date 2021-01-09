@@ -1,0 +1,20 @@
+// - S D E   D A T A B A S E
+task updateSDEDatabase(type: Exec) {
+    group = 'sde'
+//    println '> Task :NeoCom-Infinity:updateSDEDatabase: update sde database contents...'
+    workingDir layout.projectDirectory.dir('src/main/sh')
+    commandLine 'bash', './update-sde.sh'
+}
+task generateSDEDatabase(type: Exec) {
+    group = 'sde'
+    inputs.files(fileTree('src/main/sh/downloads'))
+            .withPropertyName('csvTableContents')
+            .withPathSensitivity(PathSensitivity.RELATIVE)
+    outputs.file(layout.projectDirectory.dir('src/main/resources/sde.db'))
+            .withPropertyName('outputDb')
+
+//    println '> Task :NeoCom-Infinity:generateSDEDatabase: generating new sde database...'
+    workingDir layout.projectDirectory.dir('src/main/sh')
+    commandLine 'bash', './create-sde.sh'
+}
+generateSDEDatabase.dependsOn test

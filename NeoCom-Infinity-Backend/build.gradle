@@ -22,13 +22,6 @@ plugins {
     id "org.hidetake.swagger.generator" version "2.18.2"
 }
 
-configurations {
-    developmentOnly
-    runtimeClasspath {
-        extendsFrom developmentOnly
-    }
-}
-
 repositories {
     mavenLocal()
     mavenCentral()
@@ -49,12 +42,50 @@ sourceSets {
         srcDirs += 'src/main/java-client'
         srcDirs += 'src/main/java-optional'
     }
+    integration {
+        java {
+            compileClasspath += main.output + test.output
+            runtimeClasspath += main.output + test.output
+            srcDirs += 'src/integration/java'
+        }
+    }
+    integration {
+        resources {
+            srcDirs += 'src/integration/resources'
+        }
+    }
+    acceptance {
+        java {
+            compileClasspath += main.output + test.output + integration.output
+            runtimeClasspath += main.output + test.output + integration.output
+            srcDirs += 'src/acceptance/java'
+        }
+    }
+    acceptance {
+        resources {
+            srcDirs += 'src/acceptance/resources'
+        }
+    }
+}
+
+// - C O N F I G U R A T I O N S
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+    integrationImplementation.extendsFrom testImplementation
+    integrationRuntime.extendsFrom testRuntime
+    acceptanceImplementation.extendsFrom testImplementation
+    acceptanceRuntime.extendsFrom testRuntime
 }
 
 // - D E P E N D E N C I E S
 apply from: './dependencies.gradle'
 // - C O V E R A G E
 apply from: './jacoco.gradle'
+// - S D E   D A T A B A S E
+apply from: './sde-database.gradle'
 
 // - S W A G G E R   C L I E N T
 def swaggerGenerated = "$buildDir/generated/"
