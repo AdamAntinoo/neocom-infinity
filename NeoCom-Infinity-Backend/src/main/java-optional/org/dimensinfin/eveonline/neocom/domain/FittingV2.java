@@ -11,7 +11,7 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.EsiItem
 public class FittingV2 {
 	private final List<FittingItem> fittingItems = new ArrayList<>();
 	private GetCharactersCharacterIdFittings200Ok fittingDescription;
-	private EsiItem shipHull;
+	private EsiType shipHull;
 
 	// - C O N S T R U C T O R S
 	private FittingV2() {}
@@ -29,13 +29,13 @@ public class FittingV2 {
 
 	public String getName() {return this.fittingDescription.getName();}
 
-	public EsiItem getShipHull() {
+	public EsiType getShipHull() {
 		return this.shipHull;
 	}
 
 	public Integer getShipTypeId() {return this.fittingDescription.getShipTypeId();}
 
-	public String getURLForItem() {return this.shipHull.getURLForItem();}
+	public String getTypeIconURL() {return this.shipHull.getTypeIconURL();}
 
 	public void addFittingItem( final FittingItem fittingItem ) {
 		this.fittingItems.add( fittingItem );
@@ -61,7 +61,7 @@ public class FittingV2 {
 			return this;
 		}
 
-		public FittingV2.Builder withShipHull( final EsiItem shipHull ) {
+		public FittingV2.Builder withShipHull( final EsiType shipHull ) {
 			this.onConstruction.shipHull = Objects.requireNonNull( shipHull );
 			return this;
 		}

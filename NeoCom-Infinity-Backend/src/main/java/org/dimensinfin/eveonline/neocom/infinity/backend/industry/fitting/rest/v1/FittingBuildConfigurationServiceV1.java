@@ -15,7 +15,6 @@ import org.dimensinfin.eveonline.neocom.domain.FittingV2;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdFittings200Ok;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataProviderWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComCredentialService;
-import org.dimensinfin.eveonline.neocom.infinity.backend.industry.domain.ItemFactory;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.converter.GetCharactersCharacterIdFittingsToFittingV2Converter;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingBuildConfiguration;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.persistence.ActionPreferenceEntity;
@@ -30,6 +29,7 @@ import org.dimensinfin.eveonline.neocom.infinity.core.security.NeoComAuthenticat
 import org.dimensinfin.eveonline.neocom.infinity.datamanagement.industry.processor.IndustryBuildProcessor;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;
+import org.dimensinfin.eveonline.neocom.service.ResourceFactory;
 
 import static org.dimensinfin.eveonline.neocom.infinity.backend.industry.IndustryControllerV1.INDUSTRY_ERROR_CODE_PREFIX;
 
@@ -69,7 +69,7 @@ public class FittingBuildConfigurationServiceV1 extends NeoComCredentialService 
 	private final LocationCatalogService locationCatalogService;
 	private final BuildActionPreferencesRepository buildActionPreferencesRepository;
 	private final EsiItemServiceV2 esiItemServiceV2;
-	private final ItemFactory itemFactory;
+	private final ResourceFactory resourceFactory;
 
 	// - C O N S T R U C T O R S
 	public FittingBuildConfigurationServiceV1( final @NotNull NeoComAuthenticationProvider neoComAuthenticationProvider,
@@ -78,13 +78,13 @@ public class FittingBuildConfigurationServiceV1 extends NeoComCredentialService 
 	                                           final @NotNull LocationCatalogService locationCatalogService,
 	                                           final @NotNull BuildActionPreferencesRepository buildActionPreferencesRepository,
 	                                           final @NotNull EsiItemServiceV2 esiItemServiceV2,
-	                                           final @NotNull ItemFactory itemFactory ) {
+	                                           final @NotNull ResourceFactory resourceFactory ) {
 		super( neoComAuthenticationProvider, credentialDetailsService );
 		this.esiDataProvider = Objects.requireNonNull( esiDataProviderWrapper.getSingleton() );
 		this.locationCatalogService = Objects.requireNonNull( locationCatalogService );
 		this.buildActionPreferencesRepository = buildActionPreferencesRepository;
 		this.esiItemServiceV2 = esiItemServiceV2;
-		this.itemFactory = itemFactory;
+		this.resourceFactory = resourceFactory;
 	}
 
 	public FittingConfigurations getFittingConfigurations( final @NotNull Integer fittingId ) {
@@ -134,7 +134,7 @@ public class FittingBuildConfigurationServiceV1 extends NeoComCredentialService 
 		);
 		// Search for the target fitting identifier received as the parameter.
 		// Search for matching fitting
-		final FittingV2 targetFitting = new GetCharactersCharacterIdFittingsToFittingV2Converter( this.itemFactory )
+		final FittingV2 targetFitting = new GetCharactersCharacterIdFittingsToFittingV2Converter( this.resourceFactory )
 				.convert( fittingList.stream()
 						.filter( fitting -> fitting.getFittingId() == fittingId ) // Search for matching fitting
 						.collect( this.toSingleton( fittingId ) )

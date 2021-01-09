@@ -3,15 +3,16 @@ package org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.rest.
 import java.util.ArrayList;
 import java.util.List;
 
+import org.dimensinfin.eveonline.neocom.domain.EsiType;
 import org.dimensinfin.eveonline.neocom.domain.FittingItem;
-import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.EsiItem;
 
+@Deprecated
 public class FittingDao {
+	private final List<FittingItem> fittingItems = new ArrayList<>();
 	private Integer fittingId;
 	private String name;
 	private String description;
-	private EsiItem shipHull;
-	private final List<FittingItem> fittingItems = new ArrayList<>();
+	private EsiType shipHull;
 
 	// - C O N S T R U C T O R S
 	private FittingDao() {}

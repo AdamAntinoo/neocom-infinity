@@ -7,20 +7,20 @@ import org.dimensinfin.eveonline.neocom.domain.FittingItem;
 import org.dimensinfin.eveonline.neocom.domain.FittingV2;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.CharacterscharacterIdfittingsItems;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdFittings200Ok;
-import org.dimensinfin.eveonline.neocom.infinity.backend.industry.domain.ItemFactory;
+import org.dimensinfin.eveonline.neocom.service.ResourceFactory;
 
 public class GetCharactersCharacterIdFittingsToFittingV2Converter implements Converter<GetCharactersCharacterIdFittings200Ok, FittingV2> {
-	private final ItemFactory itemFactory;
+	private final ResourceFactory resourceFactory;
 
 	// - C O N S T R U C T O R S
-	public GetCharactersCharacterIdFittingsToFittingV2Converter( final @NotNull ItemFactory itemFactory ) {
-		this.itemFactory = itemFactory;
+	public GetCharactersCharacterIdFittingsToFittingV2Converter( final @NotNull ResourceFactory resourceFactory ) {
+		this.resourceFactory = resourceFactory;
 	}
 
 	@Override
 	public FittingV2 convert( final GetCharactersCharacterIdFittings200Ok input ) {
 		final FittingV2 fitting = new FittingV2.Builder()
-				.withShipHull( this.itemFactory.generateEsiItem( input.getShipTypeId() ) )
+				.withShipHull( this.resourceFactory.generateType4Id( input.getShipTypeId() ) )
 				.withFittingDescription( input )
 				.build();
 		for (CharacterscharacterIdfittingsItems item : input.getItems())
