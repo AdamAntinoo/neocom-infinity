@@ -1,4 +1,13 @@
 # DESIGN NOTES
+## Cucumber data table conversion
+@DataTableType
+public Author authorEntry(Map<String, String> entry) {
+return new Author(
+entry.get("firstName"),
+entry.get("lastName"),
+entry.get("famousBook"));
+}
+
 ## API Contracts
 Still not defined any contract. There is few documentation about the 
 API so it is difficult to generate a contract.
