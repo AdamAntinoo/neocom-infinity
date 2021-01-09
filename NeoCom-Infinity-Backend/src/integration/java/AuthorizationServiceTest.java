@@ -14,7 +14,6 @@ import org.dimensinfin.eveonline.neocom.infinity.adapter.CredentialRepositoryWra
 import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataProviderWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
-import org.dimensinfin.eveonline.neocom.infinity.authorization.rest.v1.AuthorizationService;
 import org.dimensinfin.eveonline.neocom.infinity.support.UnitTestEnvironmentDefinition;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 

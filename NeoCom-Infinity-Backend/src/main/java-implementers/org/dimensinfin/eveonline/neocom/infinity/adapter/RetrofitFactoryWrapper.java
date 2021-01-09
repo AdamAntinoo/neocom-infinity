@@ -10,7 +10,7 @@ import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 import org.dimensinfin.eveonline.neocom.provider.IFileSystem;
 import org.dimensinfin.eveonline.neocom.provider.RetrofitFactory;
 
-@Component
+//@Component
 public class RetrofitFactoryWrapper {
 	private final IConfigurationService configurationService;
 	private final IFileSystem fileSystemAdapter;
@@ -30,9 +30,9 @@ public class RetrofitFactoryWrapper {
 
 	@PostConstruct
 	void build() {
-		this.singleton = new RetrofitFactory.Builder()
-				.withConfigurationProvider( this.configurationService )
-				.withFileSystemAdapter( this.fileSystemAdapter )
-				.build();
+//		this.singleton = new RetrofitFactory.Builder()
+//				.withConfigurationProvider( this.configurationService )
+//				.withFileSystemAdapter( this.fileSystemAdapter )
+//				.build();
 	}
 }

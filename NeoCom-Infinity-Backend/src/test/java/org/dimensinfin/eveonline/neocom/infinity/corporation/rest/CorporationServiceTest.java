@@ -60,7 +60,7 @@ public class CorporationServiceTest {
 		Mockito.when( esiDataProviderWrapper.getSingleton() ).thenReturn( esiDataProvider );
 		Mockito.when( assetRepositoryWrapper.getSingleton() ).thenReturn( assetRepository );
 		Mockito.when( credentialRepositoryWrapper.getSingleton() ).thenReturn( credentialRepository );
-		Mockito.when( locationCatalogServiceWrapper ).thenReturn( locationCatalogService );
+//		Mockito.when( locationCatalogServiceWrapper ).thenReturn( locationCatalogService );
 	}
 
 	@Test
