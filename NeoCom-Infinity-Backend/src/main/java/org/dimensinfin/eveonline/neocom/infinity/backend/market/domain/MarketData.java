@@ -6,8 +6,11 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetMarketsRegionIdOrders200Ok;
-import org.dimensinfin.eveonline.neocom.infinity.datamanagement.domain.MarketOrder;
 
+/**
+ * @author Adam Antinoo (adamantinoo.git@gmail.com)
+ * @since 0.20.0
+ */
 public class MarketData {
 	public static final Double MARKET_DEEP_RANGE = 1.05;
 
@@ -80,15 +83,15 @@ public class MarketData {
 			return this;
 		}
 
-		public Builder withItemId( final int itemId ) {
-			this.onConstruction.typeId = itemId;
-			return this;
-		}
-
 		public MarketData.Builder withSellOrders( final List<GetMarketsRegionIdOrders200Ok> sellOrders ) {
 			this.onConstruction.sellOrders = Objects.requireNonNull( sellOrders );
 			this.onConstruction.sellDeep = this.calculateSellDeep( this.onConstruction.sellOrders );
 			this.onConstruction.sellAverage = this.calculateSellAverage( this.onConstruction.sellOrders );
+			return this;
+		}
+
+		public Builder withTypeId( final int itemId ) {
+			this.onConstruction.typeId = itemId;
 			return this;
 		}
 
@@ -100,7 +103,10 @@ public class MarketData {
 
 		private double calculateSellAverage( final List<GetMarketsRegionIdOrders200Ok> sellOrders ) {
 			if (!sellOrders.isEmpty()) {
-				return sellOrders.stream().mapToDouble( GetMarketsRegionIdOrders200Ok::getPrice ).average().orElse( Double.NaN );
+				final double amount = sellOrders.stream().mapToDouble( order -> order.getPrice() * order.getVolumeRemain() ).sum();
+				final double count = sellOrders.stream().mapToInt( GetMarketsRegionIdOrders200Ok::getVolumeRemain ).sum();
+				if (amount > 0.0) return amount / count;
+				else return 0.0;
 			} else return 0.0;
 		}
 

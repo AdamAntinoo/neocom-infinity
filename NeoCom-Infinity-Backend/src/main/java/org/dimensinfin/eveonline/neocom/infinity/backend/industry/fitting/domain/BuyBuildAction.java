@@ -3,7 +3,7 @@ package org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domai
 import java.util.Objects;
 
 import org.dimensinfin.eveonline.neocom.domain.space.Station;
-import org.dimensinfin.eveonline.neocom.infinity.datamanagement.domain.MarketOrder;
+import org.dimensinfin.eveonline.neocom.infinity.backend.market.domain.MarketOrder;
 
 public class BuyBuildAction extends BuildAction {
 	private Station corporationHome;

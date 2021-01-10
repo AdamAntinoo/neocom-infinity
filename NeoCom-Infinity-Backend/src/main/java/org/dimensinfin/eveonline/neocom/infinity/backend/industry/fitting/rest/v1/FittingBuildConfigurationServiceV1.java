@@ -13,21 +13,19 @@ import org.springframework.stereotype.Service;
 
 import org.dimensinfin.eveonline.neocom.domain.FittingV2;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdFittings200Ok;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataProviderWrapper;
-import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComCredentialService;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.converter.GetCharactersCharacterIdFittingsToFittingV2Converter;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingBuildConfiguration;
+import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingConfigurations;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.persistence.ActionPreferenceEntity;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.persistence.BuildActionPreferencesRepository;
-import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingConfigurations;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.service.FittingBuildConfigurationGenerator;
-import org.dimensinfin.eveonline.neocom.infinity.backend.universe.item.rest.v2.EsiItemServiceV2;
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComError;
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetailsService;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComError;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
+import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComCredentialService;
 import org.dimensinfin.eveonline.neocom.infinity.datamanagement.industry.processor.IndustryBuildProcessor;
-import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
+import org.dimensinfin.eveonline.neocom.service.ESIDataService;
 import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;
 import org.dimensinfin.eveonline.neocom.service.ResourceFactory;
 
@@ -65,26 +63,31 @@ public class FittingBuildConfigurationServiceV1 extends NeoComCredentialService 
 	//				.build();
 	//	}
 
-	private final ESIDataProvider esiDataProvider;
+	private final ESIDataService esiDataService;
 	private final LocationCatalogService locationCatalogService;
 	private final BuildActionPreferencesRepository buildActionPreferencesRepository;
-	private final EsiItemServiceV2 esiItemServiceV2;
 	private final ResourceFactory resourceFactory;
 
 	// - C O N S T R U C T O R S
 	public FittingBuildConfigurationServiceV1( final @NotNull NeoComAuthenticationProvider neoComAuthenticationProvider,
 	                                           final @NotNull CredentialDetailsService credentialDetailsService,
-	                                           final @NotNull ESIDataProviderWrapper esiDataProviderWrapper,
+	                                           final @NotNull ESIDataService esiDataService,
 	                                           final @NotNull LocationCatalogService locationCatalogService,
 	                                           final @NotNull BuildActionPreferencesRepository buildActionPreferencesRepository,
-	                                           final @NotNull EsiItemServiceV2 esiItemServiceV2,
 	                                           final @NotNull ResourceFactory resourceFactory ) {
 		super( neoComAuthenticationProvider, credentialDetailsService );
-		this.esiDataProvider = Objects.requireNonNull( esiDataProviderWrapper.getSingleton() );
+		this.esiDataService = esiDataService;
 		this.locationCatalogService = Objects.requireNonNull( locationCatalogService );
 		this.buildActionPreferencesRepository = buildActionPreferencesRepository;
-		this.esiItemServiceV2 = esiItemServiceV2;
 		this.resourceFactory = resourceFactory;
+	}
+
+	public FittingBuildConfiguration getFittingBuildConfigurationSavedConfiguration( final @NotNull Integer fittingId ) {
+		return fittingConfiguration( fittingId, true );
+	}
+
+	public FittingBuildConfiguration getFittingBuildConfigurationTargetConfiguration( final @NotNull Integer fittingId ) {
+		return fittingConfiguration( fittingId, false );
 	}
 
 	public FittingConfigurations getFittingConfigurations( final @NotNull Integer fittingId ) {
@@ -105,14 +108,6 @@ public class FittingBuildConfigurationServiceV1 extends NeoComCredentialService 
 				.build();
 	}
 
-	public FittingBuildConfiguration getFittingBuildConfigurationSavedConfiguration( final @NotNull Integer fittingId ) {
-		return fittingConfiguration( fittingId, true );
-	}
-
-	public FittingBuildConfiguration getFittingBuildConfigurationTargetConfiguration( final @NotNull Integer fittingId ) {
-		return fittingConfiguration( fittingId, false );
-	}
-
 	/**
 	 * Generate the Fitting initial transformation and apply the list of preferences found at the repository on a saved state.
 	 *
@@ -129,7 +124,7 @@ public class FittingBuildConfigurationServiceV1 extends NeoComCredentialService 
 	 */
 	private FittingBuildConfiguration fittingConfiguration( final @NotNull int fittingId, final boolean saved ) {
 		// Get the list of fitting for the logged Pilot from the authenticated Credential.
-		final List<GetCharactersCharacterIdFittings200Ok> fittingList = this.esiDataProvider.getCharactersCharacterIdFittings(
+		final List<GetCharactersCharacterIdFittings200Ok> fittingList = this.esiDataService.getCharactersCharacterIdFittings(
 				this.getAuthorizedCredential()
 		);
 		// Search for the target fitting identifier received as the parameter.
@@ -148,7 +143,7 @@ public class FittingBuildConfigurationServiceV1 extends NeoComCredentialService 
 		// Instantiate a processor to generate the required actions to complete the job.
 		final IndustryBuildProcessor industryBuildProcessor = new IndustryBuildProcessor.Builder()
 				.withCredential( this.getAuthorizedCredential() )
-				.withEsiDataProvider( this.esiDataProvider )
+				.withEsiDataService( this.esiDataService )
 				.withLocationCatalogService( this.locationCatalogService )
 				.build();
 

@@ -5,7 +5,7 @@ import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.Validator;
-import org.dimensinfin.eveonline.neocom.infinity.datamanagement.domain.MarketOrder;
+import org.dimensinfin.eveonline.neocom.infinity.backend.market.domain.MarketOrder;
 
 public class MarketOrderValidator implements Validator<MarketOrder> {
 	public static final String MARKETORDER_TYPE_ID = "typeId";

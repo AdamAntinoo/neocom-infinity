@@ -20,7 +20,7 @@ import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComCredentialServi
 import org.dimensinfin.eveonline.neocom.infinity.backend.market.domain.MarketData;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetailsService;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
-import org.dimensinfin.eveonline.neocom.infinity.datamanagement.converter.GetMarketsRegionIdOrdersToMarketOrderConverter;
+import org.dimensinfin.eveonline.neocom.infinity.backend.market.converter.GetMarketsRegionIdOrdersToMarketOrderConverter;
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
 import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;
 import org.dimensinfin.logging.LogWrapper;
@@ -77,7 +77,7 @@ public class MarketServiceV1 extends NeoComCredentialService {
 		final List<GetMarketsRegionIdOrders200Ok> sellOrders = this.getMarketHubSellOrders4Id( regionHub, typeId );
 		final List<GetMarketsRegionIdOrders200Ok> buyOrders = this.getMarketHubBuyOrders4Id( regionHub, typeId );
 		return new MarketData.Builder()
-				.withItemId( typeId )
+				.withTypeId( typeId )
 				.withBestSellOrder( sellOrders.isEmpty() ?
 						null :
 						new GetMarketsRegionIdOrdersToMarketOrderConverter( this.locationCatalogService ).convert( sellOrders.get( 0 ) ) )

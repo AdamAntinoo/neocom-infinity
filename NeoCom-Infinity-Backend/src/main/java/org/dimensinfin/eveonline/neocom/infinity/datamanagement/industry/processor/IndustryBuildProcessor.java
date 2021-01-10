@@ -1,7 +1,6 @@
 package org.dimensinfin.eveonline.neocom.infinity.datamanagement.industry.processor;
 
 import java.util.Comparator;
-import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -13,9 +12,9 @@ import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCorporationsCorporat
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetMarketsRegionIdOrders200Ok;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.BuildAction;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.BuyBuildAction;
-import org.dimensinfin.eveonline.neocom.infinity.datamanagement.converter.GetMarketsRegionIdOrdersToMarketOrderConverter;
-import org.dimensinfin.eveonline.neocom.infinity.datamanagement.services.MarketProvider;
+import org.dimensinfin.eveonline.neocom.infinity.backend.market.converter.GetMarketsRegionIdOrdersToMarketOrderConverter;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
+import org.dimensinfin.eveonline.neocom.service.ESIDataService;
 import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;
 
 public class IndustryBuildProcessor {
@@ -24,13 +23,14 @@ public class IndustryBuildProcessor {
 	public static final String BUY_ORDER = "buy";
 	public static final String SELL_ORDER = "sell";
 	private Credential credential;
-	private ESIDataProvider esiDataProvider;
+	private ESIDataService esiDataService;
 	private LocationCatalogService locationCatalogService;
 
 	// - C O N S T R U C T O R S
 	private IndustryBuildProcessor() {}
 
 	// - G E T T E R S   &   S E T T E R S
+
 	/**
 	 * Generate a new industry BUY action for the specified item type id and the required quantity.
 	 *
@@ -39,18 +39,25 @@ public class IndustryBuildProcessor {
 	 */
 	public BuildAction generateBuyAction( final int typeId, final int quantity ) {
 		// Search and filter the SELL market orders at the specified market hub.
-		final MarketProvider marketService = new MarketProvider.Builder()
-				.withEsiDataProvider( this.esiDataProvider )
-				.withRegion( (SpaceRegion) this.locationCatalogService.searchLocation4Id( (long) this.accessCorporationHomeRegion().getRegionId() ) )
-				.build();
-		final List<GetMarketsRegionIdOrders200Ok> orders = marketService.getOrders( typeId );
-		final GetMarketsRegionIdOrders200Ok markerOrderOk = marketService
-				.getOrders( typeId ).stream()
+		//		final MarketProvider marketService = new MarketProvider.Builder()
+		//				.withEsiDataProvider( this.esiDataProvider )
+		//				.withRegion( (SpaceRegion) this.locationCatalogService.searchLocation4Id( (long) this.accessCorporationHomeRegion().getRegionId() ) )
+		//				.build();
+		//		final SpaceLocation location = this.locationCatalogService.searchLocation4Id( (long) this.accessCorporationHomeRegion().getRegionId() );
+		//		this.esiDataService.getRegionMarketHub(location.get)
+		final GetMarketsRegionIdOrders200Ok markerOrderOk = this.esiDataService.getUniverseMarketOrdersForId(
+				this.accessCorporationHomeRegion().getRegionId(),
+				typeId ).stream()
 				.filter( order -> !order.getIsBuyOrder() )
 				.sorted( Comparator.comparingDouble( GetMarketsRegionIdOrders200Ok::getPrice ) )
 				.collect( this.toSingleton() );
+		//		final GetMarketsRegionIdOrders200Ok markerOrderOk = marketService
+		//				.getOrders( typeId ).stream()
+		//				.filter( order -> !order.getIsBuyOrder() )
+		//				.sorted( Comparator.comparingDouble( GetMarketsRegionIdOrders200Ok::getPrice ) )
+		//				.collect( this.toSingleton() );
 		return new BuyBuildAction.Builder()
-				.withItem( this.esiDataProvider.searchEsiItem4Id( typeId ) )
+				.withItem( this.esiDataService.searchEsiItem4Id( typeId ) )
 				.withCorporationHome( this.accessCorporationHomeStation() )
 				.withMarketOrder( new GetMarketsRegionIdOrdersToMarketOrderConverter( this.locationCatalogService ).convert( markerOrderOk ) )
 				.withQuantity( quantity )
@@ -62,7 +69,7 @@ public class IndustryBuildProcessor {
 	 * that can be used as a general reference when calculating prices when related to Corporation activities.
 	 */
 	private SpaceRegion accessCorporationHomeRegion() {
-		final GetCorporationsCorporationIdOk corporationData = this.esiDataProvider.getCorporationsCorporationId(
+		final GetCorporationsCorporationIdOk corporationData = this.esiDataService.getCorporationsCorporationId(
 				this.credential.getCorporationId()
 		);
 		final SpaceRegion homeRegion = (SpaceRegion) this.locationCatalogService.searchLocation4Id( (long) corporationData.getHomeStationId() );
@@ -70,7 +77,7 @@ public class IndustryBuildProcessor {
 	}
 
 	private Station accessCorporationHomeStation() {
-		final GetCorporationsCorporationIdOk corporationData = this.esiDataProvider.getCorporationsCorporationId(
+		final GetCorporationsCorporationIdOk corporationData = this.esiDataService.getCorporationsCorporationId(
 				this.credential.getCorporationId()
 		);
 		final Station homeStation = (Station) this.locationCatalogService.searchLocation4Id( (long) corporationData.getHomeStationId() );
@@ -98,7 +105,7 @@ public class IndustryBuildProcessor {
 
 		public IndustryBuildProcessor build() {
 			Objects.requireNonNull( this.onConstruction.credential );
-			Objects.requireNonNull( this.onConstruction.esiDataProvider );
+			Objects.requireNonNull( this.onConstruction.esiDataService );
 			Objects.requireNonNull( this.onConstruction.locationCatalogService );
 			return this.onConstruction;
 		}
@@ -108,8 +115,8 @@ public class IndustryBuildProcessor {
 			return this;
 		}
 
-		public IndustryBuildProcessor.Builder withEsiDataProvider( final ESIDataProvider esiDataProvider ) {
-			this.onConstruction.esiDataProvider = Objects.requireNonNull( esiDataProvider );
+		public IndustryBuildProcessor.Builder withEsiDataService( final ESIDataService esiDataService ) {
+			this.onConstruction.esiDataService = Objects.requireNonNull( esiDataService );
 			return this;
 		}
 

@@ -1,15 +1,26 @@
-package org.dimensinfin.eveonline.neocom.infinity.datamanagement.domain;
+package org.dimensinfin.eveonline.neocom.infinity.backend.market.domain;
 
 import java.util.Objects;
 
 import org.dimensinfin.eveonline.neocom.domain.space.Station;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetMarketsRegionIdOrders200Ok;
 
+/**
+ * MarketOrders represent the market entry data for a sell or buy action. Each market has the possibility to list orders to sell or buy items.
+ * Orders have a set of attributes some of them are represented on this internal model class.
+ *
+ * Orders can be set on NPC stations or on player structures. Check this points because then the <code>station</code> field may not be of the right
+ * type.
+ *
+ * @author Adam Antinoo (adamantinoo.git@gmail.com)
+ * @since 0.20.0
+ */
 public class MarketOrder {
 	private Station station;
 	private long orderId;
 	private double price;
 	private int typeId;
+	private boolean isBuyOrder;
 	private int volumeRemain;
 	private int volumeTotal;
 
@@ -19,6 +30,10 @@ public class MarketOrder {
 	// - G E T T E R S   &   S E T T E R S
 	public long getOrderId() {
 		return this.orderId;
+	}
+
+	public boolean isBuyOrder() {
+		return this.isBuyOrder;
 	}
 
 	public double getPrice() {
@@ -59,6 +74,7 @@ public class MarketOrder {
 			this.onConstruction.orderId = orderData.getOrderId();
 			this.onConstruction.price = orderData.getPrice();
 			this.onConstruction.typeId = orderData.getTypeId();
+			this.onConstruction.isBuyOrder=orderData.getIsBuyOrder();
 			this.onConstruction.volumeRemain = orderData.getVolumeRemain();
 			this.onConstruction.volumeTotal = orderData.getVolumeTotal();
 			return this;
