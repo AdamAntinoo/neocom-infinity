@@ -1,5 +1,9 @@
 #if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME};#end
 #parse("File Header.java")
+/**
+ * @author Adam Antinoo (adamantinoo.git@gmail.com)
+ * @since 0.20.0
+ */
 public class ${NAME} {
 private ${NAME}(){}
 	// - B U I L D E R

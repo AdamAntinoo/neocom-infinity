@@ -24,7 +24,6 @@ import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataProviderWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.service.SBConfigurationService;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
-import org.dimensinfin.eveonline.neocom.infinity.core.NeoComService;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComError;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
@@ -39,7 +38,7 @@ import static org.dimensinfin.eveonline.neocom.infinity.config.security.Security
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.TOKEN_UNIQUE_IDENTIFIER_FIELD_NAME;
 
 @Service
-public class AuthorizationService extends NeoComService {
+public class AuthorizationService {
 	public static NeoComError errorINVALIDSTATEVERIFICATION() {
 		return new NeoComError.Builder()
 				.withErrorName( "INVALID_STATE_VERIFICATION" )

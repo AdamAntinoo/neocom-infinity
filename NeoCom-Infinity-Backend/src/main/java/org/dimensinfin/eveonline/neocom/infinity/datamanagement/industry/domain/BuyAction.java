@@ -4,7 +4,7 @@ import java.util.Objects;
 
 import org.dimensinfin.eveonline.neocom.domain.space.Station;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseTypesTypeIdOk;
-import org.dimensinfin.eveonline.neocom.infinity.datamanagement.domain.MarketOrder;
+import org.dimensinfin.eveonline.neocom.infinity.backend.market.domain.MarketOrder;
 
 /**
  * A BUY action represents the data that is required to complete an item but getting it from the market. The item price to be used to calculate the
