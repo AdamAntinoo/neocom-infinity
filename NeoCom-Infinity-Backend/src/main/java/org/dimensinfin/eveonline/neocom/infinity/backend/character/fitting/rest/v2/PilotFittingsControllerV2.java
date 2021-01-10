@@ -33,6 +33,6 @@ public class PilotFittingsControllerV2 extends NeoComAuthenticatedController {
 			produces = "application/json")
 	public ResponseEntity<List<FittingModel>> getPilotFittings( final @PathVariable @NotNull Integer pilotId ) {
 		this.validateAuthorizedPilot( pilotId );
-		return new ResponseEntity<>( this.pilotFittingsServiceV2.getPilotFittings( pilotId ), HttpStatus.OK );
+		return new ResponseEntity<>( this.pilotFittingsServiceV2.getPilotFittings(), HttpStatus.OK );
 	}
 }

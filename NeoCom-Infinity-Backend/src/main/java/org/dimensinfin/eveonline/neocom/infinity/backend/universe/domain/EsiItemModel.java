@@ -10,6 +10,7 @@ import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseCategoriesCa
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseGroupsGroupIdOk;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseTypesTypeIdOk;
 
+@Deprecated
 public class EsiItemModel extends RepresentationModel<EsiItemModel> implements Serializable {
 	private static final long serialVersionUID = 1430130141655722687L;
 
@@ -24,7 +25,7 @@ public class EsiItemModel extends RepresentationModel<EsiItemModel> implements S
 
 	// - G E T T E R S   &   S E T T E R S
 	public GetUniverseCategoriesCategoryIdOk getCategory() {
-		return category;
+		return this.category;
 	}
 
 	public String getCategoryName() {
@@ -32,7 +33,7 @@ public class EsiItemModel extends RepresentationModel<EsiItemModel> implements S
 	}
 
 	public GetUniverseGroupsGroupIdOk getGroup() {
-		return group;
+		return this.group;
 	}
 
 	public String getGroupName() {
@@ -78,7 +79,7 @@ public class EsiItemModel extends RepresentationModel<EsiItemModel> implements S
 	}
 
 	public GetUniverseTypesTypeIdOk getItem() {
-		return item;
+		return this.item;
 	}
 
 	public String getName() {
@@ -95,49 +96,49 @@ public class EsiItemModel extends RepresentationModel<EsiItemModel> implements S
 
 	protected void classifyIndustryGroup() {
 		if ((this.getGroupName().equalsIgnoreCase( "Composite" )) && (this.getCategoryName().equalsIgnoreCase( "Material" ))) {
-			industryGroup = IndustryGroup.REACTIONMATERIALS;
+			this.industryGroup = IndustryGroup.REACTIONMATERIALS;
 		}
 		if (this.getCategoryName().equalsIgnoreCase( "Asteroid" )) {
-			industryGroup = IndustryGroup.OREMATERIALS;
+			this.industryGroup = IndustryGroup.OREMATERIALS;
 		}
 		if ((this.getGroupName().equalsIgnoreCase( "Mining Crystal" )) && (this.getCategoryName().equalsIgnoreCase( "Charge" ))) {
-			industryGroup = IndustryGroup.ITEMS;
+			this.industryGroup = IndustryGroup.ITEMS;
 		}
 		if (this.getCategoryName().equalsIgnoreCase( "Charge" )) {
-			industryGroup = IndustryGroup.CHARGE;
+			this.industryGroup = IndustryGroup.CHARGE;
 		}
 		if (this.getGroupName().equalsIgnoreCase( "Tool" )) {
-			industryGroup = IndustryGroup.ITEMS;
+			this.industryGroup = IndustryGroup.ITEMS;
 		}
 		if (this.getCategoryName().equalsIgnoreCase( "Commodity" )) {
-			industryGroup = IndustryGroup.COMMODITY;
+			this.industryGroup = IndustryGroup.COMMODITY;
 		}
 		if (this.getCategoryName().equalsIgnoreCase( EveGlobalConstants.Blueprint )) {
-			industryGroup = IndustryGroup.BLUEPRINT;
+			this.industryGroup = IndustryGroup.BLUEPRINT;
 		}
 		if (this.getCategoryName().equalsIgnoreCase( EveGlobalConstants.Skill )) {
-			industryGroup = IndustryGroup.SKILL;
+			this.industryGroup = IndustryGroup.SKILL;
 		}
 		if (this.getGroupName().equalsIgnoreCase( EveGlobalConstants.Mineral )) {
-			industryGroup = IndustryGroup.REFINEDMATERIAL;
+			this.industryGroup = IndustryGroup.REFINEDMATERIAL;
 		}
 		if (this.getCategoryName().equalsIgnoreCase( "Module" )) {
-			industryGroup = IndustryGroup.COMPONENTS;
+			this.industryGroup = IndustryGroup.COMPONENTS;
 		}
 		if (this.getCategoryName().equalsIgnoreCase( "Drone" )) {
-			industryGroup = IndustryGroup.ITEMS;
+			this.industryGroup = IndustryGroup.ITEMS;
 		}
 		if (this.getCategoryName().equalsIgnoreCase( "Planetary Commodities" )) {
-			industryGroup = IndustryGroup.PLANETARYMATERIALS;
+			this.industryGroup = IndustryGroup.PLANETARYMATERIALS;
 		}
 		if (this.getGroupName().equalsIgnoreCase( "Datacores" )) {
-			industryGroup = IndustryGroup.DATACORES;
+			this.industryGroup = IndustryGroup.DATACORES;
 		}
 		if (this.getGroupName().equalsIgnoreCase( "Salvaged Materials" )) {
-			industryGroup = IndustryGroup.SALVAGEDMATERIAL;
+			this.industryGroup = IndustryGroup.SALVAGEDMATERIAL;
 		}
 		if (this.getCategoryName().equalsIgnoreCase( "Ship" )) {
-			industryGroup = IndustryGroup.HULL;
+			this.industryGroup = IndustryGroup.HULL;
 		}
 	}
 
