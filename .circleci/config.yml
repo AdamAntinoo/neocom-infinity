@@ -127,7 +127,7 @@ jobs:
           - v1-dependencies-{{ checksum "dependencies.gradle" }}
           - v1-dependencies-
       - run:
-          name: BACKEND - Compile SpringBoot code
+          name: NEOCOM-BACKEND - Compile SpringBoot code
           working_directory: NeoCom-Infinity-Backend
           environment:
             PROFILE: "production"
@@ -146,7 +146,7 @@ jobs:
           - v1-dependencies-{{ checksum "dependencies.gradle" }}
           - v1-dependencies-
       - run:
-          name: BACKEND - Unit Testing application
+          name: NEOCOM-BACKEND - Unit Testing application
           working_directory: NeoCom-Infinity-Backend
           environment:
             PORT: 5240
@@ -176,7 +176,7 @@ jobs:
           - v1-build-{{ checksum "build.gradle" }}
           - v1-build-
       - run:
-          name: BACKEND - Update SonarQube statistics
+          name: NEOCOM-BACKEND - Update SonarQube statistics
           environment:
             SONAR_TOKEN: 9dfe678ad49842371e44396a40c663586d497c31
           command: |
