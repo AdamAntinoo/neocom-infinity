@@ -1,6 +1,3 @@
-# Heroku git repository ignored
-backend.App/.git-heroku/
-
 # IntelliJ Idea ignorable files and directories
 *.iml
 .idea/workspace.xml
@@ -18,12 +15,7 @@ out/
 backend.App/NeoCom.Infinity/
 backend.App/NeoCom.Infinity.development/
 backend.App/NeoCom.Infinity.unittesting/
-
-# Ignore local libraries from main repository. Only required on Heroku.
-backend.App/deploy/
+NeoCom.Infinity.unittesting/
 
 # - Ignore generated files
 coverage/
-
-# - Ignore saved test and other runtime caches and data
-NeoCom.Infinity.unittesting/
