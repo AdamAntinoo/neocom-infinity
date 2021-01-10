@@ -154,11 +154,11 @@ public class FittingBuildConfigurationServiceV1 extends NeoComCredentialService 
 				list -> {
 					if (list.isEmpty())
 						throw new NeoComRuntimeBackendException( Error_FITTINGSEARCHRETURNEDFAILURE(
-								MessageFormat.format( "There are more than one fitting matching the requested id {0}", fittingId )
+								MessageFormat.format( "There is no fitting matching the requested id {0}", fittingId )
 						) );
 					if (1 != list.size())
 						throw new NeoComRuntimeBackendException( Error_FITTINGSEARCHRETURNEDFAILURE(
-								MessageFormat.format( "There are no fitting matching the requested id {0}", fittingId )
+								MessageFormat.format( "There are more than one fitting matching the requested id {0}", fittingId )
 						) );
 					return list.get( 0 );
 				}

@@ -6,7 +6,7 @@ if [ -z "$ENVIRONMENT" ]
 then
     ENVIRONMENT="acceptance"
 fi
-figlet "Docker Service"
+figlet "Docker Service ${COMMAND}"
 echo
 echo "Using environment: ${ENVIRONMENT}"
 APPLICATION_JAR_NAME="neocom-infinity-backend-container"
