@@ -16,17 +16,20 @@ public class TestDataConstants {
 		public static final String TEST_FITTING_NAME = "-TEST_FITTING_NAME-";
 		public static final String TEST_FITTING_DESCRIPTION = "-TEST_FITTING_DESCRIPTION-";
 	}
+
 	public static class FittingItemConstants {
-		public static final Integer	TEST_FITTING_ITEM_TYPE_ID = 246;
-		public static final Integer	TEST_FITTING_ITEM_QUANTITY = 3;
+		public static final Integer TEST_FITTING_ITEM_TYPE_ID = 246;
+		public static final Integer TEST_FITTING_ITEM_QUANTITY = 3;
 	}
+
 	public static class EsiItemModelConstants {
-		public static final Integer	TEST_ESI_ITEM_MODEL_TYPE_ID = 246;
-		public static final String TEST_ESI_ITEM_GROUP_NAME= "Interceptor";
-		public static final String TEST_ESI_ITEM_CATEGORY_NAME= "Ship";
-		public static final String TEST_ESI_ITEM_HULLGROUP_NAME= "frigate";
+		public static final Integer TEST_ESI_ITEM_MODEL_TYPE_ID = 246;
+		public static final String TEST_ESI_ITEM_GROUP_NAME = "Interceptor";
+		public static final String TEST_ESI_ITEM_CATEGORY_NAME = "Ship";
+		public static final String TEST_ESI_ITEM_HULLGROUP_NAME = "frigate";
 	}
-	public static class ProcessedBlueprintConstants{
+
+	public static class ProcessedBlueprintConstants {
 		public static final Integer TEST_PROCESSED_BLUEPRINT_ID = 31717;
 	}
 }

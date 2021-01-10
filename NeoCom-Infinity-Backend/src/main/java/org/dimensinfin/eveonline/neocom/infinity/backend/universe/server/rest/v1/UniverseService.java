@@ -13,15 +13,17 @@ import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 public class UniverseService {
 	private ESIDataProvider esiDataProvider;
 
+	// - C O N S T R U C T O R S
 	@Autowired
 	public UniverseService( final ESIDataProviderWrapper esiDataProviderWrapper ) {
 		this.esiDataProvider = esiDataProviderWrapper.getSingleton();
 	}
 
-	public ResponseEntity<ServerStatus> getServerStatus( final String server ) {
+	// - G E T T E R S   &   S E T T E R S
+	public ResponseEntity<ServerStatus> getServerStatus() {
 		return new ResponseEntity<ServerStatus>( new ServerStatus.Builder()
-				.withServer( server )
-				.withStatus( this.esiDataProvider.getUniverseStatus( server ) )
+				.withServer( ESIDataProvider.DEFAULT_ESI_SERVER )
+				.withStatus( this.esiDataProvider.getUniverseStatus( ESIDataProvider.DEFAULT_ESI_SERVER ) )
 				.build(), HttpStatus.OK );
 	}
 }

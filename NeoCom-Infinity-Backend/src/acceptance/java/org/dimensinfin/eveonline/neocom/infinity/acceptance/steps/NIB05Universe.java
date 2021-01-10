@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 import org.junit.jupiter.api.Assertions;
 
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.universe.rest.EsiItemModelValidator;
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.universe.rest.ServerStatusValidator;
 import org.dimensinfin.eveonline.neocom.infinity.support.NeoComWorld;
 
 import io.cucumber.java.en.Then;
@@ -23,5 +24,13 @@ public class NIB05Universe extends StepSupport {
 		Assertions.assertNotNull( this.neocomWorld.getItemResponseEntity() );
 		Assertions.assertNotNull( this.neocomWorld.getItemResponseEntity().getBody() );
 		Assertions.assertTrue( new EsiItemModelValidator().validate( dataTable.get( 0 ), this.neocomWorld.getItemResponseEntity().getBody() ) );
+	}
+
+	@Then("the resulting Server Info data has the next contents")
+	public void the_resulting_Server_Info_data_has_the_next_contents( final List<Map<String, String>> dataTable ) {
+		Assertions.assertNotNull( this.neocomWorld.getServerStatusResponseEntity() );
+		Assertions.assertNotNull( this.neocomWorld.getServerStatusResponseEntity().getBody() );
+		Assertions.assertTrue( new ServerStatusValidator().validate( dataTable.get( 0 ),
+				this.neocomWorld.getServerStatusResponseEntity().getBody() ) );
 	}
 }

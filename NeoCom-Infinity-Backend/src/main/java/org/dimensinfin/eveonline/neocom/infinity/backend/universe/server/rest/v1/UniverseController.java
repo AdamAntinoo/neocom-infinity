@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComController;
 import org.dimensinfin.eveonline.neocom.infinity.universe.client.v1.ServerStatus;
-import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 
 @RestController
 @CrossOrigin()
@@ -20,9 +19,16 @@ import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 public class UniverseController extends NeoComController {
 	private final UniverseService universeService;
 
+	// - C O N S T R U C T O R S
 	@Autowired
 	public UniverseController( final UniverseService universeService ) {
 		this.universeService = universeService;
+	}
+
+	// - G E T T E R S   &   S E T T E R S
+	@GetMapping("/api/v1/server/status")
+	public ResponseEntity<ServerStatus> getServerStatus() {
+		return this.universeService.getServerStatus();
 	}
 
 	@GetMapping(path = { "/api/v1/neocom/server/datasource/{dataSource}",
@@ -30,11 +36,8 @@ public class UniverseController extends NeoComController {
 			"/api/v1/neocom/server/",
 			"/api/v1/neocom/server" },
 			produces = "application/json")
-	public ResponseEntity<ServerStatus> getServerStatus( @PathVariable final Optional<String> dataSource ) {
-//		logger.info( ">>>>>>>>>>>>>>>>>>>>NEW REQUEST: " + "/server/datasource/{}", dataSource );
-		String server;
-		if (!dataSource.isPresent()) server = ESIDataProvider.DEFAULT_ESI_SERVER;
-		else server = dataSource.get();
-		return this.universeService.getServerStatus( server );
+	@Deprecated
+	public ResponseEntity<ServerStatus> getServerStatusDeprecated( @PathVariable final Optional<String> dataSource ) {
+		return this.universeService.getServerStatus();
 	}
 }

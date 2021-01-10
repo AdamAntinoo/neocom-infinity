@@ -10,6 +10,7 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingConfigurations;
 import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.EsiItemModel;
 import org.dimensinfin.eveonline.neocom.infinity.pilot.rest.representation.PilotModel;
+import org.dimensinfin.eveonline.neocom.infinity.universe.client.v1.ServerStatus;
 
 public class NewNeoComWorld extends CommonWorld {
 	private ResponseEntity<ValidateAuthorizationTokenResponse> validateAuthorizationTokenResponseEntity;
@@ -19,8 +20,29 @@ public class NewNeoComWorld extends CommonWorld {
 	private Integer fittingIdentifier;
 	private ResponseEntity<FittingConfigurations> fittingConfigurationsResponseEntity;
 	private ResponseEntity<FittingBuildConfiguration> fittingBuildConfigurationResponseEntity;
+	private String datasource;
+
+	public ResponseEntity<ServerStatus> getServerStatusResponseEntity() {
+		return this.serverStatusResponseEntity;
+	}
+
+	public NewNeoComWorld setServerStatusResponseEntity( final ResponseEntity<ServerStatus> serverStatusResponseEntity ) {
+		this.serverStatusResponseEntity = serverStatusResponseEntity;
+		return this;
+	}
+
+	private ResponseEntity<ServerStatus> serverStatusResponseEntity;
 
 	// - G E T T E R S   &   S E T T E R S
+	public String getDatasource() {
+		return this.datasource;
+	}
+
+	public NewNeoComWorld setDatasource( final String datasource ) {
+		this.datasource = datasource;
+		return this;
+	}
+
 	public ResponseEntity<FittingBuildConfiguration> getFittingBuildConfigurationResponseEntity() {
 		return this.fittingBuildConfigurationResponseEntity;
 	}
