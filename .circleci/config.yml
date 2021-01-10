@@ -111,11 +111,12 @@ jobs:
       - checkout
       - run: 
           name: NEOCOM-BACKEND - Get and cache the backend compilation dependencies
+          working_directory: NeoCom-Infinity-Backend
           command: |
             ./gradlew dependencies
       - save_cache:
           paths:
-            - ~/.gradle
+            - ~/NeoCom-Infinity-Backend/.gradle
           key: v1-dependencies-{{ checksum "dependencies.gradle" }}
   compile-backend-job:
     docker:
@@ -162,9 +163,9 @@ jobs:
           path: ~/project/NeoCom-Infinity-Backend/build/libs
       - save_cache:
           paths:
-            - ~/.gradle
-            - ~/build
-            - ~/coverage
+            - ~/NeoCom-Infinity-Backend/.gradle
+            - ~/NeoCom-Infinity-Backend/build
+            - ~/NeoCom-Infinity-Backend/coverage
           key: v1-build-{{ checksum "build.gradle" }}
   quality-sonarcloud-backend:
     docker:
@@ -177,6 +178,7 @@ jobs:
           - v1-build-
       - run:
           name: NEOCOM-BACKEND - Update SonarQube statistics
+          working_directory: NeoCom-Infinity-Backend
           environment:
             SONAR_TOKEN: 9dfe678ad49842371e44396a40c663586d497c31
           command: |
