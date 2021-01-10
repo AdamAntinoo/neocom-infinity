@@ -1,45 +1,44 @@
 package org.dimensinfin.eveonline.neocom.infinity.backend.character.fitting.rest.v2;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.stereotype.Service;
 
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdFittings200Ok;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataProviderWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.backend.character.fitting.converter.EsiCharacterFittingToFittingModelConverter;
 import org.dimensinfin.eveonline.neocom.infinity.backend.character.fitting.domain.FittingModel;
-import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComCredentialService;
-import org.dimensinfin.eveonline.neocom.infinity.backend.universe.item.rest.v2.EsiItemServiceV2;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetailsService;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
-import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
+import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComCredentialService;
+import org.dimensinfin.eveonline.neocom.service.ESIDataService;
+import org.dimensinfin.eveonline.neocom.service.ResourceFactory;
 
 @Service
 public class PilotFittingsServiceV2 extends NeoComCredentialService {
-	private final ESIDataProvider esiDataProvider;
-	private final EsiItemServiceV2 esiItemServiceV2;
+	private final ESIDataService esiDataService;
+	private final ResourceFactory resourceFactory;
 
 	// - C O N S T R U C T O R S
-	public PilotFittingsServiceV2( final @NotNull ESIDataProviderWrapper esiDataProviderWrapper,
-	                               final @NotNull NeoComAuthenticationProvider neoComAuthenticationProvider,
-	                               final @NotNull CredentialDetailsService credentialDetailsService,
-	                               final @NotNull EsiItemServiceV2 esiItemServiceV2 ) {
+	public PilotFittingsServiceV2( @NotNull final NeoComAuthenticationProvider neoComAuthenticationProvider,
+	                               @NotNull final CredentialDetailsService credentialDetailsService,
+	                               @NotNull final ESIDataService esiDataService,
+	                               @NotNull final ResourceFactory resourceFactory ) {
 		super( neoComAuthenticationProvider, credentialDetailsService );
-		this.esiDataProvider = Objects.requireNonNull( esiDataProviderWrapper.getSingleton() );
-		this.esiItemServiceV2 = esiItemServiceV2;
+		this.esiDataService = esiDataService;
+		this.resourceFactory = resourceFactory;
 	}
 
-	public List<FittingModel> getPilotFittings( final @NotNull Integer pilotId ) {
+	// - G E T T E R S   &   S E T T E R S
+	public List<FittingModel> getPilotFittings() {
 		final EsiCharacterFittingToFittingModelConverter fittingModelConverter =
-				new EsiCharacterFittingToFittingModelConverter( this.esiDataProvider, this.esiItemServiceV2 );
-		final List<GetCharactersCharacterIdFittings200Ok> fittingList = this.esiDataProvider.getCharactersCharacterIdFittings(
+				new EsiCharacterFittingToFittingModelConverter( this.resourceFactory );
+		final List<GetCharactersCharacterIdFittings200Ok> fittingList = this.esiDataService.getCharactersCharacterIdFittings(
 				this.getAuthorizedCredential()
 		);
 		return fittingList.stream()
-				.map( fitting -> fittingModelConverter.convert( fitting ) )
+				.map( fittingModelConverter::convert )
 				.collect( Collectors.toList() );
 	}
 }

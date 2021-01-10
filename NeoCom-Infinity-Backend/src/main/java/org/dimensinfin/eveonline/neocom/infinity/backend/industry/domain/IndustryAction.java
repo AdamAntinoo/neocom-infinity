@@ -2,7 +2,7 @@ package org.dimensinfin.eveonline.neocom.infinity.backend.industry.domain;
 
 import javax.validation.constraints.NotNull;
 
-import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.EsiItemModel;
+import org.dimensinfin.eveonline.neocom.domain.EsiType;
 import org.dimensinfin.eveonline.neocom.infinity.datamanagement.industry.domain.ActionType;
 
 public class IndustryAction {
@@ -29,7 +29,7 @@ public class IndustryAction {
 			return this;
 		}
 
-		public IndustryAction.Builder withItem( final EsiItemModel itemModel ) {
+		public IndustryAction.Builder withItem( final EsiType itemModel ) {
 			return null;
 		}
 	}

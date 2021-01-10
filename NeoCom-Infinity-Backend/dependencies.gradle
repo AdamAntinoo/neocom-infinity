@@ -94,6 +94,7 @@ test {
 }
 dependencies {
     // C O R E
+    testImplementation 'nl.jqno.equalsverifier:equalsverifier:3.1.10'
     testImplementation "com.squareup.retrofit2:converter-gson:2.4.0"
     // T E S T I N G
     testImplementation 'org.junit.jupiter:junit-jupiter:5.4.2'

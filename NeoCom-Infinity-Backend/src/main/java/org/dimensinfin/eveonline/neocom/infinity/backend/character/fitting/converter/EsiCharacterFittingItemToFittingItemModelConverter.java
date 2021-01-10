@@ -16,7 +16,7 @@ public class EsiCharacterFittingItemToFittingItemModelConverter implements Conve
 				.withQuantity( input.getQuantity() )
 				.withTypeLink( WebMvcLinkBuilder.linkTo(
 						WebMvcLinkBuilder.methodOn( NeoItemControllerV1.class ).getItem( input.getTypeId() )
-						).withSelfRel()
+						).withRel("item")
 				)
 				.build();
 	}
