@@ -117,7 +117,7 @@ jobs:
       - save_cache:
           paths:
             - ~/NeoCom-Infinity-Backend/.gradle
-          key: v1-dependencies-{{ checksum "~/NeoCom-Infinity-Backend/dependencies.gradle" }}
+          key: v1-dependencies-{{ checksum "~/project/NeoCom-Infinity-Backend/dependencies.gradle" }}
   compile-backend-job:
     docker:
       - image: circleci/openjdk:11-jdk
@@ -125,7 +125,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "~/NeoCom-Infinity-Backend/dependencies.gradle" }}
+          - v1-dependencies-{{ checksum "~/project/NeoCom-Infinity-Backend/dependencies.gradle" }}
           - v1-dependencies-
       - run:
           name: NEOCOM-BACKEND - Compile SpringBoot code
@@ -144,7 +144,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "~/NeoCom-Infinity-Backend/dependencies.gradle" }}
+          - v1-dependencies-{{ checksum "~/project/NeoCom-Infinity-Backend/dependencies.gradle" }}
           - v1-dependencies-
       - run:
           name: NEOCOM-BACKEND - Unit Testing application
@@ -155,6 +155,7 @@ jobs:
             DB_USER: inno-user
             DB_PASSWORD: inno-password
             SPRING_PROFILES_ACTIVE: test
+            PROFILE: "production"
           command: |
             ./gradlew test
       - store_test_results:
@@ -163,10 +164,10 @@ jobs:
           path: ~/project/NeoCom-Infinity-Backend/build/libs
       - save_cache:
           paths:
-            - ~/NeoCom-Infinity-Backend/.gradle
-            - ~/NeoCom-Infinity-Backend/build
-            - ~/NeoCom-Infinity-Backend/coverage
-          key: v1-build-{{ checksum "~/NeoCom-Infinity-Backend/build.gradle" }}
+            - ~/project/NeoCom-Infinity-Backend/.gradle
+            - ~/project/NeoCom-Infinity-Backend/build
+            - ~/project/NeoCom-Infinity-Backend/coverage
+          key: v1-build-{{ checksum "~/project/NeoCom-Infinity-Backend/build.gradle" }}
   quality-sonarcloud-backend:
     docker:
       - image: circleci/openjdk:11-jdk
@@ -174,12 +175,13 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - v1-build-{{ checksum "~/NeoCom-Infinity-Backend/build.gradle" }}
+          - v1-build-{{ checksum "~/project/NeoCom-Infinity-Backend/build.gradle" }}
           - v1-build-
       - run:
           name: NEOCOM-BACKEND - Update SonarQube statistics
           working_directory: NeoCom-Infinity-Backend
           environment:
+            PROFILE: "production"
             SONAR_TOKEN: 9dfe678ad49842371e44396a40c663586d497c31
           command: |
             ./gradlew test jacocoTestReport sonarqube
@@ -329,6 +331,7 @@ workflows:
               only:
                 - experimental
                 - development
+                - test
       - unittest-backend-job:
           requires:
             - start-job
