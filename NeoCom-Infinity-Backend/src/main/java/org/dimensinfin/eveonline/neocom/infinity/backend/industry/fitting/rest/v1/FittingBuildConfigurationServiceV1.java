@@ -42,8 +42,6 @@ import static org.dimensinfin.eveonline.neocom.infinity.backend.industry.Industr
  */
 @Service
 public class FittingBuildConfigurationServiceV1 extends NeoComCredentialService {
-	private static final String BUILD_FITTING_ACTION_PREFIX = "FB";
-
 	public static NeoComError Error_FITTINGSEARCHRETURNEDFAILURE( final String message ) {
 		return new NeoComError.Builder()
 				.withErrorName( "FITTING_SEARCH_FAILURE" )
@@ -52,16 +50,6 @@ public class FittingBuildConfigurationServiceV1 extends NeoComCredentialService 
 				.withMessage( message )
 				.build();
 	}
-
-	//	public static NeoComError Error_FITTINGREQUESTNOTAUTHORIZED( final String message ) {
-	//		return new NeoComError.Builder()
-	//				.withErrorName( "FITTING_UNAUTHORIZED" )
-	//				.withHttpStatus( HttpStatus.UNAUTHORIZED )
-	//				.withErrorCode( INDUSTRY_ERROR_CODE_PREFIX + ".fitting.notauthorized" )
-	//				.withMessage( MessageFormat.format( "Fitting request not authorized. {0}", message ) )
-	//				.withCause( "Not found a valid Credential to authenticate the request." )
-	//				.build();
-	//	}
 
 	private final ESIDataService esiDataService;
 	private final LocationCatalogService locationCatalogService;
@@ -83,11 +71,11 @@ public class FittingBuildConfigurationServiceV1 extends NeoComCredentialService 
 	}
 
 	public FittingBuildConfiguration getFittingBuildConfigurationSavedConfiguration( final @NotNull Integer fittingId ) {
-		return fittingConfiguration( fittingId, true );
+		return this.fittingConfiguration( fittingId, true );
 	}
 
 	public FittingBuildConfiguration getFittingBuildConfigurationTargetConfiguration( final @NotNull Integer fittingId ) {
-		return fittingConfiguration( fittingId, false );
+		return this.fittingConfiguration( fittingId, false );
 	}
 
 	public FittingConfigurations getFittingConfigurations( final @NotNull Integer fittingId ) {
