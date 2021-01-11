@@ -10,6 +10,7 @@ import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBNeoComDB
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
 import org.dimensinfin.logging.LogWrapper;
 
+@Deprecated
 @Component
 public class NeoComDBWrapper {
 	//	private String connectionDescriptor;
@@ -22,7 +23,7 @@ public class NeoComDBWrapper {
 	//		LogWrapper.exit( this.connectionDescriptor );
 	//	}
 
-// - G E T T E R S   &   S E T T E R S
+	// - G E T T E R S   &   S E T T E R S
 	public SBNeoComDBAdapter getSingleton() {
 		return Objects.requireNonNull( this.singleton );
 	}

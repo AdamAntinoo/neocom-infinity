@@ -5,14 +5,12 @@ import java.text.MessageFormat;
 import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
-import javax.validation.constraints.NotNull;
 
-import com.google.inject.Inject;
-import com.google.inject.name.Named;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcPooledConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
+import org.springframework.stereotype.Component;
 
 import org.dimensinfin.eveonline.neocom.database.NeoComDatabaseService;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
@@ -21,6 +19,7 @@ import org.dimensinfin.eveonline.neocom.database.entities.MiningExtractionEntity
 import org.dimensinfin.eveonline.neocom.database.entities.NeoAsset;
 import org.dimensinfin.eveonline.neocom.database.entities.PilotPreferencesEntity;
 import org.dimensinfin.eveonline.neocom.industry.persistence.JobEntity;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
 import org.dimensinfin.logging.LogWrapper;
 
 /**
@@ -38,9 +37,10 @@ import org.dimensinfin.logging.LogWrapper;
  *
  * @author Adam Antinoo
  */
+@Component
 public class SBNeoComDBAdapter implements NeoComDatabaseService {
+	private final int databaseVersion = 0;
 	private String databaseConnectionDescriptor;
-	private int databaseVersion = 0;
 	private boolean isOpen = false;
 	private JdbcPooledConnectionSource connectionSource;
 	private DatabaseVersion storedVersion;
@@ -53,12 +53,16 @@ public class SBNeoComDBAdapter implements NeoComDatabaseService {
 	private Dao<JobEntity, String> industryJobDao;
 
 	// - C O N S T R U C T O R S
-	@Inject
-	public SBNeoComDBAdapter( final @NotNull @Named("NeoComDatabaseConnection") String databaseConnectionDescriptor ) {
-		this.databaseConnectionDescriptor = Objects.requireNonNull( databaseConnectionDescriptor );
+	protected SBNeoComDBAdapter() {
+		LogWrapper.enter();
+		final String connectionDescriptor = System.getenv( "NEOCOM_DATABASE_URL" );
+		if (null == connectionDescriptor)
+			throw new NeoComRuntimeBackendException( NeoComRuntimeBackendException.errorINITIALIZATIONEXCEPTION(
+					new RuntimeException( "Required environment variable 'NEOCOM_DATABASE_URL' is not declared." )
+			) );
+		this.databaseConnectionDescriptor = Objects.requireNonNull( connectionDescriptor );
+		LogWrapper.exit();
 	}
-
-	protected SBNeoComDBAdapter() { }
 
 	// - G E T T E R S   &   S E T T E R S
 	@Override
@@ -101,6 +105,7 @@ public class SBNeoComDBAdapter implements NeoComDatabaseService {
 		return this.pilotPreferencesDao;
 	}
 
+	@Override
 	public Dao<DatabaseVersion, String> getVersionDao() throws SQLException {
 		if (null == this.versionDao) {
 			this.versionDao = DaoManager.createDao( this.getConnectionSource(), DatabaseVersion.class );
@@ -123,11 +128,11 @@ public class SBNeoComDBAdapter implements NeoComDatabaseService {
 	private boolean createConnectionSource() throws SQLException {
 		this.connectionSource = new JdbcPooledConnectionSource( this.databaseConnectionDescriptor );
 		// Configure the new connection pool.
-		connectionSource.setMaxConnectionAgeMillis(
+		this.connectionSource.setMaxConnectionAgeMillis(
 				TimeUnit.MINUTES.toMillis( 5 ) ); // only keep the connections open for 5 minutes
-		connectionSource.setCheckConnectionsEveryMillis(
+		this.connectionSource.setCheckConnectionsEveryMillis(
 				TimeUnit.SECONDS.toMillis( 60 ) ); // change the check-every milliseconds from 30 seconds to 60
-		connectionSource.setTestBeforeGet( true );
+		this.connectionSource.setTestBeforeGet( true );
 		return true;
 	}
 
@@ -152,7 +157,7 @@ public class SBNeoComDBAdapter implements NeoComDatabaseService {
 
 	// - B U I L D E R
 	public static class Builder {
-		private SBNeoComDBAdapter onConstruction;
+		private final SBNeoComDBAdapter onConstruction;
 
 		// - C O N S T R U C T O R S
 		public Builder() {
