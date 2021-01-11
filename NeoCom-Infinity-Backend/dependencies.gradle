@@ -8,7 +8,7 @@ ext {
     springfox = '2.9.2'
     jodaTimeVersion = '2.10.5'
     jacksonVersion = '2.9.8'
-    dataManagementVersion='0.20.2'
+    dataManagementVersion = '0.20.2'
 }
 
 // - S P R I N G B O O T
@@ -29,14 +29,6 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-}
-dependencies {
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-    }
-    testImplementation 'org.springframework.security:spring-security-test'
-    testImplementation 'org.testcontainers:junit-jupiter'
-    testImplementation 'org.testcontainers:postgresql'
 }
 dependencyManagement {
     imports {
@@ -99,14 +91,20 @@ dependencies {
     // T E S T I N G
     testImplementation 'org.junit.jupiter:junit-jupiter:5.4.2'
     testImplementation 'org.junit.vintage:junit-vintage-engine:5.4.2'
-    testImplementation 'org.mockito:mockito-core:3.3.3'
+    testImplementation 'org.mockito:mockito-core:3.7.0'
+    testImplementation 'org.mockito:mockito-inline:3.7.0'
     testImplementation 'com.openpojo:openpojo:0.8.12'
 }
 
 // - I N T E G R A T I O N   T E S T I N G
 dependencies {
-//    integrationImplementation "com.j256.ormlite:ormlite-jdbc:$ormliteVersion"
-//    integrationImplementation "org.xerial:sqlite-jdbc:3.25.2"
+    integrationImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+//    integrationImplementation 'org.springframework.security:spring-security-test'
+    integrationImplementation 'org.junit.jupiter:junit-jupiter-api'
+    integrationImplementation 'org.awaitility:awaitility:3.1.6'
+    integrationImplementation 'org.testcontainers:junit-jupiter'
 }
 
 // - A C C E P T A N C E   T E S T I N G
