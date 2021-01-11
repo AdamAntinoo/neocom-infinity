@@ -28,10 +28,12 @@ import org.dimensinfin.logging.LogWrapper;
  *
  * @author Adam Antinoo
  */
-//@Component
 public class SBFileSystemAdapter implements IFileSystem {
 	private static final String DIRECTORY_SEPARATOR = "/";
-	protected String applicationDirectory = "./NeoCom.Infinity";
+	private static final String PRODUCTION_RESOURCES_PATH = DIRECTORY_SEPARATOR + "build" +
+			DIRECTORY_SEPARATOR + "resources" +
+			DIRECTORY_SEPARATOR + "main" + DIRECTORY_SEPARATOR;
+	protected String applicationDirectory;
 
 	// - C O N S T R U C T O R S
 	@Inject
@@ -41,54 +43,57 @@ public class SBFileSystemAdapter implements IFileSystem {
 
 	@Override
 	public InputStream openResource4Input( final String filePath ) throws IOException {
-		return new FileInputStream( new File( applicationDirectory + DIRECTORY_SEPARATOR + filePath ) );
+		return new FileInputStream( this.applicationDirectory + DIRECTORY_SEPARATOR + filePath );
 	}
 
 	@Override
 	public OutputStream openResource4Output( final String filePath ) throws IOException {
-		return new FileOutputStream( new File( applicationDirectory + DIRECTORY_SEPARATOR + filePath ) );
+		return new FileOutputStream( this.applicationDirectory + DIRECTORY_SEPARATOR + filePath );
 	}
 
 	@Override
 	public InputStream openAsset4Input( final String filePath ) throws IOException {
-		URI propertyURI = null;
 		try {
-			final String executionDirectory = new java.io.File( "." ).getCanonicalPath() + "/build/resources/main/";
-			propertyURI = new URI( executionDirectory + filePath );
-			LogWrapper.info( MessageFormat.format( "Processing file: {0}", propertyURI.toString() ) );
-		} catch (URISyntaxException use) {
+			final String executionDirectory = new File( "." ).getCanonicalPath() + PRODUCTION_RESOURCES_PATH;
+			final URI propertyURI = new URI( executionDirectory + filePath );
+			LogWrapper.info( MessageFormat.format( "Processing file: {0}", propertyURI ) );
+			return new FileInputStream( propertyURI.getPath() );
+		} catch (final URISyntaxException use) {
+			LogWrapper.error( use );
+			throw new IOException( use.getMessage() );
 		}
-		return new FileInputStream( propertyURI.getPath() );
 	}
 
 	@Override
 	public String accessAsset4Path( final String filePath ) throws IOException {
-		URI propertyURI = null;
 		try {
-			final String executionDirectory = new java.io.File( "." ).getCanonicalPath() + "/build/resources/main/";
-			propertyURI = new URI( executionDirectory + filePath );
-			LogWrapper.info( MessageFormat.format( "Processing file: {0}", propertyURI.toString() ) );
-		} catch (URISyntaxException e) {
+			final String executionDirectory = new java.io.File( "." ).getCanonicalPath() + PRODUCTION_RESOURCES_PATH;
+			final URI propertyURI = new URI( executionDirectory + filePath );
+			LogWrapper.info( MessageFormat.format( "Processing file: {0}", propertyURI ) );
+			return propertyURI.getPath();
+		} catch (final URISyntaxException use) {
+			LogWrapper.error( use );
+			throw new IOException( use.getMessage() );
 		}
-		return propertyURI.getPath();
 	}
 
 	@Override
-	public String accessResource4Path( final String filePath ) {
-		return applicationDirectory + "/" + filePath;
+	public String accessResource4Path( final String filePath ) throws IOException {
+		if (null == filePath) throw new IOException( "The resource path name is empty." );
+		return this.applicationDirectory + "/" + filePath;
 	}
 
 	@Override
 	public String accessPublicResource4Path( final String filePath ) throws IOException {
-		return accessResource4Path( filePath );
+		return this.accessResource4Path( filePath );
 	}
 
 	@Override
 	public void copyFromAssets( final String sourceFileName, final String destinationDirectory ) {
-		// TODO - Implement the copy fom one place to another
+		// This method does not require implementation on this environment.
 	}
-	// - C O R E
 
+	// - C O R E
 	@Override
 	public String toString() {
 		return new ToStringBuilder( this, ToStringStyle.JSON_STYLE )

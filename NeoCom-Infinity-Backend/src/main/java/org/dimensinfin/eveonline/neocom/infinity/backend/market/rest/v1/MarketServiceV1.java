@@ -3,7 +3,6 @@ package org.dimensinfin.eveonline.neocom.infinity.backend.market.rest.v1;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import javax.validation.constraints.NotNull;
 
@@ -11,19 +10,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
-import org.dimensinfin.eveonline.neocom.database.entities.PilotPreferencesEntity;
 import org.dimensinfin.eveonline.neocom.domain.space.SpaceLocation;
 import org.dimensinfin.eveonline.neocom.domain.space.Station;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCorporationsCorporationIdOk;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetMarketsRegionIdOrders200Ok;
-import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComCredentialService;
+import org.dimensinfin.eveonline.neocom.infinity.backend.market.converter.GetMarketsRegionIdOrdersToMarketOrderConverter;
 import org.dimensinfin.eveonline.neocom.infinity.backend.market.domain.MarketData;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetailsService;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
-import org.dimensinfin.eveonline.neocom.infinity.backend.market.converter.GetMarketsRegionIdOrdersToMarketOrderConverter;
+import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComCredentialService;
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
 import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;
-import org.dimensinfin.logging.LogWrapper;
 
 import static org.dimensinfin.eveonline.neocom.infinity.backend.market.domain.MarketData.MARKET_DEEP_RANGE;
 import static org.dimensinfin.eveonline.neocom.service.ESIDataService.PREDEFINED_MARKET_HUB_STATION_ID;
@@ -38,15 +35,11 @@ public class MarketServiceV1 extends NeoComCredentialService {
 	@Autowired
 	public MarketServiceV1( final @NotNull NeoComAuthenticationProvider neoComAuthenticationProvider,
 	                        final @NotNull CredentialDetailsService credentialDetailsService,
-	                        //	                        final @NotNull ESIDataServiceWrapper esiDataServiceWrapper,
 	                        final @NotNull ESIDataService esiDataService,
-	                        final @NotNull LocationCatalogService locationCatalogService/*,
-	                        final @NotNull PilotPreferencesRepository pilotPreferencesRepository */ ) {
+	                        final @NotNull LocationCatalogService locationCatalogService ) {
 		super( neoComAuthenticationProvider, credentialDetailsService );
 		this.esiDataService = esiDataService;
-		//		this.esiDataService = Objects.requireNonNull( esiDataServiceWrapper.getSingleton() );
 		this.locationCatalogService = Objects.requireNonNull( locationCatalogService );
-		//		this.pilotPreferencesRepository = pilotPreferencesRepository;
 	}
 
 	/**
@@ -110,8 +103,8 @@ public class MarketServiceV1 extends NeoComCredentialService {
 	 */
 	private double getLowestSellPrice( final List<GetMarketsRegionIdOrders200Ok> orders, final int targetSystem ) {
 		double minPrice = Double.MAX_VALUE;
-		for (GetMarketsRegionIdOrders200Ok order : orders) {
-			if ((order.getIsBuyOrder()) || (order.getSystemId().intValue() != targetSystem)) continue;
+		for (final GetMarketsRegionIdOrders200Ok order : orders) {
+			if ((Boolean.TRUE.equals( order.getIsBuyOrder() )) || (order.getSystemId() != targetSystem)) continue;
 			if (order.getPrice() < minPrice) minPrice = order.getPrice();
 		}
 		return minPrice;
@@ -151,7 +144,6 @@ public class MarketServiceV1 extends NeoComCredentialService {
 				.filter( order -> order.getPrice() <= priceLimit )
 				.sorted( Comparator.comparingDouble( GetMarketsRegionIdOrders200Ok::getPrice ) )
 				.collect( Collectors.toList() );
-		//		} else return new ArrayList<>();
 	}
 
 	/**
@@ -161,19 +153,19 @@ public class MarketServiceV1 extends NeoComCredentialService {
 	 */
 	private Station getPreferredMarketHub() {
 		final Credential credential = this.getAuthorizedCredential();
-		// TODO - Replace this bya call to the PilotPreference repository to get this preference or empty
-		final Optional<PilotPreferencesEntity> preferredMarketHub = Optional.empty();
-		if (preferredMarketHub.isEmpty())
-			return this.esiDataService.getRegionMarketHub( this.accessCorporationHomeRegionId( credential ) );
-		else {
-			final SpaceLocation location = this.locationCatalogService.searchLocation4Id(
-					preferredMarketHub.get().getNumberValue().longValue()
-			);
-			if (location instanceof Station) return (Station) location;
-			else {
-				LogWrapper.info( "The Pilot preferred market hub does not point to a valid station." );
-				return (Station) this.locationCatalogService.searchLocation4Id( PREDEFINED_MARKET_HUB_STATION_ID );
-			}
-		}
+		// TODO - Replace this by a call to the PilotPreference repository to get this preference or empty
+		return this.esiDataService.getRegionMarketHub( this.accessCorporationHomeRegionId( credential ) );
+		//		final Optional<PilotPreferencesEntity> preferredMarketHub = Optional.empty();
+		//		if (preferredMarketHub.isEmpty())
+		//		else {
+		//			final SpaceLocation location = this.locationCatalogService.searchLocation4Id(
+		//					preferredMarketHub.get().getNumberValue().longValue()
+		//			);
+		//			if (location instanceof Station) return (Station) location;
+		//			else {
+		//				LogWrapper.info( "The Pilot preferred market hub does not point to a valid station." );
+		//				return (Station) this.locationCatalogService.searchLocation4Id( PREDEFINED_MARKET_HUB_STATION_ID );
+		//			}
+		//		}
 	}
 }
