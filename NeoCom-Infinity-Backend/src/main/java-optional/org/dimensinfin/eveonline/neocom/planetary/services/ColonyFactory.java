@@ -18,13 +18,21 @@ import org.dimensinfin.eveonline.neocom.planetary.PlanetType;
 import org.dimensinfin.eveonline.neocom.planetary.converter.PlanetPinToPlanetfacilityConverter;
 import org.dimensinfin.eveonline.neocom.planetary.domain.Colony;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
+import org.dimensinfin.eveonline.neocom.service.ResourceFactory;
 
 @Service
 public class ColonyFactory {
 	private final ESIDataProvider esiDataProvider;
-	private List<IPlanetaryFacility> facilities = new ArrayList<>();
+	private final ResourceFactory resourceFactory;
 
-	public ColonyFactory( final @NotNull ESIDataProvider esiDataProvider ) {this.esiDataProvider = esiDataProvider;}
+	private final List<IPlanetaryFacility> facilities = new ArrayList<>();
+
+	// - C O N S T R U C T O R S
+	public ColonyFactory( @NotNull final ESIDataProvider esiDataProvider,
+	                      @NotNull final ResourceFactory resourceFactory ) {
+		this.esiDataProvider = esiDataProvider;
+		this.resourceFactory = resourceFactory;
+	}
 
 	/**
 	 * Creates a new Colony instance from the planet esi data records. It will require the access to the esi server to get the detailed data fro
@@ -40,21 +48,21 @@ public class ColonyFactory {
 						credential
 				)
 		);
-//		if (null != structureContainer) {
-			final PlanetType planetType = PlanetType.valueOf( planet.getPlanetType().name() );
-			for (GetCharactersCharacterIdPlanetsPlanetIdOkPins pin : structureContainer.getPins()) {
-				this.facilities.add( new PlanetPinToPlanetfacilityConverter( planetType ).convert( pin ) );
-			}
-//		}
+		//		if (null != structureContainer) {
+		final PlanetType planetType = PlanetType.valueOf( planet.getPlanetType().name() );
+		for (final GetCharactersCharacterIdPlanetsPlanetIdOkPins pin : structureContainer.getPins()) {
+			this.facilities.add( new PlanetPinToPlanetfacilityConverter( this.resourceFactory, planetType ).convert( pin ) );
+		}
+		//		}
 		final ColonyPack colony = new ColonyPack.Builder()
 				.withPilotIdentifier( credential.getAccountId() )
 				.withPlanetFacilities( structureContainer )
-//				.withColony( esiColonyData )
+				//				.withColony( esiColonyData )
 				.withPlanetData( planetData )
 				.withFacilities( this.facilities )
 				.build();
 		//		colony.timeStamp();
-//		colonyCache.put( esiColonyData.getPlanetId(), colony );
+		//		colonyCache.put( esiColonyData.getPlanetId(), colony );
 		return null;
 	}
 }
