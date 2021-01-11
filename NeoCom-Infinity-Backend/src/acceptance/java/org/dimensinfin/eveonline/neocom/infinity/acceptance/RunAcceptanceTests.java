@@ -9,9 +9,10 @@ import static io.cucumber.junit.CucumberOptions.SnippetType.CAMELCASE;
 @RunWith(Cucumber.class)
 @CucumberOptions(
 		strict = true,
-		features = { "src/test/resources/features" },
-		snippets= CAMELCASE,
-		glue = { "org.dimensinfin.eveonline.neocom.infinity.org.dimensinfin.eveonline.neocom.infinity.acceptance.steps" },
+		features = { "src/acceptance/resources/features" },
+		snippets = CAMELCASE,
+		glue = { "org.dimensinfin.eveonline.neocom.infinity.acceptance.steps" },
 		plugin = { "pretty", "json:target/cucumber_report.json" },
 		tags = { "not @skip_scenario", "not @front", "not @duplication", "@NIB10.01" })
-public class RunAcceptanceTests {}
+public class RunAcceptanceTests {
+}

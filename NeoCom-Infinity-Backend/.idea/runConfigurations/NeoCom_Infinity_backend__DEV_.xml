@@ -2,7 +2,6 @@
   <configuration default="false" name="NeoCom.Infinity-backend [DEV]" type="Application" factoryName="Application">
     <option name="ALTERNATIVE_JRE_PATH" value="11-OpenJDK" />
     <envs>
-      <env name="PORT" value="5220" />
       <env name="JDBC_DATABASE_URL" value="jdbc:postgresql://0.0.0.0:5432/postgres" />
       <env name="DB_USER" value="adamantinoo" />
       <env name="DB_PASSWORD" value="z.iliada.2020" />
@@ -15,7 +14,7 @@
     </envs>
     <option name="MAIN_CLASS_NAME" value="org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendApplication" />
     <module name="NeoCom.Infinity.Backend.main" />
-    <option name="PROGRAM_PARAMETERS" value="--spring.profiles.active=dev --server.port=5220" />
+    <option name="PROGRAM_PARAMETERS" value="--spring.profiles.active=dev --server.port=5240" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>
