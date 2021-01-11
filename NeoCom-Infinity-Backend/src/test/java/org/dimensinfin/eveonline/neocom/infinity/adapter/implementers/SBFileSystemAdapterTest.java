@@ -2,7 +2,6 @@ package org.dimensinfin.eveonline.neocom.infinity.adapter.implementers;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 
 import org.junit.jupiter.api.Assertions;
@@ -29,7 +28,7 @@ public class SBFileSystemAdapterTest {
 	@Test
 	public void openResource4InputSuccess() throws IOException {
 		final FileNotFoundException exception = Assertions.assertThrows( FileNotFoundException.class, () -> {
-					final InputStream file = this.fileSystemAdapter4Test.openResource4Input( "-TEST-FILE-" );
+					this.fileSystemAdapter4Test.openResource4Input( "-TEST-FILE-" );
 				},
 				"Expected JobScheduler.Builder() to throw null verification, but it didn't." );
 		Assertions.assertNotNull( exception );

@@ -112,6 +112,8 @@ jobs:
       - run: 
           name: NEOCOM-BACKEND - Get and cache the backend compilation dependencies
           working_directory: NeoCom-Infinity-Backend
+          environment:
+            PROFILE: "production"
           command: |
             ./gradlew dependencies
       - save_cache:
@@ -182,7 +184,7 @@ jobs:
           working_directory: NeoCom-Infinity-Backend
           environment:
             PROFILE: "production"
-            SONAR_TOKEN: 9dfe678ad49842371e44396a40c663586d497c31
+            SONAR_TOKEN: 0784ee732d6aaa1fbac965792c35aa028bfe35e1
           command: |
             ./gradlew test jacocoTestReport sonarqube
 

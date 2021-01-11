@@ -39,11 +39,9 @@ import org.dimensinfin.logging.LogWrapper;
  */
 @Component
 public class SBNeoComDBAdapter implements NeoComDatabaseService {
-	private final int databaseVersion = 0;
 	private String databaseConnectionDescriptor;
 	private boolean isOpen = false;
 	private JdbcPooledConnectionSource connectionSource;
-	private DatabaseVersion storedVersion;
 
 	private Dao<DatabaseVersion, String> versionDao;
 	private Dao<Credential, String> credentialDao;
@@ -119,7 +117,8 @@ public class SBNeoComDBAdapter implements NeoComDatabaseService {
 	}
 
 	public void onCreate( final ConnectionSource connectionSource ) {
-		LogWrapper.info( "Database OnCreate not in use since Liquibase is taking care of database leveling." );
+		if (null != connectionSource)
+			LogWrapper.info( "Database OnCreate not in use since Liquibase is taking care of database leveling." );
 	}
 
 	/**
@@ -141,18 +140,14 @@ public class SBNeoComDBAdapter implements NeoComDatabaseService {
 	 * services. Being a pooled connection it can create as many connections as required to do requests in
 	 * parallel to the database instance. This only is effective for MySql databases.
 	 */
-	private boolean openNeoComDB() throws SQLException {
+	private void openNeoComDB() throws SQLException {
 		LogWrapper.enter();
-		try {
-			if (!this.isOpen) {
-				this.isOpen = this.createConnectionSource();
-				LogWrapper.info( MessageFormat.format( "Opened database {0} successfully with version {1}.",
-						this.databaseConnectionDescriptor, this.databaseVersion ) );
-			}
-		} finally {
-			LogWrapper.exit( MessageFormat.format( "Current database state: {0}", this.isOpen ) );
-			return this.isOpen;
+		if (!this.isOpen) {
+			this.isOpen = this.createConnectionSource();
+			LogWrapper.info( MessageFormat.format( "Opened database {0} successfully with version {1}.",
+					this.databaseConnectionDescriptor, "production" ) );
 		}
+		LogWrapper.exit( MessageFormat.format( "Current database state: {0}", this.isOpen ) );
 	}
 
 	// - B U I L D E R
@@ -165,12 +160,11 @@ public class SBNeoComDBAdapter implements NeoComDatabaseService {
 		}
 
 		public SBNeoComDBAdapter build() /*throws SQLException */ {
-			//			LogWrapper.info( MessageFormat.format( "Database URL in use: {0}", this.onConstruction.databaseConnectionDescriptor ) );
 			return this.onConstruction;
 		}
 
 		public SBNeoComDBAdapter.Builder withDatabaseConnectionDescriptor( final String databaseConnectionDescriptor ) {
-			Objects.requireNonNull( this.onConstruction.databaseConnectionDescriptor = databaseConnectionDescriptor );
+			this.onConstruction.databaseConnectionDescriptor = Objects.requireNonNull( databaseConnectionDescriptor );
 			return this;
 		}
 	}
