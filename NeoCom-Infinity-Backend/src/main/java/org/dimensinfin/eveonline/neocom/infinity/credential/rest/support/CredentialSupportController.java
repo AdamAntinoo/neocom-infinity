@@ -15,11 +15,12 @@ import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.infinity.support.client.CredentialCountResponse;
 
 @RestController
-@Profile("org.dimensinfin.eveonline.neocom.infinity.acceptance")
+@Profile("acceptance")
 @RequestMapping("/api/v1/neocom/support")
 public class CredentialSupportController {
-	private CredentialSupportService credentialSupportService;
+	private final CredentialSupportService credentialSupportService;
 
+// - C O N S T R U C T O R S
 	@Autowired
 	public CredentialSupportController( final @NotNull CredentialSupportService credentialSupportService ) {
 		this.credentialSupportService = credentialSupportService;

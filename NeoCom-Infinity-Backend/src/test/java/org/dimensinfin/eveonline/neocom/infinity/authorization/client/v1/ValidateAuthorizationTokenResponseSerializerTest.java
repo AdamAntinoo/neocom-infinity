@@ -2,7 +2,7 @@ package org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
@@ -16,10 +16,10 @@ public class ValidateAuthorizationTokenResponseSerializerTest {
 	@Autowired
 	private ObjectMapper objectMapper;
 
-//	@Test
+	//	@Test
 	public void serialize() throws JsonProcessingException {
 		final Credential credential = new Credential.Builder( 123456 )
-//				.withAccountId( 123456L )
+				//				.withAccountId( 123456L )
 				.withAccountName( "-TESTING-ACCOUNT-NAME-" )
 				.withDataSource( "Tranquility" )
 				.build()
@@ -32,7 +32,7 @@ public class ValidateAuthorizationTokenResponseSerializerTest {
 				.withCredential( credential )
 				.build();
 		final String expected = "";
-		String obtained = objectMapper.writeValueAsString( validateAuthorizationTokenResponse );
-		Assert.assertEquals( expected, obtained );
+		final String obtained = this.objectMapper.writeValueAsString( validateAuthorizationTokenResponse );
+		Assertions.assertEquals( expected, obtained );
 	}
 }

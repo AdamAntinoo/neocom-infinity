@@ -1,7 +1,7 @@
 package org.dimensinfin.eveonline.neocom.infinity.credential.rest.support;
 
 import java.sql.SQLException;
-import java.util.Objects;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
@@ -9,20 +9,19 @@ import org.springframework.stereotype.Service;
 
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComSBException;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.support.SupportCredentialRepositoryWrapper;
+import org.dimensinfin.eveonline.neocom.infinity.credential.persistence.SupportCredentialRepository;
 import org.dimensinfin.eveonline.neocom.infinity.support.client.CredentialCountResponse;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.support.SupportCredentialRepository;
 import org.dimensinfin.eveonline.neocom.service.logger.NeoComLogger;
 
 @Service
-@Profile("org.dimensinfin.eveonline.neocom.infinity.acceptance")
+@Profile("acceptance")
 public class CredentialSupportService {
-	private SupportCredentialRepository credentialRepository;
+	private final SupportCredentialRepository credentialRepository;
 
+	// - C O N S T R U C T O R S
 	@Autowired
-	public CredentialSupportService( final SupportCredentialRepositoryWrapper supportCredentialRepositoryWrapper ) {
-		this.credentialRepository = supportCredentialRepositoryWrapper.getSingleton();
-		Objects.requireNonNull( this.credentialRepository );
+	public CredentialSupportService( @NotNull final SupportCredentialRepository supportCredentialRepository ) {
+		this.credentialRepository = supportCredentialRepository;
 	}
 
 	public CredentialCountResponse countCredentials() {
