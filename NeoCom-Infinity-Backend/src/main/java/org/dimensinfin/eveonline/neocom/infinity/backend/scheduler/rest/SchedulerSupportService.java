@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
-import org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.MinuteSchedulerTimeBaseSchedule;
+import org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.MinuteTimeBaseScheduler;
 import org.dimensinfin.eveonline.neocom.infinity.support.client.ScheduleJobCountResponse;
 import org.dimensinfin.eveonline.neocom.service.scheduler.JobScheduler;
 import org.dimensinfin.eveonline.neocom.service.scheduler.domain.JobRecord;
@@ -14,13 +14,15 @@ import org.dimensinfin.eveonline.neocom.service.scheduler.domain.JobRecord;
 @Service
 @Profile("dev")
 public class SchedulerSupportService {
-	private MinuteSchedulerTimeBaseSchedule minuteSchedulerTimeBaseSchedule;
+	private final MinuteTimeBaseScheduler minuteTimeBaseScheduler;
 
+// - C O N S T R U C T O R S
 	@Autowired
-	public SchedulerSupportService( final MinuteSchedulerTimeBaseSchedule minuteSchedulerTimeBaseSchedule ) {
-		this.minuteSchedulerTimeBaseSchedule = minuteSchedulerTimeBaseSchedule;
+	public SchedulerSupportService( final MinuteTimeBaseScheduler minuteTimeBaseScheduler ) {
+		this.minuteTimeBaseScheduler = minuteTimeBaseScheduler;
 	}
 
+// - G E T T E R S   &   S E T T E R S
 	public List<JobRecord> getSchedulerJobs() {
 		return JobScheduler.getJobScheduler().getRegisteredJobs();
 	}
@@ -33,7 +35,7 @@ public class SchedulerSupportService {
 
 	public ScheduleJobCountResponse restartScheduler() {
 		JobScheduler.getJobScheduler().clear();
-		this.minuteSchedulerTimeBaseSchedule.registerCredentialJobGenerator();
+		this.minuteTimeBaseScheduler.registerCredentialJobGenerator();
 		return new ScheduleJobCountResponse.Builder()
 				.withSchedulerJobCount( JobScheduler.getJobScheduler().getJobCount() )
 				.build();

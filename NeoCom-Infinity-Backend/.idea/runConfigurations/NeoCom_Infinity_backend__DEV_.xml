@@ -14,7 +14,7 @@
     </envs>
     <option name="MAIN_CLASS_NAME" value="org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendApplication" />
     <module name="NeoCom.Infinity.Backend.main" />
-    <option name="PROGRAM_PARAMETERS" value="--spring.profiles.active=dev --server.port=5240" />
+    <option name="PROGRAM_PARAMETERS" value="-Dcucumber.options=&quot;--tags @NIB01&quot; --spring.profiles.active=dev --server.port=5240" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>
