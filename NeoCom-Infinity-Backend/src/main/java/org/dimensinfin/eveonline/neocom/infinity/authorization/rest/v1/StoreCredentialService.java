@@ -2,6 +2,7 @@ package org.dimensinfin.eveonline.neocom.infinity.authorization.rest.v1;
 
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
+import javax.validation.constraints.NotNull;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -11,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.dimensinfin.annotation.LogEnterExit;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.database.repositories.CredentialRepository;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.CredentialRepositoryWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialResponse;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.ErrorInfo;
@@ -30,9 +30,10 @@ import static org.dimensinfin.eveonline.neocom.infinity.config.security.Security
 public class StoreCredentialService {
 	private final CredentialRepository credentialRepository;
 
+// - C O N S T R U C T O R S
 	@Autowired
-	public StoreCredentialService( final CredentialRepositoryWrapper credentialRepository ) {
-		this.credentialRepository = credentialRepository.getSingleton();
+	public StoreCredentialService( @NotNull final CredentialRepository credentialRepository ) {
+		this.credentialRepository = credentialRepository;
 	}
 
 	@LogEnterExit
