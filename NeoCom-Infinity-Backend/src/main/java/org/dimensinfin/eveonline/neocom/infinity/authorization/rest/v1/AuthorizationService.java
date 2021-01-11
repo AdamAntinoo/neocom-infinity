@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.text.MessageFormat;
 import java.util.Objects;
+import javax.validation.constraints.NotNull;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -18,15 +19,13 @@ import org.dimensinfin.eveonline.neocom.auth.TokenVerification;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.database.repositories.CredentialRepository;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdOk;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.ConfigurationServiceWrapper;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.CredentialRepositoryWrapper;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataProviderWrapper;
-import org.dimensinfin.eveonline.neocom.infinity.service.SBConfigurationService;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComError;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
+import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
+import org.dimensinfin.eveonline.neocom.service.ESIDataService;
 import org.dimensinfin.logging.LogWrapper;
 
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.ISSUER;
@@ -60,18 +59,18 @@ public class AuthorizationService {
 				.build();
 	}
 
-	private final SBConfigurationService configurationService;
+	private final IConfigurationService configurationService;
 	private final ESIDataProvider esiDataAdapter;
 	private final CredentialRepository credentialRepository;
 
 	// - C O N S T R U C T O R S
 	@Autowired
-	public AuthorizationService( final ConfigurationServiceWrapper configurationServiceWrapper,
-	                             final ESIDataProviderWrapper esiDataAdapterWrapper,
-	                             final CredentialRepositoryWrapper credentialRepositoryWrapper ) {
-		this.configurationService = (SBConfigurationService) configurationServiceWrapper.getSingleton();
-		this.esiDataAdapter = esiDataAdapterWrapper.getSingleton();
-		this.credentialRepository = credentialRepositoryWrapper.getSingleton();
+	public AuthorizationService( @NotNull final IConfigurationService configurationService,
+	                             @NotNull final ESIDataService esiDataService,
+	                             @NotNull final CredentialRepository credentialRepository ) {
+		this.configurationService = configurationService;
+		this.esiDataAdapter = esiDataService;
+		this.credentialRepository = credentialRepository;
 	}
 
 	@TimeElapsed
@@ -98,7 +97,7 @@ public class AuthorizationService {
 				.build();
 		try {
 			this.credentialRepository.persist( credential );
-		} catch (SQLException sqle) {
+		} catch (final SQLException sqle) {
 			throw new NeoComRuntimeBackendException( NeoComRuntimeBackendException.errorUNEXPECTEDSQLEXCEPTION( sqle ) );
 		}
 		LogWrapper.info( MessageFormat.format( "Credential #{0}-{1} created successfully.",
