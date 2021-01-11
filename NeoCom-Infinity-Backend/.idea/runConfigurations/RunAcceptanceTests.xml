@@ -1,26 +1,18 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="RunAcceptanceTests" type="GradleRunConfiguration" factoryName="Gradle">
-    <ExternalSystemSettings>
-      <option name="env">
-        <map>
-          <entry key="DEFAULT_BACKEND_SERVER" value="http://localhost:" />
-        </map>
-      </option>
-      <option name="executionName" />
-      <option name="externalProjectPath" value="$PROJECT_DIR$" />
-      <option name="externalSystemIdString" value="GRADLE" />
-      <option name="scriptParameters" value="--tests &quot;org.dimensinfin.eveonline.neocom.infinity.acceptance.RunAcceptanceTests&quot;" />
-      <option name="taskDescriptions">
-        <list />
-      </option>
-      <option name="taskNames">
-        <list>
-          <option value=":test" />
-        </list>
-      </option>
-      <option name="vmOptions" value="" />
-    </ExternalSystemSettings>
-    <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
-    <method v="2" />
+  <configuration default="false" name="RunAcceptanceTests" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+    <module name="NeoCom.Infinity.Backend.acceptance" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="org.dimensinfin.eveonline.neocom.infinity.acceptance.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <option name="PACKAGE_NAME" value="org.dimensinfin.eveonline.neocom.infinity.acceptance" />
+    <option name="MAIN_CLASS_NAME" value="org.dimensinfin.eveonline.neocom.infinity.acceptance.RunAcceptanceTests" />
+    <option name="METHOD_NAME" value="" />
+    <option name="TEST_OBJECT" value="class" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
   </configuration>
 </component>

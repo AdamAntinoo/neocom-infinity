@@ -17,8 +17,11 @@
 #### 5270 - [DEVELOPMENT] Backend ApiSimulator ESI Data Server
 #### 5280 - [DEVELOPMENT] Backend Postgres DB
 
-#### 5221 - [ACCEPTANCE] Backend SB application server
-#### 5231 - [ACCEPTANCE] Backend Postgres DB
+#### 5241 - [ACCEPTANCE] Backend SB application server
+#### 5251 - [ACCEPTANCE] Backend ApiSimulator Eve Online authentication server
+#### 5261 - [ACCEPTANCE] Backend ApiSimulator ESI Universe Data Server
+#### 5270 - [ACCEPTANCE] Backend ApiSimulator ESI Data Server
+#### 5281 - [ACCEPTANCE] Backend Postgres DB
 
 
 5230 - [DEVELOPMENT] Application backend server
