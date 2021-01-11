@@ -4,8 +4,11 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;
 
+import org.dimensinfin.eveonline.neocom.database.NeoComDatabaseService;
 import org.dimensinfin.eveonline.neocom.database.core.ISDEDatabaseService;
+import org.dimensinfin.eveonline.neocom.database.repositories.CredentialRepository;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBFileSystemAdapter;
+import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBNeoComDBAdapter;
 import org.dimensinfin.eveonline.neocom.infinity.backend.sde.service.SBSDEDatabaseService;
 import org.dimensinfin.eveonline.neocom.infinity.service.SBConfigurationService;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
@@ -35,51 +38,61 @@ public class NeoComInfinityBackendDependenciesModule extends AbstractModule {
 		if (null == propDirectory) propDirectory = DEFAULT_PROPERTIES_DIRECTORY;
 		if (null == appDirectory) appDirectory = DEFAULT_APPLICATION_DIRECTORY;
 		if (null == sdeDatabasePath) sdeDatabasePath = DEFAULT_SDE_DATABASE;
-		bind( String.class )
+		this.bind( String.class )
 				.annotatedWith( Names.named( "PropertiesDirectory" ) )
 				.toInstance( propDirectory );
-		bind( String.class )
+		this.bind( String.class )
 				.annotatedWith( Names.named( "ApplicationDirectory" ) )
 				.toInstance( appDirectory );
-		bind( String.class )
+		this.bind( String.class )
 				.annotatedWith( Names.named( "SDEDatabasePath" ) )
 				.toInstance( sdeDatabasePath );
 
 		// Bind platform specific implementations.
-		bind( IConfigurationService.class )
+		this.bind( IConfigurationService.class )
 				.annotatedWith( Names.named( DMServicesDependenciesModule.ICONFIGURATION_SERVICE ) )
 				.to( SBConfigurationService.class )
 				.in( Singleton.class );
-		bind( IFileSystem.class )
+		this.bind( IFileSystem.class )
 				.annotatedWith( Names.named( DMServicesDependenciesModule.IFILE_SYSTEM ) )
 				.to( SBFileSystemAdapter.class )
 				.in( Singleton.class );
-		bind( IStoreCache.class )
+		this.bind( IStoreCache.class )
 				.annotatedWith( Names.named( DMServicesDependenciesModule.ISTORE_CACHE ) )
 				.to( MemoryStoreCacheService.class )
 				.in( Singleton.class );
 
 		// Bind DM services until this is declared on the DM library.
-		bind( RetrofitService.class )
+		this.bind( RetrofitService.class )
 				.annotatedWith( Names.named( DMServicesDependenciesModule.RETROFIT_SERVICE ) )
 				.to( RetrofitService.class )
 				.in( Singleton.class );
-		bind( LocationCatalogService.class )
+		this.bind( LocationCatalogService.class )
 				.annotatedWith( Names.named( DMServicesDependenciesModule.LOCATION_CATALOG_SERVICE ) )
 				.to( LocationCatalogService.class )
 				.in( Singleton.class );
-		bind( ESIDataService.class )
+		this.bind( ESIDataService.class )
 				.annotatedWith( Names.named( DMServicesDependenciesModule.ESIDATA_SERVICE ) )
 				.to( ESIDataService.class )
 				.in( Singleton.class );
-		bind( ResourceFactory.class )
+		this.bind( ResourceFactory.class )
 				.annotatedWith( Names.named( DMServicesDependenciesModule.RESOURCE_FACTORY ) )
 				.to( ResourceFactory.class )
 				.in( Singleton.class );
 
-		bind( ISDEDatabaseService.class )
+		this.bind( ISDEDatabaseService.class )
 				.annotatedWith( Names.named( "ISDEDatabaseService" ) )
 				.to( SBSDEDatabaseService.class )
+				.in( Singleton.class );
+
+		// Bind database services
+		this.bind( NeoComDatabaseService.class )
+				.annotatedWith( Names.named( DMServicesDependenciesModule.NEOCOM_DATABASE_SERVICE ) )
+				.to( SBNeoComDBAdapter.class )
+				.in( Singleton.class );
+		this.bind( CredentialRepository.class )
+				.annotatedWith( Names.named( "CredentialRepository" ) )
+				.to( CredentialRepository.class )
 				.in( Singleton.class );
 	}
 }

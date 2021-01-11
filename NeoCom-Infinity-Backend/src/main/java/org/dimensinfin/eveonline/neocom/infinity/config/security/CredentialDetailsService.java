@@ -10,20 +10,20 @@ import org.springframework.stereotype.Service;
 
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.database.repositories.CredentialRepository;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.CredentialRepositoryWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.core.ExceptionMessagesExternalisedType;
 
 @Service
 public class CredentialDetailsService implements UserDetailsService {
-	private CredentialRepository credentialRepository;
+	private final CredentialRepository credentialRepository;
 
+	// - C O N S T R U C T O R S
 	@Autowired
-	public CredentialDetailsService( final CredentialRepositoryWrapper credentialRepositoryWrapper ) {
-		this.credentialRepository = credentialRepositoryWrapper.getSingleton();
+	public CredentialDetailsService( final CredentialRepository credentialRepository ) {
+		this.credentialRepository = credentialRepository;
 	}
 
 	@Override
-	public UserDetails loadUserByUsername( final String uniqueId ) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername( final String uniqueId ) {
 		try {
 			final Credential credential = this.credentialRepository.findCredentialById( uniqueId );
 			if (credential == null)
