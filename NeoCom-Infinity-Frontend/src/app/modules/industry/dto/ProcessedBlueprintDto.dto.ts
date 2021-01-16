@@ -13,6 +13,7 @@ export class ProcessedBlueprintDto {
     constructor(values: Object = {}) {
         Object.assign(this, values);
     }
+    
     public transform(universeService: UniverseService): ProcessedBlueprint {
         const blueprint: ProcessedBlueprint = new ProcessedBlueprint()
         if (this.blueprintType) {

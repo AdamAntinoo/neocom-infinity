@@ -3,22 +3,24 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '@env/environment';
 // - DOMAIN
-import { NeoCom } from './NeoCom.domain';
+import { NeoCom } from '../NeoCom.domain';
 import { is } from 'date-fns/locale';
-import { Pilot } from './Pilot.domain';
-import { Corporation } from './Corporation.domain';
-import { HALNode } from './hal/HALNode.hal';
-import { HALLink } from './hal/HALLink.hal';
+import { Pilot } from '../Pilot.domain';
+import { Corporation } from '../Corporation.domain';
+import { HALNode } from '../hal/HALNode.hal';
+import { HALLink } from '../hal/HALLink.hal';
 import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer';
 import { platformConstants } from '@env/platform-constants';
+import { CorporationV1 } from '../corporation/CorporationV1.domain';
 
 export class PilotV2 extends HALNode {
     public pilotId: number
+    public corporation: CorporationV1
+
     public pilotPublicData: any
     private lastKnownLocation: any
     private url4Icon: string
     // public corporationId: number
-    private corporation: Corporation
     public raceData: object
     public ancestryData: object
     public bloodlineData: object

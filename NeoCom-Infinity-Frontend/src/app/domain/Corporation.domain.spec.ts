@@ -4,7 +4,7 @@ import { TestBed } from '@angular/core/testing';
 import { SupportIsolationService } from '@app/testing/SupportIsolation.service';
 // - DOMAIN
 import { Corporation } from './Corporation.domain';
-import { Alliance } from './Alliance.domain';
+import { AllianceV1 } from './corporation/AllianceV1.domain';
 import { Pilot } from './Pilot.domain';
 import { neocom_constants } from '../platform/neocom-constants.platform';
 
@@ -37,9 +37,9 @@ describe('CLASS Corporation [Module: DOMAIN]', () => {
         });
         it('getAlliance.success: check the alliance field', () => {
             const expectedName = isolation.generateRandomString(32);
-            const expected = new Alliance({ name: expectedName });
+            const expected = new AllianceV1({ name: expectedName });
             const corporation = new Corporation({ alliance: expected })
-            const obtained: Alliance = corporation.getAlliance();
+            const obtained: AllianceV1 = corporation.getAlliance();
             expect(obtained).toBeDefined();
             expect(obtained.getName()).toBe(expectedName);
         });

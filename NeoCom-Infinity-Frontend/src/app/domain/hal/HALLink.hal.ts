@@ -2,15 +2,21 @@
 import { Observable } from 'rxjs'
 // - DOMAIN
 import { HALResolver } from '@app/services/HALResolver.service'
+import { ObjectIterateeCustom } from 'cypress/types/lodash'
 
 export class HALLink<T> {
     private downloaded: boolean = false
     private rel: string
     private href: string
-    public target: T
+    private factory: any // This is the actory constructor for T instances
+    public target: T // The Link when resolved. If undefined then the link is pending resolution
 
-    constructor(values: Object = {}) {
-        Object.assign(this, values)
+    constructor(targetType: { new(values: Object): T }) {
+        this.factory = targetType
+    }
+
+    public typeCast(values: any): T {
+        return new this.factory(values)
     }
 
     public access(resolver: HALResolver): Promise<T> {
@@ -34,6 +40,9 @@ export class HALLink<T> {
         }
     }
     // - G E T T E R S   &   S E T T E R S
+    public isResolved(): boolean {
+        return this.downloaded
+    }
     public isDownloaded(): boolean {
         return this.downloaded
     }
@@ -45,5 +54,8 @@ export class HALLink<T> {
     }
     public getTarget(): T {
         return this.target
+    }
+    public create<T>(c: { new(): T }): T {
+        return new c();
     }
 }

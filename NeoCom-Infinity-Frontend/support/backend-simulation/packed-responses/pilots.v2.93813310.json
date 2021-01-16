@@ -2,6 +2,7 @@
      "pilotId": 93813310,
      "corporationId": 98384726,
      "corporation": {
+         "rel": "corporation",
          "href": "http://localhost:9500/api/v1/neocom/corporations/98384726"
      },
      "pilotPublicData": {
@@ -17,6 +18,7 @@
          "title": "BPO Master"
      },
      "lastKnownLocation": {
+         "rel": "location",
          "href": "http://localhost:9500/api/v2/neocom/pilots/93813310/location"
      },
      "url4Icon": "https://image.eveonline.com/Character/92223647_256.jpg",
