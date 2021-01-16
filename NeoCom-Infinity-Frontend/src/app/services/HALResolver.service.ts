@@ -1,12 +1,13 @@
 // - CORE
-import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
-import { HttpErrorResponse } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
-import { HALNode } from '@domain/hal/HALNode.hal';
-import { Observable } from 'rxjs';
-import { environment } from '@env/environment';
+import { Injectable } from '@angular/core'
+import { map } from 'rxjs/operators'
+import { HttpClient } from '@angular/common/http'
+import { HttpErrorResponse } from '@angular/common/http'
+import { HttpHeaders } from '@angular/common/http'
+import { HALNode } from '@domain/hal/HALNode.hal'
+import { Observable } from 'rxjs'
+import { environment } from '@env/environment'
+import { HALLink } from '@domain/hal/HALLink.hal'
 
 @Injectable({
     providedIn: 'root'
@@ -19,25 +20,44 @@ export class HALResolver {
             target.setResolver(this)
         return target
     }
-    public resolve(link: string): Observable<any> {
-        console.log('>[HALResolver.resolve]>Link: ' + link)
-        // Add mandatory headers to access backend
-        let newheaders = this.wrapHttpSecureHeaders();
-        return this.httpClient.get(link, { headers: newheaders })
+    /**
+     * Resolvs a Link reference. HAL links are URL strings that can be resolved with an HTTP GET. After resolution the returned data is transformed into an instance of the link type T and assigned internally to the HALLink so any next accesses will not use again the HTTP resolution but use the already available value.
+     * @param link the link instance to be resolved. If already resolved then the methods exists with the data
+     */
+    public resolve<T>(link: HALLink<T>): Observable<T> {
+        if (link.isResolved()) {
+            console.log('>[HALResolver.resolve]>Link already resolved')
+            return new Observable<T>((observer) => {
+                observer.next(link.target)
+                observer.complete()
+            })
+        } else {
+            console.log('>[HALResolver.resolve]>Link: ' + link.getHref())
+            // Add mandatory headers to access backend
+            let newheaders = this.wrapHttpSecureHeaders()
+            return this.httpClient.get(link.getHref(), { headers: newheaders })
+                .pipe(map(inputs => { return link.typeCast(inputs) }))
+        }
     }
     protected wrapHttpSecureHeaders(_requestHeaders?: HttpHeaders): HttpHeaders {
         let headers = new HttpHeaders()
-            .set('Content-Type', 'application/json; charset=utf-8')
+            .set('Content-Type', 'application/json charset=utf-8')
             .set('xApp-Name', environment.appName)
             .set('xApp-Version', environment.appVersion)
             .set('xApp-Platform', environment.platform)
             .set('xApp-Signature', 'S0000.0016.0001')
-            .set('xApp-Signature', 'S0000.0019.0001');
+            .set('xApp-Signature', 'S0000.0019.0001')
+            .set('xApp-Signature', 'S0000.0020.0001')
         if (null != _requestHeaders) { // Copy in additional headers.
             for (let key of _requestHeaders.keys()) {
-                headers = headers.set(key, _requestHeaders.get(key));
+                headers = headers.set(key, _requestHeaders.get(key))
             }
         }
-        return headers;
+        return headers
+    }
+}
+export class HALConstructor {
+    public static create<T>(type: { new(values: Object): T }, values: any): T {
+        return new type(values)
     }
 }

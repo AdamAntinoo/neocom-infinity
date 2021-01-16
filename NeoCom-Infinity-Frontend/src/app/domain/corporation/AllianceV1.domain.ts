@@ -1,8 +1,7 @@
 // - DOMAIN
-import { NeoCom } from './NeoCom.domain';
-import { environment } from '@env/environment';
+import { NeoCom } from '../NeoCom.domain';
 
-export class Alliance extends NeoCom {
+export class AllianceV1 extends NeoCom {
     public allianceId: number = -5;
     public name: string = "-NAME-";
     public ticker: string = "TICK";
@@ -14,7 +13,7 @@ export class Alliance extends NeoCom {
         this.jsonClass = "Alliance";
     }
 
-    // - GETTERS & SETTERS
+    // - G E T T E R S
     public getId(): number {
         return this.allianceId;
     }

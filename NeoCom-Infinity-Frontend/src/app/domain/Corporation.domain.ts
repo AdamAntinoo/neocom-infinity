@@ -1,5 +1,5 @@
 // - DOMAIN
-import { Alliance } from './Alliance.domain';
+import { AllianceV1 } from './corporation/AllianceV1.domain';
 import { Pilot } from './Pilot.domain';
 import { NeoCom } from './NeoCom.domain';
 import { neocom_constants } from '../platform/neocom-constants.platform';
@@ -11,7 +11,7 @@ export class Corporation extends HALNode  {
     public corporationPublicData: any;
     public ceoPilotData: Pilot;
     public allianceId: number;
-    public alliance: Alliance;
+    public alliance: AllianceV1;
     public url4Icon: string;
     // public homeStation: Location = new Location();
     public href: string
@@ -22,7 +22,7 @@ export class Corporation extends HALNode  {
         // this.jsonClass = 'Corporation';
         // Transform child instances to class objects.
         if (null != this.ceoPilotData) this.ceoPilotData = new Pilot(this.ceoPilotData);
-        if (null != this.alliance) this.alliance = new Alliance(this.alliance);
+        if (null != this.alliance) this.alliance = new AllianceV1(this.alliance);
     }
     public getName(): string {
         if (null != this.corporationPublicData) return this.corporationPublicData.name;
@@ -36,7 +36,7 @@ export class Corporation extends HALNode  {
         if (null != this.corporationPublicData) return this.corporationPublicData.member_count;
         else return 0;
     }
-    public getAlliance(): Alliance {
+    public getAlliance(): AllianceV1 {
         return this.alliance;
     }
     public getIconUrl(): string {
