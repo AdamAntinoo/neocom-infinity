@@ -51,13 +51,13 @@ export class V1FittingConfigurationPanelComponent extends BackgroundEnabledCompo
         this.fittingData = undefined
     }
     public refresh(): void {
-        if (null != this.link)
-            this.backendConnections.push( // Download the Fitting Build definition
-                this.halResolver.resolve(this.link)
-                    .subscribe((response: any) => {
-                        this.fittingData = new FittingBuildConfigurationDto(response)
-                        // if (this.fittingData.isHalCompliant()) this.fittingData.injectResolver(this.halResolver)
-                    })
-            )
+        // if (null != this.link)
+        //     this.backendConnections.push( // Download the Fitting Build definition
+        //         this.halResolver.resolve(this.link)
+        //             .subscribe((response: any) => {
+        //                 this.fittingData = new FittingBuildConfigurationDto(response)
+        //                 // if (this.fittingData.isHalCompliant()) this.fittingData.injectResolver(this.halResolver)
+        //             })
+        //     )
     }
 }

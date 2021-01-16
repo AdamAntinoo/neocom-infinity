@@ -10,7 +10,7 @@ import { BackendService } from '@app/services/backend.service';
 import { AppStoreService } from '@app/services/appstore.service';
 // - DOMAIN
 import { Corporation } from '@app/domain/Corporation.domain';
-import { Alliance } from '@app/domain/Alliance.domain';
+import { AllianceV1 } from '@domain/corporation/AllianceV1.domain';
 import { Pilot } from '@app/domain/Pilot.domain';
 
 @Component({
@@ -52,7 +52,7 @@ export class CorporationPublicDataPanelComponent implements OnInit, OnDestroy {
     public getCorporationName(): string {
         return this.corporation.getName();
     }
-    public getAlliance(): Alliance {
+    public getAlliance(): AllianceV1 {
         // Setup the alliance identifier not contained on the original data.
         let alliance = this.corporation.getAlliance();
         alliance.allianceId = this.corporation.allianceId;
