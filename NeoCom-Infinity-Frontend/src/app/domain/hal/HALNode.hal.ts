@@ -13,7 +13,8 @@ export class HALNode extends NeoCom {
     public setResolver(newResolver: HALResolver): void {
         if (null != newResolver) this.resolver = newResolver
     }
+    /** DEPRECATED */
     public resolve(link: string): Observable<any> {
-        return this.resolver.resolve(link)
+        return null
     }
 }

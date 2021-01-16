@@ -17,8 +17,10 @@ export class FittingItemHAL extends HALNode {
         Object.assign(this, values)
         this.transform()
     }
-    private transform(): void {
-        if (null != this.item) this.item = new HALLink<EveItemDto>(this.item)
+    public  transform(): void {
+        // if ( this.item) {
+        //     this.item = new HALLink<EveItemDto>(this.item)
+        // }
     }
     // - G E T T E R S
     public getName(): string {

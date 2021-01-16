@@ -6,7 +6,7 @@ import { Input } from '@angular/core';
 // - DOMAIN
 import { RenderComponent } from '../../shared/renders/render/render.component';
 import { Pilot } from '@app/domain/Pilot.domain';
-import { PilotV2 } from '@domain/PilotV2.domain';
+import { PilotV2 } from '@domain/character/PilotV2.domain';
 
 @Component({
     selector: 'v2-pilot',

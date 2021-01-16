@@ -16,7 +16,7 @@ import { SupportAppStoreService } from '@app/testing/SupportAppStore.service';
 import { BackendService } from '@app/services/backend.service';
 import { SupportBackendService } from '@app/testing/SupportBackend.service';
 
-import { Alliance } from '@app/domain/Alliance.domain';
+import { AllianceV1 } from '@domain/corporation/AllianceV1.domain';
 import { CorporationPublicDataPanelComponent } from './corporation-public-data-panel.component';
 import { Observable } from 'rxjs';
 import { Corporation } from '@app/domain/Corporation.domain';
@@ -189,7 +189,7 @@ describe('PANEL CorporationPublicDataPanelComponent [Module: SHARED]', () => {
         it('getAlliance: validate the alliance field', () => {
             // Create the data to be tested.
             const expected = isolationService.generateRandomString(12);
-            corporation.alliance = new Alliance({ name: expected })
+            corporation.alliance = new AllianceV1({ name: expected })
             component.corporation = corporation;
             // component.alliance = corporation.alliance;
             const obtained = component.getAlliance();

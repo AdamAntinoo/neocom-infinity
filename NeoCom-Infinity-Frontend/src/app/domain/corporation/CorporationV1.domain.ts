@@ -1,6 +1,5 @@
 // - DOMAIN
 import { NeoComDelayed } from "@domain/core/NeoComDelayed.domain";
-import { HALLink } from "@domain/hal/HALLink.hal";
 import { Station } from "@domain/location/Station.domain";
 import { PilotV2 } from "../character/PilotV2.domain";
 import { AllianceV1 } from "./AllianceV1.domain";
@@ -25,12 +24,9 @@ export class CorporationV1 extends NeoComDelayed {
         super(values)
         this.jsonClass = 'Corporation'
     }
-    public decode(): void {
-        if (this.homeStationId)
-            halResolver.resolve<CorporationV1>( this.corporation)
-                .subscribe((corporation: CorporationV1) => {
-                    pilot.corporation = corporation
-                })
 
+    // - G E T T E R S
+    public getCorporationId(): number {
+        return this.corporationId
     }
 }
