@@ -11,11 +11,14 @@ import { BackendService } from '@app/services/backend.service'
 import { IsolationService } from '@innovative/services/isolation.service';
 import { BackgroundEnabledComponent } from '@innovative/components/background-enabled/background-enabled.component';
 // - DOMAIN
-import { PilotV2 } from '@domain/PilotV2.domain'
+import { PilotV2 } from '@domain/character/PilotV2.domain'
 import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer';
 import { HALResolver } from '@app/services/HALResolver.service';
-import { Credential } from '@app/domain/Credential.domain';
-import { NeoComException } from '@domain/core/NeoComException.core';
+import { NCVariant } from '@env/NeoComVariants';
+import { IRefreshable } from '@innovative/domain/interfaces/IRefreshable.interface';
+import { NeoComException } from '@innovative/domain/NeoComException';
+import { ErrorToNeoComExceptionConverter } from '@innovative/domain/converters/ErrorToNeoComException.converter';
+import { PilotV2Dto } from '@domain/dto/PilotV2Dto.dto';
 
 /**
  * Get the current plot identifier from the authentication token. With this identifier go to the backend and download a fresh instance of the public pilot data. Once we have the data we can then render it with the Dashboard requirements.
@@ -25,18 +28,22 @@ import { NeoComException } from '@domain/core/NeoComException.core';
     templateUrl: './v2-pilot-public-data-panel.component.html',
     styleUrls: ['./v2-pilot-public-data-panel.component.scss']
 })
-export class V2PilotPublicDataPanelComponent extends BackgroundEnabledComponent implements OnInit {
-    @Input() variant: string = 'DEFAULT'
+export class V2PilotPublicDataPanelComponent extends BackgroundEnabledComponent implements OnInit, IRefreshable {
+    @Input() variant: string = NCVariant.DEFAULT
     @Input() identifier: number
     public pilot: PilotV2
-    // public exception: NeoComException
-    // public s: Subscription
+    private transformer: ResponseTransformer
 
     constructor(
         protected isolationService: IsolationService,
         protected backendService: BackendService,
         protected halResolver: HALResolver) {
         super()
+        this.transformer = new ResponseTransformer()
+            .setDescription('Transform response and resolve any HAL links.')
+            .setTransformation((entrydata: any) => {
+                return new PilotV2Dto(halResolver).transform(entrydata)
+            })
     }
 
     public ngOnInit(): void {
@@ -49,40 +56,38 @@ export class V2PilotPublicDataPanelComponent extends BackgroundEnabledComponent 
     public getUniqueId(): number {
         return this.identifier
     }
-    // - R E F R E S H A B L E
+
+    // - I R E F R E S H A B L E
     public clean(): void {
         this.pilot = undefined
-        // this.exception = undefined
+        this.exception = undefined
     }
     public refresh(): void {
         this.clean()
-        this.downloadPilotPublicData()
+        try {
+            this.downloadPilotPublicData()
+        } catch (exception) {
+            this.exception = exception
+        }
     }
+
     // - B A C K E N D
     public downloadPilotPublicData(): void {
         console.log(">[PilotPublicDataPavelV2Component.downloadPilotPublicData]")
-        // try {
         if (this.identifier)
             this.backendConnections.push(
-                this.backendService.apiGetPilotPublicData_v2(this.identifier,
-                    new ResponseTransformer().setDescription('Transform response to a HATEOAS based Pilot Publc Data instance.')
-                        .setTransformation((entrydata: any): PilotV2 => {
-                            return this.halResolver.connectResolver(new PilotV2(entrydata)) as PilotV2
-                        }))
+                this.backendService.apiv2_GetPilotPublicData(this.identifier, this.transformer)
                     .subscribe((response: PilotV2) => {
                         this.pilot = response
                     }, (error) => {
                         console.log('-[PilotPublicDataPavelV2Component.downloadPilotPublicData.exception]> Error message: ' +
                             JSON.stringify(error.error))
-                        // this.exception = error.error.message
                         if (environment.showexceptions)
                             if (error instanceof HttpErrorResponse)
                                 this.isolationService.processException(error)
+                        throw new ErrorToNeoComExceptionConverter().convert(error)
                     })
             )
-        // } catch (exception) {
-        //     this.exception = exception
-        // }
         console.log("<[PilotPublicDataPavelV2Component.downloadPilotPublicData]");
     }
 

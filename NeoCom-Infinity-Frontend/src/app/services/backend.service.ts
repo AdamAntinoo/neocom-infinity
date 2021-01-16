@@ -19,6 +19,7 @@ import { Corporation } from '@app/domain/Corporation.domain'
 import { ServerStatus } from '@app/domain/ServerStatus.domain'
 import { Fitting } from '@app/domain/Fitting.domain'
 import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer'
+import { PilotV2 } from '@domain/character/PilotV2.domain'
 
 @Injectable({
     providedIn: 'root'
@@ -83,12 +84,11 @@ export class BackendService extends UniverseService {
                 return response
             }))
     }
-    public apiGetPilotPublicData_v2(pilotId: number, transformer: ResponseTransformer): Observable<any> {
+    public apiv2_GetPilotPublicData(pilotId: number, transformer: ResponseTransformer): Observable<PilotV2> {
         const request = this.APIV2 + "/pilots/" + pilotId
         return this.httpService.wrapHttpGETCall(request)
             .pipe(map((data: any) => {
-                const response = transformer.transform(data) as Pilot
-                return response
+               return transformer.transform(data) as PilotV2
             }))
     }
     public apiGetPilotFittings_v1(pilotId: number, transformer: ResponseTransformer): Observable<Fitting[]> {

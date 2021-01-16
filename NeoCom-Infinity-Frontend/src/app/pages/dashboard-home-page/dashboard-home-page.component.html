@@ -1,5 +1,5 @@
 <div *ngIf="exception else dashboardPage">
-    <div class="row">
+    <div class="panel row">
         <div>
             <div class="field">
                 <span cy-field-label="exceptionTitle" class="label">EXCEPTION</span><br>
@@ -17,19 +17,20 @@
 </div>
 <ng-template #dashboardPage>
     <div class="column">
-        <div class="row">
+        <!-- <div class="row">
             <app-info-panel id="appinfo-panel" class="neocom-panel app-info-panel"></app-info-panel>
             <server-info-panel id="server-info-panel" class="neocom-panel server-info-panel"></server-info-panel>
-        </div>
-        <!-- <div class="row">
-            <v2-pilot-public-data-panel [identifier]="getPilotId()"></v2-pilot-public-data-panel>
-            <div *ngIf="corpFuture">
-                <corporation-public-data-panel [corporation]="corpFuture"></corporation-public-data-panel>
-            </div>
         </div> -->
-        <div class="column">
-            <div class="section-title">FUNCTIONALITIES</div>
-            <div class="row">
+        <div class="row">
+            <v2-pilot-public-data-panel class="panel" [identifier]="getPilotId()"></v2-pilot-public-data-panel>
+            <!-- <div *ngIf="corpFuture">
+                <corporation-public-data-panel [corporation]="corpFuture"></corporation-public-data-panel>
+            </div> -->
+        </div>
+        <div class="panel column">
+            <div class="section-title">FUNCIONALIDADES</div>
+            <div class="dock row">
+                <v1-feature-button [feature]="planetaryFeature"></v1-feature-button>
                 <v1-feature-button [feature]="blueprintListFeature"></v1-feature-button>
             </div>
         </div>

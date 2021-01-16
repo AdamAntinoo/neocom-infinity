@@ -6,7 +6,7 @@ import { environment } from '@env/environment';
 // - SERVICES
 // - DOMAIN
 import { Corporation } from '@app/domain/Corporation.domain';
-import { Alliance } from '@app/domain/Alliance.domain';
+import { AllianceV1 } from '@domain/corporation/AllianceV1.domain';
 import { RenderComponent } from '../render/render.component';
 
 @Component({

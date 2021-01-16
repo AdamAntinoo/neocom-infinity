@@ -11,7 +11,7 @@ import addMinutes from 'date-fns/addMinutes';
 // - SERVICES
 import { AppStoreService } from '@app/services/appstore.service';
 import { BackendService } from '@app/services/backend.service';
-import { NeoComException } from '@app/platform/NeoComException';
+import { NeoComException } from '@innovative/domain/NeoComException';
 // - DOMAIN
 import { Credential } from '../../domain/Credential.domain';
 import { IsolationService } from '@innovative/services/isolation.service';

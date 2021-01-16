@@ -1,57 +1,57 @@
- {
-     "pilotId": 93813310,
-     "corporationId": 98384726,
-     "corporation": {
-         "rel": "corporation",
-         "href": "http://localhost:9500/api/v1/neocom/corporations/98384726"
-     },
-     "pilotPublicData": {
-         "ancestryId": 5,
-         "birthday": "2013-09-09T19:40:09.000Z",
-         "bloodlineId": 6,
-         "corporationId": 98384726,
-         "description": "",
-         "gender": "MALE",
-         "name": "Perico Tuerto",
-         "raceId": 4,
-         "securityStatus": 0.0,
-         "title": "BPO Master"
-     },
-     "lastKnownLocation": {
-         "rel": "location",
-         "href": "http://localhost:9500/api/v2/neocom/pilots/93813310/location"
-     },
-     "url4Icon": "https://image.eveonline.com/Character/92223647_256.jpg",
-     "raceData": {
-         "allianceId": 500003,
-         "description": "The Amarr Empire is the largest and oldest of the four empires. Ruled by a mighty Empress, this vast theocratic society is supported by a broad foundation of slave labor. Amarr citizens tend to be highly educated and fervent individuals, and as a culture Amarr adheres to the basic tenet that what others call slavery is in fact one step on a indentured person's spiritual path toward fully embracing their faith. Despite several setbacks in recent history, the Empire remains arguably the most stable and militarily powerful nation-state in New Eden.",
-         "name": "Amarr",
-         "raceId": 4
-     },
-     "ancestryData": {
-         "bloodlineId": 6,
-         "description": "The Amarr Empire imposes strict trading rules with other races, all but encouraging smuggling operations to flourish. The wily Ni-Kunni are experts when it comes to exploiting black market opportunities, and have spent generations perfecting their smuggling methods.",
-         "iconId": 1645,
-         "id": 5,
-         "name": "Border Runners",
-         "shortDescription": "Wily smugglers, bound by no border."
-     },
-     "bloodlineData": {
-         "bloodlineId": 6,
-         "charisma": 8,
-         "corporationId": 1000072,
-         "description": "With the exception of the Khanid, the Ni-Kunni were assimilated into Amarr society far more easily than the majority of Amarrian conquests. Conquered more than 1000 years ago by the Amarr Empire, they are not generally considered “enslaved” anymore. Most Ni-Kunni are tradesmen and artisans - occupations traditionally eschewed by true Amarrians, but still considered a vital part of their society.",
-         "intelligence": 5,
-         "memory": 6,
-         "name": "Ni-Kunni",
-         "perception": 7,
-         "raceId": 4,
-         "shipTypeId": 596,
-         "willpower": 4
-     },
-     "_links": {
-         "self": [{
-             "href": "http://localhost:9500/api/v2/neocom/pilots/93813310"
-         }]
-     }
- }
+{
+    "pilotId": 93813310,
+    "corporation": {
+        "rel": "corporation",
+        "href": "http://localhost:9500/api/v1/neocom/corporations/98384726"
+    },
+    "pilotPublicData": {
+        "ancestryId": 5,
+        "birthday": "2013-09-09T19:40:09.000Z",
+        "bloodlineId": 6,
+        "corporationId": 98384726,
+        "description": "",
+        "gender": "MALE",
+        "name": "Perico Tuerto",
+        "raceId": 4,
+        "securityStatus": 0.0,
+        "titles": ["BPO Master"]
+    },
+    "lastKnownLocation": {
+        "rel": "location",
+        "href": "http://localhost:9500/api/v2/universe/spacelocations/93813310"
+    },
+    "url4Icon": "https://image.eveonline.com/Character/92223647_256.jpg",
+    "raceData": {
+        "allianceId": 500003,
+        "description": "The Amarr Empire is the largest and oldest of the four empires. Ruled by a mighty Empress, this vast theocratic society is supported by a broad foundation of slave labor. Amarr citizens tend to be highly educated and fervent individuals, and as a culture Amarr adheres to the basic tenet that what others call slavery is in fact one step on a indentured person's spiritual path toward fully embracing their faith. Despite several setbacks in recent history, the Empire remains arguably the most stable and militarily powerful nation-state in New Eden.",
+        "name": "Amarr",
+        "raceId": 4
+    },
+    "ancestryData": {
+        "bloodlineId": 6,
+        "description": "The Amarr Empire imposes strict trading rules with other races, all but encouraging smuggling operations to flourish. The wily Ni-Kunni are experts when it comes to exploiting black market opportunities, and have spent generations perfecting their smuggling methods.",
+        "iconId": 1645,
+        "id": 5,
+        "name": "Border Runners",
+        "shortDescription": "Wily smugglers, bound by no border."
+    },
+    "bloodlineData": {
+        "bloodlineId": 6,
+        "charisma": 8,
+        "corporationId": 1000072,
+        "description": "With the exception of the Khanid, the Ni-Kunni were assimilated into Amarr society far more easily than the majority of Amarrian conquests. Conquered more than 1000 years ago by the Amarr Empire, they are not generally considered “enslaved” anymore. Most Ni-Kunni are tradesmen and artisans - occupations traditionally eschewed by true Amarrians, but still considered a vital part of their society.",
+        "intelligence": 5,
+        "memory": 6,
+        "name": "Ni-Kunni",
+        "perception": 7,
+        "raceId": 4,
+        "shipTypeId": 596,
+        "willpower": 4
+    },
+    "_links": {
+        "self": [{
+            "rel": "pilot",
+            "href": "http://localhost:9500/api/v2/neocom/pilots/93813310"
+        }]
+    }
+}

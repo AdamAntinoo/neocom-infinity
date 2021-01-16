@@ -13,7 +13,7 @@ import { IsolationService } from '@app/platform/isolation.service';
 import { ValidateAuthorizationTokenResponse } from '@app/domain/dto/ValidateAuthorizationTokenResponse';
 import { environment } from '@env/environment.prod';
 import { NeoComResponse } from '@app/domain/dto/NeoComResponse.dto';
-import { NeoComException } from '@app/platform/NeoComException';
+import { NeoComException } from '@innovative/domain/NeoComException';
 import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer';
 import { Corporation } from '@app/domain/Corporation.domain';
 import { SupportAppStoreService } from './SupportAppStore.service';
