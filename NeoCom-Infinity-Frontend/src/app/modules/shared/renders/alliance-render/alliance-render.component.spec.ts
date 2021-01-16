@@ -17,14 +17,14 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BackendService } from '@app/services/backend.service';
 import { SupportBackendService } from '@app/testing/SupportBackend.service';
 import { AllianceRenderComponent } from './alliance-render.component';
-import { Alliance } from '@app/domain/Alliance.domain';
+import { AllianceV1 } from '@domain/corporation/AllianceV1.domain';
 import { platformConstants } from '@env/platform-constants';
 
 describe('RENDER AllianceRenderComponent [Module: SHARED]', () => {
     let component: AllianceRenderComponent;
     let fixture: ComponentFixture<AllianceRenderComponent>;
     let isolationService: SupportIsolationService;
-    const alliance = new Alliance(
+    const alliance = new AllianceV1(
         {
             "creator_corporation_id": 98388312,
             "creator_id": 1597785719,

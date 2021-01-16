@@ -6,7 +6,7 @@ import { environment } from '@env/environment';
 // - SERVICES
 // - DOMAIN
 import { Corporation } from '@app/domain/Corporation.domain';
-import { Alliance } from '@app/domain/Alliance.domain';
+import { AllianceV1 } from '@domain/corporation/AllianceV1.domain';
 import { RenderComponent } from '../render/render.component';
 import { platformConstants } from '@env/platform-constants';
 
@@ -16,7 +16,7 @@ import { platformConstants } from '@env/platform-constants';
     styleUrls: ['./alliance-render.component.scss']
 })
 export class AllianceRenderComponent extends RenderComponent {
-    @Input() node: Alliance;
+    @Input() node: AllianceV1;
 
     public getName(): string {
         if (null != this.node) return this.node.name;
