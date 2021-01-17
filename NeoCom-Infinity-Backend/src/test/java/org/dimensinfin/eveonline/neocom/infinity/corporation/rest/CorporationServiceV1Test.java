@@ -25,7 +25,7 @@ import org.dimensinfin.eveonline.neocom.infinity.corporation.domain.ShippingYard
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
 import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;
 
-public class CorporationServiceTest {
+public class CorporationServiceV1Test {
 	private static final int TEST_CORPORATION_IDENTIFIER = 98384726;
 
 	// - COMPONENTS
@@ -72,7 +72,7 @@ public class CorporationServiceTest {
 		Mockito.when( this.pilotServiceV1.buildPilotData( Mockito.anyInt() ) ).thenReturn( pilot );
 
 		// Test
-		final CorporationService corporationService = new CorporationService(
+		final CorporationServiceV1 corporationServiceV1 = new CorporationServiceV1(
 				this.esiDataService,
 				this.pilotServiceV1,
 				this.assetRepositoryWrapper,
@@ -80,8 +80,8 @@ public class CorporationServiceTest {
 				this.locationCatalogServiceWrapper,
 				this.credentialDetailsService,
 				this.neoComAuthenticationProvider );
-		Assertions.assertNotNull( corporationService );
-		final ResponseEntity<Corporation> obtained = corporationService.getCorporationData( corporationId );
+		Assertions.assertNotNull( corporationServiceV1 );
+		final ResponseEntity<Corporation> obtained = corporationServiceV1.getCorporationData( corporationId );
 
 		// Asserts
 		Assertions.assertNotNull( obtained );
@@ -104,7 +104,7 @@ public class CorporationServiceTest {
 		//		Mockito.when( downloadProcessorJob.downloadCorporationAssets( Mockito.anyInt() ) ).thenReturn( new ArrayList<>() );
 
 		// Test
-		final CorporationService corporationService = new CorporationService(
+		final CorporationServiceV1 corporationServiceV1 = new CorporationServiceV1(
 				this.esiDataService,
 				this.pilotServiceV1,
 				this.assetRepositoryWrapper,
@@ -112,8 +112,8 @@ public class CorporationServiceTest {
 				this.locationCatalogServiceWrapper,
 				this.credentialDetailsService,
 				this.neoComAuthenticationProvider );
-		Assertions.assertNotNull( corporationService );
-		final ResponseEntity<List<ShippingYardLocation>> obtained = corporationService.getCorporationShippingYards( corporationId );
+		Assertions.assertNotNull( corporationServiceV1 );
+		final ResponseEntity<List<ShippingYardLocation>> obtained = corporationServiceV1.getCorporationShippingYards( corporationId );
 
 		// Asserts
 		Assertions.assertNotNull( obtained );

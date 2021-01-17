@@ -13,8 +13,8 @@ import org.dimensinfin.eveonline.neocom.infinity.credential.persistence.SupportC
 import org.dimensinfin.eveonline.neocom.infinity.support.client.CredentialCountResponse;
 import org.dimensinfin.eveonline.neocom.service.logger.NeoComLogger;
 
-@Service
 @Profile("acceptance")
+@Service
 public class CredentialSupportService {
 	private final SupportCredentialRepository credentialRepository;
 

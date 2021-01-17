@@ -6,14 +6,15 @@ import javax.validation.constraints.NotNull;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Profile;
 
 import org.dimensinfin.eveonline.neocom.database.NeoComDatabaseService;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.database.repositories.CredentialRepository;
 import org.dimensinfin.logging.LogWrapper;
 
-@Component
+@Profile("acceptance")
+//@Component
 public class SupportCredentialRepository extends CredentialRepository {
 	protected ConnectionSource connection4Transaction;
 
