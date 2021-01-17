@@ -26,7 +26,7 @@ import { V1BOMGroupRenderComponent } from './v1-bomgroup-render/v1-bomgroup-rend
 @NgModule({
     imports: [
         CommonModule,
-        AppCommonModule,
+        // AppCommonModule,
         NgDragDropModule.forRoot()
     ],
     declarations: [

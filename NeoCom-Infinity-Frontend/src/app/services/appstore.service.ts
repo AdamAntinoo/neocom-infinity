@@ -13,7 +13,7 @@ import { ActiveCacheWrapper } from '@app/modules/shared/support/ActiveCacheWrapp
 // - DOMAIN
 import { Credential } from '../domain/Credential.domain';
 import { IsolationService } from '@innovative/services/isolation.service';
-import { NeoComException } from '@app/platform/NeoComException';
+import { NeoComException } from '@innovative/domain/NeoComException';
 import { ExceptionCatalog } from '@app/platform/ExceptionCatalog';
 import { Corporation } from '@app/domain/Corporation.domain';
 import { CorporationDataResponse } from '@app/domain/dto/CorporationDataResponse.dto';

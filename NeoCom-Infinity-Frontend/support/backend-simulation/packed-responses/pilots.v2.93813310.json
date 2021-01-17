@@ -2,7 +2,7 @@
     "pilotId": 93813310,
     "corporation": {
         "rel": "corporation",
-        "href": "http://localhost:9500/api/v1/neocom/corporations/98384726"
+        "href": "http://localhost:5220/api/v1/universe/corporations/98384726"
     },
     "pilotPublicData": {
         "ancestryId": 5,
@@ -18,7 +18,7 @@
     },
     "lastKnownLocation": {
         "rel": "location",
-        "href": "http://localhost:9500/api/v2/universe/spacelocations/93813310"
+        "href": "http://localhost:5220/api/v2/universe/spacelocations/93813310"
     },
     "url4Icon": "https://image.eveonline.com/Character/92223647_256.jpg",
     "raceData": {
@@ -51,7 +51,7 @@
     "_links": {
         "self": [{
             "rel": "pilot",
-            "href": "http://localhost:9500/api/v2/neocom/pilots/93813310"
+            "href": "http://localhost:5220/api/v2/neocom/pilots/93813310"
         }]
     }
 }

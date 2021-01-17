@@ -1,14 +1,30 @@
 <!-- H E A D E R -->
 <div *ngIf="variant === '-HEADER-'" class="pilot">
-    <div *ngIf="node" class="row">
-        <div width="64px">
-            <img class="neocom-icon" id="pilot-icon" style="width: 66px;" src="{{node.getPilotIcon()}}">
-        </div>
-        <div style="margin-left: 2px;">
-            <span class="pilot-name">{{node.pilotPublicData.name}}</span><span class="pilot-id">[{{node.pilotId}}]</span>
-            <div *ngIf="node.raceData" class="pilot-ancestry">{{getAncestryData()}}</div>
-            <div class="pilot-gender">{{node.pilotPublicData.gender}}</div>
-            <div class="pilot-lastlocation">{{getLastLocation()}}</div>
+    <div id="{{getUniqueId()}}" *ngIf="node" class="row">
+        <img class="neocom-icon" id="pilot-icon" style="width: 66px;" src="{{getPilotIcon()}}">
+        <div class="column" style="margin-left: 2px;">
+            <div class="row">
+                <div class="field">
+                    <span cy-field-label="pilotName" class="label invisible">NAME</span>
+                    <span cy-field-value="pilotName" class="pilot-name">{{node.name}}</span>
+                </div>
+                <div class="field">
+                    <span cy-field-label="pilotIdentifier" class="label invisible">IDENTIFIER</span>
+                    <span cy-field-value="pilotIdentifier" class="resource-name">[{{node.pilotId}}]</span>
+                </div>
+            </div>
+            <div class="field">
+                <span cy-field-label="pilotAncestry" class="label invisible">ANCESTRY</span>
+                <span cy-field-value="pilotAncestry" class="pilot-ancestry">{{getAncestryData()}}</span>
+            </div>
+            <div class="field">
+                <span cy-field-label="pilotGender" class="label invisible">GENDER</span>
+                <div cy-field-value="pilotGender" class="pilot-gender">{{node.gender}}</div>
+            </div>
+            <!-- <div class="field">
+                <span cy-field-label="pilotWalletBalance" class="label invisible">WALLET</span>
+                <div cy-field-label="pilotWalletBalance" class="pilot-lastlocation">{{getLastLocation()}}</div>
+            </div> -->
         </div>
     </div>
 </div>

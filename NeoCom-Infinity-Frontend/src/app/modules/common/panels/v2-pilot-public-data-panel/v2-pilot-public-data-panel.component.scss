@@ -1,3 +1,20 @@
-.panel-title {
-    // font-family: "Elemental";
+.loading-label {
+    // font-family: 'Elemental';
+    font-size: 13px;
+    font-weight: 600;
+    animation: color-change 2s infinite;
+    margin: 6px;
+    // margin-right: 4px;
+}
+
+@keyframes color-change {
+    0% {
+        color: orange;
+    }
+    50% {
+        color: blue;
+    }
+    100% {
+        color: orange;
+    }
 }
