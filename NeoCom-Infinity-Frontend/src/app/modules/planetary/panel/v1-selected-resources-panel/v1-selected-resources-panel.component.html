@@ -1,3 +1,4 @@
+<div class="button" (click)="clearSelection()">CLEAR SELECTION</div>
 <div class="panel-title">SELECTED RESOURCES</div>
 <div class="panel-title" style="color: lightblue">{{getSelectedResources().length}}</div>
 <div class="dropable-area" droppable [dropScope]="'RESOURCE'" [dragOverClass]="'drag-over'" [dragHintClass]=" 'drag-hint'" (onDrop)="onDrop($event)">
