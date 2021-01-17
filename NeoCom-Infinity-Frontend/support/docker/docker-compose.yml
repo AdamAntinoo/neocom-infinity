@@ -35,6 +35,6 @@ services:
       - NEOCOM_DATABASE_URL=jdbc:postgresql://backend-postgres-development:5432/postgres?user=neocom-user&password=neocom-password
       - DEFAULT_BACKEND_SERVER="http://localhost:"
       - NEOCOM_BANNER_LOCATION=./app-banner.txt
-      - PROPERTIES_DIRECTORY=/build/main/resources/properties-dev
-      - APPLICATION_DIRECTORY=./build/NeoCom.Infinity.Development
-      - SDE_DATABASE_PATH=/build/main/resources/sde.db
+      - PROPERTIES_DIRECTORY=/properties-dev
+      - APPLICATION_DIRECTORY=./NeoCom.Infinity.Development
+      - SDE_DATABASE_PATH=./sde.db
