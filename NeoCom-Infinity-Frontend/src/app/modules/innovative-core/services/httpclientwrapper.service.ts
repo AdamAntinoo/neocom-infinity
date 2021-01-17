@@ -63,15 +63,7 @@ export class HttpClientWrapperService {
      * @returns the new list of headers.
      */
     protected wrapHttpSecureHeaders(requestHeaders?: HttpHeaders): HttpHeaders {
-       if ( requestHeaders)  return requestHeaders
-       else return new HttpHeaders()
+        if (requestHeaders) return requestHeaders
+        else return new HttpHeaders()
     }
 }
-/*
-60008581,
-    60008494,
-    60008548,
-    60008506,
-    60008530,
-    60008545
-    */

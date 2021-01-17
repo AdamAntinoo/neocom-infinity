@@ -24,7 +24,7 @@ export class HALResolver {
      * Resolvs a Link reference. HAL links are URL strings that can be resolved with an HTTP GET. After resolution the returned data is transformed into an instance of the link type T and assigned internally to the HALLink so any next accesses will not use again the HTTP resolution but use the already available value.
      * @param link the link instance to be resolved. If already resolved then the methods exists with the data
      */
-    public resolve<T>(link: HALLink<T>): Observable<T> {
+    public resolve<T>(link: HALLink<T>): Observable<any> {
         if (link.isResolved()) {
             console.log('>[HALResolver.resolve]>Link already resolved')
             return new Observable<T>((observer) => {
@@ -36,18 +36,20 @@ export class HALResolver {
             // Add mandatory headers to access backend
             let newheaders = this.wrapHttpSecureHeaders()
             return this.httpClient.get(link.getHref(), { headers: newheaders })
-                .pipe(map(inputs => { return link.typeCast(inputs) }))
+            .pipe(map(inputs => {
+                return link.typeCast(inputs)
+            }))
         }
     }
     protected wrapHttpSecureHeaders(_requestHeaders?: HttpHeaders): HttpHeaders {
         let headers = new HttpHeaders()
-            .set('Content-Type', 'application/json charset=utf-8')
-            .set('xApp-Name', environment.appName)
-            .set('xApp-Version', environment.appVersion)
-            .set('xApp-Platform', environment.platform)
-            .set('xApp-Signature', 'S0000.0016.0001')
-            .set('xApp-Signature', 'S0000.0019.0001')
-            .set('xApp-Signature', 'S0000.0020.0001')
+        headers = headers.set('Content-Type', 'application/json charset=utf-8')
+        headers = headers.set('xApp-Name', environment.appName)
+        headers = headers.set('xApp-Version', environment.appVersion)
+        headers = headers.set('xApp-Platform', environment.platform)
+        headers = headers.set('xApp-Signature', 'S0000.0016.0001')
+        headers = headers .set('xApp-Signature', 'S0000.0019.0001')
+        headers = headers.set('xApp-Signature', 'S0000.0020.0001')
         if (null != _requestHeaders) { // Copy in additional headers.
             for (let key of _requestHeaders.keys()) {
                 headers = headers.set(key, _requestHeaders.get(key))
@@ -56,8 +58,8 @@ export class HALResolver {
         return headers
     }
 }
-export class HALConstructor {
-    public static create<T>(type: { new(values: Object): T }, values: any): T {
-        return new type(values)
-    }
-}
+// export class HALConstructor {
+//     public static create<T>(type: { new(values: Object): T }, values: any): T {
+//         return new type(values)
+//     }
+// }

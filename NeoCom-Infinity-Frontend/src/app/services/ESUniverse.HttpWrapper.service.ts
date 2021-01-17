@@ -17,9 +17,9 @@ export class ESIUniverseHttpWrapper extends HttpClientWrapperService {
      */
     protected wrapHttpSecureHeaders(requestHeaders?: HttpHeaders): HttpHeaders {
         let headers = super.wrapHttpSecureHeaders(requestHeaders)
-            .set('accept', 'application/json')
-            .set('Accept-Language', 'en-us')
-            .set('content-type', 'application/json; charset=UTF-8');
+        headers.set('accept', 'application/json')
+        headers = headers.set('Accept-Language', 'en-us')
+        headers = headers.set('content-type', 'application/json; charset=UTF-8');
         if (null != requestHeaders) { // Copy in additional headers.
             for (let key of requestHeaders.keys()) {
                 const headerValue: any = requestHeaders.get(key)
