@@ -8,7 +8,7 @@ import { AppStoreService } from '@app/services/appstore.service';
 import { BackendService } from '@app/services/backend.service';
 import { environment } from '@env/environment';
 import { ServerStatus } from '@app/domain/ServerStatus.domain';
-import { NeoComException } from '@app/platform/NeoComException';
+import { NeoComException } from '@innovative/domain/NeoComException';
 
 @Component({
     selector: 'exception-information-page',
