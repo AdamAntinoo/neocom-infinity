@@ -11,7 +11,7 @@ import { HttpHandler } from '@angular/common/http';
 import { HttpEvent } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
 // - DOMAIN
-import { NeoComException } from '@app/platform/NeoComException';
+import { NeoComException } from '@innovative/domain/NeoComException';
 import { AppStoreService } from '@app/services/appstore.service';
 
 @Injectable({
