@@ -1,5 +1,5 @@
 // - DOMAIN
-import { NeoComException } from './NeoComException';
+import { NeoComException } from '../modules/innovative-core/domain/NeoComException';
 
 export class ExceptionCatalog {
     static UNDEFINED_INSTANCE = new NeoComException(
