@@ -14,8 +14,8 @@ import org.springframework.http.ResponseEntity;
 
 import org.dimensinfin.eveonline.neocom.asset.domain.LocationAssetContainer;
 import org.dimensinfin.eveonline.neocom.domain.Corporation;
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComAuthorizationException;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComAuthorizationException;
 import org.dimensinfin.eveonline.neocom.infinity.corporation.domain.ShippingYardLocation;
 
 public class CorporationControllerV1Test {
@@ -23,12 +23,12 @@ public class CorporationControllerV1Test {
 	private static final int INVALID_CORPORATION_IDENTIFIER = -34;
 
 	// - COMPONENTS
-	private CorporationService corporationService;
+	private CorporationServiceV1 corporationServiceV1;
 	private NeoComAuthenticationProvider neoComAuthenticationProvider;
 
 	@BeforeEach
 	public void beforeEach() {
-		this.corporationService = Mockito.mock( CorporationService.class );
+		this.corporationServiceV1 = Mockito.mock( CorporationServiceV1.class );
 		this.neoComAuthenticationProvider = Mockito.mock( NeoComAuthenticationProvider.class );
 	}
 
@@ -39,9 +39,9 @@ public class CorporationControllerV1Test {
 		final ResponseEntity<List<LocationAssetContainer>> response = new ResponseEntity<>( locations, HttpStatus.OK );
 		// When
 		Mockito.when( this.neoComAuthenticationProvider.getAuthenticatedCorporation() ).thenReturn( TEST_CORPORATION_IDENTIFIER );
-		Mockito.when( this.corporationService.getCorporationAssetsByLocation( Mockito.anyInt() ) ).thenReturn( response );
+		Mockito.when( this.corporationServiceV1.getCorporationAssetsByLocation( Mockito.anyInt() ) ).thenReturn( response );
 		// Test
-		final CorporationControllerV1 corporationController = new CorporationControllerV1( this.corporationService,
+		final CorporationControllerV1 corporationController = new CorporationControllerV1( this.corporationServiceV1,
 				this.neoComAuthenticationProvider );
 		final ResponseEntity<List<LocationAssetContainer>> obtained = corporationController
 				.getCorporationAssetsByLocation( TEST_CORPORATION_IDENTIFIER );
@@ -56,7 +56,7 @@ public class CorporationControllerV1Test {
 		Mockito.when( this.neoComAuthenticationProvider.getAuthenticatedCorporation() ).thenReturn( 3221456 );
 		// Exceptions
 		Assertions.assertThrows( NeoComAuthorizationException.class, () -> {
-			final CorporationControllerV1 corporationController = new CorporationControllerV1( this.corporationService,
+			final CorporationControllerV1 corporationController = new CorporationControllerV1( this.corporationServiceV1,
 					this.neoComAuthenticationProvider );
 			final ResponseEntity<List<LocationAssetContainer>> obtained = corporationController
 					.getCorporationAssetsByLocation( TEST_CORPORATION_IDENTIFIER );
@@ -70,11 +70,11 @@ public class CorporationControllerV1Test {
 
 		// When
 		Mockito.when( this.neoComAuthenticationProvider.getAuthenticatedCorporation() ).thenReturn( TEST_CORPORATION_IDENTIFIER );
-		Mockito.when( this.corporationService.getCorporationData( Mockito.anyInt() ) )
+		Mockito.when( this.corporationServiceV1.getCorporationData( Mockito.anyInt() ) )
 				.thenReturn( new ResponseEntity<>( corporation, HttpStatus.OK ) );
 
 		// Test
-		final CorporationControllerV1 corporationController = new CorporationControllerV1( this.corporationService,
+		final CorporationControllerV1 corporationController = new CorporationControllerV1( this.corporationServiceV1,
 				this.neoComAuthenticationProvider );
 		Assertions.assertNotNull( corporationController );
 		final ResponseEntity<Corporation> obtained = corporationController.getCorporationData( corporationId );
@@ -93,7 +93,7 @@ public class CorporationControllerV1Test {
 		Mockito.when( this.neoComAuthenticationProvider.getAuthenticatedCorporation() ).thenReturn( INVALID_CORPORATION_IDENTIFIER );
 
 		// Test
-		final CorporationControllerV1 corporationController = new CorporationControllerV1( this.corporationService,
+		final CorporationControllerV1 corporationController = new CorporationControllerV1( this.corporationServiceV1,
 				this.neoComAuthenticationProvider );
 		Assertions.assertNotNull( corporationController );
 		Assertions.assertThrows( NeoComAuthorizationException.class, () -> {
@@ -109,11 +109,11 @@ public class CorporationControllerV1Test {
 
 		// When
 		Mockito.when( this.neoComAuthenticationProvider.getAuthenticatedCorporation() ).thenReturn( TEST_CORPORATION_IDENTIFIER );
-		Mockito.when( this.corporationService.getCorporationShippingYards( Mockito.anyInt() ) )
+		Mockito.when( this.corporationServiceV1.getCorporationShippingYards( Mockito.anyInt() ) )
 				.thenReturn( new ResponseEntity<>( new ArrayList<>(), HttpStatus.OK ) );
 
 		// Test
-		final CorporationControllerV1 corporationController = new CorporationControllerV1( this.corporationService,
+		final CorporationControllerV1 corporationController = new CorporationControllerV1( this.corporationServiceV1,
 				this.neoComAuthenticationProvider );
 		Assertions.assertNotNull( corporationController );
 		final ResponseEntity<List<ShippingYardLocation>> obtained = corporationController.getCorporationShippingYards( corporationId );
@@ -131,7 +131,7 @@ public class CorporationControllerV1Test {
 		Mockito.when( this.neoComAuthenticationProvider.getAuthenticatedCorporation() ).thenReturn( INVALID_CORPORATION_IDENTIFIER );
 
 		// Test
-		final CorporationControllerV1 corporationController = new CorporationControllerV1( this.corporationService,
+		final CorporationControllerV1 corporationController = new CorporationControllerV1( this.corporationServiceV1,
 				this.neoComAuthenticationProvider );
 		Assertions.assertNotNull( corporationController );
 		Assertions.assertThrows( NeoComAuthorizationException.class, () -> {

@@ -14,23 +14,24 @@ import org.springframework.web.bind.annotation.RestController;
 
 import org.dimensinfin.eveonline.neocom.asset.domain.LocationAssetContainer;
 import org.dimensinfin.eveonline.neocom.domain.Corporation;
-import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComController;
+import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.ErrorInfo;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComAuthorizationException;
-import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
+import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComController;
 import org.dimensinfin.eveonline.neocom.infinity.corporation.domain.ShippingYardLocation;
 
 @RestController
 @Validated
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/neocom")
 public class CorporationControllerV1 extends NeoComController {
-	private final CorporationService corporationService;
+	private final CorporationServiceV1 corporationServiceV1;
 	private final NeoComAuthenticationProvider neoComAuthenticationProvider;
 
+	// - C O N S T R U C T O R S
 	@Autowired
-	public CorporationControllerV1( final CorporationService corporationService,
+	public CorporationControllerV1( final CorporationServiceV1 corporationServiceV1,
 	                                final NeoComAuthenticationProvider neoComAuthenticationProvider ) {
-		this.corporationService = corporationService;
+		this.corporationServiceV1 = corporationServiceV1;
 		this.neoComAuthenticationProvider = neoComAuthenticationProvider;
 	}
 
@@ -54,7 +55,7 @@ public class CorporationControllerV1 extends NeoComController {
 		} catch (final IOException ioe) {
 			throw new NeoComAuthorizationException( ErrorInfo.CORPORATION_ID_NOT_AUTHORIZED );
 		}
-		return this.corporationService.getCorporationAssetsByLocation( corporationId );
+		return this.corporationServiceV1.getCorporationAssetsByLocation( corporationId );
 	}
 
 	/**
@@ -75,7 +76,7 @@ public class CorporationControllerV1 extends NeoComController {
 		} catch (final IOException ioe) {
 			throw new NeoComAuthorizationException( ErrorInfo.CORPORATION_ID_NOT_AUTHORIZED );
 		}
-		return this.corporationService.getCorporationData( corporationId );
+		return this.corporationServiceV1.getCorporationData( corporationId );
 	}
 
 	/**
@@ -96,6 +97,6 @@ public class CorporationControllerV1 extends NeoComController {
 		} catch (final IOException ioe) {
 			throw new NeoComAuthorizationException( ErrorInfo.CORPORATION_ID_NOT_AUTHORIZED );
 		}
-		return this.corporationService.getCorporationShippingYards( corporationId );
+		return this.corporationServiceV1.getCorporationShippingYards( corporationId );
 	}
 }

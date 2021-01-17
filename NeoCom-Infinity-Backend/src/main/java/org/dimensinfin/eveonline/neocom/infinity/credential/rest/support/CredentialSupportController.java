@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.infinity.support.client.CredentialCountResponse;
 
-@RestController
 @Profile("acceptance")
+@RestController
 @RequestMapping("/api/v1/neocom/support")
 public class CredentialSupportController {
 	private final CredentialSupportService credentialSupportService;
 
-// - C O N S T R U C T O R S
+	// - C O N S T R U C T O R S
 	@Autowired
 	public CredentialSupportController( final @NotNull CredentialSupportService credentialSupportService ) {
 		this.credentialSupportService = credentialSupportService;

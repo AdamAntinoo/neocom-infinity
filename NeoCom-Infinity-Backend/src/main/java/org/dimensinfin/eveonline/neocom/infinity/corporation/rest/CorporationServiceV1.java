@@ -34,7 +34,7 @@ import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;
 import org.dimensinfin.logging.LogWrapper;
 
 @Service
-public class CorporationService {
+public class CorporationServiceV1 {
 	private static final String SHIPPING_YARD_PREFIX = "ShipYard";
 	private final ESIDataService esiDataService;
 	private final PilotServiceV1 pilotServiceV1;
@@ -44,15 +44,15 @@ public class CorporationService {
 	private final CredentialDetailsService credentialDetailsService;
 	private final NeoComAuthenticationProvider neoComAuthenticationProvider;
 
-// - C O N S T R U C T O R S
+	// - C O N S T R U C T O R S
 	@Autowired
-	public CorporationService( @NotNull final ESIDataService esiDataService,
-	                           @NotNull final PilotServiceV1 pilotServiceV1,
-	                           @NotNull final AssetRepositoryWrapper assetRepositoryWrapper,
-	                           @NotNull final CredentialRepository credentialRepository,
-	                           @NotNull final LocationCatalogService locationCatalogService,
-	                           @NotNull final CredentialDetailsService credentialDetailsService,
-	                           @NotNull final NeoComAuthenticationProvider neoComAuthenticationProvider ) {
+	public CorporationServiceV1( @NotNull final ESIDataService esiDataService,
+	                             @NotNull final PilotServiceV1 pilotServiceV1,
+	                             @NotNull final AssetRepositoryWrapper assetRepositoryWrapper,
+	                             @NotNull final CredentialRepository credentialRepository,
+	                             @NotNull final LocationCatalogService locationCatalogService,
+	                             @NotNull final CredentialDetailsService credentialDetailsService,
+	                             @NotNull final NeoComAuthenticationProvider neoComAuthenticationProvider ) {
 		this.esiDataService = esiDataService;
 		this.pilotServiceV1 = pilotServiceV1;
 		this.assetRepository = assetRepositoryWrapper.getSingleton();
