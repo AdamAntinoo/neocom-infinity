@@ -24,7 +24,7 @@ import { Corporation } from '@app/domain/Corporation.domain';
 import { Pilot } from '@app/domain/Pilot.domain';
 import { Credential } from '@app/domain/Credential.domain';
 import { environment } from '@env/environment';
-import { NeoComException } from '@app/platform/NeoComException';
+import { NeoComException } from '@innovative/domain/NeoComException';
 import { ExceptionCatalog } from '@app/platform/ExceptionCatalog';
 
 describe('SERVICE AppStoreService [Module: CORE]', () => {

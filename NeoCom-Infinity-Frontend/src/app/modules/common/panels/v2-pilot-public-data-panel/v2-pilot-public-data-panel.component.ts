@@ -42,7 +42,7 @@ export class V2PilotPublicDataPanelComponent extends BackgroundEnabledComponent 
         this.transformer = new ResponseTransformer()
             .setDescription('Transform response and resolve any HAL links.')
             .setTransformation((entrydata: any) => {
-                return new PilotV2Dto(halResolver).transform(entrydata)
+                return new PilotV2Dto(entrydata).transform(halResolver)
             })
     }
 

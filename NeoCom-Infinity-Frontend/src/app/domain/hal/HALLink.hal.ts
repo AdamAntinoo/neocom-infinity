@@ -14,9 +14,15 @@ export class HALLink<T> {
     constructor(targetType: { new(values: Object): T }) {
         this.factory = targetType
     }
-
+    public setContents(contents: Object): HALLink<T> {
+        this.rel = contents['rel']
+        this.href = contents['href']
+        return this
+    }
     public typeCast(values: any): T {
-        return new this.factory(values)
+        this.target = new this.factory(values)
+        this.downloaded = true
+        return this.target
     }
     /**
  * @deprecated The method should not be used
@@ -57,8 +63,5 @@ export class HALLink<T> {
     }
     public getTarget(): T {
         return this.target
-    }
-    public create<T>(c: { new(): T }): T {
-        return new c();
     }
 }

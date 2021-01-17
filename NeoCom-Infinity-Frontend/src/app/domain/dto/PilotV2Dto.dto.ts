@@ -1,5 +1,6 @@
 // - SERVICES
 import { HALResolver } from "@app/services/HALResolver.service";
+import { map } from 'rxjs/operators'
 // - DOMAIN
 import { HALLink } from "@domain/hal/HALLink.hal";
 import { PilotV2 } from "@domain/character/PilotV2.domain";
@@ -24,7 +25,7 @@ export class PilotV2Dto {
     }
 
     public transform(halResolver: HALResolver): PilotV2 {
-        const pilot: PilotV2 = new PilotV2()
+        const pilot: PilotV2 = new PilotV2(this)
         pilot.pilotId = this.pilotId
         pilot.birthday = this.pilotPublicData['birthday']
         pilot.description = this.pilotPublicData['description']
@@ -33,10 +34,21 @@ export class PilotV2Dto {
         pilot.securityStatus = this.pilotPublicData['securityStatus']
         pilot.titles = this.pilotPublicData['titles']
         pilot.url4Icon = this.url4Icon
+        if (this.corporation) {
+            this.corporation = new HALLink<CorporationV1Dto>(CorporationV1Dto).setContents(this.corporation)
+            halResolver.resolve<CorporationV1Dto>(this.corporation)
+                // .pipe(map(inputs => {
+                //     return this.corporation.typeCast(inputs)
+                // }))
+                .subscribe((corporation: CorporationV1Dto) => {
+                    pilot.lastKnownLocation = corporation
+                })
+        }
         if (this.lastKnownLocation) {
-            halResolver.resolve<SpaceLocationV1>(this.corporation)
-                .subscribe((spaceLcoation: SpaceLocationV1) => {
-                    pilot.lastKnownLocation = spaceLcoation
+            this.lastKnownLocation = new HALLink<SpaceLocationV1>(SpaceLocationV1).setContents(this.lastKnownLocation)
+            halResolver.resolve<SpaceLocationV1>(this.lastKnownLocation)
+                .subscribe((spaceLocation: SpaceLocationV1) => {
+                    pilot.lastKnownLocation = spaceLocation
                 })
         }
         if (this.raceData) pilot.raceData = new UniverseRaceData(this.raceData)

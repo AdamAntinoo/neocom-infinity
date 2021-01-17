@@ -7,24 +7,36 @@ import { Input } from '@angular/core';
 import { RenderComponent } from '../../shared/renders/render/render.component';
 import { Pilot } from '@app/domain/Pilot.domain';
 import { PilotV2 } from '@domain/character/PilotV2.domain';
+import { platformConstants } from '@env/platform-constants';
 
 @Component({
     selector: 'v2-pilot',
     templateUrl: './v2-pilot-render.component.html',
     styleUrls: ['./v2-pilot-render.component.scss']
 })
-export class V2PilotRenderComponent implements OnInit {
+export class V2PilotRenderComponent {
     @Input() node: PilotV2
     @Input() variant: string
 
-    constructor() { }
-
-    ngOnInit(): void {
+    public getNode(): PilotV2 {
+        return this.node as PilotV2
+    }
+    public getUniqueId(): string {
+        if (this.node) return this.getNode().pilotId + ''
+        else return '-'
+    }
+    public getPilotIcon(): string {
+        if (this.node) return this.getNode().url4Icon
+        else return platformConstants.DEFAULT_AVATAR_PLACEHOLDER
     }
     public getAncestryData(): string {
-        return this.node.raceData[name] + ' - ' + this.node.ancestryData[name] + ' - ' + this.node.bloodlineData[name]
+        if (this.node)
+            return this.getNode().raceData.name + ' - ' +
+                this.getNode().ancestryData.name + ' - ' +
+                this.getNode().bloodlineData.name
+        else return '-'
     }
-    public getLastLocation():string{
+    public getLastLocation(): string {
         return this.node.getLastKnownLocation()
     }
     // public getPilotIcon () : string{

@@ -32,7 +32,7 @@ export class PilotV2 extends HALNode {
     constructor(values: Object = {}) {
         super()
         Object.assign(this, values)
-        // this.jsonClass = 'Pilot';
+        this.jsonClass = 'Pilot';
     }
 
     // - G E T T E R S

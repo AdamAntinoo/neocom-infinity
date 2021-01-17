@@ -139,7 +139,7 @@ export class DashboardHomePageComponent extends BackgroundEnabledComponent imple
     // }
     private getCredential(): NeoComCredential {
         const credentialJson = this.isolationService.getFromSession(environment.CREDENTIAL_KEY)
-        console.log('-[DashboardHomePageComponent.getCredential]> Credential data: ' + JSON.stringify(credentialJson))
+        // console.log('-[DashboardHomePageComponent.getCredential]> Credential data: ' + JSON.stringify(credentialJson))
         if (null == credentialJson)
             throw new NeoComException()
                 .withTitle('Rendering Dashboard Page. No Credential Found.')

@@ -15,7 +15,7 @@ import { V1FeatureButtonComponent } from './components/v1-feature-button/v1-feat
 @NgModule({
     imports: [
         CommonModule,
-        // RendersModule,
+        RendersModule,
         InnovativeCoreModule
     ],
     declarations: [
