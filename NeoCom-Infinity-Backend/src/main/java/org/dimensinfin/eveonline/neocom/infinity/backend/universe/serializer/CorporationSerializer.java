@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.core.serializer;
+package org.dimensinfin.eveonline.neocom.infinity.backend.universe.serializer;
 
 import java.io.IOException;
 

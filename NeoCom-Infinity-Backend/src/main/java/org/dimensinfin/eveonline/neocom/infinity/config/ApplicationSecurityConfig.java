@@ -12,26 +12,24 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetailsService;
 import org.dimensinfin.eveonline.neocom.infinity.config.filter.JWTAuthorizationFilter;
+import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetailsService;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
 
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.ACTUATORS_URL;
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.CREDENTIAL_SUPPORT_URL;
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.GET_ITEM;
-import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.ITEMSV1_URL;
-import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.ITEMSV2_URL;
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.LOGIN_VERIFICATION_URL;
+import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.PUBLIC_URL;
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.SERVER_STATUS_URL;
-import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.SPACELOCATIONS_URL;
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.STORE_CREDENTIAL_URL;
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.UNIVERSEV1_URL;
 
 @Configuration
 @EnableWebSecurity
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
-	private NeoComAuthenticationProvider neoComAuthenticationProvider;
-	private CredentialDetailsService credentialDetailsService;
+	private final NeoComAuthenticationProvider neoComAuthenticationProvider;
+	private final CredentialDetailsService credentialDetailsService;
 
 	// - C O N S T R U C T O R S
 	@Autowired
@@ -42,23 +40,21 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	@Override
-	public void configure( AuthenticationManagerBuilder auth ) throws Exception {
+	public void configure( final AuthenticationManagerBuilder auth ) throws Exception {
 		auth.authenticationProvider( this.neoComAuthenticationProvider );
 	}
 
 	@Override
-	protected void configure( HttpSecurity http ) throws Exception {
+	protected void configure( final HttpSecurity http ) throws Exception {
 		http.cors().and().csrf().disable().authorizeRequests()
 				.antMatchers(
 						ACTUATORS_URL,
-						LOGIN_VERIFICATION_URL, STORE_CREDENTIAL_URL, SERVER_STATUS_URL, CREDENTIAL_SUPPORT_URL,
-						ITEMSV1_URL, ITEMSV2_URL,
-						UNIVERSEV1_URL,
-						SPACELOCATIONS_URL,
+						LOGIN_VERIFICATION_URL, UNIVERSEV1_URL, PUBLIC_URL,
+						STORE_CREDENTIAL_URL, SERVER_STATUS_URL, CREDENTIAL_SUPPORT_URL,
 						GET_ITEM ).permitAll()
 				.anyRequest().authenticated()
 				.and()
-				.addFilter( new JWTAuthorizationFilter( authenticationManager() ) )
+				.addFilter( new JWTAuthorizationFilter( this.authenticationManager() ) )
 				// This disables session creation on Spring Security
 				.sessionManagement().sessionCreationPolicy( SessionCreationPolicy.STATELESS );
 	}
