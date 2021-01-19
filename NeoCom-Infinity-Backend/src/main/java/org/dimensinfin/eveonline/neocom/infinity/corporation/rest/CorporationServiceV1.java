@@ -3,6 +3,7 @@ package org.dimensinfin.eveonline.neocom.infinity.corporation.rest;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,8 @@ import org.dimensinfin.eveonline.neocom.domain.space.SpaceLocation;
 import org.dimensinfin.eveonline.neocom.domain.space.Station;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCorporationsCorporationIdOk;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.AssetRepositoryWrapper;
-import org.dimensinfin.eveonline.neocom.infinity.backend.character.pilot.rest.v1.PilotServiceV1;
+import org.dimensinfin.eveonline.neocom.infinity.backend.character.pilot.rest.v2.PilotServiceV2;
+import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.CorporationPublicDataV1;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetails;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetailsService;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
@@ -37,7 +39,7 @@ import org.dimensinfin.logging.LogWrapper;
 public class CorporationServiceV1 {
 	private static final String SHIPPING_YARD_PREFIX = "ShipYard";
 	private final ESIDataService esiDataService;
-	private final PilotServiceV1 pilotServiceV1;
+	private final PilotServiceV2 pilotServiceV2;
 	private final AssetRepository assetRepository;
 	private final CredentialRepository credentialRepository;
 	private final LocationCatalogService locationCatalogService;
@@ -47,14 +49,14 @@ public class CorporationServiceV1 {
 	// - C O N S T R U C T O R S
 	@Autowired
 	public CorporationServiceV1( @NotNull final ESIDataService esiDataService,
-	                             @NotNull final PilotServiceV1 pilotServiceV1,
+	                             @NotNull final PilotServiceV2 pilotServiceV2,
 	                             @NotNull final AssetRepositoryWrapper assetRepositoryWrapper,
 	                             @NotNull final CredentialRepository credentialRepository,
 	                             @NotNull final LocationCatalogService locationCatalogService,
 	                             @NotNull final CredentialDetailsService credentialDetailsService,
 	                             @NotNull final NeoComAuthenticationProvider neoComAuthenticationProvider ) {
 		this.esiDataService = esiDataService;
-		this.pilotServiceV1 = pilotServiceV1;
+		this.pilotServiceV2 = pilotServiceV2;
 		this.assetRepository = assetRepositoryWrapper.getSingleton();
 		this.credentialRepository = credentialRepository;
 		this.locationCatalogService = locationCatalogService;
@@ -86,6 +88,25 @@ public class CorporationServiceV1 {
 		if (null == corporationData)
 			throw new NeoComNotFoundException( ErrorInfo.TARGET_NOT_FOUND, "Pilot", Integer.toString( corporationId ) );
 		return new ResponseEntity<>( this.obtainCorporationData( corporationId ), HttpStatus.OK );
+	}
+
+	/**
+	 * Gets the NeoCom adaptation for a Corporation public data that is accessible from the ESI server without authentication.
+	 *
+	 * @param corporationId the selected corporation unique identifier.
+	 */
+	public CorporationPublicDataV1 getCorporationPublicData( final Integer corporationId ) {
+		final GetCorporationsCorporationIdOk corporationData = this.esiDataService.getCorporationsCorporationId( corporationId );
+		// Access the rest of the corporation's esi data from the service.
+		return new CorporationPublicDataV1.Builder()
+				.withCorporationId( corporationId )
+				.withCorporationPublicData(
+						Objects.requireNonNull( corporationData )
+				)
+				.withCeoPilotData( this.pilotServiceV2.getPilotPublicData(
+						Objects.requireNonNull( corporationData ).getCeoId() )
+				)
+				.build();
 	}
 
 	public ResponseEntity<List<ShippingYardLocation>> getCorporationShippingYards( final Integer corporationId ) {
@@ -149,7 +170,7 @@ public class CorporationServiceV1 {
 		final Corporation.Builder corporationBuilder = new Corporation.Builder()
 				.withCorporationId( corporationId )
 				.withCorporationPublicData( corporationData )
-				.withCeoPilotData( this.pilotServiceV1.buildPilotData( corporationData.getCeoId() ) );
+				.withCeoPilotData( this.pilotServiceV2.buildPilotData( corporationData.getCeoId() ) );
 		if (null != corporationData.getAllianceId())
 			return corporationBuilder.optionslAlliance(
 					this.esiDataService.getAlliancesAllianceId( corporationData.getAllianceId() ) )
