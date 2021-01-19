@@ -31,7 +31,7 @@ public class PublicCharacterControllerV1 {
 	@GetMapping(path = "/pilots/{pilotId}",
 			consumes = "application/json",
 			produces = "application/json")
-	public ResponseEntity<PilotPublicDataV1> getPilotPublicData( @PathVariable final Integer pilotId ) {
+	public ResponseEntity<PilotPublicDataV1> getPilotPublicData( @PathVariable @NotNull final Integer pilotId ) {
 		return new ResponseEntity<>( this.pilotServiceV2.getPilotPublicData( pilotId ), HttpStatus.OK );
 	}
 }

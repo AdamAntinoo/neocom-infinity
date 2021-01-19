@@ -1,0 +1,22 @@
+{
+    "jsonClass": "CorporationPublicDataV1",
+    "corporationId": 98661092,
+    "name": "Helgast Shadow Fall",
+    "ceo": {
+        "rel": "ceo",
+        "href": "http://localhost:5240/api/v1/public/pilots/2117623684"
+    },
+    "creatorId": 2117623684,
+    "factionId": 500003,
+    "dateFounded": "2020-10-19T03:31:55.000Z",
+    "description": "<font size=\"14\" color=\"#b3ffffff\"></font><font size=\"13\" color=\"#b3ffffff\">SÃ³lo aquellos que son aptos para vivir no tienen miedo de morir. <br><br>No temas a donde vayas que haz de morir donde debes.<br><br>En ausencia de Ã³rdenes, encuentra algo y mÃ¡talo.<br><br></font><font size=\"13\" color=\"#ffff0000\">Cual es su deber ? <br>Servir la voluntad de  </font><font size=\"13\" color=\"#ffd98d00\"><a href=\"showinfo:1385//96859565\">Rei Arzi</a></font><font size=\"13\" color=\"#ffff0000\">.<br>Cual es la voluntad de </font><font size=\"13\" color=\"#ffd98d00\"><a href=\"showinfo:1385//96859565\">Rei Arzi</a></font><font size=\"13\" color=\"#ffff0000\"> ?<br>Dejame pelear y morir.<br>Que es la muerte?<br>Es nuestro deber <br><br>What is your duty?<br>To serve the </font><font size=\"13\" color=\"#ffd98d00\"><a href=\"showinfo:1385//96859565\">Rei Arzi</a></font><font size=\"13\" color=\"#ffff0000\">will.<br>What is </font><font size=\"13\" color=\"#ffd98d00\"><a href=\"showinfo:1385//96859565\">Rei Arzi</a></font><font size=\"13\" color=\"#ffff0000\">   will?<br>That we fight and die.<br>What is death?<br>It is our duty.</font>",
+    "homeStation": {
+        "rel": "homeStation",
+        "href": "http://localhost:5240/api/v1/universe/spacelocations/60015060"
+    },
+    "memberCount": 132,
+    "shares": 1000,
+    "taxRate": 0.0,
+    "ticker": "HG-SF",
+    "url4Icon": "http://image.eveonline.com/Corporation/98661092_64.png"
+}
