@@ -6,7 +6,7 @@ downloadFiles() {
   cd "${WORKING_DIRECTORY}/downloads" || exit 1
   rm *.*
   allFiles=("mapRegions" "mapConstellations" "mapSolarSystems" "staStationTypes" "planetSchematicsPinMap" "planetSchematicsTypeMap" "invTypes"
-  "industryActivityMaterials" "industryActivitySkills" "industryActivityProducts")
+    "industryActivityMaterials" "industryActivitySkills" "industryActivityProducts")
 
   for file in ${allFiles[@]}; do
     curl -L -o "$file.csv.bz2" "https://www.fuzzwork.co.uk/dump/latest/$file.csv.bz2"
@@ -20,7 +20,6 @@ decompress() {
 figlet UpdateSDE
 echo "> Database source files update started."
 echo ">> Download latest set of files..."
-rm -rf *.csv
 downloadFiles
 echo ">> Decompressing downloaded files..."
 decompress
