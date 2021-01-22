@@ -9,9 +9,9 @@ import org.springframework.boot.jackson.JsonComponent;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 
-import org.dimensinfin.eveonline.neocom.core.EveGlobalConstants;
 import org.dimensinfin.eveonline.neocom.domain.Resource;
 import org.dimensinfin.eveonline.neocom.infinity.backend.universe.market.rest.v1.UniverseMarketControllerV1;
+import org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants;
 
 @JsonComponent
 public class ResourceSerializer extends JsonSerializer<Resource> {
@@ -29,7 +29,7 @@ public class ResourceSerializer extends JsonSerializer<Resource> {
 		jgen.writeObjectField( "type", value.getType() );
 		jgen.writeStringField( "tech", value.getTech() );
 		jgen.writeNumberField( "volume", value.getType().getVolume() );
-		jgen.writeBooleanField( "isBlueprint", value.getCategoryName().equalsIgnoreCase( EveGlobalConstants.Blueprint ) );
+		jgen.writeBooleanField( "isBlueprint", value.getCategoryName().equalsIgnoreCase( GlobalWideConstants.EveGlobal.BLUEPRINT ) );
 		jgen.writeStringField( "typeIconURL", value.getTypeIconURL() );
 
 		// Additional HAL fields for market data.

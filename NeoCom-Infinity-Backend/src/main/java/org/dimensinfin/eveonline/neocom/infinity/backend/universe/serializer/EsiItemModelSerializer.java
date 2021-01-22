@@ -7,8 +7,8 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import org.springframework.boot.jackson.JsonComponent;
 
-import org.dimensinfin.eveonline.neocom.core.EveGlobalConstants;
 import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.EsiItemModel;
+import org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants;
 
 @JsonComponent
 public class EsiItemModelSerializer extends JsonSerializer<EsiItemModel> {
@@ -24,7 +24,7 @@ public class EsiItemModelSerializer extends JsonSerializer<EsiItemModel> {
 		jgen.writeObjectField( "item", value.getItem() );
 		jgen.writeStringField( "tech", "Tech I" );
 		jgen.writeNumberField( "volume", value.getItem().getVolume() );
-		jgen.writeBooleanField( "isBlueprint", value.getCategoryName().equalsIgnoreCase( EveGlobalConstants.Blueprint ) );
+		jgen.writeBooleanField( "isBlueprint", value.getCategoryName().equalsIgnoreCase( GlobalWideConstants.EveGlobal.BLUEPRINT ) );
 		jgen.writeStringField( "urlforItem", value.getURLForItem() );
 
 		jgen.writeEndObject();
