@@ -19,6 +19,7 @@ import { IRefreshable } from '@innovative/domain/interfaces/IRefreshable.interfa
 import { NeoComException } from '@innovative/domain/NeoComException';
 import { ErrorToNeoComExceptionConverter } from '@innovative/domain/converters/ErrorToNeoComException.converter';
 import { PilotV2Dto } from '@domain/dto/PilotV2Dto.dto';
+import { PublicPilotV1 } from '@domain/character/PublicPilotV1.domain';
 
 /**
  * Get the current plot identifier from the authentication token. With this identifier go to the backend and download a fresh instance of the public pilot data. Once we have the data we can then render it with the Dashboard requirements.
@@ -77,7 +78,7 @@ export class V2PilotPublicDataPanelComponent extends BackgroundEnabledComponent 
         if (this.identifier)
             this.backendConnections.push(
                 this.backendService.apiv2_GetPilotPublicData(this.identifier, this.transformer)
-                    .subscribe((response: PilotV2) => {
+                    .subscribe((response: PublicPilotV1) => {
                         this.pilot = response
                     }, (error) => {
                         console.log('-[PilotPublicDataPavelV2Component.downloadPilotPublicData.exception]> Error message: ' +

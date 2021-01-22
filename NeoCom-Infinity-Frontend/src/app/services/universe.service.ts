@@ -3,19 +3,9 @@ import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 import { environment } from '@env/environment'
-// - HTTP PACKAGE
-import { HttpClient } from '@angular/common/http'
-import { HttpErrorResponse } from '@angular/common/http'
-import { HttpHeaders } from '@angular/common/http'
 // - SERVICES
 import { UniverseHttpWrapper } from './universe.httpwrapper'
 // - DOMAIN
-import { ValidateAuthorizationTokenResponse } from '@app/domain/dto/ValidateAuthorizationTokenResponse'
-import { Pilot } from '@app/domain/Pilot.domain'
-import { Corporation } from '@app/domain/Corporation.domain'
-import { ServerStatus } from '@app/domain/ServerStatus.domain'
-import { Fitting } from '@app/domain/Fitting.domain'
-import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer'
 import { EsiType } from '@domain/esi/EsiType.esi'
 import { platformConstants } from '@env/platform-constants'
 
