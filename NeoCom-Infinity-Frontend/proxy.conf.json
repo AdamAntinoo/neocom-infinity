@@ -6,6 +6,13 @@
         "timeout": 30000,
         "changeOrigin": true
     },
+    "/api/v1/public/*": {
+        "target": "http://localhost:5220",
+        "secure": false,
+        "logLevel": "debug",
+        "timeout": 30000,
+        "changeOrigin": true
+    },
     "/api/v2/universe/*": {
         "target": "http://localhost:5211",
         "secure": false,
