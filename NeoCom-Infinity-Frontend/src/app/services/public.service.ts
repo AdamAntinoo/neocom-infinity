@@ -9,6 +9,8 @@ import { UniverseHttpWrapper } from './universe.httpwrapper'
 import { UniverseService } from './universe.service'
 import { PublicCorporationV1 } from '@domain/corporation/PublicCorporationV1.domain'
 import { PublicPilotV1 } from '@domain/character/PublicPilotV1.domain'
+import { PublicPilotV1Dto } from '@domain/dto/PublicPilotV1.dto'
+import { HALResolver } from './HALResolver.service'
 
 @Injectable({
     providedIn: 'root'
@@ -16,9 +18,11 @@ import { PublicPilotV1 } from '@domain/character/PublicPilotV1.domain'
 export class PublicService extends UniverseService {
     protected PUBLICV1: string
 
-    constructor(protected httpUniverseService: UniverseHttpWrapper) {
+    constructor(
+        protected httpUniverseService: UniverseHttpWrapper,
+        protected halResolver: HALResolver) {
         super(httpUniverseService)
-        this.PUBLICV1 = environment.serverName + environment.apiVersion1 + '/public'
+        this.PUBLICV1 = environment.serverName + '/api/v1' + '/public'
     }
 
     // - U N I V E R S E   A P I
@@ -26,7 +30,7 @@ export class PublicService extends UniverseService {
         const request = this.PUBLICV1 + '/pilots/' + pilotId
         return this.httpUniverseService.wrapHttpGETCall(request)
             .pipe(map((data: any) => {
-                return new PublicPilotV1(data)
+                return new PublicPilotV1Dto(data).transform(this.halResolver)
             }))
     }
     public apiv1_GetPublicCorporationData(coporationId: number): Observable<PublicCorporationV1> {

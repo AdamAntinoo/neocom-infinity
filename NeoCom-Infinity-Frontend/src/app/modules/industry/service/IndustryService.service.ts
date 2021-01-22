@@ -21,6 +21,7 @@ import { Fitting } from '@app/domain/Fitting.domain'
 import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer'
 import { ProcessedBlueprint } from '../domain/V1ProcessedBlueprint.domain'
 import { UniverseService } from '@app/services/universe.service'
+import { HALResolver } from '@app/services/HALResolver.service'
 
 @Injectable({
     providedIn: 'root'
@@ -28,9 +29,10 @@ import { UniverseService } from '@app/services/universe.service'
 export class IndustryService extends BackendService {
     constructor(
         protected httpUniverseService: UniverseHttpWrapper,
+        protected halResolver: HALResolver,
         protected httpService: BackendHttpWrapper,
         protected isolation: IsolationService) {
-        super(httpUniverseService, httpService, isolation)
+        super(httpUniverseService, halResolver, httpService, isolation)
     }
     // - I N D U S T R Y   A P I
     public apiv1_GetProcessedBlueprints(transformer: ResponseTransformer): Observable<ProcessedBlueprint[]> {

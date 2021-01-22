@@ -32,19 +32,18 @@ import { PublicPilotV1 } from '@domain/character/PublicPilotV1.domain';
 export class V2PilotPublicDataPanelComponent extends BackgroundEnabledComponent implements OnInit, IRefreshable {
     @Input() variant: string = NCVariant.DEFAULT
     @Input() identifier: number
-    public pilot: PilotV2
-    private transformer: ResponseTransformer
+    public pilot: PublicPilotV1
+    // private transformer: ResponseTransformer
 
     constructor(
         protected isolationService: IsolationService,
-        protected backendService: BackendService,
-        protected halResolver: HALResolver) {
+        protected backendService: BackendService) {
         super()
-        this.transformer = new ResponseTransformer()
-            .setDescription('Transform response and resolve any HAL links.')
-            .setTransformation((entrydata: any) => {
-                return new PilotV2Dto(entrydata).transform(halResolver)
-            })
+        // this.transformer = new ResponseTransformer()
+        //     .setDescription('Transform response and resolve any HAL links.')
+        //     .setTransformation((entrydata: any) => {
+        //         return new PilotV2Dto(entrydata).transform(halResolver)
+        //     })
     }
 
     public ngOnInit(): void {
@@ -77,7 +76,7 @@ export class V2PilotPublicDataPanelComponent extends BackgroundEnabledComponent 
         console.log(">[PilotPublicDataPavelV2Component.downloadPilotPublicData]")
         if (this.identifier)
             this.backendConnections.push(
-                this.backendService.apiv2_GetPilotPublicData(this.identifier, this.transformer)
+                this.backendService.apiv1_GetPublicPilotData(this.identifier)
                     .subscribe((response: PublicPilotV1) => {
                         this.pilot = response
                     }, (error) => {

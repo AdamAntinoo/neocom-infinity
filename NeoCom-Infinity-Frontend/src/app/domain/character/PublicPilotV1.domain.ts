@@ -24,9 +24,7 @@ export class PublicPilotV1 extends NeoComDelayed {
     public description:string
     public gender:string
     public securityStatus:number
-    // public titles:string[]
     public url4Icon: string
-    // public lastKnownLocation: SpaceLocationV1
     public raceData: UniverseRaceData
     public ancestryData: UniverseAncestryData
     public bloodlineData: UniverseBloodlineData
@@ -34,7 +32,7 @@ export class PublicPilotV1 extends NeoComDelayed {
     constructor(values: Object = {}) {
         super()
         Object.assign(this, values)
-        this.jsonClass = 'Pilot';
+        this.jsonClass = 'PublicPilotV1';
     }
 
     // - G E T T E R S
@@ -49,41 +47,4 @@ export class PublicPilotV1 extends NeoComDelayed {
         if (null == this.url4Icon) return platformConstants.DEFAULT_AVATAR_PLACEHOLDER;
         else return this.url4Icon;
     }
-    // public getLastKnownLocation(): string {
-    //     if (null == this.lastKnownLocation) return '&gt;&gt;&gt; Last Location undefined'
-    //     else {
-    //         return 'pending baclend access'
-    //     }
-    // }
-
-    // // - H A L
-    // public async getCorporation(): Promise<any> {
-    //     if (undefined == this.corporation.href)
-    //         return await new Observable(subscriber => {
-    //             subscriber.next(this.corporation)
-    //             subscriber.complete();
-    //         }).toPromise()
-    //     else {
-    //         return await new Observable(subscriber => {
-    //             this.resolve(this.corporation.href)
-    //                 .pipe(map((data: any): Corporation => {
-    //                     // console.log(">[HALResolver.resolve]> Transformation: " + transformer.description)
-    //                     const response = new Corporation(data)
-    //                     return response
-    //                 }))
-    //                 .subscribe((entrydata: Corporation): void => {
-    //                     this.corporation = entrydata
-    //                     subscriber.next(this.corporation)
-    //                     subscriber.complete();
-    //                     // this.corpObservable.
-    //                     // return this.corporation
-    //                 })
-    //         }).toPromise()
-    //         // this.corpObservable = new Observable(subscriber => {
-    //         //     // subscriber.next(this.corporation)
-    //         //     // subscriber.complete();
-    //         // })
-    //         // return this.corpObservable
-    //     }
-    // }
 }
