@@ -9,7 +9,7 @@ import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterI
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseAncestries200Ok;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseBloodlines200Ok;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseRaces200Ok;
-import org.dimensinfin.eveonline.neocom.infinity.pilot.rest.representation.PilotModel;
+import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.PilotV1;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 import org.dimensinfin.eveonline.neocom.provider.ESIUniverseDataProvider;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
@@ -17,7 +17,7 @@ import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 import static org.dimensinfin.eveonline.neocom.infinity.backend.support.TestDataConstants.PilotConstants.TEST_PILOT_CORPORATION_ID;
 import static org.dimensinfin.eveonline.neocom.infinity.backend.support.TestDataConstants.PilotConstants.TEST_PILOT_ID;
 
-public class EsiPilotDataToPilotModelConverterTest {
+public class EsiPilotDataToPilotV1ConverterTest {
 
 	private IConfigurationService configurationService;
 	//	private ESIDataProviderWrapper esiDataProviderWrapper;
@@ -49,8 +49,8 @@ public class EsiPilotDataToPilotModelConverterTest {
 		Mockito.when( this.esiUniverseDataProvider.searchSDEAncestry( Mockito.anyInt() ) ).thenReturn( ancestryData );
 		Mockito.when( this.esiUniverseDataProvider.searchSDEBloodline( Mockito.anyInt() ) ).thenReturn( bloodLineData );
 		// Test
-		final PilotModel obtained = esiPilotDataToPilotModelConverter.convert( esiCharacterData );
+		final PilotV1 obtained = esiPilotDataToPilotModelConverter.convert( esiCharacterData );
 		// Assertions
-		Assertions.assertEquals( pilotId, obtained.getPilotId());
+		Assertions.assertEquals( pilotId, obtained.getPilotId() );
 	}
 }

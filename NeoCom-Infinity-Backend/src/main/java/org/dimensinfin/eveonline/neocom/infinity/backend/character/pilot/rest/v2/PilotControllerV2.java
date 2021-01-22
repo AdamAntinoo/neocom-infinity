@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComAuthenticatedController;
+import org.dimensinfin.eveonline.neocom.domain.PilotV1;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
-import org.dimensinfin.eveonline.neocom.infinity.pilot.rest.representation.PilotModel;
+import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComAuthenticatedController;
 
 @RestController
 @Validated
@@ -24,8 +24,8 @@ public class PilotControllerV2 extends NeoComAuthenticatedController {
 
 	// - C O N S T R U C T O R S
 	@Autowired
-	public PilotControllerV2( final @NotNull NeoComAuthenticationProvider neoComAuthenticationProvider,
-	                          final @NotNull PilotServiceV2 pilotServiceV2 ) {
+	public PilotControllerV2( @NotNull final NeoComAuthenticationProvider neoComAuthenticationProvider,
+	                          @NotNull final PilotServiceV2 pilotServiceV2 ) {
 		super( neoComAuthenticationProvider );
 		this.pilotServiceV2 = pilotServiceV2;
 	}
@@ -33,7 +33,7 @@ public class PilotControllerV2 extends NeoComAuthenticatedController {
 	@GetMapping(path = "/pilots/{pilotId}",
 			consumes = "application/json",
 			produces = "application/hal+json")
-	public ResponseEntity<PilotModel> getPilotData( @Valid @PathVariable final Integer pilotId ) {
+	public ResponseEntity<PilotV1> getPilotData( @Valid @PathVariable @NotNull final Integer pilotId ) {
 		this.validateAuthorizedPilot( pilotId );
 		return new ResponseEntity<>( this.pilotServiceV2.getPilotData( pilotId ), HttpStatus.OK );
 	}

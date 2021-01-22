@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.dimensinfin.eveonline.neocom.domain.PublicPilotV1;
 import org.dimensinfin.eveonline.neocom.infinity.backend.character.pilot.rest.v2.PilotServiceV2;
-import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.PilotPublicDataV1;
 
 /**
  * @author Adam Antinoo (adamantinoo.git@gmail.com)
@@ -31,7 +31,7 @@ public class PublicCharacterControllerV1 {
 	@GetMapping(path = "/pilots/{pilotId}",
 			consumes = "application/json",
 			produces = "application/json")
-	public ResponseEntity<PilotPublicDataV1> getPilotPublicData( @PathVariable @NotNull final Integer pilotId ) {
+	public ResponseEntity<PublicPilotV1> getPilotPublicData( @PathVariable @NotNull final Integer pilotId ) {
 		return new ResponseEntity<>( this.pilotServiceV2.getPilotPublicData( pilotId ), HttpStatus.OK );
 	}
 }
