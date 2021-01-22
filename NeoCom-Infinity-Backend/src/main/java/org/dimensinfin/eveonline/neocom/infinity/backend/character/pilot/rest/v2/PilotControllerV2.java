@@ -35,6 +35,6 @@ public class PilotControllerV2 extends NeoComAuthenticatedController {
 			produces = "application/hal+json")
 	public ResponseEntity<PilotV1> getPilotData( @Valid @PathVariable @NotNull final Integer pilotId ) {
 		this.validateAuthorizedPilot( pilotId );
-		return new ResponseEntity<>( this.pilotServiceV2.getPilotData( pilotId ), HttpStatus.OK );
+		return new ResponseEntity<>( this.pilotServiceV2.getAuthenticatedPilotData( pilotId ), HttpStatus.OK );
 	}
 }

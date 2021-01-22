@@ -23,7 +23,6 @@ import org.dimensinfin.eveonline.neocom.domain.PublicCorporationV1;
 import org.dimensinfin.eveonline.neocom.domain.space.SpaceLocation;
 import org.dimensinfin.eveonline.neocom.domain.space.Station;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCorporationsCorporationIdOk;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.AssetRepositoryWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.backend.character.pilot.rest.v2.PilotServiceV2;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetails;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetailsService;
@@ -50,14 +49,14 @@ public class CorporationServiceV1 {
 	@Autowired
 	public CorporationServiceV1( @NotNull final ESIDataService esiDataService,
 	                             @NotNull final PilotServiceV2 pilotServiceV2,
-	                             @NotNull final AssetRepositoryWrapper assetRepositoryWrapper,
+	                             @NotNull final AssetRepository assetRepository,
 	                             @NotNull final CredentialRepository credentialRepository,
 	                             @NotNull final LocationCatalogService locationCatalogService,
 	                             @NotNull final CredentialDetailsService credentialDetailsService,
 	                             @NotNull final NeoComAuthenticationProvider neoComAuthenticationProvider ) {
 		this.esiDataService = esiDataService;
 		this.pilotServiceV2 = pilotServiceV2;
-		this.assetRepository = assetRepositoryWrapper.getSingleton();
+		this.assetRepository = assetRepository;
 		this.credentialRepository = credentialRepository;
 		this.locationCatalogService = locationCatalogService;
 		this.credentialDetailsService = credentialDetailsService;
@@ -169,8 +168,8 @@ public class CorporationServiceV1 {
 		// Access the rest of the corporation's esi data from the service.
 		final Corporation.Builder corporationBuilder = new Corporation.Builder()
 				.withCorporationId( corporationId )
-				.withCorporationPublicData( corporationData )
-				.withCeoPilotData( this.pilotServiceV2.buildPilotData( corporationData.getCeoId() ) );
+				.withCorporationPublicData( corporationData );
+		//				.withCeoPilotData( this.pilotServiceV2.getAuthenticatedPilotData( corporationData.getCeoId() ) );
 		if (null != corporationData.getAllianceId())
 			return corporationBuilder.optionslAlliance(
 					this.esiDataService.getAlliancesAllianceId( corporationData.getAllianceId() ) )
