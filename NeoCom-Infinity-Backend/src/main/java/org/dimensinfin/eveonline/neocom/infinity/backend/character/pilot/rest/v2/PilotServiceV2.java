@@ -3,6 +3,7 @@ package org.dimensinfin.eveonline.neocom.infinity.backend.character.pilot.rest.v
 import java.util.Objects;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +35,7 @@ public class PilotServiceV2 extends NeoComCredentialService {
 	private final ResourceFactory resourceFactory;
 
 	// - C O N S T R U C T O R S
+	@Autowired
 	public PilotServiceV2( @NotNull final NeoComAuthenticationProvider neoComAuthenticationProvider,
 	                       @NotNull final CredentialDetailsService credentialDetailsService,
 	                       @NotNull final IConfigurationService configurationService,

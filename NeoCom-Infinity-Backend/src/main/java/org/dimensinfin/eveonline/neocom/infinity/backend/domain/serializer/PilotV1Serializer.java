@@ -5,6 +5,7 @@ import java.io.IOException;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
+import org.springframework.boot.jackson.JsonComponent;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 
@@ -15,6 +16,7 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.universe.corporation.re
  * @author Adam Antinoo (adamantinoo.git@gmail.com)
  * @since 0.20.0
  */
+@JsonComponent
 public class PilotV1Serializer extends JsonSerializer<PilotV1> {
 	@Override
 	public void serialize( final PilotV1 value, final JsonGenerator jgen, final SerializerProvider provider )
@@ -42,6 +44,7 @@ public class PilotV1Serializer extends JsonSerializer<PilotV1> {
 		jgen.writeNumberField( "walletBalance", value.getWalletBalance() );
 		jgen.writeStringField( "currentShipName", value.getCurrentShip().getShipName() );
 		jgen.writeStringField( "currentShipTypeName", value.getCurrentShipType().getName() );
+		jgen.writeObjectField( "lastKnownLocation", value.getLastKnownLocation() );
 
 		jgen.writeEndObject();
 	}
