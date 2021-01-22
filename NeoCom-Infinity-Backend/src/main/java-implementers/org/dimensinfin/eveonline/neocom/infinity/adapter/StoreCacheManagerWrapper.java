@@ -9,24 +9,24 @@ import org.springframework.stereotype.Component;
 import org.dimensinfin.eveonline.neocom.adapter.StoreCacheManager;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 import org.dimensinfin.eveonline.neocom.provider.IFileSystem;
-import org.dimensinfin.eveonline.neocom.provider.RetrofitFactory;
+import org.dimensinfin.eveonline.neocom.service.RetrofitService;
 
 @Deprecated
 @Component
 public class StoreCacheManagerWrapper {
 	private final IConfigurationService configurationService;
 	private final IFileSystem fileSystemAdapter;
-	private final RetrofitFactory retrofitFactory;
+	private final RetrofitService retrofitService;
 	private StoreCacheManager singleton;
 
 	// - C O N S T R U C T O R S
 	@Autowired
 	public StoreCacheManagerWrapper( final IConfigurationService configurationService,
 	                                 final IFileSystem fileSystemAdapter,
-	                                 final RetrofitFactory retrofitFactory ) {
+	                                 final RetrofitService retrofitService ) {
 		this.configurationService = configurationService;
 		this.fileSystemAdapter = fileSystemAdapter;
-		this.retrofitFactory = retrofitFactory;
+		this.retrofitService = retrofitService;
 	}
 
 	// - G E T T E R S   &   S E T T E R S
@@ -39,7 +39,7 @@ public class StoreCacheManagerWrapper {
 		this.singleton = new StoreCacheManager.Builder()
 				.withConfigurationProvider( this.configurationService )
 				.withFileSystemAdapter( this.fileSystemAdapter )
-				.withRetrofitFactory( this.retrofitFactory )
+				.withRetrofitFactory( this.retrofitService )
 				.build();
 	}
 }

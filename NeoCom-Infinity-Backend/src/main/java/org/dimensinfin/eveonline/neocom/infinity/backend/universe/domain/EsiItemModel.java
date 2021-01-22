@@ -5,10 +5,10 @@ import java.util.Objects;
 
 import org.springframework.hateoas.RepresentationModel;
 
-import org.dimensinfin.eveonline.neocom.core.EveGlobalConstants;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseCategoriesCategoryIdOk;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseGroupsGroupIdOk;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseTypesTypeIdOk;
+import org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants;
 
 @Deprecated
 public class EsiItemModel extends RepresentationModel<EsiItemModel> implements Serializable {
@@ -113,13 +113,13 @@ public class EsiItemModel extends RepresentationModel<EsiItemModel> implements S
 		if (this.getCategoryName().equalsIgnoreCase( "Commodity" )) {
 			this.industryGroup = IndustryGroup.COMMODITY;
 		}
-		if (this.getCategoryName().equalsIgnoreCase( EveGlobalConstants.Blueprint )) {
+		if (this.getCategoryName().equalsIgnoreCase( GlobalWideConstants.EveGlobal.BLUEPRINT )) {
 			this.industryGroup = IndustryGroup.BLUEPRINT;
 		}
-		if (this.getCategoryName().equalsIgnoreCase( EveGlobalConstants.Skill )) {
+		if (this.getCategoryName().equalsIgnoreCase( GlobalWideConstants.EveGlobal.SKILL )) {
 			this.industryGroup = IndustryGroup.SKILL;
 		}
-		if (this.getGroupName().equalsIgnoreCase( EveGlobalConstants.Mineral )) {
+		if (this.getGroupName().equalsIgnoreCase( GlobalWideConstants.EveGlobal.MINERAL )) {
 			this.industryGroup = IndustryGroup.REFINEDMATERIAL;
 		}
 		if (this.getCategoryName().equalsIgnoreCase( "Module" )) {
