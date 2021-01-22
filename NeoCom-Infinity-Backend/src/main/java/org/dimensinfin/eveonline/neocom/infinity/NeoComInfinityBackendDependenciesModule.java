@@ -6,6 +6,7 @@ import com.google.inject.name.Names;
 
 import org.dimensinfin.eveonline.neocom.database.NeoComDatabaseService;
 import org.dimensinfin.eveonline.neocom.database.core.ISDEDatabaseService;
+import org.dimensinfin.eveonline.neocom.database.repositories.AssetRepository;
 import org.dimensinfin.eveonline.neocom.database.repositories.CredentialRepository;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBFileSystemAdapter;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBNeoComDBAdapter;
@@ -93,6 +94,10 @@ public class NeoComInfinityBackendDependenciesModule extends AbstractModule {
 		this.bind( CredentialRepository.class )
 				.annotatedWith( Names.named( "CredentialRepository" ) )
 				.to( CredentialRepository.class )
+				.in( Singleton.class );
+		this.bind( AssetRepository.class )
+				.annotatedWith( Names.named( "AssetRepository" ) )
+				.to( AssetRepository.class )
 				.in( Singleton.class );
 	}
 }
