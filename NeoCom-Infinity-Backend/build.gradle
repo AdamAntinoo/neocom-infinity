@@ -86,6 +86,8 @@ apply from: './dependencies.gradle'
 apply from: './jacoco.gradle'
 // - S D E   D A T A B A S E
 apply from: './sde-database.gradle'
+// - I N T E G R A T I O N
+apply from: './integration.gradle'
 // - A C C E P T A N C E
 apply from: './acceptance.gradle'
 

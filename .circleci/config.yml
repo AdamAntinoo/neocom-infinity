@@ -28,7 +28,6 @@ jobs:
     steps:
       - checkout
 
-
   # - F R O N T E N D
   compile-frontend-job:
     docker:
