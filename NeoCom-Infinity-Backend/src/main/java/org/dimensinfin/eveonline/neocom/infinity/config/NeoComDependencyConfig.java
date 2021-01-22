@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 import org.dimensinfin.eveonline.neocom.database.NeoComDatabaseService;
 import org.dimensinfin.eveonline.neocom.database.core.ISDEDatabaseService;
+import org.dimensinfin.eveonline.neocom.database.repositories.AssetRepository;
 import org.dimensinfin.eveonline.neocom.database.repositories.CredentialRepository;
 import org.dimensinfin.eveonline.neocom.database.repositories.SDERepository;
 import org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendDependenciesModule;
@@ -115,6 +116,12 @@ public class NeoComDependencyConfig {
 	public NeoComDatabaseService dependency_08_NeoComDatabaseService() {
 		LogWrapper.enter();
 		return this.injector.getInstance( SBNeoComDBAdapter.class );
+	}
+
+	@Bean
+	public AssetRepository dependency_09_AssetRepository() {
+		LogWrapper.enter();
+		return this.injector.getInstance( AssetRepository.class );
 	}
 
 	@Bean

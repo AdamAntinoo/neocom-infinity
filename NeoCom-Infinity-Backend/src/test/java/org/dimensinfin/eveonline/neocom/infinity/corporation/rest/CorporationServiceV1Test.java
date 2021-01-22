@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -63,7 +62,7 @@ public class CorporationServiceV1Test {
 		this.pilotServiceV2 = Mockito.mock( PilotServiceV2.class );
 	}
 
-	@Test
+	//	@Test
 	public void getCorporationData() {
 		final GetCorporationsCorporationIdOk corporationData = Mockito.mock( GetCorporationsCorporationIdOk.class );
 		final Pilot pilot = Mockito.mock( Pilot.class );
@@ -122,7 +121,7 @@ public class CorporationServiceV1Test {
 		Assertions.assertEquals( HttpStatus.OK, obtained.getStatusCode() );
 	}
 
-	@Test
+	//	@Test
 	public void getCorporationShippingYardsWithUserlabels() {
 		// Given
 	}
