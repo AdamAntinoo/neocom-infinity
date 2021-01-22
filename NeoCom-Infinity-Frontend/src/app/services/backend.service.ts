@@ -20,19 +20,22 @@ import { ServerStatus } from '@app/domain/ServerStatus.domain'
 import { Fitting } from '@app/domain/Fitting.domain'
 import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer'
 import { PilotV2 } from '@domain/character/PilotV2.domain'
+import { PublicService } from './public.service'
+import { HALResolver } from './HALResolver.service'
 
 @Injectable({
     providedIn: 'root'
 })
-export class BackendService extends UniverseService {
+export class BackendService extends PublicService {
     protected APIV1: string
     protected APIV2: string
 
     constructor(
         protected httpUniverseService: UniverseHttpWrapper,
+        protected halResolver: HALResolver,
         protected httpService: BackendHttpWrapper,
         protected isolation: IsolationService) {
-        super(httpUniverseService)
+        super(httpUniverseService, halResolver)
         this.APIV1 = environment.serverName + environment.apiVersion1
         this.APIV2 = environment.serverName + environment.apiVersion2
     }
@@ -88,7 +91,7 @@ export class BackendService extends UniverseService {
         const request = this.APIV2 + "/pilots/" + pilotId
         return this.httpService.wrapHttpGETCall(request)
             .pipe(map((data: any) => {
-               return transformer.transform(data) as PilotV2
+                return transformer.transform(data) as PilotV2
             }))
     }
     public apiGetPilotFittings_v1(pilotId: number, transformer: ResponseTransformer): Observable<Fitting[]> {

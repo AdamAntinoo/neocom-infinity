@@ -16,7 +16,7 @@ export class UniverseService {
     protected UNIVERSEV1: string
 
     constructor(protected httpUniverseService: UniverseHttpWrapper) {
-        this.UNIVERSEV1 = environment.serverName + environment.apiVersion1 + '/universe'
+        this.UNIVERSEV1 = environment.serverName + '/api/v1' + '/universe'
     }
 
     // - U N I V E R S E   A P I

@@ -22,6 +22,7 @@ import { V1OutputResourceRenderComponent } from './v1-output-resource-render/v1-
 import { V1BlueprintRenderComponent } from './v1-blueprint-render/v1-blueprint-render.component';
 import { V1BOMResourceRenderComponent } from './v1-bomresource-render/v1-bomresource-render.component';
 import { V1BOMGroupRenderComponent } from './v1-bomgroup-render/v1-bomgroup-render.component';
+import { V1PublicPilotRenderComponent } from './v1-public-pilot-render/v1-public-pilot-render.component';
 
 @NgModule({
     imports: [
@@ -47,7 +48,8 @@ import { V1BOMGroupRenderComponent } from './v1-bomgroup-render/v1-bomgroup-rend
         // - INDUSTRY
         V1BlueprintRenderComponent,
         V1BOMResourceRenderComponent,
-        V1BOMGroupRenderComponent
+        V1BOMGroupRenderComponent,
+        V1PublicPilotRenderComponent
 
     ],
     exports: [
@@ -68,7 +70,8 @@ import { V1BOMGroupRenderComponent } from './v1-bomgroup-render/v1-bomgroup-rend
         // - INDUSTRY
         V1BlueprintRenderComponent,
         V1BOMResourceRenderComponent,
-        V1BOMGroupRenderComponent
+        V1BOMGroupRenderComponent,
+        V1PublicPilotRenderComponent
     ]
 })
 export class RendersModule { }
