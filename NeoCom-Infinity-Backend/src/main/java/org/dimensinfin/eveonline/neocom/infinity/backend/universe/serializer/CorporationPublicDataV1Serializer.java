@@ -9,8 +9,8 @@ import org.springframework.boot.jackson.JsonComponent;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 
+import org.dimensinfin.eveonline.neocom.domain.PublicCorporationV1;
 import org.dimensinfin.eveonline.neocom.infinity.backend.universe.character.rest.v1.PublicCharacterControllerV1;
-import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.CorporationPublicDataV1;
 import org.dimensinfin.eveonline.neocom.infinity.backend.universe.spacelocations.rest.v1.SpaceLocationControllerV1;
 
 /**
@@ -18,9 +18,9 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.universe.spacelocations
  * @since 0.20.0
  */
 @JsonComponent
-public class CorporationPublicDataV1Serializer extends JsonSerializer<CorporationPublicDataV1> {
+public class CorporationPublicDataV1Serializer extends JsonSerializer<PublicCorporationV1> {
 	@Override
-	public void serialize( final CorporationPublicDataV1 value, final JsonGenerator jgen, final SerializerProvider provider )
+	public void serialize( final PublicCorporationV1 value, final JsonGenerator jgen, final SerializerProvider provider )
 			throws IOException {
 		jgen.writeStartObject();
 

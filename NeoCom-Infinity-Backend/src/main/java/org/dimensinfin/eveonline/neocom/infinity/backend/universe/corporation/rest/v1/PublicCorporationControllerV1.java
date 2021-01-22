@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.CorporationPublicDataV1;
+import org.dimensinfin.eveonline.neocom.domain.PublicCorporationV1;
 import org.dimensinfin.eveonline.neocom.infinity.corporation.rest.CorporationServiceV1;
 
 /**
@@ -31,7 +31,7 @@ public class PublicCorporationControllerV1 {
 	@GetMapping(path = "/corporations/{corporationId}",
 			consumes = "application/json",
 			produces = "application/json")
-	public ResponseEntity<CorporationPublicDataV1> getCorporationData( @PathVariable @NotNull final Integer corporationId ) {
+	public ResponseEntity<PublicCorporationV1> getCorporationData( @PathVariable @NotNull final Integer corporationId ) {
 		return new ResponseEntity<>( this.corporationServiceV1.getCorporationPublicData( corporationId ), HttpStatus.OK );
 	}
 }

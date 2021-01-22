@@ -20,8 +20,8 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingConfigurations;
 import org.dimensinfin.eveonline.neocom.infinity.backend.market.domain.MarketData;
 import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.EsiItemModel;
+import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.PilotV1;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
-import org.dimensinfin.eveonline.neocom.infinity.pilot.rest.representation.PilotModel;
 import org.dimensinfin.eveonline.neocom.infinity.support.NeoComWorld;
 import org.dimensinfin.eveonline.neocom.infinity.support.RequestType;
 import org.dimensinfin.eveonline.neocom.infinity.support.authorization.rest.v1.AuthorizationFeignClientV1;
@@ -118,7 +118,7 @@ public class WhenTheRequestIsProcessed extends StepSupport {
 				return validateAuthorizationTokenResponseEntity;
 			case GET_PILOT_DATA_ENDPOINT_NAME:
 				Assertions.assertTrue( this.neocomWorld.getPilotIdentifier().isPresent() );
-				final ResponseEntity<PilotModel> pilotDataResponseEntity = this.characterFeignClientV2.getPilotData(
+				final ResponseEntity<PilotV1> pilotDataResponseEntity = this.characterFeignClientV2.getPilotData(
 						this.neocomWorld.getPilotIdentifier().get(),
 						this.neocomWorld.getJwtAuthorizationToken()
 				);

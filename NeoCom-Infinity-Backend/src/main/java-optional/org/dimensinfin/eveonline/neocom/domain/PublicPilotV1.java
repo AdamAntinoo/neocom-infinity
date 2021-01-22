@@ -1,11 +1,10 @@
-package org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain;
+package org.dimensinfin.eveonline.neocom.domain;
 
 import java.util.Objects;
 
 import org.joda.time.DateTime;
 import org.springframework.hateoas.Link;
 
-import org.dimensinfin.eveonline.neocom.domain.NeoComNode;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdOk;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseAncestries200Ok;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseBloodlines200Ok;
@@ -17,22 +16,21 @@ import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseRaces200Ok;
  * @author Adam Antinoo (adamantinoo.git@gmail.com)
  * @since 0.20.0
  */
-public class PilotPublicDataV1 extends NeoComNode {
+public class PublicPilotV1 extends NeoComNode {
 	private static final long serialVersionUID = -3178716949754945800L;
 	/**
 	 * The unique game character identifier assigned at character creation that is going to be used to identify this Pilot.
 	 */
-	private Integer pilotId;
-	private Integer corporationId;
-	private GetCharactersCharacterIdOk pilotPublicData;
-	private Link corporation;
-	private Link lastKnownLocation;
-	private GetUniverseRaces200Ok raceData;
-	private GetUniverseAncestries200Ok ancestryData;
-	private GetUniverseBloodlines200Ok bloodlineData;
+	protected Integer pilotId;
+	protected Integer corporationId;
+	protected GetCharactersCharacterIdOk pilotPublicData;
+	protected Link corporation;
+	protected GetUniverseRaces200Ok raceData;
+	protected GetUniverseAncestries200Ok ancestryData;
+	protected GetUniverseBloodlines200Ok bloodlineData;
 
 	// - C O N S T R U C T O R S
-	private PilotPublicDataV1() {}
+	protected PublicPilotV1() {}
 
 	// - G E T T E R S   &   S E T T E R S
 	public GetUniverseAncestries200Ok getAncestryData() {
@@ -75,58 +73,53 @@ public class PilotPublicDataV1 extends NeoComNode {
 
 	// - V I R T U A L S
 	public String getUrl4Icon() {
-		return "http://image.eveonline.com/Corporation/" + this.corporationId + "_64.png";
+		return "https://image.eveonline.com/Character/" + this.pilotId + "_256.jpg";
 	}
 
 	// - B U I L D E R
 	public static class Builder {
-		private final PilotPublicDataV1 onConstruction;
+		private final PublicPilotV1 onConstruction;
 
 		// - C O N S T R U C T O R S
 		public Builder() {
-			this.onConstruction = new PilotPublicDataV1();
+			this.onConstruction = new PublicPilotV1();
 		}
 
-		public PilotPublicDataV1 build() {
+		public PublicPilotV1 build() {
 			return this.onConstruction;
 		}
 
-		public PilotPublicDataV1.Builder withAncestryData( final GetUniverseAncestries200Ok ancestryData ) {
+		public PublicPilotV1.Builder withAncestryData( final GetUniverseAncestries200Ok ancestryData ) {
 			if (null != ancestryData) this.onConstruction.ancestryData = ancestryData;
 			return this;
 		}
 
-		public PilotPublicDataV1.Builder withBloodlineData( final GetUniverseBloodlines200Ok bloodlineData ) {
+		public PublicPilotV1.Builder withBloodlineData( final GetUniverseBloodlines200Ok bloodlineData ) {
 			if (null != bloodlineData) this.onConstruction.bloodlineData = bloodlineData;
 			return this;
 		}
 
-		public PilotPublicDataV1.Builder withCorporationId( final Integer corporationId ) {
+		public PublicPilotV1.Builder withCorporationId( final Integer corporationId ) {
 			this.onConstruction.corporationId = Objects.requireNonNull( corporationId );
 			return this;
 		}
 
-		public PilotPublicDataV1.Builder withCorporationLink( final Link corporationLink ) {
+		public PublicPilotV1.Builder withCorporationLink( final Link corporationLink ) {
 			this.onConstruction.corporation = Objects.requireNonNull( corporationLink );
 			return this;
 		}
 
-		public PilotPublicDataV1.Builder withLastLocationLink( final Link lastLocationLink ) {
-			this.onConstruction.lastKnownLocation = Objects.requireNonNull( lastLocationLink );
-			return this;
-		}
-
-		public PilotPublicDataV1.Builder withPilotId( final Integer pilotId ) {
+		public PublicPilotV1.Builder withPilotId( final Integer pilotId ) {
 			this.onConstruction.pilotId = Objects.requireNonNull( pilotId );
 			return this;
 		}
 
-		public PilotPublicDataV1.Builder withPilotPublicData( final GetCharactersCharacterIdOk pilotPublicData ) {
+		public PublicPilotV1.Builder withPilotPublicData( final GetCharactersCharacterIdOk pilotPublicData ) {
 			this.onConstruction.pilotPublicData = Objects.requireNonNull( pilotPublicData );
 			return this;
 		}
 
-		public PilotPublicDataV1.Builder withRaceData( final GetUniverseRaces200Ok raceData ) {
+		public PublicPilotV1.Builder withRaceData( final GetUniverseRaces200Ok raceData ) {
 			if (null != raceData) this.onConstruction.raceData = raceData;
 			return this;
 		}

@@ -1,20 +1,17 @@
 package org.dimensinfin.eveonline.neocom.infinity.backend.character.pilot.rest.v2;
 
-import org.hibernate.engine.config.spi.ConfigurationService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import org.dimensinfin.eveonline.neocom.domain.Pilot;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdOk;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseAncestries200Ok;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseBloodlines200Ok;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseRaces200Ok;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.ConfigurationServiceWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataProviderWrapper;
-import org.dimensinfin.eveonline.neocom.infinity.backend.character.pilot.rest.v1.PilotServiceV1;
-import org.dimensinfin.eveonline.neocom.infinity.pilot.rest.representation.PilotModel;
+import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.PilotV1;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 
@@ -33,8 +30,8 @@ public class PilotServiceV2Test {
 	public void beforeEach() {
 		this.esiDataProviderWrapper = Mockito.mock( ESIDataProviderWrapper.class );
 		this.esiDataProvider = Mockito.mock( ESIDataProvider.class );
-		this.configurationServiceWrapper = Mockito.mock(ConfigurationServiceWrapper.class);
-		this.configurationService = Mockito.mock(IConfigurationService.class);
+		this.configurationServiceWrapper = Mockito.mock( ConfigurationServiceWrapper.class );
+		this.configurationService = Mockito.mock( IConfigurationService.class );
 	}
 
 	@Test
@@ -48,7 +45,7 @@ public class PilotServiceV2Test {
 		Mockito.when( this.esiDataProviderWrapper.getSingleton() ).thenReturn( this.esiDataProvider );
 		Mockito.when( this.esiDataProvider.getCharactersCharacterId( Mockito.anyInt() ) ).thenReturn( pilotData );
 		Mockito.when( this.configurationServiceWrapper.getSingleton() ).thenReturn( this.configurationService );
-		Mockito.when( this.configurationService.getResourceString(Mockito.anyString()) ).thenReturn( "P.universe.retrofit.server.location" );
+		Mockito.when( this.configurationService.getResourceString( Mockito.anyString() ) ).thenReturn( "P.universe.retrofit.server.location" );
 		Mockito.when( pilotData.getRaceId() ).thenReturn( TEST_PILOT_RACE_ID );
 		Mockito.when( pilotData.getAncestryId() ).thenReturn( TEST_PILOT_ANCESTRY_ID );
 		Mockito.when( pilotData.getBloodlineId() ).thenReturn( TEST_PILOT_BLOODLINE_ID );
@@ -57,7 +54,7 @@ public class PilotServiceV2Test {
 		Mockito.when( this.esiDataProvider.searchSDEBloodline( Mockito.anyInt() ) ).thenReturn( bloodLineData );
 		// Test
 		final PilotServiceV2 pilotServiceV2 = new PilotServiceV2( this.esiDataProviderWrapper, this.configurationServiceWrapper );
-		final PilotModel obtained = pilotServiceV2.getPilotData( TEST_PILOT_ID );
+		final PilotV1 obtained = pilotServiceV2.getPilotData( TEST_PILOT_ID );
 		// Assertions
 		Assertions.assertNotNull( obtained );
 		Assertions.assertEquals( TEST_PILOT_ID, obtained.getPilotId() );

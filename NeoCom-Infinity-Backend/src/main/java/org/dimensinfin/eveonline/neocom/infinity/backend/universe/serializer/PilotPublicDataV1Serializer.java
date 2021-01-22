@@ -10,16 +10,16 @@ import org.springframework.hateoas.Link;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 
 import org.dimensinfin.eveonline.neocom.infinity.backend.universe.corporation.rest.v1.PublicCorporationControllerV1;
-import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.PilotPublicDataV1;
+import org.dimensinfin.eveonline.neocom.domain.PublicPilotV1;
 
 /**
  * @author Adam Antinoo (adamantinoo.git@gmail.com)
  * @since 0.20.0
  */
 @JsonComponent
-public class PilotPublicDataV1Serializer extends JsonSerializer<PilotPublicDataV1> {
+public class PilotPublicDataV1Serializer extends JsonSerializer<PublicPilotV1> {
 	@Override
-	public void serialize( final PilotPublicDataV1 value, final JsonGenerator jgen, final SerializerProvider provider )
+	public void serialize( final PublicPilotV1 value, final JsonGenerator jgen, final SerializerProvider provider )
 			throws IOException {
 		jgen.writeStartObject();
 

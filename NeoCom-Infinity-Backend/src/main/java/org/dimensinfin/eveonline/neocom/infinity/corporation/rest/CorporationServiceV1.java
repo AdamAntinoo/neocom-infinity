@@ -19,12 +19,12 @@ import org.dimensinfin.eveonline.neocom.database.entities.NeoAsset;
 import org.dimensinfin.eveonline.neocom.database.repositories.AssetRepository;
 import org.dimensinfin.eveonline.neocom.database.repositories.CredentialRepository;
 import org.dimensinfin.eveonline.neocom.domain.Corporation;
+import org.dimensinfin.eveonline.neocom.domain.PublicCorporationV1;
 import org.dimensinfin.eveonline.neocom.domain.space.SpaceLocation;
 import org.dimensinfin.eveonline.neocom.domain.space.Station;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCorporationsCorporationIdOk;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.AssetRepositoryWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.backend.character.pilot.rest.v2.PilotServiceV2;
-import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.CorporationPublicDataV1;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetails;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetailsService;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
@@ -95,10 +95,10 @@ public class CorporationServiceV1 {
 	 *
 	 * @param corporationId the selected corporation unique identifier.
 	 */
-	public CorporationPublicDataV1 getCorporationPublicData( final Integer corporationId ) {
+	public PublicCorporationV1 getCorporationPublicData( final Integer corporationId ) {
 		final GetCorporationsCorporationIdOk corporationData = this.esiDataService.getCorporationsCorporationId( corporationId );
 		// Access the rest of the corporation's esi data from the service.
-		return new CorporationPublicDataV1.Builder()
+		return new PublicCorporationV1.Builder()
 				.withCorporationId( corporationId )
 				.withCorporationPublicData(
 						Objects.requireNonNull( corporationData )

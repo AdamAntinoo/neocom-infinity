@@ -8,17 +8,19 @@ import org.springframework.http.HttpStatus;
 
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataProviderWrapper;
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComError;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetails;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetailsService;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComError;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
+
+import static org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComError.ErrorNames.TARGET_NOT_FOUND;
 
 public abstract class NeoComAuthenticatedService {
 
 	public static NeoComError errorTARGETNOTFOUND( final String entityName, final Integer identifier ) {
 		return new NeoComError.Builder()
-				.withErrorName( "TARGET_NOT_FOUND" )
+				.withErrorName( TARGET_NOT_FOUND.name() )
 				.withHttpStatus( HttpStatus.NOT_FOUND )
 				.withErrorCode( "dimensinfin.neocom.entity.not.found" )
 				.withMessage( MessageFormat.format(

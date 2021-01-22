@@ -3,7 +3,7 @@ package org.dimensinfin.eveonline.neocom.infinity.support.rest;
 import java.util.List;
 
 import org.dimensinfin.eveonline.neocom.infinity.backend.character.fitting.domain.FittingModel;
-import org.dimensinfin.eveonline.neocom.infinity.pilot.rest.representation.PilotModel;
+import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.PilotV1;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -14,8 +14,8 @@ import retrofit2.http.Path;
 public interface NeoComApiv2 {
 	@Headers({ "Content-Type: application/json" })
 	@GET("/api/v2/neocom/pilots/{pilotId}")
-	Call<PilotModel> getPilotData( @Header("Authorization") final String authorization,
-	                               @Path("pilotId") final Integer pilotId );
+	Call<PilotV1> getPilotData( @Header("Authorization") final String authorization,
+	                            @Path("pilotId") final Integer pilotId );
 
 	@Headers({ "Content-Type: application/json" })
 	@GET("/api/v2/neocom/pilots/{pilotId}/fittings")

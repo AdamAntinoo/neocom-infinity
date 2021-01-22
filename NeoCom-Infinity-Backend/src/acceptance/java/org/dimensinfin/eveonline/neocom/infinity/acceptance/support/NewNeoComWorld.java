@@ -9,28 +9,18 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.character.fitting.domai
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingBuildConfiguration;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingConfigurations;
 import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.EsiItemModel;
-import org.dimensinfin.eveonline.neocom.infinity.pilot.rest.representation.PilotModel;
+import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.PilotV1;
 import org.dimensinfin.eveonline.neocom.infinity.universe.client.v1.ServerStatus;
 
 public class NewNeoComWorld extends CommonWorld {
 	private ResponseEntity<ValidateAuthorizationTokenResponse> validateAuthorizationTokenResponseEntity;
-	private ResponseEntity<PilotModel> pilotDataResponseEntity;
+	private ResponseEntity<PilotV1> pilotDataResponseEntity;
 	private ResponseEntity<List<FittingModel>> pilotFittingsResponseEntity;
 	private ResponseEntity<EsiItemModel> itemResponseEntity;
 	private Integer fittingIdentifier;
 	private ResponseEntity<FittingConfigurations> fittingConfigurationsResponseEntity;
 	private ResponseEntity<FittingBuildConfiguration> fittingBuildConfigurationResponseEntity;
 	private String datasource;
-
-	public ResponseEntity<ServerStatus> getServerStatusResponseEntity() {
-		return this.serverStatusResponseEntity;
-	}
-
-	public NewNeoComWorld setServerStatusResponseEntity( final ResponseEntity<ServerStatus> serverStatusResponseEntity ) {
-		this.serverStatusResponseEntity = serverStatusResponseEntity;
-		return this;
-	}
-
 	private ResponseEntity<ServerStatus> serverStatusResponseEntity;
 
 	// - G E T T E R S   &   S E T T E R S
@@ -79,11 +69,11 @@ public class NewNeoComWorld extends CommonWorld {
 		return this;
 	}
 
-	public ResponseEntity<PilotModel> getPilotDataResponseEntity() {
+	public ResponseEntity<PilotV1> getPilotDataResponseEntity() {
 		return this.pilotDataResponseEntity;
 	}
 
-	public NewNeoComWorld setPilotDataResponseEntity( final ResponseEntity<PilotModel> pilotDataResponseEntity ) {
+	public NewNeoComWorld setPilotDataResponseEntity( final ResponseEntity<PilotV1> pilotDataResponseEntity ) {
 		this.pilotDataResponseEntity = pilotDataResponseEntity;
 		return this;
 	}
@@ -94,6 +84,15 @@ public class NewNeoComWorld extends CommonWorld {
 
 	public NewNeoComWorld setPilotFittingsResponseEntity( final ResponseEntity<List<FittingModel>> pilotFittingsResponseEntity ) {
 		this.pilotFittingsResponseEntity = pilotFittingsResponseEntity;
+		return this;
+	}
+
+	public ResponseEntity<ServerStatus> getServerStatusResponseEntity() {
+		return this.serverStatusResponseEntity;
+	}
+
+	public NewNeoComWorld setServerStatusResponseEntity( final ResponseEntity<ServerStatus> serverStatusResponseEntity ) {
+		this.serverStatusResponseEntity = serverStatusResponseEntity;
 		return this;
 	}
 

@@ -5,7 +5,7 @@ import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.Validator;
-import org.dimensinfin.eveonline.neocom.infinity.pilot.rest.representation.PilotModel;
+import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.PilotV1;
 
 import static org.dimensinfin.eveonline.neocom.infinity.acceptance.support.AcceptanceFieldMapConstants.CORPORATION_ID;
 import static org.dimensinfin.eveonline.neocom.infinity.acceptance.support.AcceptanceFieldMapConstants.CORPORATION_LINK;
@@ -15,10 +15,10 @@ import static org.dimensinfin.eveonline.neocom.infinity.acceptance.support.Accep
 import static org.dimensinfin.eveonline.neocom.infinity.acceptance.support.AcceptanceFieldMapConstants.PILOT_PUBLIC_DATA_OBJECT;
 import static org.dimensinfin.eveonline.neocom.infinity.acceptance.support.AcceptanceFieldMapConstants.PILOT_RACE_DATA_OBJECT;
 
-public class PilotModelValidator implements Validator<PilotModel> {
+public class PilotModelValidator implements Validator<PilotV1> {
 
 	@Override
-	public boolean validate( final Map<String, String> rowData, final PilotModel record ) {
+	public boolean validate( final Map<String, String> rowData, final PilotV1 record ) {
 		if (null != rowData.get( PILOT_ID )) Assertions.assertEquals( Integer.parseInt( rowData.get( PILOT_ID ) ), record.getPilotId() );
 		if (null != rowData.get( CORPORATION_ID )) Assertions.assertEquals( Integer.parseInt(
 				rowData.get( CORPORATION_ID ) ), record.getCorporationId()
