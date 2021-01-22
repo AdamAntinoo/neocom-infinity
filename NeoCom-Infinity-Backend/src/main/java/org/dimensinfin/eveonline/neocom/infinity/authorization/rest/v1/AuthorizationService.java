@@ -23,7 +23,6 @@ import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.Validat
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComError;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
-import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
 import org.dimensinfin.logging.LogWrapper;
@@ -60,7 +59,7 @@ public class AuthorizationService {
 	}
 
 	private final IConfigurationService configurationService;
-	private final ESIDataProvider esiDataAdapter;
+	private final ESIDataService esiDataService;
 	private final CredentialRepository credentialRepository;
 
 	// - C O N S T R U C T O R S
@@ -69,7 +68,7 @@ public class AuthorizationService {
 	                             @NotNull final ESIDataService esiDataService,
 	                             @NotNull final CredentialRepository credentialRepository ) {
 		this.configurationService = configurationService;
-		this.esiDataAdapter = esiDataService;
+		this.esiDataService = esiDataService;
 		this.credentialRepository = credentialRepository;
 	}
 
@@ -82,7 +81,7 @@ public class AuthorizationService {
 		validateAuthorizationTokenRequest.setRunningFlow( oauthFlow );
 		this.verifyState( validateAuthorizationTokenRequest ); // Check if the state matches the backend state configured.
 		final TokenVerification tokenStore = this.verifyCharacter( oauthFlow );
-		final GetCharactersCharacterIdOk pilotData = this.esiDataAdapter.getCharactersCharacterId(
+		final GetCharactersCharacterIdOk pilotData = this.esiDataService.getCharactersCharacterId(
 				tokenStore.getAccountIdentifier() );
 		LogWrapper.info( "Creating Credential..." );
 		final TokenTranslationResponse token = tokenStore.getTokenTranslationResponse();

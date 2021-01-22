@@ -8,6 +8,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
 import java.text.MessageFormat;
 import javax.validation.constraints.NotNull;
 
@@ -39,6 +41,11 @@ public class SBFileSystemAdapter implements IFileSystem {
 	@Inject
 	public SBFileSystemAdapter( final @NotNull @Named("ApplicationDirectory") String applicationDirectory ) {
 		this.applicationDirectory = applicationDirectory;
+	}
+
+	@Override
+	public boolean checkWritable( final String filePath ) {
+		return Files.isWritable( FileSystems.getDefault().getPath( filePath ) );
 	}
 
 	@Override

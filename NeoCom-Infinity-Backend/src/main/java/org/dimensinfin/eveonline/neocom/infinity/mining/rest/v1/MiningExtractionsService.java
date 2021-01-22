@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.validation.constraints.NotNull;
 
 import com.annimon.stream.Collectors;
@@ -29,17 +28,20 @@ public class MiningExtractionsService {
 	private final CredentialDetailsService credentialDetailsService;
 	private final MiningRepository miningRepository;
 	private final ResourceFactory resourceFactory;
-@Autowired
+
+// - C O N S T R U C T O R S
+	@Autowired
 	public MiningExtractionsService( final @NotNull NeoComAuthenticationProvider neoComAuthenticationProvider,
-                                     final @NotNull CredentialDetailsService credentialDetailsService,
-                                     final @NotNull MiningRepositoryWrapper miningRepositoryWrapper,
-                                     final @NotNull ResourceFactory resourceFactory ) {
+	                                 final @NotNull CredentialDetailsService credentialDetailsService,
+	                                 final @NotNull MiningRepositoryWrapper miningRepositoryWrapper,
+	                                 final @NotNull ResourceFactory resourceFactory ) {
 		this.miningRepository = miningRepositoryWrapper.getSingleton();
 		this.credentialDetailsService = credentialDetailsService;
 		this.neoComAuthenticationProvider = neoComAuthenticationProvider;
-	this.resourceFactory = resourceFactory;
-}
+		this.resourceFactory = resourceFactory;
+	}
 
+// - G E T T E R S   &   S E T T E R S
 	/**
 	 * The records retrieved from the repository for today downloads should be processed to remove duplicated quantities produced by the processing
 	 * of the same set of data at different hours. If there is an extraction at 15 hours and then the download process is executed again at 16
@@ -56,7 +58,7 @@ public class MiningExtractionsService {
 	private List<MiningExtractionEntity> adjustMiningQuantities( final List<MiningExtraction> extractions ) {
 		final Map<String, MiningExtraction> extractionMap = new HashMap<>();
 		final List<MiningExtraction> extractionResults = new ArrayList<>();
-		for (MiningExtraction extraction : extractions)
+		for (final MiningExtraction extraction : extractions)
 			extractionMap.put( extraction.getId(), extraction );
 		// Transform extractions by correcting the mined delta quantities and removing zero delta records.
 		return Stream.of( extractions )
@@ -71,7 +73,7 @@ public class MiningExtractionsService {
 									.withQuantity( newQuantity )
 									.withExtractionDate( extraction.getExtractionDateName() )
 									.withExtractionHour( extraction.getExtractionHour() )
-									.withNeoItem(this.resourceFactory.getItemById( extraction.getTypeId() ) )
+									.withNeoItem( this.resourceFactory.generateType4Id( extraction.getTypeId() ) )
 									.withSpaceSystem( extraction.getSolarSystemLocation() )
 									.build(); // Update this hour mined quantity.
 					} else

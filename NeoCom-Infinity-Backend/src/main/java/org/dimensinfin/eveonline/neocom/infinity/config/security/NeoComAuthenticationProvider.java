@@ -20,6 +20,7 @@ import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComSBExceptio
 public class NeoComAuthenticationProvider implements AuthenticationProvider {
 	public static final ObjectMapper jsonMapper = new ObjectMapper();
 
+	// - G E T T E R S   &   S E T T E R S
 	public Integer getAuthenticatedCorporation() throws IOException {
 		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		final String payloadBase64 = (String) authentication.getPrincipal();
@@ -38,13 +39,18 @@ public class NeoComAuthenticationProvider implements AuthenticationProvider {
 	}
 
 	@Override
-	public Authentication authenticate( Authentication authentication ) throws AuthenticationException {
+	public Authentication authenticate( final Authentication authentication ) throws AuthenticationException {
 		return new UsernamePasswordAuthenticationToken( authentication.getPrincipal(), null, new ArrayList<>() );
 	}
 
 	@Override
-	public boolean supports( Class<?> authentication ) {
+	public boolean supports( final Class<?> authentication ) {
 		return authentication.equals( UsernamePasswordAuthenticationToken.class );
+	}
+
+	public void validatePilotIdentifier( final int pilotId ) {
+		if (pilotId != this.getAuthenticatedPilot().intValue())
+			throw new NeoComSBException( ErrorInfo.PILOT_ID_NOT_AUTHORIZED );
 	}
 
 	private JwtPayload accessDecodedPayload( final ErrorInfo configuredError ) {

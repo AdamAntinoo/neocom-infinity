@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.http.ResponseEntity;
 
-import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.PilotV1;
+import org.dimensinfin.eveonline.neocom.domain.PilotV1;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
 
@@ -30,7 +30,7 @@ public class PilotControllerV2Test {
 		final Integer pilotId = TEST_PILOT_ID;
 		final PilotV1 pilotInstance = Mockito.mock( PilotV1.class );
 		// When
-		Mockito.when( this.pilotServiceV2.getPilotData( pilotId ) ).thenReturn( pilotInstance );
+		Mockito.when( this.pilotServiceV2.getAuthenticatedPilotData( pilotId ) ).thenReturn( pilotInstance );
 		Mockito.when( pilotInstance.getPilotId() ).thenReturn( pilotId );
 		Mockito.when( this.neoComAuthenticationProvider.getAuthenticatedPilot() ).thenReturn( pilotId );
 		// Test
@@ -48,7 +48,7 @@ public class PilotControllerV2Test {
 		final Integer pilotId = TEST_PILOT_ID;
 		final PilotV1 pilotInstance = Mockito.mock( PilotV1.class );
 		// When
-		Mockito.when( this.pilotServiceV2.getPilotData( pilotId ) ).thenReturn( pilotInstance );
+		Mockito.when( this.pilotServiceV2.getAuthenticatedPilotData( pilotId ) ).thenReturn( pilotInstance );
 		Mockito.when( pilotInstance.getPilotId() ).thenReturn( pilotId );
 		Mockito.when( this.neoComAuthenticationProvider.getAuthenticatedPilot() ).thenReturn( INVALID_PILOT_ID );
 		// Test

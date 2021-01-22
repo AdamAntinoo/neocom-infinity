@@ -11,7 +11,7 @@ import org.mockito.Mockito;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.database.entities.MiningExtractionEntity;
 import org.dimensinfin.eveonline.neocom.database.repositories.MiningRepository;
-import org.dimensinfin.eveonline.neocom.domain.NeoItem;
+import org.dimensinfin.eveonline.neocom.domain.EsiType;
 import org.dimensinfin.eveonline.neocom.domain.space.SpaceSystem;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.MiningRepositoryWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetails;
@@ -35,7 +35,7 @@ public class MiningExtractionsServiceTest {
 		this.credentialDetailsService = Mockito.mock( CredentialDetailsService.class );
 		this.miningRepositoryWrapper = Mockito.mock( MiningRepositoryWrapper.class );
 		this.miningRepository = Mockito.mock( MiningRepository.class );
-		this.resourceFactory = Mockito.mock(ResourceFactory.class);
+		this.resourceFactory = Mockito.mock( ResourceFactory.class );
 	}
 
 	@Test
@@ -48,13 +48,13 @@ public class MiningExtractionsServiceTest {
 		Assertions.assertNotNull( miningExtractionsService );
 	}
 
-//	@Test
+	//	@Test
 	public void getTodayMiningExtractions4Pilot() {
 		// Given
 		final CredentialDetails credentialDetails = Mockito.mock( CredentialDetails.class );
 		final Credential credential = Mockito.mock( Credential.class );
 		final MiningRepository miningRepositoryLocal = Mockito.mock( MiningRepository.class );
-		final NeoItem neoItem = Mockito.mock( NeoItem.class );
+		final EsiType neoItem = Mockito.mock( EsiType.class );
 		final SpaceSystem spaceSystem = Mockito.mock( SpaceSystem.class );
 		final List<MiningExtraction> miningExtractions = new ArrayList<>();
 		miningExtractions.add( new MiningExtraction.Builder()

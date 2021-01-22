@@ -6,6 +6,7 @@ import org.springframework.hateoas.Link;
 
 import org.dimensinfin.eveonline.neocom.domain.space.SpaceLocation;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdOk;
+import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdShipOk;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseAncestries200Ok;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseBloodlines200Ok;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseRaces200Ok;
@@ -19,28 +20,33 @@ import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseRaces200Ok;
  */
 public class PilotV1 extends PublicPilotV1 {
 	private static final long serialVersionUID = -7085010594597508212L;
-	private Integer skillPoints = 0;
-	private Double walletBalance = 0.0;
-	private EsiType currentShip;
+	private long totalSkillpoints = 0;
+	private double walletBalance = 0.0;
+	private GetCharactersCharacterIdShipOk currentShip;
+	private EsiType currentShipType;
 	private SpaceLocation lastKnownLocation;
 
 	// - C O N S T R U C T O R S
 	private PilotV1() {}
 
 	// - G E T T E R S   &   S E T T E R S
-	public EsiType getCurrentShip() {
+	public GetCharactersCharacterIdShipOk getCurrentShip() {
 		return this.currentShip;
+	}
+
+	public EsiType getCurrentShipType() {
+		return this.currentShipType;
 	}
 
 	public SpaceLocation getLastKnownLocation() {
 		return this.lastKnownLocation;
 	}
 
-	public Integer getSkillPoints() {
-		return this.skillPoints;
+	public long getTotalSkillpoints() {
+		return this.totalSkillpoints;
 	}
 
-	public Double getWalletBalance() {
+	public double getWalletBalance() {
 		return this.walletBalance;
 	}
 
@@ -77,8 +83,13 @@ public class PilotV1 extends PublicPilotV1 {
 			return this;
 		}
 
-		public PilotV1.Builder withCurrentShip( final EsiType currentShip ) {
+		public PilotV1.Builder withCurrentShip( final GetCharactersCharacterIdShipOk currentShip ) {
 			this.onConstruction.currentShip = Objects.requireNonNull( currentShip );
+			return this;
+		}
+
+		public PilotV1.Builder withCurrentShipType( final EsiType currentShipType ) {
+			this.onConstruction.currentShipType = Objects.requireNonNull( currentShipType );
 			return this;
 		}
 
@@ -102,9 +113,8 @@ public class PilotV1 extends PublicPilotV1 {
 			return this;
 		}
 
-		public PilotV1.Builder withSkillPoints( final Integer skillpoints ) {
-			if (null != skillpoints)
-				this.onConstruction.skillPoints = skillpoints;
+		public PilotV1.Builder withTotalSkillPoints( final Long totalSkillpoints ) {
+			if (null != totalSkillpoints) this.onConstruction.totalSkillpoints = totalSkillpoints;
 			return this;
 		}
 
