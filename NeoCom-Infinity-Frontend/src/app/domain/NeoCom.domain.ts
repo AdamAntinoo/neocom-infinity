@@ -17,7 +17,7 @@ export class NeoCom implements INode, ICollaboration, IExpandable, ISelectable {
         this.jsonClass = 'NeoCom'
     }
     public decode(): void { 
-        console.log('[Decode]')
+        console.log('[Decode]> '+this.jsonClass)
     }
 
     protected isEmpty(target?: any): boolean {

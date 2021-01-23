@@ -10,6 +10,7 @@ import { V2PilotPublicDataPanelComponent } from './panels/v2-pilot-public-data-p
 import { RendersModule } from '../renders/renders.module';
 import { InnovativeCoreModule } from '@innovative/innovative-core.module';
 import { V1FeatureButtonComponent } from './components/v1-feature-button/v1-feature-button.component';
+import { SystemFilterPipe } from './pipes/systemFilter.pipe';
 
 @NgModule({
     imports: [
@@ -22,6 +23,7 @@ import { V1FeatureButtonComponent } from './components/v1-feature-button/v1-feat
         CapitalizeLetterPipe,
         ISKNoDecimalsPipe,
         IskScaledPipe,
+        SystemFilterPipe,
         V2PilotPublicDataPanelComponent,
         V1FeatureButtonComponent
     ],
@@ -29,6 +31,7 @@ import { V1FeatureButtonComponent } from './components/v1-feature-button/v1-feat
         CapitalizeLetterPipe,
         ISKNoDecimalsPipe,
         IskScaledPipe,
+        SystemFilterPipe,
         V2PilotPublicDataPanelComponent,
         V1FeatureButtonComponent
     ]
