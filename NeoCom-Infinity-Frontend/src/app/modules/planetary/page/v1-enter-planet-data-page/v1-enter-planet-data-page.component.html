@@ -1,10 +1,18 @@
-<p>v1-enter-planet-data-page works!</p>
-<div class="row">
-    <app-info-panel id="appinfo-panel" class="neocom-panel app-info-panel"></app-info-panel>
-    <server-info-panel id="server-info-panel" class="neocom-panel server-info-panel"></server-info-panel>
-</div>
 <div class="column">
     <div class="page-title">PLANET DATA ENTER</div>
     <div class="row panel">
+        <label for="search-text">Sistema:</label>
+        <input type="text" class="form-control" id="search-text" aria-describedby="search-text" [(ngModel)]="searchText" placeholder="Nombre del sistema a editar" autofocus>
+    </div>
+    ST{{searchText}}ST {{filterActive()}}
+    <div *ngIf="!filterActive()">
+        <div *ngFor="let region of regions">
+            <v1-region [container]="self" [node]="region" [variant]="getVariant()">
+            </v1-region>
+        </div>
+    </div>
+    <div *ngIf="filterActive()">
+        <neocom-viewer-panel [nodes2render]="getNodes2Render() | systemFilter: searchText" [downloadtitle]="'Leyendo Lista de Sistemas...'" [downloader]="self" [variant]="getVariant()" [selectOnHover]="false">
+        </neocom-viewer-panel>
     </div>
 </div>
