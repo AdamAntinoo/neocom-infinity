@@ -1,8 +1,13 @@
 <div (mouseenter)="mouseEnter(node)" style="position: relative;" (click)="onClick()">
     <div class="row node-panel body-box">
-        <!-- {{node.jsonClass}} -->
+        {{node.jsonClass}}
         <!-- BODY -->
         <div style="width: 100%;">
+            <!-- P L A N E T A R Y -->
+            <v1-region *ngIf="node.jsonClass === 'LookupRegion'" [container]="container" [node]="node" [variant]="variant">
+            </v1-region>
+            <v1-solar-system *ngIf="node.jsonClass === 'LookupSolarSystem'" [container]="container" [node]="node" [variant]="variant">
+            </v1-solar-system>
             <!-- I N D U S T R Y -->
             <v1-bomresource *ngIf="node.jsonClass === 'BOMResource'" [container]="container" [node]="node" [variant]="variant">
             </v1-bomresource>

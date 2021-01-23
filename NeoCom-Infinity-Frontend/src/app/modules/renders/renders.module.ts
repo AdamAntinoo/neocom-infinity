@@ -23,6 +23,8 @@ import { V1BlueprintRenderComponent } from './v1-blueprint-render/v1-blueprint-r
 import { V1BOMResourceRenderComponent } from './v1-bomresource-render/v1-bomresource-render.component';
 import { V1BOMGroupRenderComponent } from './v1-bomgroup-render/v1-bomgroup-render.component';
 import { V1PublicPilotRenderComponent } from './v1-public-pilot-render/v1-public-pilot-render.component';
+import { V1RegionRenderComponent } from './v1-region-render/v1-region-render.component';
+import { V1SolarSystemRenderComponent } from './v1-solar-system-render/v1-solar-system-render.component';
 
 @NgModule({
     imports: [
@@ -49,7 +51,9 @@ import { V1PublicPilotRenderComponent } from './v1-public-pilot-render/v1-public
         V1BlueprintRenderComponent,
         V1BOMResourceRenderComponent,
         V1BOMGroupRenderComponent,
-        V1PublicPilotRenderComponent
+        V1PublicPilotRenderComponent,
+        V1RegionRenderComponent,
+        V1SolarSystemRenderComponent
 
     ],
     exports: [
@@ -71,7 +75,9 @@ import { V1PublicPilotRenderComponent } from './v1-public-pilot-render/v1-public
         V1BlueprintRenderComponent,
         V1BOMResourceRenderComponent,
         V1BOMGroupRenderComponent,
-        V1PublicPilotRenderComponent
+        V1PublicPilotRenderComponent,
+        V1RegionRenderComponent,
+        V1SolarSystemRenderComponent
     ]
 })
 export class RendersModule { }

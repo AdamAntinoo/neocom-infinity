@@ -1,0 +1,17 @@
+<!-- S O L A R   S Y S T E M   L O O K U P -->
+<div id="{{getUniqueId()}}" class="panel-yellow" *ngIf="getVariant() === '-SOLAR-SYSTEM-LOOKUP-'">
+    <div class="insets row">
+        <img class="neocom-icon iconsize-40" src="assets/res-sde/drawable/systems.png">
+        <div class="separator-4"></div>
+        <div class="column">
+            <div class="field">
+                <span cy-field-label="regionName" class="label">REGION</span>
+                <span cy-field-value="regionName" class="planet-name">{{getName()}}</span>
+            </div>
+            <div class="field">
+                <span cy-field-label="systemCount" class="label">SISTEMAS</span>
+                <span cy-field-value="systemCount" class="planet-class">[{{getSystemsCount()}}]</span>
+            </div>
+        </div>
+    </div>
+</div>
