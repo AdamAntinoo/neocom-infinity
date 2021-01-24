@@ -25,7 +25,7 @@ import { V1SelectedResourcesPanelComponent } from './panel/v1-selected-resources
 const routes: Routes = [
     { path: 'dashboard', component: DashboardPageComponent },
     { path: 'planet-data', component: V1EnterPlanetDataPageComponent },
-    { path: 'resource-research', component: V1ResourceResearchPageComponent },
+    { path: 'planetary-research', component: V1ResourceResearchPageComponent },
 ]
 
 @NgModule({
