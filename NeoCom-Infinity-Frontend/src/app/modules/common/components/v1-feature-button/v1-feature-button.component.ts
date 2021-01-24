@@ -14,6 +14,9 @@ export class V1FeatureButtonComponent {
 
     constructor(protected router: Router) { }
 
+    public getUniqueId () : string {
+        return this.feature.id
+    }
     public getFeatureImage(): string {
         if (this.feature) return this.feature.getImageRef()
         else return platformConstants.DEFAULT_FEATURE_REF

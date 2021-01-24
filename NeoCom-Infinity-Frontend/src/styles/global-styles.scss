@@ -27,6 +27,10 @@ $page-path-color: white;
     flex-wrap: nowrap;
 }
 
+.dock {
+    justify-content: space-evenly;
+}
+
 .notifier-box {
     position: relative;
     overflow: hidden;

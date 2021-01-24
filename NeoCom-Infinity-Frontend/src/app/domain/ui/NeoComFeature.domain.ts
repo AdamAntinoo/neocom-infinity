@@ -4,6 +4,7 @@ import { NeoCom } from '@domain/NeoCom.domain';
 import { EInteraction } from './EInteraction.enum';
 
 export class NeoComFeature extends NeoCom {
+    public id: string
     /** The contents of the feature name label. */
     public label: string = '-' 
     /** If this feature is currently active this flag is then set to <code>true</code>. The rendering should be also resalted. */

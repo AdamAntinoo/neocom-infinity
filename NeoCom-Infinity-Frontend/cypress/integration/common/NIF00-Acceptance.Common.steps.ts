@@ -30,7 +30,7 @@ Then('the page {string} is activated', function (symbolicName: string) {
     cy.log('>[Translation]> ' + symbolicName + ': ' + tag)
     cy.log('>[Route]> ' + route)
     cy.visit(route)
-    cy.get('app-root').find(tag).as('target-page').as('target')
+    cy.get('app-root').find(tag).as('target-page').as('target-panel').as('target')
         .should('exist')
 });
 Then('the page has the title {string}', function (title: string) {
@@ -113,8 +113,11 @@ When('the Feature with label {string} is clicked the destination is the Page {st
     function (label: string, destinationTag: string) {
         const destination = supportService.translateTag(destinationTag)
         cy.get('@target-page')
-            .find(supportService.translateTag('feature'))
+            .find(supportService.translateTag('feature-button'))
             .contains(label, { matchCase: false }).parent()
             .scrollIntoView().click();
-        cy.get('app-root').find(destination).as('target-page').as('target').should('exist')
+        cy.get('app-root').find(destination).as('target-page').as('target-panel').as('target').should('exist')
     })
+Then('the Feature has the label {string}', function (title: string) {
+    cy.get('@target').find('.feature-label').contains(title, { matchCase: false })
+});

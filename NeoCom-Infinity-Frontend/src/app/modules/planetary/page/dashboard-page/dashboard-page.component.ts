@@ -18,51 +18,24 @@ import { PlanetaryDataService } from '../../service/PlanetaryData.service';
 export class DashboardPageComponent  {
     public planetaryNewData:NeoComFeature
     public planetaryDataAnalysis:NeoComFeature
-    // private planetaryFeatures: NeoComFeature[] = [];
 
     constructor(private planetaryService: PlanetaryDataService) {
         // Build the page features.
         this.planetaryNewData = new NeoComFeature({
-            label: "Nuevos Datos Planetas",
+            id: "planetary-enter-data",
+            label: "Nuevos Datos de Planetas",
             enabled: true,
             interaction: 'PAGEROUTE',
             route: "/planetary/planet-data",
             imageRef: 'assets/media/planetary-enter-data.jpeg'
         })
         this.planetaryDataAnalysis = new NeoComFeature({
-            label: "Nuevos Datos Planetas",
+            id: "planetary-analyze-data",
+            label: "Analisis de Objetivos Planetarios",
             enabled: true,
             interaction: 'PAGEROUTE',
-            route: "/planetary/planet-data",
+            route: "/planetary/planetary-research",
             imageRef: 'assets/media/planetary-analyze-data.jpeg'
         })
      }
-
-    // public ngOnInit(): void {
-    //     console.log('>[DashboardPageComponent.ngOnInit]');
-    //     this.planetaryService.readPlanetaryFeatures(
-    //         new ResponseTransformer().setDescription('Do configuration transformation to a "NeoComFeature" list.')
-    //             .setTransformation((entrydata: any): NeoComFeature[] => {
-    //                 console.log('<[DashboardPageComponent.ngOnInit.setTransformation]');
-    //                 let results: NeoComFeature[] = [];
-    //                 if (entrydata instanceof Array) {
-    //                     for (let key in entrydata)
-    //                         results.push(new NeoComFeature(entrydata[key]));
-    //                 }
-    //                 return results;
-    //             }))
-    //         .subscribe((featureList: NeoComFeature[]) => {
-    //             console.log('<[DashboardPageComponent.ngOnInit.subscribe]');
-    //             this.planetaryFeatures = featureList
-    //             console.log('->[DashboardPageComponent.ngOnInit]> Feature count: ' + this.planetaryFeatures.length)
-    //             this.planetaryService.clean()
-    //         });
-    //     console.log('<[DashboardPageComponent.ngOnInit]');
-    // }
-    // - I N T E R A C T I O N
-    // public getActiveFeatures(): NeoComFeature[] {
-    //     if (this.planetaryFeatures) return this.planetaryFeatures;
-    //     else return [];
-    // }
-    // public processEvent () : void{}
 }
