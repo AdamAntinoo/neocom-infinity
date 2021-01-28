@@ -9,6 +9,8 @@ import { RouterModule } from '@angular/router';
 import { RendersModule } from '@app/modules/renders/renders.module';
 // - COMPONENTS
 import { V1LoyaltyRecommendationsPageComponent } from './page/v1-loyalty-recommendations-page/v1-loyalty-recommendations-page.component';
+import { V1LoyaltyCorporationSelectionPanelComponent } from './panel/v1-loyalty-corporation-selection-panel/v1-loyalty-corporation-selection-panel.component';
+import { V1LoyaltyOfferRecommendationsPanelComponent } from './panel/v1-loyalty-offer-recommendations-panel/v1-loyalty-offer-recommendations-panel.component';
 
 const routes: Routes = [
     { path: '', component: V1LoyaltyRecommendationsPageComponent }
@@ -21,7 +23,9 @@ const routes: Routes = [
         RendersModule
     ],
     declarations: [
-        V1LoyaltyRecommendationsPageComponent],
+        V1LoyaltyRecommendationsPageComponent,
+        V1LoyaltyCorporationSelectionPanelComponent,
+        V1LoyaltyOfferRecommendationsPanelComponent],
     exports: [RouterModule]
 })
 export class LoyaltyModule { }
