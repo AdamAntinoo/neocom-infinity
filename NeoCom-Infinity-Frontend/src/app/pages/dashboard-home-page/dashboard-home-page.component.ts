@@ -74,7 +74,7 @@ export class DashboardHomePageComponent extends BackgroundEnabledComponent imple
             label: "Recomendaciones de Ofertas Loyalty",
             enabled: true,
             interaction: 'PAGEROUTE',
-            route: "/industry/manufacture/blueprints",
+            route: "/loyalty",
             imageRef: 'assets/media/blueprints-feature.jpeg'
         }))
     }

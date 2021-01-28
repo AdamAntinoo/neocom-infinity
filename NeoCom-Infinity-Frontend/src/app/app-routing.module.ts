@@ -21,7 +21,6 @@ const routes: Routes = [
     { path: 'loginValidation', component: LoginValidationPageComponent },
     { path: 'exceptionInfo', component: ExceptionInformationPageComponent },
     { path: 'dashboard', component: DashboardHomePageComponent },
-    // { path: 'dashboard', component: DashboardHomePageComponent, canActivate: [TokenAuthorizationGuard] },
     // - D A S H B O A R D
     // {
     //     path: 'dashboard',
@@ -32,6 +31,8 @@ const routes: Routes = [
     { path: 'industry', loadChildren: () => import('./modules/industry/industry.module').then(m => m.IndustryModule) },
     // - P L A N E T A R Y
     { path: 'planetary', loadChildren: () => import('./modules/planetary/planetary.module').then(m => m.PlanetaryModule) },
+    // - L O Y A L T Y
+    { path: 'loyalty',loadChildren: () => import('./modules/loyalty/loyalty.module').then(m => m.LoyaltyModule) }
     // - REDIRECT NOT FOUND PAGES
     // { path: '**', component: NotFoundPage }
     // -  F I T T I N G S
