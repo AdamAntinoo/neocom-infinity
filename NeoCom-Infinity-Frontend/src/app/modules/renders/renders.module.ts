@@ -25,6 +25,7 @@ import { V1BOMGroupRenderComponent } from './v1-bomgroup-render/v1-bomgroup-rend
 import { V1PublicPilotRenderComponent } from './v1-public-pilot-render/v1-public-pilot-render.component';
 import { V1RegionRenderComponent } from './v1-region-render/v1-region-render.component';
 import { V1SolarSystemRenderComponent } from './v1-solar-system-render/v1-solar-system-render.component';
+import { V1LoyaltyCorporationRenderComponent } from './v1-loyalty-corporation-render/v1-loyalty-corporation-render.component';
 
 @NgModule({
     imports: [
@@ -53,7 +54,8 @@ import { V1SolarSystemRenderComponent } from './v1-solar-system-render/v1-solar-
         V1BOMGroupRenderComponent,
         V1PublicPilotRenderComponent,
         V1RegionRenderComponent,
-        V1SolarSystemRenderComponent
+        V1SolarSystemRenderComponent,
+        V1LoyaltyCorporationRenderComponent
 
     ],
     exports: [
@@ -77,7 +79,8 @@ import { V1SolarSystemRenderComponent } from './v1-solar-system-render/v1-solar-
         V1BOMGroupRenderComponent,
         V1PublicPilotRenderComponent,
         V1RegionRenderComponent,
-        V1SolarSystemRenderComponent
+        V1SolarSystemRenderComponent,
+        V1LoyaltyCorporationRenderComponent
     ]
 })
 export class RendersModule { }
