@@ -1,23 +1,29 @@
 // - CORE
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { OnInit } from '@angular/core';
 import { ProcessedBlueprint } from '@app/modules/industry/domain/V1ProcessedBlueprint.domain';
 import { ProcessedBlueprintDto } from '@app/modules/industry/dto/ProcessedBlueprintDto.dto';
 import { NeoCom } from '@domain/NeoCom.domain';
 import { NCVariant } from '@env/NeoComVariants';
+import { AppPanelComponent } from '@innovative/components/app-panel/app-panel.component';
 // - DOMAIN
 import { LoyaltyCorporationV1 } from '../../domain/LoyaltyCorporationV1.domain';
+import { V1LoyaltyRecommendationsPageComponent } from '../../page/v1-loyalty-recommendations-page/v1-loyalty-recommendations-page.component';
 
 @Component({
     selector: 'v1-loyalty-corporation-selection-panel',
     templateUrl: './v1-loyalty-corporation-selection-panel.component.html',
     styleUrls: ['./v1-loyalty-corporation-selection-panel.component.scss']
 })
-export class V1LoyaltyCorporationSelectionPanelComponent  {
-    public self:V1LoyaltyCorporationSelectionPanelComponent
-    public variant : NCVariant=NCVariant.LOYALTY
+export class V1LoyaltyCorporationSelectionPanelComponent extends AppPanelComponent implements OnInit {
+    @Input() container: V1LoyaltyRecommendationsPageComponent
+
+    public self: V1LoyaltyCorporationSelectionPanelComponent
+    public variant: NCVariant = NCVariant.LOYALTY
     public loyaltyCorporations: LoyaltyCorporationV1[] = []
-    constructor() {
-        this.self=this
+
+    public ngOnInit() {
+        this.self = this
         this.loyaltyCorporations.push(new LoyaltyCorporationV1({
             "id": 1000179,
             "ceo_id": 3018998,
@@ -31,5 +37,10 @@ export class V1LoyaltyCorporationSelectionPanelComponent  {
             "tax_rate": 0,
             "ticker": "IC24"
         }))
+    }
+    // - I V I E W E R
+    public fireSelectionChanged() {
+        const corporation = this.getSelection()[0] as LoyaltyCorporationV1
+        this.container.setSelectedCorporation(corporation)
     }
 }
