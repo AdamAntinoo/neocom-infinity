@@ -1,0 +1,6 @@
+<div class="panel-title">OFERTAS RECOMENDADAS</div>
+<div *ngIf="loyaltyCorporation">
+    SLECCIONADA{{loyaltyCorporation.name}}
+    <neocom-viewer-panel [nodes2render]="getNodes2Render()" [downloadtitle]="'Descargando ofertas recomendadas...'" [downloader]="self" [variant]="getVariant()" [selectOnHover]="true">
+    </neocom-viewer-panel>
+</div>

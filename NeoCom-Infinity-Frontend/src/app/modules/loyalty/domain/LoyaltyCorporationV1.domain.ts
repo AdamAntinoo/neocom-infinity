@@ -10,6 +10,9 @@ export class LoyaltyCorporationV1 extends NeoCom {
         this.jsonClass = 'LoyaltyCorporationV1'
     }
 
+    public getName(): string{
+        return this.name
+    }
     public getCorporationIconUrl(): string {
         return 'http://image.eveonline.com/Corporation/' + this.id + '_64.png'
     }

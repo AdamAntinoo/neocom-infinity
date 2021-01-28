@@ -320,6 +320,12 @@ $panel-background-hover-blue: #0B3D03;
     border-left: 3px solid $panel-green;
 }
 
+.selected-green {
+    transition: none;
+    background-color: $panel-green-20;
+    border-right: 3px solid $panel-green;
+}
+
 .panel-green:before {
     border-width: $panel-corner-marker-thickness 0 0 $panel-corner-marker-thickness;
     left: $panel-corner-marker-displacement;

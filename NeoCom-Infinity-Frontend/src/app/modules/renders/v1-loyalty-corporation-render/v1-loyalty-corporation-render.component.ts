@@ -30,4 +30,8 @@ export class V1LoyaltyCorporationRenderComponent extends V2NodeContainerRenderCo
         if (this.node) return this.getNode().getCorporationIconUrl()
         else return platformConstants.DEFAULT_ICON_PLACEHOLDER
     }
+    public isSelected(): boolean {
+        if (this.node) return this.getNode().isSelected()
+        else return false
+    }
 }

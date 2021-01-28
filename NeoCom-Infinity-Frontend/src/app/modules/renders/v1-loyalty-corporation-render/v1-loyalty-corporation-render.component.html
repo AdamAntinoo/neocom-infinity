@@ -1,6 +1,6 @@
 <!-- L O Y A L T Y -->
 <div *ngIf="getVariant() === '-LOYALTY-'" class=" pilot ">
-    <div id="{{getUniqueId()}} " *ngIf="node " class="row panel-green ">
+    <div id="{{getUniqueId()}} " *ngIf="node " class="row panel-green" [ngClass]="{'selected-green' : isSelected()}">
         <img class="neocom-icon iconsize-40 " src="{{getCorporationIcon()}} ">
         <div class="row ">
             <div class="field ">

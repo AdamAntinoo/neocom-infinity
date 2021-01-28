@@ -44,14 +44,6 @@ export class V2NodeContainerRenderComponent extends BackgroundEnabledComponent {
             }
         }
     }
-    // public select(): void {
-    //     this.node.select()
-    //     this.container.addSelection(this.node)
-    // }
-    // public unselect(): void {
-    //     this.node.unselect()
-    //     this.container.subtractSelection(this.node)
-    // }
     public isExpanded(): boolean {
         if (null != this.node)
             return this.node.isExpanded();
