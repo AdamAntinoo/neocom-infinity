@@ -34,7 +34,7 @@ export class SupportService {
         this.translationTable['selected-resources'] = 'v1-selected-resources-panel'
         // - RENDERS
         this.translationTable['exception'] = 'div'
-        this.translationTable['pilot'] = 'v2-pilot'
+        this.translationTable['pilot'] = 'v1-public-pilot'
         this.translationTable['feature-button'] = 'v1-feature-button'
         this.translationTable['planetary-system'] = 'v1-planetary-system'
         this.translationTable['processed-blueprint'] = 'v1-blueprint'

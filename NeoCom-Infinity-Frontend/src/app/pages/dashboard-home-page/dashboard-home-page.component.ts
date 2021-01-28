@@ -38,10 +38,11 @@ import { NeoComException } from '@innovative/domain/NeoComException';
 export class DashboardHomePageComponent extends BackgroundEnabledComponent implements OnInit {
     private pilot: PilotV2
     public corporation: Corporation
-    private ceo: PilotV2
-    private alliance: AllianceV1
+    // private ceo: PilotV2
+    // private alliance: AllianceV1
     public planetaryFeature: NeoComFeature // The feature to open the dashboard page for Planetary
     public blueprintListFeature: NeoComFeature // The feature to open the list of current pilot blueprints
+    public features: NeoComFeature[] = []
 
     private credential: NeoComCredential
     public corpFuture: Promise<Corporation>
@@ -52,20 +53,30 @@ export class DashboardHomePageComponent extends BackgroundEnabledComponent imple
         protected halResolver: HALResolver) {
         super()
         // Build the page features.
-        this.planetaryFeature = new NeoComFeature({
-            label: "Planetary Home",
+        this.features.push(new NeoComFeature({
+            id: "planetary-dashboard",
+            label: "Interacciones Planetarias",
             enabled: true,
             interaction: 'PAGEROUTE',
             route: "/planetary/dashboard",
             imageRef: 'assets/media/planetary-feature.jpeg'
-        })
-        this.blueprintListFeature = new NeoComFeature({
+        }))
+        this.features.push(new NeoComFeature({
+            id: "blueprint-analysis",
             label: "Catalogo de Blueprints",
             enabled: true,
             interaction: 'PAGEROUTE',
             route: "/industry/manufacture/blueprints",
             imageRef: 'assets/media/blueprints-feature.jpeg'
-        })
+        }))
+        this.features.push(new NeoComFeature({
+            id: "loyalty-recommendations",
+            label: "Recomendaciones de Ofertas Loyalty",
+            enabled: true,
+            interaction: 'PAGEROUTE',
+            route: "/industry/manufacture/blueprints",
+            imageRef: 'assets/media/blueprints-feature.jpeg'
+        }))
     }
 
     public ngOnInit() {
