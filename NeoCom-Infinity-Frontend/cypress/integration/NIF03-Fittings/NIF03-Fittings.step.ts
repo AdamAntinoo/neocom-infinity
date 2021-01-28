@@ -3,7 +3,7 @@ import { Given } from "cypress-cucumber-preprocessor/steps";
 import { When } from "cypress-cucumber-preprocessor/steps";
 import { Then } from "cypress-cucumber-preprocessor/steps";
 // - SERVICES
-import { IsolationService } from '../../support/IsolationService.support';
+// import { IsolationService } from '../../support/IsolationService.support';
 
 const PILOT_FITTINGS_ACTIVATION = 'PILOT-FITTINGS';
 
@@ -14,7 +14,7 @@ When('the PilotFittingsPage is activated with the request id {string}', function
     switch (activationCode) {
         case PILOT_FITTINGS_ACTIVATION:
             let urlRequest = '/fittings/pilot';
-            new IsolationService().doLoginPage(); // Authenticate the acceptance environment.
+            // new IsolationService().doLoginPage(); // Authenticate the acceptance environment.
             console.log('-[[WHEN] the PilotFittingsPage is activated with the request id {string}]> urlRequest=' + urlRequest);
             cy.visit(urlRequest);
             break;
