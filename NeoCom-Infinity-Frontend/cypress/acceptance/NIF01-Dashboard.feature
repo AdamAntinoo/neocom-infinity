@@ -27,23 +27,23 @@ Feature: [STORY] Describe the structure and contents for the Dashboard page. Thi
         Then the target has 1 "pilot-panel"
         Given the target the "pilot-panel" with id "92223647"
         Then the target has the title "Current Pilot"
-
-    @NIF01.02
-    Scenario: [NIF01.02]-Validate the current Pilot contents and visual rendering.
-        Given the Dashboard page activation
-        # - Check for the downloading pilot data message
-        # And the loading panel shows "Pending Pilot Data Download..."
-        # When the loading panel completes
-        # - Check the Pilot panel contents
-        Given the target the "pilot-panel" with id "92223647"
-        Then the target has 1 "pilot"
-        Given the target the "pilot" with id "93813310"
-        Then field named "pilotIdentifier" has contents "[93813310]"
-        And field named "pilotName" has contents "Perico Tuerto"
-        And field named "pilotAncestry" has contents "Amarr - Border Runners - Ni-Kunni"
-        And field named "pilotGender" has contents "Male"
-        # And field named "pilotWalletBalance" has contents "654.987 ISK"
-        # And field named "pilotLastLocation" with label "PILOTLASTLOCATION" has contents "location"
+# Comment until the Pilot mock data is completed
+    # @NIF01.02
+    # Scenario: [NIF01.02]-Validate the current Pilot contents and visual rendering.
+    #     Given the Dashboard page activation
+    #     # - Check for the downloading pilot data message
+    #     # And the loading panel shows "Pending Pilot Data Download..."
+    #     # When the loading panel completes
+    #     # - Check the Pilot panel contents
+    #     Given the target the "pilot-panel" with id "92223647"
+    #     Then the target has 1 "pilot"
+    #     Given the target the "pilot" with id "93813310"
+    #     Then field named "pilotIdentifier" has contents "[93813310]"
+    #     And field named "pilotName" has contents "Perico Tuerto"
+    #     And field named "pilotAncestry" has contents "Amarr - Border Runners - Ni-Kunni"
+    #     And field named "pilotGender" has contents "Male"
+    # # And field named "pilotWalletBalance" has contents "654.987 ISK"
+    # # And field named "pilotLastLocation" with label "PILOTLASTLOCATION" has contents "location"
 
     @NIF01.03
     Scenario: [NIF01.03]-Check the existence of the right Features at the dashboard page and that move to the right pages.
@@ -51,3 +51,12 @@ Feature: [STORY] Describe the structure and contents for the Dashboard page. Thi
         Then the target has 3 "feature-button"
         Given the target the "feature-button" with id "planetary-dashboard"
         Then the Feature has the label "Interacciones Planetarias"
+        When the Feature with label "Interacciones Planetarias" is clicked the destination is the Page "Planetary Dashboard Page"
+        Given the Dashboard page activation
+        Given the target the "feature-button" with id "blueprint-analysis"
+        Then the Feature has the label "Catalogo de Blueprints"
+        When the Feature with label "Catalogo de Blueprints" is clicked the destination is the Page "Blueprint Manufacture CostIndex"
+        Given the Dashboard page activation
+        Given the target the "feature-button" with id "loyalty-recommendations"
+        Then the Feature has the label "Recomendaciones de Ofertas Loyalty"
+        When the Feature with label "Recomendaciones de Ofertas Loyalty" is clicked the destination is the Page "Loyalty Recommendations"

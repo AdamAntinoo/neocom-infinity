@@ -13,6 +13,7 @@ export class SupportService {
         this.translationTable['Enter Planet Data Page'] = 'v1-enter-planet-data-page'
         this.translationTable['Resource Research Page'] = 'v1-resource-research-page'
         this.translationTable['Blueprint Manufacture CostIndex'] = 'v1-blueprint-list-page'
+        this.translationTable['Loyalty Recommendations'] = 'v1-loyalty-recommendations-page'
         // - PANELS
         this.translationTable['app-component'] = 'app-root'
         this.translationTable['feature'] = 'v2-feature'
