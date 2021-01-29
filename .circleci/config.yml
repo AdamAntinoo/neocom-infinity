@@ -134,7 +134,7 @@ jobs:
           environment:
             PROFILE: "production"
           command: |
-            ./gradlew clean bootJar
+            ./gradlew clean dependencies bootJar
   unittest-backend-job:
     docker:
       - image: circleci/openjdk:11-jdk
