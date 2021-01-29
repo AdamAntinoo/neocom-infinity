@@ -17,6 +17,8 @@ import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBFileSyst
 import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBNeoComDBAdapter;
 import org.dimensinfin.eveonline.neocom.infinity.backend.sde.service.SBSDEDatabaseService;
 import org.dimensinfin.eveonline.neocom.infinity.service.SBConfigurationService;
+import org.dimensinfin.eveonline.neocom.loyalty.persistence.LoyaltyOffersRepository;
+import org.dimensinfin.eveonline.neocom.loyalty.service.LoyaltyService;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 import org.dimensinfin.eveonline.neocom.provider.IFileSystem;
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
@@ -101,6 +103,12 @@ public class NeoComDependencyConfig {
 	}
 
 	@Bean
+	public LoyaltyService dependency_06_LoyaltyService() {
+		LogWrapper.enter();
+		return this.injector.getInstance( LoyaltyService.class );
+	}
+
+	@Bean
 	public ResourceFactory dependency_06_ResourceFactory() {
 		LogWrapper.enter();
 		return this.injector.getInstance( ResourceFactory.class );
@@ -128,5 +136,11 @@ public class NeoComDependencyConfig {
 	public CredentialRepository dependency_09_CredentialRepository() {
 		LogWrapper.enter();
 		return this.injector.getInstance( CredentialRepository.class );
+	}
+
+	@Bean
+	public LoyaltyOffersRepository dependency_09_LoyaltyOffersRepository() {
+		LogWrapper.enter();
+		return this.injector.getInstance( LoyaltyOffersRepository.class );
 	}
 }
