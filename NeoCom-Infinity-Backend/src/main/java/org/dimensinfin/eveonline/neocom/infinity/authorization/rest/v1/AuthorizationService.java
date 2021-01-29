@@ -21,7 +21,7 @@ import org.dimensinfin.eveonline.neocom.database.repositories.CredentialReposito
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdOk;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComError;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRestError;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
@@ -37,8 +37,8 @@ import static org.dimensinfin.eveonline.neocom.infinity.config.security.Security
 
 @Service
 public class AuthorizationService {
-	public static NeoComError errorINVALIDSTATEVERIFICATION() {
-		return new NeoComError.Builder()
+	public static NeoComRestError errorINVALIDSTATEVERIFICATION() {
+		return new NeoComRestError.Builder()
 				.withErrorName( "INVALID_STATE_VERIFICATION" )
 				.withHttpStatus( HttpStatus.UNAUTHORIZED )
 				.withErrorCode( "dimensinfin.neocom.authorization.invalid.state" )
@@ -46,8 +46,8 @@ public class AuthorizationService {
 				.build();
 	}
 
-	public static NeoComError errorINVALIDTOKENCREATION( final Exception exception ) {
-		return new NeoComError.Builder()
+	public static NeoComRestError errorINVALIDTOKENCREATION( final Exception exception ) {
+		return new NeoComRestError.Builder()
 				.withErrorName( "INVALID_TOKEN_CREATION" )
 				.withHttpStatus( HttpStatus.UNAUTHORIZED )
 				.withErrorCode( "dimensinfin.neocom.authorization.validation" )

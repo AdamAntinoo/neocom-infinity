@@ -12,7 +12,7 @@ import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetails;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetailsService;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComError;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRestError;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
 import org.dimensinfin.logging.LogWrapper;
 
@@ -20,8 +20,8 @@ import static org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendApp
 
 public abstract class NeoComCredentialService {
 
-	public static NeoComError errorTARGETNOTFOUND( final String entityName, final Integer identifier ) {
-		return new NeoComError.Builder()
+	public static NeoComRestError errorTARGETNOTFOUND( final String entityName, final Integer identifier ) {
+		return new NeoComRestError.Builder()
 				.withErrorName( "TARGET_NOT_FOUND" )
 				.withHttpStatus( HttpStatus.NOT_FOUND )
 				.withErrorCode( APPLICATION_ERROR_CODE_PREFIX + ".entity.not.found" )
@@ -32,8 +32,8 @@ public abstract class NeoComCredentialService {
 				.build();
 	}
 
-	public static NeoComError Error_CREDENTIALNOTFOUND() {
-		return new NeoComError.Builder()
+	public static NeoComRestError Error_CREDENTIALNOTFOUND() {
+		return new NeoComRestError.Builder()
 				.withErrorName( "CREDENTIAL_NOT_FOUND" )
 				.withHttpStatus( HttpStatus.UNAUTHORIZED )
 				.withErrorCode( APPLICATION_ERROR_CODE_PREFIX + ".credential.not.found" )

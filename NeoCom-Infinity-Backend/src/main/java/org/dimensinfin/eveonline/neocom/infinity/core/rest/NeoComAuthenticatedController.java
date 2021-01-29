@@ -4,13 +4,13 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.http.HttpStatus;
 
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComError;
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRestError;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
 
 public abstract class NeoComAuthenticatedController extends NeoComController {
-	public static NeoComError errorPILOTIDNOTAUTHORIZED() {
-		return new NeoComError.Builder()
+	public static NeoComRestError errorPILOTIDNOTAUTHORIZED() {
+		return new NeoComRestError.Builder()
 				.withErrorName( "PILOT_ID_NOT_AUTHORIZED" )
 				.withHttpStatus( HttpStatus.UNAUTHORIZED )
 				.withErrorCode( "dimensinfin.neocom.authorization.unauthorized" )
