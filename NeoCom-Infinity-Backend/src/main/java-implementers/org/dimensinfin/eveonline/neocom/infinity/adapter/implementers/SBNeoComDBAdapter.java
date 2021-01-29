@@ -20,6 +20,7 @@ import org.dimensinfin.eveonline.neocom.database.entities.NeoAsset;
 import org.dimensinfin.eveonline.neocom.database.entities.PilotPreferencesEntity;
 import org.dimensinfin.eveonline.neocom.industry.persistence.JobEntity;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
+import org.dimensinfin.eveonline.neocom.loyalty.persistence.LoyaltyOfferEntity;
 import org.dimensinfin.logging.LogWrapper;
 
 /**
@@ -49,6 +50,7 @@ public class SBNeoComDBAdapter implements NeoComDatabaseService {
 	private Dao<MiningExtractionEntity, String> miningExtractionDao;
 	private Dao<PilotPreferencesEntity, UUID> pilotPreferencesDao;
 	private Dao<JobEntity, String> industryJobDao;
+	private Dao<LoyaltyOfferEntity, Integer> loyaltyOfferDao;
 
 	// - C O N S T R U C T O R S
 	protected SBNeoComDBAdapter() {
@@ -109,6 +111,14 @@ public class SBNeoComDBAdapter implements NeoComDatabaseService {
 			this.versionDao = DaoManager.createDao( this.getConnectionSource(), DatabaseVersion.class );
 		}
 		return this.versionDao;
+	}
+
+	@Override
+	public Dao<LoyaltyOfferEntity, Integer> getLoyaltyOfferDao() throws SQLException {
+		if (null == this.loyaltyOfferDao) {
+			this.loyaltyOfferDao = DaoManager.createDao( this.getConnectionSource(), LoyaltyOfferEntity.class );
+		}
+		return this.loyaltyOfferDao;
 	}
 
 	public ConnectionSource getConnectionSource() throws SQLException {

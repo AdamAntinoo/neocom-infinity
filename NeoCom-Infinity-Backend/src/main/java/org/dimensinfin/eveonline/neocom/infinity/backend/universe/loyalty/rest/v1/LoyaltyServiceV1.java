@@ -73,7 +73,7 @@ public class LoyaltyServiceV1 {
 		}
 		return offerList
 				.stream()
-				.filter( offer -> offer.getLpValue() > 1000 )
+				.filter( offer -> offer.getLpValue() > this.loyaltyService.getProfitLevel() )
 				.sorted( ( of1, of2 ) -> Long.compare( of2.getLpValue(), of1.getLpValue() ) )
 				.collect( Collectors.toList() );
 	}
