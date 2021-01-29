@@ -22,8 +22,9 @@ import org.dimensinfin.logging.LogWrapper;
 @EnableAutoConfiguration
 public class NeoComInfinityBackendApplication {
 	public static final String APPLICATION_ERROR_CODE_PREFIX = "dimensinfin.eveonline.neocom";
+	public static final String PERSISTENCE_ERROR = ".persistence.sql.error";
 
-	public static void main( String[] args ) {
+	public static void main( final String[] args ) {
 		LogWrapper.enter();
 		SpringApplication.run( NeoComInfinityBackendApplication.class, args );
 		new LogoPrinter().print();
@@ -56,7 +57,7 @@ public class NeoComInfinityBackendApplication {
 
 		private String readAllBytes() {
 			try {
-				File resource = new File( System.getenv( "NEOCOM_BANNER_LOCATION" ) );
+				final File resource = new File( System.getenv( "NEOCOM_BANNER_LOCATION" ) );
 				return new String( Files.readAllBytes( resource.toPath() ) );
 			} catch (final IOException ioe) {
 				LogWrapper.error( ioe );
