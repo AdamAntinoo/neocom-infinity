@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRestError;
 import org.dimensinfin.eveonline.neocom.loyalty.persistence.LoyaltyOfferEntity;
 import org.dimensinfin.eveonline.neocom.loyalty.persistence.LoyaltyOffersRepository;
 import org.dimensinfin.eveonline.neocom.loyalty.service.LoyaltyService;
@@ -21,7 +22,7 @@ import org.dimensinfin.eveonline.neocom.loyalty.service.LoyaltyService;
  */
 @Service
 public class LoyaltyServiceV1 {
-	public static NeoComError errorINVENTORYSTOREREPOSITORYFAILURE( final SQLException sqle ) {
+	public static NeoComRestError errorINVENTORYSTOREREPOSITORYFAILURE( final SQLException sqle ) {
 		if (null != sqle.getCause())
 			return new DimensinfinError.Builder()
 					.withErrorName( "INVENTORY_STORE_REPOSITORY_FAILURE" )

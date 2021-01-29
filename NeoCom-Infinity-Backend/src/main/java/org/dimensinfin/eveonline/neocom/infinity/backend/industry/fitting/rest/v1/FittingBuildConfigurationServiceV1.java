@@ -21,7 +21,7 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.persis
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.service.FittingBuildConfigurationGenerator;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetailsService;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComError;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRestError;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
 import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComCredentialService;
 import org.dimensinfin.eveonline.neocom.infinity.datamanagement.industry.processor.IndustryBuildProcessor;
@@ -42,8 +42,8 @@ import static org.dimensinfin.eveonline.neocom.infinity.backend.industry.Industr
  */
 @Service
 public class FittingBuildConfigurationServiceV1 extends NeoComCredentialService {
-	public static NeoComError Error_FITTINGSEARCHRETURNEDFAILURE( final String message ) {
-		return new NeoComError.Builder()
+	public static NeoComRestError Error_FITTINGSEARCHRETURNEDFAILURE( final String message ) {
+		return new NeoComRestError.Builder()
 				.withErrorName( "FITTING_SEARCH_FAILURE" )
 				.withHttpStatus( HttpStatus.NOT_FOUND )
 				.withErrorCode( INDUSTRY_ERROR_CODE_PREFIX + ".fitting.mismatch" )

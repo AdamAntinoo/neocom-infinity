@@ -5,7 +5,7 @@ import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
 import org.springframework.http.HttpStatus;
 
-public class NeoComError {
+public class NeoComRestError {
 	public enum ErrorNames {
 		TARGET_NOT_FOUND
 	}
@@ -17,7 +17,7 @@ public class NeoComError {
 	private String cause;
 
 	// - C O N S T R U C T O R S
-	private NeoComError() {}
+	private NeoComRestError() {}
 
 	// - G E T T E R S   &   S E T T E R S
 	@SerializedName("cause")
@@ -25,7 +25,7 @@ public class NeoComError {
 		return this.cause;
 	}
 
-	public NeoComError setCause( final String cause ) {
+	public NeoComRestError setCause( final String cause ) {
 		this.cause = cause;
 		return this;
 	}
@@ -50,7 +50,7 @@ public class NeoComError {
 		return this.status;
 	}
 
-	public NeoComError setStatus( final HttpStatus status ) {
+	public NeoComRestError setStatus( final HttpStatus status ) {
 		this.status = status;
 		return this;
 	}
@@ -65,21 +65,21 @@ public class NeoComError {
 		return this.status.name();
 	}
 
-	public NeoComError updateMessage( final String newMessage ) {
+	public NeoComRestError updateMessage( final String newMessage ) {
 		this.message = newMessage;
 		return this;
 	}
 
 	// - B U I L D E R
 	public static class Builder {
-		private final NeoComError onConstruction;
+		private final NeoComRestError onConstruction;
 
 		// - C O N S T R U C T O R S
 		public Builder() {
-			this.onConstruction = new NeoComError();
+			this.onConstruction = new NeoComRestError();
 		}
 
-		public NeoComError build() {
+		public NeoComRestError build() {
 			Objects.requireNonNull( this.onConstruction.errorName );
 			Objects.requireNonNull( this.onConstruction.errorCode );
 			Objects.requireNonNull( this.onConstruction.message );

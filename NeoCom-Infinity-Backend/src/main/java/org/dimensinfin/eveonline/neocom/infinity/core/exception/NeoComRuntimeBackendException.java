@@ -10,16 +10,19 @@ import org.dimensinfin.eveonline.neocom.exception.NeoComRuntimeException;
 import org.dimensinfin.eveonline.neocom.infinity.client.core.dto.RestExceptionResponse;
 
 public class NeoComRuntimeBackendException extends NeoComRuntimeException {
-	public static NeoComError errorRUNTIMEINTERNALERROR( final String message ) {
-		return new NeoComError.Builder()
+	private static final long serialVersionUID = -5119600231618946788L;
+
+	public static NeoComRestError errorRUNTIMEINTERNALERROR( final String message ) {
+		return new NeoComRestError.Builder()
 				.withErrorName( "RUNTIME_INTERNAL_ERROR" )
 				.withHttpStatus( HttpStatus.INTERNAL_SERVER_ERROR )
 				.withErrorCode( "dimensinfin.uncatalogued.runtime" )
 				.withMessage( MessageFormat.format( "Runtime uncatalogued exception: {0}", message ) )
 				.build();
 	}
-	public static NeoComError errorINITIALIZATIONEXCEPTION( final Exception exception ) {
-		return new NeoComError.Builder()
+
+	public static NeoComRestError errorINITIALIZATIONEXCEPTION( final Exception exception ) {
+		return new NeoComRestError.Builder()
 				.withErrorName( "INITIALIZATION_INTERNAL_ERROR" )
 				.withHttpStatus( HttpStatus.INTERNAL_SERVER_ERROR )
 				.withErrorCode( "dimensinfin.initialization.runtime" )
@@ -27,8 +30,8 @@ public class NeoComRuntimeBackendException extends NeoComRuntimeException {
 				.build();
 	}
 
-	public static NeoComError errorINVALIDREQUESTSTRUCTURE( final MethodArgumentNotValidException restException ) {
-		return new NeoComError.Builder()
+	public static NeoComRestError errorINVALIDREQUESTSTRUCTURE( final MethodArgumentNotValidException restException ) {
+		return new NeoComRestError.Builder()
 				.withErrorName( "INVALID_REQUEST_STRUCTURE" )
 				.withHttpStatus( HttpStatus.BAD_REQUEST )
 				.withErrorCode( "dimensinfin.request.validation" )
@@ -36,8 +39,8 @@ public class NeoComRuntimeBackendException extends NeoComRuntimeException {
 				.build();
 	}
 
-	public static NeoComError errorUNEXPECTEDSQLEXCEPTION( final SQLException sqlException ) {
-		return new NeoComError.Builder()
+	public static NeoComRestError errorUNEXPECTEDSQLEXCEPTION( final SQLException sqlException ) {
+		return new NeoComRestError.Builder()
 				.withErrorName( "UNEXPECTED_SQL_EXCEPTION" )
 				.withErrorCode( "org.dimensinfin.eveonline.neocom.infinity.sql.exception" )
 				.withHttpStatus( HttpStatus.INTERNAL_SERVER_ERROR )
@@ -58,7 +61,7 @@ public class NeoComRuntimeBackendException extends NeoComRuntimeException {
 		this( errorRUNTIMEINTERNALERROR( errorMessage ) );
 	}
 
-	public NeoComRuntimeBackendException( final NeoComError error ) {
+	public NeoComRuntimeBackendException( final NeoComRestError error ) {
 		this.errorName = error.getErrorName();
 		this.errorCode = error.getErrorCode();
 		this.causeMessage = error.getCause();
@@ -74,7 +77,7 @@ public class NeoComRuntimeBackendException extends NeoComRuntimeException {
 		this.httpStatus = HttpStatus.valueOf( exceptionResponse.getHttpStatusCode() );
 	}
 
-	public NeoComRuntimeBackendException( final NeoComError error, final String cause ) {
+	public NeoComRuntimeBackendException( final NeoComRestError error, final String cause ) {
 		this.errorName = error.getErrorName();
 		this.errorCode = error.getErrorCode();
 		this.causeMessage = cause;
