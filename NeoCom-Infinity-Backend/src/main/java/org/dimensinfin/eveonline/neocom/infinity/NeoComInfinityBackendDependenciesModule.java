@@ -4,6 +4,7 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;
 
+import org.dimensinfin.eveonline.neocom.database.DMDatabaseDependenciesModule;
 import org.dimensinfin.eveonline.neocom.database.NeoComDatabaseService;
 import org.dimensinfin.eveonline.neocom.database.core.ISDEDatabaseService;
 import org.dimensinfin.eveonline.neocom.database.repositories.AssetRepository;
@@ -12,6 +13,8 @@ import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBFileSyst
 import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBNeoComDBAdapter;
 import org.dimensinfin.eveonline.neocom.infinity.backend.sde.service.SBSDEDatabaseService;
 import org.dimensinfin.eveonline.neocom.infinity.service.SBConfigurationService;
+import org.dimensinfin.eveonline.neocom.loyalty.persistence.LoyaltyOffersRepository;
+import org.dimensinfin.eveonline.neocom.loyalty.service.LoyaltyService;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 import org.dimensinfin.eveonline.neocom.provider.IFileSystem;
 import org.dimensinfin.eveonline.neocom.service.DMServicesDependenciesModule;
@@ -80,6 +83,10 @@ public class NeoComInfinityBackendDependenciesModule extends AbstractModule {
 				.annotatedWith( Names.named( DMServicesDependenciesModule.RESOURCE_FACTORY ) )
 				.to( ResourceFactory.class )
 				.in( Singleton.class );
+		this.bind( LoyaltyService.class )
+				.annotatedWith( Names.named( DMServicesDependenciesModule.LOYALTY_SERVICE ) )
+				.to( LoyaltyService.class )
+				.in( Singleton.class );
 
 		this.bind( ISDEDatabaseService.class )
 				.annotatedWith( Names.named( "ISDEDatabaseService" ) )
@@ -98,6 +105,10 @@ public class NeoComInfinityBackendDependenciesModule extends AbstractModule {
 		this.bind( AssetRepository.class )
 				.annotatedWith( Names.named( "AssetRepository" ) )
 				.to( AssetRepository.class )
+				.in( Singleton.class );
+		this.bind( LoyaltyOffersRepository.class )
+				.annotatedWith( Names.named( DMDatabaseDependenciesModule.LOYALTYOFFERS_REPOSITORY ) )
+				.to( LoyaltyOffersRepository.class )
 				.in( Singleton.class );
 	}
 }
