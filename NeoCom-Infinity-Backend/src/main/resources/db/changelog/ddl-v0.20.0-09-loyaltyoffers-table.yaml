@@ -1,0 +1,74 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0_20_0_901_neocom_create_loyaltyoffers_table
+      author: NeoCom development team. Adam Antinoo (adamantinoo.git@gmail.com).
+      changes:
+        - createTable:
+            schemaName: neocom
+            tableName: LoyaltyOffers
+            columns:
+              - column:
+                  name: offerId
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    updatable: false
+              - column:
+                  name: typeId
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: typeName
+                  type: varchar(300)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: corporationId
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: corporationName
+                  type: varchar(300)
+              - column:
+                  name: lpValue
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: iskCost
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: lpCost
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: quantity
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: marketRegionId
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: price
+                  type: float
+                  constraints:
+                    nullable: false
+              - column:
+                  name: creationTime
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: lastUpdateTime
+                  type: bigint
+                  constraints:
+                    nullable: false
