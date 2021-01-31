@@ -195,34 +195,39 @@ jobs:
           GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2"
     steps:
       - checkout
-        # - run:
-      #     name: BACKEND - Start the application in local profile
-      #     working_directory: NeoCom-Infinity-Backend
-      #     environment:
-      #       PORT: 5240 # This is the port configured on the AcceptancetargetConfig
-      #       JDBC_DATABASE_URL: "jdbc:postgresql://0.0.0.0:5432/postgres"
-      #       DB_USER: inno-user
-      #       DB_PASSWORD: inno-password
-      #       SPRING_PROFILES_ACTIVE: acceptance
-      #     command: |
-      #       ./gradlew bootRun
-      #     background: true
-      # - run:
-      #     name: BACKEND - Waiting for application start
-      #     environment:
-      #       PORT: 5240
-      #     working_directory: NeoCom-Infinity-Backend
-      #     command: |
-      #       dockerize -wait tcp://localhost:${PORT}/actuator/health -timeout 3m
+
   acceptance-test-backend-job:
-    docker:
-      - image: circleci/openjdk:11-jdk
-        environment:
-          _JAVA_OPTIONS: "-Xmx3g"
-          GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2"
+    machine:
+      image: ubuntu-2004:202010-01
     steps:
       - checkout
-
+      - run:
+          name: NEOCOM-BACKEND - Validate the CI machine configuration
+          working_directory: NeoCom-Infinity-Backend
+          command: |
+            ./gradlew --version
+            sudo snap install figlet
+      - run:
+          name: NEOCOM-BACKEND - Prepare the installation of the SDE database
+          working_directory: NeoCom-Infinity-Backend/src/integration/sh
+          command: |
+            ./update-sde.sh
+            ./install-sde.sh
+      - run:
+          name: NEOCOM-BACKEND - Generate the docker file to be used for application acceptance tests
+          working_directory: NeoCom-Infinity-Backend
+          command: |
+            ./docker-service generate
+      - run:
+          name: NEOCOM-BACKEND - Start the mock services
+          working_directory: NeoCom-Infinity-Backend
+          command: |
+            ./docker-service start acceptance
+      - run:
+          name: NEOCOM-BACKEND - Run the list of approved acceptance tests
+          working_directory: NeoCom-Infinity-Backend
+          command: |
+            ./gradlew acceptanceTest -Dcucumber.options="--tags @NIB11.01"
 
   stage-frontend-to-heroku:
     docker:
@@ -342,9 +347,20 @@ workflows:
               only:
                 - test
                 - hotfix
+      - acceptance-test-backend-job:
+          requires:
+            - start-job
+            - compile-backend-job
+            - unittest-backend-job
+          filters:
+            branches:
+              only:
+                - test
+                - hotfix
       - quality-sonarcloud-backend:
           requires:
             - unittest-backend-job
+            - quality-sonarcloud-backend
           filters:
             branches:
               only:

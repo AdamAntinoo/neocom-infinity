@@ -41,7 +41,6 @@ dependencyManagement {
 // - C O R E
 dependencies {
     implementation 'javax.validation:validation-api:2.0.1.Final' // Validation annotations
-//    implementation 'com.annimon:stream:1.1.9'
     implementation 'commons-codec:commons-codec:1.10' // Base64 decoding
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion" // OAuth2 authentication
     implementation "com.squareup.retrofit2:converter-jackson:$retrofitVersion" // HTTP encapsulation and swagger support
@@ -101,7 +100,6 @@ dependencies {
     integrationImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
-//    integrationImplementation 'org.springframework.security:spring-security-test'
     integrationImplementation 'org.junit.jupiter:junit-jupiter-api'
     integrationImplementation 'org.awaitility:awaitility:3.1.6'
     integrationImplementation 'org.testcontainers:junit-jupiter'
