@@ -11,11 +11,11 @@ import org.dimensinfin.eveonline.neocom.infinity.service.SBConfigurationService;
 
 @Component
 public class SchedulerConfiguration {
-	private static final String ALLOWED_TO_RUN_SETTING = "S.scheduler.allowedtorun";
-	private static final String ALLOWED_MININGEXTRACTIONS_SETTING = "S.scheduler.allowedminingextractions";
-	private static final String ALLOWED_PROCESSING_BLUEPRINTS_SETTING = "S.scheduler.allowed.processingblueprints";
+	private static final String ALLOWED_TO_RUN_SETTING = "P.scheduler.allowedtorun";
+	private static final String ALLOWED_MININGEXTRACTIONS_SETTING = "P.scheduler.allowedminingextractions";
+	private static final String ALLOWED_PROCESSING_BLUEPRINTS_SETTING = "P.scheduler.allowed.processingblueprints";
 
-	private SBConfigurationService configurationService;
+	private final SBConfigurationService configurationService;
 
 	// - C O N S T R U C T O R S
 	@Autowired

@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import javax.validation.constraints.NotNull;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +28,7 @@ public class MiningExtractionsService {
 	private final MiningRepository miningRepository;
 	private final ResourceFactory resourceFactory;
 
-// - C O N S T R U C T O R S
+	// - C O N S T R U C T O R S
 	@Autowired
 	public MiningExtractionsService( final @NotNull NeoComAuthenticationProvider neoComAuthenticationProvider,
 	                                 final @NotNull CredentialDetailsService credentialDetailsService,
@@ -41,7 +40,8 @@ public class MiningExtractionsService {
 		this.resourceFactory = resourceFactory;
 	}
 
-// - G E T T E R S   &   S E T T E R S
+	// - G E T T E R S   &   S E T T E R S
+
 	/**
 	 * The records retrieved from the repository for today downloads should be processed to remove duplicated quantities produced by the processing
 	 * of the same set of data at different hours. If there is an extraction at 15 hours and then the download process is executed again at 16
@@ -61,7 +61,8 @@ public class MiningExtractionsService {
 		for (final MiningExtraction extraction : extractions)
 			extractionMap.put( extraction.getId(), extraction );
 		// Transform extractions by correcting the mined delta quantities and removing zero delta records.
-		return Stream.of( extractions )
+		return extractions
+				.stream()
 				.map( extraction -> {
 					final String previousRecord = extraction.getPreviousHourId();
 					final MiningExtraction hit = extractionMap.get( previousRecord );
