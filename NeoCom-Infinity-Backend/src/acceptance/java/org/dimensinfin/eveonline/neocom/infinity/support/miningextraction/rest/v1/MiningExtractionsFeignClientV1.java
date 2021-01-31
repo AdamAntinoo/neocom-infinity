@@ -10,11 +10,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
-import org.dimensinfin.eveonline.neocom.core.support.GSONDateTimeDeserializer;
-import org.dimensinfin.eveonline.neocom.core.support.GSONLocalDateDeserializer;
 import org.dimensinfin.eveonline.neocom.database.entities.MiningExtractionEntity;
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.AcceptanceTargetConfig;
 import org.dimensinfin.eveonline.neocom.infinity.support.rest.NeoComApiv1;
 import org.dimensinfin.eveonline.neocom.service.logger.NeoComLogger;
+import org.dimensinfin.eveonline.neocom.utility.GSONDateTimeDeserializer;
+import org.dimensinfin.eveonline.neocom.utility.GSONLocalDateDeserializer;
 
 import retrofit2.Converter;
 import retrofit2.Response;
@@ -30,11 +31,11 @@ public class MiningExtractionsFeignClientV1 {
 							.registerTypeAdapter( LocalDate.class, new GSONLocalDateDeserializer() )
 							.create() );
 
-	public ResponseEntity<List<MiningExtractionEntity>> getTodayMiningExtractions4Pilot( final Integer pilotId ,
-	                                                                                     final String authorizationToken) throws IOException {
+	public ResponseEntity<List<MiningExtractionEntity>> getTodayMiningExtractions4Pilot( final Integer pilotId,
+	                                                                                     final String authorizationToken ) throws IOException {
 		final String ENDPOINT_MESSAGE = "Request today list of mining extractions for pilot.";
 		final Response<List<MiningExtractionEntity>> response = new Retrofit.Builder()
-				.baseUrl( NeoComApiv1.NEOCOM_BACKEND_APP_HOST )
+				.baseUrl( new AcceptanceTargetConfig().getBackendServer() )
 				.addConverterFactory( GSON_CONVERTER_FACTORY )
 				.build()
 				.create( NeoComApiv1.class )

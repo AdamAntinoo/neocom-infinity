@@ -11,8 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
-import org.dimensinfin.eveonline.neocom.infinity.support.rest.NeoComApiv1;
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.AcceptanceTargetConfig;
 import org.dimensinfin.eveonline.neocom.infinity.support.NeoComWorld;
+import org.dimensinfin.eveonline.neocom.infinity.support.rest.NeoComApiv1;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -24,21 +25,22 @@ public class CorporationFeignClientV1 {
 	private final NeoComWorld neoComWorld;
 	private final ObjectMapper mapper;
 
+// - C O N S T R U C T O R S
 	@Autowired
 	public CorporationFeignClientV1( final NeoComWorld neoComWorld ) {
 		this.neoComWorld = neoComWorld;
 		this.mapper = new ObjectMapper();
-//		mapper.registerModule( new JodaModule() );
-		SimpleModule module = new SimpleModule();
-//		module.addDeserializer( LocationAssetContainer.class, new LocationAssetContainer() );
-		mapper.registerModule( module );
+		//		mapper.registerModule( new JodaModule() );
+		final SimpleModule module = new SimpleModule();
+		//		module.addDeserializer( LocationAssetContainer.class, new LocationAssetContainer() );
+		this.mapper.registerModule( module );
 	}
 
 	public ResponseEntity<List<LocationAssetContainer>> getCorporationAssetsByLocation( final Integer corporationIdentifier,
 	                                                                                    final String authorizationToken ) throws IOException {
 		final NeoComApiv1 serviceCorporation = new Retrofit.Builder()
-				.baseUrl( NeoComApiv1.NEOCOM_BACKEND_APP_HOST )
-				.addConverterFactory( JacksonConverterFactory.create( mapper ) )
+				.baseUrl( new AcceptanceTargetConfig().getBackendServer() )
+				.addConverterFactory( JacksonConverterFactory.create( this.mapper ) )
 				.build()
 				.create( NeoComApiv1.class );
 		final Call<List<LocationAssetContainer>> request = serviceCorporation.getCorporationAssetsByLocation(
@@ -55,10 +57,10 @@ public class CorporationFeignClientV1 {
 
 	public ResponseEntity<CorporationResponse> getCorporationData( final Integer corporationIdentifier
 			, final String authorizationToken ) throws IOException {
-		ObjectMapper mapper = new ObjectMapper();
+		final ObjectMapper mapper = new ObjectMapper();
 		mapper.registerModule( new JodaModule() );
 		final NeoComApiv1 serviceCorporation = new Retrofit.Builder()
-				.baseUrl( NeoComApiv1.NEOCOM_BACKEND_APP_HOST )
+				.baseUrl( new AcceptanceTargetConfig().getBackendServer() )
 				.addConverterFactory( JacksonConverterFactory.create( mapper ) )
 				.build()
 				.create( NeoComApiv1.class );

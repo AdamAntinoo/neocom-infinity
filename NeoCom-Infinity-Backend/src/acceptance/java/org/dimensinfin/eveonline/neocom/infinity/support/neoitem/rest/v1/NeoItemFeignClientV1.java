@@ -8,11 +8,12 @@ import org.joda.time.LocalDate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import org.dimensinfin.eveonline.neocom.core.support.GSONDateTimeDeserializer;
-import org.dimensinfin.eveonline.neocom.core.support.GSONLocalDateDeserializer;
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.AcceptanceTargetConfig;
 import org.dimensinfin.eveonline.neocom.infinity.support.rest.NeoComApiv1;
 import org.dimensinfin.eveonline.neocom.infinity.support.rest.NeoItemApiv1;
 import org.dimensinfin.eveonline.neocom.service.logger.NeoComLogger;
+import org.dimensinfin.eveonline.neocom.utility.GSONDateTimeDeserializer;
+import org.dimensinfin.eveonline.neocom.utility.GSONLocalDateDeserializer;
 
 import retrofit2.Converter;
 import retrofit2.Response;
@@ -27,7 +28,7 @@ public class NeoItemFeignClientV1 {
 
 	public ResponseEntity<NeoItemTransport> getItemBasic( final Integer itemId ) throws IOException {
 		final Response<NeoItemTransport> response = new Retrofit.Builder()
-				.baseUrl( NeoComApiv1.NEOCOM_BACKEND_APP_HOST )
+				.baseUrl( new AcceptanceTargetConfig().getBackendServer() )
 				.addConverterFactory( GSON_CONVERTER_FACTORY )
 				.build()
 				.create( NeoItemApiv1.class )
