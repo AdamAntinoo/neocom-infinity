@@ -33,7 +33,7 @@ public class LoyaltyOfferEntitySerializer extends JsonSerializer<LoyaltyOfferEnt
 		jgen.writeNumberField( "iskCost", value.getIskCost() );
 		jgen.writeNumberField( "lpCost", value.getLpCost() );
 		jgen.writeNumberField( "quantity", value.getQuantity() );
-		jgen.writeNumberField( "regionId", value.getMarketRegionId() );
+		jgen.writeNumberField( "marketRegionId", value.getMarketRegionId() );
 		jgen.writeNumberField( "price", value.getPrice() );
 		// Additional HAL fields for market data.
 		final Link marketLink = WebMvcLinkBuilder.linkTo(

@@ -8,6 +8,7 @@ import org.apache.commons.lang3.NotImplementedException;
 import org.junit.jupiter.api.Assertions;
 import org.springframework.http.ResponseEntity;
 
+import org.dimensinfin.eveonline.neocom.domain.PilotV1;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.character.rest.v1.CharacterFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.character.rest.v2.CharacterFeignClientV2;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.industry.rest.v1.IndustryFeignClientV1;
@@ -20,11 +21,11 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingConfigurations;
 import org.dimensinfin.eveonline.neocom.infinity.backend.market.domain.MarketData;
 import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.EsiItemModel;
-import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.PilotV1;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
 import org.dimensinfin.eveonline.neocom.infinity.support.NeoComWorld;
 import org.dimensinfin.eveonline.neocom.infinity.support.RequestType;
 import org.dimensinfin.eveonline.neocom.infinity.support.authorization.rest.v1.AuthorizationFeignClientV1;
+import org.dimensinfin.eveonline.neocom.loyalty.persistence.LoyaltyOfferEntity;
 import org.dimensinfin.logging.LogWrapper;
 
 import io.cucumber.java.en.When;
@@ -78,6 +79,12 @@ public class WhenTheRequestIsProcessed extends StepSupport {
 	public void the_Get_Fitting_Saved_Configuration_request_with_fitting_identifier_is_processed( final Integer fittingId ) throws IOException {
 		this.neocomWorld.setFittingIdentifier( fittingId );
 		this.processRequestByType( RequestType.GET_INDUSTRY_FITTING_SAVED_CONFIGURATION );
+	}
+
+	@When("the Get Loyalty Offers request with corporation {int}")
+	public void the_Get_Loyalty_Offers_request_with_corporation( final int corporationId ) throws IOException {
+		this.neocomWorld.setCorporationId( corporationId );
+		this.processRequestByType( RequestType.GET_LOYALTY_OFFERS );
 	}
 
 	@When("the Get Market Consolidated request with item type {int}")
@@ -185,6 +192,15 @@ public class WhenTheRequestIsProcessed extends StepSupport {
 				Assertions.assertNotNull( marketDataUniverseResponseEntity );
 				this.neocomWorld.setMarketDataResponseEntity( marketDataUniverseResponseEntity );
 				return marketDataUniverseResponseEntity;
+			case GET_LOYALTY_OFFERS:
+				Assertions.assertNotNull( this.neocomWorld.getCorporationId() );
+				final ResponseEntity<List<LoyaltyOfferEntity>> loyaltyOffersResponseEntity = this.universeFeignClientV1
+						.getLoyaltyRecommendedOfferForCorporation(
+								this.neocomWorld.getCorporationId()
+						);
+				Assertions.assertNotNull( loyaltyOffersResponseEntity );
+				this.neocomWorld.setLoyaltyOffersResponseEntity( loyaltyOffersResponseEntity );
+				return loyaltyOffersResponseEntity;
 			default:
 				throw new NotImplementedException( "Request {} not implemented.", requestType.name() );
 		}

@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.database.entities.MiningExtractionEntity;
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.api.NeoComSupportFeignClient;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialResponse;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
@@ -34,7 +35,6 @@ import org.dimensinfin.eveonline.neocom.infinity.support.neoitem.rest.v1.NeoItem
 import org.dimensinfin.eveonline.neocom.infinity.support.neoitem.rest.v1.NeoItemTransport;
 import org.dimensinfin.eveonline.neocom.infinity.support.pilot.rest.v1.PilotFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.support.pilot.rest.v1.PilotResponse;
-import org.dimensinfin.eveonline.neocom.infinity.support.rest.NeoComSupportFeignClient;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -57,6 +57,7 @@ public class NIBCommonSteps extends SupportSteps {
 	private final NeoComSupportFeignClient neoComSupportFeignClient;
 	private final MiningExtractionsFeignClientSupport miningExtractionsFeignClientSupport;
 
+// - C O N S T R U C T O R S
 	@Autowired
 	public NIBCommonSteps( final ConverterContainer cucumberTableToRequestConverters,
 	                       final NeoComWorld neocomWorld,
@@ -133,14 +134,14 @@ public class NIBCommonSteps extends SupportSteps {
 
 	@Given("an empty this list of MiningExtractions stored at the repository")
 	public void an_empty_this_list_of_MiningExtractions_stored_at_the_repository() throws IOException {
-//		Assert.assertTrue(
+		//		Assert.assertTrue(
 		this.miningExtractionsFeignClientSupport.deleteAllMiningExtractions();
 	}
 
 	@Given("authorization token contained in file {string}")
 	public void authorization_token_contained_in_file( final String tokenFilePath ) throws IOException {
 		// Process special values
-		String jwtToken = Files.readString( Paths.get( FEATURES_DIRECTORY + tokenFilePath ) );
+		final String jwtToken = Files.readString( Paths.get( FEATURES_DIRECTORY + tokenFilePath ) );
 		if (jwtToken.equalsIgnoreCase( "<null>" )) {
 			this.neocomWorld.setJwtAuthorizationToken( null );
 			return;
@@ -256,7 +257,7 @@ public class NIBCommonSteps extends SupportSteps {
 				default:
 					throw new NotImplementedException( "Request type not implemented." );
 			}
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 			return null;
 		}

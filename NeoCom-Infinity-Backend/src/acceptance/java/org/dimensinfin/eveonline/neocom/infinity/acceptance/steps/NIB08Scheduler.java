@@ -8,9 +8,9 @@ import java.util.concurrent.TimeUnit;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.api.NeoComSupportFeignClient;
 import org.dimensinfin.eveonline.neocom.infinity.support.ConverterContainer;
 import org.dimensinfin.eveonline.neocom.infinity.support.NeoComWorld;
-import org.dimensinfin.eveonline.neocom.infinity.support.rest.NeoComSupportFeignClient;
 import org.dimensinfin.eveonline.neocom.service.scheduler.domain.JobRecord;
 
 import io.cucumber.java.en.Then;
@@ -19,6 +19,7 @@ import io.cucumber.java.en.When;
 public class NIB08Scheduler extends SupportSteps {
 	private final NeoComSupportFeignClient neoComSupportFeignClient;
 
+// - C O N S T R U C T O R S
 	@Autowired
 	public NIB08Scheduler( final ConverterContainer cucumberTableToRequestConverters,
 	                       final NeoComWorld neocomWorld,

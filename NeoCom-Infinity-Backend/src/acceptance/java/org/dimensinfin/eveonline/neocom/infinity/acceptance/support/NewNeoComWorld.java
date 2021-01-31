@@ -4,13 +4,14 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
+import org.dimensinfin.eveonline.neocom.domain.PilotV1;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.character.fitting.domain.FittingModel;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingBuildConfiguration;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingConfigurations;
 import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.EsiItemModel;
-import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.PilotV1;
 import org.dimensinfin.eveonline.neocom.infinity.universe.client.v1.ServerStatus;
+import org.dimensinfin.eveonline.neocom.loyalty.persistence.LoyaltyOfferEntity;
 
 public class NewNeoComWorld extends CommonWorld {
 	private ResponseEntity<ValidateAuthorizationTokenResponse> validateAuthorizationTokenResponseEntity;
@@ -22,8 +23,19 @@ public class NewNeoComWorld extends CommonWorld {
 	private ResponseEntity<FittingBuildConfiguration> fittingBuildConfigurationResponseEntity;
 	private String datasource;
 	private ResponseEntity<ServerStatus> serverStatusResponseEntity;
+	private ResponseEntity<List<LoyaltyOfferEntity>> loyaltyOffersResponseEntity;
+	private Integer corporationId;
 
 	// - G E T T E R S   &   S E T T E R S
+	public Integer getCorporationId() {
+		return this.corporationId;
+	}
+
+	public NewNeoComWorld setCorporationId( final Integer corporationId ) {
+		this.corporationId = corporationId;
+		return this;
+	}
+
 	public String getDatasource() {
 		return this.datasource;
 	}
@@ -66,6 +78,15 @@ public class NewNeoComWorld extends CommonWorld {
 
 	public NewNeoComWorld setItemResponseEntity( final ResponseEntity<EsiItemModel> itemResponseEntity ) {
 		this.itemResponseEntity = itemResponseEntity;
+		return this;
+	}
+
+	public ResponseEntity<List<LoyaltyOfferEntity>> getLoyaltyOffersResponseEntity() {
+		return this.loyaltyOffersResponseEntity;
+	}
+
+	public NewNeoComWorld setLoyaltyOffersResponseEntity( final ResponseEntity<List<LoyaltyOfferEntity>> loyaltyOffersResponseEntity ) {
+		this.loyaltyOffersResponseEntity = loyaltyOffersResponseEntity;
 		return this;
 	}
 

@@ -1,0 +1,199 @@
+[{
+        "jsonClass": "LoyaltyOfferEntity",
+        "offerId": 4270,
+        "typeId": 27143,
+        "typeName": "Zainou 'Gypsy' CPU Management EE-601",
+        "corporationId": 1000182,
+        "corporationName": "Tribal Liberation Force",
+        "lpValue": 1965,
+        "iskCost": 375000,
+        "lpCost": 375,
+        "quantity": 1,
+        "regionId": 10000043,
+        "price": 1112000.0,
+        "marketData": {
+            "rel": "marketData",
+            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/27143"
+        }
+    },
+    {
+        "jsonClass": "LoyaltyOfferEntity",
+        "offerId": 3420,
+        "typeId": 14297,
+        "typeName": "Limited Memory Augmentation - Beta",
+        "corporationId": 1000182,
+        "corporationName": "Tribal Liberation Force",
+        "lpValue": 1720,
+        "iskCost": 2500000,
+        "lpCost": 2500,
+        "quantity": 1,
+        "regionId": 10000043,
+        "price": 6799500.0,
+        "marketData": {
+            "rel": "marketData",
+            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/14297"
+        }
+    },
+    {
+        "jsonClass": "LoyaltyOfferEntity",
+        "offerId": 4256,
+        "typeId": 27127,
+        "typeName": "Inherent Implants 'Squire' Power Grid Management EG-601",
+        "corporationId": 1000182,
+        "corporationName": "Tribal Liberation Force",
+        "lpValue": 1667,
+        "iskCost": 375000,
+        "lpCost": 375,
+        "quantity": 1,
+        "regionId": 10000043,
+        "price": 1000000.0,
+        "marketData": {
+            "rel": "marketData",
+            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/27127"
+        }
+    },
+    {
+        "jsonClass": "LoyaltyOfferEntity",
+        "offerId": 4206,
+        "typeId": 13263,
+        "typeName": "Zainou 'Gnome' Shield Operation SP-903",
+        "corporationId": 1000182,
+        "corporationName": "Tribal Liberation Force",
+        "lpValue": 1528,
+        "iskCost": 10875000,
+        "lpCost": 10875,
+        "quantity": 1,
+        "regionId": 10000043,
+        "price": 2.749E7,
+        "marketData": {
+            "rel": "marketData",
+            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/13263"
+        }
+    },
+    {
+        "jsonClass": "LoyaltyOfferEntity",
+        "offerId": 4102,
+        "typeId": 3895,
+        "typeName": "Security Connections",
+        "corporationId": 1000182,
+        "corporationName": "Tribal Liberation Force",
+        "lpValue": 1526,
+        "iskCost": 10000000,
+        "lpCost": 15000,
+        "quantity": 1,
+        "regionId": 10000043,
+        "price": 3.289E7,
+        "marketData": {
+            "rel": "marketData",
+            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/3895"
+        }
+    },
+    {
+        "jsonClass": "LoyaltyOfferEntity",
+        "offerId": 4184,
+        "typeId": 13249,
+        "typeName": "Zainou 'Deadeye' Rapid Launch RL-1003",
+        "corporationId": 1000182,
+        "corporationName": "Tribal Liberation Force",
+        "lpValue": 1526,
+        "iskCost": 10875000,
+        "lpCost": 10875,
+        "quantity": 1,
+        "regionId": 10000043,
+        "price": 2.747E7,
+        "marketData": {
+            "rel": "marketData",
+            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/13249"
+        }
+    },
+    {
+        "jsonClass": "LoyaltyOfferEntity",
+        "offerId": 15757,
+        "typeId": 20415,
+        "typeName": "Datacore - Molecular Engineering",
+        "corporationId": 1000182,
+        "corporationName": "Tribal Liberation Force",
+        "lpValue": 1296,
+        "iskCost": 250000,
+        "lpCost": 250,
+        "quantity": 5,
+        "regionId": 10000043,
+        "price": 114800.0,
+        "marketData": {
+            "rel": "marketData",
+            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/20415"
+        }
+    },
+    {
+        "jsonClass": "LoyaltyOfferEntity",
+        "offerId": 4203,
+        "typeId": 10228,
+        "typeName": "Zainou 'Gnome' Shield Management SM-703",
+        "corporationId": 1000182,
+        "corporationName": "Tribal Liberation Force",
+        "lpValue": 1294,
+        "iskCost": 10875000,
+        "lpCost": 10875,
+        "quantity": 1,
+        "regionId": 10000043,
+        "price": 2.495E7,
+        "marketData": {
+            "rel": "marketData",
+            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/10228"
+        }
+    },
+    {
+        "jsonClass": "LoyaltyOfferEntity",
+        "offerId": 4241,
+        "typeId": 13259,
+        "typeName": "Inherent Implants 'Squire' Capacitor Management EM-803",
+        "corporationId": 1000182,
+        "corporationName": "Tribal Liberation Force",
+        "lpValue": 1282,
+        "iskCost": 10875000,
+        "lpCost": 10875,
+        "quantity": 1,
+        "regionId": 10000043,
+        "price": 2.482E7,
+        "marketData": {
+            "rel": "marketData",
+            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/13259"
+        }
+    },
+    {
+        "jsonClass": "LoyaltyOfferEntity",
+        "offerId": 4243,
+        "typeId": 13261,
+        "typeName": "Inherent Implants 'Squire' Power Grid Management EG-603",
+        "corporationId": 1000182,
+        "corporationName": "Tribal Liberation Force",
+        "lpValue": 1051,
+        "iskCost": 10875000,
+        "lpCost": 10875,
+        "quantity": 1,
+        "regionId": 10000043,
+        "price": 2.23E7,
+        "marketData": {
+            "rel": "marketData",
+            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/13261"
+        }
+    },
+    {
+        "jsonClass": "LoyaltyOfferEntity",
+        "offerId": 3414,
+        "typeId": 9943,
+        "typeName": "Cybernetic Subprocessor - Basic",
+        "corporationId": 1000182,
+        "corporationName": "Tribal Liberation Force",
+        "lpValue": 1023,
+        "iskCost": 5250000,
+        "lpCost": 5250,
+        "quantity": 1,
+        "regionId": 10000043,
+        "price": 1.062E7,
+        "marketData": {
+            "rel": "marketData",
+            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/9943"
+        }
+    }
+]

@@ -40,16 +40,16 @@ dependencyManagement {
 
 // - C O R E
 dependencies {
-    implementation 'javax.validation:validation-api:2.0.1.Final'
-    implementation 'com.annimon:stream:1.1.9'
-    implementation 'org.apache.commons:commons-lang3:3.9'
-    implementation 'com.auth0:java-jwt:3.3.0'
+    implementation 'javax.validation:validation-api:2.0.1.Final' // Validation annotations
+//    implementation 'com.annimon:stream:1.1.9'
     implementation 'commons-codec:commons-codec:1.10' // Base64 decoding
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion" // OAuth2 authentication
     implementation "com.squareup.retrofit2:converter-jackson:$retrofitVersion" // HTTP encapsulation and swagger support
     implementation "com.squareup.retrofit2:converter-gson:2.4.0"
     implementation 'com.google.inject:guice:4.1.0' // Google guice dependency injection framework
     implementation 'com.jcabi:jcabi-aspects:0.22.6' // Useful annotations for methods
+    implementation 'org.apache.commons:commons-lang3:3.9'
+    implementation 'com.auth0:java-jwt:3.3.0' // JWT processing library
     // M E T R I C S
     runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
     // L O G G I N G
