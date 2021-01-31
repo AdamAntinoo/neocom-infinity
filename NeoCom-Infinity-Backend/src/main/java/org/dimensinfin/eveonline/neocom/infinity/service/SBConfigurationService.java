@@ -10,7 +10,6 @@ import java.util.Objects;
 import java.util.Properties;
 import javax.validation.constraints.NotNull;
 
-import com.annimon.stream.Stream;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
@@ -25,6 +24,7 @@ public class SBConfigurationService extends AConfigurationService {
 		this.readAllProperties();
 	}
 
+	@Override
 	public void readAllProperties() {
 		LogWrapper.enter();
 		// Read all .properties files under the predefined path on the /resources folder.
@@ -35,7 +35,8 @@ public class SBConfigurationService extends AConfigurationService {
 			LogWrapper.error( ioe );
 			propertyFiles = new ArrayList<>();
 		}
-		Stream.of( propertyFiles )
+		propertyFiles
+				.stream()
 				.sorted()
 				.forEach( fileName -> {
 					LogWrapper.info( MessageFormat.format( "Processing file: {0}", fileName ) );
@@ -43,8 +44,8 @@ public class SBConfigurationService extends AConfigurationService {
 						final Properties properties = new Properties();
 						properties.load( new FileInputStream( fileName ) );
 						// Copy properties to globals.
-						configurationProperties.putAll( properties );
-					} catch (IOException ioe) {
+						this.configurationProperties.putAll( properties );
+					} catch (final IOException ioe) {
 						LogWrapper.error( "Exception reading properties file " + fileName, ioe );
 					}
 				} );
@@ -55,6 +56,7 @@ public class SBConfigurationService extends AConfigurationService {
 	 * Reads all the files found on the parameter directory path. Because the directory is read as a stream the method to read
 	 * the directory does not use the file system isolation.
 	 */
+	@Override
 	protected List<String> getResourceFiles( final String initialPath ) throws IOException {
 		final File rootFolder = new File( System.getProperty( "user.dir" ) + initialPath );
 		LogWrapper.info( MessageFormat.format( "User directory: {0}", System.getProperty( "user.dir" ) ) );
@@ -71,11 +73,11 @@ public class SBConfigurationService extends AConfigurationService {
 		final List<String> filenames = new ArrayList<>();
 		try {
 			Objects.requireNonNull( folder.listFiles() );
-		} catch (NullPointerException npe) {
+		} catch (final NullPointerException npe) {
 			throw new IOException( "The properties location is empty or not found." );
 		}
 		for (final File fileEntry : Objects.requireNonNull( folder.listFiles() )) {
-			if (fileEntry.isDirectory()) listFilesForFolder( fileEntry );
+			if (fileEntry.isDirectory()) this.listFilesForFolder( fileEntry );
 			else filenames.add( fileEntry.getPath() );
 		}
 		return filenames;

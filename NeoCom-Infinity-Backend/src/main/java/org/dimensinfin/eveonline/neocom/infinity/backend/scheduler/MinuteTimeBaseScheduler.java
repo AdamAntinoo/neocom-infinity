@@ -4,7 +4,6 @@ import java.text.MessageFormat;
 import java.time.LocalTime;
 import javax.validation.constraints.NotNull;
 
-import com.annimon.stream.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -108,7 +107,8 @@ public class MinuteTimeBaseScheduler {
 	}
 
 	private void printSchedulerJobsReport() {
-		Stream.of( JobScheduler.getJobScheduler().getRegisteredJobs() )
+		JobScheduler.getJobScheduler().getRegisteredJobs()
+				.stream()
 				.forEach( ( job ) -> {
 					LogWrapper.info( MessageFormat.format( "{0} [{1}] - {2}",
 							job.getJobName(), job.getSchedule(), job.getStatus().name() )
