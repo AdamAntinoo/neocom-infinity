@@ -360,7 +360,7 @@ workflows:
       - quality-sonarcloud-backend:
           requires:
             - unittest-backend-job
-            - quality-sonarcloud-backend
+            - acceptance-test-backend-job
           filters:
             branches:
               only:
