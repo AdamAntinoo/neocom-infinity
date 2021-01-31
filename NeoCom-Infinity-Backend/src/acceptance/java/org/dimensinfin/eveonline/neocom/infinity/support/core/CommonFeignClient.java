@@ -10,17 +10,17 @@ import org.joda.time.LocalDate;
 import org.springframework.hateoas.Link;
 import org.springframework.stereotype.Component;
 
-import org.dimensinfin.eveonline.neocom.core.support.GSONDateTimeDeserializer;
-import org.dimensinfin.eveonline.neocom.core.support.GSONLocalDateDeserializer;
 import org.dimensinfin.eveonline.neocom.domain.NeoItem;
 import org.dimensinfin.eveonline.neocom.domain.space.Station;
-import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.BuildAction;
-
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.ITargetConfiguration;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.character.rest.deserializer.GSONLinkDeserializer;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.character.rest.deserializer.GSONNeoItemDeserializer;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.industry.deserializer.GSONBuildActionDeserializer;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.industry.deserializer.GSONStationDeserializer;
+import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.BuildAction;
+import org.dimensinfin.eveonline.neocom.utility.GSONDateTimeDeserializer;
+import org.dimensinfin.eveonline.neocom.utility.GSONLocalDateDeserializer;
+
 import okhttp3.OkHttpClient;
 import retrofit2.Converter;
 import retrofit2.converter.gson.GsonConverterFactory;

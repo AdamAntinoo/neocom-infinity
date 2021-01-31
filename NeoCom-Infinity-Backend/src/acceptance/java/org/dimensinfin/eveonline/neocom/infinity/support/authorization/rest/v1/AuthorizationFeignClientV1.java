@@ -1,13 +1,14 @@
 package org.dimensinfin.eveonline.neocom.infinity.support.authorization.rest.v1;
 
 import java.io.IOException;
-
 import javax.validation.constraints.NotNull;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.AcceptanceTargetConfig;
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.ITargetConfiguration;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialResponse;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
@@ -17,20 +18,20 @@ import org.dimensinfin.eveonline.neocom.infinity.support.rest.NeoComApiv1;
 import org.dimensinfin.eveonline.neocom.service.logger.NeoComLogger;
 import org.dimensinfin.logging.LogWrapper;
 
-import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.ITargetConfiguration;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
 @Component
 public class AuthorizationFeignClientV1 extends CommonFeignClient {
+// - C O N S T R U C T O R S
 	public AuthorizationFeignClientV1( final @NotNull ITargetConfiguration acceptanceTargetConfig ) {
 		super( acceptanceTargetConfig );
 	}
 
 	public ResponseEntity<StoreCredentialResponse> storeCredential( final StoreCredentialRequest storeCredentialRequest ) throws IOException {
 		final NeoComApiv1 serviceStoreCredential = new Retrofit.Builder()
-				.baseUrl( NeoComApiv1.NEOCOM_BACKEND_APP_HOST )
+				.baseUrl( new AcceptanceTargetConfig().getBackendServer() )
 				.addConverterFactory( GSON_CONVERTER_FACTORY )
 				.build()
 				.create( NeoComApiv1.class );
@@ -53,7 +54,7 @@ public class AuthorizationFeignClientV1 extends CommonFeignClient {
 	) throws IOException {
 		final String ENDPOINT_MESSAGE = "Request the validation of the ESI authentication token.";
 		final Response<ValidateAuthorizationTokenResponse> response = new Retrofit.Builder()
-				.baseUrl( NeoComApiv1.NEOCOM_BACKEND_APP_HOST )
+				.baseUrl( new AcceptanceTargetConfig().getBackendServer() )
 				.addConverterFactory( GSON_CONVERTER_FACTORY )
 				.build()
 				.create( NeoComApiv1.class )
