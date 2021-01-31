@@ -11,6 +11,10 @@
     <option name="MAIN_CLASS_NAME" value="org.dimensinfin.eveonline.neocom.infinity.acceptance.RunAcceptanceTests" />
     <option name="METHOD_NAME" value="" />
     <option name="TEST_OBJECT" value="class" />
+    <envs>
+      <env name="DEFAULT_BACKEND_SERVER" value="http://localhost" />
+      <env name="DEFAULT_BACKEND_PORT" value="5241" />
+    </envs>
     <method v="2">
       <option name="Make" enabled="true" />
     </method>

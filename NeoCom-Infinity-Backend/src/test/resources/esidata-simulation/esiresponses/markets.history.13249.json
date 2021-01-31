@@ -1,0 +1,3402 @@
+[
+  {
+    "average": 23142857,
+    "date": "2019-12-01",
+    "highest": 26000000,
+    "lowest": 20000000,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 25999999.99,
+    "date": "2019-12-02",
+    "highest": 26000000,
+    "lowest": 25999999.98,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 62249999.99,
+    "date": "2019-12-03",
+    "highest": 99999999.99,
+    "lowest": 24499999.99,
+    "order_count": 2,
+    "volume": 2
+  },
+  {
+    "average": 45636363.63,
+    "date": "2019-12-04",
+    "highest": 99999999.98,
+    "lowest": 25250000,
+    "order_count": 11,
+    "volume": 11
+  },
+  {
+    "average": 25600000,
+    "date": "2019-12-05",
+    "highest": 26000000,
+    "lowest": 24000000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 23999999.99,
+    "date": "2019-12-06",
+    "highest": 24000000,
+    "lowest": 23999999.99,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 26000000,
+    "date": "2019-12-07",
+    "highest": 27000000,
+    "lowest": 25000000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 28800000,
+    "date": "2019-12-08",
+    "highest": 29999999.99,
+    "lowest": 28000000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 25633333.33,
+    "date": "2019-12-09",
+    "highest": 25950000,
+    "lowest": 25000000,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 28000000,
+    "date": "2019-12-10",
+    "highest": 28000000,
+    "lowest": 27999999.99,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 29999999.99,
+    "date": "2019-12-11",
+    "highest": 29999999.99,
+    "lowest": 29999999.99,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 29999999.99,
+    "date": "2019-12-12",
+    "highest": 29999999.99,
+    "lowest": 29999999.99,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 29999999.99,
+    "date": "2019-12-13",
+    "highest": 29999999.99,
+    "lowest": 29999999.99,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 29999999.99,
+    "date": "2019-12-14",
+    "highest": 29999999.99,
+    "lowest": 29999999.99,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 28999999.46,
+    "date": "2019-12-15",
+    "highest": 29999998.93,
+    "lowest": 27999999.99,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 28999999.93,
+    "date": "2019-12-16",
+    "highest": 29999999.87,
+    "lowest": 28000000,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 29999996.01,
+    "date": "2019-12-17",
+    "highest": 29999999.86,
+    "lowest": 29999992.16,
+    "order_count": 5,
+    "volume": 6
+  },
+  {
+    "average": 29999999.85,
+    "date": "2019-12-18",
+    "highest": 29999999.86,
+    "lowest": 29999999.85,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 18833333.97,
+    "date": "2019-12-19",
+    "highest": 27999999.86,
+    "lowest": 17000000.99,
+    "order_count": 3,
+    "volume": 6
+  },
+  {
+    "average": 24499250.24,
+    "date": "2019-12-20",
+    "highest": 26998999.99,
+    "lowest": 17000000.99,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 26999999.99,
+    "date": "2019-12-21",
+    "highest": 26999999.99,
+    "lowest": 26999999.99,
+    "order_count": 1,
+    "volume": 1
+  },
+  {
+    "average": 26399999.97,
+    "date": "2019-12-22",
+    "highest": 27999999.85,
+    "lowest": 26000000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 27499999.92,
+    "date": "2019-12-23",
+    "highest": 27999999.85,
+    "lowest": 26999999.99,
+    "order_count": 6,
+    "volume": 8
+  },
+  {
+    "average": 27999999.85,
+    "date": "2019-12-24",
+    "highest": 27999999.85,
+    "lowest": 27999999.84,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 27999999.67,
+    "date": "2019-12-25",
+    "highest": 27999999.76,
+    "lowest": 27999999.64,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 27999999.64,
+    "date": "2019-12-26",
+    "highest": 27999999.65,
+    "lowest": 27999999.64,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 25000000.14,
+    "date": "2019-12-27",
+    "highest": 25999999.99,
+    "lowest": 20000000.99,
+    "order_count": 5,
+    "volume": 6
+  },
+  {
+    "average": 27999999.87,
+    "date": "2019-12-28",
+    "highest": 27999999.87,
+    "lowest": 27999999.86,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 29999999.95,
+    "date": "2019-12-29",
+    "highest": 29999999.96,
+    "lowest": 29999999.93,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 29999999.94,
+    "date": "2019-12-30",
+    "highest": 29999999.94,
+    "lowest": 29999999.93,
+    "order_count": 3,
+    "volume": 4
+  },
+  {
+    "average": 29999999.92,
+    "date": "2019-12-31",
+    "highest": 29999999.94,
+    "lowest": 29999999.92,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 25666666.94,
+    "date": "2020-01-01",
+    "highest": 29999999.91,
+    "lowest": 17000000.99,
+    "order_count": 5,
+    "volume": 6
+  },
+  {
+    "average": 29999999.88,
+    "date": "2020-01-02",
+    "highest": 29999999.89,
+    "lowest": 29999999.87,
+    "order_count": 2,
+    "volume": 2
+  },
+  {
+    "average": 29999999.88,
+    "date": "2020-01-03",
+    "highest": 29999999.88,
+    "lowest": 29999999.87,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 29999999.88,
+    "date": "2020-01-04",
+    "highest": 29999999.88,
+    "lowest": 29999999.87,
+    "order_count": 8,
+    "volume": 8
+  },
+  {
+    "average": 29999999.66,
+    "date": "2020-01-05",
+    "highest": 29999999.66,
+    "lowest": 29999999.66,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 29999999.62,
+    "date": "2020-01-06",
+    "highest": 29999999.64,
+    "lowest": 29999999.6,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 29999999.58,
+    "date": "2020-01-07",
+    "highest": 29999999.59,
+    "lowest": 29999999.57,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 29999999.41,
+    "date": "2020-01-08",
+    "highest": 29999999.42,
+    "lowest": 29999999.4,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 29979999.48,
+    "date": "2020-01-09",
+    "highest": 29999999.35,
+    "lowest": 29900000,
+    "order_count": 4,
+    "volume": 5
+  },
+  {
+    "average": 29999999.26,
+    "date": "2020-01-10",
+    "highest": 29999999.27,
+    "lowest": 29999999.25,
+    "order_count": 2,
+    "volume": 2
+  },
+  {
+    "average": 29999998.12,
+    "date": "2020-01-11",
+    "highest": 29999999.22,
+    "lowest": 29999997.96,
+    "order_count": 8,
+    "volume": 8
+  },
+  {
+    "average": 29749999.74,
+    "date": "2020-01-12",
+    "highest": 29999999.99,
+    "lowest": 28000000,
+    "order_count": 8,
+    "volume": 8
+  },
+  {
+    "average": 29999999.99,
+    "date": "2020-01-13",
+    "highest": 29999999.99,
+    "lowest": 29999999.99,
+    "order_count": 2,
+    "volume": 2
+  },
+  {
+    "average": 29999999.99,
+    "date": "2020-01-14",
+    "highest": 29999999.99,
+    "lowest": 29999999.98,
+    "order_count": 2,
+    "volume": 2
+  },
+  {
+    "average": 24428589.17,
+    "date": "2020-01-15",
+    "highest": 29999999.96,
+    "lowest": 17000041.49,
+    "order_count": 5,
+    "volume": 7
+  },
+  {
+    "average": 23862509.74,
+    "date": "2020-01-16",
+    "highest": 26149999.97,
+    "lowest": 17000039.03,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 26149999.96,
+    "date": "2020-01-17",
+    "highest": 26150000,
+    "lowest": 26149999.94,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 26149999.99,
+    "date": "2020-01-18",
+    "highest": 26149999.99,
+    "lowest": 26149999.99,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 26149999.99,
+    "date": "2020-01-19",
+    "highest": 26150000,
+    "lowest": 26149999.99,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 26149999.96,
+    "date": "2020-01-20",
+    "highest": 26149999.97,
+    "lowest": 26149999.95,
+    "order_count": 5,
+    "volume": 6
+  },
+  {
+    "average": 26149999.93,
+    "date": "2020-01-21",
+    "highest": 26149999.93,
+    "lowest": 26149999.92,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 26149999.94,
+    "date": "2020-01-22",
+    "highest": 26149999.99,
+    "lowest": 26149999.93,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 26149999.99,
+    "date": "2020-01-23",
+    "highest": 26149999.99,
+    "lowest": 26149999.98,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 26149999.97,
+    "date": "2020-01-24",
+    "highest": 26149999.97,
+    "lowest": 26149999.97,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 20778586.63,
+    "date": "2020-01-25",
+    "highest": 26149999.89,
+    "lowest": 17000041.71,
+    "order_count": 10,
+    "volume": 14
+  },
+  {
+    "average": 26149999.79,
+    "date": "2020-01-26",
+    "highest": 26149999.81,
+    "lowest": 26149999.55,
+    "order_count": 12,
+    "volume": 22
+  },
+  {
+    "average": 26149999.47,
+    "date": "2020-01-27",
+    "highest": 26149999.53,
+    "lowest": 26149999.22,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 26150000,
+    "date": "2020-01-28",
+    "highest": 26150000,
+    "lowest": 26149999.99,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 26149999.99,
+    "date": "2020-01-29",
+    "highest": 26149999.99,
+    "lowest": 26149999.99,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 21075009.31,
+    "date": "2020-01-30",
+    "highest": 26149999.94,
+    "lowest": 16000019,
+    "order_count": 5,
+    "volume": 6
+  },
+  {
+    "average": 26149999.92,
+    "date": "2020-01-31",
+    "highest": 26149999.92,
+    "lowest": 26149999.91,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 26149999.87,
+    "date": "2020-02-01",
+    "highest": 26149999.92,
+    "lowest": 26149999.8,
+    "order_count": 8,
+    "volume": 8
+  },
+  {
+    "average": 25022224.35,
+    "date": "2020-02-02",
+    "highest": 26149999.91,
+    "lowest": 16000021,
+    "order_count": 9,
+    "volume": 9
+  },
+  {
+    "average": 26149999.91,
+    "date": "2020-02-03",
+    "highest": 26149999.91,
+    "lowest": 26149999.91,
+    "order_count": 2,
+    "volume": 3
+  },
+  {
+    "average": 26149999.91,
+    "date": "2020-02-04",
+    "highest": 26149999.91,
+    "lowest": 26149999.91,
+    "order_count": 9,
+    "volume": 10
+  },
+  {
+    "average": 26150000,
+    "date": "2020-02-05",
+    "highest": 26150000,
+    "lowest": 26150000,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 26149999.99,
+    "date": "2020-02-06",
+    "highest": 26150000,
+    "lowest": 26149999.99,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 26149999.97,
+    "date": "2020-02-07",
+    "highest": 26149999.97,
+    "lowest": 26149999.97,
+    "order_count": 2,
+    "volume": 2
+  },
+  {
+    "average": 26149999.89,
+    "date": "2020-02-08",
+    "highest": 26149999.9,
+    "lowest": 26149999.89,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 24458343.99,
+    "date": "2020-02-09",
+    "highest": 26149999.86,
+    "lowest": 16000064.69,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 25549999.78,
+    "date": "2020-02-10",
+    "highest": 26149999.8,
+    "lowest": 23149999.71,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 25898146.82,
+    "date": "2020-02-11",
+    "highest": 26149999.75,
+    "lowest": 25646293.9,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 25646293.9,
+    "date": "2020-02-12",
+    "highest": 25646293.9,
+    "lowest": 25646293.89,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 25519099.07,
+    "date": "2020-02-13",
+    "highest": 25549999.75,
+    "lowest": 25333694.96,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 25549999.75,
+    "date": "2020-02-14",
+    "highest": 25549999.75,
+    "lowest": 25549999.74,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 25749999.83,
+    "date": "2020-02-15",
+    "highest": 26150000,
+    "lowest": 25549999.75,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 26149999.71,
+    "date": "2020-02-16",
+    "highest": 26149999.99,
+    "lowest": 26149999,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 26149997.99,
+    "date": "2020-02-17",
+    "highest": 26149997.99,
+    "lowest": 26149997.99,
+    "order_count": 1,
+    "volume": 1
+  },
+  {
+    "average": 26149997,
+    "date": "2020-02-18",
+    "highest": 26149997,
+    "lowest": 26149996.99,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 26149995.41,
+    "date": "2020-02-19",
+    "highest": 26149997,
+    "lowest": 26149995,
+    "order_count": 12,
+    "volume": 12
+  },
+  {
+    "average": 26149993.5,
+    "date": "2020-02-20",
+    "highest": 26149994.5,
+    "lowest": 26149993,
+    "order_count": 4,
+    "volume": 6
+  },
+  {
+    "average": 26149992,
+    "date": "2020-02-21",
+    "highest": 26149992,
+    "lowest": 26149992,
+    "order_count": 1,
+    "volume": 1
+  },
+  {
+    "average": 23389991.2,
+    "date": "2020-02-22",
+    "highest": 26149984,
+    "lowest": 19250000.5,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 26149981.37,
+    "date": "2020-02-23",
+    "highest": 26149981.99,
+    "lowest": 26149981,
+    "order_count": 8,
+    "volume": 8
+  },
+  {
+    "average": 26149982.65,
+    "date": "2020-02-24",
+    "highest": 26149999.98,
+    "lowest": 26149981,
+    "order_count": 9,
+    "volume": 9
+  },
+  {
+    "average": 26149964.97,
+    "date": "2020-02-25",
+    "highest": 26149966,
+    "lowest": 26149963.94,
+    "order_count": 2,
+    "volume": 2
+  },
+  {
+    "average": 23622241.61,
+    "date": "2020-02-26",
+    "highest": 25799997,
+    "lowest": 16000096.77,
+    "order_count": 9,
+    "volume": 9
+  },
+  {
+    "average": 25799995,
+    "date": "2020-02-27",
+    "highest": 25799995,
+    "lowest": 25799995,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 25799991,
+    "date": "2020-02-28",
+    "highest": 25799994,
+    "lowest": 25799988,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 25666661.18,
+    "date": "2020-02-29",
+    "highest": 25799985.58,
+    "lowest": 25599998.98,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 25599982.22,
+    "date": "2020-03-01",
+    "highest": 25599983.68,
+    "lowest": 25599979.28,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 25599979,
+    "date": "2020-03-02",
+    "highest": 25599979.02,
+    "lowest": 25599979,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 25599978.67,
+    "date": "2020-03-03",
+    "highest": 25599979.01,
+    "lowest": 25599977.99,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 25599978.43,
+    "date": "2020-03-04",
+    "highest": 25599979.01,
+    "lowest": 25599978,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 25599979,
+    "date": "2020-03-05",
+    "highest": 25599979.01,
+    "lowest": 25599978.99,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 25599979,
+    "date": "2020-03-06",
+    "highest": 25599979.01,
+    "lowest": 25599978.98,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 25599978.92,
+    "date": "2020-03-07",
+    "highest": 25599978.96,
+    "lowest": 25599978.9,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 25599977.16,
+    "date": "2020-03-08",
+    "highest": 25599978.93,
+    "lowest": 25599976.97,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 25599970.13,
+    "date": "2020-03-09",
+    "highest": 25599971,
+    "lowest": 25599968.97,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 25592202.51,
+    "date": "2020-03-10",
+    "highest": 25599966,
+    "lowest": 25570000,
+    "order_count": 7,
+    "volume": 9
+  },
+  {
+    "average": 25560000,
+    "date": "2020-03-11",
+    "highest": 25560000,
+    "lowest": 25560000,
+    "order_count": 1,
+    "volume": 1
+  },
+  {
+    "average": 25510000,
+    "date": "2020-03-12",
+    "highest": 25510000,
+    "lowest": 25510000,
+    "order_count": 1,
+    "volume": 1
+  },
+  {
+    "average": 23590019.35,
+    "date": "2020-03-13",
+    "highest": 25490000,
+    "lowest": 16000096.77,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 25460000,
+    "date": "2020-03-14",
+    "highest": 25460000,
+    "lowest": 25460000,
+    "order_count": 8,
+    "volume": 8
+  },
+  {
+    "average": 23928899.64,
+    "date": "2020-03-15",
+    "highest": 25430000,
+    "lowest": 18510048.39,
+    "order_count": 9,
+    "volume": 9
+  },
+  {
+    "average": 21750000,
+    "date": "2020-03-16",
+    "highest": 25400000,
+    "lowest": 21020000,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 21010000,
+    "date": "2020-03-17",
+    "highest": 21010000,
+    "lowest": 21010000,
+    "order_count": 3,
+    "volume": 4
+  },
+  {
+    "average": 23845000,
+    "date": "2020-03-18",
+    "highest": 23990000,
+    "lowest": 21010000,
+    "order_count": 8,
+    "volume": 8
+  },
+  {
+    "average": 24322500,
+    "date": "2020-03-19",
+    "highest": 25410000,
+    "lowest": 23940000,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 22340000,
+    "date": "2020-03-20",
+    "highest": 23915000,
+    "lowest": 16020000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 23921666.67,
+    "date": "2020-03-21",
+    "highest": 23930000,
+    "lowest": 23920000,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 23940000,
+    "date": "2020-03-22",
+    "highest": 23940000,
+    "lowest": 23940000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 23396000,
+    "date": "2020-03-23",
+    "highest": 23940000,
+    "lowest": 22580000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 23637500,
+    "date": "2020-03-24",
+    "highest": 24675000,
+    "lowest": 22600000,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 24436666.67,
+    "date": "2020-03-25",
+    "highest": 25410000,
+    "lowest": 23950000,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 22827500,
+    "date": "2020-03-26",
+    "highest": 23950000,
+    "lowest": 18000000,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 25540000,
+    "date": "2020-03-27",
+    "highest": 25540000,
+    "lowest": 25540000,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 25537500,
+    "date": "2020-03-28",
+    "highest": 25600000,
+    "lowest": 25510000,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 25458750,
+    "date": "2020-03-29",
+    "highest": 25480000,
+    "lowest": 25410000,
+    "order_count": 8,
+    "volume": 8
+  },
+  {
+    "average": 23643333.33,
+    "date": "2020-03-30",
+    "highest": 25390000,
+    "lowest": 23310000,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 23190000,
+    "date": "2020-03-31",
+    "highest": 23190000,
+    "lowest": 23190000,
+    "order_count": 1,
+    "volume": 1
+  },
+  {
+    "average": 21956666.67,
+    "date": "2020-04-01",
+    "highest": 23120000,
+    "lowest": 16020000,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 23080000,
+    "date": "2020-04-02",
+    "highest": 23080000,
+    "lowest": 23080000,
+    "order_count": 1,
+    "volume": 1
+  },
+  {
+    "average": 23040000,
+    "date": "2020-04-03",
+    "highest": 23040000,
+    "lowest": 23040000,
+    "order_count": 1,
+    "volume": 1
+  },
+  {
+    "average": 23015714.29,
+    "date": "2020-04-04",
+    "highest": 23025000,
+    "lowest": 23000000,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 22958000,
+    "date": "2020-04-05",
+    "highest": 22980000,
+    "lowest": 22940000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 22984000,
+    "date": "2020-04-06",
+    "highest": 22990000,
+    "lowest": 22980000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 23851250,
+    "date": "2020-04-07",
+    "highest": 24840000,
+    "lowest": 23310000,
+    "order_count": 8,
+    "volume": 8
+  },
+  {
+    "average": 24848000,
+    "date": "2020-04-08",
+    "highest": 24850000,
+    "lowest": 24840000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 25022500,
+    "date": "2020-04-09",
+    "highest": 25540000,
+    "lowest": 24850000,
+    "order_count": 8,
+    "volume": 8
+  },
+  {
+    "average": 25535555.56,
+    "date": "2020-04-10",
+    "highest": 25540000,
+    "lowest": 25530000,
+    "order_count": 8,
+    "volume": 9
+  },
+  {
+    "average": 25538000,
+    "date": "2020-04-11",
+    "highest": 25540000,
+    "lowest": 25530000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 23160000,
+    "date": "2020-04-12",
+    "highest": 25540000,
+    "lowest": 16035000,
+    "order_count": 8,
+    "volume": 8
+  },
+  {
+    "average": 25572498.63,
+    "date": "2020-04-13",
+    "highest": 25799989,
+    "lowest": 25540000,
+    "order_count": 8,
+    "volume": 8
+  },
+  {
+    "average": 42287494.5,
+    "date": "2020-04-14",
+    "highest": 99999999.98,
+    "lowest": 25799989,
+    "order_count": 7,
+    "volume": 8
+  },
+  {
+    "average": 99970000,
+    "date": "2020-04-15",
+    "highest": 99970000,
+    "lowest": 99970000,
+    "order_count": 1,
+    "volume": 1
+  },
+  {
+    "average": 49477500,
+    "date": "2020-04-16",
+    "highest": 50000000,
+    "lowest": 49300000,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 49356000,
+    "date": "2020-04-17",
+    "highest": 49360000,
+    "lowest": 49350000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 49290000,
+    "date": "2020-04-18",
+    "highest": 49290000,
+    "lowest": 49290000,
+    "order_count": 2,
+    "volume": 2
+  },
+  {
+    "average": 36361666.67,
+    "date": "2020-04-19",
+    "highest": 49210000,
+    "lowest": 29940000,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 29900000,
+    "date": "2020-04-20",
+    "highest": 29910000,
+    "lowest": 29890000,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 28171250,
+    "date": "2020-04-21",
+    "highest": 29860000,
+    "lowest": 16320000,
+    "order_count": 8,
+    "volume": 8
+  },
+  {
+    "average": 29797142.86,
+    "date": "2020-04-22",
+    "highest": 29810000,
+    "lowest": 29790000,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 26742222.22,
+    "date": "2020-04-23",
+    "highest": 29760000,
+    "lowest": 16360000,
+    "order_count": 8,
+    "volume": 9
+  },
+  {
+    "average": 29695000,
+    "date": "2020-04-24",
+    "highest": 29700000,
+    "lowest": 29690000,
+    "order_count": 2,
+    "volume": 2
+  },
+  {
+    "average": 27058888.89,
+    "date": "2020-04-25",
+    "highest": 29580000,
+    "lowest": 26415000,
+    "order_count": 8,
+    "volume": 9
+  },
+  {
+    "average": 25992500,
+    "date": "2020-04-26",
+    "highest": 26000000,
+    "lowest": 25985000,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 26177142.86,
+    "date": "2020-04-27",
+    "highest": 26220000,
+    "lowest": 26000000,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 27227000,
+    "date": "2020-04-28",
+    "highest": 29770000,
+    "lowest": 26100000,
+    "order_count": 10,
+    "volume": 10
+  },
+  {
+    "average": 43561428.57,
+    "date": "2020-04-29",
+    "highest": 48990000,
+    "lowest": 29990000,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 25140555.56,
+    "date": "2020-04-30",
+    "highest": 25150000,
+    "lowest": 25140000,
+    "order_count": 18,
+    "volume": 18
+  },
+  {
+    "average": 25134000,
+    "date": "2020-05-01",
+    "highest": 25140000,
+    "lowest": 25130000,
+    "order_count": 10,
+    "volume": 10
+  },
+  {
+    "average": 25099500,
+    "date": "2020-05-02",
+    "highest": 25130000,
+    "lowest": 25060000,
+    "order_count": 17,
+    "volume": 20
+  },
+  {
+    "average": 25150000,
+    "date": "2020-05-03",
+    "highest": 25150000,
+    "lowest": 25150000,
+    "order_count": 10,
+    "volume": 10
+  },
+  {
+    "average": 28138750,
+    "date": "2020-05-04",
+    "highest": 49060000,
+    "lowest": 25150000,
+    "order_count": 8,
+    "volume": 8
+  },
+  {
+    "average": 25131250,
+    "date": "2020-05-05",
+    "highest": 25150000,
+    "lowest": 25000000,
+    "order_count": 6,
+    "volume": 8
+  },
+  {
+    "average": 25150000,
+    "date": "2020-05-06",
+    "highest": 25150000,
+    "lowest": 25150000,
+    "order_count": 11,
+    "volume": 11
+  },
+  {
+    "average": 24266666.67,
+    "date": "2020-05-07",
+    "highest": 25150000,
+    "lowest": 22500000,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 39517500,
+    "date": "2020-05-08",
+    "highest": 49045000,
+    "lowest": 29990000,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 29087272.73,
+    "date": "2020-05-09",
+    "highest": 49000000,
+    "lowest": 25000000,
+    "order_count": 11,
+    "volume": 11
+  },
+  {
+    "average": 48973333.33,
+    "date": "2020-05-10",
+    "highest": 48980000,
+    "lowest": 48970000,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 46540000,
+    "date": "2020-05-11",
+    "highest": 48930000,
+    "lowest": 25000000,
+    "order_count": 10,
+    "volume": 10
+  },
+  {
+    "average": 38385000,
+    "date": "2020-05-12",
+    "highest": 49020000,
+    "lowest": 27750000,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 48602500,
+    "date": "2020-05-13",
+    "highest": 48620000,
+    "lowest": 48550000,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 33403636.36,
+    "date": "2020-05-14",
+    "highest": 48390000,
+    "lowest": 25000000,
+    "order_count": 7,
+    "volume": 11
+  },
+  {
+    "average": 37833333.33,
+    "date": "2020-05-15",
+    "highest": 48190000,
+    "lowest": 17120000,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 47754000,
+    "date": "2020-05-16",
+    "highest": 47870000,
+    "lowest": 47660000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 47093333.33,
+    "date": "2020-05-17",
+    "highest": 47570000,
+    "lowest": 46140000,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 45885000,
+    "date": "2020-05-18",
+    "highest": 46070000,
+    "lowest": 45700000,
+    "order_count": 2,
+    "volume": 2
+  },
+  {
+    "average": 41833333.33,
+    "date": "2020-05-19",
+    "highest": 44990000,
+    "lowest": 25570000,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 25415000,
+    "date": "2020-05-20",
+    "highest": 25480000,
+    "lowest": 25350000,
+    "order_count": 2,
+    "volume": 2
+  },
+  {
+    "average": 23222500,
+    "date": "2020-05-21",
+    "highest": 25250000,
+    "lowest": 17150000,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 23417142.86,
+    "date": "2020-05-22",
+    "highest": 24970000,
+    "lowest": 19585000,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 20405000,
+    "date": "2020-05-23",
+    "highest": 23640000,
+    "lowest": 17170000,
+    "order_count": 2,
+    "volume": 2
+  },
+  {
+    "average": 23647777.78,
+    "date": "2020-05-24",
+    "highest": 23710000,
+    "lowest": 23630000,
+    "order_count": 9,
+    "volume": 9
+  },
+  {
+    "average": 23716666.67,
+    "date": "2020-05-25",
+    "highest": 23720000,
+    "lowest": 23710000,
+    "order_count": 6,
+    "volume": 9
+  },
+  {
+    "average": 23677500,
+    "date": "2020-05-26",
+    "highest": 23680000,
+    "lowest": 23670000,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 23638181.82,
+    "date": "2020-05-27",
+    "highest": 23680000,
+    "lowest": 23200000,
+    "order_count": 7,
+    "volume": 11
+  },
+  {
+    "average": 23051000,
+    "date": "2020-05-28",
+    "highest": 23680000,
+    "lowest": 17190000,
+    "order_count": 9,
+    "volume": 10
+  },
+  {
+    "average": 23723333.33,
+    "date": "2020-05-29",
+    "highest": 23740000,
+    "lowest": 23720000,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 23712500,
+    "date": "2020-05-30",
+    "highest": 23750000,
+    "lowest": 23700000,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 23685000,
+    "date": "2020-05-31",
+    "highest": 23700000,
+    "lowest": 23680000,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 23431666.67,
+    "date": "2020-06-01",
+    "highest": 23680000,
+    "lowest": 22190000,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 23660000,
+    "date": "2020-06-02",
+    "highest": 23660000,
+    "lowest": 23660000,
+    "order_count": 3,
+    "volume": 5
+  },
+  {
+    "average": 23664000,
+    "date": "2020-06-03",
+    "highest": 23680000,
+    "lowest": 23660000,
+    "order_count": 4,
+    "volume": 5
+  },
+  {
+    "average": 24080000,
+    "date": "2020-06-04",
+    "highest": 24925000,
+    "lowest": 23715000,
+    "order_count": 8,
+    "volume": 8
+  },
+  {
+    "average": 27914285.71,
+    "date": "2020-06-05",
+    "highest": 45000000,
+    "lowest": 25000000,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 45550000,
+    "date": "2020-06-06",
+    "highest": 46200000,
+    "lowest": 45530000,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 45807500,
+    "date": "2020-06-07",
+    "highest": 46455000,
+    "lowest": 43995000,
+    "order_count": 8,
+    "volume": 8
+  },
+  {
+    "average": 47695000,
+    "date": "2020-06-08",
+    "highest": 47715000,
+    "lowest": 47675000,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 44975000,
+    "date": "2020-06-09",
+    "highest": 44980000,
+    "lowest": 44970000,
+    "order_count": 2,
+    "volume": 2
+  },
+  {
+    "average": 44964000,
+    "date": "2020-06-10",
+    "highest": 44970000,
+    "lowest": 44955000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 44954000,
+    "date": "2020-06-11",
+    "highest": 44965000,
+    "lowest": 44950000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 42970000,
+    "date": "2020-06-12",
+    "highest": 44940000,
+    "lowest": 41985000,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 41975000,
+    "date": "2020-06-13",
+    "highest": 41980000,
+    "lowest": 41970000,
+    "order_count": 2,
+    "volume": 2
+  },
+  {
+    "average": 34507500,
+    "date": "2020-06-14",
+    "highest": 44490000,
+    "lowest": 24525000,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 20379230.77,
+    "date": "2020-06-15",
+    "highest": 27745000,
+    "lowest": 19050000,
+    "order_count": 7,
+    "volume": 13
+  },
+  {
+    "average": 28996666.67,
+    "date": "2020-06-16",
+    "highest": 31000000,
+    "lowest": 27995000,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 43003333.33,
+    "date": "2020-06-17",
+    "highest": 44255000,
+    "lowest": 40500000,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 36340000,
+    "date": "2020-06-18",
+    "highest": 43910000,
+    "lowest": 24980000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 22745454.55,
+    "date": "2020-06-19",
+    "highest": 23990000,
+    "lowest": 17140000,
+    "order_count": 9,
+    "volume": 11
+  },
+  {
+    "average": 25000000,
+    "date": "2020-06-20",
+    "highest": 25000000,
+    "lowest": 25000000,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 30475000,
+    "date": "2020-06-21",
+    "highest": 43900000,
+    "lowest": 25000000,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 32425000,
+    "date": "2020-06-22",
+    "highest": 44260000,
+    "lowest": 20590000,
+    "order_count": 2,
+    "volume": 2
+  },
+  {
+    "average": 21792000,
+    "date": "2020-06-23",
+    "highest": 26600000,
+    "lowest": 20590000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 26498333.33,
+    "date": "2020-06-25",
+    "highest": 26600000,
+    "lowest": 26000000,
+    "order_count": 5,
+    "volume": 6
+  },
+  {
+    "average": 26480000,
+    "date": "2020-06-26",
+    "highest": 26600000,
+    "lowest": 26000000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 26000000,
+    "date": "2020-06-27",
+    "highest": 26000000,
+    "lowest": 26000000,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 25678000,
+    "date": "2020-06-28",
+    "highest": 26600000,
+    "lowest": 18000000,
+    "order_count": 10,
+    "volume": 10
+  },
+  {
+    "average": 26300000,
+    "date": "2020-06-29",
+    "highest": 26600000,
+    "lowest": 26000000,
+    "order_count": 2,
+    "volume": 2
+  },
+  {
+    "average": 26073750,
+    "date": "2020-06-30",
+    "highest": 26590000,
+    "lowest": 26000000,
+    "order_count": 8,
+    "volume": 8
+  },
+  {
+    "average": 26171428.57,
+    "date": "2020-07-01",
+    "highest": 26600000,
+    "lowest": 26000000,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 26000000,
+    "date": "2020-07-02",
+    "highest": 26000000,
+    "lowest": 26000000,
+    "order_count": 2,
+    "volume": 2
+  },
+  {
+    "average": 29400000,
+    "date": "2020-07-03",
+    "highest": 44000000,
+    "lowest": 26000000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 24022857.14,
+    "date": "2020-07-04",
+    "highest": 26600000,
+    "lowest": 18100000,
+    "order_count": 13,
+    "volume": 14
+  },
+  {
+    "average": 26450000,
+    "date": "2020-07-05",
+    "highest": 26600000,
+    "lowest": 26000000,
+    "order_count": 6,
+    "volume": 8
+  },
+  {
+    "average": 29580000,
+    "date": "2020-07-06",
+    "highest": 44280000,
+    "lowest": 26600000,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 29625000,
+    "date": "2020-07-07",
+    "highest": 30000000,
+    "lowest": 28510000,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 33570000,
+    "date": "2020-07-08",
+    "highest": 44280000,
+    "lowest": 30000000,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 27986666.67,
+    "date": "2020-07-09",
+    "highest": 27990000,
+    "lowest": 27980000,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 27990000,
+    "date": "2020-07-10",
+    "highest": 27990000,
+    "lowest": 27990000,
+    "order_count": 2,
+    "volume": 2
+  },
+  {
+    "average": 28281250,
+    "date": "2020-07-11",
+    "highest": 44290000,
+    "lowest": 25990000,
+    "order_count": 8,
+    "volume": 8
+  },
+  {
+    "average": 25367500,
+    "date": "2020-07-12",
+    "highest": 25990000,
+    "lowest": 23500000,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 32448000,
+    "date": "2020-07-13",
+    "highest": 44280000,
+    "lowest": 29985000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 29976000,
+    "date": "2020-07-14",
+    "highest": 29985000,
+    "lowest": 29970000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 31559090.91,
+    "date": "2020-07-15",
+    "highest": 44290000,
+    "lowest": 29980000,
+    "order_count": 11,
+    "volume": 11
+  },
+  {
+    "average": 28325000,
+    "date": "2020-07-16",
+    "highest": 29990000,
+    "lowest": 24995000,
+    "order_count": 3,
+    "volume": 6
+  },
+  {
+    "average": 26273333.33,
+    "date": "2020-07-17",
+    "highest": 44500000,
+    "lowest": 23995000,
+    "order_count": 8,
+    "volume": 9
+  },
+  {
+    "average": 30090000,
+    "date": "2020-07-18",
+    "highest": 44500000,
+    "lowest": 28975000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 28966666.67,
+    "date": "2020-07-19",
+    "highest": 28975000,
+    "lowest": 28950000,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 28960000,
+    "date": "2020-07-20",
+    "highest": 28970000,
+    "lowest": 28950000,
+    "order_count": 8,
+    "volume": 8
+  },
+  {
+    "average": 26964000,
+    "date": "2020-07-21",
+    "highest": 28950000,
+    "lowest": 19010000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 28880000,
+    "date": "2020-07-22",
+    "highest": 28890000,
+    "lowest": 28870000,
+    "order_count": 2,
+    "volume": 2
+  },
+  {
+    "average": 28854285.71,
+    "date": "2020-07-23",
+    "highest": 28870000,
+    "lowest": 28845000,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 25562222.22,
+    "date": "2020-07-24",
+    "highest": 28840000,
+    "lowest": 19010000,
+    "order_count": 8,
+    "volume": 9
+  },
+  {
+    "average": 24010000,
+    "date": "2020-07-25",
+    "highest": 24010000,
+    "lowest": 24010000,
+    "order_count": 1,
+    "volume": 1
+  },
+  {
+    "average": 23990000,
+    "date": "2020-07-26",
+    "highest": 23990000,
+    "lowest": 23990000,
+    "order_count": 9,
+    "volume": 9
+  },
+  {
+    "average": 23161666.67,
+    "date": "2020-07-27",
+    "highest": 23990000,
+    "lowest": 19000000,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 18766000,
+    "date": "2020-07-28",
+    "highest": 18840000,
+    "lowest": 18510000,
+    "order_count": 3,
+    "volume": 5
+  },
+  {
+    "average": 23970000,
+    "date": "2020-07-29",
+    "highest": 23970000,
+    "lowest": 23965000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 26306000,
+    "date": "2020-07-30",
+    "highest": 28850000,
+    "lowest": 25890000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 24990000,
+    "date": "2020-07-31",
+    "highest": 24990000,
+    "lowest": 24990000,
+    "order_count": 2,
+    "volume": 2
+  },
+  {
+    "average": 24975714.29,
+    "date": "2020-08-01",
+    "highest": 24980000,
+    "lowest": 24970000,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 25063750,
+    "date": "2020-08-02",
+    "highest": 25990000,
+    "lowest": 24900000,
+    "order_count": 16,
+    "volume": 16
+  },
+  {
+    "average": 25734285.71,
+    "date": "2020-08-03",
+    "highest": 25870000,
+    "lowest": 24900000,
+    "order_count": 6,
+    "volume": 7
+  },
+  {
+    "average": 25885000,
+    "date": "2020-08-04",
+    "highest": 26000000,
+    "lowest": 25850000,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 23971250,
+    "date": "2020-08-05",
+    "highest": 24970000,
+    "lowest": 18040000,
+    "order_count": 8,
+    "volume": 8
+  },
+  {
+    "average": 22672941.18,
+    "date": "2020-08-06",
+    "highest": 24990000,
+    "lowest": 18600000,
+    "order_count": 11,
+    "volume": 17
+  },
+  {
+    "average": 20000000,
+    "date": "2020-08-07",
+    "highest": 24495000,
+    "lowest": 18500000,
+    "order_count": 4,
+    "volume": 8
+  },
+  {
+    "average": 23595000,
+    "date": "2020-08-08",
+    "highest": 26000000,
+    "lowest": 22970000,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 21618571.43,
+    "date": "2020-08-09",
+    "highest": 22000000,
+    "lowest": 18500000,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 21208888.89,
+    "date": "2020-08-10",
+    "highest": 22970000,
+    "lowest": 18500000,
+    "order_count": 5,
+    "volume": 9
+  },
+  {
+    "average": 24990000,
+    "date": "2020-08-11",
+    "highest": 24990000,
+    "lowest": 24990000,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 23993333.33,
+    "date": "2020-08-12",
+    "highest": 24000000,
+    "lowest": 23990000,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 21690000,
+    "date": "2020-08-13",
+    "highest": 24000000,
+    "lowest": 18500000,
+    "order_count": 8,
+    "volume": 13
+  },
+  {
+    "average": 24663333.33,
+    "date": "2020-08-14",
+    "highest": 24995000,
+    "lowest": 24000000,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 23995000,
+    "date": "2020-08-15",
+    "highest": 24000000,
+    "lowest": 23990000,
+    "order_count": 2,
+    "volume": 2
+  },
+  {
+    "average": 19520476.19,
+    "date": "2020-08-16",
+    "highest": 23980000,
+    "lowest": 18200000,
+    "order_count": 7,
+    "volume": 21
+  },
+  {
+    "average": 21163333.33,
+    "date": "2020-08-17",
+    "highest": 23990000,
+    "lowest": 18500000,
+    "order_count": 5,
+    "volume": 9
+  },
+  {
+    "average": 18603703.7,
+    "date": "2020-08-18",
+    "highest": 23000000,
+    "lowest": 18250000,
+    "order_count": 5,
+    "volume": 27
+  },
+  {
+    "average": 20350000,
+    "date": "2020-08-19",
+    "highest": 23000000,
+    "lowest": 18500000,
+    "order_count": 7,
+    "volume": 10
+  },
+  {
+    "average": 24990000,
+    "date": "2020-08-20",
+    "highest": 24990000,
+    "lowest": 24990000,
+    "order_count": 1,
+    "volume": 3
+  },
+  {
+    "average": 24965000,
+    "date": "2020-08-21",
+    "highest": 24990000,
+    "lowest": 24960000,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 24972857.14,
+    "date": "2020-08-22",
+    "highest": 25000000,
+    "lowest": 24970000,
+    "order_count": 14,
+    "volume": 14
+  },
+  {
+    "average": 25994615.38,
+    "date": "2020-08-23",
+    "highest": 26000000,
+    "lowest": 25990000,
+    "order_count": 8,
+    "volume": 13
+  },
+  {
+    "average": 25995384.62,
+    "date": "2020-08-24",
+    "highest": 26000000,
+    "lowest": 25990000,
+    "order_count": 9,
+    "volume": 13
+  },
+  {
+    "average": 25990000,
+    "date": "2020-08-25",
+    "highest": 25990000,
+    "lowest": 25990000,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 25962500,
+    "date": "2020-08-26",
+    "highest": 26000000,
+    "lowest": 25950000,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 25930000,
+    "date": "2020-08-27",
+    "highest": 25950000,
+    "lowest": 25920000,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 25956666.67,
+    "date": "2020-08-28",
+    "highest": 26000000,
+    "lowest": 25910000,
+    "order_count": 9,
+    "volume": 9
+  },
+  {
+    "average": 25208181.82,
+    "date": "2020-08-29",
+    "highest": 25970000,
+    "lowest": 17560000,
+    "order_count": 11,
+    "volume": 11
+  },
+  {
+    "average": 27402857.14,
+    "date": "2020-08-30",
+    "highest": 44500000,
+    "lowest": 25950000,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 25930000,
+    "date": "2020-08-31",
+    "highest": 25930000,
+    "lowest": 25930000,
+    "order_count": 1,
+    "volume": 1
+  },
+  {
+    "average": 25168750,
+    "date": "2020-09-01",
+    "highest": 25845000,
+    "lowest": 24490000,
+    "order_count": 8,
+    "volume": 8
+  },
+  {
+    "average": 24677142.86,
+    "date": "2020-09-02",
+    "highest": 25850000,
+    "lowest": 24485000,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 24410000,
+    "date": "2020-09-03",
+    "highest": 24410000,
+    "lowest": 24410000,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 23000000,
+    "date": "2020-09-04",
+    "highest": 24360000,
+    "lowest": 17550000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 24324000,
+    "date": "2020-09-05",
+    "highest": 24330000,
+    "lowest": 24315000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 24091111.11,
+    "date": "2020-09-06",
+    "highest": 24290000,
+    "lowest": 23990000,
+    "order_count": 9,
+    "volume": 9
+  },
+  {
+    "average": 20162000,
+    "date": "2020-09-07",
+    "highest": 24130000,
+    "lowest": 17520000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 22955555.56,
+    "date": "2020-09-08",
+    "highest": 23530000,
+    "lowest": 17500000,
+    "order_count": 9,
+    "volume": 9
+  },
+  {
+    "average": 23544285.71,
+    "date": "2020-09-09",
+    "highest": 23560000,
+    "lowest": 23530000,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 23805714.29,
+    "date": "2020-09-10",
+    "highest": 23985000,
+    "lowest": 23560000,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 23966250,
+    "date": "2020-09-11",
+    "highest": 23990000,
+    "lowest": 23940000,
+    "order_count": 7,
+    "volume": 8
+  },
+  {
+    "average": 23905000,
+    "date": "2020-09-12",
+    "highest": 23935000,
+    "lowest": 23890000,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 23862000,
+    "date": "2020-09-13",
+    "highest": 23890000,
+    "lowest": 23840000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 23796000,
+    "date": "2020-09-14",
+    "highest": 23840000,
+    "lowest": 23785000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 23748750,
+    "date": "2020-09-15",
+    "highest": 23750000,
+    "lowest": 23740000,
+    "order_count": 8,
+    "volume": 8
+  },
+  {
+    "average": 23711428.57,
+    "date": "2020-09-16",
+    "highest": 23720000,
+    "lowest": 23700000,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 23720000,
+    "date": "2020-09-17",
+    "highest": 23785000,
+    "lowest": 23695000,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 22888333.33,
+    "date": "2020-09-18",
+    "highest": 23960000,
+    "lowest": 17530000,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 23952857.14,
+    "date": "2020-09-19",
+    "highest": 23960000,
+    "lowest": 23950000,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 23876000,
+    "date": "2020-09-20",
+    "highest": 23885000,
+    "lowest": 23870000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 23851250,
+    "date": "2020-09-21",
+    "highest": 23870000,
+    "lowest": 23850000,
+    "order_count": 8,
+    "volume": 8
+  },
+  {
+    "average": 23282727.27,
+    "date": "2020-09-22",
+    "highest": 23830000,
+    "lowest": 17760000,
+    "order_count": 11,
+    "volume": 11
+  },
+  {
+    "average": 23848571.43,
+    "date": "2020-09-23",
+    "highest": 23870000,
+    "lowest": 23840000,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 23852222.22,
+    "date": "2020-09-24",
+    "highest": 23860000,
+    "lowest": 23850000,
+    "order_count": 9,
+    "volume": 9
+  },
+  {
+    "average": 23843333.33,
+    "date": "2020-09-25",
+    "highest": 23870000,
+    "lowest": 23840000,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 23834285.71,
+    "date": "2020-09-26",
+    "highest": 23840000,
+    "lowest": 23820000,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 23849000,
+    "date": "2020-09-27",
+    "highest": 23850000,
+    "lowest": 23840000,
+    "order_count": 8,
+    "volume": 10
+  },
+  {
+    "average": 23877500,
+    "date": "2020-09-28",
+    "highest": 23900000,
+    "lowest": 23870000,
+    "order_count": 8,
+    "volume": 8
+  },
+  {
+    "average": 23795000,
+    "date": "2020-09-29",
+    "highest": 23945000,
+    "lowest": 23500000,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 23500000,
+    "date": "2020-09-30",
+    "highest": 23500000,
+    "lowest": 23500000,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 22698000,
+    "date": "2020-10-01",
+    "highest": 23490000,
+    "lowest": 22500000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 23547777.78,
+    "date": "2020-10-02",
+    "highest": 24000000,
+    "lowest": 23490000,
+    "order_count": 9,
+    "volume": 9
+  },
+  {
+    "average": 19773043.48,
+    "date": "2020-10-03",
+    "highest": 23485000,
+    "lowest": 17830000,
+    "order_count": 12,
+    "volume": 23
+  },
+  {
+    "average": 23453750,
+    "date": "2020-10-04",
+    "highest": 23460000,
+    "lowest": 23450000,
+    "order_count": 8,
+    "volume": 8
+  },
+  {
+    "average": 23363333.33,
+    "date": "2020-10-05",
+    "highest": 23430000,
+    "lowest": 23000000,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 23272500,
+    "date": "2020-10-06",
+    "highest": 23400000,
+    "lowest": 22900000,
+    "order_count": 3,
+    "volume": 4
+  },
+  {
+    "average": 22785000,
+    "date": "2020-10-07",
+    "highest": 22880000,
+    "lowest": 22500000,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 22986666.67,
+    "date": "2020-10-08",
+    "highest": 23900000,
+    "lowest": 22890000,
+    "order_count": 9,
+    "volume": 9
+  },
+  {
+    "average": 21786666.67,
+    "date": "2020-10-09",
+    "highest": 23675000,
+    "lowest": 18010000,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 23490000,
+    "date": "2020-10-10",
+    "highest": 23495000,
+    "lowest": 23485000,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 23830000,
+    "date": "2020-10-11",
+    "highest": 23900000,
+    "lowest": 23500000,
+    "order_count": 10,
+    "volume": 10
+  },
+  {
+    "average": 23493333.33,
+    "date": "2020-10-12",
+    "highest": 23500000,
+    "lowest": 23490000,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 23490000,
+    "date": "2020-10-13",
+    "highest": 23490000,
+    "lowest": 23490000,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 23395000,
+    "date": "2020-10-14",
+    "highest": 23490000,
+    "lowest": 23300000,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 23593333.33,
+    "date": "2020-10-15",
+    "highest": 23800000,
+    "lowest": 23490000,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 21225555.56,
+    "date": "2020-10-16",
+    "highest": 23800000,
+    "lowest": 18025000,
+    "order_count": 8,
+    "volume": 9
+  },
+  {
+    "average": 21838000,
+    "date": "2020-10-17",
+    "highest": 22780000,
+    "lowest": 18000000,
+    "order_count": 9,
+    "volume": 10
+  },
+  {
+    "average": 21428333.33,
+    "date": "2020-10-18",
+    "highest": 22780000,
+    "lowest": 18000000,
+    "order_count": 17,
+    "volume": 18
+  },
+  {
+    "average": 22765000,
+    "date": "2020-10-19",
+    "highest": 22770000,
+    "lowest": 22760000,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 19984285.71,
+    "date": "2020-10-20",
+    "highest": 22630000,
+    "lowest": 18000000,
+    "order_count": 7,
+    "volume": 14
+  },
+  {
+    "average": 22588888.89,
+    "date": "2020-10-21",
+    "highest": 22770000,
+    "lowest": 22500000,
+    "order_count": 9,
+    "volume": 9
+  },
+  {
+    "average": 19480625,
+    "date": "2020-10-22",
+    "highest": 22790000,
+    "lowest": 18000000,
+    "order_count": 7,
+    "volume": 16
+  },
+  {
+    "average": 21981999.99,
+    "date": "2020-10-23",
+    "highest": 22800000,
+    "lowest": 17769999.97,
+    "order_count": 9,
+    "volume": 10
+  },
+  {
+    "average": 22563333.33,
+    "date": "2020-10-24",
+    "highest": 23470000,
+    "lowest": 18010000,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 21571000,
+    "date": "2020-10-25",
+    "highest": 22940000,
+    "lowest": 18510000,
+    "order_count": 9,
+    "volume": 10
+  },
+  {
+    "average": 21693636.36,
+    "date": "2020-10-26",
+    "highest": 22885000,
+    "lowest": 18500000,
+    "order_count": 8,
+    "volume": 11
+  },
+  {
+    "average": 22677500,
+    "date": "2020-10-27",
+    "highest": 22865000,
+    "lowest": 22490000,
+    "order_count": 8,
+    "volume": 8
+  },
+  {
+    "average": 21011666.67,
+    "date": "2020-10-28",
+    "highest": 22490000,
+    "lowest": 18050000,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 22174000,
+    "date": "2020-10-29",
+    "highest": 22435000,
+    "lowest": 22000000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 22322500,
+    "date": "2020-10-30",
+    "highest": 22430000,
+    "lowest": 22000000,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 19621578.95,
+    "date": "2020-10-31",
+    "highest": 22400000,
+    "lowest": 18000000,
+    "order_count": 9,
+    "volume": 19
+  },
+  {
+    "average": 22566000,
+    "date": "2020-11-01",
+    "highest": 24000000,
+    "lowest": 22410000,
+    "order_count": 10,
+    "volume": 10
+  },
+  {
+    "average": 22130000,
+    "date": "2020-11-02",
+    "highest": 22410000,
+    "lowest": 21990000,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 19640000,
+    "date": "2020-11-03",
+    "highest": 21990000,
+    "lowest": 17690000,
+    "order_count": 13,
+    "volume": 25
+  },
+  {
+    "average": 23700000,
+    "date": "2020-11-04",
+    "highest": 23890000,
+    "lowest": 23460000,
+    "order_count": 8,
+    "volume": 9
+  },
+  {
+    "average": 23325000,
+    "date": "2020-11-05",
+    "highest": 23490000,
+    "lowest": 21000000,
+    "order_count": 8,
+    "volume": 8
+  },
+  {
+    "average": 22894000,
+    "date": "2020-11-06",
+    "highest": 23490000,
+    "lowest": 22000000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 23260000,
+    "date": "2020-11-07",
+    "highest": 23470000,
+    "lowest": 22000000,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 20870250,
+    "date": "2020-11-08",
+    "highest": 23450000,
+    "lowest": 17500000,
+    "order_count": 26,
+    "volume": 40
+  },
+  {
+    "average": 18993043.48,
+    "date": "2020-11-09",
+    "highest": 23215000,
+    "lowest": 17500000,
+    "order_count": 9,
+    "volume": 23
+  },
+  {
+    "average": 22978333.33,
+    "date": "2020-11-10",
+    "highest": 22995000,
+    "lowest": 22950000,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 23093076.92,
+    "date": "2020-11-11",
+    "highest": 23480000,
+    "lowest": 23000000,
+    "order_count": 13,
+    "volume": 13
+  },
+  {
+    "average": 23428888.89,
+    "date": "2020-11-12",
+    "highest": 23485000,
+    "lowest": 23410000,
+    "order_count": 9,
+    "volume": 9
+  },
+  {
+    "average": 23390000,
+    "date": "2020-11-13",
+    "highest": 23390000,
+    "lowest": 23390000,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 23370000,
+    "date": "2020-11-14",
+    "highest": 23390000,
+    "lowest": 23360000,
+    "order_count": 11,
+    "volume": 11
+  },
+  {
+    "average": 23288333.33,
+    "date": "2020-11-15",
+    "highest": 23350000,
+    "lowest": 23000000,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 23356000,
+    "date": "2020-11-16",
+    "highest": 23480000,
+    "lowest": 23330000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 23475714.29,
+    "date": "2020-11-17",
+    "highest": 23480000,
+    "lowest": 23465000,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 23172222.22,
+    "date": "2020-11-18",
+    "highest": 23440000,
+    "lowest": 21000000,
+    "order_count": 8,
+    "volume": 9
+  },
+  {
+    "average": 22260000,
+    "date": "2020-11-19",
+    "highest": 22985000,
+    "lowest": 18910000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 22135555.56,
+    "date": "2020-11-20",
+    "highest": 22970000,
+    "lowest": 19205000,
+    "order_count": 9,
+    "volume": 9
+  },
+  {
+    "average": 22926666.67,
+    "date": "2020-11-21",
+    "highest": 22950000,
+    "lowest": 22910000,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 22885000,
+    "date": "2020-11-22",
+    "highest": 22910000,
+    "lowest": 22860000,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 22841111.11,
+    "date": "2020-11-23",
+    "highest": 22860000,
+    "lowest": 22830000,
+    "order_count": 9,
+    "volume": 9
+  },
+  {
+    "average": 22825714.29,
+    "date": "2020-11-24",
+    "highest": 22840000,
+    "lowest": 22810000,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 22825000,
+    "date": "2020-11-25",
+    "highest": 22830000,
+    "lowest": 22820000,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 22253333.33,
+    "date": "2020-11-26",
+    "highest": 22910000,
+    "lowest": 15350000,
+    "order_count": 10,
+    "volume": 12
+  },
+  {
+    "average": 22831428.57,
+    "date": "2020-11-27",
+    "highest": 22990000,
+    "lowest": 22000000,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 22118750,
+    "date": "2020-11-28",
+    "highest": 23000000,
+    "lowest": 21990000,
+    "order_count": 15,
+    "volume": 16
+  },
+  {
+    "average": 18900000,
+    "date": "2020-11-29",
+    "highest": 23000000,
+    "lowest": 17500000,
+    "order_count": 8,
+    "volume": 26
+  },
+  {
+    "average": 23471111.11,
+    "date": "2020-11-30",
+    "highest": 23480000,
+    "lowest": 23460000,
+    "order_count": 9,
+    "volume": 9
+  },
+  {
+    "average": 23485000,
+    "date": "2020-12-01",
+    "highest": 23490000,
+    "lowest": 23480000,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 22720000,
+    "date": "2020-12-02",
+    "highest": 23980000,
+    "lowest": 15340000,
+    "order_count": 8,
+    "volume": 8
+  },
+  {
+    "average": 22490000,
+    "date": "2020-12-03",
+    "highest": 23980000,
+    "lowest": 21000000,
+    "order_count": 2,
+    "volume": 2
+  },
+  {
+    "average": 23962000,
+    "date": "2020-12-04",
+    "highest": 23970000,
+    "lowest": 23960000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 23222500,
+    "date": "2020-12-05",
+    "highest": 23970000,
+    "lowest": 15000000,
+    "order_count": 12,
+    "volume": 12
+  },
+  {
+    "average": 23244166.67,
+    "date": "2020-12-06",
+    "highest": 24000000,
+    "lowest": 15000000,
+    "order_count": 12,
+    "volume": 12
+  },
+  {
+    "average": 23883636.36,
+    "date": "2020-12-07",
+    "highest": 24000000,
+    "lowest": 22750000,
+    "order_count": 11,
+    "volume": 11
+  },
+  {
+    "average": 23850000,
+    "date": "2020-12-08",
+    "highest": 23990000,
+    "lowest": 23000000,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 23000000,
+    "date": "2020-12-09",
+    "highest": 23000000,
+    "lowest": 23000000,
+    "order_count": 2,
+    "volume": 2
+  },
+  {
+    "average": 22995000,
+    "date": "2020-12-10",
+    "highest": 23000000,
+    "lowest": 22990000,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 23326666.67,
+    "date": "2020-12-11",
+    "highest": 23990000,
+    "lowest": 22995000,
+    "order_count": 8,
+    "volume": 9
+  },
+  {
+    "average": 23436666.67,
+    "date": "2020-12-12",
+    "highest": 23980000,
+    "lowest": 23000000,
+    "order_count": 9,
+    "volume": 9
+  },
+  {
+    "average": 23985000,
+    "date": "2020-12-13",
+    "highest": 23990000,
+    "lowest": 23980000,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 23981666.67,
+    "date": "2020-12-14",
+    "highest": 23990000,
+    "lowest": 23980000,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 23980000,
+    "date": "2020-12-15",
+    "highest": 23980000,
+    "lowest": 23980000,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 23973333.33,
+    "date": "2020-12-16",
+    "highest": 23980000,
+    "lowest": 23965000,
+    "order_count": 12,
+    "volume": 12
+  },
+  {
+    "average": 20102352.94,
+    "date": "2020-12-17",
+    "highest": 23955000,
+    "lowest": 18000000,
+    "order_count": 8,
+    "volume": 17
+  },
+  {
+    "average": 23962000,
+    "date": "2020-12-18",
+    "highest": 23970000,
+    "lowest": 23960000,
+    "order_count": 10,
+    "volume": 10
+  },
+  {
+    "average": 23948571.43,
+    "date": "2020-12-19",
+    "highest": 23950000,
+    "lowest": 23940000,
+    "order_count": 13,
+    "volume": 14
+  },
+  {
+    "average": 20466666.67,
+    "date": "2020-12-20",
+    "highest": 20500000,
+    "lowest": 20400000,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 20932500,
+    "date": "2020-12-21",
+    "highest": 23960000,
+    "lowest": 20500000,
+    "order_count": 8,
+    "volume": 8
+  },
+  {
+    "average": 20305384.62,
+    "date": "2020-12-22",
+    "highest": 20500000,
+    "lowest": 17505000,
+    "order_count": 13,
+    "volume": 13
+  },
+  {
+    "average": 23913333.33,
+    "date": "2020-12-23",
+    "highest": 23950000,
+    "lowest": 23910000,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 23875000,
+    "date": "2020-12-24",
+    "highest": 23890000,
+    "lowest": 23860000,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 23806666.67,
+    "date": "2020-12-25",
+    "highest": 23820000,
+    "lowest": 23780000,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 23878000,
+    "date": "2020-12-26",
+    "highest": 23950000,
+    "lowest": 23830000,
+    "order_count": 4,
+    "volume": 5
+  },
+  {
+    "average": 23928888.89,
+    "date": "2020-12-27",
+    "highest": 23930000,
+    "lowest": 23880000,
+    "order_count": 7,
+    "volume": 9
+  },
+  {
+    "average": 23824000,
+    "date": "2020-12-28",
+    "highest": 23830000,
+    "lowest": 23820000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 23105555.56,
+    "date": "2020-12-29",
+    "highest": 23805000,
+    "lowest": 17520000,
+    "order_count": 9,
+    "volume": 9
+  },
+  {
+    "average": 20437500,
+    "date": "2020-12-30",
+    "highest": 23800000,
+    "lowest": 17500000,
+    "order_count": 15,
+    "volume": 28
+  },
+  {
+    "average": 23946666.67,
+    "date": "2020-12-31",
+    "highest": 23960000,
+    "lowest": 23940000,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 23914000,
+    "date": "2021-01-01",
+    "highest": 23920000,
+    "lowest": 23910000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 23925714.29,
+    "date": "2021-01-02",
+    "highest": 23930000,
+    "lowest": 23910000,
+    "order_count": 13,
+    "volume": 14
+  },
+  {
+    "average": 23910714.29,
+    "date": "2021-01-03",
+    "highest": 23920000,
+    "lowest": 23910000,
+    "order_count": 14,
+    "volume": 14
+  },
+  {
+    "average": 23626666.67,
+    "date": "2021-01-04",
+    "highest": 23940000,
+    "lowest": 23000000,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 23018000,
+    "date": "2021-01-05",
+    "highest": 23900000,
+    "lowest": 15000000,
+    "order_count": 10,
+    "volume": 10
+  },
+  {
+    "average": 23846000,
+    "date": "2021-01-06",
+    "highest": 23870000,
+    "lowest": 23810000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 23792857.14,
+    "date": "2021-01-07",
+    "highest": 23810000,
+    "lowest": 23780000,
+    "order_count": 6,
+    "volume": 7
+  },
+  {
+    "average": 23781818.18,
+    "date": "2021-01-08",
+    "highest": 23790000,
+    "lowest": 23780000,
+    "order_count": 11,
+    "volume": 11
+  },
+  {
+    "average": 23666000,
+    "date": "2021-01-09",
+    "highest": 23790000,
+    "lowest": 23480000,
+    "order_count": 5,
+    "volume": 5
+  },
+  {
+    "average": 22640833.33,
+    "date": "2021-01-10",
+    "highest": 23420000,
+    "lowest": 18500000,
+    "order_count": 12,
+    "volume": 12
+  },
+  {
+    "average": 23336666.67,
+    "date": "2021-01-11",
+    "highest": 23340000,
+    "lowest": 23330000,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 23320000,
+    "date": "2021-01-12",
+    "highest": 23320000,
+    "lowest": 23315000,
+    "order_count": 7,
+    "volume": 8
+  },
+  {
+    "average": 21305000,
+    "date": "2021-01-13",
+    "highest": 23410000,
+    "lowest": 15010000,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 22471666.67,
+    "date": "2021-01-14",
+    "highest": 23370000,
+    "lowest": 18000000,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 23325000,
+    "date": "2021-01-15",
+    "highest": 23330000,
+    "lowest": 23320000,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 23308750,
+    "date": "2021-01-16",
+    "highest": 23320000,
+    "lowest": 23300000,
+    "order_count": 8,
+    "volume": 8
+  },
+  {
+    "average": 23498750,
+    "date": "2021-01-17",
+    "highest": 23780000,
+    "lowest": 23290000,
+    "order_count": 8,
+    "volume": 8
+  },
+  {
+    "average": 23770000,
+    "date": "2021-01-18",
+    "highest": 23770000,
+    "lowest": 23770000,
+    "order_count": 4,
+    "volume": 4
+  },
+  {
+    "average": 23751428.57,
+    "date": "2021-01-19",
+    "highest": 23760000,
+    "lowest": 23740000,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 23731428.57,
+    "date": "2021-01-20",
+    "highest": 23940000,
+    "lowest": 23695000,
+    "order_count": 7,
+    "volume": 7
+  },
+  {
+    "average": 23627142.86,
+    "date": "2021-01-21",
+    "highest": 23660000,
+    "lowest": 23610000,
+    "order_count": 6,
+    "volume": 7
+  },
+  {
+    "average": 23670000,
+    "date": "2021-01-22",
+    "highest": 23750000,
+    "lowest": 23620000,
+    "order_count": 8,
+    "volume": 8
+  },
+  {
+    "average": 23768333.33,
+    "date": "2021-01-23",
+    "highest": 23790000,
+    "lowest": 23750000,
+    "order_count": 6,
+    "volume": 6
+  },
+  {
+    "average": 23931818.18,
+    "date": "2021-01-24",
+    "highest": 23940000,
+    "lowest": 23930000,
+    "order_count": 11,
+    "volume": 11
+  },
+  {
+    "average": 22936666.67,
+    "date": "2021-01-25",
+    "highest": 23935000,
+    "lowest": 15010000,
+    "order_count": 9,
+    "volume": 9
+  },
+  {
+    "average": 23910000,
+    "date": "2021-01-26",
+    "highest": 23940000,
+    "lowest": 23900000,
+    "order_count": 6,
+    "volume": 7
+  },
+  {
+    "average": 27476666.67,
+    "date": "2021-01-28",
+    "highest": 27490000,
+    "lowest": 27470000,
+    "order_count": 3,
+    "volume": 3
+  },
+  {
+    "average": 25915000,
+    "date": "2021-01-29",
+    "highest": 27470000,
+    "lowest": 15000000,
+    "order_count": 8,
+    "volume": 8
+  },
+  {
+    "average": 27385000,
+    "date": "2021-01-30",
+    "highest": 27410000,
+    "lowest": 27370000,
+    "order_count": 10,
+    "volume": 10
+  }
+]

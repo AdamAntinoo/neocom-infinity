@@ -9,9 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+import org.dimensinfin.eveonline.neocom.domain.PilotV1;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.AcceptanceTargetConfig;
 import org.dimensinfin.eveonline.neocom.infinity.backend.character.fitting.domain.FittingModel;
-import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.PilotV1;
 import org.dimensinfin.eveonline.neocom.infinity.support.core.CommonFeignClient;
 import org.dimensinfin.eveonline.neocom.infinity.support.rest.NeoComApiv2;
 import org.dimensinfin.logging.LogWrapper;
@@ -26,8 +26,8 @@ public class CharacterFeignClientV2 extends CommonFeignClient {
 	// - C O N S T R U C T O R S
 	@Autowired
 	public CharacterFeignClientV2( final @NotNull AcceptanceTargetConfig acceptanceTargetConfig
-			//			,
-			//	                               final @NotNull ESIDataProviderWrapper esiDataProviderWrapper
+	                               //			,
+	                               //	                               final @NotNull ESIDataProviderWrapper esiDataProviderWrapper
 	) {
 		super( acceptanceTargetConfig );
 		//		this.esiDataProviderWrapper =  new ESIDataProvider.Builder()

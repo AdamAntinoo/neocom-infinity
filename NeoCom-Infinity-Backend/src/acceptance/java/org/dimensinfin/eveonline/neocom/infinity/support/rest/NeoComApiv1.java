@@ -24,7 +24,6 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface NeoComApiv1 {
-	String NEOCOM_BACKEND_APP_HOST = "http://localhost:5240";
 	String NEOCOM_BACKEND_ACCEPTED_CONTENT_TYPE = "application/json";
 
 	@GET("/api/v1/neocom/corporations/{corporationId}/assetsbylocation")
