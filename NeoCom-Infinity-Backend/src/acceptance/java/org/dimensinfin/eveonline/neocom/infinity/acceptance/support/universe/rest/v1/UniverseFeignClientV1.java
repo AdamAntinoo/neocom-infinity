@@ -11,6 +11,7 @@ import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.ITargetConfi
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.api.UniverseApiV1;
 import org.dimensinfin.eveonline.neocom.infinity.backend.market.domain.MarketData;
 import org.dimensinfin.eveonline.neocom.infinity.support.core.CommonFeignClient;
+import org.dimensinfin.eveonline.neocom.loyalty.domain.LoyaltyServiceConfiguration;
 import org.dimensinfin.eveonline.neocom.loyalty.persistence.LoyaltyOfferEntity;
 import org.dimensinfin.logging.LogWrapper;
 
@@ -46,6 +47,21 @@ public class UniverseFeignClientV1 extends CommonFeignClient {
 				.build()
 				.create( UniverseApiV1.class )
 				.getMarketConsolidatedByRegion4ItemId( regionId, typeId )
+				.execute();
+		if (response.isSuccessful()) {
+			LogWrapper.info( ENDPOINT_MESSAGE );
+			return new ResponseEntity<>( response.body(), HttpStatus.valueOf( response.code() ) );
+		} else throw new IOException( ENDPOINT_MESSAGE + " Failed." );
+	}
+
+	public ResponseEntity<LoyaltyServiceConfiguration> setLoyaltyServiceConfiguration( final LoyaltyServiceConfiguration loyaltyServiceConfiguration ) throws IOException {
+		final String ENDPOINT_MESSAGE = "Request the update on the Loyalty Service Configuration.";
+		final Response<LoyaltyServiceConfiguration> response = new Retrofit.Builder()
+				.baseUrl( this.acceptanceTargetConfig.getBackendServer() )
+				.addConverterFactory( GSON_CONVERTER_FACTORY )
+				.build()
+				.create( UniverseApiV1.class )
+				.setLoyaltyServiceConfiguration( loyaltyServiceConfiguration )
 				.execute();
 		if (response.isSuccessful()) {
 			LogWrapper.info( ENDPOINT_MESSAGE );

@@ -25,6 +25,7 @@ import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBac
 import org.dimensinfin.eveonline.neocom.infinity.support.NeoComWorld;
 import org.dimensinfin.eveonline.neocom.infinity.support.RequestType;
 import org.dimensinfin.eveonline.neocom.infinity.support.authorization.rest.v1.AuthorizationFeignClientV1;
+import org.dimensinfin.eveonline.neocom.loyalty.domain.LoyaltyServiceConfiguration;
 import org.dimensinfin.eveonline.neocom.loyalty.persistence.LoyaltyOfferEntity;
 import org.dimensinfin.logging.LogWrapper;
 
@@ -110,6 +111,11 @@ public class WhenTheRequestIsProcessed extends StepSupport {
 		this.neocomWorld.setRegionId( regionId );
 		this.neocomWorld.setTypeId( typeId );
 		this.processRequestByType( RequestType.GET_UNIVERSE_MARKET_CONSOLIDATED );
+	}
+
+	@When("the Update Loyalty Service Configuration request is processed")
+	public void the_Update_Loyalty_Service_Configuration_request_is_processed() throws IOException {
+		this.processRequestByType( RequestType.UPDATE_LOYALTY_SERVICE_CONFIGURATION );
 	}
 
 	private ResponseEntity processRequest( final RequestType requestType ) throws IOException {
@@ -201,6 +207,15 @@ public class WhenTheRequestIsProcessed extends StepSupport {
 				Assertions.assertNotNull( loyaltyOffersResponseEntity );
 				this.neocomWorld.setLoyaltyOffersResponseEntity( loyaltyOffersResponseEntity );
 				return loyaltyOffersResponseEntity;
+			case UPDATE_LOYALTY_SERVICE_CONFIGURATION:
+				Assertions.assertNotNull( this.neocomWorld.getLoyaltyServiceConfiguration() );
+				final ResponseEntity<LoyaltyServiceConfiguration> loyaltyUpdateResponseEntity = this.universeFeignClientV1
+						.setLoyaltyServiceConfiguration(
+								this.neocomWorld.getLoyaltyServiceConfiguration()
+						);
+				Assertions.assertNotNull( loyaltyUpdateResponseEntity );
+				this.neocomWorld.setLoyaltyUpdateResponseEntity( loyaltyUpdateResponseEntity );
+				return loyaltyUpdateResponseEntity;
 			default:
 				throw new NotImplementedException( "Request {} not implemented.", requestType.name() );
 		}

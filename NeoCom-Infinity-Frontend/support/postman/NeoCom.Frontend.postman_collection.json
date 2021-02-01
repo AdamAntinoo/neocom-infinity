@@ -1,0 +1,386 @@
+{
+	"info": {
+		"_postman_id": "e5ef74cf-570f-45db-a650-35ca7689ed09",
+		"name": "NeoCom.Frontend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Integration",
+			"item": [
+				{
+					"name": "AssetsIntegrationPage1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{esiAuthenticatedServer}}/latest/characters/2113197470/assets/?datasource=tranquility&page=1",
+							"host": [
+								"{{esiAuthenticatedServer}}"
+							],
+							"path": [
+								"latest",
+								"characters",
+								"2113197470",
+								"assets",
+								""
+							],
+							"query": [
+								{
+									"key": "datasource",
+									"value": "tranquility"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AssetsIntegrationPage2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{esiAuthenticatedServer}}/latest/characters/2113197470/assets/?datasource=tranquility&page=2",
+							"host": [
+								"{{esiAuthenticatedServer}}"
+							],
+							"path": [
+								"latest",
+								"characters",
+								"2113197470",
+								"assets",
+								""
+							],
+							"query": [
+								{
+									"key": "datasource",
+									"value": "tranquility"
+								},
+								{
+									"key": "page",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UniverseStructure",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{esiAuthenticatedServer}}/latest/universe/structures/1031243921503/",
+							"host": [
+								"{{esiAuthenticatedServer}}"
+							],
+							"path": [
+								"latest",
+								"universe",
+								"structures",
+								"1031243921503",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get Fitting Build Order",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{backendApiSimulator}}{{apiv1}}/neocom/industry/fittings/buildOrder/{{fittingId}}",
+					"host": [
+						"{{backendApiSimulator}}{{apiv1}}"
+					],
+					"path": [
+						"neocom",
+						"industry",
+						"fittings",
+						"buildOrder",
+						"{{fittingId}}"
+					]
+				},
+				"description": "Test the api simulator response to the start endpoint to process a fitting."
+			},
+			"response": []
+		},
+		{
+			"name": "Get Fitting Build Order Saved Configuration",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{backendApiSimulator}}{{apiv1}}/neocom/industry/fittings/buildOrder/{{fittingId}}/savedConfiguration",
+					"host": [
+						"{{backendApiSimulator}}{{apiv1}}"
+					],
+					"path": [
+						"neocom",
+						"industry",
+						"fittings",
+						"buildOrder",
+						"{{fittingId}}",
+						"savedConfiguration"
+					]
+				},
+				"description": "Check the result data for the saved configuration simulation."
+			},
+			"response": []
+		},
+		{
+			"name": "Authentication",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9000/api/v1/exchangeauthorization/CQrtSGSMMBoBUkruo52PfjDRRITWlwXgRARYwxMMuqrUCB2SJWI5yIznMImo4Gxs0",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"v1",
+						"exchangeauthorization",
+						"CQrtSGSMMBoBUkruo52PfjDRRITWlwXgRARYwxMMuqrUCB2SJWI5yIznMImo4Gxs0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pilot/Assets",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "xApp-Authentication",
+						"value": "-MOCK-DATA-",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:9000/api/v2/pilot/assets?xApp-Authentication=vcz2lBeiQm1VGPAIBs3FEzzUO8bQVFcYGd6W2FdMI-DU5o43ZPYUlHyuHCO8EPhE0",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"v2",
+						"pilot",
+						"assets"
+					],
+					"query": [
+						{
+							"key": "xApp-Authentication",
+							"value": "vcz2lBeiQm1VGPAIBs3FEzzUO8bQVFcYGd6W2FdMI-DU5o43ZPYUlHyuHCO8EPhE0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pilot/Fittings",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "xApp-Authentication",
+						"value": "$2a$08$EFHlWgGfkDoqE36jzDxSzePOxZAJ.gWNFyPeMTadFGTjee6TEfEy2",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:9000/api/v2/pilot/fittings",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"v2",
+						"pilot",
+						"fittings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EveItem/v2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9000/api/v2/eveitem/1403",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"v2",
+						"eveitem",
+						"1403"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EveItem/v1",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "xApp-Authentication",
+						"value": "$2a$08$c6DXPxpVlrTqpgdabT3a3u5nSEQKI0inSH/M2sbmnLSSS8hRDNDlW",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:9000/api/v1/eveitem/1403",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"v1",
+						"eveitem",
+						"1403"
+					],
+					"query": [
+						{
+							"key": "xApp-Authentication",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CorporationAssets",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "xApp-Authentication",
+						"value": "$2a$08$VJMJitWLR1fwrsTKAYDm/uQiGAwpkbEC/PlxvZJTpVlIbV4e7zHS2",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:9000/api/v2/corporation/assets",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"v2",
+						"corporation",
+						"assets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pilot/Processfitting/35947306",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "xApp-Authentication",
+						"value": "$2a$08$XKkT2VdlmvR67loXToG4z.m21bMkboiycI1lNVH7LpQjPkes3J2Y2",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:9000/api/v2/pilot/processfitting/35947306/copies/1",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"v2",
+						"pilot",
+						"processfitting",
+						"35947306",
+						"copies",
+						"1"
+					],
+					"query": [
+						{
+							"key": "xApp-Authentication",
+							"value": "$2a$08$XKkT2VdlmvR67loXToG4z.m21bMkboiycI1lNVH7LpQjPkes3J2Y2",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New/Medico",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "xApp-Authentication",
+						"value": "$2a$08$SxT9UNe9A8EY8FIxAusYs.BL1C97YupF5pWKeo73uPbSmRHx7PHEe",
+						"type": "text"
+					},
+					{
+						"key": "xApp-Signature",
+						"value": "S0000.0011.0000",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": \"\",\r\n  \"nombre\": \"Luis\",\r\n  \"apellidos\": \"\",\r\n  \"activo\": true,\r\n  \"referencia\": \"13739949W\",\r\n  \"tratamiento\": \"Dr.\",\r\n  \"especialidad\": \"Cirugía Plástica y Reparadora\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9000/api/v1/centros/100001/new/medico",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"v1",
+						"centros",
+						"100001",
+						"new",
+						"medico"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

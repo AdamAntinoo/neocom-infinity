@@ -11,6 +11,7 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingConfigurations;
 import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.EsiItemModel;
 import org.dimensinfin.eveonline.neocom.infinity.universe.client.v1.ServerStatus;
+import org.dimensinfin.eveonline.neocom.loyalty.domain.LoyaltyServiceConfiguration;
 import org.dimensinfin.eveonline.neocom.loyalty.persistence.LoyaltyOfferEntity;
 
 public class NewNeoComWorld extends CommonWorld {
@@ -25,6 +26,8 @@ public class NewNeoComWorld extends CommonWorld {
 	private ResponseEntity<ServerStatus> serverStatusResponseEntity;
 	private ResponseEntity<List<LoyaltyOfferEntity>> loyaltyOffersResponseEntity;
 	private Integer corporationId;
+	private ResponseEntity<LoyaltyServiceConfiguration> loyaltyUpdateResponseEntity;
+	private LoyaltyServiceConfiguration loyaltyServiceConfiguration;
 
 	// - G E T T E R S   &   S E T T E R S
 	public Integer getCorporationId() {
@@ -87,6 +90,24 @@ public class NewNeoComWorld extends CommonWorld {
 
 	public NewNeoComWorld setLoyaltyOffersResponseEntity( final ResponseEntity<List<LoyaltyOfferEntity>> loyaltyOffersResponseEntity ) {
 		this.loyaltyOffersResponseEntity = loyaltyOffersResponseEntity;
+		return this;
+	}
+
+	public LoyaltyServiceConfiguration getLoyaltyServiceConfiguration() {
+		return this.loyaltyServiceConfiguration;
+	}
+
+	public NewNeoComWorld setLoyaltyServiceConfiguration( final LoyaltyServiceConfiguration loyaltyServiceConfiguration ) {
+		this.loyaltyServiceConfiguration = loyaltyServiceConfiguration;
+		return this;
+	}
+
+	public ResponseEntity<LoyaltyServiceConfiguration> getLoyaltyUpdateResponseEntity() {
+		return this.loyaltyUpdateResponseEntity;
+	}
+
+	public NewNeoComWorld setLoyaltyUpdateResponseEntity( final ResponseEntity<LoyaltyServiceConfiguration> loyaltyUpdateResponseEntity ) {
+		this.loyaltyUpdateResponseEntity = loyaltyUpdateResponseEntity;
 		return this;
 	}
 

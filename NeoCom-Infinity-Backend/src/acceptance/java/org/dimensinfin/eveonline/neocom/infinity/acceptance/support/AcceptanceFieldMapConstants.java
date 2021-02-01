@@ -51,4 +51,7 @@ public class AcceptanceFieldMapConstants {
 	public static final String SERVER_STATUS_PLAYERS = "players";
 	public static final String SERVER_SERVER_VERSION = "server_version";
 	public static final String SERVER_START_TIME = "start_time";
+
+	public static final String MARKET_REGION_ID = "marketRegionId";
+
 }

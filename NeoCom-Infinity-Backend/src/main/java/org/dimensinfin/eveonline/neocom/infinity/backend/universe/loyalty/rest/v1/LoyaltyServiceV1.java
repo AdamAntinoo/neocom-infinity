@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRestError;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
+import org.dimensinfin.eveonline.neocom.loyalty.domain.LoyaltyServiceConfiguration;
 import org.dimensinfin.eveonline.neocom.loyalty.persistence.LoyaltyOfferEntity;
 import org.dimensinfin.eveonline.neocom.loyalty.persistence.LoyaltyOffersRepository;
 import org.dimensinfin.eveonline.neocom.loyalty.service.LoyaltyService;
@@ -64,7 +65,7 @@ public class LoyaltyServiceV1 {
 	public List<LoyaltyOfferEntity> getLoyaltyRecommendedOfferForCorporation( final Integer corporationId ) {
 		List<LoyaltyOfferEntity> offerList = new ArrayList<>();
 		try {
-			offerList = this.loyaltyOffersRepository.searchOffers4Corporation( corporationId );
+			offerList = this.loyaltyOffersRepository.searchOffers4CorporationAndHub( corporationId, this.loyaltyService.getRegionId() );
 		} catch (final SQLException sqle) {
 			throw new NeoComRuntimeBackendException( errorINVENTORYSTOREREPOSITORYFAILURE( sqle ) );
 		}
@@ -76,5 +77,18 @@ public class LoyaltyServiceV1 {
 				.filter( offer -> offer.getLpValue() > this.loyaltyService.getProfitLevel() )
 				.sorted( ( of1, of2 ) -> Long.compare( of2.getLpValue(), of1.getLpValue() ) )
 				.collect( Collectors.toList() );
+	}
+
+	/**
+	 * Changes the current loyalty service configuration. On this stage only the market hub region associated to the price comparison is the only
+	 * field allowed to be changed from the front end.
+	 *
+	 * @param serviceConfiguration the new loyalty service configuration parameters.
+	 * @return the complete updated configuration.
+	 */
+	public LoyaltyServiceConfiguration setLoyaltyServiceConfiguration( @NotNull final LoyaltyServiceConfiguration serviceConfiguration ) {
+		if (null != serviceConfiguration.getMarketRegionId())
+			this.loyaltyService.setRegionId( serviceConfiguration.getMarketRegionId() );
+		return serviceConfiguration;
 	}
 }
