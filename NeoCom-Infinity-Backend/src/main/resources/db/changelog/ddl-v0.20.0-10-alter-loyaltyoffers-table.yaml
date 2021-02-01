@@ -1,0 +1,32 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0_20_0_1001_neocom_clear_loyaltyoffers_table
+      author: NeoCom development team. Adam Antinoo (adamantinoo.git@gmail.com).
+      changes:
+        - delete:
+            schemaName: neocom
+            tableName: LoyaltyOffers
+  - changeSet:
+      id: 0_20_0_1002_neocom_droppk_loyaltyoffers_table
+      author: NeoCom development team. Adam Antinoo (adamantinoo.git@gmail.com).
+      changes:
+        - dropPrimaryKey:
+            schemaName: neocom
+            tableName: LoyaltyOffers
+            constraintName: loyaltyoffers_pkey
+            dropIndex: loyaltyoffers_pkey
+  - changeSet:
+      id: 0_20_0_1003_neocom_addcolumn_loyaltyoffers_table
+      author: NeoCom development team. Adam Antinoo (adamantinoo.git@gmail.com).
+      changes:
+        - addColumn:
+            schemaName: neocom
+            tableName: LoyaltyOffers
+            columns:
+              - column:
+                  name: id
+                  type: varchar(21)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    updatable: false

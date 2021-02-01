@@ -17,9 +17,9 @@ DOCKER_COMPOSER_COMMAND="docker-compose --file src/test/scripts/neocom-docker-${
 generateContainer() {
   cd "${WORKING_DIRECTORY}" || exit 1
   # Cleanup
-  rm -v "${DOCKER_DIRECTORY}"/*.jar
+  rm -vrf "${DOCKER_DIRECTORY}"/*.jar
   rm -vrf "${DOCKER_DIRECTORY}"/properties*
-  ./gradlew clean bootJar
+  ./gradlew clean bootJar || exit 1
   cp ./build/libs/*.jar "$DOCKER_DIRECTORY"
   cp ./build/resources/main/app-banner.txt "$DOCKER_DIRECTORY"
   cp ./build/resources/main/app-banner.txt ./build/libs/app-banner.txt
