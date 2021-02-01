@@ -14,6 +14,7 @@ public enum RequestType {
 	GET_INDUSTRY_FITTING_TARGET_CONFIGURATION( "" ),
 	GET_SERVER_STATUS( "" ),
 	GET_LOYALTY_OFFERS( "" ),
+	UPDATE_LOYALTY_SERVICE_CONFIGURATION( "" ),
 
 	GET_MARKET_CONSOLIDATED( "" ),
 	GET_UNIVERSE_MARKET_CONSOLIDATED( "" ),
@@ -35,7 +36,7 @@ public enum RequestType {
 
 	private final String code;
 
-// - C O N S T R U C T O R S
+	// - C O N S T R U C T O R S
 	RequestType( final String code ) {
 		this.code = code;
 	}

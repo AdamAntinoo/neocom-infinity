@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "57da3b9e-a6db-4c58-a7db-3e908bb07627",
-		"name": "Neocom.Backend",
+		"name": "Neocom-Infinity",
 		"description": "# Introduction\nAccess ESI data repository using the adquired oauth authentication and process data values for later rendering on other platforms.\n\n# Overview\nThings that the developers should know about\n\n# Authentication\nWhat is the preferred way of using the API?\n\n# Error Codes\n500 - Undefind or unepected error\n403 - Forbidden access or invalid credentials\n\n# Rate limit\nOnly platform rate limit.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -667,14 +667,14 @@
 							}
 						],
 						"url": {
-							"raw": "{{backendServer}}{{apiv2}}/neocom/pilots/{{pilotIdentifier}}",
+							"raw": "{{backendServer}}{{apiv2}}/neocom/pilots/93813310",
 							"host": [
 								"{{backendServer}}{{apiv2}}"
 							],
 							"path": [
 								"neocom",
 								"pilots",
-								"{{pilotIdentifier}}"
+								"93813310"
 							]
 						}
 					},
@@ -1123,7 +1123,7 @@
 					"response": []
 				},
 				{
-					"name": "GetMarketConsolidated",
+					"name": "Get Blueprints CostIndex",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -1136,20 +1136,27 @@
 							]
 						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "{{backendServer}}{{apiv1}}/neocom/market/consolidated/{{itemId}}",
+							"raw": "{{backendIndustryv1}}/neocom/industry/manufacture/blueprints/costindex",
 							"host": [
-								"{{backendServer}}{{apiv1}}"
+								"{{backendIndustryv1}}"
 							],
 							"path": [
 								"neocom",
-								"market",
-								"consolidated",
-								"{{itemId}}"
+								"industry",
+								"manufacture",
+								"blueprints",
+								"costindex"
 							]
 						},
-						"description": "This endpoint reads the Pilot configuration to identify the target market station where to read the market information. Then using that market hub reads and consolidates the market data into an instance that contains some data."
+						"description": "Gets the list of blueprints that can be used by the request Pilot. The blueprints has the BOM for the construction of the item and some additional market data references to calculate the manufacture costs."
 					},
 					"response": []
 				}
@@ -1236,8 +1243,146 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get Universe MarketByRegion 4Type",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{apiv1}}/universe/market/consolidated/byregion/{{regionId}}/{{typeId}}",
+							"host": [
+								"{{backendServer}}{{apiv1}}"
+							],
+							"path": [
+								"universe",
+								"market",
+								"consolidated",
+								"byregion",
+								"{{regionId}}",
+								"{{typeId}}"
+							]
+						},
+						"description": "Get the consolidated Market Data record for the selected type id on the selected region."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Universe Type",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{apiv1}}/universe/types/{{typeId}}",
+							"host": [
+								"{{backendServer}}{{apiv1}}"
+							],
+							"path": [
+								"universe",
+								"types",
+								"{{typeId}}"
+							]
+						},
+						"description": "Get the data for a Eve Online game type."
+					},
+					"response": []
 				}
 			]
+		},
+		{
+			"name": "NeoCom.Public",
+			"item": [
+				{
+					"name": "GetPilotPublicData",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{publicv1}}/pilots/{{pilotId}}",
+							"host": [
+								"{{backendServer}}{{publicv1}}"
+							],
+							"path": [
+								"pilots",
+								"{{pilotId}}"
+							]
+						},
+						"description": "Gets the NeoCom adaptation for a Character public data that is accessible from the ESI server without authentication."
+					},
+					"response": []
+				},
+				{
+					"name": "GetCorporationPublicData",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{publicv1}}/corporations/98661092",
+							"host": [
+								"{{backendServer}}{{publicv1}}"
+							],
+							"path": [
+								"corporations",
+								"98661092"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Loyalty Offers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{publicv1}}/loyalty/corporations/1000179",
+							"host": [
+								"{{backendServer}}{{publicv1}}"
+							],
+							"path": [
+								"loyalty",
+								"corporations",
+								"1000179"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "The collection of endpoints that do not require authentication on the ESI server."
 		}
 	]
 }

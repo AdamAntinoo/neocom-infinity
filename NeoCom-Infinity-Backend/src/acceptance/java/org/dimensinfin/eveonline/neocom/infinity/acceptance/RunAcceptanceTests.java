@@ -13,6 +13,6 @@ import static io.cucumber.junit.CucumberOptions.SnippetType.CAMELCASE;
 		snippets = CAMELCASE,
 		glue = { "org.dimensinfin.eveonline.neocom.infinity.acceptance.steps" },
 		plugin = { "pretty", "json:target/cucumber_report.json" },
-		tags = { "not @skip_scenario", "not @front", "not @duplication", "@NIB11.01" })
+		tags = { "not @skip_scenario", "not @front", "not @duplication", "@NIB11.02" })
 public class RunAcceptanceTests {
 }
