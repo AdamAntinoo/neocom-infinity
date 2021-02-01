@@ -183,7 +183,6 @@ jobs:
           working_directory: NeoCom-Infinity-Backend
           environment:
             PROFILE: "production"
-            SONAR_TOKEN: 0784ee732d6aaa1fbac965792c35aa028bfe35e1
           command: |
             ./gradlew test jacocoTestReport sonarqube
 

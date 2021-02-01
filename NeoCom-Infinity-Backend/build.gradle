@@ -136,6 +136,6 @@ sonarqube {
         property "sonar.projectVersion", project.version
         property "sonar.projectDescription", "Back end Spring Boot server to service NeoCom Infinity data."
         property "sonar.sourceEncoding", "UTF-8"
-        property "sonar.login", "9dfe678ad49842371e44396a40c663586d497c31"
+        property "sonar.login", "fd5ec42949cc79a93ef45dc873f14f95cf63c224"
     }
 }
