@@ -217,7 +217,7 @@ jobs:
           name: NEOCOM-BACKEND - Generate the docker file to be used for application acceptance tests
           working_directory: NeoCom-Infinity-Backend
           command: |
-            ./docker-service generate
+            ./docker-service.sh generate
       - run:
           name: NEOCOM-BACKEND - Start the mock services
           working_directory: NeoCom-Infinity-Backend
