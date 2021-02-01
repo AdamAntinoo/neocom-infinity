@@ -216,6 +216,8 @@ jobs:
       - run:
           name: NEOCOM-BACKEND - Generate the docker file to be used for application acceptance tests
           working_directory: NeoCom-Infinity-Backend
+          environment:
+            PROFILE: "production"
           command: |
             ./docker-service.sh generate
       - run:
@@ -226,6 +228,8 @@ jobs:
       - run:
           name: NEOCOM-BACKEND - Run the list of approved acceptance tests
           working_directory: NeoCom-Infinity-Backend
+          environment:
+            PROFILE: "production"
           command: |
             ./gradlew acceptanceTest -Dcucumber.options="--tags @NIB11.01"
 
