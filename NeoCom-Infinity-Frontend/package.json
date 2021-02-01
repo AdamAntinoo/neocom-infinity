@@ -3,8 +3,8 @@
     "version": "0.20.0",
     "scripts": {
         "cucumber": "$(npm bin)/cucumber-js ./cypress/**/*.feature --no-strict --tags @NIF07.01",
-        "docker:start": "docker-compose -f ./support/docker/docker-compose.yml up & ",
-        "docker:stop": "docker-compose -f ./support/docker/docker-compose.yml down ",
+        "docker:start": "docker-compose -f ./support/neocom-docker-frontend/docker-compose.yml up & ",
+        "docker:stop": "docker-compose -f ./support/neocom-docker-frontend/docker-compose.yml down ",
         "serve:dev": "ng serve --progress --proxy-config proxy.conf.json --port 5200 --base-href /app ",
         "build:dev": "ng build ",
         "document:dev": "compodoc -p tsconfig.json src",
