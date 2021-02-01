@@ -17,3 +17,5 @@ databaseChangeLog:
       file: db/changelog/ddl-v0.20.0-08-miningextractions-index.yaml
   - include:
       file: db/changelog/ddl-v0.20.0-09-loyaltyoffers-table.yaml
+  - include:
+      file: db/changelog/ddl-v0.20.0-10-alter-loyaltyoffers-table.yaml
