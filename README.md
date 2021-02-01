@@ -9,7 +9,8 @@
 
 #### 5200 - [DEVELOPMENT] Frontend Node server
 #### 5210 - [DEVELOPMENT] Frontend ApiSimulator backed server
-#### 5220 - [DEVELOPMENT] Frontend Backend SB application server
+#### 5290 - [DEVELOPMENT] Frontend ApiSimulator public server
+#### 5220 - [DEVELOPMENT] Frontend Backend SB application server for /v1/universe
 #### 5230 - [DEVELOPMENT] Frontend Postgres DB
 #### 5240 - [DEVELOPMENT] Backend SB application server
 #### 5250 - [DEVELOPMENT] Backend ApiSimulator Eve Online authentication server

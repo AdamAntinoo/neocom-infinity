@@ -1,0 +1,235 @@
+[{
+        "jsonClass": "LoyaltyOfferEntity",
+        "offerId": 4196,
+        "typeId": 27096,
+        "typeName": "Zainou 'Deadeye' Rapid Launch RL-1001",
+        "corporationId": 1000182,
+        "corporationName": "Tribal Liberation Force",
+        "lpValue": 1893,
+        "iskCost": 375000,
+        "lpCost": 375,
+        "quantity": 1,
+        "marketRegionId": 10000002,
+        "price": 1085000.0,
+        "marketData": {
+            "rel": "marketData",
+            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/27096"
+        }
+    },
+    {
+        "jsonClass": "LoyaltyOfferEntity",
+        "offerId": 4232,
+        "typeId": 27253,
+        "typeName": "Zainou 'Snapshot' Light Missiles LM-901",
+        "corporationId": 1000182,
+        "corporationName": "Tribal Liberation Force",
+        "lpValue": 1661,
+        "iskCost": 375000,
+        "lpCost": 375,
+        "quantity": 1,
+        "marketRegionId": 10000002,
+        "price": 997900.0,
+        "marketData": {
+            "rel": "marketData",
+            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/27253"
+        }
+    },
+    {
+        "jsonClass": "LoyaltyOfferEntity",
+        "offerId": 4115,
+        "typeId": 27081,
+        "typeName": "Eifyr and Co. 'Gunslinger' Surgical Strike SS-901",
+        "corporationId": 1000182,
+        "corporationName": "Tribal Liberation Force",
+        "lpValue": 1558,
+        "iskCost": 375000,
+        "lpCost": 375,
+        "quantity": 1,
+        "marketRegionId": 10000002,
+        "price": 959400.0,
+        "marketData": {
+            "rel": "marketData",
+            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/27081"
+        }
+    },
+    {
+        "jsonClass": "LoyaltyOfferEntity",
+        "offerId": 4132,
+        "typeId": 27099,
+        "typeName": "Eifyr and Co. 'Rogue' Evasive Maneuvering EM-701",
+        "corporationId": 1000182,
+        "corporationName": "Tribal Liberation Force",
+        "lpValue": 1532,
+        "iskCost": 375000,
+        "lpCost": 375,
+        "quantity": 1,
+        "marketRegionId": 10000002,
+        "price": 949400.0,
+        "marketData": {
+            "rel": "marketData",
+            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/27099"
+        }
+    },
+    {
+        "jsonClass": "LoyaltyOfferEntity",
+        "offerId": 4134,
+        "typeId": 27101,
+        "typeName": "Eifyr and Co. 'Rogue' Acceleration Control AC-601",
+        "corporationId": 1000182,
+        "corporationName": "Tribal Liberation Force",
+        "lpValue": 1514,
+        "iskCost": 375000,
+        "lpCost": 375,
+        "quantity": 1,
+        "marketRegionId": 10000002,
+        "price": 942600.0,
+        "marketData": {
+            "rel": "marketData",
+            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/27101"
+        }
+    },
+    {
+        "jsonClass": "LoyaltyOfferEntity",
+        "offerId": 4246,
+        "typeId": 27117,
+        "typeName": "Inherent Implants 'Squire' Capacitor Management EM-801",
+        "corporationId": 1000182,
+        "corporationName": "Tribal Liberation Force",
+        "lpValue": 1479,
+        "iskCost": 375000,
+        "lpCost": 375,
+        "quantity": 1,
+        "marketRegionId": 10000002,
+        "price": 929600.0,
+        "marketData": {
+            "rel": "marketData",
+            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/27117"
+        }
+    },
+    {
+        "jsonClass": "LoyaltyOfferEntity",
+        "offerId": 4256,
+        "typeId": 27127,
+        "typeName": "Inherent Implants 'Squire' Power Grid Management EG-601",
+        "corporationId": 1000182,
+        "corporationName": "Tribal Liberation Force",
+        "lpValue": 1477,
+        "iskCost": 375000,
+        "lpCost": 375,
+        "quantity": 1,
+        "marketRegionId": 10000002,
+        "price": 929000.0,
+        "marketData": {
+            "rel": "marketData",
+            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/27127"
+        }
+    },
+    {
+        "jsonClass": "LoyaltyOfferEntity",
+        "offerId": 4114,
+        "typeId": 27075,
+        "typeName": "Eifyr and Co. 'Gunslinger' Motion Prediction MR-701",
+        "corporationId": 1000182,
+        "corporationName": "Tribal Liberation Force",
+        "lpValue": 1440,
+        "iskCost": 375000,
+        "lpCost": 375,
+        "quantity": 1,
+        "marketRegionId": 10000002,
+        "price": 914900.0,
+        "marketData": {
+            "rel": "marketData",
+            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/27075"
+        }
+    },
+    {
+        "jsonClass": "LoyaltyOfferEntity",
+        "offerId": 4248,
+        "typeId": 27119,
+        "typeName": "Inherent Implants 'Squire' Capacitor Systems Operation EO-601",
+        "corporationId": 1000182,
+        "corporationName": "Tribal Liberation Force",
+        "lpValue": 1347,
+        "iskCost": 375000,
+        "lpCost": 375,
+        "quantity": 1,
+        "marketRegionId": 10000002,
+        "price": 880000.0,
+        "marketData": {
+            "rel": "marketData",
+            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/27119"
+        }
+    },
+    {
+        "jsonClass": "LoyaltyOfferEntity",
+        "offerId": 4166,
+        "typeId": 27074,
+        "typeName": "Inherent Implants 'Noble' Hull Upgrades HG-1001",
+        "corporationId": 1000182,
+        "corporationName": "Tribal Liberation Force",
+        "lpValue": 1124,
+        "iskCost": 375000,
+        "lpCost": 375,
+        "quantity": 1,
+        "marketRegionId": 10000002,
+        "price": 796600.0,
+        "marketData": {
+            "rel": "marketData",
+            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/27074"
+        }
+    },
+    {
+        "jsonClass": "LoyaltyOfferEntity",
+        "offerId": 4200,
+        "typeId": 24641,
+        "typeName": "Zainou 'Gnome' Launcher CPU Efficiency LE-603",
+        "corporationId": 1000182,
+        "corporationName": "Tribal Liberation Force",
+        "lpValue": 1095,
+        "iskCost": 10875000,
+        "lpCost": 10875,
+        "quantity": 1,
+        "marketRegionId": 10000002,
+        "price": 2.278E7,
+        "marketData": {
+            "rel": "marketData",
+            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/24641"
+        }
+    },
+    {
+        "jsonClass": "LoyaltyOfferEntity",
+        "offerId": 3426,
+        "typeId": 14299,
+        "typeName": "Limited Social Adaptation Chip - Beta",
+        "corporationId": 1000182,
+        "corporationName": "Tribal Liberation Force",
+        "lpValue": 1078,
+        "iskCost": 2500000,
+        "lpCost": 2500,
+        "quantity": 1,
+        "marketRegionId": 10000002,
+        "price": 5194000.0,
+        "marketData": {
+            "rel": "marketData",
+            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/14299"
+        }
+    },
+    {
+        "jsonClass": "LoyaltyOfferEntity",
+        "offerId": 4152,
+        "typeId": 13256,
+        "typeName": "Inherent Implants 'Noble' Hull Upgrades HG-1003",
+        "corporationId": 1000182,
+        "corporationName": "Tribal Liberation Force",
+        "lpValue": 1009,
+        "iskCost": 10875000,
+        "lpCost": 10875,
+        "quantity": 1,
+        "marketRegionId": 10000002,
+        "price": 2.185E7,
+        "marketData": {
+            "rel": "marketData",
+            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/13256"
+        }
+    }
+]
