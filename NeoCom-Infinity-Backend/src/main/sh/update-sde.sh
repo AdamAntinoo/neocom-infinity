@@ -20,6 +20,7 @@ decompress() {
 figlet UpdateSDE
 echo "> Database source files update started."
 echo ">> Download latest set of files..."
+rm -rf *.csv
 downloadFiles
 echo ">> Decompressing downloaded files..."
 decompress
