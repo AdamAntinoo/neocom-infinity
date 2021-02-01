@@ -4,6 +4,5 @@ figlet InstallSDE
 ./create-sde.sh
 
 echo "> Moving database to destinations."
-cp sde.db ../resources/
-mv sde.db ../../integration/resources/
+mv sde.db ../resources/
 echo "> SDE db installation completed."

@@ -222,7 +222,7 @@ jobs:
           name: NEOCOM-BACKEND - Start the mock services
           working_directory: NeoCom-Infinity-Backend
           command: |
-            ./docker-service start acceptance
+            ./docker-service.sh start acceptance
       - run:
           name: NEOCOM-BACKEND - Run the list of approved acceptance tests
           working_directory: NeoCom-Infinity-Backend
