@@ -10,14 +10,20 @@ export class SingleSelectionManager {
      */
     public updateSelection(node: ISelectable): ISelectable {
         if (node.isSelected()) {
-            if (this.selection) this.selection.unselect()
-            this.selection = node
-        } else
-            if (!this.selection.isSelected()) this.selection = undefined
+            if (this.selection) {
+                this.selection.unselect()
+                this.selection = node
+            } else this.selection = node
+        } else { // If the node selected is unselected then clear the selection
+            if (this.selection)
+                if (!this.selection.isSelected())
+                    this.selection = undefined
+        }
         return this.selection
     }
     public getSelection(): ISelectable[] {
-        return [this.selection]
+        if (this.selection) return [this.selection]
+        else return []
     }
     public hasSelection(): boolean {
         if (this.selection) return true

@@ -22,11 +22,19 @@ import { MarketOrderDto } from '@domain/industry/dto/MarketOrderDto.dto';
     styleUrls: ['./v1-loyalty-offer-render.component.scss']
 })
 export class V1LoyaltyOfferRenderComponent extends V2NodeContainerRenderComponent {
+    public isReady(): boolean {
+        if (this.node)
+            if (this.getNode().type)
+                if (this.getNode().marketData)
+                    return true
+        return false
+    }
     public getNode(): LoyaltyOfferV1 {
         return this.node as LoyaltyOfferV1
     }
     public getUniqueId(): string {
-        return '-'
+        if (this.node) 'offer:' + this.getNode().offerId
+        else return '-'
     }
     public getURLIcon(): string {
         if (this.node)

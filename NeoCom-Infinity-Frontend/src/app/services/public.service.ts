@@ -50,7 +50,7 @@ export class PublicService extends UniverseService {
             .pipe(map((data: any) => {
                 const offers: LoyaltyOfferV1[] = []
                 for (const offer of data) {
-                    offers.push(new LoyaltyOfferDto(offer).transform(this, this.halResolver))
+                    offers.push(new LoyaltyOfferDto(offer).transform(this.halResolver))
                 }
                 return offers
             }))

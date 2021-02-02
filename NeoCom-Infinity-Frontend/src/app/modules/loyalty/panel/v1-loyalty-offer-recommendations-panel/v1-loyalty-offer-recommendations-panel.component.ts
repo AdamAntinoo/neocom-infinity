@@ -37,6 +37,7 @@ export class V1LoyaltyOfferRecommendationsPanelComponent extends AppPanelCompone
      * Access the backend to retrieve the list of recommended offers for the selected Loyalty Corporation.
      */
     public refresh(): void {
+        console.log('-- start cycle 02')
         this.clean()
         if (this.loyaltyCorporation) {
             console.log('> There is a Loyalty Corporation selected.')
