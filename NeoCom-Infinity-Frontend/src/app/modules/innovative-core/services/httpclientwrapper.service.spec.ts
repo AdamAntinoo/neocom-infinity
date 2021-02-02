@@ -122,9 +122,9 @@ describe('SERVICE HttpClientWrapperService [Module: APP]', () => {
         });
         it('wrapHttpSecureHeaders.headers: make a GET request', () => {
             const serviceAsAny = service as any;
-            const headers = new HttpHeaders()
-                .set('Content-Type', 'application/json; charset=utf-8')
-                .set('xApp-Name', 'name');
+            let headers = new HttpHeaders()
+            headers = headers.set('Content-Type', 'application/json; charset=utf-8')
+            headers = headers.set('xApp-Name', 'name');
             expect(serviceAsAny.wrapHttpSecureHeaders(headers)).toBeDefined();
         });
     });

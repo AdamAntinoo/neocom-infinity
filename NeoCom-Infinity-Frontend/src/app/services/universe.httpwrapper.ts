@@ -18,13 +18,13 @@ export class UniverseHttpWrapper extends HttpClientWrapperService {
      */
     protected wrapHttpSecureHeaders(_requestHeaders?: HttpHeaders): HttpHeaders {
         let headers = new HttpHeaders()
-            .set('Content-Type', 'application/json; charset=utf-8')
-            .set('accept', 'application/json')
-            .set('xApp-Name', environment.appName)
-            .set('xApp-Version', environment.appVersion)
-            .set('xApp-Platform', environment.platform)
-            .set('xApp-Signature', 'S0000.0016.0001')
-            .set('xApp-Signature', 'S0000.0019.0001');
+        headers = headers.set('Content-Type', 'application/json; charset=utf-8')
+        headers = headers.set('accept', 'application/json')
+        headers = headers.set('xApp-Name', environment.appName)
+        headers = headers.set('xApp-Version', environment.appVersion)
+        headers = headers.set('xApp-Platform', environment.platform)
+        headers = headers.set('xApp-Signature', 'S0000.0016.0001')
+        headers = headers.set('xApp-Signature', 'S0000.0019.0001');
         if (null != _requestHeaders) { // Copy in additional headers.
             for (let key of _requestHeaders.keys()) {
                 headers = headers.set(key, _requestHeaders.get(key));

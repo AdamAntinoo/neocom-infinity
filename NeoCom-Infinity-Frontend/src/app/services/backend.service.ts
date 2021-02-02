@@ -50,7 +50,7 @@ export class BackendService extends PublicService {
             "&state=" + state +
             "&datasource=" + environment.ESIDataSource.toLowerCase()
         let headers = new HttpHeaders() // Additional mockup headers to apisimulation.
-            .set('xapp-validation-code', code)
+        headers = headers.set('xapp-validation-code', code)
         return this.httpService.wrapHttpGETCall(request, headers)
             .pipe(map((data: any) => {
                 console.log(">[BackendService.apiValidateAuthorizationToken_v1]> Transformation: " +
