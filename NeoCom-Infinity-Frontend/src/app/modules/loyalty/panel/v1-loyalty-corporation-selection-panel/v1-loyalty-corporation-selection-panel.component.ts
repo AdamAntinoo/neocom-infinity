@@ -37,6 +37,19 @@ export class V1LoyaltyCorporationSelectionPanelComponent extends AppPanelCompone
             "tax_rate": 0,
             "ticker": "IC24"
         }))
+        this.loyaltyCorporations.push(new LoyaltyCorporationV1({
+            "id": 1000182,
+            "ceo_id": 3018996,
+            "creator_id": 1,
+            "description": "The Minmatar heart sings for freedom and the Minmatar soul strives for open skies, but the Minmatar heart has been withering away in captivity. It is now up to you, capsuleer. You hold the power to free our people. You are the heroes of your generation. Join us in the struggle for freedom. Death to Amarr; long live the Minmatar Nation.",
+            "faction_id": 500002,
+            "home_station_id": 60015096,
+            "member_count": 21088,
+            "name": "Tribal Liberation Force",
+            "shares": 0,
+            "tax_rate": 0,
+            "ticker": "TLIB"
+        }))
     }
     // - I V I E W E R
     public fireSelectionChanged() {

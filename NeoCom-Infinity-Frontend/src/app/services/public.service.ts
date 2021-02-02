@@ -11,6 +11,9 @@ import { PublicCorporationV1 } from '@domain/corporation/PublicCorporationV1.dom
 import { PublicPilotV1 } from '@domain/character/PublicPilotV1.domain'
 import { PublicPilotV1Dto } from '@domain/dto/PublicPilotV1.dto'
 import { HALResolver } from './HALResolver.service'
+import { LoyaltyCorporationV1 } from '@app/modules/loyalty/domain/LoyaltyCorporationV1.domain'
+import { LoyaltyOfferV1 } from '@app/modules/loyalty/domain/LoyaltyOfferV1.domain'
+import { LoyaltyOfferDto } from '@app/modules/loyalty/dto/LoyaltyOfferDto.dto'
 
 @Injectable({
     providedIn: 'root'
@@ -39,6 +42,17 @@ export class PublicService extends UniverseService {
         return this.httpUniverseService.wrapHttpGETCall(request)
             .pipe(map((data: any) => {
                 return new PublicCorporationV1(data)
+            }))
+    }
+    public apiv1_GetLoyaltyOffers(corporationId: number): Observable<LoyaltyOfferV1[]> {
+        const request = this.PUBLICV1 + '/loyalty/corporations/' + corporationId
+        return this.httpUniverseService.wrapHttpGETCall(request)
+            .pipe(map((data: any) => {
+                const offers: LoyaltyOfferV1[] = []
+                for (const offer of data) {
+                    offers.push(new LoyaltyOfferDto(offer).transform(this, this.halResolver))
+                }
+                return offers
             }))
     }
 }

@@ -1,0 +1,31 @@
+<!-- L O Y A L T Y -->
+<div id="{{getUniqueId()}}" class="row panel-white" *ngIf="getVariant() === '-LOYALTY-'">
+    <img class="neocom-icon iconsize-36" src="{{getURLIcon()}}" alt="Eve Item Image">
+    <div class="column">
+        <!-- <div class="field">
+            <span cy-field-label="corporationName" class="label">CORPORACION LOYALTY</span><br>
+            <span cy-field-value="corporationName" class="">{{getLoyaltyCorporationName()}}</span>
+        </div> -->
+        <div class="field">
+            <span cy-field-label="typeName" class="label">NOMBRE</span><br>
+            <span cy-field-value="typeName" class="">{{getName()}}</span>
+        </div>
+        <div class="field">
+            <span cy-field-label="moduleTech" class="label">COSTE LP</span>
+            <span>&nbsp;</span>
+            <span cy-field-value="moduleTech" class="">{{getLpCost()}}</span>
+            <span>&nbsp;</span>
+            <span cy-field-label="moduleTech" class="label">COSTE ISK</span>
+            <span>&nbsp;</span>
+            <span cy-field-value="moduleTech" class="">{{getIskCost() | iskscaled}}</span>
+            <span>&nbsp;</span>
+            <span>&nbsp;</span>
+            <span cy-field-label="moduleGroup" class="label">VALORACION LP</span>
+            <span>&nbsp;</span>
+            <span cy-field-value="moduleGroup" class="lp-value">{{getLpCalculatedValue()}}</span>
+        </div>
+        <div class="field">
+            <v1-market-data [marketData]="getMarketData()"></v1-market-data>
+        </div>
+    </div>
+</div>
