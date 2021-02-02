@@ -2,9 +2,13 @@
         "jsonClass": "LoyaltyOfferEntity",
         "offerId": 4196,
         "typeId": 27096,
+        "type": {
+            "rel": "type",
+            "href": "http://localhost:5240/api/v1/universe/types/27096"
+        },
         "typeName": "Zainou 'Deadeye' Rapid Launch RL-1001",
-        "corporationId": 1000182,
-        "corporationName": "Tribal Liberation Force",
+        "corporationId": 1000179,
+        "corporationName": "24th Imperial Crusade",
         "lpValue": 1893,
         "iskCost": 375000,
         "lpCost": 375,
@@ -20,9 +24,13 @@
         "jsonClass": "LoyaltyOfferEntity",
         "offerId": 4232,
         "typeId": 27253,
+        "type": {
+            "rel": "type",
+            "href": "http://localhost:5240/api/v1/universe/types/27253"
+        },
         "typeName": "Zainou 'Snapshot' Light Missiles LM-901",
-        "corporationId": 1000182,
-        "corporationName": "Tribal Liberation Force",
+        "corporationId": 1000179,
+        "corporationName": "24th Imperial Crusade",
         "lpValue": 1661,
         "iskCost": 375000,
         "lpCost": 375,
@@ -38,9 +46,13 @@
         "jsonClass": "LoyaltyOfferEntity",
         "offerId": 4115,
         "typeId": 27081,
+        "type": {
+            "rel": "type",
+            "href": "http://localhost:5240/api/v1/universe/types/27081"
+        },
         "typeName": "Eifyr and Co. 'Gunslinger' Surgical Strike SS-901",
-        "corporationId": 1000182,
-        "corporationName": "Tribal Liberation Force",
+        "corporationId": 1000179,
+        "corporationName": "24th Imperial Crusade",
         "lpValue": 1558,
         "iskCost": 375000,
         "lpCost": 375,
@@ -56,9 +68,13 @@
         "jsonClass": "LoyaltyOfferEntity",
         "offerId": 4132,
         "typeId": 27099,
+        "type": {
+            "rel": "type",
+            "href": "http://localhost:5240/api/v1/universe/types/27099"
+        },
         "typeName": "Eifyr and Co. 'Rogue' Evasive Maneuvering EM-701",
-        "corporationId": 1000182,
-        "corporationName": "Tribal Liberation Force",
+        "corporationId": 1000179,
+        "corporationName": "24th Imperial Crusade",
         "lpValue": 1532,
         "iskCost": 375000,
         "lpCost": 375,
@@ -74,9 +90,13 @@
         "jsonClass": "LoyaltyOfferEntity",
         "offerId": 4134,
         "typeId": 27101,
+        "type": {
+            "rel": "type",
+            "href": "http://localhost:5240/api/v1/universe/types/27101"
+        },
         "typeName": "Eifyr and Co. 'Rogue' Acceleration Control AC-601",
-        "corporationId": 1000182,
-        "corporationName": "Tribal Liberation Force",
+        "corporationId": 1000179,
+        "corporationName": "24th Imperial Crusade",
         "lpValue": 1514,
         "iskCost": 375000,
         "lpCost": 375,
@@ -92,9 +112,13 @@
         "jsonClass": "LoyaltyOfferEntity",
         "offerId": 4246,
         "typeId": 27117,
+        "type": {
+            "rel": "type",
+            "href": "http://localhost:5240/api/v1/universe/types/27117"
+        },
         "typeName": "Inherent Implants 'Squire' Capacitor Management EM-801",
-        "corporationId": 1000182,
-        "corporationName": "Tribal Liberation Force",
+        "corporationId": 1000179,
+        "corporationName": "24th Imperial Crusade",
         "lpValue": 1479,
         "iskCost": 375000,
         "lpCost": 375,
@@ -110,9 +134,13 @@
         "jsonClass": "LoyaltyOfferEntity",
         "offerId": 4256,
         "typeId": 27127,
+        "type": {
+            "rel": "type",
+            "href": "http://localhost:5240/api/v1/universe/types/27127"
+        },
         "typeName": "Inherent Implants 'Squire' Power Grid Management EG-601",
-        "corporationId": 1000182,
-        "corporationName": "Tribal Liberation Force",
+        "corporationId": 1000179,
+        "corporationName": "24th Imperial Crusade",
         "lpValue": 1477,
         "iskCost": 375000,
         "lpCost": 375,
@@ -128,9 +156,13 @@
         "jsonClass": "LoyaltyOfferEntity",
         "offerId": 4114,
         "typeId": 27075,
+        "type": {
+            "rel": "type",
+            "href": "http://localhost:5240/api/v1/universe/types/27075"
+        },
         "typeName": "Eifyr and Co. 'Gunslinger' Motion Prediction MR-701",
-        "corporationId": 1000182,
-        "corporationName": "Tribal Liberation Force",
+        "corporationId": 1000179,
+        "corporationName": "24th Imperial Crusade",
         "lpValue": 1440,
         "iskCost": 375000,
         "lpCost": 375,
@@ -144,11 +176,37 @@
     },
     {
         "jsonClass": "LoyaltyOfferEntity",
+        "offerId": 15752,
+        "typeId": 20411,
+        "type": {
+            "rel": "type",
+            "href": "http://localhost:5240/api/v1/universe/types/20411"
+        },
+        "typeName": "Datacore - High Energy Physics",
+        "corporationId": 1000179,
+        "corporationName": "24th Imperial Crusade",
+        "lpValue": 1426,
+        "iskCost": 250000,
+        "lpCost": 250,
+        "quantity": 5,
+        "marketRegionId": 10000002,
+        "price": 121300.0,
+        "marketData": {
+            "rel": "marketData",
+            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/20411"
+        }
+    },
+    {
+        "jsonClass": "LoyaltyOfferEntity",
         "offerId": 4248,
         "typeId": 27119,
+        "type": {
+            "rel": "type",
+            "href": "http://localhost:5240/api/v1/universe/types/27119"
+        },
         "typeName": "Inherent Implants 'Squire' Capacitor Systems Operation EO-601",
-        "corporationId": 1000182,
-        "corporationName": "Tribal Liberation Force",
+        "corporationId": 1000179,
+        "corporationName": "24th Imperial Crusade",
         "lpValue": 1347,
         "iskCost": 375000,
         "lpCost": 375,
@@ -162,11 +220,37 @@
     },
     {
         "jsonClass": "LoyaltyOfferEntity",
+        "offerId": 15758,
+        "typeId": 20416,
+        "type": {
+            "rel": "type",
+            "href": "http://localhost:5240/api/v1/universe/types/20416"
+        },
+        "typeName": "Datacore - Nanite Engineering",
+        "corporationId": 1000179,
+        "corporationName": "24th Imperial Crusade",
+        "lpValue": 1322,
+        "iskCost": 250000,
+        "lpCost": 250,
+        "quantity": 5,
+        "marketRegionId": 10000002,
+        "price": 116100.0,
+        "marketData": {
+            "rel": "marketData",
+            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/20416"
+        }
+    },
+    {
+        "jsonClass": "LoyaltyOfferEntity",
         "offerId": 4166,
         "typeId": 27074,
+        "type": {
+            "rel": "type",
+            "href": "http://localhost:5240/api/v1/universe/types/27074"
+        },
         "typeName": "Inherent Implants 'Noble' Hull Upgrades HG-1001",
-        "corporationId": 1000182,
-        "corporationName": "Tribal Liberation Force",
+        "corporationId": 1000179,
+        "corporationName": "24th Imperial Crusade",
         "lpValue": 1124,
         "iskCost": 375000,
         "lpCost": 375,
@@ -182,9 +266,13 @@
         "jsonClass": "LoyaltyOfferEntity",
         "offerId": 4200,
         "typeId": 24641,
+        "type": {
+            "rel": "type",
+            "href": "http://localhost:5240/api/v1/universe/types/24641"
+        },
         "typeName": "Zainou 'Gnome' Launcher CPU Efficiency LE-603",
-        "corporationId": 1000182,
-        "corporationName": "Tribal Liberation Force",
+        "corporationId": 1000179,
+        "corporationName": "24th Imperial Crusade",
         "lpValue": 1095,
         "iskCost": 10875000,
         "lpCost": 10875,
@@ -200,9 +288,13 @@
         "jsonClass": "LoyaltyOfferEntity",
         "offerId": 3426,
         "typeId": 14299,
+        "type": {
+            "rel": "type",
+            "href": "http://localhost:5240/api/v1/universe/types/14299"
+        },
         "typeName": "Limited Social Adaptation Chip - Beta",
-        "corporationId": 1000182,
-        "corporationName": "Tribal Liberation Force",
+        "corporationId": 1000179,
+        "corporationName": "24th Imperial Crusade",
         "lpValue": 1078,
         "iskCost": 2500000,
         "lpCost": 2500,
@@ -216,11 +308,37 @@
     },
     {
         "jsonClass": "LoyaltyOfferEntity",
+        "offerId": 15754,
+        "typeId": 20413,
+        "type": {
+            "rel": "type",
+            "href": "http://localhost:5240/api/v1/universe/types/20413"
+        },
+        "typeName": "Datacore - Laser Physics",
+        "corporationId": 1000179,
+        "corporationName": "24th Imperial Crusade",
+        "lpValue": 1076,
+        "iskCost": 250000,
+        "lpCost": 250,
+        "quantity": 5,
+        "marketRegionId": 10000002,
+        "price": 103800.0,
+        "marketData": {
+            "rel": "marketData",
+            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/20413"
+        }
+    },
+    {
+        "jsonClass": "LoyaltyOfferEntity",
         "offerId": 4152,
         "typeId": 13256,
+        "type": {
+            "rel": "type",
+            "href": "http://localhost:5240/api/v1/universe/types/13256"
+        },
         "typeName": "Inherent Implants 'Noble' Hull Upgrades HG-1003",
-        "corporationId": 1000182,
-        "corporationName": "Tribal Liberation Force",
+        "corporationId": 1000179,
+        "corporationName": "24th Imperial Crusade",
         "lpValue": 1009,
         "iskCost": 10875000,
         "lpCost": 10875,

@@ -57,6 +57,10 @@ export class V2NodeContainerRenderComponent extends BackgroundEnabledComponent {
         if (Object.keys(target).length == 0) return true;
         return false;
     }
+    public isSelected(): boolean {
+        if (this.node) return this.node.isSelected()
+        else return false
+    }
 
     // - I N T E R A C T I O N S
     /**

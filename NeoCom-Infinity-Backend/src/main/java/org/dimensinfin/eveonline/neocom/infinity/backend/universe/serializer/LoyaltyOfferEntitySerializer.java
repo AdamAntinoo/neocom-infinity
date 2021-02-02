@@ -10,6 +10,7 @@ import org.springframework.hateoas.Link;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 
 import org.dimensinfin.eveonline.neocom.infinity.backend.universe.market.rest.v1.UniverseMarketControllerV1;
+import org.dimensinfin.eveonline.neocom.infinity.backend.universe.tpe.rest.v1.EsiTypeControllerV1;
 import org.dimensinfin.eveonline.neocom.loyalty.persistence.LoyaltyOfferEntity;
 
 /**
@@ -26,6 +27,11 @@ public class LoyaltyOfferEntitySerializer extends JsonSerializer<LoyaltyOfferEnt
 		jgen.writeStringField( "jsonClass", value.getJsonClass() );
 		jgen.writeNumberField( "offerId", value.getOfferId() );
 		jgen.writeNumberField( "typeId", value.getTypeId() );
+		final Link typeLink = WebMvcLinkBuilder.linkTo(
+				WebMvcLinkBuilder.methodOn( EsiTypeControllerV1.class )
+						.getItem( value.getTypeId() )
+		).withRel( "type" );
+		jgen.writeObjectField( "type", typeLink );
 		jgen.writeStringField( "typeName", value.getTypeName() );
 		jgen.writeNumberField( "corporationId", value.getCorporationId() );
 		jgen.writeStringField( "corporationName", value.getCorporationName() );

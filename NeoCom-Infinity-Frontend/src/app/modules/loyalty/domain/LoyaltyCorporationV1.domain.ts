@@ -1,4 +1,7 @@
-import { NeoCom } from "@domain/NeoCom.domain";
+// - CORE
+import { Component } from '@angular/core';
+import { ViewChild } from '@angular/core';
+import { NeoCom } from '@domain/NeoCom.domain';
 
 export class LoyaltyCorporationV1 extends NeoCom {
     public id: number
