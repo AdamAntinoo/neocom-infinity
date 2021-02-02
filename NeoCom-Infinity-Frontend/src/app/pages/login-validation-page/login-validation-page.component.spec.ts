@@ -10,10 +10,13 @@ import { tick } from '@angular/core/testing';
 import { ComponentFixture } from '@angular/core/testing';
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { RouteMockUpComponent } from '@app/testing/RouteMockUp.component';
-import { routes } from '@app/testing/RouteMockUp.component';
+// - INNOVATIVE
+import { RouteMockUpComponent } from '@innovative/testing/RouteMockUp.component';
+import { routes } from '@innovative/testing/RouteMockUp.component';
+import { IsolationService } from '@innovative/services/isolation.service';
+import { HttpClientWrapperService } from '@innovative/services/httpclientwrapper.service';
+import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer';
 // - PROVIDERS
-import { IsolationService } from '@app/platform/isolation.service';
 import { AppStoreService } from '@app/services/appstore.service';
 import { BackendService } from '@app/services/backend.service';
 import { SupportIsolationService } from '@app/testing/SupportIsolation.service';

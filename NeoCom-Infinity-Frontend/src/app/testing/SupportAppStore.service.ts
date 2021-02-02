@@ -13,7 +13,6 @@ import * as jwt_decode from 'jwt-decode';
 import { Router } from '@angular/router';
 // - SERVICES
 import { GlobalService } from '@innovative/services/global.service';
-import { IsolationService } from '@app/platform/isolation.service';
 import { BackendService } from '@app/services/backend.service';
 // - DOMAIN
 import { Credential } from '@app/domain/Credential.domain';
@@ -22,6 +21,7 @@ import { Pilot } from '@app/domain/Pilot.domain';
 import { CorporationDataResponse } from '@app/domain/dto/CorporationDataResponse.dto';
 import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer';
 import { Fitting } from '@domain/Fitting.domain';
+import { IsolationService } from '@innovative/services/isolation.service';
 
 @Injectable({
     providedIn: 'root'

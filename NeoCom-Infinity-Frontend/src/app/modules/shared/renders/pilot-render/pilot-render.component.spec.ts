@@ -7,10 +7,10 @@ import { tick } from '@angular/core/testing';
 import { ComponentFixture } from '@angular/core/testing';
 import { TestBed } from '@angular/core/testing';
 // - PROVIDERS
-import { IsolationService } from '@app/platform/isolation.service';
 import { SupportIsolationService } from '@app/testing/SupportIsolation.service';
 import { PilotRenderComponent } from './pilot-render.component';
 import { Pilot } from '@app/domain/Pilot.domain';
+import { IsolationService } from '@innovative/services/isolation.service';
 
 describe('RENDER PilotRenderComponent [Module: SHARED]', () => {
     let component: PilotRenderComponent;

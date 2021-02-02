@@ -8,20 +8,20 @@ import { async } from '@angular/core/testing';
 import { inject } from '@angular/core/testing';
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { RouteMockUpComponent } from '@app/testing/RouteMockUp.component';
-import { routes } from '@app/testing/RouteMockUp.component';
+// - INNOVATIVE
+import { RouteMockUpComponent } from '@innovative/testing/RouteMockUp.component';
+import { routes } from '@innovative/testing/RouteMockUp.component';
+import { IsolationService } from '@innovative/services/isolation.service';
+import { HttpClientWrapperService } from '@innovative/services/httpclientwrapper.service';
+import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer';
 // - PROVIDERS
-import { IsolationService } from '@app/platform/isolation.service';
-import { HttpClientWrapperService } from './httpclientwrapper.service';
 import { SupportIsolationService } from '@app/testing/SupportIsolation.service';
 import { SupportHttpClientWrapperService } from '@app/testing/SupportHttpClientWrapperService.service';
 import { BackendService } from './backend.service';
-
 import { ValidateAuthorizationTokenResponse } from '@app/domain/dto/ValidateAuthorizationTokenResponse';
 import { AppStoreService } from './appstore.service';
 import { SupportAppStoreService } from '@app/testing/SupportAppStore.service';
 import { Pilot } from '@app/domain/Pilot.domain';
-import { ResponseTransformer } from './support/ResponseTransformer';
 import { Corporation } from '@app/domain/Corporation.domain';
 import { ServerStatus } from '@app/domain/ServerStatus.domain';
 import { Fitting } from '@app/domain/Fitting.domain';

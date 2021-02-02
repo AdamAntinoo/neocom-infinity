@@ -29,6 +29,12 @@ export class AppPanelComponent2 extends BackgroundEnabledComponent implements IV
         super()
         this.self = this
     }
+    updateSelection(node: ISelectable): void {
+        throw new Error('Method not implemented.');
+    }
+    getSelection(): ISelectable[] {
+        throw new Error('Method not implemented.');
+    }
 
     // - G E T T E R S
     public getVariant(): string {

@@ -5,7 +5,7 @@ import { ComponentFixture } from '@angular/core/testing';
 import { TestBed } from '@angular/core/testing';
 // - PROVIDERS
 import { environment } from '@env/environment';
-import { IsolationService } from '@app/platform/isolation.service';
+import { IsolationService } from '@innovative/services/isolation.service';
 import { SupportIsolationService } from '@app/testing/SupportIsolation.service';
 
 import { AppInfoPanelComponent } from './app-info-panel.component';

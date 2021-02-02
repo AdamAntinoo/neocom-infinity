@@ -12,10 +12,10 @@ import { SupportIsolationService } from '@app/testing/SupportIsolation.service';
 import { NodeContainerRenderComponent } from './node-container-render.component';
 import { GroupContainer } from '@domain/GroupContainer.domain';
 import { NeoCom } from '@domain/NeoCom.domain';
-import { AppPanelComponent } from '../../core/app-panel/app-panel.component';
 import { Container } from '@angular/compiler/src/i18n/i18n_ast';
 import { NeoComExpandable } from '@domain/NeoComExpandable.domain';
 import { Fitting } from '@domain/Fitting.domain';
+import { AppPanelComponent } from '@innovative/components/app-panel/app-panel.component';
 
 describe('RENDER NodeContainerRenderComponent [Module: SHARED]', () => {
     let fixture: ComponentFixture<NodeContainerRenderComponent>;

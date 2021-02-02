@@ -19,7 +19,7 @@ export class SupportHALResolver extends HALResolver {
             target.setResolver(null)
         return target
     }
-    public resolve(link: string): Observable<any> {
+    public resolve<T>(link: HALLink<T>): Observable<any> {
         console.log('>[HALResolver.resolve]>Link: ' + link)
         // Add mandatory headers to access backend
         return new Observable((observer) => {

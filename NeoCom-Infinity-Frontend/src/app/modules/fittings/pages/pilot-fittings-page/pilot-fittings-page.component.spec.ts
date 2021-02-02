@@ -7,10 +7,8 @@ import { tick } from '@angular/core/testing';
 import { ComponentFixture } from '@angular/core/testing';
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { RouteMockUpComponent } from '@app/testing/RouteMockUp.component';
-import { routes } from '@app/testing/RouteMockUp.component';
 // - PROVIDERS
-import { IsolationService } from '@app/platform/isolation.service';
+import { IsolationService } from '@innovative/services/isolation.service';
 import { AppStoreService } from '@app/services/appstore.service';
 import { BackendService } from '@app/services/backend.service';
 import { SupportIsolationService } from '@app/testing/SupportIsolation.service';
@@ -18,6 +16,8 @@ import { SupportAppStoreService } from '@app/testing/SupportAppStore.service';
 import { SupportBackendService } from '@app/testing/SupportBackend.service';
 
 import { PilotFittingsPageComponent } from './pilot-fittings-page.component';
+import { RouteMockUpComponent } from '@innovative/testing/RouteMockUp.component';
+import { routes } from '@innovative/testing/RouteMockUp.component';
 
 describe('PAGE PilotFittingsPageComponent [Module: FITTINGS]', () => {
     let fixture: ComponentFixture<PilotFittingsPageComponent>;
