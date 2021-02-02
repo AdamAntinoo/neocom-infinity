@@ -7,7 +7,6 @@ import { tick } from '@angular/core/testing';
 import { ComponentFixture } from '@angular/core/testing';
 import { TestBed } from '@angular/core/testing';
 // - PROVIDERS
-import { IsolationService } from '@app/platform/isolation.service';
 import { SupportIsolationService } from '@app/testing/SupportIsolation.service';
 import { environment } from '@env/environment';
 
@@ -16,6 +15,7 @@ import { ServerStatus } from '@app/domain/ServerStatus.domain';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BackendService } from '@app/services/backend.service';
 import { SupportBackendService } from '@app/testing/SupportBackend.service';
+import { IsolationService } from '@innovative/services/isolation.service';
 
 describe('PANEL ServerInfoPanelComponent [Module: SHARED]', () => {
     let component: ServerInfoPanelComponent;

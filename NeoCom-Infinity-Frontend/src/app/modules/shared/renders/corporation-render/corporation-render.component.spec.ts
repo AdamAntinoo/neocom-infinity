@@ -7,7 +7,7 @@ import { tick } from '@angular/core/testing';
 import { ComponentFixture } from '@angular/core/testing';
 import { TestBed } from '@angular/core/testing';
 // - PROVIDERS
-import { IsolationService } from '@app/platform/isolation.service';
+import { IsolationService } from '@innovative/services/isolation.service';
 import { SupportIsolationService } from '@app/testing/SupportIsolation.service';
 import { CorporationRenderComponent } from './corporation-render.component';
 import { Corporation } from '@app/domain/Corporation.domain';
