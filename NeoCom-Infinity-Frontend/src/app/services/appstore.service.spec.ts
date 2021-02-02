@@ -29,7 +29,7 @@ import { environment } from '@env/environment';
 import { NeoComException } from '@innovative/domain/NeoComException';
 import { ExceptionCatalog } from '@app/platform/ExceptionCatalog';
 
-describe('SERVICE AppStoreService [Module: CORE]', () => {
+xdescribe('SERVICE AppStoreService [Module: CORE]', () => {
     let service: AppStoreService;
     let isolationService: SupportIsolationService;
 
