@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { V1PlanetaryResourceRenderComponent } from './v1-planetary-resource-render.component';
 
-describe('V1PlanetaryResourceRenderComponent', () => {
+xdescribe('V1PlanetaryResourceRenderComponent', () => {
   let component: V1PlanetaryResourceRenderComponent;
   let fixture: ComponentFixture<V1PlanetaryResourceRenderComponent>;
 

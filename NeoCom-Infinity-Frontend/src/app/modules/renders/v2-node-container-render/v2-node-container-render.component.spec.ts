@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { V2NodeContainerRenderComponent } from './v2-node-container-render.component';
 
-describe('V2NodeContainerRenderComponent', () => {
+xdescribe('V2NodeContainerRenderComponent', () => {
   let component: V2NodeContainerRenderComponent;
   let fixture: ComponentFixture<V2NodeContainerRenderComponent>;
 

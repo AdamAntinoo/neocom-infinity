@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 // - PIPES
 import { CapitalizeLetterPipe } from './pipes/capitalize-letter.pipe';
 import { ISKNoDecimalsPipe } from './pipes/iskno-decimals.pipe';
-import { IskScaledPipe } from './pipes/iskscaled.pipe';
+// import { IskScaledPipe } from './pipes/iskscaled.pipe';
 // - COMPONENTS
 import { V2PilotPublicDataPanelComponent } from './panels/v2-pilot-public-data-panel/v2-pilot-public-data-panel.component';
 import { RendersModule } from '../renders/renders.module';
@@ -22,7 +22,7 @@ import { SystemFilterPipe } from './pipes/systemFilter.pipe';
         // -PIPES
         CapitalizeLetterPipe,
         ISKNoDecimalsPipe,
-        IskScaledPipe,
+        // IskScaledPipe,
         SystemFilterPipe,
         V2PilotPublicDataPanelComponent,
         V1FeatureButtonComponent
@@ -30,7 +30,7 @@ import { SystemFilterPipe } from './pipes/systemFilter.pipe';
     exports: [
         CapitalizeLetterPipe,
         ISKNoDecimalsPipe,
-        IskScaledPipe,
+        // IskScaledPipe,
         SystemFilterPipe,
         V2PilotPublicDataPanelComponent,
         V1FeatureButtonComponent
