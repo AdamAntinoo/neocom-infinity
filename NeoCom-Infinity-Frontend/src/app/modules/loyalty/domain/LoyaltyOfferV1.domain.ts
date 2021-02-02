@@ -1,6 +1,7 @@
 // - CORE
 import { Component } from '@angular/core';
 import { ViewChild } from '@angular/core';
+import { EsiMarketData } from '@domain/esi/EsiMarketData.esi';
 import { EsiType } from '@domain/esi/EsiType.esi';
 import { HALLink } from '@domain/hal/HALLink.hal';
 import { MarketOrderDto } from '@domain/industry/dto/MarketOrderDto.dto';
@@ -19,7 +20,7 @@ export class LoyaltyOfferV1 extends NeoCom {
     public quantity: number
     public marketRegionId: number
     public price: number
-    public marketData: MarketOrderDto
+    public marketData: EsiMarketData
 
     constructor(values: Object = {}) {
         super()

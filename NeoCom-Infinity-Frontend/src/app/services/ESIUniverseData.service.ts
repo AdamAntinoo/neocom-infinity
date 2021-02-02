@@ -26,10 +26,6 @@ export class ESIUniverseDataService {
     public apiMarketSearchRegionOrders(regionId: number, typeId: number): Observable<any[]> {
         const request = this.ESIDATA + 'markets/' + regionId + '/orders/?datasource=tranquility&order_type=all&page=1&type_id=' + typeId
         return this.httpService.wrapHttpGETCall(request)
-            // .pipe(map((data: any) => {
-            //     const response = new UniverseSystem(data)
-            //     return response
-            // }))
     }
 
     // - S E A R C H
