@@ -38,7 +38,7 @@ export class SupportHALResolver extends HALResolver {
     }
     protected wrapHttpSecureHeaders(requestHeaders?: HttpHeaders): HttpHeaders {
         let headers = new HttpHeaders()
-            .set('Content-Type', 'application/json; charset=utf-8')
+        headers = headers.set('Content-Type', 'application/json; charset=utf-8')
         if (null != requestHeaders) { // Copy in additional headers.
             for (let key of requestHeaders.keys()) {
                 headers = headers.set(key, requestHeaders.get(key));

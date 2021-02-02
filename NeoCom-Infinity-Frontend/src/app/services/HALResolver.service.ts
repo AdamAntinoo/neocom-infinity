@@ -36,9 +36,9 @@ export class HALResolver {
             // Add mandatory headers to access backend
             let newheaders = this.wrapHttpSecureHeaders()
             return this.httpClient.get(link.getHref(), { headers: newheaders })
-            .pipe(map(inputs => {
-                return link.typeCast(inputs)
-            }))
+                .pipe(map(inputs => {
+                    return link.typeCast(inputs)
+                }))
         }
     }
     protected wrapHttpSecureHeaders(_requestHeaders?: HttpHeaders): HttpHeaders {
@@ -48,7 +48,7 @@ export class HALResolver {
         headers = headers.set('xApp-Version', environment.appVersion)
         headers = headers.set('xApp-Platform', environment.platform)
         headers = headers.set('xApp-Signature', 'S0000.0016.0001')
-        headers = headers .set('xApp-Signature', 'S0000.0019.0001')
+        headers = headers.set('xApp-Signature', 'S0000.0019.0001')
         headers = headers.set('xApp-Signature', 'S0000.0020.0001')
         if (null != _requestHeaders) { // Copy in additional headers.
             for (let key of _requestHeaders.keys()) {
@@ -58,8 +58,3 @@ export class HALResolver {
         return headers
     }
 }
-// export class HALConstructor {
-//     public static create<T>(type: { new(values: Object): T }, values: any): T {
-//         return new type(values)
-//     }
-// }

@@ -18,7 +18,7 @@ export class BackendHttpWrapper extends HttpClientWrapperService {
      */
     protected wrapHttpSecureHeaders(_requestHeaders?: HttpHeaders): HttpHeaders {
         let headers = new HttpHeaders()
-        headers.set('Content-Type', 'application/json; charset=utf-8')
+        headers = headers.set('Content-Type', 'application/json; charset=utf-8')
         headers = headers.set('accept', 'application/json')
         headers = headers.set('xApp-Name', environment.appName)
         headers = headers.set('xApp-Version', environment.appVersion)
