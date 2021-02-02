@@ -24,7 +24,7 @@ import { AppInfoPanelComponent } from '@app/modules/header/app-info-panel/app-in
 import { ServerInfoPanelComponent } from '@app/modules/header/server-info-panel/server-info-panel.component';
 import { DashboardHomePageComponent } from './dashboard-home-page.component';
 
-describe('PAGE DashboardHomePageComponent [Module: CORE]', () => {
+xdescribe('PAGE DashboardHomePageComponent [Module: CORE]', () => {
     let component: DashboardHomePageComponent;
     let fixture: ComponentFixture<DashboardHomePageComponent>;
 

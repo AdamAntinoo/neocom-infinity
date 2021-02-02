@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SpinnerPanelComponent } from './spinner-panel.component';
 
-describe('SpinnerPanelComponent', () => {
+xdescribe('SpinnerPanelComponent', () => {
   let component: SpinnerPanelComponent;
   let fixture: ComponentFixture<SpinnerPanelComponent>;
 
