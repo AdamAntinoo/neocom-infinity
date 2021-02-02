@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { V1LoyaltyCorporationRenderComponent } from './v1-loyalty-corporation-render.component';
 
-describe('V1LoyaltyCorporationRenderComponent', () => {
+xdescribe('V1LoyaltyCorporationRenderComponent', () => {
   let component: V1LoyaltyCorporationRenderComponent;
   let fixture: ComponentFixture<V1LoyaltyCorporationRenderComponent>;
 

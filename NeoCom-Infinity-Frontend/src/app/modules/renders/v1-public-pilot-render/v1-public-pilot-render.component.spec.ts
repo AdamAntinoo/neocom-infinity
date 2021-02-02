@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { V1PublicPilotRenderComponent } from './v1-public-pilot-render.component';
 
-describe('V1PublicPilotRenderComponent', () => {
+xdescribe('V1PublicPilotRenderComponent', () => {
   let component: V1PublicPilotRenderComponent;
   let fixture: ComponentFixture<V1PublicPilotRenderComponent>;
 

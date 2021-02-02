@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { V1BuildActionRenderComponent } from './v1-build-action-render.component';
 
-describe('V1BuildActionRenderComponent', () => {
+xdescribe('V1BuildActionRenderComponent', () => {
   let component: V1BuildActionRenderComponent;
   let fixture: ComponentFixture<V1BuildActionRenderComponent>;
 
