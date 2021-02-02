@@ -28,7 +28,7 @@ public class UniverseMarketControllerV1 {
 	 *                 validations.
 	 */
 	@GetMapping(path = "/market/consolidated/byregion/{regionId}/{typeId}",
-			consumes = "application/json",
+			//			consumes = "application/json",
 			produces = "application/json")
 	public ResponseEntity<MarketData> getMarketConsolidatedByRegion4ItemId(
 			final @PathVariable @NotNull Integer regionId,
