@@ -62,7 +62,7 @@ export class V1LoyaltyOfferRenderComponent extends V2NodeContainerRenderComponen
         if (this.node) return this.getNode().lpValue
         else return 0
     }
-    public getMarketData(): MarketOrderDto {
+    public getMarketData(): EsiMarketData {
         if (this.node) return this.getNode().marketData
     }
 }
