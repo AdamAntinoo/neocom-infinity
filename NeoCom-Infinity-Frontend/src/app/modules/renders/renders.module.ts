@@ -26,6 +26,8 @@ import { V1PublicPilotRenderComponent } from './v1-public-pilot-render/v1-public
 import { V1RegionRenderComponent } from './v1-region-render/v1-region-render.component';
 import { V1SolarSystemRenderComponent } from './v1-solar-system-render/v1-solar-system-render.component';
 import { V1LoyaltyCorporationRenderComponent } from './v1-loyalty-corporation-render/v1-loyalty-corporation-render.component';
+import { V1LoyaltyOfferRenderComponent } from './v1-loyalty-offer-render/v1-loyalty-offer-render.component';
+import { IskScaledPipe } from './pipes/iskscaled.pipe';
 
 @NgModule({
     imports: [
@@ -55,7 +57,10 @@ import { V1LoyaltyCorporationRenderComponent } from './v1-loyalty-corporation-re
         V1PublicPilotRenderComponent,
         V1RegionRenderComponent,
         V1SolarSystemRenderComponent,
-        V1LoyaltyCorporationRenderComponent
+        V1LoyaltyCorporationRenderComponent,
+        V1LoyaltyOfferRenderComponent,
+        // - PIPES
+        IskScaledPipe
 
     ],
     exports: [
@@ -80,7 +85,10 @@ import { V1LoyaltyCorporationRenderComponent } from './v1-loyalty-corporation-re
         V1PublicPilotRenderComponent,
         V1RegionRenderComponent,
         V1SolarSystemRenderComponent,
-        V1LoyaltyCorporationRenderComponent
+        V1LoyaltyCorporationRenderComponent,
+        V1LoyaltyOfferRenderComponent,
+        // - PIPES
+        IskScaledPipe
     ]
 })
 export class RendersModule { }

@@ -1,12 +1,22 @@
 <!-- L O Y A L T Y -->
-<div *ngIf="getVariant() === '-LOYALTY-'" class=" pilot ">
-    <div id="{{getUniqueId()}} " *ngIf="node " class="row panel-green" [ngClass]="{'selected-green' : isSelected()}">
-        <img class="neocom-icon iconsize-40 " src="{{getCorporationIcon()}} ">
-        <div class="row ">
-            <div class="field ">
-                <span cy-field-label="pilotName " class="label invisible ">NAME</span><br>
-                <span cy-field-value="pilotName " class="corporation-name ">{{getNode().name}}</span>
-            </div>
+<div id="{{getUniqueId()}}" class="row panel-green" [ngClass]="{'selected-green' : isSelected()}" *ngIf="getVariant() === '-LOYALTY-'">
+    <!-- <div *ngIf="node"> -->
+    <img class="neocom-icon iconsize-40" src="{{getCorporationIcon()}}">
+    <div class="row">
+        <div class="field">
+            <span cy-field-label="pilotName" class="label invisible">NAME</span><br>
+            <span cy-field-value="pilotName" class="corporation-name">{{getNode().name}}</span>
+        </div>
+    </div>
+    <!-- </div> -->
+</div>
+<!-- S E L E C T E D - O F F E R S -->
+<div id="{{getUniqueId()}}" class="row panel-white" *ngIf="getVariant() === '-SELECTED-OFFERS-'">
+    <img class="neocom-icon iconsize-40" src="{{getCorporationIcon()}}">
+    <div class="row">
+        <div class="field">
+            <span cy-field-label="pilotName" class="label invisible">NAME</span><br>
+            <span cy-field-value="pilotName" class="corporation-name">{{getNode().name}}</span>
         </div>
     </div>
 </div>

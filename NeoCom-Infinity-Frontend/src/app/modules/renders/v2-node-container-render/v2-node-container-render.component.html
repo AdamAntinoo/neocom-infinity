@@ -27,6 +27,8 @@
             <!-- L O Y A L T Y -->
             <v1-loyalty-corporation *ngIf="node.jsonClass === 'LoyaltyCorporationV1'" [container]="container" [node]="node" [variant]="variant">
             </v1-loyalty-corporation>
+            <v1-loyalty-offer *ngIf="node.jsonClass === 'LoyaltyOfferV1'" [container]="container" [node]="node" [variant]="variant">
+            </v1-loyalty-offer>
         </div>
     </div>
 </div>
