@@ -19,12 +19,15 @@ export class LoyaltyOfferV1 extends NeoCom {
     public quantity: number
     public marketRegionId: number
     public price: number
-    public marketData:MarketOrderDto
+    public marketData: MarketOrderDto
 
     constructor(values: Object = {}) {
         super()
         Object.assign(this, values)
         this.jsonClass = 'LoyaltyOfferV1'
+        // Warning. References objects can come as links so should be cleared on construction
+        this.type=undefined
+        this.marketData=undefined
     }
 
     public getType(): EsiType {

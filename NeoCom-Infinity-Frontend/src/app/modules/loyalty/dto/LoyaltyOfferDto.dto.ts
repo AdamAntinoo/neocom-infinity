@@ -10,22 +10,27 @@ import { LoyaltyOfferV1 } from "../domain/LoyaltyOfferV1.domain";
 
 export class LoyaltyOfferDto {
     public typeId: number
-    public marketData:HALLink<MarketOrderDto>
+    public type: HALLink<EsiType>
+    public marketData: HALLink<MarketOrderDto>
 
     constructor(values: Object = {}) {
         Object.assign(this, values);
+        if (this.type)
+            this.type = new HALLink<EsiType>(EsiType).setContents(this.type)
+        if (this.marketData)
+            this.marketData = new HALLink<MarketOrderDto>(MarketOrderDto).setContents(this.marketData)
     }
 
-    public transform(universeService: UniverseService, halResolver:HALResolver): LoyaltyOfferV1 {
+    public transform(halResolver: HALResolver): LoyaltyOfferV1 {
         const loyaltyOffer: LoyaltyOfferV1 = new LoyaltyOfferV1(this)
         if (this.typeId) {
-            universeService.apiv1_GetUniverseType(this.typeId)
+            halResolver.resolve<EsiType>(this.type)
                 .subscribe((universeType: EsiType) => {
+                    console.log('-[LoyaltyOfferDto]>completing EsiType')
                     loyaltyOffer.type = universeType
-               })
+                })
         }
-        if (this.marketData){
-            this.marketData = new HALLink<MarketOrderDto>(MarketOrderDto).setContents(this.marketData)
+        if (this.marketData) {
             halResolver.resolve<MarketOrderDto>(this.marketData)
                 .subscribe((market: MarketOrderDto) => {
                     loyaltyOffer.marketData = market

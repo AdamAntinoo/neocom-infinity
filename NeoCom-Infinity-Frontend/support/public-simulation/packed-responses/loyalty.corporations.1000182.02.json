@@ -4,7 +4,7 @@
         "typeId": 27096,
         "type": {
             "rel": "type",
-            "href": "http://localhost:5240/api/v1/universe/types/27096"
+            "href": "http://localhost:5220/api/v1/universe/types/27096"
         },
         "typeName": "Zainou 'Deadeye' Rapid Launch RL-1001",
         "corporationId": 1000179,
@@ -17,7 +17,7 @@
         "price": 1085000.0,
         "marketData": {
             "rel": "marketData",
-            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/27096"
+            "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000002/27096"
         }
     },
     {
@@ -26,7 +26,7 @@
         "typeId": 27253,
         "type": {
             "rel": "type",
-            "href": "http://localhost:5240/api/v1/universe/types/27253"
+            "href": "http://localhost:5220/api/v1/universe/types/27253"
         },
         "typeName": "Zainou 'Snapshot' Light Missiles LM-901",
         "corporationId": 1000179,
@@ -39,7 +39,7 @@
         "price": 997900.0,
         "marketData": {
             "rel": "marketData",
-            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/27253"
+            "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000002/27253"
         }
     },
     {
@@ -48,7 +48,7 @@
         "typeId": 27081,
         "type": {
             "rel": "type",
-            "href": "http://localhost:5240/api/v1/universe/types/27081"
+            "href": "http://localhost:5220/api/v1/universe/types/27081"
         },
         "typeName": "Eifyr and Co. 'Gunslinger' Surgical Strike SS-901",
         "corporationId": 1000179,
@@ -61,7 +61,7 @@
         "price": 959400.0,
         "marketData": {
             "rel": "marketData",
-            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/27081"
+            "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000002/27081"
         }
     },
     {
@@ -70,7 +70,7 @@
         "typeId": 27099,
         "type": {
             "rel": "type",
-            "href": "http://localhost:5240/api/v1/universe/types/27099"
+            "href": "http://localhost:5220/api/v1/universe/types/27099"
         },
         "typeName": "Eifyr and Co. 'Rogue' Evasive Maneuvering EM-701",
         "corporationId": 1000179,
@@ -83,7 +83,7 @@
         "price": 949400.0,
         "marketData": {
             "rel": "marketData",
-            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/27099"
+            "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000002/27099"
         }
     },
     {
@@ -92,7 +92,7 @@
         "typeId": 27101,
         "type": {
             "rel": "type",
-            "href": "http://localhost:5240/api/v1/universe/types/27101"
+            "href": "http://localhost:5220/api/v1/universe/types/27101"
         },
         "typeName": "Eifyr and Co. 'Rogue' Acceleration Control AC-601",
         "corporationId": 1000179,
@@ -105,7 +105,7 @@
         "price": 942600.0,
         "marketData": {
             "rel": "marketData",
-            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/27101"
+            "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000002/27101"
         }
     },
     {
@@ -114,7 +114,7 @@
         "typeId": 27117,
         "type": {
             "rel": "type",
-            "href": "http://localhost:5240/api/v1/universe/types/27117"
+            "href": "http://localhost:5220/api/v1/universe/types/27117"
         },
         "typeName": "Inherent Implants 'Squire' Capacitor Management EM-801",
         "corporationId": 1000179,
@@ -127,7 +127,7 @@
         "price": 929600.0,
         "marketData": {
             "rel": "marketData",
-            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/27117"
+            "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000002/27117"
         }
     },
     {
@@ -136,7 +136,7 @@
         "typeId": 27127,
         "type": {
             "rel": "type",
-            "href": "http://localhost:5240/api/v1/universe/types/27127"
+            "href": "http://localhost:5220/api/v1/universe/types/27127"
         },
         "typeName": "Inherent Implants 'Squire' Power Grid Management EG-601",
         "corporationId": 1000179,
@@ -149,7 +149,7 @@
         "price": 929000.0,
         "marketData": {
             "rel": "marketData",
-            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/27127"
+            "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000002/27127"
         }
     },
     {
@@ -158,7 +158,7 @@
         "typeId": 27075,
         "type": {
             "rel": "type",
-            "href": "http://localhost:5240/api/v1/universe/types/27075"
+            "href": "http://localhost:5220/api/v1/universe/types/27075"
         },
         "typeName": "Eifyr and Co. 'Gunslinger' Motion Prediction MR-701",
         "corporationId": 1000179,
@@ -171,7 +171,7 @@
         "price": 914900.0,
         "marketData": {
             "rel": "marketData",
-            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/27075"
+            "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000002/27075"
         }
     },
     {
@@ -180,7 +180,7 @@
         "typeId": 20411,
         "type": {
             "rel": "type",
-            "href": "http://localhost:5240/api/v1/universe/types/20411"
+            "href": "http://localhost:5220/api/v1/universe/types/20411"
         },
         "typeName": "Datacore - High Energy Physics",
         "corporationId": 1000179,
@@ -193,7 +193,7 @@
         "price": 121300.0,
         "marketData": {
             "rel": "marketData",
-            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/20411"
+            "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000002/20411"
         }
     },
     {
@@ -202,7 +202,7 @@
         "typeId": 27119,
         "type": {
             "rel": "type",
-            "href": "http://localhost:5240/api/v1/universe/types/27119"
+            "href": "http://localhost:5220/api/v1/universe/types/27119"
         },
         "typeName": "Inherent Implants 'Squire' Capacitor Systems Operation EO-601",
         "corporationId": 1000179,
@@ -215,7 +215,7 @@
         "price": 880000.0,
         "marketData": {
             "rel": "marketData",
-            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/27119"
+            "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000002/27119"
         }
     },
     {
@@ -224,7 +224,7 @@
         "typeId": 20416,
         "type": {
             "rel": "type",
-            "href": "http://localhost:5240/api/v1/universe/types/20416"
+            "href": "http://localhost:5220/api/v1/universe/types/20416"
         },
         "typeName": "Datacore - Nanite Engineering",
         "corporationId": 1000179,
@@ -237,7 +237,7 @@
         "price": 116100.0,
         "marketData": {
             "rel": "marketData",
-            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/20416"
+            "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000002/20416"
         }
     },
     {
@@ -246,7 +246,7 @@
         "typeId": 27074,
         "type": {
             "rel": "type",
-            "href": "http://localhost:5240/api/v1/universe/types/27074"
+            "href": "http://localhost:5220/api/v1/universe/types/27074"
         },
         "typeName": "Inherent Implants 'Noble' Hull Upgrades HG-1001",
         "corporationId": 1000179,
@@ -259,7 +259,7 @@
         "price": 796600.0,
         "marketData": {
             "rel": "marketData",
-            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/27074"
+            "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000002/27074"
         }
     },
     {
@@ -268,7 +268,7 @@
         "typeId": 24641,
         "type": {
             "rel": "type",
-            "href": "http://localhost:5240/api/v1/universe/types/24641"
+            "href": "http://localhost:5220/api/v1/universe/types/24641"
         },
         "typeName": "Zainou 'Gnome' Launcher CPU Efficiency LE-603",
         "corporationId": 1000179,
@@ -281,7 +281,7 @@
         "price": 2.278E7,
         "marketData": {
             "rel": "marketData",
-            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/24641"
+            "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000002/24641"
         }
     },
     {
@@ -290,7 +290,7 @@
         "typeId": 14299,
         "type": {
             "rel": "type",
-            "href": "http://localhost:5240/api/v1/universe/types/14299"
+            "href": "http://localhost:5220/api/v1/universe/types/14299"
         },
         "typeName": "Limited Social Adaptation Chip - Beta",
         "corporationId": 1000179,
@@ -303,7 +303,7 @@
         "price": 5194000.0,
         "marketData": {
             "rel": "marketData",
-            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/14299"
+            "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000002/14299"
         }
     },
     {
@@ -312,7 +312,7 @@
         "typeId": 20413,
         "type": {
             "rel": "type",
-            "href": "http://localhost:5240/api/v1/universe/types/20413"
+            "href": "http://localhost:5220/api/v1/universe/types/20413"
         },
         "typeName": "Datacore - Laser Physics",
         "corporationId": 1000179,
@@ -325,7 +325,7 @@
         "price": 103800.0,
         "marketData": {
             "rel": "marketData",
-            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/20413"
+            "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000002/20413"
         }
     },
     {
@@ -334,7 +334,7 @@
         "typeId": 13256,
         "type": {
             "rel": "type",
-            "href": "http://localhost:5240/api/v1/universe/types/13256"
+            "href": "http://localhost:5220/api/v1/universe/types/13256"
         },
         "typeName": "Inherent Implants 'Noble' Hull Upgrades HG-1003",
         "corporationId": 1000179,
@@ -347,7 +347,7 @@
         "price": 2.185E7,
         "marketData": {
             "rel": "marketData",
-            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/13256"
+            "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000002/13256"
         }
     }
 ]

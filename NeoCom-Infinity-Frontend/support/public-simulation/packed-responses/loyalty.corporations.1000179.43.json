@@ -4,7 +4,7 @@
         "typeId": 9943,
         "type": {
             "rel": "type",
-            "href": "http://localhost:5240/api/v1/universe/types/9943"
+            "href": "http://localhost:5220/api/v1/universe/types/9943"
         },
         "typeName": "Cybernetic Subprocessor - Basic",
         "corporationId": 1000179,
@@ -17,7 +17,7 @@
         "price": 4.5E7,
         "marketData": {
             "rel": "marketData",
-            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/9943"
+            "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/9943"
         }
     },
     {
@@ -26,7 +26,7 @@
         "typeId": 9942,
         "type": {
             "rel": "type",
-            "href": "http://localhost:5240/api/v1/universe/types/9942"
+            "href": "http://localhost:5220/api/v1/universe/types/9942"
         },
         "typeName": "Neural Boost - Basic",
         "corporationId": 1000179,
@@ -39,7 +39,7 @@
         "price": 4.5E7,
         "marketData": {
             "rel": "marketData",
-            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/9942"
+            "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/9942"
         }
     },
     {
@@ -48,7 +48,7 @@
         "typeId": 9956,
         "type": {
             "rel": "type",
-            "href": "http://localhost:5240/api/v1/universe/types/9956"
+            "href": "http://localhost:5220/api/v1/universe/types/9956"
         },
         "typeName": "Social Adaptation Chip - Basic",
         "corporationId": 1000179,
@@ -61,7 +61,7 @@
         "price": 4.5E7,
         "marketData": {
             "rel": "marketData",
-            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/9956"
+            "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/9956"
         }
     },
     {
@@ -70,7 +70,7 @@
         "typeId": 14297,
         "type": {
             "rel": "type",
-            "href": "http://localhost:5240/api/v1/universe/types/14297"
+            "href": "http://localhost:5220/api/v1/universe/types/14297"
         },
         "typeName": "Limited Memory Augmentation - Beta",
         "corporationId": 1000179,
@@ -83,7 +83,7 @@
         "price": 1.0E7,
         "marketData": {
             "rel": "marketData",
-            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/14297"
+            "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/14297"
         }
     },
     {
@@ -92,7 +92,7 @@
         "typeId": 27127,
         "type": {
             "rel": "type",
-            "href": "http://localhost:5240/api/v1/universe/types/27127"
+            "href": "http://localhost:5220/api/v1/universe/types/27127"
         },
         "typeName": "Inherent Implants 'Squire' Power Grid Management EG-601",
         "corporationId": 1000179,
@@ -105,7 +105,7 @@
         "price": 1112000.0,
         "marketData": {
             "rel": "marketData",
-            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/27127"
+            "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/27127"
         }
     },
     {
@@ -114,7 +114,7 @@
         "typeId": 27143,
         "type": {
             "rel": "type",
-            "href": "http://localhost:5240/api/v1/universe/types/27143"
+            "href": "http://localhost:5220/api/v1/universe/types/27143"
         },
         "typeName": "Zainou 'Gypsy' CPU Management EE-601",
         "corporationId": 1000179,
@@ -127,7 +127,7 @@
         "price": 1048000.0,
         "marketData": {
             "rel": "marketData",
-            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/27143"
+            "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/27143"
         }
     },
     {
@@ -136,7 +136,7 @@
         "typeId": 13249,
         "type": {
             "rel": "type",
-            "href": "http://localhost:5240/api/v1/universe/types/13249"
+            "href": "http://localhost:5220/api/v1/universe/types/13249"
         },
         "typeName": "Zainou 'Deadeye' Rapid Launch RL-1003",
         "corporationId": 1000179,
@@ -149,7 +149,7 @@
         "price": 2.7355E7,
         "marketData": {
             "rel": "marketData",
-            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/13249"
+            "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/13249"
         }
     },
     {
@@ -158,7 +158,7 @@
         "typeId": 20411,
         "type": {
             "rel": "type",
-            "href": "http://localhost:5240/api/v1/universe/types/20411"
+            "href": "http://localhost:5220/api/v1/universe/types/20411"
         },
         "typeName": "Datacore - High Energy Physics",
         "corporationId": 1000179,
@@ -171,7 +171,7 @@
         "price": 119700.0,
         "marketData": {
             "rel": "marketData",
-            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/20411"
+            "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/20411"
         }
     },
     {
@@ -180,7 +180,7 @@
         "typeId": 20416,
         "type": {
             "rel": "type",
-            "href": "http://localhost:5240/api/v1/universe/types/20416"
+            "href": "http://localhost:5220/api/v1/universe/types/20416"
         },
         "typeName": "Datacore - Nanite Engineering",
         "corporationId": 1000179,
@@ -193,7 +193,7 @@
         "price": 119100.0,
         "marketData": {
             "rel": "marketData",
-            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/20416"
+            "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/20416"
         }
     },
     {
@@ -202,7 +202,7 @@
         "typeId": 10228,
         "type": {
             "rel": "type",
-            "href": "http://localhost:5240/api/v1/universe/types/10228"
+            "href": "http://localhost:5220/api/v1/universe/types/10228"
         },
         "typeName": "Zainou 'Gnome' Shield Management SM-703",
         "corporationId": 1000179,
@@ -215,7 +215,7 @@
         "price": 2.481E7,
         "marketData": {
             "rel": "marketData",
-            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/10228"
+            "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/10228"
         }
     },
     {
@@ -224,7 +224,7 @@
         "typeId": 13259,
         "type": {
             "rel": "type",
-            "href": "http://localhost:5240/api/v1/universe/types/13259"
+            "href": "http://localhost:5220/api/v1/universe/types/13259"
         },
         "typeName": "Inherent Implants 'Squire' Capacitor Management EM-803",
         "corporationId": 1000179,
@@ -237,7 +237,7 @@
         "price": 2.475E7,
         "marketData": {
             "rel": "marketData",
-            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/13259"
+            "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/13259"
         }
     },
     {
@@ -246,7 +246,7 @@
         "typeId": 9941,
         "type": {
             "rel": "type",
-            "href": "http://localhost:5240/api/v1/universe/types/9941"
+            "href": "http://localhost:5220/api/v1/universe/types/9941"
         },
         "typeName": "Memory Augmentation - Basic",
         "corporationId": 1000179,
@@ -259,7 +259,7 @@
         "price": 1.101E7,
         "marketData": {
             "rel": "marketData",
-            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/9941"
+            "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/9941"
         }
     },
     {
@@ -268,7 +268,7 @@
         "typeId": 13261,
         "type": {
             "rel": "type",
-            "href": "http://localhost:5240/api/v1/universe/types/13261"
+            "href": "http://localhost:5220/api/v1/universe/types/13261"
         },
         "typeName": "Inherent Implants 'Squire' Power Grid Management EG-603",
         "corporationId": 1000179,
@@ -281,7 +281,7 @@
         "price": 2.2E7,
         "marketData": {
             "rel": "marketData",
-            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/13261"
+            "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/13261"
         }
     },
     {
@@ -290,7 +290,7 @@
         "typeId": 13216,
         "type": {
             "rel": "type",
-            "href": "http://localhost:5240/api/v1/universe/types/13216"
+            "href": "http://localhost:5220/api/v1/universe/types/13216"
         },
         "typeName": "Zainou 'Gypsy' CPU Management EE-603",
         "corporationId": 1000179,
@@ -303,7 +303,7 @@
         "price": 2.2E7,
         "marketData": {
             "rel": "marketData",
-            "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/13216"
+            "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/13216"
         }
     }
 ]

@@ -21,8 +21,10 @@ export class V1LoyaltyRecommendationsPageComponent {
     public selectedCorporation: LoyaltyCorporationV1
     // - A P I
     public setSelectedCorporation(corporation: LoyaltyCorporationV1): void {
+        console.log('-- End cycle 01')
         this.selectedCorporation = corporation
-        if (this.loyaltyRecommendationsPanel)
-            setTimeout(() => this.loyaltyRecommendationsPanel.refresh(), 200)
+        if (this.selectedCorporation)
+            if (this.loyaltyRecommendationsPanel)
+                setTimeout(() => this.loyaltyRecommendationsPanel.refresh(), 200)
     }
 }
