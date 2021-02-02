@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginValidationExceptionComponent } from './login-validation-exception.component';
 
-describe('LoginValidationExceptionComponent', () => {
+xdescribe('LoginValidationExceptionComponent', () => {
   let component: LoginValidationExceptionComponent;
   let fixture: ComponentFixture<LoginValidationExceptionComponent>;
 

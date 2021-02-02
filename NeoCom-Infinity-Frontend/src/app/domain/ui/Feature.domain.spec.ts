@@ -5,7 +5,7 @@ import { SupportIsolationService } from '@app/testing/SupportIsolation.service';
 // - DOMAIN
 import { NeoComFeature } from './NeoComFeature.domain';
 
-describe('CLASS NeoComFeature [Module: DOMAIN]', () => {
+xdescribe('CLASS NeoComFeature [Module: DOMAIN]', () => {
     let isolation: SupportIsolationService;
 
     beforeEach(() => {

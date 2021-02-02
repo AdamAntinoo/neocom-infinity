@@ -53,7 +53,7 @@ describe('CLASS NeoCom [Module: DOMAIN]', () => {
         it('expand: check the expandable functionality', () => {
             const neocom = new NeoCom()
             neocom.expand();
-            expect(neocom.isExpanded()).toBeFalsy();
+            expect(neocom.isExpanded()).toBeTruthy();
         });
         it('toggleExpanded: check the expandable functionality', () => {
             const neocom = new NeoCom()

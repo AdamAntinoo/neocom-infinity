@@ -28,7 +28,7 @@ import { LoginValidationProgressComponent } from '@app/panels/login-validation-p
 import { LoginValidationExceptionComponent } from '@app/panels/login-validation-exception/login-validation-exception.component';
 import { AppInfoPanelComponent } from '@app/modules/header/app-info-panel/app-info-panel.component';
 
-describe('PAGE LoginValidationPageComponent [Module: CORE]', () => {
+xdescribe('PAGE LoginValidationPageComponent [Module: CORE]', () => {
     let component: LoginValidationPageComponent;
     let fixture: ComponentFixture<LoginValidationPageComponent>;
     let params: Subject<Params> = new Subject<Params>();
