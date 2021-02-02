@@ -32,7 +32,7 @@ public class LoyaltyControllerV1 {
 	public LoyaltyControllerV1( @NotNull final LoyaltyServiceV1 loyaltyServiceV1 ) {this.loyaltyServiceV1 = loyaltyServiceV1;}
 
 	@GetMapping(path = "/loyalty/corporations/{corporationId}",
-			consumes = "application/json",
+			//			consumes = "application/json",
 			produces = "application/json")
 	public ResponseEntity<List<LoyaltyOfferEntity>> getLoyaltyRecommendedOfferForCorporation(
 			final @PathVariable @NotNull Integer corporationId ) {

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import org.dimensinfin.eveonline.neocom.domain.EsiType;
-import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.EsiItemModel;
 
 @RestController
 @Validated
@@ -23,7 +22,7 @@ public class EsiTypeControllerV1 {
 	public EsiTypeControllerV1( final @NotNull EsiTypeServiceV1 esiTypeServiceV1 ) {this.esiTypeServiceV1 = esiTypeServiceV1;}
 
 	@GetMapping(path = "/types/{typeId}",
-			consumes = "application/json",
+			//			consumes = "application/json",
 			produces = "application/json")
 	public ResponseEntity<EsiType> getItem( final @PathVariable @NotNull Integer typeId ) {
 		return new ResponseEntity<>( this.esiTypeServiceV1.getEsiType( typeId ), HttpStatus.OK );
