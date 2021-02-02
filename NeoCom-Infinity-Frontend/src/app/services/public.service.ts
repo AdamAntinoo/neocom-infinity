@@ -37,7 +37,6 @@ export class PublicService extends UniverseService {
             }))
     }
     public apiv1_GetPublicCorporationData(coporationId: number): Observable<PublicCorporationV1> {
-        // console.log(">[UniverseService.apiv1_GetPublicCorporationData]> coporationId: " + coporationId)
         const request = this.PUBLICV1 + '/corporations/' + coporationId
         return this.httpUniverseService.wrapHttpGETCall(request)
             .pipe(map((data: any) => {
