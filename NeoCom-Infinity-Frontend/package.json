@@ -11,6 +11,7 @@
         "build:stage": "ng build --aot --configuration=stage",
         "build:prod": "ng build --aot --configuration=production",
         "test:dev": "ng test --code-coverage --watch --progress ",
+        "test:prod": "ng test --watch=false --no-progress --browsers=ChromeHeadlessCI",
         "heroku-postbuild": "ng build --configuration=${NODE_ENV}",
         "serve:integration": "export NODE_ENV=integration && export PORT=5250 && npm run build:dev && npm start"
     },
