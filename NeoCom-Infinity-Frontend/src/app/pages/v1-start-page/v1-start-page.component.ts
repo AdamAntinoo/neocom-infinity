@@ -32,7 +32,7 @@ export class V1StartPageComponent extends BackgroundEnabledComponent implements 
                 else this.validating = false
             }, (error) => {
                 console.log('-[V1CoilsPanelComponent.downloadCoils.exception]> Error message: ' + JSON.stringify(error.error))
-                this.validating = false
+                setTimeout(() => this.validating = false, 1000)
             }))
     }
     private pageChange(route: string): void {

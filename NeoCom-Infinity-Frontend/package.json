@@ -2,7 +2,7 @@
     "name": "neocom-infinity",
     "version": "0.20.0",
     "scripts": {
-        "cucumber": "$(npm bin)/cucumber-js ./cypress/**/*.feature --no-strict --tags @NIF07.01",
+        "cucumber": "$(npm bin)/cucumber-js ./cypress/**/*.feature --no-strict --tags @NIF01.01",
         "docker:start": "docker-compose -f ./support/neocom-docker-frontend/docker-compose.yml up & ",
         "docker:stop": "docker-compose -f ./support/neocom-docker-frontend/docker-compose.yml down ",
         "serve:dev": "ng serve --progress --proxy-config proxy.conf.json --port 5200 --base-href /app ",
@@ -80,7 +80,7 @@
         "chromedriver": "81.0.0",
         "codelyzer": "5.1.2",
         "cucumber": "6.0.5",
-        "cypress": "^6.2.0",
+        "cypress": "^6.4.0",
         "cypress-cucumber-preprocessor": "2.3.1",
         "jasmine-core": "3.5.0",
         "jasmine-spec-reporter": "4.2.1",
