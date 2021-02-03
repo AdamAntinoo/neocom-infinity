@@ -392,7 +392,7 @@ workflows:
             branches:
               only:
                 - planetary
-      - test-frontend-job:
+      - unittest-frontend-job:
           filters:
             tags:
               only: /0.*/
@@ -425,7 +425,7 @@ workflows:
               ignore: /.*/
       - stage-to-heroku:
           requires:
-            - test-frontend-job
+            - unittest-frontend-job
             - quality-sonarcloud-backend
           filters:
             tags:
