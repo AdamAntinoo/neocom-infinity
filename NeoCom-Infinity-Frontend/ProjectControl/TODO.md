@@ -1,15 +1,9 @@
 # Typescript classes to unit test
-* FittingBuildConfiguration
-* v1-fitting-configuration-panel
-* v1-fitting-configuration-render
 
-## Classes to remove
-* BaseNode
+## Secondary classes to test
+* HALResolver
 
-## Classes to review
-* node-container-render
-* ICollaboration
-
-## Classes to move to Bit library
-* ICollaboration.interface
-* IViewer.interface
+## Create a solution for alternate HTTP responses
+* v1-start-page
+* backend-service
+* IsolationService

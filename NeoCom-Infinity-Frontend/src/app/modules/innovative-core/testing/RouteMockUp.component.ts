@@ -11,6 +11,7 @@ import { Routes } from '@angular/router';
 export class RouteMockUpComponent {}
 export const routes: Routes = [
     { path: '', redirectTo: '/', pathMatch: 'full' },
+    { path: 'dashboard', component: RouteMockUpComponent },
     { path: 'inventory', component: RouteMockUpComponent },
     { path: 'inventory/partlist', component: RouteMockUpComponent },
     { path: 'inventory/coillist', component: RouteMockUpComponent }

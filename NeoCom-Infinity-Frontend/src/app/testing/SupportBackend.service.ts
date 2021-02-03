@@ -18,12 +18,15 @@ import { Corporation } from '@app/domain/Corporation.domain';
 import { SupportAppStoreService } from './SupportAppStore.service';
 import { Pilot } from '@app/domain/Pilot.domain';
 import { IsolationService } from '@innovative/services/isolation.service';
+import { SessionStateResponse } from '@domain/dto/SessionStateResponse.dto';
 
 @Injectable({
     providedIn: 'root'
 })
 export class SupportBackendService {
     private APIV1: string;
+    private nextException: HttpErrorResponse
+    private exceptionMap: Map<string, HttpErrorResponse> = new Map<string, HttpErrorResponse>()
 
     constructor(
         public isolation: IsolationService,
@@ -31,6 +34,32 @@ export class SupportBackendService {
         this.APIV1 = environment.serverName + environment.apiVersion1;
     }
 
+    // - E X C E P T I O N S
+    public activateException(exceptionCode: string, apiTarget: string): void {
+        this.nextException = new HttpErrorResponse({
+            error: { error: exceptionCode }
+        })
+        this.exceptionMap.set(apiTarget, this.nextException)
+    }
+
+    public apiv1_ValidateAuthenticatedSession(): Observable<SessionStateResponse> {
+        console.log(">[BackendService.apiv1_ValidateAuthenticatedSession]")
+        // Check for exceptions
+        const hit = this.exceptionMap.get('apiv1_ValidateAuthenticatedSession')
+        console.log('-[hit]> ' + JSON.stringify(hit))
+        if (hit) {
+            console.log(">[BackendService.apiv1_ValidateAuthenticatedSession]>Throw error" + hit.error)
+            return new Observable<SessionStateResponse>((observer) => {
+                throwError(hit)
+            })
+        } else
+            return new Observable<SessionStateResponse>((observer) => {
+                observer.next(new SessionStateResponse({
+                    state: "valid"
+                }));
+                observer.complete()
+            })
+    }
     public apiValidateAuthorizationToken_v1(code: string, state: string): Observable<ValidateAuthorizationTokenResponse> {
         console.log(">[BackendService.apiValidateAuthorizationToken_v1]> code: " + code);
         // Construct the request to call the backend.
