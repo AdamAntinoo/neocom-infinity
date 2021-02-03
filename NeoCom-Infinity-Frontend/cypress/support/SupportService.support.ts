@@ -54,9 +54,9 @@ export class SupportService {
         // - TAGS
         this.translationTable['buttons'] = 'button'
         // - BACKEND REQUESTS
-        this.translationTable['Get Open Requests'] = 'apiProductionGetOpenRequests_v2'
-        this.translationTable['Start Build Job'] = 'apiMachinesStartBuild_v2'
-        this.translationTable['Save New Part'] = 'apiNewPart_v1'
+        this.translationTable['Authentication Validate'] = 'apiv1_ValidateAuthenticatedSession'
+        // this.translationTable['Start Build Job'] = 'apiMachinesStartBuild_v2'
+        // this.translationTable['Save New Part'] = 'apiNewPart_v1'
 
         // -  R O U T E S
         this.routeTranslationTable['Start'] = '/'

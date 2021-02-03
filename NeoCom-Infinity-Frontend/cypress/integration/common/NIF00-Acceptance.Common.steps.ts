@@ -36,6 +36,10 @@ Then('the page {string} is activated', function (symbolicName: string) {
 Then('the page has the title {string}', function (title: string) {
     cy.get('@target-page').find('.page-title').contains(title, { matchCase: false })
 })
+Then('the page is page {string}', function (symbolicName: string) {
+    const page = supportService.translateTag(symbolicName) // Do name replacement
+    cy.get('app-root').find(page).should('exist')
+})
 
 /**
  * On the NeoCom application panels may be on a hierarchical setup and not only as la row list.
@@ -131,4 +135,10 @@ Then('the Feature has the label {string}', function (title: string) {
 // - I M A G E   B U T T O N S
 Then('target has an actionable image named {string}', function (buttonName: string) {
     cy.get('@target').find('[cy-name="' + buttonName + '"]').should('exist')
+})
+
+// - A L T E R N A T E   B A C K E N D   R E S P O N S E S
+Given('response {string} for {string}', function (responseCode: string, endpoint: string) {
+    const tag = supportService.translateTag(endpoint) // Do name replacement
+    cy.setCookie(tag, responseCode)
 })
