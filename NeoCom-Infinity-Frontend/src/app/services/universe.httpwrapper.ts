@@ -25,6 +25,7 @@ export class UniverseHttpWrapper extends HttpClientWrapperService {
         headers = headers.set('xApp-Platform', environment.platform)
         headers = headers.set('xApp-Signature', 'S0000.0016.0001')
         headers = headers.set('xApp-Signature', 'S0000.0019.0001');
+        headers = headers.set('xApp-Signature', 'S0000.0020.0000');
         if (null != _requestHeaders) { // Copy in additional headers.
             for (let key of _requestHeaders.keys()) {
                 headers = headers.set(key, _requestHeaders.get(key));

@@ -45,11 +45,13 @@ export class BackendService extends PublicService {
 
     // - B A C K E N D - A P I
     public apiv1_ValidateAuthenticatedSession(): Observable<SessionStateResponse> {
+        console.log('step 02')
         const request = this.APIV1 + "/validateAuthenticatedSession"
         let headers = new HttpHeaders() // Additional headers for this authentication varification call.
         headers = headers.set('xApp-Authentication-Check', 'pilot')
         return this.httpService.wrapHttpGETCall(request, headers)
             .pipe(map((data: any) => {
+                console.log('enteriing GET pipe map')
                 return new SessionStateResponse(data)
             }))
     }

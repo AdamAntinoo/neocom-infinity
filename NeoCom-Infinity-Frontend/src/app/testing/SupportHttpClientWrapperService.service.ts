@@ -17,6 +17,7 @@ import { ResponseTransformer } from '@innovative/services/support/ResponseTransf
 import { Corporation } from '@app/domain/Corporation.domain';
 import { SupportAppStoreService } from './SupportAppStore.service';
 import { Pilot } from '@app/domain/Pilot.domain';
+import { MockHTTPRequestController } from './MockHTTPRequestController';
 
 const REQUEST_PREFIX = 'http://neocom.infinity.local/api/v1/neocom';
 
@@ -24,6 +25,10 @@ const REQUEST_PREFIX = 'http://neocom.infinity.local/api/v1/neocom';
     providedIn: 'root'
 })
 export class SupportHttpClientWrapperService {
+    constructor(private requestController: MockHTTPRequestController) {
+        console.log('>Controller: ' + JSON.stringify(requestController))
+    }
+
     public wrapHttpRESOURCECall(request: string): Observable<any> {
         console.log("><[HttpClientWrapperService.wrapHttpRESOURCECall]> request: " + request);
         return Observable.create((observer) => {
@@ -40,7 +45,12 @@ export class SupportHttpClientWrapperService {
             observer.complete();
         });
     }
-    public wrapHttpGETCall(_request: string, _requestHeaders?: HttpHeaders): Observable<any> {
+    public wrapHttpGETCall(request: string, requestHeaders?: HttpHeaders): Observable<any> {
+        console.log('step 03')
+        console.log("><[SupportHttpClientWrapperService.wrapHttpGETCall]> request: " + request);
+        return this.requestController.get(request)
+    }
+    public wrapHttpGETCall_2(_request: string, _requestHeaders?: HttpHeaders): Observable<any> {
         console.log("><[HttpClientWrapperService.wrapHttpGETCall]> request: " + _request);
         return Observable.create((observer) => {
             try {

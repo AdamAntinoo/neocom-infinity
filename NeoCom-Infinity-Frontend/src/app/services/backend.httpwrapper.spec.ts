@@ -10,10 +10,10 @@ import { inject } from '@angular/core/testing'
 import { TestBed } from '@angular/core/testing'
 import { RouterTestingModule } from '@angular/router/testing'
 // - APP
-import { UniverseHttpWrapper } from './universe.httpwrapper'
+import { BackendHttpWrapper } from './backend.httpwrapper'
 
-describe('SERVICE UniverseHttpWrapper [Module: APP]', () => {
-    let wrapper: UniverseHttpWrapper
+describe('SERVICE BackendHttpWrapper [Module: APP]', () => {
+    let wrapper: BackendHttpWrapper
 
     beforeEach(() => {
 
@@ -24,7 +24,7 @@ describe('SERVICE UniverseHttpWrapper [Module: APP]', () => {
             ]
         })
             .compileComponents()
-        wrapper = TestBed.inject(UniverseHttpWrapper)
+        wrapper = TestBed.inject(BackendHttpWrapper)
     })
     // - C O N S T R U C T I O N   P H A S E
     describe('Construction Contract', () => {
@@ -35,7 +35,7 @@ describe('SERVICE UniverseHttpWrapper [Module: APP]', () => {
     })
     // - C O D E   C O V E R A G E   P H A S E
     describe('Code Coverage Phase [wrapHttpSecureHeaders]', () => {
-        it('wrapHttpSecureHeaders.success: compose the required Universe type request headers', async () => {
+        it('wrapHttpSecureHeaders.success: compose the required Backend type request headers', async () => {
             console.log('step 01')
             const wrapperAsAny = wrapper as any
             const headerAsAny: HttpHeaders = wrapperAsAny.wrapHttpSecureHeaders()
@@ -45,7 +45,7 @@ describe('SERVICE UniverseHttpWrapper [Module: APP]', () => {
         it('wrapHttpSecureHeaders.add headers: compose the required Universe type request headers', async () => {
             console.log('step 01')
             const wrapperAsAny = wrapper as any
-            const additional : HttpHeaders = new HttpHeaders()
+            const additional: HttpHeaders = new HttpHeaders()
             additional.set('additional', 'value')
             const headerAsAny: HttpHeaders = wrapperAsAny.wrapHttpSecureHeaders(additional)
             expect(headerAsAny).toBeDefined()

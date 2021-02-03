@@ -16,6 +16,7 @@ import { BackgroundEnabledComponent } from '@innovative/components/background-en
 })
 export class V1StartPageComponent extends BackgroundEnabledComponent implements OnInit {
     public validating: boolean = true
+
     constructor(
         protected router: Router,
         protected backendService: BackendService) {
@@ -30,15 +31,20 @@ export class V1StartPageComponent extends BackgroundEnabledComponent implements 
     public ngOnInit(): void {
         this.backendConnections.push(this.backendService.apiv1_ValidateAuthenticatedSession()
             .subscribe((response: SessionStateResponse) => {
-                if (response.state == platformConstants.VALID_SESSION_STATE) this.pageChange('/dashboard')
-                else this.validating = false
+                if (response.state == platformConstants.VALID_SESSION_STATE) {
+                    console.log('-[V1StartPageComponent.ngOnInit]>Valid session')
+                    this.validating = false
+                    this.pageChange('/dashboard')
+                } else {
+                    console.log('-[V1StartPageComponent.ngOnInit]>Not Valid session')
+                    this.validating = false}
             }, (error) => {
-                console.log('-[V1CoilsPanelComponent.downloadCoils.exception]> Error message: ' + JSON.stringify(error.error))
+                console.log('-[V1StartPageComponent.ngOnInit.exception]> Error message: ' + JSON.stringify(error.error))
                 setTimeout(() => this.validating = false, 1000)
             }))
     }
     private pageChange(route: string): void {
-        console.log('><[V1FeatureButtonComponent.pageChange]> Route: ' + route);
+        console.log('><[ngOnInit.pageChange]> Route: ' + route);
         this.router.navigate([route]);
     }
 }
