@@ -1,0 +1,22 @@
+<p>v1-system-selection-panel works!</p>
+<div class="row panel">
+    <!-- M A T E R I A L -->
+    <div cy-name="systemFilter" class="field field-margins">
+        <span cy-field-label="systemFilter" cy-input-type="input" class="label">Sistema:</span>
+        <div class="dsf-input-container material-width">
+            <input id="systemFilter" name="systemFilter" class="dsf-input" [(ngModel)]="systemFilter" placeholder="Nombre del sistema a editar" autofocus>
+        </div>
+    </div>
+</div>
+<div *ngIf="!filterActive()">
+    <div class="panel-title">REGIONES</div>
+    <div *ngFor="let region of regions">
+        <v1-region [container]="self" [node]="region" [variant]="getVariant()">
+        </v1-region>
+    </div>
+</div>
+<div *ngIf="filterActive()">
+    <div class="panel-title">SISTEMAS</div>
+    <neocom-viewer-panel [nodes2render]="getNodes2Render() | systemFilter: systemFilter" [downloadtitle]="'Leyendo Lista de Sistemas...'" [downloader]="self" [variant]="getVariant()" [selectOnHover]="false">
+    </neocom-viewer-panel>
+</div>
