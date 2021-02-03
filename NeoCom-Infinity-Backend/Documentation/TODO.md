@@ -1,5 +1,10 @@
 # Classes pending Unit Test completion
+
 ## 0.20.0
+
+* AuthorizationControllerV1
+* AuthorizationServiceV1
+
 * FittingV2
 * FittingInfo
 * CredentialJobGenerator
@@ -21,6 +26,7 @@
 * **FittingIndustryJobDao**
 
 ## Previous
+
 * AuthorizationService
 * AuthorizationControllerV1
 * SpaceLocationControllerV1
