@@ -92,11 +92,13 @@ jobs:
             npm config set @bit:registry https://node.bitsrc.io
       - run:
           name: FRONTEND - Install the framework
+          working_directory: NeoCom-Infinity-Frontend
           command: |
             node -v
             npm install
       - run:
-          name: FRONTEND - Run unit tests anb code coverage
+          name: FRONTEND - Run unit tests and code coverage
+          working_directory: NeoCom-Infinity-Frontend
           command: |
             npm run test:prod
       - store_test_results:
@@ -321,6 +323,7 @@ workflows:
               only:
                 - experimental
                 - development
+                - test
       - unittest-frontend-job:
           requires:
             - start-job
