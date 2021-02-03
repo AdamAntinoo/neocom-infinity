@@ -12,7 +12,7 @@ public class ValidateAuthorizationTokenRequestTest {
 		final ValidateAuthorizationTokenRequest request = new ValidateAuthorizationTokenRequest.Builder()
 				.withCode( "-TEST-CODE-" )
 				.withState( "-TEST-STATE-" )
-				.optionalDataSource( "-OPTIONAL-DATA-SOURCE-" )
+				.withDataSource( "-OPTIONAL-DATA-SOURCE-" )
 				.build();
 		Assertions.assertNotNull( request );
 		Assertions.assertEquals( "-TEST-CODE-", request.getCode() );
@@ -25,32 +25,32 @@ public class ValidateAuthorizationTokenRequestTest {
 			final ValidateAuthorizationTokenRequest request = new ValidateAuthorizationTokenRequest.Builder()
 					.withCode( null )
 					.withState( "-TEST-STATE-" )
-					.optionalDataSource( "-OPTIONAL-DATA-SOURCE-" )
+					.withDataSource( "-OPTIONAL-DATA-SOURCE-" )
 					.build();
 		} );
 		Assertions.assertThrows( NullPointerException.class, () -> {
 			final ValidateAuthorizationTokenRequest request = new ValidateAuthorizationTokenRequest.Builder()
 					.withCode( "-TEST-CODE-" )
 					.withState( null )
-					.optionalDataSource( "-OPTIONAL-DATA-SOURCE-" )
+					.withDataSource( "-OPTIONAL-DATA-SOURCE-" )
 					.build();
 		} );
 		Assertions.assertThrows( NullPointerException.class, () -> {
 			final ValidateAuthorizationTokenRequest request = new ValidateAuthorizationTokenRequest.Builder()
 					.withState( "-TEST-STATE-" )
-					.optionalDataSource( "-OPTIONAL-DATA-SOURCE-" )
+					.withDataSource( "-OPTIONAL-DATA-SOURCE-" )
 					.build();
 		} );
 		Assertions.assertThrows( NullPointerException.class, () -> {
 			final ValidateAuthorizationTokenRequest request = new ValidateAuthorizationTokenRequest.Builder()
 					.withCode( "-TEST-CODE-" )
-					.optionalDataSource( "-OPTIONAL-DATA-SOURCE-" )
+					.withDataSource( "-OPTIONAL-DATA-SOURCE-" )
 					.build();
 		} );
 		final ValidateAuthorizationTokenRequest request1 = new ValidateAuthorizationTokenRequest.Builder()
 				.withCode( "-TEST-CODE-" )
 				.withState( "-TEST-STATE-" )
-				.optionalDataSource( null )
+				.withDataSource( null )
 				.build();
 		Assertions.assertNotNull( request1 );
 		final ValidateAuthorizationTokenRequest request2 = new ValidateAuthorizationTokenRequest.Builder()
@@ -77,7 +77,7 @@ public class ValidateAuthorizationTokenRequestTest {
 		final ValidateAuthorizationTokenRequest request = new ValidateAuthorizationTokenRequest.Builder()
 				.withCode( "-TEST-CODE-" )
 				.withState( "-TEST-STATE-" )
-				.optionalDataSource( null )
+				.withDataSource( null )
 				.build();
 		Assertions.assertNotNull( request );
 		Assertions.assertEquals( ESIDataProvider.DEFAULT_ESI_SERVER, request.getDataSourceName() );
@@ -88,7 +88,7 @@ public class ValidateAuthorizationTokenRequestTest {
 		final ValidateAuthorizationTokenRequest request = new ValidateAuthorizationTokenRequest.Builder()
 				.withCode( "-TEST-CODE-" )
 				.withState( "-TEST-STATE-" )
-				.optionalDataSource( "-OPTIONAL-DATA-SOURCE-" )
+				.withDataSource( "-OPTIONAL-DATA-SOURCE-" )
 				.build();
 		Assertions.assertNotNull( request );
 		Assertions.assertEquals( "-TEST-CODE-", request.getCode() );
