@@ -22,6 +22,9 @@ import { ResponseTransformer } from '@innovative/services/support/ResponseTransf
 import { PilotV2 } from '@domain/character/PilotV2.domain'
 import { PublicService } from './public.service'
 import { HALResolver } from './HALResolver.service'
+import { platformBrowser } from '@angular/platform-browser'
+import { platformConstants } from '@env/platform-constants'
+import { SessionStateResponse } from '@domain/dto/SessionStateResponse.dto'
 
 @Injectable({
     providedIn: 'root'
@@ -36,18 +39,18 @@ export class BackendService extends PublicService {
         protected httpService: BackendHttpWrapper,
         protected isolation: IsolationService) {
         super(httpUniverseService, halResolver)
-        this.APIV1 = environment.serverName + environment.apiVersion1
-        this.APIV2 = environment.serverName + environment.apiVersion2
+        this.APIV1 = environment.serverName + platformConstants.NEOCOM_V1
+        this.APIV2 = environment.serverName + platformConstants.NEOCOM_V2
     }
 
     // - B A C K E N D - A P I
-    public apiv1_ValidateAuthenticatedSession(): Observable<boolean> {
+    public apiv1_ValidateAuthenticatedSession(): Observable<SessionStateResponse> {
         const request = this.APIV1 + "/validateAuthenticatedSession"
         let headers = new HttpHeaders() // Additional headers for this authentication varification call.
         headers = headers.set('xApp-Authentication-Check', 'pilot')
         return this.httpService.wrapHttpGETCall(request, headers)
             .pipe(map((data: any) => {
-                return (data == 'valid')
+                return new SessionStateResponse(data)
             }))
     }
     public apiValidateAuthorizationToken_v1(code: string, state: string,

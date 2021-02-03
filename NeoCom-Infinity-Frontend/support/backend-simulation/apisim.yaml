@@ -462,3 +462,50 @@ response:
   body:
     type: text
     file: "${sim.path}/packed-responses/industry.manufacture.blueprints.costindex.json"
+
+---
+
+simlet: login-validation
+
+request:
+  - method: GET
+  - uriPathPattern: "/api/v1/neocom/validateAuthenticatedSession"
+
+responses:
+- when:
+    request:
+    - where: cookie
+      named: apiv1_ValidateAuthenticatedSession
+      equals: "401-UNAUTHORIZED"
+  # then
+  from: stub
+  status: 200
+  headers:
+  - "Content-Type: application/json"
+  body: |+
+    {
+      "state": "not valid"
+    }
+- when:
+    request:
+    - where: cookie
+      named: apiv1_ValidateAuthenticatedSession
+      equals: "404-NOT FOUND"
+  # then
+  from: stub
+  status: 200
+  headers:
+  - "Content-Type: application/json"
+  body: |+
+    {
+      "state": "not found"
+    }
+  # otherwise
+- from: stub
+  status: 200
+  headers:
+  - "Content-Type: application/json"
+  body: |+
+    {
+      "state": "valid"
+    }

@@ -4,6 +4,8 @@ import { OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 // - SERVICES
 import { BackendService } from '@app/services/backend.service';
+import { SessionStateResponse } from '@domain/dto/SessionStateResponse.dto';
+import { platformConstants } from '@env/platform-constants';
 // - INNOVATIVE
 import { BackgroundEnabledComponent } from '@innovative/components/background-enabled/background-enabled.component';
 
@@ -27,8 +29,8 @@ export class V1StartPageComponent extends BackgroundEnabledComponent implements 
      */
     public ngOnInit(): void {
         this.backendConnections.push(this.backendService.apiv1_ValidateAuthenticatedSession()
-            .subscribe(validated => {
-                if (validated) this.pageChange('/dashboard')
+            .subscribe((response: SessionStateResponse) => {
+                if (response.state == platformConstants.VALID_SESSION_STATE) this.pageChange('/dashboard')
                 else this.validating = false
             }, (error) => {
                 console.log('-[V1CoilsPanelComponent.downloadCoils.exception]> Error message: ' + JSON.stringify(error.error))
