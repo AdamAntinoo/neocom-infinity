@@ -33,7 +33,7 @@ Given('there is no Credential on session storage', function () {
 
 // - S T E P   M A C R O S
 Given('the Dashboard page activation', function (recordId: string) {
-    // Given the application NeoCom-Infinity-frontend
+    // Given the application NeoCom-Infinity-Frontend
     cy.viewport(1400, 900)
     cy.visit('/')
     cy.title().should('eq', TITLE_VALIDATION);

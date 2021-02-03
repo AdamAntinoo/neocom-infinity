@@ -8,7 +8,7 @@ Feature: [STORY] Describe the structure and contents for the Dashboard page. Thi
     # - D A S H B O A R D
     @NIF01.E.01
     Scenario: [NIF01.E.01]-If there is no Credential on the local session storage then the Dashboard page should show an informational message.
-        Given the application NeoCom-Infinity-frontend
+        Given the application NeoCom-Infinity-Frontend
         Given a valid Credential on the session storage
         # - Remove the Credential to force the exception.
         Given there is no Credential on session storage
@@ -27,7 +27,7 @@ Feature: [STORY] Describe the structure and contents for the Dashboard page. Thi
         Then the target has 1 "pilot-panel"
         Given the target the "pilot-panel" with id "92223647"
         Then the target has the title "Current Pilot"
-# Comment until the Pilot mock data is completed
+    # Comment until the Pilot mock data is completed
     # @NIF01.02
     # Scenario: [NIF01.02]-Validate the current Pilot contents and visual rendering.
     #     Given the Dashboard page activation

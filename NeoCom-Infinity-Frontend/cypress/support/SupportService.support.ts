@@ -7,6 +7,7 @@ export class SupportService {
 
     constructor() {
         // - PAGES
+        this.translationTable['Start'] = 'v1-start-page'
         this.translationTable['Dashboard'] = 'dashboard-home-page'
         this.translationTable['Fitting Build Configuration'] = 'v1-industry-fitting-build-configuration-page'
         this.translationTable['Planetary Dashboard Page'] = 'dashboard-page'
@@ -58,6 +59,7 @@ export class SupportService {
         this.translationTable['Save New Part'] = 'apiNewPart_v1'
 
         // -  R O U T E S
+        this.routeTranslationTable['Start'] = '/'
         this.routeTranslationTable['Dashboard'] = '/dashboard'
         this.routeTranslationTable['Planetary Dashboard Page'] = '/planetary/dashboard'
         this.routeTranslationTable['Resource Research Page'] = '/planetary/resource-research'
