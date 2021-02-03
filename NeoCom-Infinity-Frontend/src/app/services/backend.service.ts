@@ -41,6 +41,15 @@ export class BackendService extends PublicService {
     }
 
     // - B A C K E N D - A P I
+    public apiv1_ValidateAuthenticatedSession(): Observable<boolean> {
+        const request = this.APIV1 + "/validateAuthenticatedSession"
+        let headers = new HttpHeaders() // Additional headers for this authentication varification call.
+        headers = headers.set('xApp-Authentication-Check', 'pilot')
+        return this.httpService.wrapHttpGETCall(request, headers)
+            .pipe(map((data: any) => {
+                return (data == 'valid')
+            }))
+    }
     public apiValidateAuthorizationToken_v1(code: string, state: string,
         transformer: ResponseTransformer): Observable<ValidateAuthorizationTokenResponse> {
         console.log(">[BackendService.apiValidateAuthorizationToken_v1]> code: " + code)
