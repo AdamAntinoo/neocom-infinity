@@ -45,20 +45,20 @@ Feature: [NIF03]-Display the Fittings management page. Allow to select between p
     #     When we click on the v1-group-container with name "Strategic Cruiser"
     #     Then there is a panel of type v1-group-container with name "Legion" and stack counter of "1"
 
-    @NIF03 @NIF03.03
-    Scenario: [NIF03.03]-Reach the Fitting level and validate the rendering for the fitting data.
-        When the PilotFittingsPage is activated with the request id "PILOT-FITTINGS"
-        Given one instance of ViewerPanel
-        Then there is a viewer-panel with "4" instances of "v1-group-container"
-        When we click on the v1-group-container with name "Industrial"
-        Then there is a panel of type v1-group-container with name "Epithal" and stack counter of "2"
-        When we click on the v1-group-container with name "Epithal"
-        Then there is a viewer-panel with "2" instances of "v1-fitting"
-        Given at least one instance of V1Fitting
-        Then there is a "v1-fitting" with the next fields
-            | neocom-name | neocom-classname |
-            | EI Oruga N2 | FITTING          |
-        # And the border color of the "v1-fitting" is "panel-white"
+    # @NIF03 @NIF03.03
+    # Scenario: [NIF03.03]-Reach the Fitting level and validate the rendering for the fitting data.
+    #     When the PilotFittingsPage is activated with the request id "PILOT-FITTINGS"
+    #     Given one instance of ViewerPanel
+    #     Then there is a viewer-panel with "4" instances of "v1-group-container"
+    #     When we click on the v1-group-container with name "Industrial"
+    #     Then there is a panel of type v1-group-container with name "Epithal" and stack counter of "2"
+    #     When we click on the v1-group-container with name "Epithal"
+    #     Then there is a viewer-panel with "2" instances of "v1-fitting"
+    #     Given at least one instance of V1Fitting
+    #     Then there is a "v1-fitting" with the next fields
+    #         | neocom-name | neocom-classname |
+    #         | EI Oruga N2 | FITTING          |
+    #     # And the border color of the "v1-fitting" is "panel-white"
 
 
 #     Given at least one instance of V1GroupContainer

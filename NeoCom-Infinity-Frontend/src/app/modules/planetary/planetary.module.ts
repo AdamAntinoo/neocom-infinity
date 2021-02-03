@@ -20,7 +20,8 @@ import { NgDragDropModule } from 'ng-drag-drop';
 import { V1ResourceResearchPageComponent } from './page/v1-resource-research-page/v1-resource-research-page.component';
 import { V1KnownSystemsPanelComponent } from './panel/v1-known-systems-panel/v1-known-systems-panel.component';
 import { V1OutputResourcesPanelComponent } from './panel/v1-output-resources-panel/v1-output-resources-panel.component';
-import { V1SelectedResourcesPanelComponent } from './panel/v1-selected-resources-panel/v1-selected-resources-panel.component'
+import { V1SelectedResourcesPanelComponent } from './panel/v1-selected-resources-panel/v1-selected-resources-panel.component';
+import { V1SystemSelectionPanelComponent } from './panel/v1-system-selection-panel/v1-system-selection-panel.component'
 
 const routes: Routes = [
     { path: 'dashboard', component: DashboardPageComponent },
@@ -47,7 +48,8 @@ const routes: Routes = [
         V1ResourceResearchPageComponent,
         V1KnownSystemsPanelComponent,
         V1OutputResourcesPanelComponent,
-        V1SelectedResourcesPanelComponent
+        V1SelectedResourcesPanelComponent,
+        V1SystemSelectionPanelComponent
     ],
     exports: [RouterModule],
     providers: [
