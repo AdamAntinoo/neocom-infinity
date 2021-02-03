@@ -46,6 +46,7 @@ import { LoginValidationExceptionComponent } from './panels/login-validation-exc
 import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
 import { UniverseService } from './services/universe.service';
+import { V1StartPageComponent } from './pages/v1-start-page/v1-start-page.component';
 registerLocaleData(localeEs);
 
 // // - ERROR INTERCEPTION
@@ -91,7 +92,8 @@ registerLocaleData(localeEs);
         LoginValidationProgressComponent,
         LoginValidationExceptionComponent,
         DashboardHomePageComponent,
-        ExceptionInformationPageComponent
+        ExceptionInformationPageComponent,
+        V1StartPageComponent
     ],
     providers: [
         // - SERVICES

@@ -1,0 +1,15 @@
+<div class="neocom-panel-x panel-white-x app-info-panel-x">
+    <div class="login-message">NeoCom&nbsp;/&nbsp;SSO de Entrada</div>
+    <div class="row">
+        <div class="validation-message" *ngIf="validating; else login">VALIDANDO AUTENTICACION DEL PILOTO...</div>
+    </div>
+    <ng-template #login>
+        <!-- <div class="row"> -->
+        <a class="eve-login-request" href="https://login.eveonline.com/v2/oauth/authorize/?response_type=code&client_id=eacaa9cd36594189877544d851753734&state=LU5FT0NPTS5JTkZJTklUWS1ERVZFTE9QTUVOVC1WQUxJRCBTVEFURSBTVFJJTkct&redirect_uri=http%3A%2F%2Flocalhost%3A5200%2Fapp%2FloginValidation">
+            <img src="assets/media/eve-sso-login-white-large.png">
+        </a>
+        <!-- </div> -->
+    </ng-template>
+
+</div>
+<footer class="footer">© 2019,2020 Dimensinfin Industries</footer>

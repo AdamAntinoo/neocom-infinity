@@ -12,10 +12,12 @@
 @import "./styles/neocom-styles.scss";
 @import "./styles/render-styles.scss";
 body {
-    background-color: black;
-    color: white;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
+    font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 14px;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     line-height: 1.0;
-    margin: 2px;
+    color: white;
+    background-color: black;
 }

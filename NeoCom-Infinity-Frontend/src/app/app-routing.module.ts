@@ -10,14 +10,21 @@ import { TokenAuthorizationGuard } from './security/token-authorization.guard';
 import { LoginValidationPageComponent } from './pages/login-validation-page/login-validation-page.component';
 import { DashboardHomePageComponent } from './pages/dashboard-home-page/dashboard-home-page.component';
 import { ExceptionInformationPageComponent } from './pages/exception-information-page/exception-information-page.component';
+import { V1StartPageComponent } from './pages/v1-start-page/v1-start-page.component';
 
 const routes: Routes = [
     {
         path: '',
-        redirectTo: '/manufacture/research/123',
+        redirectTo: '/start',
         pathMatch: 'full'
     },
+    // {
+    //     path: '',
+    //     redirectTo: '/manufacture/research/123',
+    //     pathMatch: 'full'
+    // },
     // - LOGIN PAGES
+    { path: 'start', component: V1StartPageComponent },
     { path: 'loginValidation', component: LoginValidationPageComponent },
     { path: 'exceptionInfo', component: ExceptionInformationPageComponent },
     { path: 'dashboard', component: DashboardHomePageComponent },
