@@ -37,15 +37,3 @@ services:
       # WARNING - Use full absolute paths to make this work.
       - /home/adam/Development/NeoCom0.20/NeoCom-Infinity/NeoCom-Infinity-Backend/src/test/resources/esidata-simulation:/esidata-simulation
     command: "bin/apisimulator start /esidata-simulation -p 6090"
-
-  neocom-backend-development-redis:
-    container_name: neocom-backend-development-redis
-    image: redis:rc-alpine3.13
-    ports:
-      - "5289:6379"
-    volumes:
-      - /home/adam/Development/NeoCom0.20/NeoCom-Infinity/NeoCom-Infinity-Backend/src/test/resources/redis-development/redis-data:/var/lib/redis
-      - /home/adam/Development/NeoCom0.20/NeoCom-Infinity/NeoCom-Infinity-Backend/src/test/resources/redis-development/redis.conf:/usr/local/etc/redis/redis.conf
-    environment:
-      - REDIS_REPLICATION_MODE=master
-    command: "redis-server"

@@ -12,7 +12,7 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.Co
  * @author Adam Antinoo (adamantinoo.git@gmail.com)
  * @since 0.20.0
  */
-public class SessionStateResponseSerializer extends JsonSerializer<CookieStateResponse> {
+public class AuthenticationStateResponseSerializer extends JsonSerializer<CookieStateResponse> {
 	@Override
 	public void serialize( final CookieStateResponse value, final JsonGenerator jgen, final SerializerProvider serializers ) throws IOException {
 		jgen.writeStartObject();

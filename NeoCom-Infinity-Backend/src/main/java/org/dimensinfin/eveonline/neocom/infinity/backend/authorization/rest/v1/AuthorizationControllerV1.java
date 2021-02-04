@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.CookieStateResponse;
-import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.serializer.DeserializationService;
 import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComController;
 
 import static org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendApplication.NEOCOM_COOKIE_NAME;
@@ -34,14 +33,11 @@ import static org.dimensinfin.eveonline.neocom.provider.ESIDataProvider.DEFAULT_
 @RequestMapping("/api/v1/neocom")
 public class AuthorizationControllerV1 extends NeoComController {
 	private final AuthorizationServiceV1 authorizationServiceV1;
-	private final DeserializationService deserializationservice;
 
 	// - C O N S T R U C T O R S
 	@Autowired
-	public AuthorizationControllerV1( @NotNull final AuthorizationServiceV1 authorizationServiceV1,
-	                                  @NotNull final DeserializationService deserializationservice ) {
+	public AuthorizationControllerV1( @NotNull final AuthorizationServiceV1 authorizationServiceV1 ) {
 		this.authorizationServiceV1 = authorizationServiceV1;
-		this.deserializationservice = deserializationservice;
 	}
 
 	@GetMapping(path = { "/validateAuthorizationToken" },
