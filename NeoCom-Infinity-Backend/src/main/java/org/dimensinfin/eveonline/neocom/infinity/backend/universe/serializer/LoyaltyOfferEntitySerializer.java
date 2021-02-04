@@ -49,6 +49,5 @@ public class LoyaltyOfferEntitySerializer extends JsonSerializer<LoyaltyOfferEnt
 		jgen.writeObjectField( "marketData", marketLink );
 
 		jgen.writeEndObject();
-
 	}
 }

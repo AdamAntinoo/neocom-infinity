@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.authorization.rest.v1;
+package org.dimensinfin.eveonline.neocom.infinity.backend.authorization.rest.v1;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

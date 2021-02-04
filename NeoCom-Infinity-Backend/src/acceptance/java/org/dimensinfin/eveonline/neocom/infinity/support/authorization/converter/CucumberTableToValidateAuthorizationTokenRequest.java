@@ -10,21 +10,22 @@ import org.dimensinfin.eveonline.neocom.infinity.support.RequestType;
 
 @Component
 public class CucumberTableToValidateAuthorizationTokenRequest extends CucumberTableToRequestConverter<ValidateAuthorizationTokenRequest> {
-    private static final String CODE = "code";
-    private static final String STATE = "state";
-    private static final String DATA_SOURCE = "dataSource";
+	private static final String CODE = "code";
+	private static final String STATE = "state";
+	private static final String DATA_SOURCE = "dataSource";
 
-    @Override
-    public RequestType getType() {
-        return RequestType.VALIDATE_AUTHORIZATION_TOKEN_ENDPOINT_NAME;
-    }
+// - G E T T E R S   &   S E T T E R S
+	@Override
+	public RequestType getType() {
+		return RequestType.VALIDATE_AUTHORIZATION_TOKEN_ENDPOINT_NAME;
+	}
 
-    @Override
-    public ValidateAuthorizationTokenRequest convert( Map<String, String> cucumberRow) {
-        return new ValidateAuthorizationTokenRequest.Builder()
-                .withCode(cucumberRow.get(CODE))
-                       .withState(cucumberRow.get(STATE))
-                       .optionalDataSource(cucumberRow.get(DATA_SOURCE))
-                       .build();
-    }
+	@Override
+	public ValidateAuthorizationTokenRequest convert( final Map<String, String> cucumberRow ) {
+		return new ValidateAuthorizationTokenRequest.Builder()
+				.withCode( cucumberRow.get( CODE ) )
+				.withState( cucumberRow.get( STATE ) )
+				.withDataSource( cucumberRow.get( DATA_SOURCE ) )
+				.build();
+	}
 }

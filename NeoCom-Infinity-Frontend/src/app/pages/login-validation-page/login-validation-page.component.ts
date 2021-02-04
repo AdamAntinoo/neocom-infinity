@@ -38,7 +38,7 @@ export class LoginValidationPageComponent implements OnInit, OnDestroy {
         protected route: ActivatedRoute,
         protected router: Router) { }
 
-    ngOnInit() {
+    public ngOnInit() {
         console.log('>[LoginValidationPageComponent.ngOnInit]');
         this.route.queryParams.subscribe(params => {
             this.paramCode = params['code'];

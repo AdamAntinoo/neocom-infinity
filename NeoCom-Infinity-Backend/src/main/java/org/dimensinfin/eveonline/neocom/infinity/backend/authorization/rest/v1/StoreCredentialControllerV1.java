@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.authorization.rest.v1;
+package org.dimensinfin.eveonline.neocom.infinity.backend.authorization.rest.v1;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -27,6 +27,7 @@ import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComSBExceptio
 public class StoreCredentialControllerV1 {
 	private final StoreCredentialService storeCredentialService;
 
+// - C O N S T R U C T O R S
 	@Autowired
 	public StoreCredentialControllerV1( final StoreCredentialService storeCredentialService ) {
 		this.storeCredentialService = storeCredentialService;
