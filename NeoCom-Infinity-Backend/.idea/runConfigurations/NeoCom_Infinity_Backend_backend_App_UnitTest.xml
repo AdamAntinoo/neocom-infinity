@@ -11,7 +11,6 @@
       <pattern>
         <option name="PATTERN" value="org.dimensinfin.eveonline.neocom.infinity.integration.*" />
         <option name="ENABLED" value="true" />
-        <option name="INCLUDE" value="false" />
       </pattern>
       <pattern>
         <option name="PATTERN" value="org.dimensinfin.eveonline.neocom.infinity.support.*" />
