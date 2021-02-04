@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.authorization.rest.v1;
+package org.dimensinfin.eveonline.neocom.infinity.backend.authorization.rest.v1;
 
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
@@ -30,7 +30,7 @@ import static org.dimensinfin.eveonline.neocom.infinity.config.security.Security
 public class StoreCredentialService {
 	private final CredentialRepository credentialRepository;
 
-// - C O N S T R U C T O R S
+	// - C O N S T R U C T O R S
 	@Autowired
 	public StoreCredentialService( @NotNull final CredentialRepository credentialRepository ) {
 		this.credentialRepository = credentialRepository;

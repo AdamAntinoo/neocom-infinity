@@ -11,22 +11,26 @@ import org.springframework.http.ResponseEntity;
 
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.serializer.DeserializationService;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComSBException;
 
 import static org.dimensinfin.eveonline.neocom.infinity.core.exception.ErrorInfo.AUTHORIZATION_TRANSLATION;
 
 public class AuthorizationControllerV1Test {
 	private AuthorizationServiceV1 authorizationServiceV1;
+	private DeserializationService deserializationservice;
 
 	@BeforeEach
 	public void beforeEach() {
 		this.authorizationServiceV1 = Mockito.mock( AuthorizationServiceV1.class );
+		this.deserializationservice = Mockito.mock( DeserializationService.class );
 	}
 
 	@Test
 	public void validateAllParametersSuccess() {
 		// Given
-		final AuthorizationControllerV1 authorizationController = new AuthorizationControllerV1( this.authorizationServiceV1 );
+		final AuthorizationControllerV1 authorizationController = new AuthorizationControllerV1( this.authorizationServiceV1,
+				this.deserializationservice );
 		final String code = "-CODE-";
 		final String state = "LU5FT0NPTS5JTkZJTklUWS1QUk9EVUNUSU9OLVZBTElEIFNUQVRFIFNUUklORy0=";
 		final Optional<String> dataSource = Optional.of( "-DATASOURCE-" );
@@ -48,7 +52,8 @@ public class AuthorizationControllerV1Test {
 	@Test
 	public void validateFailure() {
 		// Given
-		final AuthorizationControllerV1 authorizationController = new AuthorizationControllerV1( this.authorizationServiceV1 );
+		final AuthorizationControllerV1 authorizationController = new AuthorizationControllerV1( this.authorizationServiceV1,
+				this.deserializationservice );
 		final String code = "-CODE-";
 		final String state = "-STATE-";
 		final Optional<String> dataSource = Optional.empty();
@@ -69,7 +74,8 @@ public class AuthorizationControllerV1Test {
 	@Test
 	public void validateNotOptionalValid() {
 		// Given
-		final AuthorizationControllerV1 authorizationController = new AuthorizationControllerV1( this.authorizationServiceV1 );
+		final AuthorizationControllerV1 authorizationController = new AuthorizationControllerV1( this.authorizationServiceV1,
+				this.deserializationservice );
 		final String code = "-CODE-";
 		final String state = "-STATE-";
 		final Optional<String> dataSource = Optional.empty();

@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -24,12 +25,13 @@ import org.dimensinfin.eveonline.neocom.database.repositories.CredentialReposito
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdOk;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
-import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.SessionStateResponse;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.CookieStateResponse;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.JwtPayload;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRestError;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComSBException;
+import org.dimensinfin.eveonline.neocom.infinity.service.CookieService;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
 import org.dimensinfin.logging.LogWrapper;
@@ -73,6 +75,7 @@ public class AuthorizationServiceV1 {
 	private final CredentialRepository credentialRepository;
 	private final HttpSession session;
 	private final NeoComAuthenticationProvider neoComAuthenticationProvider;
+	private final CookieService cookieService;
 
 	// - C O N S T R U C T O R S
 	@Autowired
@@ -80,35 +83,27 @@ public class AuthorizationServiceV1 {
 	                               @NotNull final ESIDataService esiDataService,
 	                               @NotNull final CredentialRepository credentialRepository,
 	                               @NotNull final HttpSession session,
-	                               @NotNull final NeoComAuthenticationProvider neoComAuthenticationProvider ) {
+	                               @NotNull final NeoComAuthenticationProvider neoComAuthenticationProvider,
+	                               @NotNull final CookieService cookieService ) {
 		this.configurationService = configurationService;
 		this.esiDataService = esiDataService;
 		this.credentialRepository = credentialRepository;
 		this.session = session;
 		this.neoComAuthenticationProvider = neoComAuthenticationProvider;
+		this.cookieService = cookieService;
 	}
 
 	/**
-	 * Check the session. There is always a session object but if it is new or has expired then it should be empty. In that case we face the 'not
-	 * valid' scenario.
-	 * If the session has contents then see it we can create the JWT token. If affirmative then the session is valid. If there is any exception
-	 * then we can invalidate the session and return again the 'not valid' message
+	 * Check the cookie contents. There should contain an valid JWT token.
+	 * If the cookie has contents then see it we can create the JWT token. If affirmative then the cookie is valid. If there is any exception
+	 * then we can invalidate the cookie and return again the 'not valid' message
 	 *
 	 * @return the response message depending on the scenario found.
 	 */
-	public SessionStateResponse validateAuthenticatedSession() {
-		// Validate if the session has a valid JWT.
-		String jwtToken = (String) this.session.getAttribute( JWTTOKEN_SESSION_FIELD_NAME );
-		if (null == jwtToken)
-			return new SessionStateResponse.Builder().withState( SessionStateResponse.SessionStateType.NOT_VALID ).build();
+	public CookieStateResponse validateAuthenticationCookie( final String sourceJWT ) {
 		// Try to update the token.
-		jwtToken = this.createJWTToken( this.accessDecodedPayload( jwtToken ).getUniqueId() );
-		// I think there is no need to search for the session since it is automatically managed by spring boot
-		// Create a new JWT and add it to the session
-		//		final String jwtToken = this.createJWTToken();
-		this.session.setAttribute( JWTTOKEN_SESSION_FIELD_NAME, jwtToken );
-		//this.session.
-		return new SessionStateResponse.Builder().withState( SessionStateResponse.SessionStateType.VALID ).build();
+		final String jwtToken = this.createJWTToken( this.accessDecodedPayload( sourceJWT ).getUniqueId() );
+		return new CookieStateResponse.Builder().withState( CookieStateResponse.SessionStateType.VALID ).build();
 	}
 
 	@TimeElapsed
@@ -145,31 +140,34 @@ public class AuthorizationServiceV1 {
 		//				new CredentialUpdater( credential ).onRun();
 		//			UpdaterJobManager.submit( new CredentialUpdater( credential ) ); // Post the update request to the scheduler.
 		try {
-			final String jwtToken = JWT.create()
-					.withIssuer( ISSUER )
-					.withSubject( SUBJECT )
-					.withClaim( TOKEN_UNIQUE_IDENTIFIER_FIELD_NAME, credential.getUniqueCredential() )
-					.withClaim( TOKEN_ACCOUNT_NAME_FIELD_NAME, credential.getAccountName() )
-					.withClaim( TOKEN_CORPORATION_ID_FIELD_NAME, pilotData.getCorporationId() )
-					.withClaim( TOKEN_PILOT_ID_FIELD_NAME, credential.getAccountId() )
-					.sign( Algorithm.HMAC512( SECRET ) );
-			this.updateSession( jwtToken );
+			//			final String jwtToken = JWT.create()
+			//					.withIssuer( ISSUER )
+			//					.withSubject( SUBJECT )
+			//					.withClaim( TOKEN_UNIQUE_IDENTIFIER_FIELD_NAME, credential.getUniqueCredential() )
+			//					.withClaim( TOKEN_ACCOUNT_NAME_FIELD_NAME, credential.getAccountName() )
+			//					.withClaim( TOKEN_CORPORATION_ID_FIELD_NAME, pilotData.getCorporationId() )
+			//					.withClaim( TOKEN_PILOT_ID_FIELD_NAME, credential.getAccountId() )
+			//					.sign( Algorithm.HMAC512( SECRET ) );
+			final String jwtToken = this.createJWTToken( credential.getUniqueCredential() );
 			return new ValidateAuthorizationTokenResponse.Builder()
 					.withCredential( credential )
 					.withJwtToken( jwtToken )
+					.withCookie( this.cookieService.generateCookie( jwtToken ) )
 					.build();
-		} catch (final UnsupportedEncodingException uce) {
-			throw new NeoComRuntimeBackendException( errorINVALIDTOKENCREATION( uce ) );
+			//		} catch (final UnsupportedEncodingException uce) {
+			//			throw new NeoComRuntimeBackendException( errorINVALIDTOKENCREATION( uce ) );
 		} finally {
 			LogWrapper.exit();
 		}
 	}
 
-	private JwtPayload accessDecodedPayload( final String payloadData ) {
+	private JwtPayload accessDecodedPayload( final String payloadDataEncoded ) {
 		try {
-			//			final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			//			final String payloadBase64 = (String) authentication.getPrincipal();
-			//			final String payloadString = new String( Base64.decodeBase64( payloadBase64.getBytes() ) );
+			final String[] split_string = payloadDataEncoded.split( "\\." );
+			final String base64EncodedHeader = split_string[0];
+			final String base64EncodedBody = split_string[1];
+			final String base64EncodedSignature = split_string[2];
+			final String payloadData = new String( Base64.decodeBase64( base64EncodedBody.getBytes() ) );
 			final JwtPayload payload = jsonMapper.readValue( payloadData, JwtPayload.class );
 			if (null == payload) throw new NeoComSBException( "configuredError" );
 			return payload;
@@ -180,9 +178,7 @@ public class AuthorizationServiceV1 {
 
 	private String createJWTToken( final String uniqueId ) {
 		try {
-			final Credential credential = this.credentialRepository.findCredentialById(
-					uniqueId
-			);
+			final Credential credential = this.credentialRepository.findCredentialById( uniqueId );
 			return JWT.create()
 					.withIssuer( ISSUER )
 					.withSubject( SUBJECT )

@@ -23,6 +23,7 @@ import org.dimensinfin.logging.LogWrapper;
 public class NeoComInfinityBackendApplication {
 	public static final String APPLICATION_ERROR_CODE_PREFIX = "dimensinfin.eveonline.neocom";
 	public static final String PERSISTENCE_ERROR = ".persistence.sql.error";
+	public static final String NEOCOM_COOKIE_NAME = "NEOCOM-INFINITY";
 
 	public static void main( final String[] args ) {
 		LogWrapper.enter();

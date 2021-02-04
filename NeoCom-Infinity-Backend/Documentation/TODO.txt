@@ -4,6 +4,11 @@
 
 * AuthorizationControllerV1
 * AuthorizationServiceV1
+* NeoComCookieDeserializer
+* NeoComCookie
+* SessionStateResponse
+* CookieService
+* ValidateAuthorizationTokenResponse
 
 * FittingV2
 * FittingInfo

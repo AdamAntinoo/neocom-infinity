@@ -8,6 +8,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -19,6 +21,7 @@ import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthentic
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.ACTUATORS_URL;
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.CREDENTIAL_SUPPORT_URL;
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.GET_ITEM;
+import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.LOGIN_SESSION_VERIFICATION_URL;
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.LOGIN_VERIFICATION_URL;
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.PUBLIC_URL;
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.SERVER_STATUS_URL;
@@ -49,14 +52,32 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.cors().and().csrf().disable().authorizeRequests()
 				.antMatchers(
 						ACTUATORS_URL,
-						LOGIN_VERIFICATION_URL, UNIVERSEV1_URL, PUBLIC_URL,
+						LOGIN_VERIFICATION_URL, LOGIN_SESSION_VERIFICATION_URL,
+						UNIVERSEV1_URL, PUBLIC_URL,
 						STORE_CREDENTIAL_URL, SERVER_STATUS_URL, CREDENTIAL_SUPPORT_URL,
-						GET_ITEM ).permitAll()
-				.anyRequest().authenticated()
+						GET_ITEM ).permitAll() // List of URL that do not require authentication JWT token.
+				.anyRequest().authenticated() // The rest of endpoint are authenticated.
 				.and()
-				.addFilter( new JWTAuthorizationFilter( this.authenticationManager() ) )
-				// This disables session creation on Spring Security
-				.sessionManagement().sessionCreationPolicy( SessionCreationPolicy.STATELESS );
+				.addFilter( new JWTAuthorizationFilter( this.authenticationManager() ) );
+		// This disables session creation on Spring Security
+		//				.sessionManagement().sessionCreationPolicy( SessionCreationPolicy.STATELESS );
+		// Create the session when it is required.
+		http.sessionManagement()
+				.sessionCreationPolicy( SessionCreationPolicy.IF_REQUIRED );
+		// Allow multiple session for the same pilot concurrently.
+		http.sessionManagement().maximumSessions( 5 );
+		// Configure the CookieCsrfTokenRepository so JavaScript can read the cookie.
+		http.csrf()
+				.csrfTokenRepository( CookieCsrfTokenRepository.withHttpOnlyFalse() );
+		http.headers()
+				.contentSecurityPolicy(
+						"script-src 'self' https://trustedscripts.example.com; object-src https://trustedplugins.example.com; report-uri /csp-report-endpoint/"
+				);
+		http.sessionManagement().maximumSessions( 2 );
+		//		http.sessionManagement()
+		//				.expiredUrl( "/sessionExpired.html" )
+		//				.invalidSessionUrl( "/invalidSession.html" );
+		//		servletContext.setSessionTrackingModes( EnumSet.of( Session.SessionTrackingMode.COOKIE ) );
 	}
 
 	@Bean
@@ -64,6 +85,11 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration( "/**", new CorsConfiguration().applyPermitDefaultValues() );
 		return source;
+	}
+
+	@Bean
+	public HttpSessionEventPublisher httpSessionEventPublisher() {
+		return new HttpSessionEventPublisher();
 	}
 }
 

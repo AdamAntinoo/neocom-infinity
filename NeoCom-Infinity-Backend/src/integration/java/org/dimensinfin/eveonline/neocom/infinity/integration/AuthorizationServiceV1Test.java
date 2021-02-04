@@ -63,8 +63,8 @@ public class AuthorizationServiceV1Test /*extends UnitTestEnvironmentDefinition 
 				this.esiDataService,
 				this.credentialRepository,
 				this.session,
-				this.neoComAuthenticationProvider
-		);
+				this.neoComAuthenticationProvider,
+				cookieService );
 		final ValidateAuthorizationTokenResponse obtainedResponse = authorizationServiceV1
 				.validateAuthorizationToken( validateAuthorizationTokenRequest );
 

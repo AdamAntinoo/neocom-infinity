@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -29,6 +30,7 @@ public class LoyaltyControllerV1 {
 	private final LoyaltyServiceV1 loyaltyServiceV1;
 
 	// - C O N S T R U C T O R S
+	@Autowired
 	public LoyaltyControllerV1( @NotNull final LoyaltyServiceV1 loyaltyServiceV1 ) {this.loyaltyServiceV1 = loyaltyServiceV1;}
 
 	@GetMapping(path = "/loyalty/corporations/{corporationId}",

@@ -10,11 +10,6 @@
         <module name="NeoCom.Infinity.Backend.main" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="11">
-      <module name="NeoCom.Infinity.Backend.NeoCom.DataManagement.main" target="1.8" />
-      <module name="NeoCom.Infinity.Backend.NeoCom.DataManagement.test" target="1.8" />
-      <module name="org.dimensinfin.NeoCom.Infinity.Backend.NeoCom.DataManagement.main" target="1.8" />
-      <module name="org.dimensinfin.NeoCom.Infinity.Backend.NeoCom.DataManagement.test" target="1.8" />
-    </bytecodeTargetLevel>
+    <bytecodeTargetLevel target="11" />
   </component>
 </project>
