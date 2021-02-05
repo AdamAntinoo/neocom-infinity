@@ -105,7 +105,8 @@ public class JWTTokenService {
 		}
 	}
 
-	private boolean validateTokenHeader( final String header ) {
-		return true;
+	private boolean validateTokenHeader( final String headerEncoded ) {
+		final String headerData = new String( Base64.decodeBase64( headerEncoded.getBytes() ) );
+		return (headerData.equals( "{\"typ\":\"JWT\",\"alg\":\"HS512\"}" ));
 	}
 }
