@@ -1,6 +1,7 @@
-package org.dimensinfin.eveonline.neocom.infinity.support.authorization.rest.v1;
+package org.dimensinfin.eveonline.neocom.infinity.acceptance.support.authorization.rest.v1;
 
 import java.io.IOException;
+import java.util.List;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,7 @@ import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCr
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialResponse;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthenticationStateResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.core.CommonFeignClient;
 import org.dimensinfin.eveonline.neocom.infinity.support.rest.NeoComApiv1;
 import org.dimensinfin.eveonline.neocom.service.logger.NeoComLogger;
@@ -24,7 +26,7 @@ import retrofit2.Retrofit;
 
 @Component
 public class AuthorizationFeignClientV1 extends CommonFeignClient {
-// - C O N S T R U C T O R S
+	// - C O N S T R U C T O R S
 	public AuthorizationFeignClientV1( final @NotNull ITargetConfiguration acceptanceTargetConfig ) {
 		super( acceptanceTargetConfig );
 	}
@@ -49,6 +51,25 @@ public class AuthorizationFeignClientV1 extends CommonFeignClient {
 		} else return new ResponseEntity( HttpStatus.BAD_REQUEST );
 	}
 
+	public ResponseEntity<AuthenticationStateResponse> validateAuthenticationState( final List<String> cookies ) throws IOException {
+		final String ENDPOINT_MESSAGE = "Request the Authentication current state.";
+		String cookieContent = "";
+		for (final String cookie : cookies)
+			cookieContent += cookie + "; ";
+		if (cookieContent.length() > 2) cookieContent = cookieContent.substring( 0, cookieContent.length() - 2 );
+		final Response<AuthenticationStateResponse> response = new Retrofit.Builder()
+				.baseUrl( this.acceptanceTargetConfig.getBackendServer() )
+				.addConverterFactory( GSON_CONVERTER_FACTORY )
+				.build()
+				.create( NeoComApiv1.class )
+				.validateAuthenticationState( cookieContent )
+				.execute();
+		if (response.isSuccessful()) {
+			LogWrapper.info( ENDPOINT_MESSAGE );
+			return new ResponseEntity<>( response.body(), HttpStatus.valueOf( response.code() ) );
+		} else throw new IOException( ENDPOINT_MESSAGE + " Failed." );
+	}
+
 	public ResponseEntity<ValidateAuthorizationTokenResponse> validateAuthorizationToken(
 			final ValidateAuthorizationTokenRequest validateAuthorizationTokenRequest
 	) throws IOException {
@@ -69,4 +90,5 @@ public class AuthorizationFeignClientV1 extends CommonFeignClient {
 			return new ResponseEntity<>( response.body(), HttpStatus.valueOf( response.code() ) );
 		} else throw new IOException( ENDPOINT_MESSAGE + " Failed." );
 	}
+
 }

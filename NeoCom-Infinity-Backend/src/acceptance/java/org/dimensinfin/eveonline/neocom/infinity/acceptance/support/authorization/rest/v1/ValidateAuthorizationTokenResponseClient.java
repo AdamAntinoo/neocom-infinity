@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.support.authorization.rest.v1;
+package org.dimensinfin.eveonline.neocom.infinity.acceptance.support.authorization.rest.v1;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -11,17 +11,9 @@ public class ValidateAuthorizationTokenResponseClient {
 	public String statusCode;
 	public Integer statusCodeValue;
 
-	public Object getHeaders() {
-		return headers;
-	}
-
-	public ValidateAuthorizationTokenResponseClient setHeaders( final Object headers ) {
-		this.headers = headers;
-		return this;
-	}
-
+// - G E T T E R S   &   S E T T E R S
 	public ValidateAuthorizationTokenResponse getBody() {
-		return body;
+		return this.body;
 	}
 
 	public ValidateAuthorizationTokenResponseClient setBody( final ValidateAuthorizationTokenResponse body ) {
@@ -29,8 +21,17 @@ public class ValidateAuthorizationTokenResponseClient {
 		return this;
 	}
 
+	public Object getHeaders() {
+		return this.headers;
+	}
+
+	public ValidateAuthorizationTokenResponseClient setHeaders( final Object headers ) {
+		this.headers = headers;
+		return this;
+	}
+
 	public String getStatusCode() {
-		return statusCode;
+		return this.statusCode;
 	}
 
 	public ValidateAuthorizationTokenResponseClient setStatusCode( final String statusCode ) {
@@ -39,7 +40,7 @@ public class ValidateAuthorizationTokenResponseClient {
 	}
 
 	public Integer getStatusCodeValue() {
-		return statusCodeValue;
+		return this.statusCodeValue;
 	}
 
 	public ValidateAuthorizationTokenResponseClient setStatusCodeValue( final Integer statusCodeValue ) {

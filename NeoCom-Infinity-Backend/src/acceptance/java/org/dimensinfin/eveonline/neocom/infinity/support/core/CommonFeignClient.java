@@ -13,10 +13,12 @@ import org.springframework.stereotype.Component;
 import org.dimensinfin.eveonline.neocom.domain.NeoItem;
 import org.dimensinfin.eveonline.neocom.domain.space.Station;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.ITargetConfiguration;
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.authorization.rest.v1.deserializer.AuthenticationStateResponseDeserializer;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.character.rest.deserializer.GSONLinkDeserializer;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.character.rest.deserializer.GSONNeoItemDeserializer;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.industry.deserializer.GSONBuildActionDeserializer;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.industry.deserializer.GSONStationDeserializer;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthenticationStateResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.BuildAction;
 import org.dimensinfin.eveonline.neocom.utility.GSONDateTimeDeserializer;
 import org.dimensinfin.eveonline.neocom.utility.GSONLocalDateDeserializer;
@@ -36,6 +38,7 @@ public class CommonFeignClient {
 							.registerTypeAdapter( NeoItem.class, new GSONNeoItemDeserializer() )
 							.registerTypeAdapter( BuildAction.class, new GSONBuildActionDeserializer() )
 							.registerTypeAdapter( Station.class, new GSONStationDeserializer() )
+							.registerTypeAdapter( AuthenticationStateResponse.class, new AuthenticationStateResponseDeserializer() )
 							.create() );
 	public static final OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
 			.connectTimeout( 60, TimeUnit.SECONDS )
