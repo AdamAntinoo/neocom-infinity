@@ -1,14 +1,12 @@
 # Classes pending Unit Test completion
 
 ## 0.20.0
-
-* AuthorizationControllerV1
 * AuthorizationServiceV1
-* NeoComCookieDeserializer
 * NeoComCookie
 * SessionStateResponse
 * CookieService
 * ValidateAuthorizationTokenResponse
+* AuthenticationStateResponseSerializer
 
 * FittingV2
 * FittingInfo

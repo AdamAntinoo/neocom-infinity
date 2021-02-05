@@ -1,6 +1,5 @@
 package org.dimensinfin.eveonline.neocom.infinity.backend.authorization.rest.v1;
 
-import java.util.Optional;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.constraints.NotNull;
 
@@ -17,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
-import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.CookieStateResponse;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthenticationStateResponse;
 import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComController;
 
 import static org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendApplication.NEOCOM_COOKIE_NAME;
@@ -45,12 +44,12 @@ public class AuthorizationControllerV1 extends NeoComController {
 			produces = "application/json")
 	public ResponseEntity<ValidateAuthorizationTokenResponse> validate( @RequestParam(value = "code") @NotNull final String code,
 	                                                                    @RequestParam(value = "state") @NotNull final String state,
-	                                                                    @RequestParam(value = "dataSource", required = false) final Optional<String> dataSource,
+	                                                                    @RequestParam(value = "dataSource", required = false) final String dataSource,
 	                                                                    final HttpServletResponse response ) {
 		final ValidateAuthorizationTokenRequest authorizationTokenRequest = new ValidateAuthorizationTokenRequest.Builder()
 				.withCode( code )
 				.withState( state )
-				.withDataSource( dataSource.orElse( DEFAULT_ESI_SERVER ) )
+				.withDataSource( (null != dataSource) ? dataSource : DEFAULT_ESI_SERVER )
 				.build();
 		final ValidateAuthorizationTokenResponse authorizationResponse = this.authorizationServiceV1
 				.validateAuthorizationToken( authorizationTokenRequest );
@@ -59,34 +58,32 @@ public class AuthorizationControllerV1 extends NeoComController {
 	}
 
 	/**
-	 * This endpoints is expected to receive a HttpOnly cookie from the frontend with the unique session identifier. There are some scenarios to
+	 * This endpoints is expected to receive a HttpOnly cookie from the frontend with the JWT token. There are some scenarios to
 	 * handle the different responses.
 	 *
 	 * <ul>
 	 *     <li><b>cookie not exists</b>- if this is a new login of from a new terminal the cookie is not set. Then the endpoint returns the 'not
 	 *     found' message to start a new EVE SSO Login</li>
-	 *     <li><b>cookie exists but no session</b>-this is the same scenario. The 'not found' tells that there is no session and should be
+	 *     <li><b>cookie exists credential not found</b>-this is the same scenario. The 'not found' tells that there is no credential and should be
 	 *     created with a new EVE SSO Login</li>
-	 *     <li><b>cookie with expired session</b>-the session if found but the expiration time is on the past. The user should authenticate again
-	 *     but this time we report the front end of a 'not valid' session.</li>
-	 *     <li><b>cooki found and valid session</b>-report to the caller that the session is still valid with the message 'valid'. In this
-	 *     scenario we should update the session with a new expiration time and a new JWT that should be reported to the called for store and use
-	 *     on the next set of authenticated calls.
+	 *     <li><b>cookie found and valid credential and token</b>-report to the caller that the token is still valid with the message 'valid'. In
+	 *     this scenario we should update the cookie with a new expiration time. This cookie is only used on authentication validation because the
+	 *     authentication data is reported on the <i>Authorization</i> header with the JWT.
 	 *     </li>
 	 * </ul>
 	 *
 	 * @return the response message depending on the scenario found.
 	 */
-	@GetMapping(path = { "/validateSession" },
-			produces = "application/json")
-	public ResponseEntity<CookieStateResponse> validateAuthenticatedSession(
-			@CookieValue(value = NEOCOM_COOKIE_NAME, defaultValue = "-INVALID-") final String neocomCookieData ) {
+	@GetMapping(path = { "/validateSession" }, produces = "application/json")
+	public ResponseEntity<AuthenticationStateResponse> validateAuthenticationState(
+			@CookieValue(value = NEOCOM_COOKIE_NAME, defaultValue = "-INVALID-") final String neocomCookieData,
+			final HttpServletResponse response ) {
 		// Validate if the cookie is empty. Is so do not go ahead and return a 'not found' immediately.
 		if (neocomCookieData.toUpperCase().contains( "INVALID" ))
-			return new ResponseEntity<>( new CookieStateResponse.Builder()
-					.withState( CookieStateResponse.SessionStateType.NOT_FOUND )
+			return new ResponseEntity<>( new AuthenticationStateResponse.Builder()
+					.withState( AuthenticationStateResponse.AuthenticationStateType.NOT_FOUND )
 					.build(), HttpStatus.OK );
 		else
-			return new ResponseEntity<>( this.authorizationServiceV1.validateAuthenticationCookie( neocomCookieData ), HttpStatus.OK );
+			return new ResponseEntity<>( this.authorizationServiceV1.validateAuthenticationState( neocomCookieData, response ), HttpStatus.OK );
 	}
 }

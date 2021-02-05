@@ -4,15 +4,15 @@ package org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain;
  * @author Adam Antinoo (adamantinoo.git@gmail.com)
  * @since 0.20.0
  */
-public class CookieStateResponse {
-	public enum SessionStateType {
+public class AuthenticationStateResponse {
+	public enum AuthenticationStateType {
 		NOT_FOUND( "not found" ),
 		NOT_VALID( "not valid" ),
 		VALID( "valid" );
 		private final String message;
 
 		// - C O N S T R U C T O R S
-		SessionStateType( final String message ) {
+		AuthenticationStateType( final String message ) {
 			this.message = message;
 		}
 
@@ -22,30 +22,30 @@ public class CookieStateResponse {
 		}
 	}
 
-	private SessionStateType state = SessionStateType.NOT_VALID;
+	private AuthenticationStateType state = AuthenticationStateType.NOT_VALID;
 
 	// - C O N S T R U C T O R S
-	private CookieStateResponse() {}
+	private AuthenticationStateResponse() {}
 
 	// - G E T T E R S   &   S E T T E R S
-	public SessionStateType getState() {
+	public AuthenticationStateType getState() {
 		return this.state;
 	}
 
 	// - B U I L D E R
 	public static class Builder {
-		private final CookieStateResponse onConstruction;
+		private final AuthenticationStateResponse onConstruction;
 
 		// - C O N S T R U C T O R S
 		public Builder() {
-			this.onConstruction = new CookieStateResponse();
+			this.onConstruction = new AuthenticationStateResponse();
 		}
 
-		public CookieStateResponse build() {
+		public AuthenticationStateResponse build() {
 			return this.onConstruction;
 		}
 
-		public CookieStateResponse.Builder withState( final SessionStateType state ) {
+		public AuthenticationStateResponse.Builder withState( final AuthenticationStateType state ) {
 			this.onConstruction.state = state;
 			return this;
 		}
