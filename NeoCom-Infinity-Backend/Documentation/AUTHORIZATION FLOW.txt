@@ -1,0 +1,10 @@
+Start on the landing page:
+- Landing page
+- Validate Authentication
+-- Cookie does not exist -> NOT_FOUND
+-- Cookie exists
+--- JWT decodes and the content is properly formatted
+---- The Credential is present a the repository.
+----- Recreate the token and the cookie
+---- The credential is not present -> NOT_FOUND
+--- JWT is invalid -> NOT_VALID
