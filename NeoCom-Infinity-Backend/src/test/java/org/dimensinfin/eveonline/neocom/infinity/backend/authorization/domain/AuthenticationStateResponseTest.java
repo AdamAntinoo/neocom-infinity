@@ -26,7 +26,6 @@ public class AuthenticationStateResponseTest {
 				.withState( AuthenticationStateResponse.AuthenticationStateType.NOT_FOUND ).build();
 		// Assertions
 		Assertions.assertEquals( AuthenticationStateResponse.AuthenticationStateType.NOT_FOUND, authenticationStateResponse.getState() );
-		Assertions.assertEquals( "not found", authenticationStateResponse.getState().getMessage() );
 	}
 
 	@Test
