@@ -230,7 +230,7 @@ jobs:
             DEFAULT_BACKEND_SERVER: http://localhost
             DEFAULT_BACKEND_PORT: 5241
           command: |
-            ./gradlew acceptanceTest -Dcucumber.filter.tags="@NIB01.05 and @NIB01.06"
+            ./gradlew acceptanceTest -Dcucumber.filter.tags="@NIB01.05 or @NIB01.06 or @NIB01.07 or @NIB01.08"
   quality-sonarcloud-backend:
     docker:
       - image: circleci/openjdk:11-jdk
