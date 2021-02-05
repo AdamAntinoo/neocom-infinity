@@ -54,4 +54,6 @@ public class AcceptanceFieldMapConstants {
 
 	public static final String MARKET_REGION_ID = "marketRegionId";
 
+	public static final String COOKIE_NAME = "name";
+	public static final String COOKIE_PAYLOAD = "payload";
 }

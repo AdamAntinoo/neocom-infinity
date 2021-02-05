@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Assertions;
 import org.springframework.http.ResponseEntity;
 
 import org.dimensinfin.eveonline.neocom.domain.PilotV1;
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.authorization.rest.v1.AuthorizationFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.character.rest.v1.CharacterFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.character.rest.v2.CharacterFeignClientV2;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.industry.rest.v1.IndustryFeignClientV1;
@@ -16,6 +17,7 @@ import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.market.rest.
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.universe.rest.v1.UniverseFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.universe.rest.v2.UniverseFeignClientV2;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthenticationStateResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.character.fitting.domain.FittingModel;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingBuildConfiguration;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingConfigurations;
@@ -24,7 +26,6 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.EsiItem
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
 import org.dimensinfin.eveonline.neocom.infinity.support.NeoComWorld;
 import org.dimensinfin.eveonline.neocom.infinity.support.RequestType;
-import org.dimensinfin.eveonline.neocom.infinity.support.authorization.rest.v1.AuthorizationFeignClientV1;
 import org.dimensinfin.eveonline.neocom.loyalty.domain.LoyaltyServiceConfiguration;
 import org.dimensinfin.eveonline.neocom.loyalty.persistence.LoyaltyOfferEntity;
 import org.dimensinfin.logging.LogWrapper;
@@ -59,7 +60,6 @@ public class WhenTheRequestIsProcessed extends StepSupport {
 		this.marketFeignClientV1 = marketFeignClientV1;
 	}
 
-	@When("the Validate Authorization Token request is processed")
 	public void the_Accounting_Week_Income_request_is_processed() throws IOException {
 		this.processRequestByType( RequestType.VALIDATE_AUTHORIZATION_TOKEN_ENDPOINT_NAME );
 	}
@@ -116,6 +116,11 @@ public class WhenTheRequestIsProcessed extends StepSupport {
 	@When("the Update Loyalty Service Configuration request is processed")
 	public void the_Update_Loyalty_Service_Configuration_request_is_processed() throws IOException {
 		this.processRequestByType( RequestType.UPDATE_LOYALTY_SERVICE_CONFIGURATION );
+	}
+
+	@When("the Validate Authentication request is processed")
+	public void the_Validate_Authentication_request_is_processed() throws IOException {
+		this.processRequestByType( RequestType.VALIDATE_AUTHENTICATION );
 	}
 
 	private ResponseEntity processRequest( final RequestType requestType ) throws IOException {
@@ -216,6 +221,12 @@ public class WhenTheRequestIsProcessed extends StepSupport {
 				Assertions.assertNotNull( loyaltyUpdateResponseEntity );
 				this.neocomWorld.setLoyaltyUpdateResponseEntity( loyaltyUpdateResponseEntity );
 				return loyaltyUpdateResponseEntity;
+			case VALIDATE_AUTHENTICATION:
+				final ResponseEntity<AuthenticationStateResponse> authenticationStateResponseEntity = this.authorizationFeignClient
+						.validateAuthenticationState( this.neocomWorld.getCookies() );
+				Assertions.assertNotNull( authenticationStateResponseEntity );
+				this.neocomWorld.setAuthenticationStateResponseEntity( authenticationStateResponseEntity );
+				return authenticationStateResponseEntity;
 			default:
 				throw new NotImplementedException( "Request {} not implemented.", requestType.name() );
 		}

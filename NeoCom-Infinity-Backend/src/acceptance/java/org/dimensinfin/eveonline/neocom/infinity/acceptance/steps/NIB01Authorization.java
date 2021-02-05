@@ -10,6 +10,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
@@ -35,7 +36,7 @@ public class NIB01Authorization extends SupportSteps {
 	private static final ObjectMapper jsonMapper = new ObjectMapper();
 	private final NeoComSupportFeignClient neoComSupportFeignClient;
 
-// - C O N S T R U C T O R S
+	// - C O N S T R U C T O R S
 	@Autowired
 	public NIB01Authorization( final ConverterContainer cucumberTableToRequestConverters,
 	                           final NeoComWorld neocomWorld,
@@ -59,6 +60,13 @@ public class NIB01Authorization extends SupportSteps {
 				this.extractClaim( TOKEN_UNIQUE_IDENTIFIER_FIELD_NAME, this.neocomWorld.getJwtAuthorizationToken() ) );
 		Assert.assertEquals( row.get( TOKEN_PILOT_ID_FIELD_NAME ),
 				this.extractClaim( TOKEN_PILOT_ID_FIELD_NAME, this.neocomWorld.getJwtAuthorizationToken() ) );
+	}
+
+	@Then("the Validate Authentication response message is {string}")
+	public void the_Validate_Authentication_response_message_is( final String stateMessage ) {
+		Assertions.assertNotNull( this.neocomWorld.getAuthenticationStateResponseEntity() );
+		Assertions.assertNotNull( this.neocomWorld.getAuthenticationStateResponseEntity().getBody() );
+		Assertions.assertEquals( stateMessage, this.neocomWorld.getAuthenticationStateResponseEntity().getBody().getState().name() );
 	}
 
 	@Then("the Validate Authorization Token response contains a Credential")

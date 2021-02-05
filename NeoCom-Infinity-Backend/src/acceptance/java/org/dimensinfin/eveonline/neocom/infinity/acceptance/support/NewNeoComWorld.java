@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 
 import org.dimensinfin.eveonline.neocom.domain.PilotV1;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthenticationStateResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.character.fitting.domain.FittingModel;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingBuildConfiguration;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingConfigurations;
@@ -28,8 +29,18 @@ public class NewNeoComWorld extends CommonWorld {
 	private Integer corporationId;
 	private ResponseEntity<LoyaltyServiceConfiguration> loyaltyUpdateResponseEntity;
 	private LoyaltyServiceConfiguration loyaltyServiceConfiguration;
+	private ResponseEntity<AuthenticationStateResponse> authenticationStateResponseEntity;
 
 	// - G E T T E R S   &   S E T T E R S
+	public ResponseEntity<AuthenticationStateResponse> getAuthenticationStateResponseEntity() {
+		return this.authenticationStateResponseEntity;
+	}
+
+	public NewNeoComWorld setAuthenticationStateResponseEntity( final ResponseEntity<AuthenticationStateResponse> authenticationStateResponseEntity ) {
+		this.authenticationStateResponseEntity = authenticationStateResponseEntity;
+		return this;
+	}
+
 	public Integer getCorporationId() {
 		return this.corporationId;
 	}

@@ -3,6 +3,7 @@ package org.dimensinfin.eveonline.neocom.infinity.acceptance.steps;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.database.entities.MiningExtractionEntity;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.api.NeoComSupportFeignClient;
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.authorization.rest.v1.AuthorizationFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialResponse;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
@@ -23,7 +25,6 @@ import org.dimensinfin.eveonline.neocom.infinity.support.CucumberTableConverter;
 import org.dimensinfin.eveonline.neocom.infinity.support.NeoComWorld;
 import org.dimensinfin.eveonline.neocom.infinity.support.RequestType;
 import org.dimensinfin.eveonline.neocom.infinity.support.authorization.converter.CucumberTableToCredential;
-import org.dimensinfin.eveonline.neocom.infinity.support.authorization.rest.v1.AuthorizationFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.support.corporation.rest.v1.CorporationFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.support.corporation.rest.v1.CorporationResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.corporation.rest.v1.LocationAssetContainer;
@@ -39,6 +40,8 @@ import org.dimensinfin.eveonline.neocom.infinity.support.pilot.rest.v1.PilotResp
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import static org.dimensinfin.eveonline.neocom.infinity.acceptance.support.AcceptanceFieldMapConstants.COOKIE_NAME;
+import static org.dimensinfin.eveonline.neocom.infinity.acceptance.support.AcceptanceFieldMapConstants.COOKIE_PAYLOAD;
 
 public class NIBCommonSteps extends SupportSteps {
 	private static final String CORPORATION_ID = "corporationId";
@@ -57,7 +60,7 @@ public class NIBCommonSteps extends SupportSteps {
 	private final NeoComSupportFeignClient neoComSupportFeignClient;
 	private final MiningExtractionsFeignClientSupport miningExtractionsFeignClientSupport;
 
-// - C O N S T R U C T O R S
+	// - C O N S T R U C T O R S
 	@Autowired
 	public NIBCommonSteps( final ConverterContainer cucumberTableToRequestConverters,
 	                       final NeoComWorld neocomWorld,
@@ -147,6 +150,14 @@ public class NIBCommonSteps extends SupportSteps {
 			return;
 		}
 		this.neocomWorld.setJwtAuthorizationToken( jwtToken );
+	}
+
+	@Given("the next list of cookies")
+	public void the_next_list_of_cookies( final List<Map<String, String>> dataTable ) {
+		this.neocomWorld.setCookies( new ArrayList<>() );
+		for (final Map<String, String> row : dataTable) {
+			this.neocomWorld.addCookie( row.get( COOKIE_NAME ), row.get( COOKIE_PAYLOAD ) );
+		}
 	}
 
 	@When("the {string} request is processed")

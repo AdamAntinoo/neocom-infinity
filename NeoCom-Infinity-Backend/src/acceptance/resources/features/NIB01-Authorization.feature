@@ -50,3 +50,38 @@ Feature: [NIB01] Validate the authorization token from ESI OAuth2 service and ot
       | sub                       | corporationId | accountName             | iss                     | uniqueId             | pilotId  |
       | ESI OAuth2 Authentication | 98384726      | Adam Antinoo Remastered | NeoCom.Infinity.Backend | tranquility.92002067 | 92002067 |
     And there is a Credential record with id "tranquility.92002067" at the repository
+
+  @NIB01.05 @Authorization
+  Scenario: [NIB01.05] Check for a 'not found' authentication when there is no NeoCom cookie.
+    Given a clear list of cookies
+    When the Validate Authentication request is processed
+    Then there is a valid response with return code of "200 OK"
+    And the Validate Authentication response message is "NOT_FOUND"
+
+  @NIB01.06 @Authorization
+  Scenario: [NIB01.06] Check for a 'not valid' authentication when the cookie payload is not valid.
+    Given the next list of cookies
+      | name          | payload                        |
+      | NEOCOM-COOKIE | -CONTENT-THAT-WILL-NOT-DECODE- |
+    When the Validate Authentication request is processed
+    Then there is a valid response with return code of "200 OK"
+    And the Validate Authentication response message is "not valid"
+
+  @NIB01.07 @Authorization
+  Scenario: [NIB01.06] Check for a 'not valid' authentication when the cookie payload is valid but the Credential is not at the repository.
+    Given the next list of cookies
+      | name          | payload                        |
+      | NEOCOM-COOKIE | -CONTENT-THAT-WILL-NOT-DECODE- |
+    When the Validate Authentication request is processed
+    Then there is a valid response with return code of "200 OK"
+    And the Validate Authentication response message is "not valid"
+
+
+  @NIB01.08 @Authorization
+  Scenario: [NIB01.08] Check for a 'valid' authentication when the cookie exists and the payload is valid.
+    Given the next list of cookies
+      | name          | payload                        |
+      | NEOCOM-COOKIE | -CONTENT-THAT-WILL-NOT-DECODE- |
+    When the Validate Authentication request is processed
+    Then there is a valid response with return code of "200 OK"
+    And the Validate Authentication response message is "not valid"
