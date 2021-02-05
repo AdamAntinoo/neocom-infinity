@@ -35,8 +35,9 @@ public class ValidateAuthorizationTokenRequest {
 		return this.state;
 	}
 
-	public void setRunningFlow( final NeoComOAuth2Flow oauthFlow ) {
+	public ValidateAuthorizationTokenRequest setRunningFlow( final NeoComOAuth2Flow oauthFlow ) {
 		this.oauthFlow = oauthFlow;
+		return this;
 	}
 
 	// - B U I L D E R
