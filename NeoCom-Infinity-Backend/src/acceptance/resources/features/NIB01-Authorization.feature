@@ -68,7 +68,7 @@ Feature: [NIB01] Validate the authorization token from ESI OAuth2 service and ot
     And the Validate Authentication response message is "NOT_VALID"
 
   @NIB01.07 @Authorization
-  Scenario: [NIB01.06] Check for a 'NOT_VALID' authentication when the cookie payload is valid but the Credential is not at the repository.
+  Scenario: [NIB01.07] Check for a 'NOT_VALID' authentication when the cookie payload is valid but the Credential is not at the repository.
     Given the next list of cookies
       | name            | payload                        |
       | NEOCOM-INFINITY | -CONTENT-THAT-WILL-NOT-DECODE- |
@@ -80,8 +80,8 @@ Feature: [NIB01] Validate the authorization token from ESI OAuth2 service and ot
   @NIB01.08 @Authorization
   Scenario: [NIB01.08] Check for a 'VALID' authentication when the cookie exists and the payload is valid.
     Given the next list of cookies
-      | name            | payload                        |
-      | NEOCOM-INFINITY | -CONTENT-THAT-WILL-NOT-DECODE- |
+      | name            | payload                                                                                                                                                                                                                                                                                                                                                                             |
+      | NEOCOM-INFINITY | eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6MTIzNDU2LCJhY2NvdW50TmFtZSI6IlRlc3RpbmcgQ2hhcmFjdGVyIEFjY291bnQiLCJpc3MiOiJOZW9Db20uSW5maW5pdHkuQmFja2VuZCIsInVuaXF1ZUlkIjoidHJhbnF1aWxpdHkuOTM4MTMzMTAiLCJwaWxvdElkIjo5MzgxMzMxMH0.P-o3mnrT-LzGzvKLU2KhRIpZEIECsyrtXEpmkXvNjZHLNd4pTyRNZ1lTd1h98CfRUDY6gp8jfwMuomGvTUHYKw |
     When the Validate Authentication request is processed
     Then there is a valid response with return code of "200 OK"
     And the Validate Authentication response message is "VALID"
