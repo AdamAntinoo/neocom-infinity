@@ -42,6 +42,8 @@ public class LoyaltyServiceV1Test {
 		// When
 		Mockito.when( offer.getLpValue() ).thenReturn( 1100 );
 		Mockito.when( this.loyaltyOffersRepository.searchOffers4Corporation( Mockito.anyInt() ) ).thenThrow( new SQLException( "-EXCEPTION-" ) );
+		Mockito.when( this.loyaltyOffersRepository.searchOffers4CorporationAndHub( Mockito.anyInt(), Mockito.anyInt() ) )
+				.thenThrow( new SQLException( "-EXCEPTION-" ) );
 		// Test
 		final LoyaltyServiceV1 serviceV1 = new LoyaltyServiceV1( this.loyaltyOffersRepository, this.loyaltyService );
 		Assertions.assertThrows( NeoComRuntimeBackendException.class, () -> {
@@ -103,6 +105,8 @@ public class LoyaltyServiceV1Test {
 		// When
 		Mockito.when( offer.getLpValue() ).thenReturn( 1100 );
 		Mockito.when( this.loyaltyOffersRepository.searchOffers4Corporation( Mockito.anyInt() ) ).thenReturn( offerList );
+		Mockito.when( this.loyaltyOffersRepository.searchOffers4CorporationAndHub( Mockito.anyInt(), Mockito.anyInt() ) )
+				.thenReturn( offerList );
 		// Test
 		final LoyaltyServiceV1 serviceV1 = new LoyaltyServiceV1( this.loyaltyOffersRepository, this.loyaltyService );
 		final List<LoyaltyOfferEntity> obtained = serviceV1.getLoyaltyRecommendedOfferForCorporation( TEST_LOYALTY_CORPORATION_ID );

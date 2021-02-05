@@ -2,23 +2,29 @@ package org.dimensinfin.eveonline.neocom.infinity.core.serializer;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.junit.jupiter.api.Assertions;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 
-//@JsonTest
-//@RunWith(SpringRunner.class)
 public class CredentialSerializerTest {
-
-	@Autowired
 	private ObjectMapper objectMapper;
 
-	//	@Test
-	public void testSerialization() throws JsonProcessingException {
+	@BeforeEach
+	public void beforeEach() {
+		this.objectMapper = new ObjectMapper();
+		final SimpleModule module = new SimpleModule();
+		module.addSerializer( Credential.class, new CredentialSerializer() );
+		this.objectMapper.registerModule( module );
+	}
+
+	@Test
+	public void serialize() throws JsonProcessingException {
 		final Credential user = new Credential();
 		final String json = this.objectMapper.writeValueAsString( user );
-
-		Assertions.assertEquals( "{\"favoriteColor\":\"#f0f8ff\"}", json );
+		final String expected = "{\"jsonClass\":\"Credential\",\"uniqueCredential\":\"tranquility.-2\",\"accountId\":-2,\"accountName\":null,\"dataSource\":\"tranquility\",\"corporationId\":-3,\"assetsCount\":0,\"walletBalance\":0.0,\"miningResourcesEstimatedValue\":0.0,\"raceName\":null}";
+		Assertions.assertEquals( expected, json );
 	}
 }

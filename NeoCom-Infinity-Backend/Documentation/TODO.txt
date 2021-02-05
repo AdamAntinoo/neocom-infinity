@@ -1,9 +1,7 @@
 # Classes pending Unit Test completion
 
 ## 0.20.0
-* SessionStateResponse
 * ValidateAuthorizationTokenResponse
-* AuthenticationStateResponseSerializer
 
 * FittingV2
 * FittingInfo
