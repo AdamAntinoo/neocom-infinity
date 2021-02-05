@@ -227,10 +227,10 @@ jobs:
           working_directory: NeoCom-Infinity-Backend
           environment:
             PROFILE: "production"
-            DEFAULT_BACKEND_SERVER: http://localhost
+            DEFAULT_BACKEND_SERVER: http://acceptance
             DEFAULT_BACKEND_PORT: 5241
           command: |
-            ./gradlew acceptanceTest -Dcucumber.filter.tags="@NIB01.05 or @NIB01.06 or @NIB01.07 or @NIB01.08"
+            ./gradlew acceptanceTest -Dcucumber.filter.tags="@NIB01.05 or @NIB01.06 or @NIB01.07 or @NIB01.08" --info
   quality-sonarcloud-backend:
     docker:
       - image: circleci/openjdk:11-jdk
