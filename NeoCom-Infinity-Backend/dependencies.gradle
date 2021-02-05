@@ -82,7 +82,7 @@ dependencies {
 // - U N I T   T E S T I N G
 test {
     useJUnitPlatform()
-    systemProperty "cucumber.options", System.getProperty("cucumber.options")
+    systemProperty "cucumber.filter.tags", System.getProperty("cucumber.filter.tags")
 }
 dependencies {
     // C O R E
@@ -108,7 +108,7 @@ dependencies {
 
 // - A C C E P T A N C E   T E S T I N G
 ext {
-    cucumberVersion = '5.6.0'
+    cucumberVersion = '6.9.1'
 }
 dependencies {
     acceptanceImplementation "io.cucumber:cucumber-java:$cucumberVersion"
