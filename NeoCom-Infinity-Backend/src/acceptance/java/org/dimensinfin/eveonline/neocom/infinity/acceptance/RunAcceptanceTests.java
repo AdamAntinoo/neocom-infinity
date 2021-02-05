@@ -8,11 +8,10 @@ import static io.cucumber.junit.CucumberOptions.SnippetType.CAMELCASE;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		strict = true,
 		features = { "src/acceptance/resources/features" },
 		snippets = CAMELCASE,
 		glue = { "org.dimensinfin.eveonline.neocom.infinity.acceptance.steps" },
 		plugin = { "pretty", "json:target/cucumber_report.json" },
-		tags = { "not @skip_scenario", "not @front", "not @duplication", "@NIB01.05" })
+		tags = "@NIB01.06")
 public class RunAcceptanceTests {
 }

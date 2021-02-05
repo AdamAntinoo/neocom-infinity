@@ -1,5 +1,6 @@
 package org.dimensinfin.eveonline.neocom.infinity.backend.authorization.rest.v1;
 
+import java.text.MessageFormat;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.constraints.NotNull;
 
@@ -18,6 +19,7 @@ import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.Validat
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthenticationStateResponse;
 import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComController;
+import org.dimensinfin.logging.LogWrapper;
 
 import static org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendApplication.NEOCOM_COOKIE_NAME;
 import static org.dimensinfin.eveonline.neocom.provider.ESIDataProvider.DEFAULT_ESI_SERVER;
@@ -78,6 +80,7 @@ public class AuthorizationControllerV1 extends NeoComController {
 	public ResponseEntity<AuthenticationStateResponse> validateAuthenticationState(
 			@CookieValue(value = NEOCOM_COOKIE_NAME, defaultValue = "-INVALID-") final String neocomCookieData,
 			final HttpServletResponse response ) {
+		LogWrapper.info( MessageFormat.format( "Cookie value: {0}", neocomCookieData ) );
 		// Validate if the cookie is empty. Is so do not go ahead and return a 'not found' immediately.
 		if (neocomCookieData.toUpperCase().contains( "INVALID" ))
 			return new ResponseEntity<>( new AuthenticationStateResponse.Builder()

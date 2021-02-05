@@ -71,6 +71,7 @@ public class AuthorizationServiceV1 {
 	 * @return the response message depending on the scenario found.
 	 */
 	public AuthenticationStateResponse validateAuthenticationState( final String sourceJWT, final HttpServletResponse response ) {
+		LogWrapper.enter( sourceJWT );
 		if (this.jwtTokenService.validateToken( sourceJWT )) {
 			// Create a new cookie with a new expiration time.
 			response.addCookie( this.cookieService.generateCookie( sourceJWT ) );
