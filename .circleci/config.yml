@@ -118,18 +118,6 @@ jobs:
           keys:
           - v1-node-dependencies-{{ checksum "~/project/NeoCom-Infinity-Frontend/package.json" }}
           - v1-node-dependencies-
-      # - run:
-      #     name: FRONTEND - Configure BIT as a source for npm
-      #     working_directory: NeoCom-Infinity-Frontend
-      #     command: |
-      #       node -v
-      #       npm config set @bit:registry https://node.bitsrc.io
-      # - run:
-      #     name: FRONTEND - Install the framework
-      #     working_directory: NeoCom-Infinity-Frontend
-      #     command: |
-      #       node -v
-      #       npm install
       - run:
           name: FRONTEND - Run unit tests and code coverage
           working_directory: NeoCom-Infinity-Frontend
@@ -205,32 +193,6 @@ jobs:
             - ~/project/NeoCom-Infinity-Backend/build
             - ~/project/NeoCom-Infinity-Backend/coverage
           key: v1-build-{{ checksum "~/project/NeoCom-Infinity-Backend/build.gradle" }}
-  quality-sonarcloud-backend:
-    docker:
-      - image: circleci/openjdk:11-jdk
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-          - v1-build-{{ checksum "~/project/NeoCom-Infinity-Backend/build.gradle" }}
-          - v1-build-
-      - run:
-          name: NEOCOM-BACKEND - Update SonarQube statistics
-          working_directory: NeoCom-Infinity-Backend
-          environment:
-            PROFILE: "production"
-          command: |
-            ./gradlew test jacocoTestReport sonarqube
-
-  integration-test-backend-job:
-    docker:
-      - image: circleci/openjdk:11-jdk
-        environment:
-          _JAVA_OPTIONS: "-Xmx3g"
-          GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2"
-    steps:
-      - checkout
-
   acceptance-test-backend-job:
     machine:
       image: ubuntu-2004:202010-01
@@ -267,6 +229,31 @@ jobs:
             PROFILE: "production"
           command: |
             ./gradlew acceptanceTest -Dcucumber.options="--tags @NIB11.01"
+  quality-sonarcloud-backend:
+    docker:
+      - image: circleci/openjdk:11-jdk
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-build-{{ checksum "~/project/NeoCom-Infinity-Backend/build.gradle" }}
+          - v1-build-
+      - run:
+          name: NEOCOM-BACKEND - Update SonarQube statistics
+          working_directory: NeoCom-Infinity-Backend
+          environment:
+            PROFILE: "production"
+          command: |
+            ./gradlew test jacocoTestReport sonarqube
+
+  integration-test-backend-job:
+    docker:
+      - image: circleci/openjdk:11-jdk
+        environment:
+          _JAVA_OPTIONS: "-Xmx3g"
+          GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2"
+    steps:
+      - checkout
 
   stage-frontend-to-heroku:
     docker:
