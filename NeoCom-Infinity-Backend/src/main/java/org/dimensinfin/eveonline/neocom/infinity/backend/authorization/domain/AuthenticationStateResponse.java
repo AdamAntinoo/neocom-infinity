@@ -6,20 +6,7 @@ package org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain;
  */
 public class AuthenticationStateResponse {
 	public enum AuthenticationStateType {
-		NOT_FOUND( "not found" ),
-		NOT_VALID( "not valid" ),
-		VALID( "valid" );
-		private final String message;
-
-		// - C O N S T R U C T O R S
-		AuthenticationStateType( final String message ) {
-			this.message = message;
-		}
-
-		// - G E T T E R S   &   S E T T E R S
-		public String getMessage() {
-			return this.message;
-		}
+		NOT_FOUND, NOT_VALID, VALID;
 	}
 
 	private AuthenticationStateType state = AuthenticationStateType.NOT_VALID;
