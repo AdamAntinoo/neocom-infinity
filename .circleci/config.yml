@@ -48,10 +48,11 @@ jobs:
           command: |
             cp package.json package.json.checksum
             npm install
+            npm run build:prod
       - save_cache:
           paths:
             - ~/project/NeoCom-Infinity-Frontend/node_modules
-          key: v1-node-dependencies-{{ checksum "~/project/NeoCom-Infinity-Frontend/package.json.checksum" }}
+          key: frontend-dependencies-{{ checksum "~/project/NeoCom-Infinity-Frontend/package.json.checksum" }}
   compile-frontend-job:
     docker:
       - image: circleci/node:12.16.3-browsers
@@ -61,8 +62,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - v1-node-dependencies-{{ checksum "~/project/NeoCom-Infinity-Frontend/package.json" }}
-          - v1-node-dependencies-
+          - frontend-dependencies-{{ checksum "~/project/NeoCom-Infinity-Frontend/package.json" }}
       - run:
           name: NEOCOM-FRONTEND - Configure BIT as a source for npm
           working_directory: NeoCom-Infinity-Frontend
@@ -90,8 +90,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - v1-node-dependencies-{{ checksum "~/project/NeoCom-Infinity-Frontend/package.json" }}
-          - v1-node-dependencies-
+          - frontend-dependencies-{{ checksum "~/project/NeoCom-Infinity-Frontend/package.json" }}
       - run:
           name: NEOCOM-FRONTEND - Run unit tests and code coverage
           working_directory: NeoCom-Infinity-Frontend
@@ -112,8 +111,7 @@ jobs:
             sudo snap install figlet
       - restore_cache:
           keys:
-            - v1-node-dependencies-{{ checksum "~/project/NeoCom-Infinity-Frontend/package.json" }}
-            - v1-node-dependencies-
+            - frontend-dependencies-{{ checksum "~/project/NeoCom-Infinity-Frontend/package.json" }}
       - run:
           name: NEOCOM-FRONTEND - Start frontend mock processes
           working_directory: NeoCom-Infinity-Frontend
@@ -123,6 +121,7 @@ jobs:
           name: NEOCOM-FRONTEND - Run the list of approved acceptance tests
           working_directory: NeoCom-Infinity-Frontend
           command: |
+            npm install
             npm run acceptance:cypress:NIF01
 
   # - B A C K E N D
@@ -141,7 +140,7 @@ jobs:
       - save_cache:
           paths:
             - ~/NeoCom-Infinity-Backend/.gradle
-          key: v1-dependencies-{{ checksum "~/project/NeoCom-Infinity-Backend/dependencies.gradle" }}
+          key: backend-dependencies-{{ checksum "~/project/NeoCom-Infinity-Backend/dependencies.gradle" }}
   compile-backend-job:
     docker:
       - image: circleci/openjdk:11-jdk
@@ -149,8 +148,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "~/project/NeoCom-Infinity-Backend/dependencies.gradle" }}
-          - v1-dependencies-
+          - backend-dependencies-{{ checksum "~/project/NeoCom-Infinity-Backend/dependencies.gradle" }}
       - run:
           name: NEOCOM-BACKEND - Compile SpringBoot code
           working_directory: NeoCom-Infinity-Backend
@@ -168,8 +166,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "~/project/NeoCom-Infinity-Backend/dependencies.gradle" }}
-          - v1-dependencies-
+          - backend-dependencies-{{ checksum "~/project/NeoCom-Infinity-Backend/dependencies.gradle" }}
       - run:
           name: NEOCOM-BACKEND - Unit Testing application
           working_directory: NeoCom-Infinity-Backend
@@ -191,7 +188,7 @@ jobs:
             - ~/project/NeoCom-Infinity-Backend/.gradle
             - ~/project/NeoCom-Infinity-Backend/build
             - ~/project/NeoCom-Infinity-Backend/coverage
-          key: v1-build-{{ checksum "~/project/NeoCom-Infinity-Backend/build.gradle" }}
+          key: backend-build-{{ checksum "~/project/NeoCom-Infinity-Backend/build.gradle" }}
   acceptance-test-backend-job:
     machine:
       image: ubuntu-2004:202010-01
@@ -217,19 +214,22 @@ jobs:
           command: |
             ./docker-service.sh generate
       - run:
-          name: NEOCOM-BACKEND - Start the mock services
+          name: NEOCOM-BACKEND - Start the mock services and run tests
           working_directory: NeoCom-Infinity-Backend
           command: |
             ./docker-service.sh start acceptance
-      - run:
-          name: NEOCOM-BACKEND - Run the list of approved acceptance tests
-          working_directory: NeoCom-Infinity-Backend
-          environment:
-            PROFILE: "production"
-            DEFAULT_BACKEND_SERVER: http://acceptance
-            DEFAULT_BACKEND_PORT: 5241
-          command: |
+            docker ps
             ./gradlew acceptanceTest -Dcucumber.filter.tags="@NIB01.01 or @NIB01.05 or @NIB01.06 or @NIB01.07 or @NIB01.08" --info
+
+#      - run:
+#          name: NEOCOM-BACKEND - Run the list of approved acceptance tests
+#          working_directory: NeoCom-Infinity-Backend
+#          environment:
+#            PROFILE: "production"
+#            DEFAULT_BACKEND_SERVER: http://acceptance
+#            DEFAULT_BACKEND_PORT: 5241
+#          command: |
+#            ./gradlew acceptanceTest -Dcucumber.filter.tags="@NIB01.01 or @NIB01.05 or @NIB01.06 or @NIB01.07 or @NIB01.08" --info
   quality-sonarcloud-backend:
     docker:
       - image: circleci/openjdk:11-jdk
@@ -237,8 +237,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - v1-build-{{ checksum "~/project/NeoCom-Infinity-Backend/build.gradle" }}
-          - v1-build-
+          - backend-build-{{ checksum "~/project/NeoCom-Infinity-Backend/build.gradle" }}
       - run:
           name: NEOCOM-BACKEND - Update SonarQube statistics
           working_directory: NeoCom-Infinity-Backend
@@ -394,6 +393,7 @@ workflows:
       - compile-frontend-job:
           requires:
             - start-job
+            - framework-frontend-job
           filters:
             branches:
               only:
@@ -403,6 +403,7 @@ workflows:
       - unittest-frontend-job:
           requires:
             - start-job
+            - framework-frontend-job
             - compile-frontend-job
           filters:
             branches:
@@ -411,6 +412,7 @@ workflows:
                 - hotfix
       - acceptance-test-frontend-job:
           requires:
+            - framework-frontend-job
             - unittest-frontend-job
           filters:
             branches:
