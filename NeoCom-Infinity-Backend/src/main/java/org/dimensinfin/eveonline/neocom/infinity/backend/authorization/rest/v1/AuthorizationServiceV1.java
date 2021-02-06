@@ -20,7 +20,6 @@ import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterI
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthenticationStateResponse;
-import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRestError;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
 import org.dimensinfin.eveonline.neocom.infinity.service.CookieService;
@@ -43,7 +42,6 @@ public class AuthorizationServiceV1 {
 	private final IConfigurationService configurationService;
 	private final ESIDataService esiDataService;
 	private final CredentialRepository credentialRepository;
-	private final NeoComAuthenticationProvider neoComAuthenticationProvider;
 	private final CookieService cookieService;
 	private final JWTTokenService jwtTokenService;
 
@@ -52,13 +50,11 @@ public class AuthorizationServiceV1 {
 	public AuthorizationServiceV1( @NotNull final IConfigurationService configurationService,
 	                               @NotNull final ESIDataService esiDataService,
 	                               @NotNull final CredentialRepository credentialRepository,
-	                               @NotNull final NeoComAuthenticationProvider neoComAuthenticationProvider,
 	                               @NotNull final CookieService cookieService,
 	                               @NotNull final JWTTokenService jwtTokenService ) {
 		this.configurationService = configurationService;
 		this.esiDataService = esiDataService;
 		this.credentialRepository = credentialRepository;
-		this.neoComAuthenticationProvider = neoComAuthenticationProvider;
 		this.cookieService = cookieService;
 		this.jwtTokenService = jwtTokenService;
 	}
@@ -72,7 +68,19 @@ public class AuthorizationServiceV1 {
 	 */
 	public AuthenticationStateResponse validateAuthenticationState( final String sourceJWT, final HttpServletResponse response ) {
 		LogWrapper.enter( sourceJWT );
-		if (this.jwtTokenService.validateToken( sourceJWT )) {
+		if (this.jwtTokenService.validateToken( sourceJWT )) { // Token if correct then validate the Credential is at the repository.
+			try {
+				final Credential credential = Objects.requireNonNull( this.credentialRepository.findCredentialById(
+						Objects.requireNonNull( this.jwtTokenService.extractPayload( sourceJWT ).getUniqueId() )
+				) );
+				LogWrapper.info( credential.toString() );
+			} catch (final SQLException sqle) {
+				LogWrapper.error( sqle );
+				return new AuthenticationStateResponse.Builder().withState( AuthenticationStateResponse.AuthenticationStateType.NOT_FOUND ).build();
+			} catch (final NullPointerException npe) {
+				// If the credential is not found then return the 'NOT_FOUND' message.
+				return new AuthenticationStateResponse.Builder().withState( AuthenticationStateResponse.AuthenticationStateType.NOT_FOUND ).build();
+			}
 			// Create a new cookie with a new expiration time.
 			response.addCookie( this.cookieService.generateCookie( sourceJWT ) );
 			return new AuthenticationStateResponse.Builder().withState( AuthenticationStateResponse.AuthenticationStateType.VALID ).build();
@@ -112,9 +120,6 @@ public class AuthorizationServiceV1 {
 		}
 		LogWrapper.info( MessageFormat.format( "Credential #{0}-{1} created successfully.",
 				credential.getAccountId() + "", credential.getAccountName() ) );
-		// TODO - Seems the updated enters endless loop. Review later.
-		//				new CredentialUpdater( credential ).onRun();
-		//			UpdaterJobManager.submit( new CredentialUpdater( credential ) ); // Post the update request to the scheduler.
 
 		// - J W T T O K E N
 		final String jwtToken = this.jwtTokenService.createJWTToken( credential.getUniqueCredential(), pilotData.getCorporationId() );

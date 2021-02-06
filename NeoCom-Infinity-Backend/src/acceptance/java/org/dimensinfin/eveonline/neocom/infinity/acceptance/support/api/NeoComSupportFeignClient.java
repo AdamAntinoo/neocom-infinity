@@ -57,7 +57,7 @@ public class NeoComSupportFeignClient {
 				.addConverterFactory( GSON_CONVERTER_FACTORY )
 				.build()
 				.create( NeoComSupportApi.class )
-				.credentialsCount( NeoComApiv1.NEOCOM_BACKEND_ACCEPTED_CONTENT_TYPE )
+				.credentialsCount()
 				.execute();
 		if (response.isSuccessful()) {
 			final CredentialCountResponse credentialCountResponse = response.body();
@@ -89,7 +89,7 @@ public class NeoComSupportFeignClient {
 				.addConverterFactory( GSON_CONVERTER_FACTORY )
 				.build()
 				.create( NeoComSupportApi.class )
-				.deleteAllCredentials( NeoComApiv1.NEOCOM_BACKEND_ACCEPTED_CONTENT_TYPE )
+				.deleteAllCredentials()
 				.execute();
 		if (response.isSuccessful()) {
 			final CredentialCountResponse credentialCountResponse = response.body();
@@ -149,7 +149,7 @@ public class NeoComSupportFeignClient {
 				.addConverterFactory( GSON_CONVERTER_FACTORY )
 				.build()
 				.create( NeoComSupportApi.class )
-				.storeCredential( NeoComApiv1.NEOCOM_BACKEND_ACCEPTED_CONTENT_TYPE,
+				.storeCredential(
 						storeCredentialRequest.getCredential().getAccountId(),
 						storeCredentialRequest.getCredential() )
 				.execute();

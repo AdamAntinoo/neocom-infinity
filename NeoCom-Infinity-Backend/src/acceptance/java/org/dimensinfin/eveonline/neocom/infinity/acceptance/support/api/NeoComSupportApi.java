@@ -19,11 +19,13 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface NeoComSupportApi {
+	@Headers({ "Content-Type: application/json" })
 	@GET("/api/v1/neocom/support/credentials/count")
-	Call<CredentialCountResponse> credentialsCount( @Header("Content-Type") final String contentType );
+	Call<CredentialCountResponse> credentialsCount();
 
+	@Headers({ "Content-Type: application/json" })
 	@GET("/api/v1/neocom/support/credentials/deleteall")
-	Call<CredentialCountResponse> deleteAllCredentials( @Header("Content-Type") final String contentType );
+	Call<CredentialCountResponse> deleteAllCredentials();
 
 	@Headers({ "Content-Type: application/json" })
 	@GET("/api/v1/public/support/loyalty/deleteall")
@@ -42,8 +44,8 @@ public interface NeoComSupportApi {
 	@GET("/api/v1/neocom/support/scheduler/jobs/count")
 	Call<ScheduleJobCountResponse> scheduledJobsCount( @Header("Content-Type") final String contentType );
 
+	@Headers({ "Content-Type: application/json" })
 	@PUT("/api/v1/neocom/credentials/{credentialId}")
-	Call<StoreCredentialResponse> storeCredential( @Header("Content-Type") final String contentType,
-	                                               @Path("credentialId") @NotNull final Integer credentialId,
+	Call<StoreCredentialResponse> storeCredential( @Path("credentialId") @NotNull final Integer credentialId,
 	                                               @Body @Valid final Credential credential );
 }
