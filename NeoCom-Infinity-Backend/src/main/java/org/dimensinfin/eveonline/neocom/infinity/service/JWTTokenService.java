@@ -80,6 +80,10 @@ public class JWTTokenService {
 		}
 	}
 
+	public JwtPayload extractPayload( final String payloadDataEncoded ) {
+		return this.accessDecodedPayload( payloadDataEncoded );
+	}
+
 	public boolean validateToken( final String sourceJWT ) {
 		try {
 			this.accessDecodedPayload( sourceJWT );

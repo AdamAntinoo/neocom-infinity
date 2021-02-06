@@ -17,7 +17,6 @@ import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterI
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthenticationStateResponse;
-import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
 import org.dimensinfin.eveonline.neocom.infinity.service.CookieService;
 import org.dimensinfin.eveonline.neocom.infinity.service.JWTTokenService;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
@@ -36,7 +35,6 @@ public class AuthorizationServiceV1Test {
 	private IConfigurationService configurationService;
 	private ESIDataService esiDataService;
 	private CredentialRepository credentialRepository;
-	private NeoComAuthenticationProvider neoComAuthenticationProvider;
 	private CookieService cookieService;
 	private JWTTokenService jwtTokenService;
 
@@ -45,7 +43,6 @@ public class AuthorizationServiceV1Test {
 		this.configurationService = Mockito.mock( IConfigurationService.class );
 		this.esiDataService = Mockito.mock( ESIDataService.class );
 		this.credentialRepository = Mockito.mock( CredentialRepository.class );
-		this.neoComAuthenticationProvider = Mockito.mock( NeoComAuthenticationProvider.class );
 		this.cookieService = Mockito.mock( CookieService.class );
 		this.jwtTokenService = Mockito.mock( JWTTokenService.class );
 	}
@@ -56,7 +53,6 @@ public class AuthorizationServiceV1Test {
 				this.configurationService,
 				this.esiDataService,
 				this.credentialRepository,
-				this.neoComAuthenticationProvider,
 				this.cookieService,
 				this.jwtTokenService );
 		Assertions.assertNotNull( authorizationServiceV1 );
@@ -74,7 +70,6 @@ public class AuthorizationServiceV1Test {
 				this.configurationService,
 				this.esiDataService,
 				this.credentialRepository,
-				this.neoComAuthenticationProvider,
 				this.cookieService,
 				this.jwtTokenService );
 		final AuthenticationStateResponse obtained = authorizationServiceV1.validateAuthenticationState( sourceJWT, servletResponse );
@@ -118,7 +113,6 @@ public class AuthorizationServiceV1Test {
 				this.configurationService,
 				this.esiDataService,
 				this.credentialRepository,
-				this.neoComAuthenticationProvider,
 				this.cookieService,
 				this.jwtTokenService );
 		final ValidateAuthorizationTokenResponse obtained = authorizationServiceV1.validateAuthorizationToken( validateAuthorizationTokenRequest );

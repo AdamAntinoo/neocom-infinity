@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
@@ -13,14 +14,14 @@ import org.dimensinfin.eveonline.neocom.infinity.credential.persistence.SupportC
 import org.dimensinfin.eveonline.neocom.infinity.support.client.CredentialCountResponse;
 import org.dimensinfin.eveonline.neocom.service.logger.NeoComLogger;
 
-@Profile("acceptance")
+@Profile({ "acceptance", "dev" })
 @Service
 public class CredentialSupportService {
 	private final SupportCredentialRepository credentialRepository;
 
 	// - C O N S T R U C T O R S
 	@Autowired
-	public CredentialSupportService( @NotNull final SupportCredentialRepository supportCredentialRepository ) {
+	public CredentialSupportService( @NotNull @Qualifier("SupportCredentialRepository") final SupportCredentialRepository supportCredentialRepository ) {
 		this.credentialRepository = supportCredentialRepository;
 	}
 
