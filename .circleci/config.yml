@@ -336,32 +336,6 @@ workflows:
                 - test
                 - hotfix
                 - master
-      # - FRONTEND
-      - framework-frontend-job:
-          filters:
-            branches:
-              only:
-                - experimental
-                - development
-                - test
-      - compile-frontend-job:
-          requires:
-            - start-job
-          filters:
-            branches:
-              only:
-                - experimental
-                - development
-                - test
-      - unittest-frontend-job:
-          requires:
-            - start-job
-            - compile-frontend-job
-          filters:
-            branches:
-              only:
-                - test
-                - hotfix
       # - BACKEND
       - cache-dependencies-backend:
           filters:
@@ -409,6 +383,40 @@ workflows:
             branches:
               only:
                 - test
+      # - FRONTEND
+      - framework-frontend-job:
+          filters:
+            branches:
+              only:
+                - experimental
+                - development
+                - test
+      - compile-frontend-job:
+          requires:
+            - start-job
+          filters:
+            branches:
+              only:
+                - experimental
+                - development
+                - test
+      - unittest-frontend-job:
+          requires:
+            - start-job
+            - compile-frontend-job
+          filters:
+            branches:
+              only:
+                - test
+                - hotfix
+      - acceptance-test-frontend-job:
+          requires:
+            - unittest-frontend-job
+          filters:
+            branches:
+              only:
+                - test
+                - hotfix
 
   neocom-infinity-deploy:
     jobs:
