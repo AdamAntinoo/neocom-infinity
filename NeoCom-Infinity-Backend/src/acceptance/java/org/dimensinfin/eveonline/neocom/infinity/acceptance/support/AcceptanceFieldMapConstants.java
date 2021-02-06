@@ -60,4 +60,10 @@ public class AcceptanceFieldMapConstants {
 	public static final String VALIDATEAUTHORIZATIONREQUEST_CODE = "code";
 	public static final String VALIDATEAUTHORIZATIONREQUEST_STATE = "state";
 	public static final String VALIDATEAUTHORIZATIONREQUEST_DATASOURCE = "datasource";
+
+	public static final String JWTTOKEN_SUBSCRIBER = "sub";
+	public static final String JWTTOKEN_CORPORATION_ID = "corporationId";
+	public static final String JWTTOKEN_ACCOUNT_NAME = "accountName";
+	public static final String JWTTOKEN_UNIQUE_ID = "uniqueId";
+	public static final String JWTTOKEN_PILOT_ID = "pilotId";
 }
