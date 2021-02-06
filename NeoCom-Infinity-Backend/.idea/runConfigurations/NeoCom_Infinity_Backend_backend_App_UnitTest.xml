@@ -13,10 +13,6 @@
         <option name="ENABLED" value="true" />
         <option name="INCLUDE" value="false" />
       </pattern>
-      <pattern>
-        <option name="PATTERN" value="org.dimensinfin.eveonline.neocom.infinity.integration.*" />
-        <option name="ENABLED" value="true" />
-      </pattern>
     </extension>
     <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
     <option name="ALTERNATIVE_JRE_PATH" value="11-OpenJDK" />
@@ -24,7 +20,6 @@
     <option name="MAIN_CLASS_NAME" value="" />
     <option name="METHOD_NAME" value="" />
     <option name="TEST_OBJECT" value="directory" />
-    <option name="VM_PARAMETERS" value="-ea -Dcucumber.options=&quot;--tags @NIB00&quot;" />
     <option name="PARAMETERS" value="" />
     <option name="TEST_SEARCH_SCOPE">
       <value defaultName="wholeProject" />

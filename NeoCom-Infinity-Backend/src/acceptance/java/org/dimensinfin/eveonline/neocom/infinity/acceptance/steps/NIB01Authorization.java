@@ -3,23 +3,33 @@ package org.dimensinfin.eveonline.neocom.infinity.acceptance.steps;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.dimensinfin.eveonline.neocom.database.NeoComDatabaseService;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
+import org.dimensinfin.eveonline.neocom.database.repositories.CredentialRepository;
+import org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendDependenciesModule;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.api.NeoComSupportFeignClient;
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.authorization.validation.JWTTokenValidator;
+import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBNeoComDBAdapter;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.JwtPayload;
+import org.dimensinfin.eveonline.neocom.infinity.service.JWTTokenService;
 import org.dimensinfin.eveonline.neocom.infinity.support.ConverterContainer;
 import org.dimensinfin.eveonline.neocom.infinity.support.NeoComWorld;
 import org.dimensinfin.eveonline.neocom.infinity.support.RequestType;
 import org.dimensinfin.eveonline.neocom.infinity.support.authorization.converter.CucumberTableToCredential;
+import org.dimensinfin.logging.LogWrapper;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -35,6 +45,13 @@ public class NIB01Authorization extends SupportSteps {
 	private static final String ISS = "iss";
 	private static final ObjectMapper jsonMapper = new ObjectMapper();
 	private final NeoComSupportFeignClient neoComSupportFeignClient;
+	//	private final JWTTokenService jwtTokenService;
+	//	private final Injector injector; // The global Guice injector singleton
+	//	// Guice modules are initialized before the spring context completes
+	//	{
+	//		LogWrapper.info( "Creating Injector for Guice dependencies..." );
+	//		this.injector = Guice.createInjector( new NeoComInfinityBackendDependenciesModule() );
+	//	}
 
 	// - C O N S T R U C T O R S
 	@Autowired
@@ -43,23 +60,33 @@ public class NIB01Authorization extends SupportSteps {
 	                           final NeoComSupportFeignClient neoComSupportFeignClient ) {
 		super( cucumberTableToRequestConverters, neocomWorld );
 		this.neoComSupportFeignClient = neoComSupportFeignClient;
+		//		this.jwtTokenService = jwtTokenService;
 	}
 
+	//	@Bean
+	//	public NeoComDatabaseService dependency_08_NeoComDatabaseService() {
+	//		LogWrapper.enter();
+	//		return this.injector.getInstance( SBNeoComDBAdapter.class );
+	//	}
+	//	@Bean
+	//	public CredentialRepository dependency_09_CredentialRepository() {
+	//		LogWrapper.enter();
+	//		return this.injector.getInstance( CredentialRepository.class );
+	//	}
 	@Then("the JWT generated token has the next contents")
 	public void the_JWT_generated_token_has_the_next_contents( final List<Map<String, String>> dataTable ) throws IOException {
-		final Map<String, String> row = dataTable.get( 0 );
-		Assert.assertEquals( row.get( SUB ),
-				this.extractClaim( SUB, this.neocomWorld.getJwtAuthorizationToken() ) );
-		Assert.assertEquals( row.get( TOKEN_CORPORATION_ID_FIELD_NAME ),
-				this.extractClaim( TOKEN_CORPORATION_ID_FIELD_NAME, this.neocomWorld.getJwtAuthorizationToken() ) );
-		Assert.assertEquals( row.get( TOKEN_ACCOUNT_NAME_FIELD_NAME ),
-				this.extractClaim( TOKEN_ACCOUNT_NAME_FIELD_NAME, this.neocomWorld.getJwtAuthorizationToken() ) );
-		Assert.assertEquals( row.get( ISS ),
-				this.extractClaim( ISS, this.neocomWorld.getJwtAuthorizationToken() ) );
-		Assert.assertEquals( row.get( TOKEN_UNIQUE_IDENTIFIER_FIELD_NAME ),
-				this.extractClaim( TOKEN_UNIQUE_IDENTIFIER_FIELD_NAME, this.neocomWorld.getJwtAuthorizationToken() ) );
-		Assert.assertEquals( row.get( TOKEN_PILOT_ID_FIELD_NAME ),
-				this.extractClaim( TOKEN_PILOT_ID_FIELD_NAME, this.neocomWorld.getJwtAuthorizationToken() ) );
+		LogWrapper.info( "Creating Injector for Guice dependencies..." );
+		final Injector injector = Guice.createInjector( new NeoComInfinityBackendDependenciesModule() );
+		final NeoComDatabaseService neoComDatabaseService = injector.getInstance( SBNeoComDBAdapter.class );
+		final CredentialRepository credentialRepository = new CredentialRepository( neoComDatabaseService );
+		final JWTTokenService jwtTokenService = new JWTTokenService( credentialRepository );
+
+		Assert.assertNotNull( this.neocomWorld.getValidateAuthorizationTokenResponseEntity() );
+		Assert.assertNotNull( this.neocomWorld.getValidateAuthorizationTokenResponseEntity().getBody() );
+		final JwtPayload payload = Objects.requireNonNull( jwtTokenService.extractPayload(
+				this.neocomWorld.getValidateAuthorizationTokenResponseEntity().getBody().getJwtToken()
+		) );
+		Assert.assertTrue( new JWTTokenValidator().validate( dataTable.get( 0 ), payload ) );
 	}
 
 	@Then("the Validate Authentication response message is {string}")
