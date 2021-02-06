@@ -109,9 +109,7 @@ jobs:
           command: |
             node -v
             sudo snap install figlet
-      - restore_cache:
-          keys:
-            - frontend-dependencies-{{ checksum "~/project/NeoCom-Infinity-Frontend/package.json" }}
+            npm install
       - run:
           name: NEOCOM-FRONTEND - Start frontend mock processes
           working_directory: NeoCom-Infinity-Frontend
@@ -121,7 +119,6 @@ jobs:
           name: NEOCOM-FRONTEND - Run the list of approved acceptance tests
           working_directory: NeoCom-Infinity-Frontend
           command: |
-            npm install
             npm run acceptance:cypress:NIF01
 
   # - B A C K E N D

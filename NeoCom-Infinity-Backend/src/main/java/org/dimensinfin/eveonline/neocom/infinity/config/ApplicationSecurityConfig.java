@@ -20,8 +20,8 @@ import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthentic
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.ACTUATORS_URL;
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.CREDENTIAL_SUPPORT_URL;
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.GET_ITEM;
-import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.LOGIN_SESSION_VERIFICATION_URL;
-import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.LOGIN_VERIFICATION_URL;
+import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.LOGIN_VALIDATE_STATE_URL;
+import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.LOGIN_VALIDATE_TOKEN_URL;
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.PUBLIC_URL;
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.SERVER_STATUS_URL;
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.STORE_CREDENTIAL_URL;
@@ -51,7 +51,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.cors().and().csrf().disable().authorizeRequests()
 				.antMatchers(
 						ACTUATORS_URL,
-						LOGIN_VERIFICATION_URL, LOGIN_SESSION_VERIFICATION_URL, STORE_CREDENTIAL_URL,
+						LOGIN_VALIDATE_TOKEN_URL, LOGIN_VALIDATE_STATE_URL, STORE_CREDENTIAL_URL,
 						UNIVERSEV1_URL, PUBLIC_URL,
 						SERVER_STATUS_URL, CREDENTIAL_SUPPORT_URL,
 						GET_ITEM ).permitAll() // List of URL that do not require authentication JWT token.

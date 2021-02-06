@@ -79,6 +79,24 @@ tags:
 
 paths:
   # - A U T H E N T I C A T I O N
+  /api/v1/neocom/validateAuthenticationState:
+    get:
+      tags:
+        - neocom
+      summary: Validated if the front end application is still authenticated with a valit token.
+      description: |
+        The front end sens a http only cookie with the current token if exists. In case there is no cookie, the token is invalid or the credential
+        pointed by the token is not found then the endpoint retuns a message to start the login process.
+        If the cookie exists, the JWT token is valid and the Credential is found then the cookie y time extended and the application continues to
+        the Dashboard page.
+      operationId: validateAuthenticationState
+      responses:
+        '200':
+          description: Validation completed successfully and the authentication state is ready.
+          content:
+            'application/json;charset=UTF-8':
+              schema:
+                $ref: '#/components/schemas/AuthenticationStateResponse'
   /api/v1/neocom/validateAuthorizationToken:
     get:
       tags:
@@ -308,6 +326,26 @@ paths:
 
 components:
   schemas:
+    AuthenticationStateResponse:
+      type: object
+      required:
+        - state
+      properties:
+        state:
+          type: string
+          enum:
+            - NOT_FOUND
+            - NOT_VALID
+            - VALID
+          description: >
+            The current authentication state for this client application.
+            * **NOT_FOUND** - If the cookie does not exist or the Credential is not found.
+            * **NOT_VALID** - If the current JWT token is no longer valid.
+            * **VALID** - cooki, token and credential are valid.
+          example:
+            VALID
+
+
     PilotPublicData:
       type: object
       required:
