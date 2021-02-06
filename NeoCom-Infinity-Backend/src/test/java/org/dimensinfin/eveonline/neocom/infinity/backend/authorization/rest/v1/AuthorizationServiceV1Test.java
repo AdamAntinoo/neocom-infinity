@@ -1,5 +1,6 @@
 package org.dimensinfin.eveonline.neocom.infinity.backend.authorization.rest.v1;
 
+import java.sql.SQLException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,11 +13,13 @@ import org.dimensinfin.eveonline.neocom.auth.NeoComOAuth2Flow;
 import org.dimensinfin.eveonline.neocom.auth.TokenTranslationResponse;
 import org.dimensinfin.eveonline.neocom.auth.TokenVerification;
 import org.dimensinfin.eveonline.neocom.auth.VerifyCharacterResponse;
+import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.database.repositories.CredentialRepository;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdOk;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthenticationStateResponse;
+import org.dimensinfin.eveonline.neocom.infinity.config.security.JwtPayload;
 import org.dimensinfin.eveonline.neocom.infinity.service.CookieService;
 import org.dimensinfin.eveonline.neocom.infinity.service.JWTTokenService;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
@@ -59,12 +62,61 @@ public class AuthorizationServiceV1Test {
 	}
 
 	@Test
-	public void validateAuthenticationStateValid() {
+	public void validateAuthenticationNotFound() {
+		// Given
+		final String sourceJWT = "-NOT-AFFECTS-";
+		final HttpServletResponse servletResponse = Mockito.mock( HttpServletResponse.class );
+		final JwtPayload payload = Mockito.mock( JwtPayload.class );
+		final Credential credential = Mockito.mock( Credential.class );
+		// When
+		Mockito.when( this.jwtTokenService.validateToken( Mockito.anyString() ) ).thenReturn( true );
+		Mockito.when( this.jwtTokenService.extractPayload( Mockito.anyString() ) ).thenReturn( payload );
+		Mockito.when( payload.getUniqueId() ).thenReturn( "-UNIQUE-IS-" );
+		// Test
+		final AuthorizationServiceV1 authorizationServiceV1 = new AuthorizationServiceV1(
+				this.configurationService,
+				this.esiDataService,
+				this.credentialRepository,
+				this.cookieService,
+				this.jwtTokenService );
+		final AuthenticationStateResponse obtained = authorizationServiceV1.validateAuthenticationState( sourceJWT, servletResponse );
+		// Assertions
+		Assertions.assertNotNull( obtained );
+		Assertions.assertEquals( AuthenticationStateResponse.AuthenticationStateType.NOT_FOUND, obtained.getState() );
+	}
+
+	@Test
+	public void validateAuthenticationNotValid() {
 		// Given
 		final String sourceJWT = "-NOT-AFFECTS-";
 		final HttpServletResponse servletResponse = Mockito.mock( HttpServletResponse.class );
 		// When
+		Mockito.when( this.jwtTokenService.validateToken( Mockito.anyString() ) ).thenReturn( false );
+		// Test
+		final AuthorizationServiceV1 authorizationServiceV1 = new AuthorizationServiceV1(
+				this.configurationService,
+				this.esiDataService,
+				this.credentialRepository,
+				this.cookieService,
+				this.jwtTokenService );
+		final AuthenticationStateResponse obtained = authorizationServiceV1.validateAuthenticationState( sourceJWT, servletResponse );
+		// Assertions
+		Assertions.assertNotNull( obtained );
+		Assertions.assertEquals( AuthenticationStateResponse.AuthenticationStateType.NOT_VALID, obtained.getState() );
+	}
+
+	@Test
+	public void validateAuthenticationStateValid() throws SQLException {
+		// Given
+		final String sourceJWT = "-NOT-AFFECTS-";
+		final HttpServletResponse servletResponse = Mockito.mock( HttpServletResponse.class );
+		final JwtPayload payload = Mockito.mock( JwtPayload.class );
+		final Credential credential = Mockito.mock( Credential.class );
+		// When
 		Mockito.when( this.jwtTokenService.validateToken( Mockito.anyString() ) ).thenReturn( true );
+		Mockito.when( this.jwtTokenService.extractPayload( Mockito.anyString() ) ).thenReturn( payload );
+		Mockito.when( payload.getUniqueId() ).thenReturn( "-UNIQUE-IS-" );
+		Mockito.when( this.credentialRepository.findCredentialById( Mockito.anyString() ) ).thenReturn( credential );
 		// Test
 		final AuthorizationServiceV1 authorizationServiceV1 = new AuthorizationServiceV1(
 				this.configurationService,
