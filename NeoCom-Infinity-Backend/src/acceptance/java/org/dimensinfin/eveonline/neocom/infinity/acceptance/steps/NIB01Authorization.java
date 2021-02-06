@@ -102,7 +102,7 @@ public class NIB01Authorization extends SupportSteps {
 	public void the_response_contains_a_valid_Credential( final String endpointName ) {
 		final RequestType requestType = RequestType.from( endpointName );
 		switch (requestType) {
-			case VALIDATE_AUTHORIZATION_TOKEN_ENDPOINT_NAME:
+			case VALIDATE_AUTHORIZATION_TOKEN:
 				Assert.assertNotNull( this.neocomWorld.getValidateAuthorizationTokenResponse().getCredential() );
 				// TODO - Validate the credential contents probably against a list of values.
 				break;

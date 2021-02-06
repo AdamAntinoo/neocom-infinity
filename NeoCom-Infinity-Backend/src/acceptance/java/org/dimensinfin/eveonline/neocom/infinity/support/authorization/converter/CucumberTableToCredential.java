@@ -22,15 +22,16 @@ public class CucumberTableToCredential extends CucumberTableToRequestConverter<C
 	private static final String ASSETS_COUNT = "assetsCount";
 	private static final String MINING_RESOURCES_VALUE = "miningResourcesEstimatedValue";
 
+// - G E T T E R S   &   S E T T E R S
 	@Override
 	public RequestType getType() {
-		return RequestType.VALIDATE_AUTHORIZATION_TOKEN_ENDPOINT_NAME;
+		return RequestType.VALIDATE_AUTHORIZATION_TOKEN;
 	}
 
 	@Override
-	public Credential convert( Map<String, String> cucumberRow ) {
+	public Credential convert( final Map<String, String> cucumberRow ) {
 		return new Credential.Builder( Integer.parseInt( cucumberRow.get( ACCOUNT_ID ) ) )
-//				.withAccountId( Long.parseLong( cucumberRow.get( ACCOUNT_ID ) ) )
+				//				.withAccountId( Long.parseLong( cucumberRow.get( ACCOUNT_ID ) ) )
 				.withAccountName( cucumberRow.get( ACCOUNT_NAME ) )
 				.withCorporationId( Integer.parseInt( cucumberRow.get( CORPORATION_ID ) ) )
 				.withDataSource( cucumberRow.get( DATA_SOURCE ) )

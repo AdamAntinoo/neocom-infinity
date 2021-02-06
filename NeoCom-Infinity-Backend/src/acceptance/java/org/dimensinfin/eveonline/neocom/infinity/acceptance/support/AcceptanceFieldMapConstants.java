@@ -56,4 +56,8 @@ public class AcceptanceFieldMapConstants {
 
 	public static final String COOKIE_NAME = "name";
 	public static final String COOKIE_PAYLOAD = "payload";
+
+	public static final String VALIDATEAUTHORIZATIONREQUEST_CODE = "code";
+	public static final String VALIDATEAUTHORIZATIONREQUEST_STATE = "state";
+	public static final String VALIDATEAUTHORIZATIONREQUEST_DATASOURCE = "datasource";
 }
