@@ -18,10 +18,7 @@ import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.api.NeoComSu
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.authorization.rest.v1.AuthorizationFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialResponse;
-import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
-import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.ConverterContainer;
-import org.dimensinfin.eveonline.neocom.infinity.support.CucumberTableConverter;
 import org.dimensinfin.eveonline.neocom.infinity.support.NeoComWorld;
 import org.dimensinfin.eveonline.neocom.infinity.support.RequestType;
 import org.dimensinfin.eveonline.neocom.infinity.support.authorization.converter.CucumberTableToCredential;
@@ -94,12 +91,6 @@ public class NIBCommonSteps extends SupportSteps {
 	                                                          final List<Map<String, String>> dataTable ) {
 		final RequestType requestType = RequestType.from( endpointName );
 		switch (requestType) {
-			case VALIDATE_AUTHORIZATION_TOKEN_ENDPOINT_NAME:
-				final CucumberTableConverter cucumberTableConverter = this.findConverter( requestType );
-				this.neocomWorld.setValidateAuthorizationTokenRequest(
-						(ValidateAuthorizationTokenRequest) cucumberTableConverter.convert( dataTable.get( 0 ) )
-				);
-				break;
 			case GET_CORPORATION_ENDPOINT_NAME:
 			case GET_CORPORATION_ASSETS_BY_LOCATION:
 				final Map<String, String> row = dataTable.get( 0 );
@@ -195,15 +186,6 @@ public class NIBCommonSteps extends SupportSteps {
 	private ResponseEntity processRequest( final RequestType requestType ) {
 		try {
 			switch (requestType) {
-				case VALIDATE_AUTHORIZATION_TOKEN_ENDPOINT_NAME:
-					final ResponseEntity<ValidateAuthorizationTokenResponse> validateAuthorizationTokenResponse =
-							this.authorizationFeignClient.validateAuthorizationToken(
-									this.neocomWorld.getValidateAuthorizationTokenRequest()
-							);
-					Assert.assertNotNull( validateAuthorizationTokenResponse.getBody() );
-					this.neocomWorld.setValidateAuthorizationTokenResponse( validateAuthorizationTokenResponse.getBody() );
-					this.neocomWorld.setJwtAuthorizationToken( validateAuthorizationTokenResponse.getBody().getJwtToken() );
-					return validateAuthorizationTokenResponse;
 				case GET_CORPORATION_ENDPOINT_NAME:
 					Assert.assertTrue( this.neocomWorld.getCorporationIdentifier().isPresent() );
 					final ResponseEntity<CorporationResponse> corporationDataResponse =

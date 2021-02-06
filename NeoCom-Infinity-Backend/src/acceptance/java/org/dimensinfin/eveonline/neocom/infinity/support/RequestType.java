@@ -5,7 +5,9 @@ import java.util.Arrays;
 import org.apache.commons.lang3.NotImplementedException;
 
 public enum RequestType {
-	VALIDATE_AUTHORIZATION_TOKEN_ENDPOINT_NAME( "Validate Authorization Token" ),
+	VALIDATE_AUTHENTICATION( "" ),
+	VALIDATE_AUTHORIZATION_TOKEN( "Validate Authorization Token" ),
+
 	GET_PILOT_DATA_ENDPOINT_NAME( "Get Pilot Data" ),
 	GET_PILOTS_FITTINGS_ENDPOINT_NAME( "Get Pilot Fittings" ),
 	GET_PILOTS_FITTINGS_V2_ENDPOINT_NAME( "Get Pilot Fittings" ),
@@ -15,7 +17,7 @@ public enum RequestType {
 	GET_SERVER_STATUS( "" ),
 	GET_LOYALTY_OFFERS( "" ),
 	UPDATE_LOYALTY_SERVICE_CONFIGURATION( "" ),
-	VALIDATE_AUTHENTICATION( "" ),
+
 
 	GET_MARKET_CONSOLIDATED( "" ),
 	GET_UNIVERSE_MARKET_CONSOLIDATED( "" ),

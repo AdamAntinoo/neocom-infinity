@@ -9,13 +9,21 @@ Feature: [NIB01] Validate the authorization token from ESI OAuth2 service and ot
 
   @NIB01.01 @Authorization
   Scenario: [NIB01.01] Detect the correct state at the endpoint.
-    Given a request to the "Validate Authorization Token" endpoint with the next data
+    Given the next Validate Authorization Token Request
       | code          | state                                                            | dataSource |
       | -not-applies- | LU5FT0NPTS5JTkZJTklUWS1QUk9EVUNUSU9OLVZBTElEIFNUQVRFIFNUUklORy0= |            |
+    When the Validate Authorization Token request is processed
+    Then there is a valid response with return code of "200 OK"
     And the state field matches "LU5FT0NPTS5JTkZJTklUWS1QUk9EVUNUSU9OLVZBTElEIFNUQVRFIFNUUklORy0="
-    When the "Validate Authorization Token" request is processed
-    Then the response status code is 200
-    And the "Validate Authorization Token" response contains a valid Credential
+
+#    When the Validate Authorization Token request with next data is processed
+#
+#    Given a request to the "Validate Authorization Token" endpoint with the next data
+#      | code          | state                                                            | dataSource |
+#      | -not-applies- | LU5FT0NPTS5JTkZJTklUWS1QUk9EVUNUSU9OLVZBTElEIFNUQVRFIFNUUklORy0= |            |
+#    When the "Validate Authorization Token" request is processed
+#    Then the response status code is 200
+#    And the "Validate Authorization Token" response contains a valid Credential
 
   @NIB01.02 @Authorization
   Scenario: [NIB01.02] Validate that the JWT token has the correct contents.

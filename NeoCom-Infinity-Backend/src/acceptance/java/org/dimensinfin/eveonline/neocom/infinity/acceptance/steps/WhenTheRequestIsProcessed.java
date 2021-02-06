@@ -2,6 +2,7 @@ package org.dimensinfin.eveonline.neocom.infinity.acceptance.steps;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 import javax.validation.constraints.NotNull;
 
 import org.apache.commons.lang3.NotImplementedException;
@@ -61,7 +62,7 @@ public class WhenTheRequestIsProcessed extends StepSupport {
 	}
 
 	public void the_Accounting_Week_Income_request_is_processed() throws IOException {
-		this.processRequestByType( RequestType.VALIDATE_AUTHORIZATION_TOKEN_ENDPOINT_NAME );
+		this.processRequestByType( RequestType.VALIDATE_AUTHORIZATION_TOKEN );
 	}
 
 	@When("the Get EsiItem with item id {int} request is processed")
@@ -123,17 +124,13 @@ public class WhenTheRequestIsProcessed extends StepSupport {
 		this.processRequestByType( RequestType.VALIDATE_AUTHENTICATION );
 	}
 
+	@When("the Validate Authorization Token request is processed")
+	public void the_validate_authorization_token_request_is_processed() throws IOException {
+		this.processRequestByType( RequestType.VALIDATE_AUTHORIZATION_TOKEN );
+	}
+
 	private ResponseEntity processRequest( final RequestType requestType ) throws IOException {
 		switch (requestType) {
-			case VALIDATE_AUTHORIZATION_TOKEN_ENDPOINT_NAME:
-				final ResponseEntity<ValidateAuthorizationTokenResponse> validateAuthorizationTokenResponseEntity = this.authorizationFeignClient
-						.validateAuthorizationToken(
-								this.neocomWorld.getValidateAuthorizationTokenRequest()
-						);
-				Assertions.assertNotNull( validateAuthorizationTokenResponseEntity );
-				this.neocomWorld.setValidateAuthorizationTokenResponseEntity( validateAuthorizationTokenResponseEntity );
-				this.neocomWorld.setJwtAuthorizationToken( validateAuthorizationTokenResponseEntity.getBody().getJwtToken() );
-				return validateAuthorizationTokenResponseEntity;
 			case GET_PILOT_DATA_ENDPOINT_NAME:
 				Assertions.assertTrue( this.neocomWorld.getPilotIdentifier().isPresent() );
 				final ResponseEntity<PilotV1> pilotDataResponseEntity = this.characterFeignClientV2.getPilotData(
@@ -227,6 +224,18 @@ public class WhenTheRequestIsProcessed extends StepSupport {
 				Assertions.assertNotNull( authenticationStateResponseEntity );
 				this.neocomWorld.setAuthenticationStateResponseEntity( authenticationStateResponseEntity );
 				return authenticationStateResponseEntity;
+			case VALIDATE_AUTHORIZATION_TOKEN:
+				Assertions.assertNotNull( this.neocomWorld.getValidateAuthorizationTokenRequest() );
+				final ResponseEntity<ValidateAuthorizationTokenResponse> validateAuthorizationTokenResponseEntity = this.authorizationFeignClient
+						.validateAuthorizationToken(
+								this.neocomWorld.getValidateAuthorizationTokenRequest()
+						);
+				Assertions.assertNotNull( validateAuthorizationTokenResponseEntity );
+				this.neocomWorld.setValidateAuthorizationTokenResponseEntity( validateAuthorizationTokenResponseEntity );
+				this.neocomWorld.setJwtAuthorizationToken(
+						Objects.requireNonNull( validateAuthorizationTokenResponseEntity.getBody() ).getJwtToken()
+				);
+				return validateAuthorizationTokenResponseEntity;
 			default:
 				throw new NotImplementedException( "Request {} not implemented.", requestType.name() );
 		}

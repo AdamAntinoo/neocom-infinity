@@ -14,10 +14,10 @@ public class CucumberTableToValidateAuthorizationTokenRequest extends CucumberTa
 	private static final String STATE = "state";
 	private static final String DATA_SOURCE = "dataSource";
 
-// - G E T T E R S   &   S E T T E R S
+	// - G E T T E R S   &   S E T T E R S
 	@Override
 	public RequestType getType() {
-		return RequestType.VALIDATE_AUTHORIZATION_TOKEN_ENDPOINT_NAME;
+		return RequestType.VALIDATE_AUTHORIZATION_TOKEN;
 	}
 
 	@Override

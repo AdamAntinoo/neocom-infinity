@@ -18,18 +18,19 @@ public class CucumberTableToMiningExtractionEntityConverter extends CucumberTabl
 	private static final String QUANTITY = "quantity";
 	private static final String SYSTEMID = "systemId";
 
+// - G E T T E R S   &   S E T T E R S
 	@Override
 	public RequestType getType() {
-		return RequestType.VALIDATE_AUTHORIZATION_TOKEN_ENDPOINT_NAME;
+		return RequestType.VALIDATE_AUTHORIZATION_TOKEN;
 	}
 
 	@Override
-	public MiningExtractionEntity convert( Map<String, String> cucumberRow ) {
+	public MiningExtractionEntity convert( final Map<String, String> cucumberRow ) {
 		return new MiningExtractionEntity.Builder()
 				.withId( cucumberRow.get( ID ) )
 				.withTypeId( Integer.parseInt( cucumberRow.get( TYPE_ID ) ) )
 				.withOwnerId( Integer.parseInt( cucumberRow.get( OWNER_ID ) ) )
-//				.withDelta( 0L )
+				//				.withDelta( 0L )
 				.withSolarSystemId( Integer.parseInt( cucumberRow.get( SYSTEMID ) ) )
 				.withQuantity( Long.parseLong( cucumberRow.get( QUANTITY ) ) )
 				.withExtractionDateName( cucumberRow.get( EXTRACTIONS_DATE ) )
