@@ -19,7 +19,7 @@ public class SecurityConstants {
 
 	public static final String UNIVERSEV1_URL = "/api/v1/universe/**";
 	public static final String PUBLIC_URL = "/api/v1/public/**";
-	public static final String LOGIN_VERIFICATION_URL = "/api/v1/neocom/validateAuthorizationToken";
-	public static final String LOGIN_SESSION_VERIFICATION_URL = "/api/v1/neocom/validateSession";
+	public static final String LOGIN_VALIDATE_TOKEN_URL = "/api/v1/neocom/validateAuthorizationToken";
+	public static final String LOGIN_VALIDATE_STATE_URL = "/api/v1/neocom/validateAuthenticationState";
 	public static final String STORE_CREDENTIAL_URL = "/api/v1/neocom/credentials/**";
 }

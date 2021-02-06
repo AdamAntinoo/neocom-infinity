@@ -78,7 +78,7 @@ public interface NeoComApiv1 {
 	                                               @Body final Credential credential );
 
 	@Headers({ "Content-Type: application/json" })
-	@GET("/api/v1/neocom/validateSession")
+	@GET("/api/v1/neocom/validateAuthenticationState")
 	Call<AuthenticationStateResponse> validateAuthenticationState( @Header("Cookie") String userCookie );
 
 	@GET("/api/v1/neocom/validateAuthorizationToken")

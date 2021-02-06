@@ -76,7 +76,7 @@ public class AuthorizationControllerV1 extends NeoComController {
 	 *
 	 * @return the response message depending on the scenario found.
 	 */
-	@GetMapping(path = { "/validateSession" }, produces = "application/json")
+	@GetMapping(path = { "/validateAuthenticationState" }, produces = "application/json")
 	public ResponseEntity<AuthenticationStateResponse> validateAuthenticationState(
 			@CookieValue(value = NEOCOM_COOKIE_NAME, defaultValue = "-INVALID-") final String neocomCookieData,
 			final HttpServletResponse response ) {
