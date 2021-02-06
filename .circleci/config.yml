@@ -37,20 +37,21 @@ jobs:
     steps:
       - checkout
       - run:
-          name: FRONTEND - Configure BIT as a source for npm
+          name: NEOCOM-FRONTEND - Configure BIT as a source for npm
           working_directory: NeoCom-Infinity-Frontend
           command: |
             node -v
             npm config set @bit:registry https://node.bitsrc.io
       - run:
-          name: FRONTEND - Install the framework
+          name: NEOCOM-FRONTEND - Install the framework
           working_directory: NeoCom-Infinity-Frontend
           command: |
+            cp package.json package.json.checksum
             npm install
       - save_cache:
           paths:
             - ~/project/NeoCom-Infinity-Frontend/node_modules
-          key: v1-node-dependencies-{{ checksum "~/project/NeoCom-Infinity-Frontend/package.json" }}
+          key: v1-node-dependencies-{{ checksum "~/project/NeoCom-Infinity-Frontend/package.json.checksum" }}
   compile-frontend-job:
     docker:
       - image: circleci/node:12.16.3-browsers
@@ -63,45 +64,18 @@ jobs:
           - v1-node-dependencies-{{ checksum "~/project/NeoCom-Infinity-Frontend/package.json" }}
           - v1-node-dependencies-
       - run:
-          name: FRONTEND - Configure BIT as a source for npm
+          name: NEOCOM-FRONTEND - Configure BIT as a source for npm
           working_directory: NeoCom-Infinity-Frontend
           command: |
             node -v
             npm config set @bit:registry https://node.bitsrc.io
       - run:
-          name: FRONTEND - Install the framework
+          name: NEOCOM-FRONTEND - Install the framework
           working_directory: NeoCom-Infinity-Frontend
           command: |
             npm install
       - run:
-          name: FRONTEND - Compile Angular code
-          working_directory: NeoCom-Infinity-Frontend
-          command: |
-            npm run build:prod
-  build-frontend-job:
-    docker:
-      - image: circleci/node:12.16.3-browsers
-    environment:
-      BIT_TOKEN: d47a8f17-636f-4bda-aad9-ac9fa27fe26d
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-          - v1-node-dependencies-{{ checksum "~/project/NeoCom-Infinity-Frontend/package.json" }}
-          - v1-node-dependencies-
-      - run:
-          name: FRONTEND - Configure BIT as a source for npm
-          working_directory: NeoCom-Infinity-Frontend
-          command: |
-            node -v
-            npm config set @bit:registry https://node.bitsrc.io
-      - run:
-          name: FRONTEND - Install the framework
-          working_directory: NeoCom-Infinity-Frontend
-          command: |
-            npm install
-      - run:
-          name: FRONTEND - Compile Angular application
+          name: NEOCOM-FRONTEND - Compile Angular code
           working_directory: NeoCom-Infinity-Frontend
           command: |
             npm run build:prod
@@ -119,12 +93,37 @@ jobs:
           - v1-node-dependencies-{{ checksum "~/project/NeoCom-Infinity-Frontend/package.json" }}
           - v1-node-dependencies-
       - run:
-          name: FRONTEND - Run unit tests and code coverage
+          name: NEOCOM-FRONTEND - Run unit tests and code coverage
           working_directory: NeoCom-Infinity-Frontend
           command: |
             npm run test:prod
       - store_test_results:
           path: ~/project/NeoCom-Infinity-Frontend/coverage
+  acceptance-test-frontend-job:
+    machine:
+      image: ubuntu-2004:202010-01
+    steps:
+      - checkout
+      - run:
+          name: NEOCOM-FRONTEND - Validate the CI machine configuration
+          working_directory: NeoCom-Infinity-Backend
+          command: |
+            node -v
+            sudo snap install figlet
+      - restore_cache:
+          keys:
+            - v1-node-dependencies-{{ checksum "~/project/NeoCom-Infinity-Frontend/package.json" }}
+            - v1-node-dependencies-
+      - run:
+          name: NEOCOM-FRONTEND - Start frontend mock processes
+          working_directory: NeoCom-Infinity-Frontend
+          command: |
+            npm run docker:start
+      - run:
+          name: NEOCOM-FRONTEND - Run the list of approved acceptance tests
+          working_directory: NeoCom-Infinity-Frontend
+          command: |
+            npm run acceptance:cypress:NIF01
 
   # - B A C K E N D
   cache-dependencies-backend:
@@ -230,7 +229,7 @@ jobs:
             DEFAULT_BACKEND_SERVER: http://acceptance
             DEFAULT_BACKEND_PORT: 5241
           command: |
-            ./gradlew acceptanceTest -Dcucumber.filter.tags="@NIB01.05 or @NIB01.06 or @NIB01.07 or @NIB01.08" --info
+            ./gradlew acceptanceTest -Dcucumber.filter.tags="@NIB01.01 or @NIB01.05 or @NIB01.06 or @NIB01.07 or @NIB01.08" --info
   quality-sonarcloud-backend:
     docker:
       - image: circleci/openjdk:11-jdk
