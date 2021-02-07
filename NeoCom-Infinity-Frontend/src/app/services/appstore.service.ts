@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 import { BackendService } from '@app/services/backend.service';
 import { ActiveCacheWrapper } from '@app/modules/shared/support/ActiveCacheWrapper';
 // - DOMAIN
-import { Credential } from '../domain/Credential.domain';
+import { Credential } from '../domain/core/Credential.domain';
 import { IsolationService } from '@innovative/services/isolation.service';
 import { NeoComException } from '@innovative/domain/NeoComException';
 import { ExceptionCatalog } from '@app/platform/ExceptionCatalog';

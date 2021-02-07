@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 import { GlobalService } from '@innovative/services/global.service';
 import { BackendService } from '@app/services/backend.service';
 // - DOMAIN
-import { Credential } from '@app/domain/Credential.domain';
+import { Credential } from '@domain/core/Credential.domain';
 import { Corporation } from '@app/domain/Corporation.domain';
 import { Pilot } from '@app/domain/Pilot.domain';
 import { CorporationDataResponse } from '@app/domain/dto/CorporationDataResponse.dto';

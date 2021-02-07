@@ -17,7 +17,7 @@ import { AppInfoPanel } from '../pages/AppInfoPanel.panel';
 import { ServerInfoPanel } from '../pages/ServerInfoPanel.panel';
 // - SERVICES
 import { neocom_constants } from '../support/neocom-constants.platform';
-import { Credential } from '../../../src/app/domain/Credential.domain';
+import { Credential } from '../../../src/app/domain/core/Credential.domain';
 
 // - DEFINITIONS
 let isolationService: IsolationService;

@@ -18,16 +18,11 @@ const routes: Routes = [
         redirectTo: '/start',
         pathMatch: 'full'
     },
-    // {
-    //     path: '',
-    //     redirectTo: '/manufacture/research/123',
-    //     pathMatch: 'full'
-    // },
     // - LOGIN PAGES
     { path: 'start', component: V1StartPageComponent },
     { path: 'loginValidation', component: V1LoginValidationPageComponent },
     { path: 'exceptionInfo', component: ExceptionInformationPageComponent },
-    { path: 'dashboard', component: DashboardHomePageComponent },
+    { path: 'dashboard', component: DashboardHomePageComponent, canActivate: [TokenAuthorizationGuard] },
     // - D A S H B O A R D
     // {
     //     path: 'dashboard',
@@ -39,7 +34,7 @@ const routes: Routes = [
     // - P L A N E T A R Y
     { path: 'planetary', loadChildren: () => import('./modules/planetary/planetary.module').then(m => m.PlanetaryModule) },
     // - L O Y A L T Y
-    { path: 'loyalty',loadChildren: () => import('./modules/loyalty/loyalty.module').then(m => m.LoyaltyModule) }
+    { path: 'loyalty', loadChildren: () => import('./modules/loyalty/loyalty.module').then(m => m.LoyaltyModule) }
     // - REDIRECT NOT FOUND PAGES
     // { path: '**', component: NotFoundPage }
     // -  F I T T I N G S

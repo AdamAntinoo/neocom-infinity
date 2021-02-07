@@ -24,7 +24,7 @@ import { PublicService } from './public.service'
 import { HALResolver } from './HALResolver.service'
 import { platformBrowser } from '@angular/platform-browser'
 import { platformConstants } from '@env/platform-constants'
-import { SessionStateResponse } from '@domain/dto/SessionStateResponse.dto'
+import { AuthenticationStateResponse } from '@domain/dto/SessionStateResponse.dto'
 
 @Injectable({
     providedIn: 'root'
@@ -44,7 +44,7 @@ export class BackendService extends PublicService {
     }
 
     // - B A C K E N D - A P I
-    public apiv1_ValidateAuthentionState(): Observable<SessionStateResponse> {
+    public apiv1_ValidateAuthentionState(): Observable<AuthenticationStateResponse> {
         console.log('step 02')
         const request = this.APIV1 + "/validateAuthenticationState"
         let headers = new HttpHeaders() // Additional headers for this authentication varification call.
@@ -52,7 +52,7 @@ export class BackendService extends PublicService {
         return this.httpService.wrapHttpGETCall(request, headers)
             .pipe(map((data: any) => {
                 console.log('enteriing GET pipe map')
-                return new SessionStateResponse(data)
+                return new AuthenticationStateResponse(data)
             }))
     }
     public apiValidateAuthorizationToken_v1(code: string, state: string,
