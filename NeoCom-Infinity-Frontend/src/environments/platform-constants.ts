@@ -12,5 +12,5 @@ export const platformConstants = {
     DEFAULT_VARIANT: '-DEFAULT-',
     DEFAULT_FEATURE_REF: 'assets/media/default-feature.jpeg',
     DEFAULT_FEATURE_LABEL: '-',
-    VALID_SESSION_STATE: 'valid'
+    VALID_SESSION_STATE: 'VALID'
 }
