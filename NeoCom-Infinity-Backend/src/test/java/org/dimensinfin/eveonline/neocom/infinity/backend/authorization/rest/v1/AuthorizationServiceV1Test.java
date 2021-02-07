@@ -16,9 +16,9 @@ import org.dimensinfin.eveonline.neocom.auth.VerifyCharacterResponse;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.database.repositories.CredentialRepository;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdOk;
-import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
-import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthenticationStateResponse;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenRequest;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.JwtPayload;
 import org.dimensinfin.eveonline.neocom.infinity.service.CookieService;
 import org.dimensinfin.eveonline.neocom.infinity.service.JWTTokenService;
@@ -133,7 +133,7 @@ public class AuthorizationServiceV1Test {
 	@Test
 	public void validateAuthorizationTokenSuccess() {
 		// Given
-		final ValidateAuthorizationTokenRequest validateAuthorizationTokenRequest = Mockito.mock( ValidateAuthorizationTokenRequest.class );
+		final AuthorizationTokenRequest AuthorizationTokenRequest = Mockito.mock( AuthorizationTokenRequest.class );
 		final NeoComOAuth2Flow flow = Mockito.mock( NeoComOAuth2Flow.class );
 		final TokenVerification tokenStore = Mockito.mock( TokenVerification.class );
 		final GetCharactersCharacterIdOk characterData = Mockito.mock( GetCharactersCharacterIdOk.class );
@@ -142,11 +142,11 @@ public class AuthorizationServiceV1Test {
 		final Cookie cookie = Mockito.mock( Cookie.class );
 		// When
 		Mockito.when( this.configurationService.getResourceString( Mockito.anyString() ) ).thenReturn( TEST_ENCODED_STATE );
-		Mockito.when( validateAuthorizationTokenRequest.getOauthFlow() ).thenReturn( flow );
-		Mockito.when( validateAuthorizationTokenRequest.getState() ).thenReturn( "LVRFU1QtRU5DT0RFRC1TVEFURS0=" );
+		Mockito.when( AuthorizationTokenRequest.getOauthFlow() ).thenReturn( flow );
+		Mockito.when( AuthorizationTokenRequest.getState() ).thenReturn( "LVRFU1QtRU5DT0RFRC1TVEFURS0=" );
 		Mockito.when( flow.verifyState( Mockito.anyString() ) ).thenReturn( Boolean.TRUE );
-		Mockito.when( validateAuthorizationTokenRequest.setRunningFlow( Mockito.any( NeoComOAuth2Flow.class ) ) )
-				.thenReturn( validateAuthorizationTokenRequest );
+		Mockito.when( AuthorizationTokenRequest.setRunningFlow( Mockito.any( NeoComOAuth2Flow.class ) ) )
+				.thenReturn( AuthorizationTokenRequest );
 		Mockito.when( flow.onTranslationStep() ).thenReturn( tokenStore );
 		Mockito.when( this.esiDataService.getCharactersCharacterId( Mockito.anyInt() ) ).thenReturn( characterData );
 		Mockito.when( tokenStore.getVerifyCharacterResponse() ).thenReturn( characterResponse );
@@ -167,7 +167,7 @@ public class AuthorizationServiceV1Test {
 				this.credentialRepository,
 				this.cookieService,
 				this.jwtTokenService );
-		final ValidateAuthorizationTokenResponse obtained = authorizationServiceV1.validateAuthorizationToken( validateAuthorizationTokenRequest );
+		final AuthorizationTokenResponse obtained = authorizationServiceV1.validateAuthorizationToken( AuthorizationTokenRequest );
 		// Assertions
 		Assertions.assertNotNull( obtained );
 	}

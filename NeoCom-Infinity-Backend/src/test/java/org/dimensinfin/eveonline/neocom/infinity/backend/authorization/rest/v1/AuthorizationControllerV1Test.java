@@ -9,9 +9,9 @@ import org.mockito.Mockito;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
-import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthenticationStateResponse;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenRequest;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenResponse;
 
 public class AuthorizationControllerV1Test {
 	private AuthorizationServiceV1 authorizationServiceV1;
@@ -27,17 +27,17 @@ public class AuthorizationControllerV1Test {
 		final String code = "-CODE-";
 		final String state = "LU5FT0NPTS5JTkZJTklUWS1QUk9EVUNUSU9OLVZBTElEIFNUQVRFIFNUUklORy0=";
 		final String dataSource = "-DATASOURCE-";
-		final ValidateAuthorizationTokenRequest request = Mockito.mock( ValidateAuthorizationTokenRequest.class );
-		final ValidateAuthorizationTokenResponse response = Mockito.mock( ValidateAuthorizationTokenResponse.class );
-		final ResponseEntity<ValidateAuthorizationTokenResponse> responseEntity = new ResponseEntity( response, HttpStatus.OK );
+		final AuthorizationTokenRequest request = Mockito.mock( AuthorizationTokenRequest.class );
+		final AuthorizationTokenResponse response = Mockito.mock( AuthorizationTokenResponse.class );
+		final ResponseEntity<AuthorizationTokenResponse> responseEntity = new ResponseEntity( response, HttpStatus.OK );
 		final HttpServletResponse servletResponse = Mockito.mock( HttpServletResponse.class );
 		//When
 		Mockito.when( this.authorizationServiceV1
-				.validateAuthorizationToken( Mockito.any( ValidateAuthorizationTokenRequest.class ) ) )
+				.validateAuthorizationToken( Mockito.any( AuthorizationTokenRequest.class ) ) )
 				.thenReturn( response );
 		// Test
 		final AuthorizationControllerV1 authorizationController = new AuthorizationControllerV1( this.authorizationServiceV1 );
-		final ResponseEntity<ValidateAuthorizationTokenResponse> obtainedEntity =
+		final ResponseEntity<AuthorizationTokenResponse> obtainedEntity =
 				authorizationController.validate( code, state, dataSource, servletResponse );
 		// Asserts
 		Assertions.assertEquals( HttpStatus.OK, obtainedEntity.getStatusCode() );
@@ -109,17 +109,17 @@ public class AuthorizationControllerV1Test {
 		final String code = "-CODE-";
 		final String state = "-STATE-";
 		final String dataSource = null;
-		final ValidateAuthorizationTokenRequest request = Mockito.mock( ValidateAuthorizationTokenRequest.class );
-		final ValidateAuthorizationTokenResponse response = Mockito.mock( ValidateAuthorizationTokenResponse.class );
-		final ResponseEntity<ValidateAuthorizationTokenResponse> responseEntity = new ResponseEntity( response, HttpStatus.OK );
+		final AuthorizationTokenRequest request = Mockito.mock( AuthorizationTokenRequest.class );
+		final AuthorizationTokenResponse response = Mockito.mock( AuthorizationTokenResponse.class );
+		final ResponseEntity<AuthorizationTokenResponse> responseEntity = new ResponseEntity( response, HttpStatus.OK );
 		final HttpServletResponse servletResponse = Mockito.mock( HttpServletResponse.class );
 		//When
 		Mockito.when( this.authorizationServiceV1
-				.validateAuthorizationToken( Mockito.any( ValidateAuthorizationTokenRequest.class ) ) )
+				.validateAuthorizationToken( Mockito.any( AuthorizationTokenRequest.class ) ) )
 				.thenReturn( response );
 		// Test
 		final AuthorizationControllerV1 authorizationController = new AuthorizationControllerV1( this.authorizationServiceV1 );
-		final ResponseEntity<ValidateAuthorizationTokenResponse> obtainedEntity =
+		final ResponseEntity<AuthorizationTokenResponse> obtainedEntity =
 				authorizationController.validate( code, state, dataSource, servletResponse );
 		// Asserts
 		Assertions.assertEquals( HttpStatus.OK, obtainedEntity.getStatusCode() );

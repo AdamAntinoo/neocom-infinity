@@ -3,13 +3,13 @@ package org.dimensinfin.eveonline.neocom.infinity.authorization.rest.dto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 
-public class ValidateAuthorizationTokenRequestTest {
+public class AuthorizationTokenRequestTest {
 	@Test
 	public void buildComplete() {
-		final ValidateAuthorizationTokenRequest request = new ValidateAuthorizationTokenRequest.Builder()
+		final AuthorizationTokenRequest request = new AuthorizationTokenRequest.Builder()
 				.withCode( "-TEST-CODE-" )
 				.withState( "-TEST-STATE-" )
 				.withDataSource( "-OPTIONAL-DATA-SOURCE-" )
@@ -22,38 +22,38 @@ public class ValidateAuthorizationTokenRequestTest {
 
 	public void buildFailure() {
 		Assertions.assertThrows( NullPointerException.class, () -> {
-			final ValidateAuthorizationTokenRequest request = new ValidateAuthorizationTokenRequest.Builder()
+			final AuthorizationTokenRequest request = new AuthorizationTokenRequest.Builder()
 					.withCode( null )
 					.withState( "-TEST-STATE-" )
 					.withDataSource( "-OPTIONAL-DATA-SOURCE-" )
 					.build();
 		} );
 		Assertions.assertThrows( NullPointerException.class, () -> {
-			final ValidateAuthorizationTokenRequest request = new ValidateAuthorizationTokenRequest.Builder()
+			final AuthorizationTokenRequest request = new AuthorizationTokenRequest.Builder()
 					.withCode( "-TEST-CODE-" )
 					.withState( null )
 					.withDataSource( "-OPTIONAL-DATA-SOURCE-" )
 					.build();
 		} );
 		Assertions.assertThrows( NullPointerException.class, () -> {
-			final ValidateAuthorizationTokenRequest request = new ValidateAuthorizationTokenRequest.Builder()
+			final AuthorizationTokenRequest request = new AuthorizationTokenRequest.Builder()
 					.withState( "-TEST-STATE-" )
 					.withDataSource( "-OPTIONAL-DATA-SOURCE-" )
 					.build();
 		} );
 		Assertions.assertThrows( NullPointerException.class, () -> {
-			final ValidateAuthorizationTokenRequest request = new ValidateAuthorizationTokenRequest.Builder()
+			final AuthorizationTokenRequest request = new AuthorizationTokenRequest.Builder()
 					.withCode( "-TEST-CODE-" )
 					.withDataSource( "-OPTIONAL-DATA-SOURCE-" )
 					.build();
 		} );
-		final ValidateAuthorizationTokenRequest request1 = new ValidateAuthorizationTokenRequest.Builder()
+		final AuthorizationTokenRequest request1 = new AuthorizationTokenRequest.Builder()
 				.withCode( "-TEST-CODE-" )
 				.withState( "-TEST-STATE-" )
 				.withDataSource( null )
 				.build();
 		Assertions.assertNotNull( request1 );
-		final ValidateAuthorizationTokenRequest request2 = new ValidateAuthorizationTokenRequest.Builder()
+		final AuthorizationTokenRequest request2 = new AuthorizationTokenRequest.Builder()
 				.withCode( "-TEST-CODE-" )
 				.withState( "-TEST-STATE-" )
 				.build();
@@ -62,7 +62,7 @@ public class ValidateAuthorizationTokenRequestTest {
 
 	@Test
 	public void buildIncomplete() {
-		final ValidateAuthorizationTokenRequest request = new ValidateAuthorizationTokenRequest.Builder()
+		final AuthorizationTokenRequest request = new AuthorizationTokenRequest.Builder()
 				.withCode( "-TEST-CODE-" )
 				.withState( "-TEST-STATE-" )
 				.build();
@@ -74,7 +74,7 @@ public class ValidateAuthorizationTokenRequestTest {
 
 	@Test
 	public void buildNullOptional() {
-		final ValidateAuthorizationTokenRequest request = new ValidateAuthorizationTokenRequest.Builder()
+		final AuthorizationTokenRequest request = new AuthorizationTokenRequest.Builder()
 				.withCode( "-TEST-CODE-" )
 				.withState( "-TEST-STATE-" )
 				.withDataSource( null )
@@ -85,7 +85,7 @@ public class ValidateAuthorizationTokenRequestTest {
 
 	@Test
 	public void getterContract() {
-		final ValidateAuthorizationTokenRequest request = new ValidateAuthorizationTokenRequest.Builder()
+		final AuthorizationTokenRequest request = new AuthorizationTokenRequest.Builder()
 				.withCode( "-TEST-CODE-" )
 				.withState( "-TEST-STATE-" )
 				.withDataSource( "-OPTIONAL-DATA-SOURCE-" )

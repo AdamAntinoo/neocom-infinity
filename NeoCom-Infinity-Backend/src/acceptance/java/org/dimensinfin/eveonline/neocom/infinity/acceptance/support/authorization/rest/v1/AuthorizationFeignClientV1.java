@@ -13,8 +13,8 @@ import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.ITargetConfi
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthenticationStateResponse;
-import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.ValidateAuthorizationTokenRequest;
-import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.ValidateAuthorizationTokenResponse;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenRequest;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.core.CommonFeignClient;
 import org.dimensinfin.eveonline.neocom.infinity.support.rest.NeoComApiv1;
 import org.dimensinfin.eveonline.neocom.service.logger.NeoComLogger;
@@ -70,19 +70,19 @@ public class AuthorizationFeignClientV1 extends CommonFeignClient {
 		} else throw new IOException( ENDPOINT_MESSAGE + " Failed." );
 	}
 
-	public ResponseEntity<ValidateAuthorizationTokenResponse> validateAuthorizationToken(
-			final ValidateAuthorizationTokenRequest validateAuthorizationTokenRequest
+	public ResponseEntity<AuthorizationTokenResponse> validateAuthorizationToken(
+			final AuthorizationTokenRequest authorizationTokenRequest
 	) throws IOException {
 		final String ENDPOINT_MESSAGE = "Request the validation of the ESI authentication token.";
-		final Response<ValidateAuthorizationTokenResponse> response = new Retrofit.Builder()
+		final Response<AuthorizationTokenResponse> response = new Retrofit.Builder()
 				.baseUrl( new AcceptanceTargetConfig().getBackendServer() )
 				.addConverterFactory( GSON_CONVERTER_FACTORY )
 				.build()
 				.create( NeoComApiv1.class )
 				.validateAuthorizationToken( "application/json",
-						validateAuthorizationTokenRequest.getCode(),
-						validateAuthorizationTokenRequest.getState(),
-						validateAuthorizationTokenRequest.getDataSourceName()
+						authorizationTokenRequest.getCode(),
+						authorizationTokenRequest.getState(),
+						authorizationTokenRequest.getDataSourceName()
 				)
 				.execute();
 		if (response.isSuccessful()) {

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 import javax.validation.constraints.NotNull;
 
-import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.ValidateAuthorizationTokenRequest;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.support.NeoComWorld;
 
 import io.cucumber.java.en.Given;
@@ -24,7 +24,7 @@ public class GivenTheNextValidateAuthorizationTokenRequest extends StepSupport {
 
 	@Given("the next Validate Authorization Token Request")
 	public void the_next_validate_authorization_token_request( final List<Map<String, String>> dataTable ) {
-		this.neocomWorld.setValidateAuthorizationTokenRequest( new ValidateAuthorizationTokenRequest.Builder()
+		this.neocomWorld.setValidateAuthorizationTokenRequest( new AuthorizationTokenRequest.Builder()
 				.withCode( dataTable.get( 0 ).get( VALIDATEAUTHORIZATIONREQUEST_CODE ) )
 				.withState( dataTable.get( 0 ).get( VALIDATEAUTHORIZATIONREQUEST_STATE ) )
 				.withDataSource( dataTable.get( 0 ).get( VALIDATEAUTHORIZATIONREQUEST_DATASOURCE ) )

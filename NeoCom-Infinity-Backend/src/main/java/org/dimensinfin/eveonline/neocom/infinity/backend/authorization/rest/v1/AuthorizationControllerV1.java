@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthenticationStateResponse;
-import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.ValidateAuthorizationTokenRequest;
-import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.ValidateAuthorizationTokenResponse;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenRequest;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComController;
 import org.dimensinfin.logging.LogWrapper;
 
@@ -44,16 +44,16 @@ public class AuthorizationControllerV1 extends NeoComController {
 	@GetMapping(path = { "/validateAuthorizationToken" },
 			consumes = "application/json",
 			produces = "application/json")
-	public ResponseEntity<ValidateAuthorizationTokenResponse> validate( @RequestParam(value = "code") @NotNull final String code,
-	                                                                    @RequestParam(value = "state") @NotNull final String state,
-	                                                                    @RequestParam(value = "dataSource", required = false) final String dataSource,
-	                                                                    final HttpServletResponse response ) {
-		final ValidateAuthorizationTokenRequest authorizationTokenRequest = new ValidateAuthorizationTokenRequest.Builder()
+	public ResponseEntity<AuthorizationTokenResponse> validate( @RequestParam(value = "code") @NotNull final String code,
+	                                                            @RequestParam(value = "state") @NotNull final String state,
+	                                                            @RequestParam(value = "dataSource", required = false) final String dataSource,
+	                                                            final HttpServletResponse response ) {
+		final AuthorizationTokenRequest authorizationTokenRequest = new AuthorizationTokenRequest.Builder()
 				.withCode( code )
 				.withState( state )
 				.withDataSource( (null != dataSource) ? dataSource : DEFAULT_ESI_SERVER )
 				.build();
-		final ValidateAuthorizationTokenResponse authorizationResponse = this.authorizationServiceV1
+		final AuthorizationTokenResponse authorizationResponse = this.authorizationServiceV1
 				.validateAuthorizationToken( authorizationTokenRequest );
 		response.addCookie( authorizationResponse.getCookie() );
 		return new ResponseEntity<>( authorizationResponse, HttpStatus.OK );

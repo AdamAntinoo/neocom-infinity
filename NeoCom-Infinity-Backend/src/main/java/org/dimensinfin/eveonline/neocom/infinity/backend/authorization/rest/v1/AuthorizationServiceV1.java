@@ -18,8 +18,8 @@ import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.database.repositories.CredentialRepository;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdOk;
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthenticationStateResponse;
-import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.ValidateAuthorizationTokenRequest;
-import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.ValidateAuthorizationTokenResponse;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenRequest;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRestError;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
 import org.dimensinfin.eveonline.neocom.infinity.service.CookieService;
@@ -94,14 +94,14 @@ public class AuthorizationServiceV1 {
 	}
 
 	@TimeElapsed
-	public ValidateAuthorizationTokenResponse validateAuthorizationToken( final ValidateAuthorizationTokenRequest validateAuthorizationTokenRequest ) {
+	public AuthorizationTokenResponse validateAuthorizationToken( final AuthorizationTokenRequest authorizationTokenRequest ) {
 		LogWrapper.enter();
 		final NeoComOAuth2Flow oauthFlow = new NeoComOAuth2Flow.Builder()
 				.withConfigurationService( this.configurationService )
 				.build();
-		validateAuthorizationTokenRequest.setRunningFlow( oauthFlow );
-		this.verifyState( validateAuthorizationTokenRequest ); // Check if the state matches the backend state configured.
-		final TokenVerification tokenStore = this.verifyCharacter( validateAuthorizationTokenRequest ); // Validate pointer character is valid.
+		authorizationTokenRequest.setRunningFlow( oauthFlow );
+		this.verifyState( authorizationTokenRequest ); // Check if the state matches the backend state configured.
+		final TokenVerification tokenStore = this.verifyCharacter( authorizationTokenRequest ); // Validate pointer character is valid.
 		final GetCharactersCharacterIdOk pilotData = this.esiDataService.getCharactersCharacterId(
 				tokenStore.getAccountIdentifier()
 		);
@@ -131,7 +131,7 @@ public class AuthorizationServiceV1 {
 
 		// - R E S P O N S E
 		try {
-			return new ValidateAuthorizationTokenResponse.Builder()
+			return new AuthorizationTokenResponse.Builder()
 					.withCredential( credential )
 					.withJwtToken( jwtToken )
 					.withCookie( this.cookieService.generateCookie( jwtToken ) )
@@ -141,9 +141,9 @@ public class AuthorizationServiceV1 {
 		}
 	}
 
-	private TokenVerification verifyCharacter( final ValidateAuthorizationTokenRequest validateAuthorizationTokenRequest ) {
+	private TokenVerification verifyCharacter( final AuthorizationTokenRequest authorizationTokenRequest ) {
 		LogWrapper.enter();
-		final NeoComOAuth2Flow oauthFlow = validateAuthorizationTokenRequest.getOauthFlow();
+		final NeoComOAuth2Flow oauthFlow = authorizationTokenRequest.getOauthFlow();
 		try {
 			final TokenVerification tokenStore = oauthFlow.onTranslationStep();
 			return Objects.requireNonNull( tokenStore );
@@ -152,12 +152,12 @@ public class AuthorizationServiceV1 {
 		}
 	}
 
-	private void verifyState( final ValidateAuthorizationTokenRequest validateAuthorizationTokenRequest ) {
+	private void verifyState( final AuthorizationTokenRequest authorizationTokenRequest ) {
 		LogWrapper.enter();
-		validateAuthorizationTokenRequest.getOauthFlow().onStartFlow( validateAuthorizationTokenRequest.getCode(),
-				validateAuthorizationTokenRequest.getState(),
-				validateAuthorizationTokenRequest.getDataSourceName() );
-		if (!validateAuthorizationTokenRequest.getOauthFlow().verifyState( validateAuthorizationTokenRequest.getState() ))
+		authorizationTokenRequest.getOauthFlow().onStartFlow( authorizationTokenRequest.getCode(),
+				authorizationTokenRequest.getState(),
+				authorizationTokenRequest.getDataSourceName() );
+		if (!authorizationTokenRequest.getOauthFlow().verifyState( authorizationTokenRequest.getState() ))
 			throw new NeoComRuntimeBackendException( errorINVALIDSTATEVERIFICATION() );
 		LogWrapper.exit( "Calling state verification: OK." );
 	}
