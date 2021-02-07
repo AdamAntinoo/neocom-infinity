@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
-import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenResponse;
 
-public class ValidateAuthorizationTokenResponseTest {
+public class AuthorizationTokenResponseTest {
 	private Credential credential;
 
 	@BeforeEach
@@ -18,8 +18,8 @@ public class ValidateAuthorizationTokenResponseTest {
 
 	@Test
 	public void buildComplete() {
-		final ValidateAuthorizationTokenResponse request = new ValidateAuthorizationTokenResponse.Builder()
-				.withCredential( credential )
+		final AuthorizationTokenResponse request = new AuthorizationTokenResponse.Builder()
+				.withCredential( this.credential )
 				.withJwtToken( "FFJJWWTT-TTKKEENNFF" )
 				.build();
 		Assertions.assertNotNull( request );
@@ -28,8 +28,8 @@ public class ValidateAuthorizationTokenResponseTest {
 
 	@Test
 	public void buildNotCompleted() {
-		NullPointerException thrown = Assertions.assertThrows( NullPointerException.class,
-				() -> new ValidateAuthorizationTokenResponse.Builder()
+		final NullPointerException thrown = Assertions.assertThrows( NullPointerException.class,
+				() -> new AuthorizationTokenResponse.Builder()
 						.withCredential( null )
 						.withJwtToken( "FFJJWWTT-TTKKEENNFF" )
 						.build(),
@@ -38,8 +38,8 @@ public class ValidateAuthorizationTokenResponseTest {
 
 	@Test
 	public void getterContract() {
-		final ValidateAuthorizationTokenResponse request = new ValidateAuthorizationTokenResponse.Builder()
-				.withCredential( credential )
+		final AuthorizationTokenResponse request = new AuthorizationTokenResponse.Builder()
+				.withCredential( this.credential )
 				.withJwtToken( "FFJJWWTT-TTKKEENNFF" )
 				.build();
 		Assertions.assertNotNull( request );

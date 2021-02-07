@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 
 import org.dimensinfin.eveonline.neocom.domain.PilotV1;
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthenticationStateResponse;
-import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.ValidateAuthorizationTokenResponse;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.character.fitting.domain.FittingModel;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingBuildConfiguration;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingConfigurations;
@@ -16,7 +16,7 @@ import org.dimensinfin.eveonline.neocom.loyalty.domain.LoyaltyServiceConfigurati
 import org.dimensinfin.eveonline.neocom.loyalty.persistence.LoyaltyOfferEntity;
 
 public class NewNeoComWorld extends CommonWorld {
-	private ResponseEntity<ValidateAuthorizationTokenResponse> validateAuthorizationTokenResponseEntity;
+	private ResponseEntity<AuthorizationTokenResponse> validateAuthorizationTokenResponseEntity;
 	private ResponseEntity<PilotV1> pilotDataResponseEntity;
 	private ResponseEntity<List<FittingModel>> pilotFittingsResponseEntity;
 	private ResponseEntity<EsiItemModel> itemResponseEntity;
@@ -149,11 +149,11 @@ public class NewNeoComWorld extends CommonWorld {
 		return this;
 	}
 
-	public ResponseEntity<ValidateAuthorizationTokenResponse> getValidateAuthorizationTokenResponseEntity() {
+	public ResponseEntity<AuthorizationTokenResponse> getValidateAuthorizationTokenResponseEntity() {
 		return this.validateAuthorizationTokenResponseEntity;
 	}
 
-	public NewNeoComWorld setValidateAuthorizationTokenResponseEntity( final ResponseEntity<ValidateAuthorizationTokenResponse> validateAuthorizationTokenResponseEntity ) {
+	public NewNeoComWorld setValidateAuthorizationTokenResponseEntity( final ResponseEntity<AuthorizationTokenResponse> validateAuthorizationTokenResponseEntity ) {
 		this.validateAuthorizationTokenResponseEntity = validateAuthorizationTokenResponseEntity;
 		return this;
 	}

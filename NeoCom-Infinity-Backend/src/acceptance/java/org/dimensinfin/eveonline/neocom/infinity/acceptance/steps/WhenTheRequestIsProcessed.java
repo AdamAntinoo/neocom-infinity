@@ -18,7 +18,7 @@ import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.market.rest.
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.universe.rest.v1.UniverseFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.universe.rest.v2.UniverseFeignClientV2;
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthenticationStateResponse;
-import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.ValidateAuthorizationTokenResponse;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.character.fitting.domain.FittingModel;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingBuildConfiguration;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingConfigurations;
@@ -226,7 +226,7 @@ public class WhenTheRequestIsProcessed extends StepSupport {
 				return authenticationStateResponseEntity;
 			case VALIDATE_AUTHORIZATION_TOKEN:
 				Assertions.assertNotNull( this.neocomWorld.getValidateAuthorizationTokenRequest() );
-				final ResponseEntity<ValidateAuthorizationTokenResponse> validateAuthorizationTokenResponseEntity = this.authorizationFeignClient
+				final ResponseEntity<AuthorizationTokenResponse> validateAuthorizationTokenResponseEntity = this.authorizationFeignClient
 						.validateAuthorizationToken(
 								this.neocomWorld.getValidateAuthorizationTokenRequest()
 						);

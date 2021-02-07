@@ -6,7 +6,7 @@ import java.util.Map;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.ValidateAuthorizationTokenResponse;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.ConverterContainer;
 import org.dimensinfin.eveonline.neocom.infinity.support.NeoComWorld;
 import org.dimensinfin.eveonline.neocom.infinity.support.ResponseType;
@@ -40,7 +40,7 @@ public class NIB04Contracts extends SupportSteps {
 	private static final String HOME_STATION_ID = "home station id";
 	private static final String MEMBER_COUNT = "member count";
 
-// - C O N S T R U C T O R S
+	// - C O N S T R U C T O R S
 	@Autowired
 	public NIB04Contracts(
 			final ConverterContainer cucumberTableToRequestConverters,
@@ -54,7 +54,7 @@ public class NIB04Contracts extends SupportSteps {
 		final Map<String, String> row = dataTable.get( 0 );
 		switch (responseType) {
 			case VALIDATE_AUTHORIZATION_TOKEN_RESPONSE:
-				final ValidateAuthorizationTokenResponse responseValidation = this.neocomWorld
+				final AuthorizationTokenResponse responseValidation = this.neocomWorld
 						.getValidateAuthorizationTokenResponse();
 				Assert.assertEquals( row.get( RESPONSE_TYPE ), responseValidation.getResponseType() );
 				Assert.assertEquals( row.get( JWT_TOKEN ), responseValidation.getJwtToken() );

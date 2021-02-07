@@ -8,12 +8,12 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import org.springframework.boot.jackson.JsonComponent;
 
-import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.ValidateAuthorizationTokenResponse;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenResponse;
 
 @JsonComponent
-public class ValidateAuthorizationTokenResponseSerializer extends JsonSerializer<ValidateAuthorizationTokenResponse> {
+public class AuthorizationTokenResponseSerializer extends JsonSerializer<AuthorizationTokenResponse> {
 	@Override
-	public void serialize( final ValidateAuthorizationTokenResponse value, final JsonGenerator jgen, final SerializerProvider provider )
+	public void serialize( final AuthorizationTokenResponse value, final JsonGenerator jgen, final SerializerProvider provider )
 			throws IOException, JsonProcessingException {
 		jgen.writeStartObject();
 

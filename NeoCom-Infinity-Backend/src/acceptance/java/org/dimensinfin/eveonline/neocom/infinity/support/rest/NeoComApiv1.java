@@ -6,7 +6,7 @@ import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.database.entities.MiningExtractionEntity;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthenticationStateResponse;
-import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.ValidateAuthorizationTokenResponse;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingBuildConfiguration;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingConfigurations;
 import org.dimensinfin.eveonline.neocom.infinity.backend.market.domain.MarketData;
@@ -82,8 +82,8 @@ public interface NeoComApiv1 {
 	Call<AuthenticationStateResponse> validateAuthenticationState( @Header("Cookie") String userCookie );
 
 	@GET("/api/v1/neocom/validateAuthorizationToken")
-	Call<ValidateAuthorizationTokenResponse> validateAuthorizationToken( @Header("Content-Type") final String contentType,
-	                                                                     @Query("code") final String code,
-	                                                                     @Query("state") final String state,
-	                                                                     @Query("datasource") final String datasource );
+	Call<AuthorizationTokenResponse> validateAuthorizationToken( @Header("Content-Type") final String contentType,
+	                                                             @Query("code") final String code,
+	                                                             @Query("state") final String state,
+	                                                             @Query("datasource") final String datasource );
 }

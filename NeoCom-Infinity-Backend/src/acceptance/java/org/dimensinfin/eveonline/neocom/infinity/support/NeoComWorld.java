@@ -11,8 +11,8 @@ import org.dimensinfin.eveonline.neocom.database.entities.MiningExtractionEntity
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.NewNeoComWorld;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialResponse;
-import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.ValidateAuthorizationTokenRequest;
-import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.ValidateAuthorizationTokenResponse;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenRequest;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.market.domain.MarketData;
 import org.dimensinfin.eveonline.neocom.infinity.support.corporation.rest.v1.CorporationResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.corporation.rest.v1.LocationAssetContainer;
@@ -35,8 +35,8 @@ public class NeoComWorld extends NewNeoComWorld {
 	private ResponseEntity<MarketData> marketDataResponseEntity;
 	private HttpStatus httpStatusCode;
 	private int httpStatusCodeValue;
-	private ValidateAuthorizationTokenRequest validateAuthorizationTokenRequest;
-	private ValidateAuthorizationTokenResponse validateAuthorizationTokenResponse;
+	private AuthorizationTokenRequest authorizationTokenRequest;
+	private AuthorizationTokenResponse authorizationTokenResponse;
 	private Optional<Integer> corporationIdentifier = Optional.empty();
 	private Optional<Integer> pilotIdentifier = Optional.empty();
 	private ResponseEntity<CorporationResponse> corporationResponseEntity;
@@ -254,21 +254,21 @@ public class NeoComWorld extends NewNeoComWorld {
 		return this;
 	}
 
-	public ValidateAuthorizationTokenRequest getValidateAuthorizationTokenRequest() {
-		return this.validateAuthorizationTokenRequest;
+	public AuthorizationTokenRequest getValidateAuthorizationTokenRequest() {
+		return this.authorizationTokenRequest;
 	}
 
-	public NeoComWorld setValidateAuthorizationTokenRequest( final ValidateAuthorizationTokenRequest validateAuthorizationTokenRequest ) {
-		this.validateAuthorizationTokenRequest = validateAuthorizationTokenRequest;
+	public NeoComWorld setValidateAuthorizationTokenRequest( final AuthorizationTokenRequest authorizationTokenRequest ) {
+		this.authorizationTokenRequest = authorizationTokenRequest;
 		return this;
 	}
 
-	public ValidateAuthorizationTokenResponse getValidateAuthorizationTokenResponse() {
-		return this.validateAuthorizationTokenResponse;
+	public AuthorizationTokenResponse getValidateAuthorizationTokenResponse() {
+		return this.authorizationTokenResponse;
 	}
 
-	public NeoComWorld setValidateAuthorizationTokenResponse( final ValidateAuthorizationTokenResponse validateAuthorizationTokenResponse ) {
-		this.validateAuthorizationTokenResponse = validateAuthorizationTokenResponse;
+	public NeoComWorld setValidateAuthorizationTokenResponse( final AuthorizationTokenResponse authorizationTokenResponse ) {
+		this.authorizationTokenResponse = authorizationTokenResponse;
 		return this;
 	}
 }

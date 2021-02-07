@@ -2,21 +2,21 @@ package org.dimensinfin.eveonline.neocom.infinity.acceptance.support.authorizati
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.ValidateAuthorizationTokenResponse;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenResponse;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ValidateAuthorizationTokenResponseClient {
 	public Object headers;
-	public ValidateAuthorizationTokenResponse body;
+	public AuthorizationTokenResponse body;
 	public String statusCode;
 	public Integer statusCodeValue;
 
 	// - G E T T E R S   &   S E T T E R S
-	public ValidateAuthorizationTokenResponse getBody() {
+	public AuthorizationTokenResponse getBody() {
 		return this.body;
 	}
 
-	public ValidateAuthorizationTokenResponseClient setBody( final ValidateAuthorizationTokenResponse body ) {
+	public ValidateAuthorizationTokenResponseClient setBody( final AuthorizationTokenResponse body ) {
 		this.body = body;
 		return this;
 	}
