@@ -1,14 +1,15 @@
-package org.dimensinfin.eveonline.neocom.infinity.authorization.rest.dto;
+package org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
-import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenRequest;
+import org.dimensinfin.eveonline.neocom.auth.NeoComOAuth2Flow;
 import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 
 public class AuthorizationTokenRequestTest {
 	@Test
-	public void buildComplete() {
+	public void buildContract() {
 		final AuthorizationTokenRequest request = new AuthorizationTokenRequest.Builder()
 				.withCode( "-TEST-CODE-" )
 				.withState( "-TEST-STATE-" )
@@ -85,6 +86,7 @@ public class AuthorizationTokenRequestTest {
 
 	@Test
 	public void getterContract() {
+		final NeoComOAuth2Flow flow = Mockito.mock( NeoComOAuth2Flow.class );
 		final AuthorizationTokenRequest request = new AuthorizationTokenRequest.Builder()
 				.withCode( "-TEST-CODE-" )
 				.withState( "-TEST-STATE-" )
@@ -94,5 +96,7 @@ public class AuthorizationTokenRequestTest {
 		Assertions.assertEquals( "-TEST-CODE-", request.getCode() );
 		Assertions.assertEquals( "-TEST-STATE-", request.getState() );
 		Assertions.assertEquals( "-OPTIONAL-DATA-SOURCE-", request.getDataSourceName() );
+		request.setRunningFlow( flow );
+		Assertions.assertNotNull( request.getOauthFlow() );
 	}
 }
