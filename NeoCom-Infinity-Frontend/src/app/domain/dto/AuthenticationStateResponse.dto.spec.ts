@@ -1,5 +1,5 @@
 // - APP
-import { AuthenticationStateResponse } from "./SessionStateResponse.dto"
+import { AuthenticationStateResponse } from "./AuthenticationStateResponse.dto"
 
 describe('CLASS SessionStateResponse [Module: DOMAIN]', () => {
     beforeEach(() => {

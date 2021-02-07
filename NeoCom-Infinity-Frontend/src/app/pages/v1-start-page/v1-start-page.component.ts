@@ -4,7 +4,7 @@ import { OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 // - SERVICES
 import { BackendService } from '@app/services/backend.service';
-import { AuthenticationStateResponse } from '@domain/dto/SessionStateResponse.dto';
+import { AuthenticationStateResponse } from '@domain/dto/AuthenticationStateResponse.dto';
 import { platformConstants } from '@env/platform-constants';
 // - INNOVATIVE
 import { BackgroundEnabledComponent } from '@innovative/components/background-enabled/background-enabled.component';
@@ -37,12 +37,13 @@ export class V1StartPageComponent extends BackgroundEnabledComponent implements 
                     console.log('-[V1StartPageComponent.ngOnInit]>Valid session')
                     // Store the new tocken and credential
                     this.isolationService.setToSession(platformConstants.JWTTOKEN_KEY, response.getJwtToken())
-                    this.isolationService.setToSession(platformConstants.CREDENTIAL_KEY,JSON.stringify(response.getCredential()))
+                    this.isolationService.setToSession(platformConstants.CREDENTIAL_KEY, JSON.stringify(response.getCredential()))
                     this.validating = false
                     this.pageChange('/dashboard')
                 } else {
                     console.log('-[V1StartPageComponent.ngOnInit]>Not Valid session')
-                    this.validating = false}
+                    this.validating = false
+                }
             }, (error) => {
                 console.log('-[V1StartPageComponent.ngOnInit.exception]> Error message: ' + JSON.stringify(error.error))
                 setTimeout(() => this.validating = false, 1000)

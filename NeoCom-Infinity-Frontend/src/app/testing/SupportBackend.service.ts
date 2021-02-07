@@ -18,7 +18,7 @@ import { Corporation } from '@app/domain/Corporation.domain';
 import { SupportAppStoreService } from './SupportAppStore.service';
 import { Pilot } from '@app/domain/Pilot.domain';
 import { IsolationService } from '@innovative/services/isolation.service';
-import { AuthenticationStateResponse } from '@domain/dto/SessionStateResponse.dto';
+import { AuthenticationStateResponse } from '@domain/dto/AuthenticationStateResponse.dto';
 
 @Injectable({
     providedIn: 'root'
