@@ -24,7 +24,7 @@ import { PublicService } from './public.service'
 import { HALResolver } from './HALResolver.service'
 import { platformBrowser } from '@angular/platform-browser'
 import { platformConstants } from '@env/platform-constants'
-import { AuthenticationStateResponse } from '@domain/dto/SessionStateResponse.dto'
+import { AuthenticationStateResponse } from '@domain/dto/AuthenticationStateResponse.dto'
 
 @Injectable({
     providedIn: 'root'

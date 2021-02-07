@@ -5,7 +5,6 @@ import { IsolationService } from '@innovative/services/isolation.service';
 // - SERVICES
 import { neocom_constants } from '@app/platform/neocom-constants.platform';
 import { platformConstants } from '@env/platform-constants';
-import { JWTToken } from '@domain/core/JWTToken.domain';
 
 @Injectable({
     providedIn: 'root'
