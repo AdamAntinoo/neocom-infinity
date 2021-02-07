@@ -13,13 +13,14 @@ import { AppStoreService } from '@app/services/appstore.service'
 import { BackendService } from '@app/services/backend.service'
 import { NeoComException } from '@innovative/domain/NeoComException'
 // - DOMAIN
-import { Credential } from '../../domain/core/Credential.domain'
 import { IsolationService } from '@innovative/services/isolation.service'
 import { neocom_constants } from '@app/platform/neocom-constants.platform'
-import { ValidateAuthorizationTokenResponse } from '@app/domain/dto/ValidateAuthorizationTokenResponse'
 import { ExceptionCatalog } from '@app/platform/ExceptionCatalog'
 import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer'
 import { BackgroundEnabledComponent } from '@innovative/components/background-enabled/background-enabled.component'
+import { AuthenticationStateResponse } from '@domain/dto/AuthenticationStateResponse.dto'
+import { NeoComCredential } from '@domain/NeoComCredential.domain'
+import { platformConstants } from '@env/platform-constants'
 
 @Component({
     selector: 'app-login-validation-page',
@@ -38,8 +39,8 @@ export class V1LoginValidationPageComponent extends BackgroundEnabledComponent i
         protected backendService: BackendService,
         protected route: ActivatedRoute,
         protected router: Router) {
-            super()
-         }
+        super()
+    }
 
     public ngOnInit() {
         console.log('>[V1LoginValidationPageComponent.ngOnInit]')
@@ -54,25 +55,24 @@ export class V1LoginValidationPageComponent extends BackgroundEnabledComponent i
                 this.backendConnections.push(this.backendService.apiValidateAuthorizationToken_v1(
                     this.paramCode, this.paramState,
                     new ResponseTransformer().setDescription('Do response transformation to "ValidateAuthorizationTokenResponse"')
-                        .setTransformation((data: any): ValidateAuthorizationTokenResponse => {
-                            return new ValidateAuthorizationTokenResponse(data)
+                        .setTransformation((data: any): AuthenticationStateResponse => {
+                            return new AuthenticationStateResponse(data)
                         }))
-                    .subscribe((response: ValidateAuthorizationTokenResponse) => {
-                        const credential: Credential = new Credential(response.getCredential())
+                    .subscribe((response: AuthenticationStateResponse) => {
+                        const credential: NeoComCredential = new NeoComCredential(response.getCredential())
                         console.log('-[V1LoginValidationPageComponent.<ngOnInit>.apiValidateAuthorizationToken]> Credential: ' +
                             JSON.stringify(credential))
-                            console.log('-[V1LoginValidationPageComponent.<ngOnInit>.apiValidateAuthorizationToken]> JWT: ' +
+                        console.log('-[V1LoginValidationPageComponent.<ngOnInit>.apiValidateAuthorizationToken]> JWT: ' +
                             response.getJwtToken())
                         if (this.validateJWT(response.getJwtToken(), credential)) {
-                            this.storeJWT(response.getJwtToken())
-                            this.storeCredential(response.getCredential())
+                            // Store the new tocken and credential
+                            this.isolationService.setToSession(platformConstants.JWTTOKEN_KEY, response.getJwtToken())
+                            this.isolationService.setToSession(platformConstants.CREDENTIAL_KEY, JSON.stringify(response.getCredential()))
                             console.log('-[V1LoginValidationPageComponent.<ngOnInit>.apiValidateAuthorizationToken]> Routing to: /dashbaord')
                             this.router.navigate(['dashboard'])   // Jump to the Dashboard page if all complete.
                         } else {
-                            // Jump to the repeat login page with some information.
-                            console.log('-[V1LoginValidationPageComponent.<ngOnInit>.]> Repeat login')
-                            this.appModelStore.setLastInterceptedException(ExceptionCatalog.JWT_TOKEN_INVALID)
-                            this.router.navigate(['exceptionInfo']) // Jump to the exception information page to login again.
+                            this.isolationService.deleteAllCookies()
+                              this.router.navigate(['/start']) // Jump to the exception information page to login again.
                         }
                     })
                 )
@@ -102,7 +102,7 @@ export class V1LoginValidationPageComponent extends BackgroundEnabledComponent i
             { code: 400, message: 'The request state does not match. Caller not verified.' }
         )
     }
-    private validateJWT(jwtToken: string, credential: Credential): boolean {
+    private validateJWT(jwtToken: string, credential: NeoComCredential): boolean {
         // Decode the JWT.
         const accountName = this.appModelStore.JWTDecode2AccountName(jwtToken)
         console.log('-[LoginValidationPageComponent.validateJWT]> accountName=' + accountName)
@@ -112,13 +112,13 @@ export class V1LoginValidationPageComponent extends BackgroundEnabledComponent i
         if (uniqueId != credential.getUniqueId()) return false
         return true
     }
-    private storeJWT(jwtToken: string): boolean {
-        this.isolationService.setToSession(neocom_constants.JWTTOKEN_KEY, jwtToken)
-        this.isolationService.setToSession(neocom_constants.JWTTOKEN_EXPIRATION_TIME_KEY,
-            addMinutes(Date.now(), 120))
-        return true
-    }
-    private storeCredential(credential: Credential): void {
-        this.isolationService.setToSession(neocom_constants.CREDENTIAL_KEY, JSON.stringify(credential))
-    }
+    // private storeJWT(jwtToken: string): boolean {
+    //     this.isolationService.setToSession(neocom_constants.JWTTOKEN_KEY, jwtToken)
+    //     this.isolationService.setToSession(neocom_constants.JWTTOKEN_EXPIRATION_TIME_KEY,
+    //         addMinutes(Date.now(), 120))
+    //     return true
+    // }
+    // private storeCredential(credential: Credential): void {
+    //     this.isolationService.setToSession(neocom_constants.CREDENTIAL_KEY, JSON.stringify(credential))
+    // }
 }
