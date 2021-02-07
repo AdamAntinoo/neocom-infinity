@@ -17,9 +17,9 @@ import org.dimensinfin.eveonline.neocom.auth.TokenVerification;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.database.repositories.CredentialRepository;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdOk;
-import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
-import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthenticationStateResponse;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.ValidateAuthorizationTokenRequest;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRestError;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
 import org.dimensinfin.eveonline.neocom.infinity.service.CookieService;
@@ -74,16 +74,21 @@ public class AuthorizationServiceV1 {
 						Objects.requireNonNull( this.jwtTokenService.extractPayload( sourceJWT ).getUniqueId() )
 				) );
 				LogWrapper.info( credential.toString() );
+				// Create a new cookie with a new expiration time.
+				response.addCookie( this.cookieService.generateCookie( sourceJWT ) );
+				return new AuthenticationStateResponse.Builder()
+						.withState( AuthenticationStateResponse.AuthenticationStateType.VALID )
+						.withJwtToken( sourceJWT )
+						.withCredential( credential )
+						.build();
 			} catch (final SQLException sqle) {
 				LogWrapper.error( sqle );
 				return new AuthenticationStateResponse.Builder().withState( AuthenticationStateResponse.AuthenticationStateType.NOT_FOUND ).build();
 			} catch (final NullPointerException npe) {
+				LogWrapper.error( npe );
 				// If the credential is not found then return the 'NOT_FOUND' message.
 				return new AuthenticationStateResponse.Builder().withState( AuthenticationStateResponse.AuthenticationStateType.NOT_FOUND ).build();
 			}
-			// Create a new cookie with a new expiration time.
-			response.addCookie( this.cookieService.generateCookie( sourceJWT ) );
-			return new AuthenticationStateResponse.Builder().withState( AuthenticationStateResponse.AuthenticationStateType.VALID ).build();
 		} else
 			return new AuthenticationStateResponse.Builder().withState( AuthenticationStateResponse.AuthenticationStateType.NOT_VALID ).build();
 	}

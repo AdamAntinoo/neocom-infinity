@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 import javax.validation.constraints.NotNull;
 
-import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.support.NeoComWorld;
 
 import io.cucumber.java.en.Given;

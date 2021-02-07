@@ -19,6 +19,8 @@ public class AuthenticationStateResponseSerializer extends JsonSerializer<Authen
 	public void serialize( final AuthenticationStateResponse value, final JsonGenerator jgen, final SerializerProvider serializers ) throws IOException {
 		jgen.writeStartObject();
 		jgen.writeStringField( "state", value.getState().name() );
+		jgen.writeObjectField( "jwtToken", value.getJwtToken() );
+		jgen.writeObjectField( "credential", value.getCredential() );
 		jgen.writeEndObject();
 	}
 }
