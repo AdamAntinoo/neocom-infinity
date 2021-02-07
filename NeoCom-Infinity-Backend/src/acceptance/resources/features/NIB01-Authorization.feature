@@ -91,3 +91,8 @@ Feature: [NIB01] Validate the authorization token from ESI OAuth2 service and ot
     When the Validate Authentication request is processed
     Then there is a valid response with return code of "200 OK"
     And the Validate Authentication response message is "VALID"
+    And the Validate Authentication response has a Credential
+    And the Validate Authentication response has a JWT token
+
+  @NIB01.09 @Authorization
+  Scenario: [NIB01.09] When the result for the validation is VALID then check for the JWT token and the Credential data.
