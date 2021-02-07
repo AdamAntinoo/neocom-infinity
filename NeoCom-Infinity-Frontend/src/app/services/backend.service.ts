@@ -13,7 +13,6 @@ import { IsolationService } from '@innovative/services/isolation.service';
 import { BackendHttpWrapper } from './backend.httpwrapper'
 import { UniverseHttpWrapper } from './universe.httpwrapper'
 // - DOMAIN
-import { ValidateAuthorizationTokenResponse } from '@app/domain/dto/ValidateAuthorizationTokenResponse'
 import { Pilot } from '@app/domain/Pilot.domain'
 import { Corporation } from '@app/domain/Corporation.domain'
 import { ServerStatus } from '@app/domain/ServerStatus.domain'
@@ -56,7 +55,7 @@ export class BackendService extends PublicService {
             }))
     }
     public apiValidateAuthorizationToken_v1(code: string, state: string,
-        transformer: ResponseTransformer): Observable<ValidateAuthorizationTokenResponse> {
+        transformer: ResponseTransformer): Observable<AuthenticationStateResponse> {
         console.log(">[BackendService.apiValidateAuthorizationToken_v1]> code: " + code)
         // Construct the request to call the backend.
         const request = this.APIV1 + "/validateAuthorizationToken" +
@@ -69,7 +68,7 @@ export class BackendService extends PublicService {
             .pipe(map((data: any) => {
                 console.log(">[BackendService.apiValidateAuthorizationToken_v1]> Transformation: " +
                     transformer.description)
-                const response = transformer.transform(data) as ValidateAuthorizationTokenResponse
+                const response = transformer.transform(data) as AuthenticationStateResponse
                 return response
             }))
     }

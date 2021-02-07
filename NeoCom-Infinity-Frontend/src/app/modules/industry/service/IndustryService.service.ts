@@ -13,11 +13,6 @@ import { IsolationService } from '@innovative/services/isolation.service';
 import { BackendHttpWrapper } from '@app/services/backend.httpwrapper'
 import { UniverseHttpWrapper } from '@app/services/universe.httpwrapper'
 // - DOMAIN
-import { ValidateAuthorizationTokenResponse } from '@app/domain/dto/ValidateAuthorizationTokenResponse'
-import { Pilot } from '@app/domain/Pilot.domain'
-import { Corporation } from '@app/domain/Corporation.domain'
-import { ServerStatus } from '@app/domain/ServerStatus.domain'
-import { Fitting } from '@app/domain/Fitting.domain'
 import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer'
 import { ProcessedBlueprint } from '../domain/V1ProcessedBlueprint.domain'
 import { UniverseService } from '@app/services/universe.service'
