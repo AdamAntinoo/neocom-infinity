@@ -12,27 +12,27 @@ import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/r
 import { AuthenticationService } from './authentication.service';
 
 @Injectable({
-   providedIn: 'root'
+    providedIn: 'root'
 })
 export class TokenAuthorizationGuard implements CanActivate, CanActivateChild, CanLoad {
-   constructor(protected authenticationService: AuthenticationService) { }
-   canActivate(
-      next: ActivatedRouteSnapshot,
-      state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      const pass: boolean = this.authenticationService.isLoggedIn(); // Check the token exists and it is not expired.
-      console.log('-[TokenAuthorizationGuard.canActivate] pass: ' + pass);
-      return pass;
-   }
-   canActivateChild(
-      next: ActivatedRouteSnapshot,
-      state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      console.log('-[TokenAuthorizationGuard.canActivateChild] true');
-      return true;
-   }
-   canLoad(
-      route: Route,
-      segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
-      console.log('-[TokenAuthorizationGuard.canLoad] true');
-      return true;
-   }
+    constructor(protected authenticationService: AuthenticationService) { }
+    public canActivate(
+        next: ActivatedRouteSnapshot,
+        state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+        const pass: boolean = this.authenticationService.isAuthenticated(); // Check the token exists and it is not expired.
+        console.log('-[TokenAuthorizationGuard.canActivate] pass: ' + pass);
+        return pass;
+    }
+    public canActivateChild(
+        next: ActivatedRouteSnapshot,
+        state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+        console.log('-[TokenAuthorizationGuard.canActivateChild] true');
+        return true;
+    }
+    public canLoad(
+        route: Route,
+        segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
+        console.log('-[TokenAuthorizationGuard.canLoad] true');
+        return true;
+    }
 }

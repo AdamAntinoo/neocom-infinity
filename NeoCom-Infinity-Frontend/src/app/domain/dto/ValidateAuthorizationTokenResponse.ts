@@ -1,6 +1,6 @@
 // - CORE
 import { NeoComResponse } from './NeoComResponse.dto';
-import { Credential } from '../Credential.domain';
+import { Credential } from '../core/Credential.domain';
 
 export class ValidateAuthorizationTokenResponse extends NeoComResponse {
     private jwtToken: string;

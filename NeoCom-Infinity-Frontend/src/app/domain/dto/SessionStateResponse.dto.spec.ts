@@ -1,5 +1,5 @@
 // - APP
-import { SessionStateResponse } from "./SessionStateResponse.dto"
+import { AuthenticationStateResponse } from "./SessionStateResponse.dto"
 
 describe('CLASS SessionStateResponse [Module: DOMAIN]', () => {
     beforeEach(() => {
@@ -8,12 +8,12 @@ describe('CLASS SessionStateResponse [Module: DOMAIN]', () => {
     // - C O V E R A G E   P H A S E
     describe('Construction Contract', () => {
         it('Should be created', () => {
-            expect(new SessionStateResponse()).toBeTruthy()
+            expect(new AuthenticationStateResponse()).toBeTruthy()
         })
         it('initial state', () => {
-            let state = new SessionStateResponse()
+            let state = new AuthenticationStateResponse()
             expect(state.state).toBeUndefined()
-            state = new SessionStateResponse({ state: 'valid' })
+            state = new AuthenticationStateResponse({ state: 'valid' })
             expect(state.state).toBeDefined()
             expect(state.state).toBe('valid')
         })

@@ -18,7 +18,7 @@ import { Corporation } from '@app/domain/Corporation.domain';
 import { SupportAppStoreService } from './SupportAppStore.service';
 import { Pilot } from '@app/domain/Pilot.domain';
 import { IsolationService } from '@innovative/services/isolation.service';
-import { SessionStateResponse } from '@domain/dto/SessionStateResponse.dto';
+import { AuthenticationStateResponse } from '@domain/dto/SessionStateResponse.dto';
 
 @Injectable({
     providedIn: 'root'
@@ -42,19 +42,19 @@ export class SupportBackendService {
         this.exceptionMap.set(apiTarget, this.nextException)
     }
 
-    public apiv1_validateAuthenticationState(): Observable<SessionStateResponse> {
+    public apiv1_validateAuthenticationState(): Observable<AuthenticationStateResponse> {
         console.log(">[BackendService.apiv1_validateAuthenticationState]")
         // Check for exceptions
         const hit = this.exceptionMap.get('apiv1_validateAuthenticationState')
         console.log('-[hit]> ' + JSON.stringify(hit))
         if (hit) {
             console.log(">[BackendService.apiv1_validateAuthenticationState]>Throw error" + hit.error)
-            return new Observable<SessionStateResponse>((observer) => {
+            return new Observable<AuthenticationStateResponse>((observer) => {
                 throwError(hit)
             })
         } else
-            return new Observable<SessionStateResponse>((observer) => {
-                observer.next(new SessionStateResponse({
+            return new Observable<AuthenticationStateResponse>((observer) => {
+                observer.next(new AuthenticationStateResponse({
                     state: "valid"
                 }));
                 observer.complete()

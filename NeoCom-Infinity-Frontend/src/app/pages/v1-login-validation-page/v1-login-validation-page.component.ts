@@ -13,7 +13,7 @@ import { AppStoreService } from '@app/services/appstore.service'
 import { BackendService } from '@app/services/backend.service'
 import { NeoComException } from '@innovative/domain/NeoComException'
 // - DOMAIN
-import { Credential } from '../../domain/Credential.domain'
+import { Credential } from '../../domain/core/Credential.domain'
 import { IsolationService } from '@innovative/services/isolation.service'
 import { neocom_constants } from '@app/platform/neocom-constants.platform'
 import { ValidateAuthorizationTokenResponse } from '@app/domain/dto/ValidateAuthorizationTokenResponse'

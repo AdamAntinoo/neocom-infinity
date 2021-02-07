@@ -4,10 +4,11 @@ import { OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 // - SERVICES
 import { BackendService } from '@app/services/backend.service';
-import { SessionStateResponse } from '@domain/dto/SessionStateResponse.dto';
+import { AuthenticationStateResponse } from '@domain/dto/SessionStateResponse.dto';
 import { platformConstants } from '@env/platform-constants';
 // - INNOVATIVE
 import { BackgroundEnabledComponent } from '@innovative/components/background-enabled/background-enabled.component';
+import { IsolationService } from '@innovative/services/isolation.service';
 
 @Component({
     selector: 'v1-start-page',
@@ -19,6 +20,7 @@ export class V1StartPageComponent extends BackgroundEnabledComponent implements 
 
     constructor(
         protected router: Router,
+        protected isolationService: IsolationService,
         protected backendService: BackendService) {
         super()
     }
@@ -30,9 +32,12 @@ export class V1StartPageComponent extends BackgroundEnabledComponent implements 
      */
     public ngOnInit(): void {
         this.backendConnections.push(this.backendService.apiv1_ValidateAuthentionState()
-            .subscribe((response: SessionStateResponse) => {
+            .subscribe((response: AuthenticationStateResponse) => {
                 if (response.state == platformConstants.VALID_SESSION_STATE) {
                     console.log('-[V1StartPageComponent.ngOnInit]>Valid session')
+                    // Store the new tocken and credential
+                    this.isolationService.setToSession(platformConstants.JWTTOKEN_KEY, response.getJwtToken())
+                    this.isolationService.setToSession(platformConstants.CREDENTIAL_KEY,JSON.stringify(response.getCredential()))
                     this.validating = false
                     this.pageChange('/dashboard')
                 } else {
