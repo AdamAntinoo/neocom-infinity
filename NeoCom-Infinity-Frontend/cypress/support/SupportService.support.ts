@@ -54,7 +54,7 @@ export class SupportService {
         // - TAGS
         this.translationTable['buttons'] = 'button'
         // - BACKEND REQUESTS
-        this.translationTable['Authentication Validate'] = 'apiv1_ValidateAuthenticatedSession'
+        this.translationTable['Authentication Validate'] = 'apiv1_validateAuthenticationState'
         // this.translationTable['Start Build Job'] = 'apiMachinesStartBuild_v2'
         // this.translationTable['Save New Part'] = 'apiNewPart_v1'
 

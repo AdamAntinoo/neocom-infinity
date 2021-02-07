@@ -23,14 +23,14 @@ import { SupportIsolationService } from '@app/testing/SupportIsolation.service';
 import { SupportAppStoreService } from '@app/testing/SupportAppStore.service';
 import { SupportBackendService } from '@app/testing/SupportBackend.service';
 
-import { LoginValidationPageComponent } from './login-validation-page.component';
+import { V1LoginValidationPageComponent } from './v1-login-validation-page.component';
 import { LoginValidationProgressComponent } from '@app/panels/login-validation-progress/login-validation-progress.component';
 import { LoginValidationExceptionComponent } from '@app/panels/login-validation-exception/login-validation-exception.component';
 import { AppInfoPanelComponent } from '@app/modules/header/app-info-panel/app-info-panel.component';
 
 xdescribe('PAGE LoginValidationPageComponent [Module: CORE]', () => {
-    let component: LoginValidationPageComponent;
-    let fixture: ComponentFixture<LoginValidationPageComponent>;
+    let component: V1LoginValidationPageComponent;
+    let fixture: ComponentFixture<V1LoginValidationPageComponent>;
     let params: Subject<Params> = new Subject<Params>();
 
     beforeEach(() => {
@@ -42,7 +42,7 @@ xdescribe('PAGE LoginValidationPageComponent [Module: CORE]', () => {
             ],
             declarations: [
                 RouteMockUpComponent,
-                LoginValidationPageComponent,
+                V1LoginValidationPageComponent,
                 AppInfoPanelComponent,
                 LoginValidationProgressComponent,
                 LoginValidationExceptionComponent
@@ -55,7 +55,7 @@ xdescribe('PAGE LoginValidationPageComponent [Module: CORE]', () => {
             ]
         })
             .compileComponents();
-        fixture = TestBed.createComponent(LoginValidationPageComponent);
+        fixture = TestBed.createComponent(V1LoginValidationPageComponent);
         component = fixture.componentInstance;
     });
 

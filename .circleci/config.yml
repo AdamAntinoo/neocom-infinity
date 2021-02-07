@@ -194,9 +194,12 @@ jobs:
       - run:
           name: NEOCOM-BACKEND - Validate the CI machine configuration
           working_directory: NeoCom-Infinity-Backend
+          environment:
+            DOCKERIZE_VERSION: v0.3.0
           command: |
             ./gradlew --version
             sudo snap install figlet
+            wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
       - run:
           name: NEOCOM-BACKEND - Prepare the installation of the SDE database
           working_directory: NeoCom-Infinity-Backend/src/main/sh
@@ -213,9 +216,12 @@ jobs:
       - run:
           name: NEOCOM-BACKEND - Start the mock services and run tests
           working_directory: NeoCom-Infinity-Backend
+          environment:
+            PROFILE: "production"
           command: |
             ./docker-service.sh start acceptance
             docker ps
+            dockerize -wait tcp://localhost:5271 -timeout 1m
             ./gradlew acceptanceTest -Dcucumber.filter.tags="@NIB01.01 or @NIB01.05 or @NIB01.06 or @NIB01.07 or @NIB01.08" --info
 
 #      - run:

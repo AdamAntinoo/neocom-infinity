@@ -1,29 +1,3 @@
-simlet: authorization-success
-
-request:
-  - method: GET
-  - uriPathPattern: "/api/v1/neocom/validateAuthorizationToken"
-
-response:
-  from: template
-  status: 200
-  headers:
-    - "Content-Type: application/json"
-    - "Cookie: jwtToken=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6OTgzODQ3MjYsImFjY291bnROYW1lIjoiVGVzdGluZyBDaGFyYWN0ZXIgQWNjb3VudCIsImlzcyI6Ik5lb0NvbS5JbmZpbml0eS5CYWNrZW5kIiwidW5pcXVlSWQiOiJ0cmFucXVpbGl0eS85MzgxMzMxMCIsInBpbG90SWQiOjkzODEzMzEwfQ.eJvBC2144s7sKv5rxSUVEjNbP2BpQJlJhmTOu4AJ9eJj9so_WcrAthbvwgYM4BqyBSNZAjw7bVegieWqx8IX8Q"
-    - "Decoded-Content: {
-      sub: ESI OAuth2 Authentication,
-      corporationId: 98384726,
-      accountName: Testing Character Account,
-      iss: NeoCom.Infinity.Backend,
-      uniqueId: tranquility/93813310,
-      pilotId: 93813310
-      }"
-  body:
-    type: text
-    file: "${sim.path}/packed-responses/validateAuthorizationToken.complete.json"
-
----
-
 simlet: authorization-failure
 
 request:
@@ -469,13 +443,13 @@ simlet: login-validation
 
 request:
   - method: GET
-  - uriPathPattern: "/api/v1/neocom/validateAuthenticatedSession"
+  - uriPathPattern: "/api/v1/neocom/validateAuthenticationState"
 
 responses:
 - when:
     request:
     - where: cookie
-      named: apiv1_ValidateAuthenticatedSession
+      named: apiv1_validateAuthenticationState
       equals: "401-UNAUTHORIZED"
   # then
   from: stub
@@ -484,12 +458,12 @@ responses:
   - "Content-Type: application/json"
   body: |+
     {
-      "state": "not valid"
+      "state": "NO_VALID"
     }
 - when:
     request:
     - where: cookie
-      named: apiv1_ValidateAuthenticatedSession
+      named: apiv1_validateAuthenticationState
       equals: "404-NOT FOUND"
   # then
   from: stub
@@ -498,7 +472,21 @@ responses:
   - "Content-Type: application/json"
   body: |+
     {
-      "state": "not found"
+      "state": "NOT_FOUND"
+    }
+- when:
+    request:
+    - where: cookie
+      named: NEOCOM-INFINITY
+      exists: true
+  # then
+  from: stub
+  status: 200
+  headers:
+  - "Content-Type: application/json"
+  body: |+
+    {
+      "state": "VALID"
     }
   # otherwise
 - from: stub
@@ -507,5 +495,31 @@ responses:
   - "Content-Type: application/json"
   body: |+
     {
-      "state": "valid"
+      "state": "NOT_VALID"
     }
+
+---
+
+simlet: authorization-success
+
+request:
+  - method: GET
+  - uriPathPattern: "/api/v1/neocom/validateAuthorizationToken"
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+    - "Set-Cookie: NEOCOM-INFINITY=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6MTIzNDU2LCJhY2NvdW50TmFtZSI6IlRlc3RpbmcgQ2hhcmFjdGVyIEFjY291bnQiLCJpc3MiOiJOZW9Db20uSW5maW5pdHkuQmFja2VuZCIsInVuaXF1ZUlkIjoidHJhbnF1aWxpdHkuOTM4MTMzMTAiLCJwaWxvdElkIjo5MzgxMzMxMH0.P-o3mnrT-LzGzvKLU2KhRIpZEIECsyrtXEpmkXvNjZHLNd4pTyRNZ1lTd1h98CfRUDY6gp8jfwMuomGvTUHYKw; Max-Age=604800; Expires=Thu, 11-Feb-2021 18:40:51 GMT; Path=/; HttpOnly"
+    - "Decoded-Content: {
+      sub: ESI OAuth2 Authentication,
+      corporationId: 98384726,
+      accountName: Testing Character Account,
+      iss: NeoCom.Infinity.Backend,
+      uniqueId: tranquility/93813310,
+      pilotId: 93813310
+      }"
+  body:
+    type: text
+    file: "${sim.path}/packed-responses/validateAuthorizationToken.complete.json"
