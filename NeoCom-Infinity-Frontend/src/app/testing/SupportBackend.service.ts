@@ -42,13 +42,13 @@ export class SupportBackendService {
         this.exceptionMap.set(apiTarget, this.nextException)
     }
 
-    public apiv1_ValidateAuthenticatedSession(): Observable<SessionStateResponse> {
-        console.log(">[BackendService.apiv1_ValidateAuthenticatedSession]")
+    public apiv1_validateAuthenticationState(): Observable<SessionStateResponse> {
+        console.log(">[BackendService.apiv1_validateAuthenticationState]")
         // Check for exceptions
-        const hit = this.exceptionMap.get('apiv1_ValidateAuthenticatedSession')
+        const hit = this.exceptionMap.get('apiv1_validateAuthenticationState')
         console.log('-[hit]> ' + JSON.stringify(hit))
         if (hit) {
-            console.log(">[BackendService.apiv1_ValidateAuthenticatedSession]>Throw error" + hit.error)
+            console.log(">[BackendService.apiv1_validateAuthenticationState]>Throw error" + hit.error)
             return new Observable<SessionStateResponse>((observer) => {
                 throwError(hit)
             })

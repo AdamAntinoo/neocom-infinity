@@ -72,13 +72,13 @@ describe('SERVICE BackendService [Module: APP]', () => {
     })
 
     // - C O D E   C O V E R A G E   P H A S E
-    describe('Code Coverage Phase [apiv1_ValidateAuthenticatedSession]', () => {
+    describe('Code Coverage Phase [apiv1_validateAuthenticationState]', () => {
         it('apiv1_ValidateAuthenticatedSession.success: validate the authentication is still valid', async () => {
             console.log('step 01')
-             service.apiv1_ValidateAuthenticatedSession()
+             service.apiv1_ValidateAuthentionState()
                 .subscribe(response => {
                     console.log('step 07')
-                    console.log('--[apiValidateAuthorizationToken_v1]> response: ' + JSON.stringify(response))
+                    console.log('--[apiv1_validateAuthenticationState]> response: ' + JSON.stringify(response))
                     expect(response).toBeDefined()
                     expect(response.state).toContain('valid')
                 })

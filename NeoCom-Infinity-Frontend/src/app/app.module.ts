@@ -35,7 +35,7 @@ import { SharedModule } from './modules/shared/shared.module';
 import { HeaderModule } from './modules/header/header.module';
 import { FittingsModule } from './modules/fittings/fittings.module';
 // - PAGES
-import { LoginValidationPageComponent } from './pages/login-validation-page/login-validation-page.component';
+import { V1LoginValidationPageComponent } from './pages/v1-login-validation-page/v1-login-validation-page.component';
 import { DashboardHomePageComponent } from './pages/dashboard-home-page/dashboard-home-page.component';
 import { ExceptionInformationPageComponent } from './pages/exception-information-page/exception-information-page.component';
 // - COMPONENTS
@@ -88,7 +88,7 @@ registerLocaleData(localeEs);
     declarations: [
         AppComponent,
         // - PAGES
-        LoginValidationPageComponent,
+        V1LoginValidationPageComponent,
         LoginValidationProgressComponent,
         LoginValidationExceptionComponent,
         DashboardHomePageComponent,
