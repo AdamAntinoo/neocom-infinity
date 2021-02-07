@@ -4,7 +4,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
-import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.ValidateAuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.support.CucumberTableToRequestConverter;
 import org.dimensinfin.eveonline.neocom.infinity.support.RequestType;
 

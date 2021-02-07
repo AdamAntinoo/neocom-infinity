@@ -6,12 +6,12 @@ import java.util.Map;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.ValidateAuthorizationTokenResponse;
+import org.dimensinfin.eveonline.neocom.infinity.support.ConverterContainer;
 import org.dimensinfin.eveonline.neocom.infinity.support.NeoComWorld;
 import org.dimensinfin.eveonline.neocom.infinity.support.ResponseType;
 import org.dimensinfin.eveonline.neocom.infinity.support.corporation.rest.v1.CorporationResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.pilot.rest.v1.PilotResponse;
-import org.dimensinfin.eveonline.neocom.infinity.support.ConverterContainer;
 
 import io.cucumber.java.en.Then;
 
@@ -40,6 +40,7 @@ public class NIB04Contracts extends SupportSteps {
 	private static final String HOME_STATION_ID = "home station id";
 	private static final String MEMBER_COUNT = "member count";
 
+// - C O N S T R U C T O R S
 	@Autowired
 	public NIB04Contracts(
 			final ConverterContainer cucumberTableToRequestConverters,

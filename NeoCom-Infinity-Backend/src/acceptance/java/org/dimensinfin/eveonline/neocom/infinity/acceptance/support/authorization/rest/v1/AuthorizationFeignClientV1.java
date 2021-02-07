@@ -12,9 +12,9 @@ import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.AcceptanceTa
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.ITargetConfiguration;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialResponse;
-import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
-import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthenticationStateResponse;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.ValidateAuthorizationTokenRequest;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.core.CommonFeignClient;
 import org.dimensinfin.eveonline.neocom.infinity.support.rest.NeoComApiv1;
 import org.dimensinfin.eveonline.neocom.service.logger.NeoComLogger;

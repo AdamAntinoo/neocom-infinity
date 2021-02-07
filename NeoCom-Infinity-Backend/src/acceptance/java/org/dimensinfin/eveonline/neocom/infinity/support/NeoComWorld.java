@@ -8,18 +8,17 @@ import org.springframework.http.ResponseEntity;
 
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.database.entities.MiningExtractionEntity;
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.NewNeoComWorld;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialResponse;
-import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenRequest;
-import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.ValidateAuthorizationTokenResponse;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.ValidateAuthorizationTokenRequest;
+import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.ValidateAuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.market.domain.MarketData;
 import org.dimensinfin.eveonline.neocom.infinity.support.corporation.rest.v1.CorporationResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.corporation.rest.v1.LocationAssetContainer;
 import org.dimensinfin.eveonline.neocom.infinity.support.fitting.rest.v1.FittingResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.neoitem.rest.v1.NeoItemTransport;
 import org.dimensinfin.eveonline.neocom.infinity.support.pilot.rest.v1.PilotResponse;
-
-import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.NewNeoComWorld;
 
 public class NeoComWorld extends NewNeoComWorld {
 	//	public String getJwtAuthorizationToken() {
@@ -34,37 +33,8 @@ public class NeoComWorld extends NewNeoComWorld {
 	private Integer regionId;
 	private Integer typeId;
 	private ResponseEntity<MarketData> marketDataResponseEntity;
-
-	public ResponseEntity<MarketData> getMarketDataResponseEntity() {
-		return this.marketDataResponseEntity;
-	}
-
-	public NeoComWorld setMarketDataResponseEntity( final ResponseEntity<MarketData> marketDataResponseEntity ) {
-		this.marketDataResponseEntity = marketDataResponseEntity;
-		return this;
-	}
-
-	public Integer getRegionId() {
-		return this.regionId;
-	}
-
-	public NeoComWorld setRegionId( final Integer regionId ) {
-		this.regionId = regionId;
-		return this;
-	}
-
-	public Integer getTypeId() {
-		return this.typeId;
-	}
-
-	public NeoComWorld setTypeId( final Integer typeId ) {
-		this.typeId = typeId;
-		return this;
-	}
-
 	private HttpStatus httpStatusCode;
 	private int httpStatusCodeValue;
-
 	private ValidateAuthorizationTokenRequest validateAuthorizationTokenRequest;
 	private ValidateAuthorizationTokenResponse validateAuthorizationTokenResponse;
 	private Optional<Integer> corporationIdentifier = Optional.empty();
@@ -84,7 +54,7 @@ public class NeoComWorld extends NewNeoComWorld {
 	private ResponseEntity<NeoItemTransport> neoItemBasicResponseEntity;
 	private ResponseEntity<List<MiningExtractionEntity>> miningExtractionsResponseEntity;
 
-// - G E T T E R S   &   S E T T E R S
+	// - G E T T E R S   &   S E T T E R S
 	public List<LocationAssetContainer> getCorporationAssetsByLocation() {
 		return this.corporationAssetsByLocation;
 	}
@@ -95,7 +65,7 @@ public class NeoComWorld extends NewNeoComWorld {
 	}
 
 	public Optional<Integer> getCorporationIdentifier() {
-		return corporationIdentifier;
+		return this.corporationIdentifier;
 	}
 
 	public NeoComWorld setCorporationIdentifier( final Integer corporationIdentifier ) {
@@ -104,7 +74,7 @@ public class NeoComWorld extends NewNeoComWorld {
 	}
 
 	public CorporationResponse getCorporationResponse() {
-		return corporationResponse;
+		return this.corporationResponse;
 	}
 
 	public NeoComWorld setCorporationResponse( final CorporationResponse corporationResponse ) {
@@ -132,7 +102,7 @@ public class NeoComWorld extends NewNeoComWorld {
 	}
 
 	public List<FittingResponse> getFittingResponse() {
-		return fittingResponse;
+		return this.fittingResponse;
 	}
 
 	public NeoComWorld setFittingResponse( final List<FittingResponse> fittingResponse ) {
@@ -141,7 +111,7 @@ public class NeoComWorld extends NewNeoComWorld {
 	}
 
 	public ResponseEntity<List<FittingResponse>> getFittingResponseEntity() {
-		return fittingResponseEntity;
+		return this.fittingResponseEntity;
 	}
 
 	public NeoComWorld setFittingResponseEntity( final ResponseEntity<List<FittingResponse>> fittingResponseEntity ) {
@@ -177,11 +147,20 @@ public class NeoComWorld extends NewNeoComWorld {
 	}
 
 	public ResponseEntity<List<LocationAssetContainer>> getListAssetContainersResponse() {
-		return listAssetContainersResponse;
+		return this.listAssetContainersResponse;
 	}
 
 	public NeoComWorld setListAssetContainersResponse( final ResponseEntity<List<LocationAssetContainer>> listAssetContainersResponse ) {
 		this.listAssetContainersResponse = listAssetContainersResponse;
+		return this;
+	}
+
+	public ResponseEntity<MarketData> getMarketDataResponseEntity() {
+		return this.marketDataResponseEntity;
+	}
+
+	public NeoComWorld setMarketDataResponseEntity( final ResponseEntity<MarketData> marketDataResponseEntity ) {
+		this.marketDataResponseEntity = marketDataResponseEntity;
 		return this;
 	}
 
@@ -204,7 +183,7 @@ public class NeoComWorld extends NewNeoComWorld {
 	}
 
 	public Optional<Integer> getPilotIdentifier() {
-		return pilotIdentifier;
+		return this.pilotIdentifier;
 	}
 
 	public NeoComWorld setPilotIdentifier( final Integer pilotIdentifier ) {
@@ -213,7 +192,7 @@ public class NeoComWorld extends NewNeoComWorld {
 	}
 
 	public PilotResponse getPilotResponse() {
-		return pilotResponse;
+		return this.pilotResponse;
 	}
 
 	public NeoComWorld setPilotResponse( final PilotResponse pilotResponse ) {
@@ -222,11 +201,20 @@ public class NeoComWorld extends NewNeoComWorld {
 	}
 
 	public ResponseEntity<PilotResponse> getPilotResponseEntity() {
-		return pilotResponseEntity;
+		return this.pilotResponseEntity;
 	}
 
 	public NeoComWorld setPilotResponseEntity( final ResponseEntity<PilotResponse> pilotResponseEntity ) {
 		this.pilotResponseEntity = pilotResponseEntity;
+		return this;
+	}
+
+	public Integer getRegionId() {
+		return this.regionId;
+	}
+
+	public NeoComWorld setRegionId( final Integer regionId ) {
+		this.regionId = regionId;
 		return this;
 	}
 
@@ -254,6 +242,15 @@ public class NeoComWorld extends NewNeoComWorld {
 
 	public NeoComWorld setStoreCredentialResponseResponseEntity( final ResponseEntity<StoreCredentialResponse> storeCredentialResponseResponseEntity ) {
 		this.storeCredentialResponseResponseEntity = storeCredentialResponseResponseEntity;
+		return this;
+	}
+
+	public Integer getTypeId() {
+		return this.typeId;
+	}
+
+	public NeoComWorld setTypeId( final Integer typeId ) {
+		this.typeId = typeId;
 		return this;
 	}
 

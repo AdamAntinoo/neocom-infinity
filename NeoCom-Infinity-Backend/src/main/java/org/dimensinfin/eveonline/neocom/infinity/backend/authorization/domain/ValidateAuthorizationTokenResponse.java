@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1;
+package org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain;
 
 import java.util.Objects;
 import javax.servlet.http.Cookie;
