@@ -9,22 +9,16 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.inject.Guice;
-import com.google.inject.Injector;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.dimensinfin.eveonline.neocom.database.NeoComDatabaseService;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
-import org.dimensinfin.eveonline.neocom.database.repositories.CredentialRepository;
-import org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendDependenciesModule;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.api.NeoComSupportFeignClient;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.authorization.validation.JWTTokenValidator;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBNeoComDBAdapter;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.JwtPayload;
-import org.dimensinfin.eveonline.neocom.infinity.service.JWTTokenService;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
 import org.dimensinfin.eveonline.neocom.infinity.support.ConverterContainer;
 import org.dimensinfin.eveonline.neocom.infinity.support.NeoComWorld;
 import org.dimensinfin.eveonline.neocom.infinity.support.RequestType;
@@ -76,15 +70,9 @@ public class NIB01Authorization extends SupportSteps {
 	@Then("the JWT generated token has the next contents")
 	public void the_JWT_generated_token_has_the_next_contents( final List<Map<String, String>> dataTable ) throws IOException {
 		LogWrapper.info( "Creating Injector for Guice dependencies..." );
-		final Injector injector = Guice.createInjector( new NeoComInfinityBackendDependenciesModule() );
-		final NeoComDatabaseService neoComDatabaseService = injector.getInstance( SBNeoComDBAdapter.class );
-		final CredentialRepository credentialRepository = new CredentialRepository( neoComDatabaseService );
-		final JWTTokenService jwtTokenService = new JWTTokenService( credentialRepository );
-
-		Assert.assertNotNull( this.neocomWorld.getValidateAuthorizationTokenResponseEntity() );
-		Assert.assertNotNull( this.neocomWorld.getValidateAuthorizationTokenResponseEntity().getBody() );
-		final JwtPayload payload = Objects.requireNonNull( jwtTokenService.extractPayload(
-				this.neocomWorld.getValidateAuthorizationTokenResponseEntity().getBody().getJwtToken()
+		Assert.assertNotNull( this.neocomWorld.getJwtAuthorizationToken() );
+		final JwtPayload payload = Objects.requireNonNull( this.extractPayload(
+				this.neocomWorld.getJwtAuthorizationToken()
 		) );
 		Assert.assertTrue( new JWTTokenValidator().validate( dataTable.get( 0 ), payload ) );
 	}
@@ -149,6 +137,22 @@ public class NIB01Authorization extends SupportSteps {
 		Assert.assertEquals( credentialId, credential.getUniqueCredential() );
 	}
 
+	private JwtPayload accessDecodedPayload( final String payloadDataEncoded ) {
+		try {
+			final String[] splitSJWTFields = payloadDataEncoded.split( "\\." );
+			if (this.validateTokenHeader( splitSJWTFields[0] )) { // Validate the header contents
+				final String base64EncodedBody = splitSJWTFields[1];
+				final String payloadData = new String( org.apache.commons.codec.binary.Base64.decodeBase64( base64EncodedBody.getBytes() ) );
+				final JwtPayload payload = new ObjectMapper().readValue( payloadData, JwtPayload.class );
+				if (null == payload)
+					throw new NeoComRuntimeBackendException( "JWT token malformed payload." );
+				return payload;
+			} else throw new NeoComRuntimeBackendException( "JWT token header is malformed. Invalid token" );
+		} catch (final IOException ioe) {
+			throw new NeoComRuntimeBackendException( ioe.getMessage() );
+		}
+	}
+
 	private String extractClaim( final String fieldName, final String token ) throws IOException {
 		final DecodedJWT jwtToken = JWT.require( Algorithm.HMAC512( SECRET.getBytes() ) )
 				.build()
@@ -171,5 +175,14 @@ public class NIB01Authorization extends SupportSteps {
 				return payload.getPilotId().toString();
 		}
 		return null;
+	}
+
+	private JwtPayload extractPayload( final String payloadDataEncoded ) {
+		return this.accessDecodedPayload( payloadDataEncoded );
+	}
+
+	private boolean validateTokenHeader( final String headerEncoded ) {
+		final String headerData = new String( org.apache.commons.codec.binary.Base64.decodeBase64( headerEncoded.getBytes() ) );
+		return (headerData.equals( "{\"typ\":\"JWT\",\"alg\":\"HS512\"}" ));
 	}
 }

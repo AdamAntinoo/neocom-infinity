@@ -17,10 +17,8 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.Au
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.core.CommonFeignClient;
 import org.dimensinfin.eveonline.neocom.infinity.support.rest.NeoComApiv1;
-import org.dimensinfin.eveonline.neocom.service.logger.NeoComLogger;
 import org.dimensinfin.logging.LogWrapper;
 
-import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
@@ -32,23 +30,18 @@ public class AuthorizationFeignClientV1 extends CommonFeignClient {
 	}
 
 	public ResponseEntity<StoreCredentialResponse> storeCredential( final StoreCredentialRequest storeCredentialRequest ) throws IOException {
-		final NeoComApiv1 serviceStoreCredential = new Retrofit.Builder()
-				.baseUrl( new AcceptanceTargetConfig().getBackendServer() )
+		final String ENDPOINT_MESSAGE = "Store a Credential on the backend repository.";
+		final Response<StoreCredentialResponse> response = new Retrofit.Builder()
+				.baseUrl( this.acceptanceTargetConfig.getBackendServer() )
 				.addConverterFactory( GSON_CONVERTER_FACTORY )
 				.build()
-				.create( NeoComApiv1.class );
-		final Call<StoreCredentialResponse> request = serviceStoreCredential.storeCredential(
-				NeoComApiv1.NEOCOM_BACKEND_ACCEPTED_CONTENT_TYPE,
-				storeCredentialRequest.getCredential().getAccountId(),
-				storeCredentialRequest.getCredential()
-		);
-		// Getting the request response to be stored if valid.
-		final Response<StoreCredentialResponse> response = request.execute();
+				.create( NeoComApiv1.class )
+				.storeCredential( storeCredentialRequest.getCredential().getAccountId(), storeCredentialRequest.getCredential() )
+				.execute();
 		if (response.isSuccessful()) {
-			NeoComLogger.info( "Response is 200 OK." );
-			final StoreCredentialResponse storeCredentialResponse = response.body();
-			return new ResponseEntity<>( storeCredentialResponse, HttpStatus.OK );
-		} else return new ResponseEntity( HttpStatus.BAD_REQUEST );
+			LogWrapper.info( ENDPOINT_MESSAGE );
+			return new ResponseEntity<>( response.body(), HttpStatus.valueOf( response.code() ) );
+		} else throw new IOException( ENDPOINT_MESSAGE + " Failed." );
 	}
 
 	public ResponseEntity<AuthenticationStateResponse> validateAuthenticationState( final List<String> cookies ) throws IOException {

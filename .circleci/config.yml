@@ -222,7 +222,8 @@ jobs:
             ./docker-service.sh start acceptance
             docker ps
             dockerize -wait tcp://localhost:5271 -timeout 1m
-            ./gradlew acceptanceTest -Dcucumber.filter.tags="@NIB01.01 or @NIB01.05 or @NIB01.06 or @NIB01.07 or @NIB01.08" --info
+            docker ps
+            ./gradlew acceptanceTest -Dcucumber.filter.tags="@NIB01" --info
 
 #      - run:
 #          name: NEOCOM-BACKEND - Run the list of approved acceptance tests

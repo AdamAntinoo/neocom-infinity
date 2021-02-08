@@ -7,6 +7,7 @@ import org.apache.commons.lang3.NotImplementedException;
 public enum RequestType {
 	VALIDATE_AUTHENTICATION( "" ),
 	VALIDATE_AUTHORIZATION_TOKEN( "Validate Authorization Token" ),
+	STORE_CREDENTIAL( "Store Credential" ),
 
 	GET_PILOT_DATA_ENDPOINT_NAME( "Get Pilot Data" ),
 	GET_PILOTS_FITTINGS_ENDPOINT_NAME( "Get Pilot Fittings" ),
@@ -26,7 +27,6 @@ public enum RequestType {
 
 	GET_CORPORATION_ENDPOINT_NAME( "Get Corporation Data" ),
 	GET_CORPORATION_ASSETS_BY_LOCATION( "Get Corporation Assets By Location" ),
-	STORE_CREDENTIAL( "Store Credential" ),
 	GET_ITEM_BASIC( "Get Item Basic" ),
 	GET_TODAY_MINING_EXTRACTIONS( "Get Today Pilot MiningExtractions" );
 

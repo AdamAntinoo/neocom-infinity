@@ -6,6 +6,7 @@ import java.util.Objects;
 import javax.validation.constraints.NotNull;
 
 import org.apache.commons.lang3.NotImplementedException;
+import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.springframework.http.ResponseEntity;
 
@@ -17,6 +18,8 @@ import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.industry.res
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.market.rest.v1.MarketFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.universe.rest.v1.UniverseFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.universe.rest.v2.UniverseFeignClientV2;
+import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialRequest;
+import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthenticationStateResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.character.fitting.domain.FittingModel;
@@ -122,6 +125,11 @@ public class WhenTheRequestIsProcessed extends StepSupport {
 	@When("the Validate Authentication request is processed")
 	public void the_Validate_Authentication_request_is_processed() throws IOException {
 		this.processRequestByType( RequestType.VALIDATE_AUTHENTICATION );
+	}
+
+	@When("the Store Credential request is processed")
+	public void the_store_credential_request_is_processed() throws IOException {
+		this.processRequestByType( RequestType.STORE_CREDENTIAL );
 	}
 
 	@When("the Validate Authorization Token request is processed")
@@ -236,6 +244,15 @@ public class WhenTheRequestIsProcessed extends StepSupport {
 						Objects.requireNonNull( validateAuthorizationTokenResponseEntity.getBody() ).getJwtToken()
 				);
 				return validateAuthorizationTokenResponseEntity;
+			case STORE_CREDENTIAL:
+				Assert.assertNotNull( this.neocomWorld.getCredential() );
+				this.neocomWorld.setStoreCredentialRequest( new StoreCredentialRequest.Builder()
+						.withCredential( this.neocomWorld.getCredential() ).build() );
+				final ResponseEntity<StoreCredentialResponse> storeCredentialResponseEntity = this.authorizationFeignClient
+						.storeCredential( this.neocomWorld.getStoreCredentialRequest() );
+				this.neocomWorld.setStoreCredentialResponseResponseEntity( storeCredentialResponseEntity );
+				this.neocomWorld.setJwtAuthorizationToken( storeCredentialResponseEntity.getBody().getJwtToken() );
+				return storeCredentialResponseEntity;
 			default:
 				throw new NotImplementedException( "Request {} not implemented.", requestType.name() );
 		}

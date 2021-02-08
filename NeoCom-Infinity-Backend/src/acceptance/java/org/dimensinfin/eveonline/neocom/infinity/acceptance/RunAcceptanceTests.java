@@ -12,6 +12,6 @@ import static io.cucumber.junit.CucumberOptions.SnippetType.CAMELCASE;
 		snippets = CAMELCASE,
 		glue = { "org.dimensinfin.eveonline.neocom.infinity.acceptance.steps" },
 		plugin = { "pretty", "json:target/cucumber_report.json" },
-		tags = "@NIB01.05")
+		tags = "@NIB01.03 or @NIB01.04")
 public class RunAcceptanceTests {
 }
