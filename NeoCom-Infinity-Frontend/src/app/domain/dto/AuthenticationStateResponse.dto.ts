@@ -1,7 +1,7 @@
 import { NeocomCredential } from "@domain/core/Credential.domain";
 
 export class AuthenticationStateResponse {
-    public state: string='NOT_VALID'
+    public state: string = 'NOT_VALID'
     private jwtToken: string
     private credential: NeocomCredential
 

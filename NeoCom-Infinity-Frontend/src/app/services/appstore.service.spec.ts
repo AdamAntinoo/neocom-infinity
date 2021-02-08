@@ -10,8 +10,8 @@ import { ComponentFixture } from '@angular/core/testing';
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 // - INNOVATIVE
-import { RouteMockUpComponent } from '@innovative/testing/RouteMockUp.component';
-import { routes } from '@innovative/testing/RouteMockUp.component';
+import { RouteMockUpComponent } from '@app/testing/RouteMockUp.component';
+import { routes } from '@app/testing/RouteMockUp.component';
 import { IsolationService } from '@innovative/services/isolation.service';
 import { HttpClientWrapperService } from '@innovative/services/httpclientwrapper.service';
 import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer';

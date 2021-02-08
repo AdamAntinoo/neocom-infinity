@@ -9,14 +9,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 // - SERVICES
 // - DOMAIN
-import { ValidateAuthorizationTokenResponse } from '@app/domain/dto/ValidateAuthorizationTokenResponse';
-import { environment } from '@env/environment.prod';
-import { NeoComResponse } from '@app/domain/dto/NeoComResponse.dto';
-import { NeoComException } from '@innovative/domain/NeoComException';
-import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer';
-import { Corporation } from '@app/domain/Corporation.domain';
-import { SupportAppStoreService } from './SupportAppStore.service';
-import { Pilot } from '@app/domain/Pilot.domain';
 import { MockHTTPRequestController } from './MockHTTPRequestController';
 
 const REQUEST_PREFIX = 'http://neocom.infinity.local/api/v1/neocom';

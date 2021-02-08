@@ -9,7 +9,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 // - SERVICES
 // - DOMAIN
-import { ValidateAuthorizationTokenResponse } from '@app/domain/dto/ValidateAuthorizationTokenResponse';
 import { environment } from '@env/environment.prod';
 import { NeoComResponse } from '@app/domain/dto/NeoComResponse.dto';
 import { NeoComException } from '@innovative/domain/NeoComException';
@@ -42,7 +41,7 @@ export class SupportBackendService {
         this.exceptionMap.set(apiTarget, this.nextException)
     }
 
-    public apiv1_validateAuthenticationState(): Observable<AuthenticationStateResponse> {
+    public apiv1_ValidateAuthtenticationState(): Observable<AuthenticationStateResponse> {
         console.log(">[BackendService.apiv1_validateAuthenticationState]")
         // Check for exceptions
         const hit = this.exceptionMap.get('apiv1_validateAuthenticationState')
@@ -60,7 +59,7 @@ export class SupportBackendService {
                 observer.complete()
             })
     }
-    public apiValidateAuthorizationToken_v1(code: string, state: string): Observable<ValidateAuthorizationTokenResponse> {
+    public apiValidateAuthorizationToken_v1(code: string, state: string): Observable<AuthenticationStateResponse> {
         console.log(">[BackendService.apiValidateAuthorizationToken_v1]> code: " + code);
         // Construct the request to call the backend.
         let request = 'server-name' + 'api-v1' + "/validateAuthorizationToken" +
@@ -70,7 +69,7 @@ export class SupportBackendService {
         // console.log("--[BackendService.apiValidateAuthorizationToken_v1]> request = " + request);
         // console.log("--[BackendService.backendReserveAppointment]> body = " + JSON.stringify(patient));
         return Observable.create((observer) => {
-            observer.next(new ValidateAuthorizationTokenResponse(
+            observer.next(new AuthenticationStateResponse(
                 {
                     responseType: "ValidateAuthorizationTokenResponse",
                     jwtToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiYWNjb3VudE5hbWUiOiJBZGFtIEFudGlub28iLCJpc3MiOiJOZW9Db20uSW5maW5pdHkuQmFja2VuZCIsInVuaXF1ZUlkIjoidHJhbnF1aWxpdHkvMTIzIn0.VE261-Uzlsw8nH6JNox_DBVhrQY_BqR3P2Knc_DQmO-ejlHXiCNX3YPHd-pKK-bis_bxWq-lQxVEXd2vvhg0yQ",

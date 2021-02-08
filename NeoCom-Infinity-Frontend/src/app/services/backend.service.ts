@@ -43,7 +43,7 @@ export class BackendService extends PublicService {
     }
 
     // - B A C K E N D - A P I
-    public apiv1_ValidateAuthentionState(): Observable<AuthenticationStateResponse> {
+    public apiv1_ValidateAuthtenticationState(): Observable<AuthenticationStateResponse> {
         console.log('step 02')
         const request = this.APIV1 + "/validateAuthenticationState"
         let headers = new HttpHeaders() // Additional headers for this authentication varification call.

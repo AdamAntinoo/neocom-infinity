@@ -109,12 +109,16 @@ jobs:
           command: |
             node -v
             sudo snap install figlet
+            wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
             npm install
       - run:
           name: NEOCOM-FRONTEND - Start frontend mock processes
           working_directory: NeoCom-Infinity-Frontend
           command: |
             npm run docker:start
+            docker ps
+            dockerize -wait tcp://localhost:5220 -timeout 1m
+            docker ps
       - run:
           name: NEOCOM-FRONTEND - Run the list of approved acceptance tests
           working_directory: NeoCom-Infinity-Frontend
@@ -218,6 +222,8 @@ jobs:
           working_directory: NeoCom-Infinity-Backend
           environment:
             PROFILE: "production"
+            DEFAULT_BACKEND_SERVER: 'http://neocom-backend-acceptance-app'
+            DEFAULT_BACKEND_PORT: '5241'
           command: |
             ./docker-service.sh start acceptance
             docker ps

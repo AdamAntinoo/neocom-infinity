@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 // - COMPONENTS
 import { AppPanelComponent } from './components/app-panel/app-panel.component';
 import { BackgroundEnabledComponent } from './components/background-enabled/background-enabled.component';
-import { RouteMockUpComponent } from './testing/RouteMockUp.component';
+// import { RouteMockUpComponent } from '../../testing/RouteMockUp.component';
 
 @NgModule({
     imports: [
@@ -13,12 +13,12 @@ import { RouteMockUpComponent } from './testing/RouteMockUp.component';
     declarations: [
         AppPanelComponent,
         BackgroundEnabledComponent,
-        RouteMockUpComponent,
+        // RouteMockUpComponent,
     ],
     exports: [
         AppPanelComponent,
         BackgroundEnabledComponent,
-        RouteMockUpComponent,
+        // RouteMockUpComponent,
     ]
 })
 export class InnovativeCoreModule { }

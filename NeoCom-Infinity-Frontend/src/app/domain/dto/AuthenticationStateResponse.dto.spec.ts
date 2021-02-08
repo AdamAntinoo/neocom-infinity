@@ -1,7 +1,8 @@
 // - APP
+import { NeoComCredential } from "@domain/NeoComCredential.domain"
 import { AuthenticationStateResponse } from "./AuthenticationStateResponse.dto"
 
-describe('CLASS SessionStateResponse [Module: DOMAIN]', () => {
+describe('CLASS AuthenticationStateResponse [Module: DOMAIN]', () => {
     beforeEach(() => {
     })
 
@@ -11,11 +12,22 @@ describe('CLASS SessionStateResponse [Module: DOMAIN]', () => {
             expect(new AuthenticationStateResponse()).toBeTruthy()
         })
         it('initial state', () => {
-            let state = new AuthenticationStateResponse()
-            expect(state.state).toBeUndefined()
-            state = new AuthenticationStateResponse({ state: 'valid' })
-            expect(state.state).toBeDefined()
-            expect(state.state).toBe('valid')
+            const testState = new AuthenticationStateResponse()
+            expect(testState.state).toBeDefined()
+            expect(testState.state).toBe('NOT_VALID')
+            expect(testState.getJwtToken()).toBeUndefined()
+            expect(testState.getCredential()).toBeUndefined()
+        })
+        it('complete construction', () => {
+            const testState = new AuthenticationStateResponse({
+                state: 'valid',
+                jwtToken: "-JWT-TOKEN-",
+                credential: new NeoComCredential()
+            })
+            expect(testState.state).toBeDefined()
+            expect(testState.state).toBe('valid')
+            expect(testState.getJwtToken()).toBeDefined()
+            expect(testState.getCredential()).toBeDefined()
         })
     })
 })
