@@ -23,6 +23,8 @@ Feature: [NIF01]-Test the validation for a valid authentication and the flow to 
     Scenario: [NIF01.02]-Start the application and go to the landing page. If the authorization is valid then validate we land into the Dashboard.
         Given the application NeoCom-Infinity-Frontend
         Given a clean cookie repository
+        Given a valid NEOCOM-INFINITY cookie
+        Given a valid JWT Token on the session storage
         Given a valid Credential on the session storage
         # - Start the page
         Then the page "Start" is activated
