@@ -2,6 +2,8 @@
 import { Component } from '@angular/core';
 import { ViewChild } from '@angular/core';
 import { EsiMarketData } from '@domain/esi/EsiMarketData.esi';
+import { EsiMarketsRegionsHistory } from '@domain/esi/EsiMarketsRegionsHistory.esi';
+import { EsiMarketsRegionsHistoryRecord } from '@domain/esi/EsiMarketsRegionsHistoryRecord.esi';
 import { EsiType } from '@domain/esi/EsiType.esi';
 import { HALLink } from '@domain/hal/HALLink.hal';
 import { MarketOrderDto } from '@domain/industry/dto/MarketOrderDto.dto';
@@ -21,14 +23,16 @@ export class LoyaltyOfferV1 extends NeoCom {
     public marketRegionId: number
     public price: number
     public marketData: EsiMarketData
+    public marketHistory: EsiMarketsRegionsHistoryRecord[]
 
     constructor(values: Object = {}) {
         super()
         Object.assign(this, values)
         this.jsonClass = 'LoyaltyOfferV1'
         // Warning. References objects can come as links so should be cleared on construction
-        this.type=undefined
-        this.marketData=undefined
+        this.type = undefined
+        this.marketData = undefined
+        this.marketHistory = []
     }
 
     public getType(): EsiType {

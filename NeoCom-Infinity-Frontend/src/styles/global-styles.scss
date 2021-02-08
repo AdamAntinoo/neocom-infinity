@@ -1,6 +1,7 @@
-hr {
-    border-top: 1px solid white;
-    border-bottom: 1px solid white;
+hr.separator-line {
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    -webkit-filter: blur(1px);
     filter: blur(1px);
 }
 

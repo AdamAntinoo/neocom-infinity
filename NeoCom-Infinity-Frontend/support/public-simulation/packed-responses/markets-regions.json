@@ -1,0 +1,177 @@
+[{
+        "average": 10328421.05,
+        "date": "2021-01-17",
+        "highest": 10500000,
+        "lowest": 8061000,
+        "order_count": 43,
+        "volume": 57
+    },
+    {
+        "average": 11155666.67,
+        "date": "2021-01-18",
+        "highest": 11300000,
+        "lowest": 9286500,
+        "order_count": 27,
+        "volume": 27
+    },
+    {
+        "average": 11120263.16,
+        "date": "2021-01-19",
+        "highest": 11290000,
+        "lowest": 8085000,
+        "order_count": 19,
+        "volume": 19
+    },
+    {
+        "average": 10380315.79,
+        "date": "2021-01-20",
+        "highest": 11170000,
+        "lowest": 8109000,
+        "order_count": 17,
+        "volume": 19
+    },
+    {
+        "average": 9499475.41,
+        "date": "2021-01-21",
+        "highest": 11140000,
+        "lowest": 8126000,
+        "order_count": 36,
+        "volume": 61
+    },
+    {
+        "average": 11053541.67,
+        "date": "2021-01-22",
+        "highest": 11090000,
+        "lowest": 9557500,
+        "order_count": 20,
+        "volume": 24
+    },
+    {
+        "average": 10512160,
+        "date": "2021-01-23",
+        "highest": 10990000,
+        "lowest": 10090000,
+        "order_count": 21,
+        "volume": 25
+    },
+    {
+        "average": 10380285.71,
+        "date": "2021-01-24",
+        "highest": 10950000,
+        "lowest": 8228000,
+        "order_count": 28,
+        "volume": 28
+    },
+    {
+        "average": 10822310.34,
+        "date": "2021-01-25",
+        "highest": 10990000,
+        "lowest": 8239000,
+        "order_count": 29,
+        "volume": 29
+    },
+    {
+        "average": 10371250,
+        "date": "2021-01-26",
+        "highest": 10960000,
+        "lowest": 8245500,
+        "order_count": 16,
+        "volume": 16
+    },
+    {
+        "average": 10456433.33,
+        "date": "2021-01-27",
+        "highest": 10795000,
+        "lowest": 8253000,
+        "order_count": 28,
+        "volume": 30
+    },
+    {
+        "average": 10322722.22,
+        "date": "2021-01-28",
+        "highest": 10710000,
+        "lowest": 8256000,
+        "order_count": 18,
+        "volume": 18
+    },
+    {
+        "average": 10577300,
+        "date": "2021-01-29",
+        "highest": 10620000,
+        "lowest": 9276000,
+        "order_count": 20,
+        "volume": 20
+    },
+    {
+        "average": 10396000,
+        "date": "2021-01-30",
+        "highest": 10555000,
+        "lowest": 8278000,
+        "order_count": 36,
+        "volume": 37
+    },
+    {
+        "average": 10626133.33,
+        "date": "2021-01-31",
+        "highest": 45000000,
+        "lowest": 10330000,
+        "order_count": 35,
+        "volume": 45
+    },
+    {
+        "average": 11271864.86,
+        "date": "2021-02-01",
+        "highest": 45000000,
+        "lowest": 10510000,
+        "order_count": 32,
+        "volume": 37
+    },
+    {
+        "average": 10422000,
+        "date": "2021-02-02",
+        "highest": 10520000,
+        "lowest": 9350000,
+        "order_count": 20,
+        "volume": 20
+    },
+    {
+        "average": 9867763.16,
+        "date": "2021-02-03",
+        "highest": 10520000,
+        "lowest": 8314000,
+        "order_count": 27,
+        "volume": 38
+    },
+    {
+        "average": 10260785.71,
+        "date": "2021-02-04",
+        "highest": 10505000,
+        "lowest": 8329000,
+        "order_count": 28,
+        "volume": 28
+    },
+    {
+        "average": 10050677.42,
+        "date": "2021-02-05",
+        "highest": 10510000,
+        "lowest": 8339000,
+        "order_count": 29,
+        "volume": 31
+    },
+    {
+        "average": 10114133.33,
+        "date": "2021-02-06",
+        "highest": 10350000,
+        "lowest": 8358000,
+        "order_count": 36,
+        "volume": 45
+    },
+    {
+        "average": 10128843.75,
+        "date": "2021-02-07",
+        "highest": 10330000,
+        "lowest": 8369500,
+        "order_count": 30,
+        "volume": 32
+    }
+]

@@ -81,9 +81,9 @@ registerLocaleData(localeEs);
         }),
         // - APPLICATION MODULES
         AppCommonModule,
-        SharedModule,
+        // SharedModule,
         HeaderModule,
-        FittingsModule
+        // FittingsModule
     ],
     declarations: [
         AppComponent,
@@ -97,7 +97,6 @@ registerLocaleData(localeEs);
     ],
     providers: [
         // - SERVICES
-        // { provide: IsolationService, useClass: IsolationService },
         { provide: AppStoreService, useClass: AppStoreService },
         { provide: UniverseService, useClass: UniverseService },
         { provide: BackendService, useClass: BackendService },

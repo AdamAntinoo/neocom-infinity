@@ -15,18 +15,35 @@ import { LoyaltyCorporationV1 } from '@app/modules/loyalty/domain/LoyaltyCorpora
 import { LoyaltyOfferV1 } from '@app/modules/loyalty/domain/LoyaltyOfferV1.domain';
 import { EsiMarketData } from '@domain/esi/EsiMarketData.esi';
 import { MarketOrderDto } from '@domain/industry/dto/MarketOrderDto.dto';
+import { TradeHistoryData } from '@app/modules/loyalty/domain/TradeHistoryData.domain';
+import { EsiMarketsRegionsHistoryRecord } from '@domain/esi/EsiMarketsRegionsHistoryRecord.esi';
 
 @Component({
     selector: 'v1-loyalty-offer',
     templateUrl: './v1-loyalty-offer-render.component.html',
     styleUrls: ['./v1-loyalty-offer-render.component.scss']
 })
-export class V1LoyaltyOfferRenderComponent extends V2NodeContainerRenderComponent {
+export class V1LoyaltyOfferRenderComponent extends V2NodeContainerRenderComponent implements OnInit {
+    public marketHistoryData: TradeHistoryData[] = [];
+    public yscale: number = 10
+    public colorScheme = {
+        domain: ['blueviolet']
+    };
+    public yaxisTicks: any[] = [10]
+
+    public ngOnInit() {
+        this.updateChartData()
+    }
+    public hasData(): boolean {
+        if (this.isReady())
+            if (this.marketHistoryData.length >1) return true
+            else return false
+    }
     public isReady(): boolean {
         if (this.node)
             if (this.getNode().type)
                 if (this.getNode().marketData)
-                    return true
+                    if (this.marketHistoryData.length > 1) return true
         return false
     }
     public getNode(): LoyaltyOfferV1 {
@@ -64,5 +81,38 @@ export class V1LoyaltyOfferRenderComponent extends V2NodeContainerRenderComponen
     }
     public getMarketData(): EsiMarketData {
         if (this.node) return this.getNode().marketData
+    }
+
+    public updateChartData(): void {
+        const charData: TradeHistoryData[] = []
+        const sourceRecords: EsiMarketsRegionsHistoryRecord[] = this.getNode().marketHistory.reverse()
+        // for (const record of this.getNode().marketHistory)
+        for (let index = 0; index < 15; index++) {
+            const record = sourceRecords[index]
+            // charData.push(new TradeHistoryData({ dateString: record.date, value: record.volume }))
+        }
+        charData.push(new TradeHistoryData({ dateString: "2021-02-08", value: 32 }))
+        charData.push(new TradeHistoryData({ dateString: "2021-02-07", value: 22 }))
+        charData.push(new TradeHistoryData({ dateString: "2021-02-06", value: 22 }))
+        charData.push(new TradeHistoryData({ dateString: "2021-02-05", value: 22 }))
+        this.yaxisTicks = this.generateTicksFromData(charData)
+        this.marketHistoryData = charData
+    }
+    private generateTicksFromData(data: TradeHistoryData[]): number[] {
+        const ticks: number[] = []
+        let max: number = 0
+        let min: number = 9999
+        for (const record of data) {
+            if (record.value > max) max = record.value
+            if (record.value < min) min = record.value
+        }
+        const tickSize = Math.floor(max / 4)
+        let tick: number = 0
+        while (tick < max) {
+            tick += tickSize
+            ticks.push(tick)
+        }
+        this.yscale = tick
+        return ticks
     }
 }
