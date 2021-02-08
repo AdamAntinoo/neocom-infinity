@@ -106,6 +106,8 @@ jobs:
       - run:
           name: NEOCOM-FRONTEND - Validate the CI machine configuration
           working_directory: NeoCom-Infinity-Backend
+          environment:
+            DOCKERIZE_VERSION: v0.3.0
           command: |
             node -v
             sudo snap install figlet
@@ -227,7 +229,7 @@ jobs:
           command: |
             ./docker-service.sh start acceptance
             docker ps
-            dockerize -wait tcp://localhost:5271 -timeout 1m
+            dockerize -wait tcp://localhost:5241 -timeout 1m
             docker ps
             ./gradlew acceptanceTest -Dcucumber.filter.tags="@NIB01" --info
 
