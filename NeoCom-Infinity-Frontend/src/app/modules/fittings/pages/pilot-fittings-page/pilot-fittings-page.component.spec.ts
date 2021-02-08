@@ -16,8 +16,8 @@ import { SupportAppStoreService } from '@app/testing/SupportAppStore.service';
 import { SupportBackendService } from '@app/testing/SupportBackend.service';
 
 import { PilotFittingsPageComponent } from './pilot-fittings-page.component';
-import { RouteMockUpComponent } from '@innovative/testing/RouteMockUp.component';
-import { routes } from '@innovative/testing/RouteMockUp.component';
+import { RouteMockUpComponent } from '@app/testing/RouteMockUp.component';
+import { routes } from '@app/testing/RouteMockUp.component';
 
 describe('PAGE PilotFittingsPageComponent [Module: FITTINGS]', () => {
     let fixture: ComponentFixture<PilotFittingsPageComponent>;

@@ -31,7 +31,7 @@ export class V1StartPageComponent extends BackgroundEnabledComponent implements 
      * If the session is not vald then we change the page to display the login button.
      */
     public ngOnInit(): void {
-        this.backendConnections.push(this.backendService.apiv1_ValidateAuthentionState()
+        this.backendConnections.push(this.backendService.apiv1_ValidateAuthtenticationState()
             .subscribe((response: AuthenticationStateResponse) => {
                 if (response.state == platformConstants.VALID_SESSION_STATE) {
                     console.log('-[V1StartPageComponent.ngOnInit]>Valid session')

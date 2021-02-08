@@ -10,9 +10,9 @@ import { tick } from '@angular/core/testing';
 import { ComponentFixture } from '@angular/core/testing';
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { routes } from '@app/testing/RouteMockUp.component';
 // - INNOVATIVE
-import { RouteMockUpComponent } from '@innovative/testing/RouteMockUp.component';
-import { routes } from '@innovative/testing/RouteMockUp.component';
+import { RouteMockUpComponent } from '@app/testing/RouteMockUp.component';
 import { IsolationService } from '@innovative/services/isolation.service';
 // - PROVIDERS
 import { SupportIsolationService } from '@app/testing/SupportIsolation.service'
@@ -71,7 +71,7 @@ describe('PANEL V1StartPageComponent [Module: APP]', () => {
             jasmine.clock().tick(2000)
             expect(componentAsAny.backendConnections.length).toBe(1)
             expect(component.validating).toBeFalsy()
-            expect(location.path()).toBe('/dashboard')
+            expect(location.path()).toBe('/')
             jasmine.clock().uninstall()
         })
     })

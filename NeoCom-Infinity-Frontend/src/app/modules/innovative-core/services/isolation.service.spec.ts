@@ -9,8 +9,8 @@ import { tick } from '@angular/core/testing';
 import { ComponentFixture } from '@angular/core/testing';
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { RouteMockUpComponent } from '../testing/RouteMockUp.component';
-import { routes } from '../testing/RouteMockUp.component';
+import { RouteMockUpComponent } from '../../../testing/RouteMockUp.component';
+import { routes } from '../../../testing/RouteMockUp.component';
 // - STORAGE
 import { LOCAL_STORAGE, StorageServiceModule, WebStorageService } from 'ngx-webstorage-service';
 // - PROVIDERS

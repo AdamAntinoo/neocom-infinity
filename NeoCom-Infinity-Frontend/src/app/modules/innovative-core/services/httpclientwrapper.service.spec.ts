@@ -6,8 +6,8 @@ import { HttpTestingController } from '@angular/common/http/testing';
 // - TESTING
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { RouteMockUpComponent } from '../testing/RouteMockUp.component';
-import { routes } from '../testing/RouteMockUp.component';
+import { RouteMockUpComponent } from '../../../testing/RouteMockUp.component';
+import { routes } from '../../../testing/RouteMockUp.component';
 // - PROVIDERS
 // import { IsolationService } from '@app/platform/isolation.service';
 // import { SupportIsolationService } from '@app/testing/SupportIsolation.service';

@@ -12,8 +12,8 @@ import { EveItemDto } from '@domain/core/dto/EveItemDto.dto'
 import { SupportHALResolver } from '@app/testing/SupportHALResolver.service'
 import { HALResolver } from '@app/services/HALResolver.service'
 import { HttpClient } from '@angular/common/http'
-import { RouteMockUpComponent } from '@innovative/testing/RouteMockUp.component';
-import { routes } from '@innovative/testing/RouteMockUp.component';
+import { RouteMockUpComponent } from '@app/testing/RouteMockUp.component';
+import { routes } from '@app/testing/RouteMockUp.component';
 import { IsolationService } from '@innovative/services/isolation.service'
 
 describe('CLASS HALLink [Module: HAL]', () => {
