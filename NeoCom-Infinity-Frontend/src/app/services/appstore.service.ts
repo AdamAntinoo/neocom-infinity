@@ -40,20 +40,20 @@ export class AppStoreService extends AppCoreStoreService {
         protected httpService: BackendHttpWrapper) {
         super()
         // - S T O R E   D A T A   S E C T I O N
-        this.corporationActiveCache = new ActiveCacheWrapper<Corporation>()
-            .setTimedCache(false) // Contents do not expire.
-            .setReturnObsoletes(false) // If the content is expired then wait for a new request.
-            .setDownloader((): Observable<Corporation | Corporation[]> => {
-                const corporationId = this.getCorporationIdentifier();
-                return this.downloadCorporation(corporationId);
-            });
-        this.pilotActiveCache = new ActiveCacheWrapper<Pilot>()
-            .setTimedCache(false) // Contents do not expire.
-            .setReturnObsoletes(false) // If the content is expired then wait for a new request.
-            .setDownloader((): Observable<Pilot | Pilot[]> => {
-                const pilotId = this.getPilotIdentifier();
-                return this.downloadPilot(pilotId);
-            });
+        // this.corporationActiveCache = new ActiveCacheWrapper<Corporation>()
+        //     .setTimedCache(false) // Contents do not expire.
+        //     .setReturnObsoletes(false) // If the content is expired then wait for a new request.
+        //     .setDownloader((): Observable<Corporation | Corporation[]> => {
+        //         const corporationId = this.getCorporationIdentifier();
+        //         return this.downloadCorporation(corporationId);
+        //     });
+        // this.pilotActiveCache = new ActiveCacheWrapper<Pilot>()
+        //     .setTimedCache(false) // Contents do not expire.
+        //     .setReturnObsoletes(false) // If the content is expired then wait for a new request.
+        //     .setDownloader((): Observable<Pilot | Pilot[]> => {
+        //         const pilotId = this.getPilotIdentifier();
+        //         return this.downloadPilot(pilotId);
+        //     });
     }
 
     // - R O U T I N G
@@ -62,24 +62,24 @@ export class AppStoreService extends AppCoreStoreService {
     }
 
     // - S T O R E   D A T A   D O W N L O A D E R S
-    private downloadCorporation(corporationId: number): Observable<Corporation> {
-        console.log('-[AppStoreService.downloadCorporation]> Starting to download corporation id: ' + corporationId);
-        return this.backendService.apiGetCorporationPublicData_v1(corporationId,
-            new ResponseTransformer().setDescription('Do response transformation to "Corporation".')
-                .setTransformation((data: any): Corporation => {
-                    return new Corporation(data);
-                }))
-            .pipe(map((corporation: Corporation) => {
-                return corporation;
-            }));
-    }
-    private downloadPilot(pilotId: number): Observable<Pilot> {
-        return this.backendService.apiGetPilotPublicData_v1(pilotId)
-            .pipe(map((response: Pilot) => {
-                let pilot = response;
-                return pilot;
-            }));
-    }
+    // private downloadCorporation(corporationId: number): Observable<Corporation> {
+    //     console.log('-[AppStoreService.downloadCorporation]> Starting to download corporation id: ' + corporationId);
+    //     return this.backendService.apiGetCorporationPublicData_v1(corporationId,
+    //         new ResponseTransformer().setDescription('Do response transformation to "Corporation".')
+    //             .setTransformation((data: any): Corporation => {
+    //                 return new Corporation(data);
+    //             }))
+    //         .pipe(map((corporation: Corporation) => {
+    //             return corporation;
+    //         }));
+    // }
+    // private downloadPilot(pilotId: number): Observable<Pilot> {
+    //     return this.backendService.apiGetPilotPublicData_v1(pilotId)
+    //         .pipe(map((response: Pilot) => {
+    //             let pilot = response;
+    //             return pilot;
+    //         }));
+    // }
 
     // - G L O B A L   S T O R E
     public accessCredential(): Credential {
@@ -154,16 +154,16 @@ export class AppStoreService extends AppCoreStoreService {
     }
 
     // - N O T I F I C A T I O N S
-    public successNotification(_message: string, _title?: string, _options?: any): void {
-        this.isolationService.successNotification(_message, _title, _options);
-    }
-    public errorNotification(_message: string, _title?: string, _options?: any): void {
-        this.isolationService.errorNotification(_message, _title, _options);
-    }
-    public warningNotification(_message: string, _title?: string, _options?: any): void {
-        this.isolationService.warningNotification(_message, _title, _options);
-    }
-    public infoNotification(_message: string, _title?: string, _options?: any): void {
-        this.isolationService.infoNotification(_message, _title, _options);
-    }
+    // public successNotification(_message: string, _title?: string, _options?: any): void {
+    //     this.isolationService.successNotification(_message, _title, _options);
+    // }
+    // public errorNotification(_message: string, _title?: string, _options?: any): void {
+    //     this.isolationService.errorNotification(_message, _title, _options);
+    // }
+    // public warningNotification(_message: string, _title?: string, _options?: any): void {
+    //     this.isolationService.warningNotification(_message, _title, _options);
+    // }
+    // public infoNotification(_message: string, _title?: string, _options?: any): void {
+    //     this.isolationService.infoNotification(_message, _title, _options);
+    // }
 }  

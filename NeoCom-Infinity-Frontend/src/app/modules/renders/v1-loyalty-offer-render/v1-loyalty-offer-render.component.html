@@ -3,28 +3,31 @@
     <div *ngIf="isReady(); else downloading" class="row">
         <img class="neocom-icon iconsize-36" src="{{getURLIcon()}}" alt="Eve Item Image">
         <div class="column">
-            <!-- <div class="field">
-            <span cy-field-label="corporationName" class="label">CORPORACION LOYALTY</span><br>
-            <span cy-field-value="corporationName" class="">{{getLoyaltyCorporationName()}}</span>
-        </div> -->
             <div class="field">
                 <span cy-field-label="typeName" class="label">NOMBRE</span><br>
-                <span cy-field-value="typeName" class="">{{getName()}}</span>
+                <span cy-field-value="typeName" class="type-name">{{getName()}}</span>
             </div>
             <div class="field">
-                <span cy-field-label="moduleTech" class="label">COSTE LP</span>
+                <span cy-field-label="costLp" class="label">COSTE LP</span>
                 <span>&nbsp;</span>
-                <span cy-field-value="moduleTech" class="">{{getLpCost()}}</span>
+                <span cy-field-value="costLp" class="cost">{{getLpCost() | iskscaled}}</span>
                 <span>&nbsp;</span>
-                <span cy-field-label="moduleTech" class="label">COSTE ISK</span>
+                <span cy-field-label="costIsk" class="label">COSTE ISK</span>
                 <span>&nbsp;</span>
-                <span cy-field-value="moduleTech" class="">{{getIskCost() | iskscaled}}</span>
+                <span cy-field-value="costIsk" class="cost">{{getIskCost() | iskscaled}}</span>
                 <span>&nbsp;</span>
                 <span>&nbsp;</span>
-                <span cy-field-label="moduleGroup" class="label">VALORACION LP</span>
+                <span cy-field-label="lpValue" class="label">VALORACION LP</span>
                 <span>&nbsp;</span>
-                <span cy-field-value="moduleGroup" class="lp-value">{{getLpCalculatedValue()}}</span>
+                <span cy-field-value="lpValue" class="cost lp-value">{{getLpCalculatedValue() | iskscaled}}</span>
             </div>
+            <div *ngIf="hasData(); else noChartData">
+                <ngx-charts-bar-vertical class="bar-graph" [view]="[400,80]" [results]="marketHistoryData" [yAxis]="true" [yAxisLabel]="'Volumen'" [showYAxisLabel]="false" [showGridLines]="true" [yScaleMax]="yscale" [yAxisTicks]="yaxisTicks" [scheme]="colorScheme">
+                </ngx-charts-bar-vertical>
+            </div>
+            <ng-template #noChartData>
+                <div cy-name="sign" class="no-chart-data">SIN DATOS</div>
+            </ng-template>
             <div class="field">
                 <v1-market-data [marketData]="getMarketData()"></v1-market-data>
             </div>

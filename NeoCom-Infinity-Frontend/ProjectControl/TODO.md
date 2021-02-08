@@ -2,6 +2,15 @@
 * TokenAuthorizationGuard
 * AuthenticationService
 * AuthenticationStateResponse
+* V1StartPageComponent
+* V1LoginValidationPageComponent
+* DashboardHomePageComponent
+* AppStoreService
+* TradeHistoryData
+* V1LoyaltyOfferRenderComponent
+* LoyaltyOfferV1
+* EsiType
+* EsiMarketData
 
 ## Secondary classes to test
 * HALResolver

@@ -1,6 +1,6 @@
 import { Pipe } from '@angular/core'
 import { PipeTransform } from '@angular/core'
-import { DecimalPipe } from '@angular/common'
+import { DecimalPipe, formatNumber } from '@angular/common'
 
 @Pipe({
     name: 'iskscaled'
@@ -8,7 +8,7 @@ import { DecimalPipe } from '@angular/common'
 export class IskScaledPipe implements PipeTransform {
     transform(value: number, decimals?: number): string {
         if (value == null) return '0.0 ISK'
-        let optimizedValue = 0.0
+        let optimizedValue = value
         let scale = ' ISK'
         if (value > 2000000) {
             optimizedValue = value / 1000.0
@@ -18,9 +18,7 @@ export class IskScaledPipe implements PipeTransform {
             optimizedValue = value / 1000000.0
             scale = ' MISK'
         }
-        let result = new Intl.NumberFormat('en-us', { minimumFractionDigits: decimals })
-            .format(Number(optimizedValue)
-            )
+        const result = formatNumber(Number(optimizedValue), 'en-US', '1.0-0')
         return result + scale
     }
 } 

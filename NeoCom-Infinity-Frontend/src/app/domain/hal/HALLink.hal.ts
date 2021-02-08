@@ -24,9 +24,7 @@ export class HALLink<T> {
         this.downloaded = true
         return this.target
     }
-    /**
- * @deprecated The method should not be used
- */
+    /** @deprecated */
     public access(resolver: HALResolver): Promise<T> {
         return null
         // if (this.isDownloaded())

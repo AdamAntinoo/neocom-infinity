@@ -28,12 +28,14 @@ import { V1SolarSystemRenderComponent } from './v1-solar-system-render/v1-solar-
 import { V1LoyaltyCorporationRenderComponent } from './v1-loyalty-corporation-render/v1-loyalty-corporation-render.component';
 import { V1LoyaltyOfferRenderComponent } from './v1-loyalty-offer-render/v1-loyalty-offer-render.component';
 import { IskScaledPipe } from './pipes/iskscaled.pipe';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
     imports: [
         CommonModule,
         // AppCommonModule,
-        NgDragDropModule.forRoot()
+        NgDragDropModule.forRoot(),
+        NgxChartsModule
     ],
     declarations: [
         NeocomViewerPanelComponent,
