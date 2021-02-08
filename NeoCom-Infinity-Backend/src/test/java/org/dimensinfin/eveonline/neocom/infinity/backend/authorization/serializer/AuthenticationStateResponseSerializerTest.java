@@ -24,7 +24,7 @@ public class AuthenticationStateResponseSerializerTest {
 	public void serialize() throws JsonProcessingException {
 		final AuthenticationStateResponse response = new AuthenticationStateResponse.Builder().build();
 		final String json = this.objectMapper.writeValueAsString( response );
-		final String expected = "{\"state\":\"NOT_VALID\",\"jwtToken\":null,\"credential\":null}";
+		final String expected = "{\"state\":\"NOT_VALID\"}";
 		Assertions.assertEquals( expected, json );
 	}
 }

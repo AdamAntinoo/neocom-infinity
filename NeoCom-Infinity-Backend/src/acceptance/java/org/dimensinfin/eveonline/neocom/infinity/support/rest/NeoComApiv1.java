@@ -72,9 +72,9 @@ public interface NeoComApiv1 {
 	                                                                    @Header("Authorization") final String authorization,
 	                                                                    @Path("pilotIdentifier") final Integer pilotIdentifier );
 
+	@Headers({ "Content-Type: application/json" })
 	@PUT("/api/v1/neocom/credentials/{credentialId}")
-	Call<StoreCredentialResponse> storeCredential( @Header("Content-Type") final String contentType,
-	                                               @Path("credentialId") final Integer credentialId,
+	Call<StoreCredentialResponse> storeCredential( @Path("credentialId") final Integer credentialId,
 	                                               @Body final Credential credential );
 
 	@Headers({ "Content-Type: application/json" })

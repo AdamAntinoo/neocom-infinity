@@ -17,7 +17,6 @@ import org.dimensinfin.eveonline.neocom.database.entities.MiningExtractionEntity
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.api.NeoComSupportFeignClient;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.authorization.rest.v1.AuthorizationFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialRequest;
-import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.ConverterContainer;
 import org.dimensinfin.eveonline.neocom.infinity.support.NeoComWorld;
 import org.dimensinfin.eveonline.neocom.infinity.support.RequestType;
@@ -225,15 +224,6 @@ public class NIBCommonSteps extends SupportSteps {
 							);
 					this.neocomWorld.setListAssetContainersResponse( assetListResponseEntity );
 					return assetListResponseEntity;
-				case STORE_CREDENTIAL:
-					Assert.assertNotNull( this.neocomWorld.getCredential() );
-					this.neocomWorld.setStoreCredentialRequest( new StoreCredentialRequest.Builder()
-							.withCredential( this.neocomWorld.getCredential() ).build() );
-					final ResponseEntity<StoreCredentialResponse> storeCredentialResponseEntity = this.authorizationFeignClient
-							.storeCredential( this.neocomWorld.getStoreCredentialRequest() );
-					this.neocomWorld.setStoreCredentialResponseResponseEntity( storeCredentialResponseEntity );
-					this.neocomWorld.setJwtAuthorizationToken( storeCredentialResponseEntity.getBody().getJwtToken() );
-					return storeCredentialResponseEntity;
 				case GET_ITEM_BASIC:
 					Assert.assertNotNull( this.neocomWorld.getItemIdentifier() );
 					final ResponseEntity<NeoItemTransport> itemBasicResponseEntity = this.neoItemFeignClientV1
