@@ -47,6 +47,13 @@ public class LoyaltyOfferEntitySerializer extends JsonSerializer<LoyaltyOfferEnt
 						.getMarketConsolidatedByRegion4ItemId( value.getMarketRegionId(), value.getTypeId() )
 		).withRel( "marketData" );
 		jgen.writeObjectField( "marketData", marketLink );
+		// Additional HAL fields for market history data.
+		final String marketHistoryLink = "https://esi.evetech.net/latest/markets/" + value.getMarketRegionId() +
+				"/history/?datasource=tranquility&type_id=" + value.getTypeId();
+		jgen.writeStartObject( "marketHistory" );
+		jgen.writeStringField( "rel", "marketHistory" );
+		jgen.writeStringField( "href", marketHistoryLink );
+		jgen.writeEndObject();
 
 		jgen.writeEndObject();
 	}
