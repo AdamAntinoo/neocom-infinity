@@ -24,7 +24,12 @@ import { MarketOrderDto } from '@domain/industry/dto/MarketOrderDto.dto';
 export class V1MarketDataRenderComponent {
     @Input() id: string
     @Input() marketData: EsiMarketData
+    @Input() variant: string
 
+    public getVariant(): string {
+        if (this.variant) return this.variant
+        else return '-DEFAULT-'
+    }
     public getNode(): EsiMarketData {
         return this.marketData as EsiMarketData
     }

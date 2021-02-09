@@ -1,5 +1,5 @@
 export class TradeHistoryData{
-    public dateString: string
+    public name: string
     public value: number
 
     constructor(values: Object = {}) {
