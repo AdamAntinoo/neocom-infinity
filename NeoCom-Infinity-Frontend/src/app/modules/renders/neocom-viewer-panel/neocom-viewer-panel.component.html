@@ -2,6 +2,7 @@
     <div *ngFor="let node of getNodes2Render()">
         <v2-node-container [container]="downloader" [node]="node" [variant]="variant" [index]="getNextIndex()" [selectOnHover]="selectOnHover">
         </v2-node-container>
+        <div style="height: 2px">&nbsp;</div>
     </div>
 </div>
 <!-- D O W N L O A D I N G   S P I N N E R -->

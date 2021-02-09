@@ -526,12 +526,12 @@ $panel-background-hover-blue: #0B3D03;
 .panel-white-selected {
     transition: none;
     background-color: $panel-white-40;
-    border-right: 3px solid $panel-white;
+    border-right: 5px solid $panel-white;
 }
 
 .panel-white-selected:hover {
     background-color: $panel-white-40;
-    border-right: 3px solid $panel-white;
+    border-right: 5px solid $panel-white;
     transition: none;
 }
 

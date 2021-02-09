@@ -36,14 +36,14 @@ export class V1LoyaltyOfferRenderComponent extends V2NodeContainerRenderComponen
     }
     public hasData(): boolean {
         if (this.isReady())
-            if (this.marketHistoryData.length >1) return true
+            if (this.marketHistoryData.length > 1) return true
             else return false
     }
     public isReady(): boolean {
         if (this.node)
             if (this.getNode().type)
                 if (this.getNode().marketData)
-                    if (this.marketHistoryData.length > 1) return true
+                    if (this.getNode().marketHistory.length > 1) return true
         return false
     }
     public getNode(): LoyaltyOfferV1 {
@@ -82,21 +82,28 @@ export class V1LoyaltyOfferRenderComponent extends V2NodeContainerRenderComponen
     public getMarketData(): EsiMarketData {
         if (this.node) return this.getNode().marketData
     }
+    public getExpectedProfit(): number {
+        if (this.node) {
+            return this.getNode().marketData.bestSellOrder.getPrice() - this.getIskCost()
+        } else return 0
+    }
+    public getExpectedProfitPercentage(): number {
+        if (this.node) {
+            return (this.getNode().marketData.bestSellOrder.getPrice() - this.getIskCost()) /
+                this.getNode().marketData.bestSellOrder.getPrice()
+        } else return 0
+    }
 
     public updateChartData(): void {
         const charData: TradeHistoryData[] = []
         const sourceRecords: EsiMarketsRegionsHistoryRecord[] = this.getNode().marketHistory.reverse()
-        // for (const record of this.getNode().marketHistory)
-        for (let index = 0; index < 15; index++) {
-            const record = sourceRecords[index]
-            // charData.push(new TradeHistoryData({ dateString: record.date, value: record.volume }))
-        }
-        charData.push(new TradeHistoryData({ dateString: "2021-02-08", value: 32 }))
-        charData.push(new TradeHistoryData({ dateString: "2021-02-07", value: 22 }))
-        charData.push(new TradeHistoryData({ dateString: "2021-02-06", value: 22 }))
-        charData.push(new TradeHistoryData({ dateString: "2021-02-05", value: 22 }))
+        if (sourceRecords.length > 10)
+            for (let index = 0; index < 15; index++) {
+                const record = sourceRecords[index]
+                if (record) charData.push(new TradeHistoryData({ name: record.date, value: record.volume }))
+            }
         this.yaxisTicks = this.generateTicksFromData(charData)
-        this.marketHistoryData = charData
+        this.marketHistoryData = charData.reverse()
     }
     private generateTicksFromData(data: TradeHistoryData[]): number[] {
         const ticks: number[] = []
