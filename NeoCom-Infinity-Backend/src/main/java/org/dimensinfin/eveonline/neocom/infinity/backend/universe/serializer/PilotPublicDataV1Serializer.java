@@ -9,8 +9,8 @@ import org.springframework.boot.jackson.JsonComponent;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 
+import org.dimensinfin.eveonline.neocom.character.domain.PublicPilotV1;
 import org.dimensinfin.eveonline.neocom.infinity.backend.universe.corporation.rest.v1.PublicCorporationControllerV1;
-import org.dimensinfin.eveonline.neocom.domain.PublicPilotV1;
 
 /**
  * @author Adam Antinoo (adamantinoo.git@gmail.com)

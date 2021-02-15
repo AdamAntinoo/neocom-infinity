@@ -4,13 +4,13 @@ import java.util.Objects;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.stereotype.Service;
 
-import org.dimensinfin.eveonline.neocom.converter.GetCharactersCharacterIdToPublicPilotV1Converter;
+import org.dimensinfin.eveonline.neocom.character.converter.GetCharactersCharacterIdToPublicPilotV1Converter;
+import org.dimensinfin.eveonline.neocom.character.domain.PilotV1;
+import org.dimensinfin.eveonline.neocom.character.domain.PublicCorporationV1;
+import org.dimensinfin.eveonline.neocom.character.domain.PublicPilotV1;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
-import org.dimensinfin.eveonline.neocom.domain.PilotV1;
-import org.dimensinfin.eveonline.neocom.domain.PublicPilotV1;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdLocationOk;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdOk;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdShipOk;
@@ -21,12 +21,12 @@ import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthentic
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
 import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComAuthenticatedService;
 import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComCredentialService;
-import org.dimensinfin.eveonline.neocom.infinity.corporation.rest.CorporationControllerV1;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
 import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;
 import org.dimensinfin.eveonline.neocom.service.ResourceFactory;
 
+@Deprecated
 @Service
 public class PilotServiceV2 extends NeoComCredentialService {
 	private final IConfigurationService configurationService;
@@ -56,13 +56,16 @@ public class PilotServiceV2 extends NeoComCredentialService {
 	 * @param pilotId requested pilot identifier. Should match with the logged pilot identifier.
 	 * @return a complete Pilot data record with some data that can only be accessed when authenticated.
 	 */
+	@Deprecated
 	public PilotV1 getAuthenticatedPilotData( final Integer pilotId ) {
 		this.neoComAuthenticationProvider.validatePilotIdentifier( pilotId );
 		return this.pilotV1Generator( Objects.requireNonNull( this.getAuthorizedCredential() ) );
 	}
 
+	@Deprecated
 	public PublicPilotV1 getPilotPublicData( final Integer pilotId ) {
-		return new GetCharactersCharacterIdToPublicPilotV1Converter( pilotId, this.esiDataService ).convert(
+		final PublicCorporationV1 corporation = new PublicCorporationV1.Builder().build();
+		return new GetCharactersCharacterIdToPublicPilotV1Converter( pilotId, this.esiDataService, corporation ).convert(
 				Objects.requireNonNull( this.esiDataService.getCharactersCharacterId( pilotId ) )
 		);
 	}
@@ -77,10 +80,10 @@ public class PilotServiceV2 extends NeoComCredentialService {
 		final GetCharactersCharacterIdShipOk currentShip = this.esiDataService.getCharactersCharacterIdShip( credential );
 		return new PilotV1.Builder()
 				.withPilotId( credential.getAccountId() )
-				.withCorporationId( pilotData.getCorporationId() )
-				.withCorporationLink( WebMvcLinkBuilder.linkTo(
-						WebMvcLinkBuilder.methodOn( CorporationControllerV1.class ).getCorporationData( pilotData.getCorporationId() )
-				).withRel( "corporation" ) )
+				//				.withCorporationId( pilotData.getCorporationId() )
+				//				.withCorporationLink( WebMvcLinkBuilder.linkTo(
+				//						WebMvcLinkBuilder.methodOn( CorporationControllerV1.class ).getCorporationData( pilotData.getCorporationId() )
+				//				).withRel( "corporation" ) )
 				.withPilotPublicData( pilotData )
 				.withRaceData( this.esiDataService.searchSDERace( pilotData.getRaceId() ) )
 				.withAncestryData( this.esiDataService.searchSDEAncestry( pilotData.getAncestryId() ) )

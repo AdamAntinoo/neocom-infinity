@@ -70,12 +70,6 @@ tags:
       Universe (U). Endpoints that reference universe or game data and not related to any of the previous or so generic and core that can be used
       from anywhere. There are endpoints for locations, types and other game data structures. Any data that does not require authentication and
       that is publicly available.
-#  - name: spacelocation
-#    description: >
-#      Space Location (SL). This set of endpoints are related to the access of the SpaceLocation database.
-#  - name: item
-#    description: >
-#      Item Database (ID). The endpoints to access item data and any of the additional data sets such as market data and other details.
 
 paths:
   # - A U T H E N T I C A T I O N
@@ -167,13 +161,15 @@ paths:
   # - N E O C O M
   /api/v1/neocom/pilots/{pilotId}:
     get:
+      security:
+        - bearerAuth: [ ]
       tags:
         - neocom
       summary: Gets the public data available for a Pilot. It will also have authenticated endpoint links for additional data.
       description: >
-        Gets the public data available for a Pilot. Any additional data that is accessible for a Pilot oike the Wallet or Fittings will be exported
-        as HAL links to a set of authenticated and authorized endpoints that export that additional data.
-      operationId: getPilotPublicData
+        Gets the public data available for a Pilot. Any additional data that is accessible for a Pilot like the Wallet or Fittings will be exported
+        as HAL links to a set of authenticated endpoints that export that additional data.
+      operationId: getPilotData
       parameters:
         - in: path
           name: pilotId
@@ -325,6 +321,11 @@ paths:
                 $ref: '#/components/schemas/MarketData'
 
 components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
   schemas:
     AuthenticationStateResponse:
       type: object
