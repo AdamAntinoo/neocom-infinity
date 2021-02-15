@@ -15,7 +15,7 @@ import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseConstellatio
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseRegionsRegionIdOk;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseStationsStationIdOk;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseSystemsSystemIdOk;
-import org.dimensinfin.eveonline.neocom.infinity.corporation.domain.ShippingYardLocation;
+import org.dimensinfin.eveonline.neocom.infinity.backend.corporation.domain.ShippingYardLocation;
 import org.dimensinfin.eveonline.neocom.infinity.support.NeoAssetMockSerializer;
 import org.dimensinfin.eveonline.neocom.infinity.support.StationImplementationMockSerializer;
 
@@ -25,11 +25,11 @@ class ShippingYardLocationSerializerTest {
 	@BeforeEach
 	public void beforeEach() {
 		this.objectMapper = new ObjectMapper();
-		SimpleModule module = new SimpleModule();
+		final SimpleModule module = new SimpleModule();
 		module.addSerializer( ShippingYardLocation.class, new ShippingYardLocationSerializer() );
 		module.addSerializer( NeoAsset.class, new NeoAssetMockSerializer() );
 		module.addSerializer( StationImplementation.class, new StationImplementationMockSerializer() );
-		objectMapper.registerModule( module );
+		this.objectMapper.registerModule( module );
 	}
 
 	@Test
@@ -53,7 +53,7 @@ class ShippingYardLocationSerializerTest {
 				.build();
 		final String expected = "{\"jsonClass\":\"ShippingYardLocation\",\"deposit\":{\"jsonClass\":\"NeoAsset\"},\"officeContainer\":{\"jsonClass\":\"NeoAsset\"},\"station\":{\"jsonClass\":\"StationImplementation\"}}";
 
-		String obtained = objectMapper.writeValueAsString( yard );
+		final String obtained = this.objectMapper.writeValueAsString( yard );
 		Assertions.assertEquals( expected, obtained );
 	}
 }

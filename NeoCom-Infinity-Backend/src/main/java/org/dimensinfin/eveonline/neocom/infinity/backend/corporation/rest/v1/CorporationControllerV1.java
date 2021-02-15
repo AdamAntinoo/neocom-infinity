@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.corporation.rest;
+package org.dimensinfin.eveonline.neocom.infinity.backend.corporation.rest.v1;
 
 import java.io.IOException;
 import java.util.List;
@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import org.dimensinfin.eveonline.neocom.asset.domain.LocationAssetContainer;
 import org.dimensinfin.eveonline.neocom.domain.Corporation;
+import org.dimensinfin.eveonline.neocom.infinity.backend.corporation.domain.ShippingYardLocation;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.ErrorInfo;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComAuthorizationException;
 import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComController;
-import org.dimensinfin.eveonline.neocom.infinity.corporation.domain.ShippingYardLocation;
 
 @RestController
 @Validated

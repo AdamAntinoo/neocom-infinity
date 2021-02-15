@@ -14,9 +14,11 @@ import org.springframework.http.ResponseEntity;
 
 import org.dimensinfin.eveonline.neocom.asset.domain.LocationAssetContainer;
 import org.dimensinfin.eveonline.neocom.domain.Corporation;
+import org.dimensinfin.eveonline.neocom.infinity.backend.corporation.domain.ShippingYardLocation;
+import org.dimensinfin.eveonline.neocom.infinity.backend.corporation.rest.v1.CorporationControllerV1;
+import org.dimensinfin.eveonline.neocom.infinity.backend.corporation.rest.v1.CorporationServiceV1;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComAuthorizationException;
-import org.dimensinfin.eveonline.neocom.infinity.corporation.domain.ShippingYardLocation;
 
 public class CorporationControllerV1Test {
 	private static final int TEST_CORPORATION_IDENTIFIER = 98384726;
