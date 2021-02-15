@@ -2,6 +2,9 @@
 
 ## 0.20.0
 * ValidateAuthorizationTokenResponse
+* NeoComAuthenticatedService
+* PilotServiceV1
+* PilotControllerV1
 
 * FittingV2
 * FittingInfo
