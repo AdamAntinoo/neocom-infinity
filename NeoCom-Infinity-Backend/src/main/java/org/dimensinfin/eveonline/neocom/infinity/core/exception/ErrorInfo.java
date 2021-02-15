@@ -4,6 +4,7 @@ import java.text.MessageFormat;
 
 import org.springframework.http.HttpStatus;
 
+@Deprecated
 public enum ErrorInfo {
 	NEOCOM_EXCEPTION( HttpStatus.BAD_REQUEST,
 			"neocom.error.neocomexception",
@@ -26,9 +27,9 @@ public enum ErrorInfo {
 	CORPORATION_ID_NOT_AUTHORIZED( HttpStatus.FORBIDDEN,
 			"neocom.error.authorization.translation",
 			"The corporation requested is not authorized to the requester." ),
-	PILOT_ID_NOT_AUTHORIZED( HttpStatus.FORBIDDEN,
-			"neocom.error.authorization.translation",
-			"The access to the pilot data is not authorized to the requester credential." ),
+	//	PILOT_ID_NOT_AUTHORIZED( HttpStatus.FORBIDDEN,
+	//			"neocom.error.authorization.translation",
+	//			"The access to the pilot data is not authorized to the requester credential." ),
 	TARGET_NOT_FOUND( HttpStatus.NOT_FOUND,
 			"neocom.error.authorization.translation",
 			"The entity of class {0} with identifier {1} is not found." ),

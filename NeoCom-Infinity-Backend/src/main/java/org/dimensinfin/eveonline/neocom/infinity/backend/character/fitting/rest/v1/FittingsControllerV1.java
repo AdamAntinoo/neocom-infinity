@@ -13,10 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import org.dimensinfin.eveonline.neocom.domain.Fitting;
-import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComController;
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.ErrorInfo;
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComAuthorizationException;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
+import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComController;
 import org.dimensinfin.eveonline.neocom.infinity.fitting.FittingService;
 
 /**
@@ -30,7 +29,6 @@ import org.dimensinfin.eveonline.neocom.infinity.fitting.FittingService;
  *
  * @author Adam Antinoo
  */
-@SuppressWarnings("SpellCheckingInspection")
 @RestController
 @CrossOrigin
 @Validated
@@ -39,6 +37,7 @@ public class FittingsControllerV1 extends NeoComController {
 	private final FittingService fittingService;
 	private final NeoComAuthenticationProvider neoComAuthenticationProvider;
 
+// - C O N S T R U C T O R S
 	@Autowired
 	public FittingsControllerV1( final FittingService fittingService,
 	                             final NeoComAuthenticationProvider neoComAuthenticationProvider ) {
@@ -52,7 +51,7 @@ public class FittingsControllerV1 extends NeoComController {
 	public ResponseEntity<List<Fitting>> getPilotFittings( @PathVariable @NotNull final Integer pilotId ) {
 		final Integer authorizedPilotId = this.neoComAuthenticationProvider.getAuthenticatedPilot();
 		if (authorizedPilotId.intValue() != pilotId.intValue())
-			throw new NeoComAuthorizationException( ErrorInfo.PILOT_ID_NOT_AUTHORIZED );
+			throw new NeoComRuntimeBackendException( NeoComAuthenticationProvider.errorPILOT_ACCESS_NOT_AUTHORIZED() );
 		return this.fittingService.getPilotFittings();
 	}
 }

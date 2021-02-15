@@ -6,9 +6,9 @@ import com.google.gson.annotations.SerializedName;
 import org.springframework.http.HttpStatus;
 
 public class NeoComRestError {
-	public enum ErrorNames {
-		TARGET_NOT_FOUND
-	}
+	//	public enum ErrorNames {
+	////		TARGET_NOT_FOUND
+	//	}
 
 	private String errorName;
 	private HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
