@@ -2,15 +2,15 @@ package org.dimensinfin.eveonline.neocom.infinity.backend.character.pilot.conver
 
 import javax.validation.constraints.NotNull;
 
-import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
-
 import org.dimensinfin.core.interfaces.Converter;
-import org.dimensinfin.eveonline.neocom.domain.PilotV1;
+import org.dimensinfin.eveonline.neocom.character.domain.PilotV1;
+import org.dimensinfin.eveonline.neocom.character.domain.PublicCorporationV1;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdOk;
-import org.dimensinfin.eveonline.neocom.infinity.corporation.rest.CorporationControllerV1;
+import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCorporationsCorporationIdOk;
 import org.dimensinfin.eveonline.neocom.provider.ESIUniverseDataProvider;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 
+@Deprecated
 public class EsiPilotDataToPilotModelConverter implements Converter<GetCharactersCharacterIdOk, PilotV1> {
 	private final IConfigurationService configurationService;
 	private final ESIUniverseDataProvider esiUniverseDataProvider;
@@ -28,12 +28,16 @@ public class EsiPilotDataToPilotModelConverter implements Converter<GetCharacter
 	@Override
 	public PilotV1 convert( final GetCharactersCharacterIdOk pilotData ) {
 		final String esiUniverseServer = this.configurationService.getResourceString( "P.universe.retrofit.server.location" );
-		return new PilotV1.Builder()
-				.withPilotId( this.pilotId )
+		final GetCorporationsCorporationIdOk corporationPublicData = this.esiUniverseDataProvider
+				.getCorporationsCorporationId( pilotData.getCorporationId() );
+		final PublicCorporationV1 corporation = new PublicCorporationV1.Builder()
 				.withCorporationId( pilotData.getCorporationId() )
-				.withCorporationLink( WebMvcLinkBuilder.linkTo(
-						WebMvcLinkBuilder.methodOn( CorporationControllerV1.class ).getCorporationData( pilotData.getCorporationId() )
-				).withSelfRel() )
+				.withCorporationPublicData( corporationPublicData )
+				.build();
+		return new PilotV1.Builder()
+				.withCurrentShip( null )
+				.withPilotId( this.pilotId )
+				.withCorporation( corporation )
 				.withPilotPublicData( pilotData )
 				.withRaceData( this.esiUniverseDataProvider.searchSDERace( pilotData.getRaceId() ) )
 				.withAncestryData( this.esiUniverseDataProvider.searchSDEAncestry( pilotData.getAncestryId() ) )
