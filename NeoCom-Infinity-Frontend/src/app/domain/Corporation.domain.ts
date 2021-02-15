@@ -2,7 +2,7 @@
 import { AllianceV1 } from './corporation/AllianceV1.domain';
 import { Pilot } from './Pilot.domain';
 import { NeoCom } from './NeoCom.domain';
-import { neocom_constants } from '../platform/neocom-constants.platform';
+import { NeoComConstants } from '../platform/neocom-constants.platform';
 import { HALLink } from './hal/HALLink.hal';
 import { HALNode } from './hal/HALNode.hal';
 
@@ -41,7 +41,7 @@ export class Corporation extends HALNode  {
     }
     public getIconUrl(): string {
         if (null != this.url4Icon) return this.url4Icon;
-        else return neocom_constants.DEFAULT_CORPORATION_AVATAR_PLACEHOLDER;
+        else return NeoComConstants.DEFAULT_CORPORATION_AVATAR_PLACEHOLDER;
     }
     public getCeo(): Pilot {
         return this.ceoPilotData;

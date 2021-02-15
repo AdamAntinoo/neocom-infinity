@@ -14,7 +14,7 @@ import { BackendService } from '@app/services/backend.service'
 import { NeoComException } from '@innovative/domain/NeoComException'
 // - DOMAIN
 import { IsolationService } from '@innovative/services/isolation.service'
-import { neocom_constants } from '@app/platform/neocom-constants.platform'
+import { NeoComConstants } from '@app/platform/neocom-constants.platform'
 import { ExceptionCatalog } from '@app/platform/ExceptionCatalog'
 import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer'
 import { BackgroundEnabledComponent } from '@innovative/components/background-enabled/background-enabled.component'
