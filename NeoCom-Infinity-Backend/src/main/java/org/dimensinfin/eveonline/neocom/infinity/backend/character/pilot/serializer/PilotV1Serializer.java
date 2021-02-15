@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.backend.domain.serializer;
+package org.dimensinfin.eveonline.neocom.infinity.backend.character.pilot.serializer;
 
 import java.io.IOException;
 
@@ -23,7 +23,7 @@ public class PilotV1Serializer extends JsonSerializer<PilotV1> {
 			throws IOException {
 		jgen.writeStartObject();
 
-		jgen.writeStringField( "jsonClass", value.getJsonClass() );
+		//		jgen.writeStringField( "jsonClass", value.getJsonClass() );
 		jgen.writeNumberField( "pilotId", value.getPilotId() );
 		jgen.writeStringField( "name", value.getPilotPublicData().getName() );
 		jgen.writeStringField( "description", value.getPilotPublicData().getDescription() );

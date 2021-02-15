@@ -18,6 +18,7 @@ import org.dimensinfin.logging.LogWrapper;
 
 import static org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendApplication.APPLICATION_ERROR_CODE_PREFIX;
 
+@Deprecated
 public abstract class NeoComCredentialService {
 
 	public static NeoComRestError errorTARGETNOTFOUND( final String entityName, final Integer identifier ) {

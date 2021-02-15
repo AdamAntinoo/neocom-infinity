@@ -14,9 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import org.dimensinfin.eveonline.neocom.database.entities.MiningExtractionEntity;
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.ErrorInfo;
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComAuthorizationException;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
 
 /**
  * Controller to define the endpoints related to Mining Extractions, both for Pilots or Corporations.
@@ -32,6 +31,7 @@ public class MiningExtractionsController {
 	private final NeoComAuthenticationProvider neoComAuthenticationProvider;
 	private final MiningExtractionsService miningExtractionsService;
 
+// - C O N S T R U C T O R S
 	@Autowired
 	public MiningExtractionsController( final NeoComAuthenticationProvider neoComAuthenticationProvider,
 	                                    final MiningExtractionsService miningExtractionsService ) {
@@ -45,7 +45,7 @@ public class MiningExtractionsController {
 	public ResponseEntity<List<MiningExtractionEntity>> getTodayMiningExtractions4Pilot( @PathVariable @NotNull final Integer pilotIdentifier ) {
 		final Integer authorizedPilotId = this.neoComAuthenticationProvider.getAuthenticatedPilot();
 		if (authorizedPilotId.intValue() != pilotIdentifier.intValue())
-			throw new NeoComAuthorizationException( ErrorInfo.PILOT_ID_NOT_AUTHORIZED );
+			throw new NeoComRuntimeBackendException( NeoComAuthenticationProvider.errorPILOT_ACCESS_NOT_AUTHORIZED() );
 		return new ResponseEntity<>( this.miningExtractionsService.getTodayMiningExtractions4Pilot(), HttpStatus.OK );
 	}
 }

@@ -26,8 +26,8 @@ public class PilotControllerV1 extends NeoComAuthenticatedController {
 
 	// - C O N S T R U C T O R S
 	@Autowired
-	public PilotControllerV1( final @NotNull NeoComAuthenticationProvider neoComAuthenticationProvider,
-	                          final @NotNull PilotServiceV1 pilotServiceV1 ) {
+	public PilotControllerV1( @NotNull final NeoComAuthenticationProvider neoComAuthenticationProvider,
+	                          @NotNull final PilotServiceV1 pilotServiceV1 ) {
 		super( neoComAuthenticationProvider );
 		this.pilotServiceV1 = pilotServiceV1;
 	}
