@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 // - INOVATIVE
 import { IsolationService } from '@innovative/services/isolation.service';
 // - SERVICES
-import { neocom_constants } from '@app/platform/neocom-constants.platform';
+import { NeoComConstants } from '@app/platform/neocom-constants.platform';
 import { platformConstants } from '@env/platform-constants';
 
 @Injectable({
@@ -33,7 +33,7 @@ export class AuthenticationService {
     // - J W T   D E C O D E
     /** @deprecated */
     public isLoggedIn(): boolean {
-        const jwtToken = this.isolationService.getFromSession(neocom_constants.JWTTOKEN_KEY);
+        const jwtToken = this.isolationService.getFromSession(NeoComConstants.JWTTOKEN_KEY);
         console.log('-[AuthenticationService.isLoggedIn]> jwtToken: ' + jwtToken);
         if (jwtToken)
             if (!this.isExpiredToken()) return true;
@@ -43,33 +43,33 @@ export class AuthenticationService {
     public isExpiredToken(): boolean {
         console.log('-[AuthenticationService.isExpiredToken]> expiration time: ' +
             this.isolationService.getFromSession(
-                neocom_constants.JWTTOKEN_EXPIRATION_TIME_KEY));
+                NeoComConstants.JWTTOKEN_EXPIRATION_TIME_KEY));
         console.log('-[AuthenticationService.isExpiredToken]> expiration date: ' +
             new Date(this.isolationService.getFromSession(
-                neocom_constants.JWTTOKEN_EXPIRATION_TIME_KEY)));
+                NeoComConstants.JWTTOKEN_EXPIRATION_TIME_KEY)));
         const expirationTime: number = +new Date(this.isolationService.getFromSession(
-            neocom_constants.JWTTOKEN_EXPIRATION_TIME_KEY));
+            NeoComConstants.JWTTOKEN_EXPIRATION_TIME_KEY));
         console.log('-[AuthenticationService.isExpiredToken]> expiration time: ' + expirationTime);
         if (Number.isNaN(expirationTime)) return true;
         const currentTime = +new Date();
         return (expirationTime < currentTime);
     }
     public storeJwtToken(newToken: string): void {
-        this.isolationService.setToSession(neocom_constants.JWTTOKEN_KEY, newToken);
+        this.isolationService.setToSession(NeoComConstants.JWTTOKEN_KEY, newToken);
         const expirationTime = this.isolationService.dateAdd(Date.now(), 'hour', 1);
         console.log('-[AuthenticationService.isExpiredToken]> setting expiration time: ' + expirationTime);
-        this.isolationService.setToSession(neocom_constants.JWTTOKEN_EXPIRATION_TIME_KEY, expirationTime);
+        this.isolationService.setToSession(NeoComConstants.JWTTOKEN_EXPIRATION_TIME_KEY, expirationTime);
     }
     /** @deprecated */
     public timestampJwtToken(deviation: number): void {
         const expirationTime = this.isolationService.dateAdd(this.isolationService.dateAdd(
             Date.now(), 'hour', 1),
             'second', deviation);
-        this.isolationService.setToSession(neocom_constants.JWTTOKEN_EXPIRATION_TIME_KEY, expirationTime);
+        this.isolationService.setToSession(NeoComConstants.JWTTOKEN_EXPIRATION_TIME_KEY, expirationTime);
     }
     public clearJwtToken(): void {
-        this.isolationService.removeFromSession(neocom_constants.JWTTOKEN_KEY);
-        this.isolationService.removeFromSession(neocom_constants.JWTTOKEN_EXPIRATION_TIME_KEY);
+        this.isolationService.removeFromSession(NeoComConstants.JWTTOKEN_KEY);
+        this.isolationService.removeFromSession(NeoComConstants.JWTTOKEN_EXPIRATION_TIME_KEY);
     }
     public JWTDecode2AccountName(codedToken: string): string {
         const token = this.isolationService.JWTDecode(codedToken);
