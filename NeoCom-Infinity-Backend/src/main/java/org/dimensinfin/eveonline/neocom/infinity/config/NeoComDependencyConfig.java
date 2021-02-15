@@ -7,6 +7,7 @@ import com.google.inject.name.Names;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import org.dimensinfin.eveonline.neocom.character.service.CharacterService;
 import org.dimensinfin.eveonline.neocom.database.NeoComDatabaseService;
 import org.dimensinfin.eveonline.neocom.database.core.ISDEDatabaseService;
 import org.dimensinfin.eveonline.neocom.database.repositories.AssetRepository;
@@ -19,6 +20,7 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.sde.service.SBSDEDataba
 import org.dimensinfin.eveonline.neocom.infinity.service.SBConfigurationService;
 import org.dimensinfin.eveonline.neocom.loyalty.persistence.LoyaltyOffersRepository;
 import org.dimensinfin.eveonline.neocom.loyalty.service.LoyaltyService;
+import org.dimensinfin.eveonline.neocom.market.service.MarketService;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 import org.dimensinfin.eveonline.neocom.provider.IFileSystem;
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
@@ -103,43 +105,55 @@ public class NeoComDependencyConfig {
 	}
 
 	@Bean
+	public ResourceFactory dependency_05_ResourceFactory() {
+		LogWrapper.enter();
+		return this.injector.getInstance( ResourceFactory.class );
+	}
+
+	@Bean
+	public CharacterService dependency_06_CharacterService() {
+		LogWrapper.enter();
+		return this.injector.getInstance( CharacterService.class );
+	}
+
+	@Bean
 	public LoyaltyService dependency_06_LoyaltyService() {
 		LogWrapper.enter();
 		return this.injector.getInstance( LoyaltyService.class );
 	}
 
 	@Bean
-	public ResourceFactory dependency_06_ResourceFactory() {
+	public MarketService dependency_06_MarketService() {
 		LogWrapper.enter();
-		return this.injector.getInstance( ResourceFactory.class );
+		return this.injector.getInstance( MarketService.class );
 	}
 
 	@Bean
-	public SDERepository dependency_07_SDERepository() {
+	public SDERepository dependency_11_SDERepository() {
 		LogWrapper.enter();
 		return this.injector.getInstance( SDERepository.class );
 	}
 
 	@Bean
-	public NeoComDatabaseService dependency_08_NeoComDatabaseService() {
+	public NeoComDatabaseService dependency_21_NeoComDatabaseService() {
 		LogWrapper.enter();
 		return this.injector.getInstance( SBNeoComDBAdapter.class );
 	}
 
 	@Bean
-	public AssetRepository dependency_09_AssetRepository() {
+	public AssetRepository dependency_22_AssetRepository() {
 		LogWrapper.enter();
 		return this.injector.getInstance( AssetRepository.class );
 	}
 
 	@Bean
-	public CredentialRepository dependency_09_CredentialRepository() {
+	public CredentialRepository dependency_23_CredentialRepository() {
 		LogWrapper.enter();
 		return this.injector.getInstance( CredentialRepository.class );
 	}
 
 	@Bean
-	public LoyaltyOffersRepository dependency_09_LoyaltyOffersRepository() {
+	public LoyaltyOffersRepository dependency_23_LoyaltyOffersRepository() {
 		LogWrapper.enter();
 		return this.injector.getInstance( LoyaltyOffersRepository.class );
 	}

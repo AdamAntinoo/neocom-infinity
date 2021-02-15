@@ -4,6 +4,7 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;
 
+import org.dimensinfin.eveonline.neocom.character.service.CharacterService;
 import org.dimensinfin.eveonline.neocom.database.DMDatabaseDependenciesModule;
 import org.dimensinfin.eveonline.neocom.database.NeoComDatabaseService;
 import org.dimensinfin.eveonline.neocom.database.core.ISDEDatabaseService;
@@ -15,6 +16,7 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.sde.service.SBSDEDataba
 import org.dimensinfin.eveonline.neocom.infinity.service.SBConfigurationService;
 import org.dimensinfin.eveonline.neocom.loyalty.persistence.LoyaltyOffersRepository;
 import org.dimensinfin.eveonline.neocom.loyalty.service.LoyaltyService;
+import org.dimensinfin.eveonline.neocom.market.service.MarketService;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 import org.dimensinfin.eveonline.neocom.provider.IFileSystem;
 import org.dimensinfin.eveonline.neocom.service.DMServicesDependenciesModule;
@@ -86,6 +88,14 @@ public class NeoComInfinityBackendDependenciesModule extends AbstractModule {
 		this.bind( LoyaltyService.class )
 				.annotatedWith( Names.named( DMServicesDependenciesModule.LOYALTY_SERVICE ) )
 				.to( LoyaltyService.class )
+				.in( Singleton.class );
+		this.bind( MarketService.class )
+				.annotatedWith( Names.named( DMServicesDependenciesModule.MARKET_SERVICE ) )
+				.to( MarketService.class )
+				.in( Singleton.class );
+		this.bind( CharacterService.class )
+				.annotatedWith( Names.named( DMServicesDependenciesModule.CHARACTER_SERVICE ) )
+				.to( CharacterService.class )
 				.in( Singleton.class );
 
 		this.bind( ISDEDatabaseService.class )

@@ -4,9 +4,10 @@ import java.util.Objects;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
-import org.dimensinfin.eveonline.neocom.character.converter.GetCharactersCharacterIdToPublicPilotV1Converter;
+import org.dimensinfin.eveonline.neocom.character.converter.GetCharactersCharacterIdLocationToSpaceLocationConverter;
 import org.dimensinfin.eveonline.neocom.character.domain.PilotV1;
 import org.dimensinfin.eveonline.neocom.character.domain.PublicCorporationV1;
 import org.dimensinfin.eveonline.neocom.character.domain.PublicPilotV1;
@@ -15,7 +16,6 @@ import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterI
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdOk;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdShipOk;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdSkillsOk;
-import org.dimensinfin.eveonline.neocom.infinity.backend.character.pilot.converter.GetCharactersCharacterIdLocationToSpaceLocationConverter;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetailsService;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
@@ -27,6 +27,7 @@ import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;
 import org.dimensinfin.eveonline.neocom.service.ResourceFactory;
 
 @Deprecated
+@Profile("deprecated")
 @Service
 public class PilotServiceV2 extends NeoComCredentialService {
 	private final IConfigurationService configurationService;
@@ -65,9 +66,7 @@ public class PilotServiceV2 extends NeoComCredentialService {
 	@Deprecated
 	public PublicPilotV1 getPilotPublicData( final Integer pilotId ) {
 		final PublicCorporationV1 corporation = new PublicCorporationV1.Builder().build();
-		return new GetCharactersCharacterIdToPublicPilotV1Converter( pilotId, this.esiDataService, corporation ).convert(
-				Objects.requireNonNull( this.esiDataService.getCharactersCharacterId( pilotId ) )
-		);
+		return null;
 	}
 
 	private PilotV1 pilotV1Generator( final Credential credential ) {

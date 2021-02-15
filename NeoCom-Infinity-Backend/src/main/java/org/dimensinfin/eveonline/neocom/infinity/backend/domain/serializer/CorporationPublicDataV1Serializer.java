@@ -29,7 +29,7 @@ public class CorporationPublicDataV1Serializer extends JsonSerializer<PublicCorp
 		jgen.writeStringField( "name", value.getCorporationPublicData().getName() );
 		final Link ceoLink = WebMvcLinkBuilder.linkTo(
 				WebMvcLinkBuilder.methodOn( PublicCharacterControllerV1.class )
-						.getPilotPublicData( value.getCeoPilotData().getPilotId() )
+						.getPilotPublicData( value.getCeoId() )
 		).withRel( "ceo" );
 		jgen.writeObjectField( "ceo", ceoLink );
 		jgen.writeNumberField( "creatorId", value.getCorporationPublicData().getCreatorId() );

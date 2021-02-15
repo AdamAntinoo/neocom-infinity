@@ -190,14 +190,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PilotModel'
-          links:
-            GetCorporationData:
-              operationId: getCorporation
-              description: >
-                Gets the corporation public data.
-              parameters:
-                corporationId: $response.body#/corporationId
+                $ref: '#/components/schemas/PilotV1'
   /api/v1/neocom/corporations/{corporationId}:
     get:
       tags:
@@ -346,31 +339,212 @@ components:
           example:
             VALID
 
-
     PilotPublicData:
       type: object
       required:
         - pilotId
-        - corporationId
+        - name
+        - description
         - corporation
+        - birthday
+        - gender
+        - securityStatus
+        - url4Icon
         - raceData
         - ancestryData
         - bloodlineData
       properties:
         pilotId:
           type: integer
+          format: int32
           description: >
             The unique game character identifier assigned at character creation that is going to be used to identify this Pilot.
           example:
             93813310
+        name:
+          type: string
+          description: >
+            The user selected character name that is unique and permanent for all the character life cycle.
+          example:
+            Zach Zender
+        description:
+          type: string
+          description: >
+            This is a text that is common to all race-bloodline-ancestry characters.
         corporation:
-          $ref: '#/components/schemas/CorporationPublicData'
+          $ref: '#/components/schemas/PublicCorporationLink'
+        birthday:
+          type: string
+          format: date-time
+          description: >
+            The date the character was created on the Eve Online game.
+          example:
+            "2013-09-09T19:40:09.000Z"
+        gender:
+          type: string
+          enum:
+            - male
+            - female
+          description: >
+            The character's gender.
+          example:
+            "male"
+        securityStatus:
+          type: number
+          format: float
+          description: >
+            The current security status fro the CONCORD relationships. Depends on the rats killed and other player interactions.
+          example:
+            0.03513719
+        url4Icon:
+          type: string
+          format: url
+          description: >
+            The link to the image data server from CPP where we can locate the character's portrait.
+          example:
+            "https://image.eveonline.com/Character/93813310_256.jpg"
         raceData:
           $ref: '#/components/schemas/RaceData'
         ancestryData:
           $ref: '#/components/schemas/AncestryData'
         bloodlineData:
           $ref: '#/components/schemas/BloodlineData'
+
+    PilotV1:
+      type: object
+      required:
+        - pilotId
+        - name
+        - description
+        - corporation
+        - birthday
+        - gender
+        - securityStatus
+        - url4Icon
+        - raceData
+        - ancestryData
+        - bloodlineData
+        - totalSkillpoints
+        - walletBalance
+        - currentShipName
+        - currentShipTypeName
+        - lastKnownLocation
+      properties:
+        pilotId:
+          type: integer
+          format: int32
+          description: >
+            The unique game character identifier assigned at character creation that is going to be used to identify this Pilot.
+          example:
+            93813310
+        name:
+          type: string
+          description: >
+            The user selected character name that is unique and permanent for all the character life cycle.
+          example:
+            Zach Zender
+        description:
+          type: string
+          description: >
+            This is a text that is common to all race-bloodline-ancestry characters.
+        corporation:
+          $ref: '#/components/schemas/PublicCorporationLink'
+        birthday:
+          type: string
+          format: date-time
+          description: >
+            The date the character was created on the Eve Online game.
+          example:
+            "2013-09-09T19:40:09.000Z"
+        gender:
+          type: string
+          enum:
+            - male
+            - female
+          description: >
+            The character's gender.
+          example:
+            "male"
+        securityStatus:
+          type: number
+          format: float
+          description: >
+            The current security status fro the CONCORD relationships. Depends on the rats killed and other player interactions.
+          example:
+            0.03513719
+        url4Icon:
+          type: string
+          format: url
+          description: >
+            The link to the image data server from CPP where we can locate the character's portrait.
+          example:
+            "https://image.eveonline.com/Character/93813310_256.jpg"
+        raceData:
+          $ref: '#/components/schemas/RaceData'
+        ancestryData:
+          $ref: '#/components/schemas/AncestryData'
+        bloodlineData:
+          $ref: '#/components/schemas/BloodlineData'
+        totalSkillpoints:
+          type: integer
+          format: int32
+          description: >
+            The number of skill points learned by the character.
+          example:
+            8404419
+        walletBalance:
+          type: number
+          format: double
+          description: >
+            The current wallet amount for the character's wallet.
+          example:
+            2.76586637596E9
+        currentShipName:
+          type: string
+          description: >
+            The current character's ship or the capsule. This field only records the name.
+          example:
+            "Zach Zender's Velator"
+        currentShipTypeName:
+          type: string
+          description: >
+            The current character's ship class name.
+          example:
+            "Velator"
+        lastKnownLocation:
+          $ref: '#/components/schemas/SpaceLocation'
+
+    PublicCorporationLink:
+      type: object
+      required:
+        - href
+      properties:
+        rel:
+          type: string
+          default: 'publicCorporation'
+          description: >
+            This fields defined the class type for the next link and to what type of data is should point. This field has a fixed value for each
+            link type.
+        href:
+          type: string
+          format: url
+          description: >
+            The backend url (on any of the backend defined domains) to access a Public Corporation data record for the corporation this pilot
+            belongs to.
+          example:
+            http://localhost:5200/api/v1/public/corporations/98544563
+    SpaceLocation:
+      type: object
+      properties:
+        locationId:
+          type: integer
+          format: int32
+          description: >
+            The final current location identifier. There are other identification values with lower value that may point to
+            system/constellation/region location hierarchy. This location can also be a NPC or player structure identifier.
+          example:
+            60010408
+
 
     CorporationPublicData:
       type: object

@@ -4,6 +4,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -19,6 +20,7 @@ import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComAuthenticatedCo
 @Deprecated
 @RestController
 @Validated
+@Profile("deprecated")
 @RequestMapping("/api/v2/neocom")
 public class PilotControllerV2 extends NeoComAuthenticatedController {
 	private final PilotServiceV2 pilotServiceV2;

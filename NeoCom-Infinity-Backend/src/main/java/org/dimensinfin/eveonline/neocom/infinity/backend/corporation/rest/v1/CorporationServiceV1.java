@@ -102,9 +102,7 @@ public class CorporationServiceV1 {
 				.withCorporationPublicData(
 						Objects.requireNonNull( corporationData )
 				)
-				.withCeoPilotData( this.pilotServiceV2.getPilotPublicData(
-						Objects.requireNonNull( corporationData ).getCeoId() )
-				)
+				.withCeoPilotId( corporationData.getCeoId() )
 				.build();
 	}
 
