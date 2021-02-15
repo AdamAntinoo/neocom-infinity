@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.dimensinfin.eveonline.neocom.domain.PublicCorporationV1;
-import org.dimensinfin.eveonline.neocom.infinity.corporation.rest.CorporationServiceV1;
+import org.dimensinfin.eveonline.neocom.character.domain.PublicCorporationV1;
+import org.dimensinfin.eveonline.neocom.infinity.backend.corporation.rest.v1.CorporationServiceV1;
 
 /**
  * @author Adam Antinoo (adamantinoo.git@gmail.com)

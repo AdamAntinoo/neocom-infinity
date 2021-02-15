@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.corporation.domain;
+package org.dimensinfin.eveonline.neocom.infinity.backend.corporation.domain;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

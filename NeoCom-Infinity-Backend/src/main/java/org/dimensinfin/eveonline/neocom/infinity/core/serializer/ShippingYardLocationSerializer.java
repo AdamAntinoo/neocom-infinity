@@ -8,8 +8,7 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import org.springframework.boot.jackson.JsonComponent;
 
-import org.dimensinfin.eveonline.neocom.domain.FittingItem;
-import org.dimensinfin.eveonline.neocom.infinity.corporation.domain.ShippingYardLocation;
+import org.dimensinfin.eveonline.neocom.infinity.backend.corporation.domain.ShippingYardLocation;
 
 @JsonComponent
 public class ShippingYardLocationSerializer extends JsonSerializer<ShippingYardLocation> {
