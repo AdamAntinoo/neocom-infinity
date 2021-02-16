@@ -58,16 +58,16 @@ public class NeoComDBWrapper {
 		//			final String databasePath = this.configurationService.getResourceString( "P.database.neocom.databasepath" );
 		//			final String user = this.configurationService.getResourceString( "P.database.neocom.databaseuser" );
 		//			final String password = this.configurationService.getResourceString( "P.database.neocom.databasepassword" );
-		this.singleton = new SBNeoComDBAdapter.Builder()
-				.withDatabaseConnectionDescriptor( connectionDescriptor )
-				//					.withDatabasePath( databasePath )
-				//					.withDatabaseUser( user )
-				//					.withDatabasePassword( password )
-				//					.optionalDatabaseType( this.configurationService.getResourceString( "P.database.neocom.databasetype" ) )
-				//					.optionalDatabaseOptions(
-				//							this.configurationService.getResourceString( "P.database.neocom.databaseoptions" )
-				//					)
-				.build();
+		this.singleton = new SBNeoComDBAdapter( connectionDescriptor );
+		//				.withDatabaseConnectionDescriptor( connectionDescriptor )
+		//					.withDatabasePath( databasePath )
+		//					.withDatabaseUser( user )
+		//					.withDatabasePassword( password )
+		//					.optionalDatabaseType( this.configurationService.getResourceString( "P.database.neocom.databasetype" ) )
+		//					.optionalDatabaseOptions(
+		//							this.configurationService.getResourceString( "P.database.neocom.databaseoptions" )
+		//					)
+		//				.build();
 		this.getSingleton().onCreate( this.getSingleton().getConnectionSource() );
 		//		}
 		LogWrapper.exit();
