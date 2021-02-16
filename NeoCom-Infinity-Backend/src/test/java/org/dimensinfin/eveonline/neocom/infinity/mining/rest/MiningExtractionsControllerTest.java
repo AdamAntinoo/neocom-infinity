@@ -10,8 +10,8 @@ import org.mockito.Mockito;
 import org.springframework.http.ResponseEntity;
 
 import org.dimensinfin.eveonline.neocom.database.entities.MiningExtractionEntity;
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComAuthorizationException;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
 import org.dimensinfin.eveonline.neocom.infinity.mining.rest.v1.MiningExtractionsController;
 import org.dimensinfin.eveonline.neocom.infinity.mining.rest.v1.MiningExtractionsService;
 
@@ -38,7 +38,7 @@ public class MiningExtractionsControllerTest {
 		final MiningExtractionsController miningExtractionsController = new MiningExtractionsController(
 				this.authenticationProvider, this.miningExtractionsService );
 		final MiningExtractionEntity miningExtraction = Mockito.mock( MiningExtractionEntity.class );
-		List<MiningExtractionEntity> responseMiningExtractionsList = new ArrayList<>();
+		final List<MiningExtractionEntity> responseMiningExtractionsList = new ArrayList<>();
 		responseMiningExtractionsList.add( miningExtraction );
 		// When
 		Mockito.when( this.authenticationProvider.getAuthenticatedPilot() ).thenReturn( 321654 );
@@ -59,7 +59,7 @@ public class MiningExtractionsControllerTest {
 		final MiningExtractionsController miningExtractionsController = new MiningExtractionsController(
 				this.authenticationProvider, this.miningExtractionsService );
 		final MiningExtractionEntity miningExtraction = Mockito.mock( MiningExtractionEntity.class );
-		List<MiningExtractionEntity> responseMiningExtractionsList = new ArrayList<>();
+		final List<MiningExtractionEntity> responseMiningExtractionsList = new ArrayList<>();
 		responseMiningExtractionsList.add( miningExtraction );
 		// When
 		Mockito.when( this.authenticationProvider.getAuthenticatedPilot() ).thenReturn( 321654 );
@@ -67,7 +67,7 @@ public class MiningExtractionsControllerTest {
 				responseMiningExtractionsList
 		);
 		// Exception
-		Assertions.assertThrows( NeoComAuthorizationException.class, () -> {
+		Assertions.assertThrows( NeoComRuntimeBackendException.class, () -> {
 			miningExtractionsController.getTodayMiningExtractions4Pilot( -321654 );
 		} );
 	}
