@@ -71,7 +71,7 @@ public class CorporationServiceV1Test {
 
 		// When
 		Mockito.when( this.esiDataService.getCorporationsCorporationId( Mockito.anyInt() ) ).thenReturn( corporationData );
-		Mockito.when( this.pilotServiceV1.buildPilotData( Mockito.anyInt() ) ).thenReturn( pilot );
+		//		Mockito.when( this.pilotServiceV1.buildPilotData( Mockito.anyInt() ) ).thenReturn( pilot );
 
 		// Test
 		final CorporationServiceV1 corporationServiceV1 = new CorporationServiceV1(
