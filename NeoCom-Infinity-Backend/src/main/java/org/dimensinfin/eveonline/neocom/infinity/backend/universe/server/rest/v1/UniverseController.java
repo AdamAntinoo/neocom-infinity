@@ -9,14 +9,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComController;
 import org.dimensinfin.eveonline.neocom.infinity.universe.client.v1.ServerStatus;
 
 @RestController
 @CrossOrigin()
 //@Validated
 //@RequestMapping("/api/v1/neocom")
-public class UniverseController extends NeoComController {
+public class UniverseController {
 	private final UniverseService universeService;
 
 	// - C O N S T R U C T O R S

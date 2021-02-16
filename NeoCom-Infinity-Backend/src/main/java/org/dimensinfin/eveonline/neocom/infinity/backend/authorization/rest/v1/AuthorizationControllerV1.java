@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthenticationStateResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenResponse;
-import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComController;
 import org.dimensinfin.logging.LogWrapper;
 
 import static org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendApplication.NEOCOM_COOKIE_NAME;
@@ -32,7 +31,7 @@ import static org.dimensinfin.eveonline.neocom.provider.ESIDataProvider.DEFAULT_
 @Validated
 @CrossOrigin()
 @RequestMapping("/api/v1/neocom")
-public class AuthorizationControllerV1 extends NeoComController {
+public class AuthorizationControllerV1 {
 	private final AuthorizationServiceV1 authorizationServiceV1;
 
 	// - C O N S T R U C T O R S

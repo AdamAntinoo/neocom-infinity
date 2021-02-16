@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import org.dimensinfin.eveonline.neocom.domain.Fitting;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
-import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComController;
+import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComAuthenticatedController;
 import org.dimensinfin.eveonline.neocom.infinity.fitting.FittingService;
 
 /**
@@ -33,25 +32,22 @@ import org.dimensinfin.eveonline.neocom.infinity.fitting.FittingService;
 @CrossOrigin
 @Validated
 @RequestMapping("/api/v1/neocom")
-public class FittingsControllerV1 extends NeoComController {
+public class FittingsControllerV1 extends NeoComAuthenticatedController {
 	private final FittingService fittingService;
-	private final NeoComAuthenticationProvider neoComAuthenticationProvider;
 
-// - C O N S T R U C T O R S
+	// - C O N S T R U C T O R S
 	@Autowired
-	public FittingsControllerV1( final FittingService fittingService,
-	                             final NeoComAuthenticationProvider neoComAuthenticationProvider ) {
+	public FittingsControllerV1( @NotNull final NeoComAuthenticationProvider neoComAuthenticationProvider,
+	                             @NotNull final FittingService fittingService ) {
+		super( neoComAuthenticationProvider );
 		this.fittingService = fittingService;
-		this.neoComAuthenticationProvider = neoComAuthenticationProvider;
 	}
 
 	@GetMapping(path = "/fittings/pilot/{pilotId}",
 			consumes = "application/json",
 			produces = "application/json")
 	public ResponseEntity<List<Fitting>> getPilotFittings( @PathVariable @NotNull final Integer pilotId ) {
-		final Integer authorizedPilotId = this.neoComAuthenticationProvider.getAuthenticatedPilot();
-		if (authorizedPilotId.intValue() != pilotId.intValue())
-			throw new NeoComRuntimeBackendException( NeoComAuthenticationProvider.errorPILOT_ACCESS_NOT_AUTHORIZED() );
+		this.validateAuthorizedPilot( pilotId );
 		return this.fittingService.getPilotFittings();
 	}
 }

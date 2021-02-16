@@ -15,7 +15,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
 	@Value("${P.runtime.logging.request}")
 	private final String logRequestFlag = "false";
 	@Value("${P.runtime.logging.response}")
-	private final String logResponseFlag = "true";
+	private final String logResponseFlag = "false";
 	@Value("${P.runtime.logging.timing}")
 	private final String logTimingFlag = "true";
 	@Value("${P.runtime.logging.metrics}")
