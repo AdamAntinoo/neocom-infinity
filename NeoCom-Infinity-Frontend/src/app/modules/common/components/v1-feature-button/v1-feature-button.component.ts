@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EInteraction } from '@domain/ui/EInteraction.enum';
 import { NeoComFeature } from '@domain/ui/NeoComFeature.domain';
-import { platformConstants } from '@env/platform-constants';
+import { PlatformConstants } from '@env/PlatformConstants';
 
 @Component({
     selector: 'v1-feature-button',
@@ -19,11 +19,11 @@ export class V1FeatureButtonComponent {
     }
     public getFeatureImage(): string {
         if (this.feature) return this.feature.getImageRef()
-        else return platformConstants.DEFAULT_FEATURE_REF
+        else return PlatformConstants.DEFAULT_FEATURE_REF
     }
     public getFeatureLabel(): string {
         if (this.feature) return this.feature.getLabel()
-        else return platformConstants.DEFAULT_FEATURE_LABEL
+        else return PlatformConstants.DEFAULT_FEATURE_LABEL
     }
     // - I N T E R A C T I O N S
     public onClick(): void {

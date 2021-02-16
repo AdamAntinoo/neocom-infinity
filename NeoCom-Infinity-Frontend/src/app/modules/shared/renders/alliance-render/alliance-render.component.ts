@@ -8,7 +8,8 @@ import { environment } from '@env/environment';
 import { Corporation } from '@app/domain/Corporation.domain';
 import { AllianceV1 } from '@domain/corporation/AllianceV1.domain';
 import { RenderComponent } from '../render/render.component';
-import { platformConstants } from '@env/platform-constants';
+import { PlatformConstants } from '@env/PlatformConstants';
+import { NeoComConstants } from '@app/platform/NeocomConstants.platform';
 
 @Component({
     selector: 'alliance-render',
@@ -24,6 +25,6 @@ export class AllianceRenderComponent extends RenderComponent {
     }
     public getAllianceIcon(): string {
         if (null != this.node) return this.node.getAllianceIcon();
-        else return platformConstants.DEFAULT_AVATAR_PLACEHOLDER;
+        else return NeoComConstants.DEFAULT_AVATAR_PLACEHOLDER;
     }
 }

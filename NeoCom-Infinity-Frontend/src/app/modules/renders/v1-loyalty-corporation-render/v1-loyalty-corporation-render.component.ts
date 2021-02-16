@@ -7,11 +7,12 @@ import { Input } from '@angular/core';
 import { RenderComponent } from '../../shared/renders/render/render.component';
 import { Pilot } from '@app/domain/Pilot.domain';
 import { PilotV2 } from '@domain/character/PilotV2.domain';
-import { platformConstants } from '@env/platform-constants';
+import { PlatformConstants } from '@env/PlatformConstants';
 import { PublicPilotV1 } from '@domain/character/PublicPilotV1.domain';
 import { V2NodeContainerRenderComponent } from '../v2-node-container-render/v2-node-container-render.component';
 import { LookupRegion } from '@app/modules/planetary/domain/LookupRegion.domain';
 import { LoyaltyCorporationV1 } from '@app/modules/loyalty/domain/LoyaltyCorporationV1.domain';
+import { NeoComConstants } from '@app/platform/NeocomConstants.platform';
 
 @Component({
     selector: 'v1-loyalty-corporation',
@@ -28,7 +29,7 @@ export class V1LoyaltyCorporationRenderComponent extends V2NodeContainerRenderCo
     }
     public getCorporationIcon(): string {
         if (this.node) return this.getNode().getCorporationIconUrl()
-        else return platformConstants.DEFAULT_ICON_PLACEHOLDER
+        else return NeoComConstants.DEFAULT_ICON_PLACEHOLDER
     }
     public isSelected(): boolean {
         if (this.node) return this.getNode().isSelected()

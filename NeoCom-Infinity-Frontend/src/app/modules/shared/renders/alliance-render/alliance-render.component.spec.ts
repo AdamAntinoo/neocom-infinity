@@ -18,7 +18,8 @@ import { BackendService } from '@app/services/backend.service';
 import { SupportBackendService } from '@app/testing/SupportBackend.service';
 import { AllianceRenderComponent } from './alliance-render.component';
 import { AllianceV1 } from '@domain/corporation/AllianceV1.domain';
-import { platformConstants } from '@env/platform-constants';
+import { PlatformConstants } from '@env/PlatformConstants';
+import { NeoComConstants } from '@app/platform/NeocomConstants.platform';
 
 describe('RENDER AllianceRenderComponent [Module: SHARED]', () => {
     let component: AllianceRenderComponent;
@@ -81,7 +82,7 @@ describe('RENDER AllianceRenderComponent [Module: SHARED]', () => {
         });
         it('getAllianceIcon.failure: validate the alliance icon field', () => {
             const obtained = component.getAllianceIcon();
-            expect(obtained).toBe(platformConstants.DEFAULT_AVATAR_PLACEHOLDER);
+            expect(obtained).toBe(NeoComConstants.DEFAULT_AVATAR_PLACEHOLDER);
         });
     });
 });

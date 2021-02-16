@@ -5,7 +5,7 @@ import { Then } from "cypress-cucumber-preprocessor/steps";
 // - SERVICES
 import { SupportService } from '../../support/SupportService.support';
 // - CORE
-import { platformConstants } from '../../../src/environments/platform-constants';
+import { PlatformConstants } from '../../../src/environments/PlatformConstants';
 // - DOMAIN
 import { NeoComCredential } from '../../../src/app/domain/NeoComCredential.domain';
 
@@ -25,10 +25,10 @@ Given('a valid Credential on the session storage', function () {
         "raceName": "Amarr",
         "dataSource": "tranquility"
     })
-    supportService.setToSession(platformConstants.CREDENTIAL_KEY, JSON.stringify(credential))
+    supportService.setToSession(PlatformConstants.CREDENTIAL_KEY, JSON.stringify(credential))
 });
 Given('there is no Credential on session storage', function () {
-    supportService.removeFromSession(platformConstants.CREDENTIAL_KEY)
+    supportService.removeFromSession(PlatformConstants.CREDENTIAL_KEY)
 });
 
 // - S T E P   M A C R O S
@@ -49,7 +49,7 @@ Given('the Dashboard page activation', function (recordId: string) {
         "raceName": "Amarr",
         "dataSource": "tranquility"
     })
-    supportService.setToSession(platformConstants.CREDENTIAL_KEY, JSON.stringify(credential))
+    supportService.setToSession(PlatformConstants.CREDENTIAL_KEY, JSON.stringify(credential))
     // Then the page "Dashboard" is activated
     const symbolicName = 'Dashboard'
     const tag = supportService.translateTag(symbolicName) // Do name replacement

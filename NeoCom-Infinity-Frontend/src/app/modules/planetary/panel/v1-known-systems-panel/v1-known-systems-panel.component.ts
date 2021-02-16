@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
 // - DOMAIN
 import { AppPanelComponent } from '@innovative/components/app-panel/app-panel.component';
 import { IRefreshable } from '@innovative/domain/interfaces/IRefreshable.interface';
-import { platformConstants } from '@env/platform-constants';
+import { PlatformConstants } from '@env/PlatformConstants';
 import { PlanetaryDataService } from '../../service/PlanetaryData.service';
 import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer';
 import { KnownSystem } from '@domain/planetary/KnownSystem.domain';

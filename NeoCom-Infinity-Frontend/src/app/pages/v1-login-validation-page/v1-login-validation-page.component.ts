@@ -14,13 +14,13 @@ import { BackendService } from '@app/services/backend.service'
 import { NeoComException } from '@innovative/domain/NeoComException'
 // - DOMAIN
 import { IsolationService } from '@innovative/services/isolation.service'
-import { NeoComConstants } from '@app/platform/neocom-constants.platform'
+import { NeoComConstants } from '@app/platform/NeocomConstants.platform'
 import { ExceptionCatalog } from '@app/platform/ExceptionCatalog'
 import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer'
 import { BackgroundEnabledComponent } from '@innovative/components/background-enabled/background-enabled.component'
 import { AuthenticationStateResponse } from '@domain/dto/AuthenticationStateResponse.dto'
 import { NeoComCredential } from '@domain/NeoComCredential.domain'
-import { platformConstants } from '@env/platform-constants'
+import { PlatformConstants } from '@env/PlatformConstants'
 
 @Component({
     selector: 'app-login-validation-page',
@@ -66,8 +66,8 @@ export class V1LoginValidationPageComponent extends BackgroundEnabledComponent i
                             response.getJwtToken())
                         if (this.validateJWT(response.getJwtToken(), credential)) {
                             // Store the new tocken and credential
-                            this.isolationService.setToSession(platformConstants.JWTTOKEN_KEY, response.getJwtToken())
-                            this.isolationService.setToSession(platformConstants.CREDENTIAL_KEY, JSON.stringify(response.getCredential()))
+                            this.isolationService.setToSession(PlatformConstants.JWTTOKEN_KEY, response.getJwtToken())
+                            this.isolationService.setToSession(PlatformConstants.CREDENTIAL_KEY, JSON.stringify(response.getCredential()))
                             console.log('-[V1LoginValidationPageComponent.<ngOnInit>.apiValidateAuthorizationToken]> Routing to: /dashbaord')
                             this.router.navigate(['dashboard'])   // Jump to the Dashboard page if all complete.
                         } else {

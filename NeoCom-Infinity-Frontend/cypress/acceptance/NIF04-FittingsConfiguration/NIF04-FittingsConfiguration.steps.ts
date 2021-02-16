@@ -5,7 +5,7 @@ import { Then } from "cypress-cucumber-preprocessor/steps";
 // - SERVICES
 import { SupportService } from '../../support/SupportService.support';
 // - CORE
-import { platformConstants } from '../../../src/environments/platform-constants';
+import { PlatformConstants } from '../../../src/environments/PlatformConstants';
 // - DOMAIN
 import { NeoComCredential } from '../../../src/app/domain/NeoComCredential.domain';
 

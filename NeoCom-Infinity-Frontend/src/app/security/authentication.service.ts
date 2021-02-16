@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 // - INOVATIVE
 import { IsolationService } from '@innovative/services/isolation.service';
 // - SERVICES
-import { NeoComConstants } from '@app/platform/neocom-constants.platform';
-import { platformConstants } from '@env/platform-constants';
+import { NeoComConstants } from '@app/platform/NeocomConstants.platform';
+import { PlatformConstants } from '@env/PlatformConstants';
 
 @Injectable({
     providedIn: 'root'
@@ -18,7 +18,7 @@ export class AuthenticationService {
      * This method verifies if the authentication token is present on the navigator session storage. If not present then it should trigger a new authentication flow.
      */
     public isAuthenticated(): boolean {
-        const jwtTokenData = this.isolationService.getFromSession(platformConstants.JWTTOKEN_KEY)
+        const jwtTokenData = this.isolationService.getFromSession(PlatformConstants.JWTTOKEN_KEY)
         if (jwtTokenData)
             return this.validateJwtToken(jwtTokenData)
         return false

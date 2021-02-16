@@ -1,4 +1,4 @@
-export const platformConstants = {
+export const PlatformConstants = {
     // - C O N S T A N T S
     NEOCOM_V1: '/api/v1/neocom',
     NEOCOM_V2: '/api/v2/neocom',

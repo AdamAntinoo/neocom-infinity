@@ -7,8 +7,9 @@ import { Input } from '@angular/core';
 import { RenderComponent } from '../../shared/renders/render/render.component';
 import { Pilot } from '@app/domain/Pilot.domain';
 import { PilotV2 } from '@domain/character/PilotV2.domain';
-import { platformConstants } from '@env/platform-constants';
+import { PlatformConstants } from '@env/PlatformConstants';
 import { PublicPilotV1 } from '@domain/character/PublicPilotV1.domain';
+import { NeoComConstants } from '@app/platform/NeocomConstants.platform';
 
 @Component({
   selector: 'v1-public-pilot',
@@ -28,7 +29,7 @@ export class V1PublicPilotRenderComponent {
     }
     public getPilotIcon(): string {
         if (this.node) return this.getNode().url4Icon
-        else return platformConstants.DEFAULT_AVATAR_PLACEHOLDER
+        else return NeoComConstants.DEFAULT_AVATAR_PLACEHOLDER
     }
     public getAncestryData(): string {
         if (this.node)

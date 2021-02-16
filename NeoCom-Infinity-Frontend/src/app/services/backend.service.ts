@@ -22,7 +22,7 @@ import { PilotV2 } from '@domain/character/PilotV2.domain'
 import { PublicService } from './public.service'
 import { HALResolver } from './HALResolver.service'
 import { platformBrowser } from '@angular/platform-browser'
-import { platformConstants } from '@env/platform-constants'
+import { PlatformConstants } from '@env/PlatformConstants'
 import { AuthenticationStateResponse } from '@domain/dto/AuthenticationStateResponse.dto'
 
 @Injectable({
@@ -38,8 +38,8 @@ export class BackendService extends PublicService {
         protected httpService: BackendHttpWrapper,
         protected isolation: IsolationService) {
         super(httpUniverseService, halResolver)
-        this.APIV1 = environment.serverName + platformConstants.NEOCOM_V1
-        this.APIV2 = environment.serverName + platformConstants.NEOCOM_V2
+        this.APIV1 = environment.serverName + PlatformConstants.NEOCOM_V1
+        this.APIV2 = environment.serverName + PlatformConstants.NEOCOM_V2
     }
 
     // - B A C K E N D - A P I

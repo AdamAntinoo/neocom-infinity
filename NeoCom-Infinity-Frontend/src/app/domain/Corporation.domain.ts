@@ -2,7 +2,7 @@
 import { AllianceV1 } from './corporation/AllianceV1.domain';
 import { Pilot } from './Pilot.domain';
 import { NeoCom } from './NeoCom.domain';
-import { NeoComConstants } from '../platform/neocom-constants.platform';
+import { NeoComConstants } from '../platform/NeocomConstants.platform';
 import { HALLink } from './hal/HALLink.hal';
 import { HALNode } from './hal/HALNode.hal';
 
