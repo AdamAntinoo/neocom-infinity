@@ -19,6 +19,7 @@ import { Corporation } from '@domain/Corporation.domain';
 import { AllianceV1 } from '@domain/corporation/AllianceV1.domain';
 import { NeoComFeature } from '@domain/ui/NeoComFeature.domain';
 import { NeoComException } from '@innovative/domain/NeoComException';
+import { PlatformConstants } from '@env/PlatformConstants';
 /**
  * This is the landing page for a login. The page has teh next structure:
  * ROW 1 - The application header and the current server status.
@@ -149,7 +150,7 @@ export class DashboardHomePageComponent extends BackgroundEnabledComponent imple
     //     const i = 6
     // }
     private getCredential(): NeoComCredential {
-        const credentialJson = this.isolationService.getFromSession(environment.CREDENTIAL_KEY)
+        const credentialJson = this.isolationService.getFromSession(PlatformConstants.CREDENTIAL_KEY)
         // console.log('-[DashboardHomePageComponent.getCredential]> Credential data: ' + JSON.stringify(credentialJson))
         if (null == credentialJson)
             throw new NeoComException()

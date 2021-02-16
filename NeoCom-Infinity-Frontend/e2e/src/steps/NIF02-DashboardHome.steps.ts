@@ -17,6 +17,7 @@ import { AppInfoPanel } from '../pages/AppInfoPanel.panel';
 import { ServerInfoPanel } from '../pages/ServerInfoPanel.panel';
 // - SERVICES
 import { Credential } from '../../../src/app/domain/core/Credential.domain';
+import { PlatformConstants } from '@support/PlatformConstants';
 
 // - DEFINITIONS
 let isolationService: IsolationService;
@@ -45,7 +46,7 @@ Given('the next authentication token', async (dataTable) => {
     browser.waitForAngular();
     const JWT_TOKEN: string = 'jwtToken';
     let jwtToken = isolationService.decodeDataTableRow(dataTable.hashes()[0], JWT_TOKEN);
-    isolationService.setToSession(NeoCom.JWTTOKEN_KEY, jwtToken);
+    isolationService.setToSession(PlatformConstants.JWTTOKEN_KEY, jwtToken);
     browser.driver.sleep(2000);
     browser.waitForAngular();
 });
@@ -71,7 +72,7 @@ Given('a valid credential with the next data', async (dataTable) => {
         "miningResourcesEstimatedValue": 345234.0,
         "raceName": "Minmatar"
     });
-    isolationService.setToSession(neocom_constants.CREDENTIAL_KEY, JSON.stringify(credential));
+    isolationService.setToSession(PlatformConstants.CREDENTIAL_KEY, JSON.stringify(credential));
 });
 Given('one Dashboard Home Page', async () => {
     console.log('[GIVEN] one Dashboard Home Page');

@@ -95,7 +95,7 @@ export class V2PilotPublicDataPanelComponent extends BackgroundEnabledComponent 
     //     return this.getCredential().getAccountId()
     // }
     // public getCredential(): Credential {
-    //     const credentialJson = this.isolationService.getFromSession(environment.CREDENTIAL_KEY)
+    //     const credentialJson = this.isolationService.getFromSession(PlatformConstants.CREDENTIAL_KEY)
     //     if (null == credentialJson)
     //         throw new NeoComException()
     //             .withTitle('Rendering Pilot Public Data. No Credential Found.')

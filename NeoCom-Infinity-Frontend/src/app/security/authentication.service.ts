@@ -33,7 +33,7 @@ export class AuthenticationService {
     // - J W T   D E C O D E
     /** @deprecated */
     public isLoggedIn(): boolean {
-        const jwtToken = this.isolationService.getFromSession(NeoComConstants.JWTTOKEN_KEY);
+        const jwtToken = this.isolationService.getFromSession(PlatformConstants.JWTTOKEN_KEY);
         console.log('-[AuthenticationService.isLoggedIn]> jwtToken: ' + jwtToken);
         if (jwtToken)
             if (!this.isExpiredToken()) return true;
@@ -43,33 +43,33 @@ export class AuthenticationService {
     public isExpiredToken(): boolean {
         console.log('-[AuthenticationService.isExpiredToken]> expiration time: ' +
             this.isolationService.getFromSession(
-                NeoComConstants.JWTTOKEN_EXPIRATION_TIME_KEY));
+                PlatformConstants.JWTTOKEN_EXPIRATION_TIME_KEY));
         console.log('-[AuthenticationService.isExpiredToken]> expiration date: ' +
             new Date(this.isolationService.getFromSession(
-                NeoComConstants.JWTTOKEN_EXPIRATION_TIME_KEY)));
+                PlatformConstants.JWTTOKEN_EXPIRATION_TIME_KEY)));
         const expirationTime: number = +new Date(this.isolationService.getFromSession(
-            NeoComConstants.JWTTOKEN_EXPIRATION_TIME_KEY));
+            PlatformConstants.JWTTOKEN_EXPIRATION_TIME_KEY));
         console.log('-[AuthenticationService.isExpiredToken]> expiration time: ' + expirationTime);
         if (Number.isNaN(expirationTime)) return true;
         const currentTime = +new Date();
         return (expirationTime < currentTime);
     }
     public storeJwtToken(newToken: string): void {
-        this.isolationService.setToSession(NeoComConstants.JWTTOKEN_KEY, newToken);
+        this.isolationService.setToSession(PlatformConstants.JWTTOKEN_KEY, newToken);
         const expirationTime = this.isolationService.dateAdd(Date.now(), 'hour', 1);
         console.log('-[AuthenticationService.isExpiredToken]> setting expiration time: ' + expirationTime);
-        this.isolationService.setToSession(NeoComConstants.JWTTOKEN_EXPIRATION_TIME_KEY, expirationTime);
+        this.isolationService.setToSession(PlatformConstants.JWTTOKEN_EXPIRATION_TIME_KEY, expirationTime);
     }
     /** @deprecated */
     public timestampJwtToken(deviation: number): void {
         const expirationTime = this.isolationService.dateAdd(this.isolationService.dateAdd(
             Date.now(), 'hour', 1),
             'second', deviation);
-        this.isolationService.setToSession(NeoComConstants.JWTTOKEN_EXPIRATION_TIME_KEY, expirationTime);
+        this.isolationService.setToSession(PlatformConstants.JWTTOKEN_EXPIRATION_TIME_KEY, expirationTime);
     }
     public clearJwtToken(): void {
-        this.isolationService.removeFromSession(NeoComConstants.JWTTOKEN_KEY);
-        this.isolationService.removeFromSession(NeoComConstants.JWTTOKEN_EXPIRATION_TIME_KEY);
+        this.isolationService.removeFromSession(PlatformConstants.JWTTOKEN_KEY);
+        this.isolationService.removeFromSession(PlatformConstants.JWTTOKEN_EXPIRATION_TIME_KEY);
     }
     public JWTDecode2AccountName(codedToken: string): string {
         const token = this.isolationService.JWTDecode(codedToken);
