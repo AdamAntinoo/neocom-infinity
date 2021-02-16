@@ -297,6 +297,11 @@ jobs:
             git config --global user.name "Adam antinoo"
             git init
             git add Procfile
+            git add app.json
+            git add *.gradle
+            git add *.properties
+            git add gradle
+            git add src
             git add build/libs
             git add build/resources/main/db
             git add build/resources/main/i18
@@ -400,9 +405,7 @@ workflows:
           filters:
             branches:
               only:
-                - test
                 - hotfix
-                - deploy
       - quality-sonarcloud-backend:
           requires:
             - unittest-backend-job
