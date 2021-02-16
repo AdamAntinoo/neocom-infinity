@@ -224,7 +224,7 @@ jobs:
           working_directory: NeoCom-Infinity-Backend
           environment:
             PROFILE: "production"
-            DEFAULT_BACKEND_SERVER: 'http://neocom-backend-acceptance-app'
+            DEFAULT_BACKEND_SERVER: 'http://localhost'
             DEFAULT_BACKEND_PORT: '5241'
           command: |
             ./docker-service.sh start acceptance
@@ -292,6 +292,7 @@ jobs:
           name: BACKEND - Create the repository contents to move to Heroku for deployment
           working_directory: NeoCom-Infinity-Backend
           command: |
+            rm -rf .gitignore
             git config --global user.email "adamantinoo.git@gmail.com"
             git config --global user.name "Adam antinoo"
             git init
