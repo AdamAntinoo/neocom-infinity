@@ -22,6 +22,7 @@ import { Fitting } from '@app/domain/Fitting.domain';
 import { AppCoreStoreService } from '@innovative/services/AppCoreStoreService.service';
 import { BackendHttpWrapper } from './backend.httpwrapper';
 import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer';
+import { PlatformConstants } from '@env/PlatformConstants';
 
 @Injectable({
     providedIn: 'root'
@@ -86,7 +87,7 @@ export class AppStoreService extends AppCoreStoreService {
         return this.getCredential();
     }
     public getCredential(): Credential {
-        const credentialJson = this.isolationService.getFromSession(environment.CREDENTIAL_KEY);
+        const credentialJson = this.isolationService.getFromSession(PlatformConstants.CREDENTIAL_KEY);
         if (null == credentialJson) throw new NeoComException(ExceptionCatalog.AUTHORIZATION_MISSING)
         const credential = new Credential(JSON.parse(credentialJson));
         return credential;
