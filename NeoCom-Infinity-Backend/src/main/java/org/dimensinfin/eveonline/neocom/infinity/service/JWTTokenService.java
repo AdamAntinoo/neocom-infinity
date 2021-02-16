@@ -1,7 +1,6 @@
 package org.dimensinfin.eveonline.neocom.infinity.service;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.text.MessageFormat;
 import javax.validation.constraints.NotNull;
@@ -75,7 +74,7 @@ public class JWTTokenService {
 					.withClaim( TOKEN_CORPORATION_ID_FIELD_NAME, corporationId )
 					.withClaim( TOKEN_PILOT_ID_FIELD_NAME, credential.getAccountId() )
 					.sign( Algorithm.HMAC512( SECRET ) );
-		} catch (final UnsupportedEncodingException | SQLException uce) {
+		} catch (final IllegalArgumentException | SQLException uce) {
 			throw new NeoComRuntimeBackendException( errorINVALIDTOKENCREATION( uce ) );
 		}
 	}

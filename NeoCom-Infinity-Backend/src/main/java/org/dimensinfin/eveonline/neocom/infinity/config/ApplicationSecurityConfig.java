@@ -57,7 +57,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 						GET_ITEM ).permitAll() // List of URL that do not require authentication JWT token.
 				.anyRequest().authenticated() // The rest of endpoint are authenticated.
 				.and()
-				.addFilter( new JWTAuthorizationFilter( this.authenticationManager() ) )
+				.addFilter( new JWTAuthorizationFilter( this.authenticationManager() ) ) // Sets the JWT validation filter.
 				// This disables session creation on Spring Security
 				.sessionManagement().sessionCreationPolicy( SessionCreationPolicy.STATELESS );
 		// Create the session when it is required.
