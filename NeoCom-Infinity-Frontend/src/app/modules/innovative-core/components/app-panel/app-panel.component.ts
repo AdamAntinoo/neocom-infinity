@@ -6,7 +6,7 @@ import { IsolationService } from '@innovative/services/isolation.service';
 import { BackgroundEnabledComponent } from '@innovative/components/background-enabled/background-enabled.component';
 // - DOMAIN
 // import { NeoCom } from '@domain/NeoCom.domain'
-import { platformConstants } from '@env/platform-constants'
+import { PlatformConstants } from '@env/PlatformConstants'
 import { IViewer } from '@innovative/domain/interfaces/IViewer.interface';
 import { ICollaboration } from '@innovative/domain/interfaces/ICollaboration.interface';
 import { ISelectable } from '@innovative/domain/interfaces/ISelectable.interface';
@@ -19,7 +19,7 @@ import { SingleSelectionManager } from '@innovative/domain/SingleSelectionManage
 })
 export class AppPanelComponent extends BackgroundEnabledComponent implements IViewer {
     @Input() self: AppPanelComponent
-    @Input() variant: string = platformConstants.DEFAULT_VARIANT
+    @Input() variant: string = PlatformConstants.DEFAULT_VARIANT
     protected downloading: boolean = true
     protected dataModelRoot: ICollaboration[] = []
     private renderNodeList: ICollaboration[] = []

@@ -2,7 +2,8 @@
 import { NeoCom } from './NeoCom.domain';
 import { is } from 'date-fns/locale';
 import { environment } from '@env/environment';
-import { platformConstants } from '@env/platform-constants';
+import { PlatformConstants } from '@env/PlatformConstants';
+import { NeoComConstants } from '@app/platform/NeocomConstants.platform';
 
 export class Pilot extends NeoCom {
     public pilotId: number;
@@ -23,7 +24,7 @@ export class Pilot extends NeoCom {
         return this.name;
     }
     public getPilotIcon(): string {
-        if (this.isEmpty(this.url4Icon)) return platformConstants.DEFAULT_AVATAR_PLACEHOLDER;
+        if (this.isEmpty(this.url4Icon)) return NeoComConstants.DEFAULT_AVATAR_PLACEHOLDER;
         else return this.url4Icon;
     }
 }

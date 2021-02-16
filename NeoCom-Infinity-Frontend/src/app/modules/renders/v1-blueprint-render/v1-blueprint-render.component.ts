@@ -4,7 +4,8 @@ import { ProcessedBlueprint } from '@app/modules/industry/domain/V1ProcessedBlue
 import { ProcessedBlueprintDto } from '@app/modules/industry/dto/ProcessedBlueprintDto.dto';
 // - DOMAIN
 import { V2NodeContainerRenderComponent } from '@app/modules/renders/v2-node-container-render/v2-node-container-render.component';
-import { platformConstants } from '@env/platform-constants';
+import { NeoComConstants } from '@app/platform/NeocomConstants.platform';
+import { PlatformConstants } from '@env/PlatformConstants';
 
 @Component({
     selector: 'v1-blueprint',
@@ -23,7 +24,7 @@ export class V1BlueprintRenderComponent extends V2NodeContainerRenderComponent {
     public getTypeIconUrl(): string {
         if (this.node) {
             if (this.getNode().type) return this.getNode().getTypeIconURL()
-        } else return platformConstants.DEFAULT_ICON_PLACEHOLDER
+        } else return NeoComConstants.DEFAULT_ICON_PLACEHOLDER
     }
     public getName(): string {
         if (this.node)

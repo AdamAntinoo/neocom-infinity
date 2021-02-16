@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PlanetaryDataService } from '@app/modules/planetary/service/PlanetaryData.service';
 import { PlanetaryResource } from '@domain/planetary/planetary-resource';
 import { PlanetaryData } from '@domain/planetary/PlanetaryData.domain';
-import { platformConstants } from '@env/platform-constants';
+import { PlatformConstants } from '@env/PlatformConstants';
 import { NodeContainerRenderComponent } from '@shared/renders/node-container-render/node-container-render.component';
 
 @Component({

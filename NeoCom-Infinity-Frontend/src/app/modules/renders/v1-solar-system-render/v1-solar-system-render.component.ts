@@ -7,7 +7,7 @@ import { Input } from '@angular/core';
 import { RenderComponent } from '../../shared/renders/render/render.component';
 import { Pilot } from '@app/domain/Pilot.domain';
 import { PilotV2 } from '@domain/character/PilotV2.domain';
-import { platformConstants } from '@env/platform-constants';
+import { PlatformConstants } from '@env/PlatformConstants';
 import { PublicPilotV1 } from '@domain/character/PublicPilotV1.domain';
 import { V2NodeContainerRenderComponent } from '../v2-node-container-render/v2-node-container-render.component';
 import { LookupRegion } from '@app/modules/planetary/domain/LookupRegion.domain';

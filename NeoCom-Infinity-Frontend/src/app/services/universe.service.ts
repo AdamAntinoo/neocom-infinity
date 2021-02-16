@@ -7,7 +7,7 @@ import { environment } from '@env/environment'
 import { UniverseHttpWrapper } from './universe.httpwrapper'
 // - DOMAIN
 import { EsiType } from '@domain/esi/EsiType.esi'
-import { platformConstants } from '@env/platform-constants'
+import { PlatformConstants } from '@env/PlatformConstants'
 
 @Injectable({
     providedIn: 'root'
@@ -22,7 +22,7 @@ export class UniverseService {
     // - U N I V E R S E   A P I
     public apiv1_GetUniverseType(typeId: number): Observable<EsiType> {
         console.log(">[UniverseService.apiv1_GetUniverseType]> typeId: " + typeId)
-        const request = platformConstants.UNIVERSE_V1 + "/types/" + typeId
+        const request = PlatformConstants.UNIVERSE_V1 + "/types/" + typeId
         return this.httpUniverseService.wrapHttpGETCall(request)
             .pipe(map((data: any) => {
                 return new EsiType(data)

@@ -16,7 +16,6 @@ import { IsolationService } from '../support/IsolationService.support';
 import { AppInfoPanel } from '../pages/AppInfoPanel.panel';
 import { ServerInfoPanel } from '../pages/ServerInfoPanel.panel';
 // - SERVICES
-import { neocom_constants } from '../support/neocom-constants.platform';
 import { Credential } from '../../../src/app/domain/core/Credential.domain';
 
 // - DEFINITIONS
@@ -46,7 +45,7 @@ Given('the next authentication token', async (dataTable) => {
     browser.waitForAngular();
     const JWT_TOKEN: string = 'jwtToken';
     let jwtToken = isolationService.decodeDataTableRow(dataTable.hashes()[0], JWT_TOKEN);
-    isolationService.setToSession(neocom_constants.JWTTOKEN_KEY, jwtToken);
+    isolationService.setToSession(NeoCom.JWTTOKEN_KEY, jwtToken);
     browser.driver.sleep(2000);
     browser.waitForAngular();
 });

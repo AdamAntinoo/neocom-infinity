@@ -8,7 +8,7 @@ import { HttpHandler } from '@angular/common/http';
 import { HttpEvent } from '@angular/common/http';
 // - SERVICES
 import { IsolationService } from '@innovative/services/isolation.service';
-import { NeoComConstants } from '@app/platform/neocom-constants.platform';
+import { NeoComConstants } from '@app/platform/NeocomConstants.platform';
 
 @Injectable({
     providedIn: 'root'

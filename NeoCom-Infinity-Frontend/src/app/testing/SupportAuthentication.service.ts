@@ -1,6 +1,6 @@
 // - CORE
 import { Injectable } from '@angular/core';
-import { platformConstants } from '@env/platform-constants';
+import { PlatformConstants } from '@env/PlatformConstants';
 import { IsolationService } from '@innovative/services/isolation.service';
 import * as jwt_decode from 'jwt-decode';
 import { Observable } from 'rxjs';

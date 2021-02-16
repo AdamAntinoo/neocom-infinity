@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PlanetaryDataService } from '@app/modules/planetary/service/PlanetaryData.service';
+import { NeoComConstants } from '@app/platform/NeocomConstants.platform';
 import { GeneratedResource } from '@domain/planetary/generated-resource';
 import { PlanetaryResource } from '@domain/planetary/planetary-resource';
-import { platformConstants } from '@env/platform-constants';
+import { PlatformConstants } from '@env/PlatformConstants';
 import { NodeContainerRenderComponent } from '@shared/renders/node-container-render/node-container-render.component';
 
 @Component({
@@ -36,7 +37,7 @@ export class V1OutputResourceRenderComponent extends NodeContainerRenderComponen
     }
     public getResourceIcon(): string {
         if (this.node) return this.getNode().getURLIcon()
-        else return platformConstants.DEFAULT_ICON_PLACEHOLDER
+        else return NeoComConstants.DEFAULT_ICON_PLACEHOLDER
     }
     public isSelected(): boolean {
         return this.getNode().isSelected()

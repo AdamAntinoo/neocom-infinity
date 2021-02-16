@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PlanetaryResource } from '@domain/planetary/planetary-resource';
-import { platformConstants } from '@env/platform-constants';
+import { PlatformConstants } from '@env/PlatformConstants';
 import { NodeContainerRenderComponent } from '@shared/renders/node-container-render/node-container-render.component';
 
 @Component({
@@ -30,6 +30,6 @@ export class V1PlanetaryResourceRenderComponent extends NodeContainerRenderCompo
     }
     public getResourceIcon(): string {
         if (this.node) return this.getNode().getURLIcon()
-        else return platformConstants.DEFAULT_ICON_PLACEHOLDER
+        else return PlatformConstants.DEFAULT_ICON_PLACEHOLDER
     }
 }

@@ -6,7 +6,7 @@ import { SupportIsolationService } from '@app/testing/SupportIsolation.service';
 import { Corporation } from './Corporation.domain';
 import { AllianceV1 } from './corporation/AllianceV1.domain';
 import { Pilot } from './Pilot.domain';
-import { NeoComConstants } from '../platform/neocom-constants.platform';
+import { NeoComConstants } from '../platform/NeocomConstants.platform';
 
 describe('CLASS Corporation [Module: DOMAIN]', () => {
     let isolation: SupportIsolationService;

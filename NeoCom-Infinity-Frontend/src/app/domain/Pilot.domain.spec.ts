@@ -5,7 +5,8 @@ import { SupportIsolationService } from '@app/testing/SupportIsolation.service';
 // - DOMAIN
 import { Pilot } from './Pilot.domain';
 import { environment } from '@env/environment.prod';
-import { platformConstants } from '@env/platform-constants';
+import { PlatformConstants } from '@env/PlatformConstants';
+import { NeoComConstants } from '@app/platform/NeocomConstants.platform';
 
 describe('CLASS Pilot [Module: DOMAIN]', () => {
     let isolation: SupportIsolationService;
@@ -42,7 +43,7 @@ describe('CLASS Pilot [Module: DOMAIN]', () => {
         it('getPilotIcon.failure: check the icon url field', () => {
             const corporation = new Pilot()
             const obtained = corporation.getPilotIcon();
-            expect(obtained).toBe(platformConstants.DEFAULT_AVATAR_PLACEHOLDER);
+            expect(obtained).toBe(NeoComConstants.DEFAULT_AVATAR_PLACEHOLDER);
         });
     });
 });
