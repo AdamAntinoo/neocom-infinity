@@ -48,7 +48,7 @@ jobs:
           command: |
             cp package.json package.json.checksum
             npm install
-            npm run build:prod
+            npm run serve:dev
       - save_cache:
           paths:
             - ~/project/NeoCom-Infinity-Frontend/node_modules
