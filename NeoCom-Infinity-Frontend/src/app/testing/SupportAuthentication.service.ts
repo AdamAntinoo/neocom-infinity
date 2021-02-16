@@ -16,7 +16,7 @@ export class SupportAuthenticationService {
     public isAuthenticated(): boolean {
         console.log('isAuthenticated: ' + this.validationResult)
         return this.validationResult
-        // const jwtTokenData = this.isolationService.getFromSession(platformConstants.JWTTOKEN_KEY)
+        // const jwtTokenData = this.isolationService.getFromSession(PlatformConstants.JWTTOKEN_KEY)
         // if (jwtTokenData)
         //     return this.validateJwtToken(jwtTokenData)
         // return false

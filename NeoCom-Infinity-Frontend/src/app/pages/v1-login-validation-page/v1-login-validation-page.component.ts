@@ -97,7 +97,7 @@ export class V1LoginValidationPageComponent extends BackgroundEnabledComponent i
     }
     private validateState(state2Check: string): void {
         console.log('-LoginValidationPageComponent.validateState')
-        if (state2Check === environment.VALID_STATE) return
+        if (state2Check === NeoComConstants.VALID_STATE) return
         this.validationException = new NeoComException(
             { code: 400, message: 'The request state does not match. Caller not verified.' }
         )
@@ -113,12 +113,12 @@ export class V1LoginValidationPageComponent extends BackgroundEnabledComponent i
         return true
     }
     // private storeJWT(jwtToken: string): boolean {
-    //     this.isolationService.setToSession(neocom_constants.JWTTOKEN_KEY, jwtToken)
-    //     this.isolationService.setToSession(neocom_constants.JWTTOKEN_EXPIRATION_TIME_KEY,
+    //     this.isolationService.setToSession(PlatformConstants.JWTTOKEN_KEY, jwtToken)
+    //     this.isolationService.setToSession(PlatformConstants.JWTTOKEN_EXPIRATION_TIME_KEY,
     //         addMinutes(Date.now(), 120))
     //     return true
     // }
     // private storeCredential(credential: Credential): void {
-    //     this.isolationService.setToSession(neocom_constants.CREDENTIAL_KEY, JSON.stringify(credential))
+    //     this.isolationService.setToSession(PlatformConstants.CREDENTIAL_KEY, JSON.stringify(credential))
     // }
 }
