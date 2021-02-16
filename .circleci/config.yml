@@ -229,7 +229,9 @@ jobs:
           command: |
             ./docker-service.sh start acceptance
             docker ps
-            dockerize -wait tcp://localhost:5241 -timeout 1m
+            dockerize -wait tcp://localhost:5241 -timeout 3m
+            dockerize -wait tcp://localhost:5251 -timeout 3m
+            dockerize -wait tcp://localhost:5271 -timeout 3m
             docker ps
             ./gradlew acceptanceTest -Dcucumber.filter.tags="@NIB01" --info
 
@@ -354,6 +356,7 @@ workflows:
                 - development
                 - test
                 - hotfix
+                - deploy
                 - master
       # - BACKEND
       - cache-dependencies-backend:
@@ -394,6 +397,7 @@ workflows:
               only:
                 - test
                 - hotfix
+                - deploy
       - quality-sonarcloud-backend:
           requires:
             - unittest-backend-job
@@ -404,12 +408,12 @@ workflows:
                 - test
       - stage-backend-to-heroku:
           requires:
-            - unittest-backend-job
-            - acceptance-test-backend-job
+            - start-job
           filters:
             branches:
               only:
                 - test
+                - deploy
 
       # - FRONTEND
       - framework-frontend-job:
