@@ -494,7 +494,7 @@ workflows:
               only: /0.*/
             branches:
               ignore: /.*/
-      - stage-to-heroku:
+      - stage-backend-to-heroku:
           requires:
             - unittest-frontend-job
             - quality-sonarcloud-backend
