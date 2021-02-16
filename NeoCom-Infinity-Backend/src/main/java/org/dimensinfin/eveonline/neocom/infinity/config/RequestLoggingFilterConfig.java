@@ -1,6 +1,5 @@
 package org.dimensinfin.eveonline.neocom.infinity.config;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
 
 /**
@@ -10,7 +9,7 @@ import org.springframework.web.filter.CommonsRequestLoggingFilter;
 //@Configuration
 public class RequestLoggingFilterConfig {
 
-	@Bean
+	//	@Bean
 	public CommonsRequestLoggingFilter logFilter() {
 		final CommonsRequestLoggingFilter filter = new CommonsRequestLoggingFilter();
 		filter.setIncludeQueryString( true );

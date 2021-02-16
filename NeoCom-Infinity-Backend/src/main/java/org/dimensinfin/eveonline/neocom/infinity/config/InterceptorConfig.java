@@ -13,25 +13,25 @@ import org.dimensinfin.eveonline.neocom.infinity.config.interceptor.LogTimingInt
 @Configuration
 public class InterceptorConfig implements WebMvcConfigurer {
 	@Value("${P.runtime.logging.request}")
-	private String logRequestFlag = "true";
+	private final String logRequestFlag = "false";
 	@Value("${P.runtime.logging.response}")
-	private String logResponseFlag = "true";
+	private final String logResponseFlag = "true";
 	@Value("${P.runtime.logging.timing}")
-	private String logTimingFlag = "true";
+	private final String logTimingFlag = "true";
 	@Value("${P.runtime.logging.metrics}")
-	private String logMetricsFlag = "true";
+	private final String logMetricsFlag = "true";
 
 	@Override
 	public void addInterceptors( final InterceptorRegistry registry ) {
-		if (logRequestFlag.equalsIgnoreCase( "true" ))
+		if (this.logRequestFlag.equalsIgnoreCase( "true" ))
 			registry.addInterceptor( new LogRequestInterceptor() ).addPathPatterns( "/api/**" );
-		if (logResponseFlag.equalsIgnoreCase( "true" ))
+		if (this.logResponseFlag.equalsIgnoreCase( "true" ))
 			registry.addInterceptor( new LogResponseInterceptor() ).addPathPatterns( "/api/**" );
-		if (logTimingFlag.equalsIgnoreCase( "true" ))
+		if (this.logTimingFlag.equalsIgnoreCase( "true" ))
 			registry.addInterceptor( new LogTimingInterceptor() ).addPathPatterns( "/api/**" );
-////		if ( logMetricsFlag.equalsIgnoreCase( "true" ))
-////		registry.addInterceptor(new MetricsInterceptor()).addPathPatterns("/api/**");
+		////		if ( logMetricsFlag.equalsIgnoreCase( "true" ))
+		////		registry.addInterceptor(new MetricsInterceptor()).addPathPatterns("/api/**");
 		registry.addInterceptor( new LogRequestHeaderInterceptor() ).addPathPatterns( "/api/**" );
-//		registry.addInterceptor( new HeaderResponseInterceptor() ).addPathPatterns( "/api/**" );
+		//		registry.addInterceptor( new HeaderResponseInterceptor() ).addPathPatterns( "/api/**" );
 	}
 }

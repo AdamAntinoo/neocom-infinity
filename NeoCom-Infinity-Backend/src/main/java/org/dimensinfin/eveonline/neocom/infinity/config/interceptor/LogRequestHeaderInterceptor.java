@@ -12,9 +12,11 @@ import org.dimensinfin.logging.LogWrapper;
 
 public class LogRequestHeaderInterceptor implements HandlerInterceptor {
 	@Override
-	public boolean preHandle( final HttpServletRequest request, @NotNull final HttpServletResponse response, @NotNull final Object handler ) {
+	public boolean preHandle( @NotNull final HttpServletRequest request,
+	                          @NotNull final HttpServletResponse response,
+	                          @NotNull final Object handler ) {
 		// Filter the requests with the OPTIONS calls because they should not be verified
-		String meth = request.getMethod();
+		final String meth = request.getMethod();
 		if (meth.equalsIgnoreCase( "OPTIONS" )) return true;
 		// Check that the mandatory headers are present. If not then reject the request.
 		final Enumeration<String> headerNames = request.getHeaderNames();

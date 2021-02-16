@@ -5,6 +5,10 @@
 * NeoComAuthenticatedService
 * PilotServiceV1
 * PilotControllerV1
+* AuthenticationStateResponse
+* AuthorizationTokenRequest
+* AuthorizationTokenResponse
+* NeoComAuthenticatedController
 
 * FittingV2
 * FittingInfo

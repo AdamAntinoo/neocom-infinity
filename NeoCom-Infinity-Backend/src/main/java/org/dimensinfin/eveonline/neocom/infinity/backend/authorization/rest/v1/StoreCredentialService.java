@@ -1,6 +1,5 @@
 package org.dimensinfin.eveonline.neocom.infinity.backend.authorization.rest.v1;
 
-import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import javax.validation.constraints.NotNull;
 
@@ -16,7 +15,7 @@ import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCr
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialResponse;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.ErrorInfo;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComSBException;
-import org.dimensinfin.eveonline.neocom.service.logger.NeoComLogger;
+import org.dimensinfin.logging.LogWrapper;
 
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.ISSUER;
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.SECRET;
@@ -52,8 +51,8 @@ public class StoreCredentialService {
 			return new StoreCredentialResponse.Builder()
 					.withJwtToken( jwtToken )
 					.build();
-		} catch (final SQLException | UnsupportedEncodingException sqle) {
-			NeoComLogger.error( sqle );
+		} catch (final SQLException sqle) {
+			LogWrapper.error( sqle );
 			final Throwable cause = sqle.getCause(); // Cause can be null.
 			if (null != cause)
 				throw new NeoComSBException( ErrorInfo.CREDENTIAL_STORE_REPOSITORY_FAILURE.getErrorMessage( sqle.getCause().toString() ) );
