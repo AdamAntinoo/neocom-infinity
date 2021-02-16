@@ -296,6 +296,7 @@ jobs:
             git config --global user.email "adamantinoo.git@gmail.com"
             git config --global user.name "Adam antinoo"
             git init
+            git add Procfile
             git add build/libs
             git add build/resources/main/db
             git add build/resources/main/i18
