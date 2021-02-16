@@ -233,7 +233,8 @@ jobs:
             dockerize -wait tcp://localhost:5251 -timeout 3m
             dockerize -wait tcp://localhost:5271 -timeout 3m
             docker ps
-            ./gradlew acceptanceTest -Dcucumber.filter.tags="@NIB01" --info
+            ./gradlew clean test
+            ./gradlew clean acceptanceTest -Dcucumber.filter.tags="@NIB01" --info
 
   quality-sonarcloud-backend:
     docker:
@@ -283,6 +284,8 @@ jobs:
       - run:
           name: BACKEND - Generate resources and compile application
           working_directory: NeoCom-Infinity-Backend
+          environment:
+            PROFILE: "production"
           command: |
             ./gradlew bootJar
       - run:
