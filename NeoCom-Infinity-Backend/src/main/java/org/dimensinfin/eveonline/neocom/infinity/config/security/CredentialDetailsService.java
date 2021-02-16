@@ -1,6 +1,7 @@
 package org.dimensinfin.eveonline.neocom.infinity.config.security;
 
 import java.sql.SQLException;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,7 +19,7 @@ public class CredentialDetailsService implements UserDetailsService {
 
 	// - C O N S T R U C T O R S
 	@Autowired
-	public CredentialDetailsService( final CredentialRepository credentialRepository ) {
+	public CredentialDetailsService( @NotNull final CredentialRepository credentialRepository ) {
 		this.credentialRepository = credentialRepository;
 	}
 

@@ -1,14 +1,9 @@
 # Classes pending Unit Test completion
 
 ## 0.20.0
-* ValidateAuthorizationTokenResponse
+*
+
 * NeoComAuthenticatedService
-* PilotServiceV1
-* PilotControllerV1
-* AuthenticationStateResponse
-* AuthorizationTokenRequest
-* AuthorizationTokenResponse
-* NeoComAuthenticatedController
 
 * FittingV2
 * FittingInfo

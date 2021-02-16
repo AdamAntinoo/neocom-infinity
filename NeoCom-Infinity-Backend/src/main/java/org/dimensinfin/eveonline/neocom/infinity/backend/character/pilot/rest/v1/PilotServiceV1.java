@@ -33,8 +33,7 @@ public class PilotServiceV1 extends NeoComAuthenticatedService {
 	 * @param pilotId requested pilot identifier. Should match with the logged pilot identifier.
 	 * @return a complete Pilot data record with some data that can only be accessed when authenticated.
 	 */
-	public PilotV1 getAuthenticatedPilotData( final Integer pilotId ) {
-		this.neoComAuthenticationProvider.validatePilotIdentifier( pilotId );
+	public PilotV1 getAuthenticatedPilotData( @NotNull final Integer pilotId ) {
 		return this.characterService.getPilotV1( Objects.requireNonNull( this.getAuthorizedCredential() ) );
 	}
 

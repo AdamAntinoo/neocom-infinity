@@ -18,12 +18,11 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.corporation.domain.Ship
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.ErrorInfo;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComAuthorizationException;
-import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComController;
 
 @RestController
 @Validated
 @RequestMapping("/api/v1/neocom")
-public class CorporationControllerV1 extends NeoComController {
+public class CorporationControllerV1 {
 	private final CorporationServiceV1 corporationServiceV1;
 	private final NeoComAuthenticationProvider neoComAuthenticationProvider;
 

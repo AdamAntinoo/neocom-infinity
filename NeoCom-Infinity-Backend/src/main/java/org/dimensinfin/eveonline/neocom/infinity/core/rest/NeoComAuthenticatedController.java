@@ -8,7 +8,7 @@ import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthentic
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRestError;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
 
-public abstract class NeoComAuthenticatedController extends NeoComController {
+public abstract class NeoComAuthenticatedController {
 	public static NeoComRestError errorPILOTIDNOTAUTHORIZED() {
 		return new NeoComRestError.Builder()
 				.withErrorName( "PILOT_ID_NOT_AUTHORIZED" )
@@ -21,7 +21,7 @@ public abstract class NeoComAuthenticatedController extends NeoComController {
 	private final NeoComAuthenticationProvider neoComAuthenticationProvider;
 
 	// - C O N S T R U C T O R S
-	public NeoComAuthenticatedController( final @NotNull NeoComAuthenticationProvider neoComAuthenticationProvider ) {
+	public NeoComAuthenticatedController( @NotNull final NeoComAuthenticationProvider neoComAuthenticationProvider ) {
 		this.neoComAuthenticationProvider = neoComAuthenticationProvider;
 	}
 
