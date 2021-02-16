@@ -31,9 +31,11 @@ public class NeoComInfinityBackendDependenciesModule extends AbstractModule {
 	private static final String ENV_PROPERTIES_DIRECTORY = "PROPERTIES_DIRECTORY";
 	private static final String ENV_APPLICATION_DIRECTORY = "APPLICATION_DIRECTORY";
 	private static final String ENV_SDE_DATABASE = "SDE_DATABASE_PATH";
+	private static final String ENV_NEOCOM_DATABASE_URL = "NEOCOM_DATABASE_URL";
 	private static final String DEFAULT_PROPERTIES_DIRECTORY = "/build/resources/main/properties";
-	private static final String DEFAULT_APPLICATION_DIRECTORY = "/build/NeoCom.Infinity.Development";
+	private static final String DEFAULT_APPLICATION_DIRECTORY = "./NeoCom.Infinity";
 	private static final String DEFAULT_SDE_DATABASE = "/build/resources/main/sde.db";
+	private static final String DEFAULT_NEOCOM_DATABASE_URL = "jdbc:postgresql://localhost:5432/postgres?user=adamantinoo&password=z.iliada.2020";
 
 	@Override
 	protected void configure() {
@@ -41,9 +43,11 @@ public class NeoComInfinityBackendDependenciesModule extends AbstractModule {
 		String propDirectory = System.getenv( ENV_PROPERTIES_DIRECTORY );
 		String appDirectory = System.getenv( ENV_APPLICATION_DIRECTORY );
 		String sdeDatabasePath = System.getenv( ENV_SDE_DATABASE );
+		String neoComDatabaseUrl = System.getenv( ENV_NEOCOM_DATABASE_URL );
 		if (null == propDirectory) propDirectory = DEFAULT_PROPERTIES_DIRECTORY;
 		if (null == appDirectory) appDirectory = DEFAULT_APPLICATION_DIRECTORY;
 		if (null == sdeDatabasePath) sdeDatabasePath = DEFAULT_SDE_DATABASE;
+		if (null == neoComDatabaseUrl) neoComDatabaseUrl = DEFAULT_NEOCOM_DATABASE_URL;
 		this.bind( String.class )
 				.annotatedWith( Names.named( "PropertiesDirectory" ) )
 				.toInstance( propDirectory );
@@ -53,6 +57,9 @@ public class NeoComInfinityBackendDependenciesModule extends AbstractModule {
 		this.bind( String.class )
 				.annotatedWith( Names.named( "SDEDatabasePath" ) )
 				.toInstance( sdeDatabasePath );
+		this.bind( String.class )
+				.annotatedWith( Names.named( "NeoComDatabaseUrl" ) )
+				.toInstance( neoComDatabaseUrl );
 
 		// Bind platform specific implementations.
 		this.bind( IConfigurationService.class )

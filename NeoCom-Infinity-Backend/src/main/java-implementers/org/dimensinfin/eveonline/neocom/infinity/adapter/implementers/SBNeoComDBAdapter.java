@@ -5,7 +5,10 @@ import java.text.MessageFormat;
 import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
+import javax.validation.constraints.NotNull;
 
+import com.google.inject.Inject;
+import com.google.inject.name.Named;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcPooledConnectionSource;
@@ -40,7 +43,7 @@ import org.dimensinfin.logging.LogWrapper;
  */
 @Component
 public class SBNeoComDBAdapter implements NeoComDatabaseService {
-	private String databaseConnectionDescriptor;
+	private final String databaseConnectionDescriptor;
 	private boolean isOpen = false;
 	private JdbcPooledConnectionSource connectionSource;
 
@@ -62,6 +65,12 @@ public class SBNeoComDBAdapter implements NeoComDatabaseService {
 			) );
 		this.databaseConnectionDescriptor = Objects.requireNonNull( connectionDescriptor );
 		LogWrapper.exit();
+	}
+
+	@Inject
+	public SBNeoComDBAdapter( @NotNull @Named("NeoComDatabaseUrl") final String connectionDescriptor ) {
+		LogWrapper.info( connectionDescriptor );
+		this.databaseConnectionDescriptor = Objects.requireNonNull( connectionDescriptor );
 	}
 
 	// - G E T T E R S   &   S E T T E R S
@@ -161,21 +170,21 @@ public class SBNeoComDBAdapter implements NeoComDatabaseService {
 	}
 
 	// - B U I L D E R
-	public static class Builder {
-		private final SBNeoComDBAdapter onConstruction;
-
-		// - C O N S T R U C T O R S
-		public Builder() {
-			this.onConstruction = new SBNeoComDBAdapter();
-		}
-
-		public SBNeoComDBAdapter build() /*throws SQLException */ {
-			return this.onConstruction;
-		}
-
-		public SBNeoComDBAdapter.Builder withDatabaseConnectionDescriptor( final String databaseConnectionDescriptor ) {
-			this.onConstruction.databaseConnectionDescriptor = Objects.requireNonNull( databaseConnectionDescriptor );
-			return this;
-		}
-	}
+	//	public static class Builder {
+	//		private final SBNeoComDBAdapter onConstruction;
+	//
+	//		// - C O N S T R U C T O R S
+	//		public Builder() {
+	//			this.onConstruction = new SBNeoComDBAdapter();
+	//		}
+	//
+	//		public SBNeoComDBAdapter build() /*throws SQLException */ {
+	//			return this.onConstruction;
+	//		}
+	//
+	//		public SBNeoComDBAdapter.Builder withDatabaseConnectionDescriptor( final String databaseConnectionDescriptor ) {
+	//			this.onConstruction.databaseConnectionDescriptor = Objects.requireNonNull( databaseConnectionDescriptor );
+	//			return this;
+	//		}
+	//	}
 }

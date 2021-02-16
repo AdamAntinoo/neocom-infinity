@@ -2,7 +2,7 @@ package org.dimensinfin.eveonline.neocom.infinity.support.rest;
 
 import java.util.List;
 
-import org.dimensinfin.eveonline.neocom.domain.PilotV1;
+import org.dimensinfin.eveonline.neocom.character.domain.PilotV1;
 import org.dimensinfin.eveonline.neocom.infinity.backend.character.fitting.domain.FittingModel;
 
 import retrofit2.Call;

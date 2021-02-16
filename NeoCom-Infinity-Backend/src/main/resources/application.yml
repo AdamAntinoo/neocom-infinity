@@ -1,24 +1,23 @@
 # - S E R V E R
 server:
-  port: ${PORT}
+  port: \${PORT}
 
 #  - D A T A B A S E
 spring:
   datasource:
-    url: ${JDBC_DATABASE_URL}
-    username: neocom
-    password: 01.Alpha
+    url: ${SPRING_DATASOURCE_URL}
     driver-class-name: org.postgresql.Driver
-  jpa:
-    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
-    generate-ddl: true
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        temp:
-          use_jdbc_metadata_defaults: false
+    platform: postgres
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+  liquibase:
+    liquibase-schema: public
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
+  hateoas:
+    use-hal-as-default-json-media-type: false
+  jackson:
+    default-property-inclusion: NON_ABSENT
+    serialization.indent_output: true
   devtools:
     add-properties: false
 
@@ -35,15 +34,9 @@ P:
       response: false
       timing: true
       metrics: true
-    security:
-      handlers:
 
-neocom:
-  sde:
-    database:
-      schema: "jdbc:sqlite:"
-      path: "build/resources/main/"
-      name: sde.db
+logging.logstash:
+  enabled: true
 
 scheduler:
   allowedToRun: true
