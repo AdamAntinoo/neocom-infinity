@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NeoComConstants } from '@app/platform/NeocomConstants.platform';
 import { PlanetaryResource } from '@domain/planetary/planetary-resource';
 import { PlatformConstants } from '@env/PlatformConstants';
 import { NodeContainerRenderComponent } from '@shared/renders/node-container-render/node-container-render.component';
@@ -30,6 +31,6 @@ export class V1PlanetaryResourceRenderComponent extends NodeContainerRenderCompo
     }
     public getResourceIcon(): string {
         if (this.node) return this.getNode().getURLIcon()
-        else return PlatformConstants.DEFAULT_ICON_PLACEHOLDER
+        else return NeoComConstants.DEFAULT_ICON_PLACEHOLDER
     }
 }
