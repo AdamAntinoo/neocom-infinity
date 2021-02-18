@@ -18,6 +18,7 @@ import org.dimensinfin.eveonline.neocom.loyalty.domain.LoyaltyServiceConfigurati
 import org.dimensinfin.eveonline.neocom.loyalty.persistence.LoyaltyOfferEntity;
 import org.dimensinfin.eveonline.neocom.loyalty.persistence.LoyaltyOffersRepository;
 import org.dimensinfin.eveonline.neocom.loyalty.service.LoyaltyService;
+import org.dimensinfin.logging.LogWrapper;
 
 import static org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendApplication.APPLICATION_ERROR_CODE_PREFIX;
 import static org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendApplication.PERSISTENCE_ERROR;
@@ -66,10 +67,14 @@ public class LoyaltyServiceV1 {
 		List<LoyaltyOfferEntity> offerList = new ArrayList<>();
 		try {
 			offerList = this.loyaltyOffersRepository.searchOffers4CorporationAndHub( corporationId, this.loyaltyService.getRegionId() );
+			LogWrapper.info( MessageFormat.format( "Offers for {0} at repository: {1}",
+					corporationId,
+					offerList.size() ) );
 		} catch (final SQLException sqle) {
 			throw new NeoComRuntimeBackendException( errorINVENTORYSTOREREPOSITORYFAILURE( sqle ) );
 		}
 		if (offerList.isEmpty()) {
+			LogWrapper.info( "Reprocessing new list of offers." );
 			offerList = this.loyaltyService.processOffers( corporationId );
 		}
 		return offerList

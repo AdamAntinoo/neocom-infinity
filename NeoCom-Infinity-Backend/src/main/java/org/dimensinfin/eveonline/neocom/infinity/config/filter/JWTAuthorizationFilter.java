@@ -1,6 +1,7 @@
 package org.dimensinfin.eveonline.neocom.infinity.config.filter;
 
 import java.io.IOException;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.FilterChain;
@@ -18,6 +19,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
+import org.dimensinfin.logging.LogWrapper;
+
 import static org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendApplication.NEOCOM_COOKIE_NAME;
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.AUTHORIZATION_HEADER_NAME;
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.SECRET;
@@ -30,7 +33,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
 	static {
 		signatures.add( "S0000.0016.0001" );
-		signatures.add( "S0000.0020.0001" );
+		signatures.add( "S0000.0020.0000" );
 	}
 
 	// - C O N S T R U C T O R S
@@ -82,13 +85,19 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 			for (final Cookie cookie : cookies)
 				if (cookie.getName().equalsIgnoreCase( NEOCOM_COOKIE_NAME ))
 					return true;
+		LogWrapper.info( "Failing Cookie authentication validation." );
 		return false;
 	}
 
 	private boolean validateJWTToken( @NotNull final HttpServletRequest request, final String cookieJWTToken ) {
 		if (null == cookieJWTToken) return false;
 		final String header = request.getHeader( AUTHORIZATION_HEADER_NAME );
-		if (header == null || !header.startsWith( TOKEN_PREFIX )) return false;
+		if (header == null || !header.startsWith( TOKEN_PREFIX )) {
+			LogWrapper.info( "Failing JWT Token structure authentication validation." );
+			return false;
+		}
+		LogWrapper.info( MessageFormat.format( "Check JWT Token consistency: {0}",
+				header.equals( TOKEN_PREFIX + cookieJWTToken ) ) );
 		return header.equals( TOKEN_PREFIX + cookieJWTToken );
 	}
 
@@ -97,6 +106,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 		if (null != signature)
 			for (final String validation : signatures)
 				if (signature.equals( validation )) return true;
+		LogWrapper.info( "Failing Signature authentication validation." );
 		return false;
 	}
 
@@ -108,6 +118,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
 		if (null != subject)
 			if (subject.equalsIgnoreCase( SUBJECT )) return true;
+		LogWrapper.info( "Failing JWT Subject authentication validation." );
 		return false;
 	}
 }
