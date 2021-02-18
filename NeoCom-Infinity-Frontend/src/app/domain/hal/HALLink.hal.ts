@@ -8,7 +8,7 @@ export class HALLink<T> {
     private downloaded: boolean = false
     private rel: string
     private href: string
-    private factory: any // This is the actory constructor for T instances
+    private factory: any // This is the factory constructor for T instances
     public target: T // The Link when resolved. If undefined then the link is pending resolution
 
     constructor(targetType: { new(values: Object): T }) {

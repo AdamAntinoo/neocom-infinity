@@ -10,12 +10,13 @@ import { UniverseService } from "@app/services/universe.service";
 import { EsiMarketData } from "@domain/esi/EsiMarketData.esi";
 import { EsiMarketsRegionsHistory } from "@domain/esi/EsiMarketsRegionsHistory.esi";
 import { EsiMarketsRegionsHistoryRecord } from "@domain/esi/EsiMarketsRegionsHistoryRecord.esi";
+import { HALLinkArray } from "@domain/hal/HALLinkArray.hal";
 
 export class LoyaltyOfferDto {
     public typeId: number
     public type: HALLink<EsiType>
     public marketData: HALLink<EsiMarketData>
-    public marketHistory: any[]
+    public marketHistory: HALLinkArray<EsiMarketsRegionsHistoryRecord>
 
     constructor(values: Object = {}) {
         Object.assign(this, values);
@@ -23,6 +24,9 @@ export class LoyaltyOfferDto {
             this.type = new HALLink<EsiType>(EsiType).setContents(this.type)
         if (this.marketData)
             this.marketData = new HALLink<EsiMarketData>(EsiMarketData).setContents(this.marketData)
+        if (this.marketHistory)
+            this.marketHistory = new HALLinkArray<EsiMarketsRegionsHistoryRecord>(EsiMarketsRegionsHistoryRecord)
+            .setContents(this.marketHistory)
     }
     public transform(halResolver: HALResolver): LoyaltyOfferV1 {
         const loyaltyOffer: LoyaltyOfferV1 = new LoyaltyOfferV1(this)
@@ -40,9 +44,10 @@ export class LoyaltyOfferDto {
                 })
         }
         if (this.marketHistory) {
-            loyaltyOffer.marketHistory = []
-            for (const record of this.marketHistory)
-                loyaltyOffer.marketHistory.push(new EsiMarketsRegionsHistoryRecord(record))
+            halResolver.resolveArray<EsiMarketsRegionsHistoryRecord>(this.marketHistory)
+                .subscribe((marketHistory: EsiMarketsRegionsHistoryRecord[]) => {
+                    loyaltyOffer.marketHistory = marketHistory
+                })
         }
         return loyaltyOffer
     }
