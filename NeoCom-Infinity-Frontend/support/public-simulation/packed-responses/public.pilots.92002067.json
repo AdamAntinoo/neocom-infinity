@@ -1,15 +1,14 @@
 {
-    "jsonClass": "PublicPilotV1",
     "pilotId": 92002067,
-    "name": "Beth Ripley",
-    "description": "",
+    "name": "Adam Antinoo",
+    "description": "<font size=\"13\" color=\"#b3ffffff\"></font><font size=\"14\" color=\"#bfffffff\">Kinetic</font><font size=\"12\" color=\"#bfffffff\"> - Titanium Sabot+Carbonized / Scourge / Hornet-Vespa<br></font><font size=\"14\" color=\"#bfffffff\">Thermal</font><font size=\"12\" color=\"#bfffffff\"> - Phased Plasma / Inferno / Hobgoblin<br></font><font size=\"14\" color=\"#bfffffff\">Explosive</font><font size=\"12\" color=\"#bfffffff\"> - Fusion+Nuclear / Nova / Warrior<br></font><font size=\"14\" color=\"#bfffffff\">EM</font><font size=\"12\" color=\"#bfffffff\"> - EMP+Proton / Mjolnir / Acolyte</font>",
     "corporation": {
         "rel": "corporation",
-        "href": "http://localhost:5241/api/v1/public/corporations/98384726"
+        "href": "http://localhost:5220/api/v1/public/corporations/98634987"
     },
-    "birthday": "2012-07-05T21:53:15.000Z",
-    "gender": "female",
-    "securityStatus": 0.0,
+    "birthday": "2012-05-09T19:45:27.000Z",
+    "gender": "male",
+    "securityStatus": 4.554821,
     "url4Icon": "https://image.eveonline.com/Character/92002067_256.jpg",
     "raceData": {
         "allianceId": 500002,
@@ -18,24 +17,24 @@
         "raceId": 2
     },
     "ancestryData": {
-        "bloodlineId": 4,
-        "description": "Many Brutors have a modest background, and are often found performing backbreaking labor in the farms, mines and factories of the Republic ? and before that, toiling under the yoke of the Amarr Empire. They still take great pride in their jobs, excelling as craftsmen and builders.",
-        "iconId": 1662,
-        "id": 22,
-        "name": "Workers",
-        "shortDescription": "People of the fields, mines and factories."
+        "bloodlineId": 3,
+        "description": "Many Sebiestor traders live as nomads and travel the cluster in search of quick profit. They rarely settle down to exploit a prosperous trade route, and instead prefer to keep moving in search of the big payoff—the one that will instantly make them rich beyond their wildest dreams.",
+        "iconId": 1660,
+        "id": 20,
+        "name": "Traders",
+        "shortDescription": "Nomadic merchants looking to strike it rich."
     },
     "bloodlineData": {
-        "bloodlineId": 4,
+        "bloodlineId": 3,
         "charisma": 6,
-        "corporationId": 1000049,
-        "description": "A martial, strong-willed people, the Brutor hold their tribal heritage close to their hearts, and are renowned for living regimented, disciplined lives. Despite presenting a tough, no-nonsense exterior, they are deeply introspective, aware of even the smallest detail at all times. Immersed in ancient martial traditions that begin at childhood, they are physically robust individuals and intimidating to face in the flesh.",
-        "intelligence": 4,
-        "memory": 4,
-        "name": "Brutor",
-        "perception": 9,
+        "corporationId": 1000046,
+        "description": "Widely respected as some of the cluster's most innovative thinkers, the Sebiestor are an ingenious people with a natural fondness for engineering. For the last millennium they have pioneered advances in applied sciences, despite laboring under chronic material shortages. Masters of deriving solutions from impossible circumstances, Sebiestor engineers believe they can build anything, with anything, out of anything.",
+        "intelligence": 7,
+        "memory": 6,
+        "name": "Sebiestor",
+        "perception": 5,
         "raceId": 2,
         "shipTypeId": 588,
-        "willpower": 7
+        "willpower": 6
     }
 }
