@@ -1,38 +1,46 @@
-# TESTING - Docker Composer components
+# INTEGRATIONS - Docker Composer components
+# PROJECT CODE - 52
 #
-# Docker composer automatically creates a network. The container host matches the container name.
+# Docker composer automatically creates a network. The container host matches the container name. To differentiate and create single
+#   networks use a directory name that should be unique. The recommended format is: <project>-docker-<environment>
 #
-# Then configure the postgres database to start on that network. There is a health check so the application
-#   will be able to wait until the database has completed the startup.
-# The database will be then on location:
-#   jdbc:postgresql://postgres-dev:5432/postgres
-# To access the database from DBeaver we use the URL
-#   jdbc:postgresql://0.0.0.0:5432/postgres user=inno-user password=inno-password
+# The integration environment will use a real OAuth authentication and also will deal directly with the ESI SSO and backend services.
+#   All mocks are disabled and the calls will progress to real services with real data, but the backend repository and the applications
+#   will run in local and not in the Heroku servers.
 #
-# The application to be accessed from Postman or the Acceptance Test platform is at location:
-#   http://0.0.0.0:9500/actuator/health
+# The list of project ports is on the document:
+#   {REPOSITORY}/README.md
 
 version: '3.8'
 
 services:
-  postgres-integration:
-    container_name: postgres-integration
+  neocom-backend-integration-postgres:
+    container_name: neocom-backend-integration-postgres
     image: "postgres:11.2"
-    volumes:
-      - ./postgres:/var/lib/postgresql/data
     ports:
-      - "5131:5432"
+      - "5282:5432"
     environment:
       - CURRENT_UID=1000
       - POSTGRES_DB=postgres
-      - POSTGRES_USER=printer3d-user
-      - POSTGRES_PASSWORD=printer3d-password
+      - POSTGRES_USER=neocom-user
+      - POSTGRES_PASSWORD=neocom-password
 
-  integration:
-    container_name: printer3d-backend-integration
-    image: dimensinfin/printer3d.backend
+  neocom-backend-integration-app:
+    container_name: neocom-backend-integration-app
+    image: neocom/neocom-infinity.backend
     ports:
-      - "5121:9500"
+      - "5242:9500"
     environment:
-      - SPRING_PROFILES_ACTIVE=local
-      - JDBC_DATABASE_URL=jdbc:postgresql://postgres-integration:5432/postgres
+      - SPRING_PROFILES_ACTIVE=default
+      - JDBC_DATABASE_URL=jdbc:postgresql://neocom-backend-integration-postgres:5432/postgres
+      - NEOCOM_DATABASE_URL=jdbc:postgresql://neocom-backend-integration-postgres:5432/postgres?user=neocom-user&password=neocom-password
+      - DB_USER=neocom-user
+      - DB_PASSWORD=neocom-password
+      - NEOCOM_BANNER_LOCATION=./app-banner.txt
+      - PROPERTIES_DIRECTORY=/properties-integration
+      - SDE_DATABASE_PATH=/sde.db
+      - APPLICATION_DIRECTORY=./NeoCom.Infinity.Integration
+      - PROFILE=production
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://neocom-backend-integration-postgres:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=neocom-user
+      - SPRING_DATASOURCE_PASSWORD=neocom-password
