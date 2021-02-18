@@ -15,7 +15,7 @@
         "cypress:run": "cypress run ",
         "acceptance:cypress:NIF01": "cypress run --spec ./cypress/acceptance/NIF01-LoginAuthentication.feature",
         "heroku-postbuild": "ng build --configuration=${NODE_ENV}",
-        "serve:integration": "export NODE_ENV=integration && export PORT=5250 && npm run build:dev && npm start"
+        "serve:integration": "export NODE_ENV=integration && export PORT=5202 && npm run build:dev && npm start"
     },
     "private": true,
     "engines": {

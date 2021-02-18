@@ -51,12 +51,10 @@ app.use(function(req, res, next) {
 })
 
 // - H O M E   P A G E
-// app.use(express.static(__dirname + '/public', options))
-// app.get('/', function(req, res) {
-//     //  console.log(req.method + ' ' + '/public' + '/home.html')
-//     console.log("Home: " + __dirname + req.url)
-//     res.status(200).sendFile(app.locals.homepage, { root: app.locals.staticpublic });
-// });
+app.get('/', function(req, res) {
+    console.log('App: ' + __dirname + app.locals.applicationhome + req.url)
+    res.sendFile(path.join(__dirname + app.locals.applicationhome + '/index.html'));
+});
 // - S T A T I C
 app.use(express.static(__dirname + app.locals.apppath, options));
 app.get('*.*', function(req, res) {
