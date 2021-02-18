@@ -36,5 +36,21 @@
         "raceId": 4,
         "shipTypeId": 596,
         "willpower": 4
+    },
+    "totalSkillpoints": 8404419,
+    "walletBalance": 2.76586637596E9,
+    "currentShipName": "Zach Zender's Velator",
+    "currentShipTypeName": "Velator",
+    "lastKnownLocation": {
+        "jsonClass": "Station",
+        "locationId": 60010408,
+        "regionId": 10000030,
+        "regionName": "Heimatar",
+        "constellationId": 20000368,
+        "constellationName": "Huvilma",
+        "solarSystemId": 30002516,
+        "solarSystemName": "Lulm",
+        "stationId": 60010408,
+        "stationName": "Lulm V - Moon 10 - Poteque Pharmaceuticals Biotech Production"
     }
 }
