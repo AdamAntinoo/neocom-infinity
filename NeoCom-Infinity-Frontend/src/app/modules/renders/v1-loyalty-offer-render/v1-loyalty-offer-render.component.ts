@@ -29,16 +29,21 @@ export class V1LoyaltyOfferRenderComponent extends V2NodeContainerRenderComponen
     public yscale: number = 10
     public colorScheme = {
         domain: ['blueviolet']
-    };
+    }
     public yaxisTicks: any[] = [10]
+    private historyUpdated: boolean = false
 
     public ngOnInit() {
-        this.updateChartData()
+        // this.updateChartData()
     }
     public hasData(): boolean {
-        if (this.isReady())
+        if (this.isReady()) {
+            if (!this.historyUpdated) {
+                this.updateChartData()
+                this.historyUpdated = true
+            }
             if (this.marketHistoryData.length > 1) return true
-            else return false
+        } else return false
     }
     public isReady(): boolean {
         if (this.node)
