@@ -24,13 +24,7 @@
 #### 5270 - [ACCEPTANCE] Backend ApiSimulator ESI Data Server
 #### 5281 - [ACCEPTANCE] Backend Postgres DB
 
+#### 5202 - [DEVELOPMENT] Frontend Node server
+#### 5282 - [INTEGRATION] Backend Integration stand-alone Postgres DB
+#### 5242 - [INTEGRATION] Backend SB application server
 
-5230 - [DEVELOPMENT] Application backend server
-
-5201 - [ACCEPTANCE] Frontend Node server
-5211 - [ACCEPTANCE] ApiSimulator ESI Authorized
-5221 - [ACCEPTANCE] ApiSimulator ESI Data Server
-5231 - [ACCEPTANCE] Application backend server
-
-5201 - [ACCEPTANCE] - Postgresql database
-5240 - [ACCEPTANCE] - Application Backend server
