@@ -37,7 +37,7 @@ public class LoyaltyControllerV1 {
 			//			consumes = "application/json",
 			produces = "application/json")
 	public ResponseEntity<List<LoyaltyOfferEntity>> getLoyaltyRecommendedOfferForCorporation(
-			final @PathVariable @NotNull Integer corporationId ) {
+			@PathVariable @NotNull final Integer corporationId ) {
 		List<LoyaltyOfferEntity> offerList = new ArrayList<>();
 		offerList = this.loyaltyServiceV1.getLoyaltyRecommendedOfferForCorporation( corporationId );
 		return new ResponseEntity<>( offerList, HttpStatus.OK );
