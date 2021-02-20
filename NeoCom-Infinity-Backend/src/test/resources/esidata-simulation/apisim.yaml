@@ -1,3 +1,9 @@
+simulation: esidata-simulation
+proxy:
+  https: "esi.evetech.net:443"
+
+---
+
 simlet: market-prices
 
 request:

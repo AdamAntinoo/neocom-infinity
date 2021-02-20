@@ -1,7 +1,8 @@
 # Classes pending Unit Test completion
 
 ## 0.20.0
-*
+* AuthorizationTokenResponseSerializer
+* PilotV1Serializer
 
 * NeoComAuthenticatedService
 
