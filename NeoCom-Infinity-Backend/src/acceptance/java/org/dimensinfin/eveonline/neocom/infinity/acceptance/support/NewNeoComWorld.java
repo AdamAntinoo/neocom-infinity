@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
-import org.dimensinfin.eveonline.neocom.character.domain.PilotV1;
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.dto.PilotDto;
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthenticationStateResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.character.fitting.domain.FittingModel;
@@ -17,7 +17,7 @@ import org.dimensinfin.eveonline.neocom.loyalty.persistence.LoyaltyOfferEntity;
 
 public class NewNeoComWorld extends CommonWorld {
 	private ResponseEntity<AuthorizationTokenResponse> validateAuthorizationTokenResponseEntity;
-	private ResponseEntity<PilotV1> pilotDataResponseEntity;
+	private ResponseEntity<PilotDto> pilotDataResponseEntity;
 	private ResponseEntity<List<FittingModel>> pilotFittingsResponseEntity;
 	private ResponseEntity<EsiItemModel> itemResponseEntity;
 	private Integer fittingIdentifier;
@@ -30,6 +30,7 @@ public class NewNeoComWorld extends CommonWorld {
 	private ResponseEntity<LoyaltyServiceConfiguration> loyaltyUpdateResponseEntity;
 	private LoyaltyServiceConfiguration loyaltyServiceConfiguration;
 	private ResponseEntity<AuthenticationStateResponse> authenticationStateResponseEntity;
+	private Integer pilotId;
 
 	// - G E T T E R S   &   S E T T E R S
 	public ResponseEntity<AuthenticationStateResponse> getAuthenticationStateResponseEntity() {
@@ -122,11 +123,11 @@ public class NewNeoComWorld extends CommonWorld {
 		return this;
 	}
 
-	public ResponseEntity<PilotV1> getPilotDataResponseEntity() {
+	public ResponseEntity<PilotDto> getPilotDataResponseEntity() {
 		return this.pilotDataResponseEntity;
 	}
 
-	public NewNeoComWorld setPilotDataResponseEntity( final ResponseEntity<PilotV1> pilotDataResponseEntity ) {
+	public NewNeoComWorld setPilotDataResponseEntity( final ResponseEntity<PilotDto> pilotDataResponseEntity ) {
 		this.pilotDataResponseEntity = pilotDataResponseEntity;
 		return this;
 	}
@@ -137,6 +138,15 @@ public class NewNeoComWorld extends CommonWorld {
 
 	public NewNeoComWorld setPilotFittingsResponseEntity( final ResponseEntity<List<FittingModel>> pilotFittingsResponseEntity ) {
 		this.pilotFittingsResponseEntity = pilotFittingsResponseEntity;
+		return this;
+	}
+
+	public Integer getPilotId() {
+		return this.pilotId;
+	}
+
+	public NewNeoComWorld setPilotId( final Integer pilotId ) {
+		this.pilotId = pilotId;
 		return this;
 	}
 

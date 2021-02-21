@@ -46,16 +46,12 @@ public class AuthorizationFeignClientV1 extends CommonFeignClient {
 
 	public ResponseEntity<AuthenticationStateResponse> validateAuthenticationState( final List<String> cookies ) throws IOException {
 		final String ENDPOINT_MESSAGE = "Request the Authentication current state.";
-		String cookieContent = "";
-		for (final String cookie : cookies)
-			cookieContent += cookie + "; ";
-		if (cookieContent.length() > 2) cookieContent = cookieContent.substring( 0, cookieContent.length() - 2 );
 		final Response<AuthenticationStateResponse> response = new Retrofit.Builder()
 				.baseUrl( this.acceptanceTargetConfig.getBackendServer() )
 				.addConverterFactory( GSON_CONVERTER_FACTORY )
 				.build()
 				.create( NeoComApiv1.class )
-				.validateAuthenticationState( cookieContent )
+				.validateAuthenticationState( this.prepareCookies( cookies ) )
 				.execute();
 		if (response.isSuccessful()) {
 			LogWrapper.info( ENDPOINT_MESSAGE );

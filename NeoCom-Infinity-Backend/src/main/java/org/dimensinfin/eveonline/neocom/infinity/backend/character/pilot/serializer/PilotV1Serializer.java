@@ -27,6 +27,7 @@ public class PilotV1Serializer extends JsonSerializer<PilotV1> {
 		jgen.writeNumberField( "pilotId", value.getPilotId() );
 		jgen.writeStringField( "name", value.getPilotPublicData().getName() );
 		jgen.writeStringField( "description", value.getPilotPublicData().getDescription() );
+		jgen.writeNumberField( "corporationId", value.getPilotPublicData().getCorporationId() );
 		final Link corporationLink = WebMvcLinkBuilder.linkTo(
 				WebMvcLinkBuilder.methodOn( PublicCorporationControllerV1.class )
 						.getCorporationData( value.getPilotPublicData().getCorporationId() )

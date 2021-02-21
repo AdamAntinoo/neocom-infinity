@@ -31,7 +31,6 @@ import org.dimensinfin.eveonline.neocom.infinity.support.miningextraction.rest.v
 import org.dimensinfin.eveonline.neocom.infinity.support.neoitem.rest.v1.NeoItemFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.support.neoitem.rest.v1.NeoItemTransport;
 import org.dimensinfin.eveonline.neocom.infinity.support.pilot.rest.v1.PilotFeignClientV1;
-import org.dimensinfin.eveonline.neocom.infinity.support.pilot.rest.v1.PilotResponse;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -97,14 +96,14 @@ public class NIBCommonSteps extends SupportSteps {
 				Assert.assertNotNull( corporationId );
 				this.neocomWorld.setCorporationIdentifier( corporationId );
 				break;
-			case GET_PILOT_DATA_ENDPOINT_NAME:
+			case GET_PUBLIC_PILOT_DATA_ENDPOINT_NAME:
 			case GET_PILOTS_FITTINGS_ENDPOINT_NAME:
-			case GET_TODAY_MINING_EXTRACTIONS:
-				final Map<String, String> rowPilot = dataTable.get( 0 );
-				final Integer pilotId = Integer.valueOf( rowPilot.get( PILOT_ID ) );
-				Assert.assertNotNull( pilotId );
-				this.neocomWorld.setPilotIdentifier( pilotId );
-				break;
+				//			case GET_TODAY_MINING_EXTRACTIONS:
+				//				final Map<String, String> rowPilot = dataTable.get( 0 );
+				//				final Integer pilotId = Integer.valueOf( rowPilot.get( PILOT_ID ) );
+				//				Assert.assertNotNull( pilotId );
+				//				this.neocomWorld.setPilotIdentifier( pilotId );
+				//				break;
 			case GET_ITEM_BASIC:
 				final Map<String, String> rowItem = dataTable.get( 0 );
 				final Integer itemId = Integer.valueOf( rowItem.get( ITEM_ID ) );
@@ -195,16 +194,16 @@ public class NIBCommonSteps extends SupportSteps {
 					this.neocomWorld.setCorporationResponseEntity( corporationDataResponse );
 					this.neocomWorld.setCorporationResponse( corporationDataResponse.getBody() );
 					return corporationDataResponse;
-				case GET_PILOT_DATA_ENDPOINT_NAME:
-					Assert.assertTrue( this.neocomWorld.getPilotIdentifier().isPresent() );
-					final ResponseEntity<PilotResponse> pilotResponseEntity =
-							this.pilotFeignClient.getPilotData(
-									this.neocomWorld.getPilotIdentifier().get(),
-									this.neocomWorld.getJwtAuthorizationToken()
-							);
-					this.neocomWorld.setPilotResponseEntity( pilotResponseEntity );
-					this.neocomWorld.setPilotResponse( pilotResponseEntity.getBody() );
-					return pilotResponseEntity;
+				//				case GET_PUBLIC_PILOT_DATA_ENDPOINT_NAME:
+				//					Assert.assertTrue( this.neocomWorld.getPilotIdentifier().isPresent() );
+				//					final ResponseEntity<PilotResponse> pilotResponseEntity =
+				//							this.pilotFeignClient.getPilotData(
+				//									this.neocomWorld.getPilotIdentifier().get(),
+				//									this.neocomWorld.getJwtAuthorizationToken()
+				//							);
+				//					this.neocomWorld.setPilotResponseEntity( pilotResponseEntity );
+				//					this.neocomWorld.setPilotResponse( pilotResponseEntity.getBody() );
+				//					return pilotResponseEntity;
 				case GET_PILOTS_FITTINGS_ENDPOINT_NAME:
 					Assert.assertTrue( this.neocomWorld.getPilotIdentifier().isPresent() );
 					final ResponseEntity<List<FittingResponse>> fittingResponseEntity =

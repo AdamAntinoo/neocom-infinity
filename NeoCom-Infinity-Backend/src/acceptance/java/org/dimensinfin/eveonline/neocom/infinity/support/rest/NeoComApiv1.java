@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.database.entities.MiningExtractionEntity;
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.dto.PilotDto;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthenticationStateResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenResponse;
@@ -13,7 +14,6 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.market.domain.MarketDat
 import org.dimensinfin.eveonline.neocom.infinity.support.corporation.rest.v1.CorporationResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.corporation.rest.v1.LocationAssetContainer;
 import org.dimensinfin.eveonline.neocom.infinity.support.fitting.rest.v1.FittingResponse;
-import org.dimensinfin.eveonline.neocom.infinity.support.pilot.rest.v1.PilotResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -57,10 +57,11 @@ public interface NeoComApiv1 {
 	Call<MarketData> getMarketConsolidated4ItemId( @Header("Authorization") final String authorization,
 	                                               @Path("itemId") final Integer itemId );
 
+	@Headers({ "Content-Type: application/json", "xApp-Signature: S0000.0020.0000" })
 	@GET("/api/v1/neocom/pilots/{pilotId}")
-	Call<PilotResponse> getPilotData( @Header("Content-Type") final String contentType,
-	                                  @Header("Authorization") final String authorization,
-	                                  @Path("pilotId") final Integer pilotId );
+	Call<PilotDto> getPilotData( @Header("Cookie") final String userCookie,
+	                             @Header("Authorization") final String authorization,
+	                             @Path("pilotId") final Integer pilotId );
 
 	@GET("/api/v1/neocom/fittings/pilot/{pilotId}")
 	Call<List<FittingResponse>> getPilotFittings( @Header("Content-Type") final String contentType,
@@ -79,7 +80,7 @@ public interface NeoComApiv1 {
 
 	@Headers({ "Content-Type: application/json" })
 	@GET("/api/v1/neocom/validateAuthenticationState")
-	Call<AuthenticationStateResponse> validateAuthenticationState( @Header("Cookie") String userCookie );
+	Call<AuthenticationStateResponse> validateAuthenticationState( @Header("Cookie") final String userCookie );
 
 	@GET("/api/v1/neocom/validateAuthorizationToken")
 	Call<AuthorizationTokenResponse> validateAuthorizationToken( @Header("Content-Type") final String contentType,

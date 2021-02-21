@@ -8,8 +8,10 @@ public enum RequestType {
 	VALIDATE_AUTHENTICATION( "" ),
 	VALIDATE_AUTHORIZATION_TOKEN( "Validate Authorization Token" ),
 	STORE_CREDENTIAL( "Store Credential" ),
-
+	GET_PUBLIC_PILOT_DATA_ENDPOINT_NAME( "Get Pilot Data" ),
 	GET_PILOT_DATA_ENDPOINT_NAME( "Get Pilot Data" ),
+
+
 	GET_PILOTS_FITTINGS_ENDPOINT_NAME( "Get Pilot Fittings" ),
 	GET_PILOTS_FITTINGS_V2_ENDPOINT_NAME( "Get Pilot Fittings" ),
 	GET_INDUSTRY_FITTING_CONFIGURATIONS( "" ),
