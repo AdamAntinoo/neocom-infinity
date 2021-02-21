@@ -1397,3 +1397,333 @@ response:
     type: text
     file: "${sim.path}/esiresponses/corporations.machaque.json"
 
+---
+
+simlet: universe-stations-60010408
+
+request:
+  - method: GET
+  - uriPathPattern: "/universe/stations/60010408/"
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body: |+
+    {
+      "max_dockable_ship_volume": 50000000,
+      "name": "Lulm V - Moon 10 - Poteque Pharmaceuticals Biotech Production",
+      "office_rental_cost": 10000,
+      "owner": 1000104,
+      "position": {
+        "x": -873875988480,
+        "y": 144637992960,
+        "z": 1673701908480
+      },
+      "race_id": 8,
+      "reprocessing_efficiency": 0.5,
+      "reprocessing_stations_take": 0.05,
+      "services": [
+          "bounty-missions",
+          "courier-missions",
+          "reprocessing-plant",
+          "market",
+          "cloning",
+          "surgery",
+          "dna-therapy",
+          "factory",
+          "fitting",
+          "news",
+          "insurance",
+          "docking",
+          "office-rental",
+          "loyalty-point-store",
+          "navy-offices"
+      ],
+      "station_id": 60010408,
+      "system_id": 30002516,
+      "type_id": 3867
+    }
+
+---
+
+simlet: universe-systems-30002516
+
+request:
+  - method: GET
+  - uriPathPattern: "/universe/systems/30002516/"
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body: |+
+    {
+      "constellation_id": 20000368,
+      "name": "Lulm",
+      "planets": [
+        {
+          "planet_id": 40160105
+        },
+        {
+          "asteroid_belts": [
+              40160107
+          ],
+          "planet_id": 40160106
+        },
+        {
+          "moons": [
+              40160109,
+              40160110
+          ],
+          "planet_id": 40160108
+        },
+        {
+          "moons": [
+              40160112,
+              40160113,
+              40160114
+          ],
+          "planet_id": 40160111
+        },
+        {
+          "asteroid_belts": [
+              40160116,
+              40160117,
+              40160120,
+              40160122,
+              40160138
+          ],
+          "moons": [
+              40160118,
+              40160119,
+              40160121,
+              40160123,
+              40160124,
+              40160125,
+              40160126,
+              40160127,
+              40160128,
+              40160129,
+              40160130,
+              40160131,
+              40160132,
+              40160133,
+              40160134,
+              40160135,
+              40160136,
+              40160137
+          ],
+          "planet_id": 40160115
+        }
+      ],
+      "position": {
+        "x": -120046221138604640,
+        "y": 67340639034898480,
+        "z": 2421282662015471
+      },
+      "security_class": "E",
+      "security_status": 0.343973845243454,
+      "star_id": 40160104,
+      "stargates": [
+          50003582,
+          50003583
+      ],
+      "stations": [
+          60010075,
+          60010408,
+          60015094
+      ],
+      "system_id": 30002516
+    }
+
+---
+
+simlet: universe-constellations-20000368
+
+request:
+  - method: GET
+  - uriPathPattern: "/universe/constellations/20000368/"
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body: |+
+    {
+      "constellation_id": 20000368,
+      "name": "Huvilma",
+      "position": {
+        "x": -120644441659824900,
+        "y": 59131074017490330,
+        "z": 1341995667252953
+      },
+      "region_id": 10000030,
+      "systems": [
+          30002512,
+          30002513,
+          30002514,
+          30002515,
+          30002516,
+          30002517
+      ]
+    }
+
+---
+
+simlet: universe-regions-10000030
+
+request:
+  - method: GET
+  - uriPathPattern: "/universe/regions/10000030/"
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body: |+
+    {
+      "constellations": [
+          20000367,
+          20000368,
+          20000369,
+          20000370,
+          20000371,
+          20000372,
+          20000373,
+          20000374,
+          20000375,
+          20000376,
+          20000377,
+          20000378
+      ],
+      "description": "\"Never Again\"",
+      "name": "Heimatar",
+      "region_id": 10000030
+    }
+
+---
+
+simlet: universe-types-606
+
+request:
+  - method: GET
+  - uriPathPattern: "/universe/types/606/"
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body:
+    type: text
+    file: "${sim.path}/esiresponses/types.606.json"
+
+---
+
+simlet: universe-groups-237
+
+request:
+  - method: GET
+  - uriPathPattern: "/universe/groups/237/"
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body: |+
+    {
+      "category_id": 6,
+      "group_id": 237,
+      "name": "Corvette",
+      "published": true,
+      "types": [
+          588,
+          596,
+          601,
+          606,
+          615,
+          617,
+          1233,
+          9854,
+          9858,
+          9860,
+          9862,
+          33079,
+          33081,
+          33083
+      ]
+    }
+
+---
+
+simlet: universe-categories-6
+
+request:
+  - method: GET
+  - uriPathPattern: "/universe/categories/6/"
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body: |+
+    {
+      "category_id": 6,
+      "groups": [
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          237,
+          324,
+          358,
+          380,
+          381,
+          419,
+          420,
+          463,
+          485,
+          513,
+          540,
+          541,
+          543,
+          547,
+          659,
+          830,
+          831,
+          832,
+          833,
+          834,
+          883,
+          893,
+          894,
+          898,
+          900,
+          902,
+          906,
+          941,
+          963,
+          1022,
+          1201,
+          1202,
+          1283,
+          1305,
+          1527,
+          1534,
+          1538,
+          1972,
+          2001
+      ],
+      "name": "Ship",
+      "published": true
+    }

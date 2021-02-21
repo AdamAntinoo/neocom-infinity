@@ -1,10 +1,3 @@
-simulation: esioauth-simulation
-tls:
-  selfSignedCert:
-    domain: neocom-backend-acceptance-apisimulator-esi-oauth
-
----
-
 simlet: esi-get-authorization-token-new
 
 request:

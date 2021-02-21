@@ -10,6 +10,7 @@ import org.springframework.boot.jackson.JsonComponent;
 import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.EsiItemModel;
 import org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants;
 
+@Deprecated
 @JsonComponent
 public class EsiItemModelSerializer extends JsonSerializer<EsiItemModel> {
 	@Override

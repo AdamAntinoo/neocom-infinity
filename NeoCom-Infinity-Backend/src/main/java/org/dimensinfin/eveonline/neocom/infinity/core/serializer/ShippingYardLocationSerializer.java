@@ -10,6 +10,7 @@ import org.springframework.boot.jackson.JsonComponent;
 
 import org.dimensinfin.eveonline.neocom.infinity.backend.corporation.domain.ShippingYardLocation;
 
+@Deprecated
 @JsonComponent
 public class ShippingYardLocationSerializer extends JsonSerializer<ShippingYardLocation> {
 	@Override

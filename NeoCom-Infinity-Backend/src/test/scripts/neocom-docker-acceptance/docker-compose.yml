@@ -54,15 +54,15 @@ services:
       - /home/adam/Development/NeoCom0.20/NeoCom-Infinity/NeoCom-Infinity-Backend/src/test/resources/esioauth-simulation:/esioauth-simulation
     command: "bin/apisimulator start /esioauth-simulation -p 6090"
 
-  neocom-backend-acceptance-apisimulator-esi-universe-data:
-    container_name: neocom-backend-acceptance-apisimulator-esi-universe-data
-    image: apimastery/apisimulator:1.8
-    ports:
-      - "5261:6090"
-    volumes:
-      # WARNING - Use full absolute paths to make this work.
-      - /home/adam/Development/NeoCom0.20/NeoCom-Infinity/NeoCom-Infinity-Backend/src/test/resources/esidata-simulation:/esidata-simulation
-    command: "bin/apisimulator start /esidata-simulation -p 6090"
+  #  neocom-backend-acceptance-apisimulator-esi-universe-data:
+  #    container_name: neocom-backend-acceptance-apisimulator-esi-universe-data
+  #    image: apimastery/apisimulator:1.8
+  #    ports:
+  #      - "5261:6090"
+  #    volumes:
+  #      # WARNING - Use full absolute paths to make this work.
+  #      - /home/adam/Development/NeoCom0.20/NeoCom-Infinity/NeoCom-Infinity-Backend/src/test/resources/esidata-simulation:/esidata-simulation
+  #    command: "bin/apisimulator start /esidata-simulation -p 6090"
 
   neocom-backend-acceptance-apisimulator-esi-data:
     container_name: neocom-backend-acceptance-apisimulator-esi-data
