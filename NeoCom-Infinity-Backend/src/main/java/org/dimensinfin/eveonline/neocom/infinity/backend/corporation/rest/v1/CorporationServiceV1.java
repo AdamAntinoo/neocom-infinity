@@ -23,7 +23,7 @@ import org.dimensinfin.eveonline.neocom.domain.Corporation;
 import org.dimensinfin.eveonline.neocom.domain.space.SpaceLocation;
 import org.dimensinfin.eveonline.neocom.domain.space.Station;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCorporationsCorporationIdOk;
-import org.dimensinfin.eveonline.neocom.infinity.backend.character.pilot.rest.v2.PilotServiceV2;
+import org.dimensinfin.eveonline.neocom.infinity.backend.character.pilot.rest.v1.PilotServiceV1;
 import org.dimensinfin.eveonline.neocom.infinity.backend.corporation.domain.ShippingYardLocation;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetails;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetailsService;
@@ -38,7 +38,7 @@ import org.dimensinfin.logging.LogWrapper;
 public class CorporationServiceV1 {
 	private static final String SHIPPING_YARD_PREFIX = "ShipYard";
 	private final ESIDataService esiDataService;
-	private final PilotServiceV2 pilotServiceV2;
+	private final PilotServiceV1 pilotServiceV1;
 	private final AssetRepository assetRepository;
 	private final CredentialRepository credentialRepository;
 	private final LocationCatalogService locationCatalogService;
@@ -48,14 +48,14 @@ public class CorporationServiceV1 {
 	// - C O N S T R U C T O R S
 	@Autowired
 	public CorporationServiceV1( @NotNull final ESIDataService esiDataService,
-	                             @NotNull final PilotServiceV2 pilotServiceV2,
+	                             @NotNull final PilotServiceV1 pilotServiceV1,
 	                             @NotNull final AssetRepository assetRepository,
 	                             @NotNull final CredentialRepository credentialRepository,
 	                             @NotNull final LocationCatalogService locationCatalogService,
 	                             @NotNull final CredentialDetailsService credentialDetailsService,
 	                             @NotNull final NeoComAuthenticationProvider neoComAuthenticationProvider ) {
 		this.esiDataService = esiDataService;
-		this.pilotServiceV2 = pilotServiceV2;
+		this.pilotServiceV1 = pilotServiceV1;
 		this.assetRepository = assetRepository;
 		this.credentialRepository = credentialRepository;
 		this.locationCatalogService = locationCatalogService;

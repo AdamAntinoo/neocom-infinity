@@ -11,7 +11,7 @@ import org.springframework.hateoas.Link;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 
 import org.dimensinfin.eveonline.neocom.domain.Corporation;
-import org.dimensinfin.eveonline.neocom.infinity.backend.character.pilot.rest.v2.PilotControllerV2;
+import org.dimensinfin.eveonline.neocom.infinity.backend.character.pilot.rest.v1.PilotControllerV1;
 import org.dimensinfin.eveonline.neocom.infinity.backend.universe.spacelocations.rest.v1.SpaceLocationControllerV1;
 
 @JsonComponent
@@ -21,12 +21,12 @@ public class CorporationSerializer extends JsonSerializer<Corporation> {
 			throws IOException, JsonProcessingException {
 		jgen.writeStartObject();
 
-		jgen.writeStringField( "jsonClass", value.getJsonClass() );
+		//		jgen.writeStringField( "jsonClass", value.getJsonClass() );
 		jgen.writeNumberField( "corporationId", value.getCorporationId() );
 		jgen.writeStringField( "name", value.getCorporationPublicData().getName() );
 		jgen.writeNumberField( "ceoId", value.getCeoPilotData().getPilotId() );
 		final Link ceoLink = WebMvcLinkBuilder.linkTo(
-				WebMvcLinkBuilder.methodOn( PilotControllerV2.class )
+				WebMvcLinkBuilder.methodOn( PilotControllerV1.class )
 						.getPilotData( value.getCeoPilotData().getPilotId() )
 		).withRel( "ceo" );
 		jgen.writeObjectField( "ceo", ceoLink );
