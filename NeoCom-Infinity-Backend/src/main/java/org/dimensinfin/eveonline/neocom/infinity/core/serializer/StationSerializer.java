@@ -6,20 +6,17 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
-import org.springframework.boot.jackson.JsonComponent;
 
-import org.dimensinfin.eveonline.neocom.database.entities.NeoAsset;
-import org.dimensinfin.eveonline.neocom.domain.space.SpaceLocation;
 import org.dimensinfin.eveonline.neocom.domain.space.Station;
 
-@JsonComponent
+@Deprecated
+//@JsonComponent
 public class StationSerializer extends JsonSerializer<Station> {
 	@Override
 	public void serialize( final Station value, final JsonGenerator jgen, final SerializerProvider provider )
 			throws IOException, JsonProcessingException {
 		jgen.writeStartObject();
 
-		jgen.writeStringField( "jsonClass", "Station" );
 		jgen.writeNumberField( "locationId", value.getLocationId() );
 		jgen.writeNumberField( "regionId", value.getRegionId() );
 		jgen.writeStringField( "regionName", value.getRegionName() );

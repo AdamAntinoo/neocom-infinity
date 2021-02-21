@@ -1,0 +1,371 @@
+{
+  "capacity": 135,
+  "description": "The Velator class corvette is one of the older vessel types in the Gallente fleet. It was first deployed on the market as a fast passenger craft but the extra passenger quarters were later modified into weapon hardpoints as the newer models came to be used for small-scale security and military duties. The Velator is still a very solid mining and trading vessel.",
+  "dogma_attributes": [
+    {
+      "attribute_id": 129,
+      "value": 2
+    },
+    {
+      "attribute_id": 1154,
+      "value": 0
+    },
+    {
+      "attribute_id": 3,
+      "value": 0
+    },
+    {
+      "attribute_id": 4,
+      "value": 1148000
+    },
+    {
+      "attribute_id": 263,
+      "value": 150
+    },
+    {
+      "attribute_id": 136,
+      "value": 1
+    },
+    {
+      "attribute_id": 9,
+      "value": 225
+    },
+    {
+      "attribute_id": 11,
+      "value": 25
+    },
+    {
+      "attribute_id": 12,
+      "value": 2
+    },
+    {
+      "attribute_id": 13,
+      "value": 2
+    },
+    {
+      "attribute_id": 14,
+      "value": 2
+    },
+    {
+      "attribute_id": 15,
+      "value": 0
+    },
+    {
+      "attribute_id": 272,
+      "value": 0.5
+    },
+    {
+      "attribute_id": 273,
+      "value": 0.6
+    },
+    {
+      "attribute_id": 274,
+      "value": 0.8
+    },
+    {
+      "attribute_id": 19,
+      "value": 1
+    },
+    {
+      "attribute_id": 269,
+      "value": 0.65
+    },
+    {
+      "attribute_id": 21,
+      "value": 0
+    },
+    {
+      "attribute_id": 153,
+      "value": 8.66e-7
+    },
+    {
+      "attribute_id": 1178,
+      "value": 100
+    },
+    {
+      "attribute_id": 283,
+      "value": 10
+    },
+    {
+      "attribute_id": 265,
+      "value": 175
+    },
+    {
+      "attribute_id": 1200,
+      "value": 100
+    },
+    {
+      "attribute_id": 162,
+      "value": 40
+    },
+    {
+      "attribute_id": 1179,
+      "value": 0.01
+    },
+    {
+      "attribute_id": 37,
+      "value": 305
+    },
+    {
+      "attribute_id": 422,
+      "value": 1
+    },
+    {
+      "attribute_id": 1831,
+      "value": 20
+    },
+    {
+      "attribute_id": 552,
+      "value": 54
+    },
+    {
+      "attribute_id": 1833,
+      "value": 15
+    },
+    {
+      "attribute_id": 18,
+      "value": 0
+    },
+    {
+      "attribute_id": 1196,
+      "value": 0.01
+    },
+    {
+      "attribute_id": 1832,
+      "value": 15
+    },
+    {
+      "attribute_id": 1198,
+      "value": 0.01
+    },
+    {
+      "attribute_id": 1199,
+      "value": 100
+    },
+    {
+      "attribute_id": 48,
+      "value": 125
+    },
+    {
+      "attribute_id": 49,
+      "value": 0
+    },
+    {
+      "attribute_id": 1830,
+      "value": 10
+    },
+    {
+      "attribute_id": 564,
+      "value": 480
+    },
+    {
+      "attribute_id": 182,
+      "value": 3327
+    },
+    {
+      "attribute_id": 55,
+      "value": 67500
+    },
+    {
+      "attribute_id": 264,
+      "value": 0
+    },
+    {
+      "attribute_id": 192,
+      "value": 3
+    },
+    {
+      "attribute_id": 525,
+      "value": 1
+    },
+    {
+      "attribute_id": 267,
+      "value": 0.5
+    },
+    {
+      "attribute_id": 70,
+      "value": 4.35
+    },
+    {
+      "attribute_id": 161,
+      "value": 24500
+    },
+    {
+      "attribute_id": 1224,
+      "value": 1
+    },
+    {
+      "attribute_id": 268,
+      "value": 0.9
+    },
+    {
+      "attribute_id": 76,
+      "value": 23500
+    },
+    {
+      "attribute_id": 79,
+      "value": 5500
+    },
+    {
+      "attribute_id": 208,
+      "value": 0
+    },
+    {
+      "attribute_id": 209,
+      "value": 0
+    },
+    {
+      "attribute_id": 210,
+      "value": 6
+    },
+    {
+      "attribute_id": 211,
+      "value": 0
+    },
+    {
+      "attribute_id": 1281,
+      "value": 1
+    },
+    {
+      "attribute_id": 270,
+      "value": 0.65
+    },
+    {
+      "attribute_id": 1262,
+      "value": 0.25
+    },
+    {
+      "attribute_id": 600,
+      "value": 3
+    },
+    {
+      "attribute_id": 217,
+      "value": 395
+    },
+    {
+      "attribute_id": 271,
+      "value": 1
+    },
+    {
+      "attribute_id": 479,
+      "value": 625000
+    },
+    {
+      "attribute_id": 482,
+      "value": 135
+    },
+    {
+      "attribute_id": 484,
+      "value": 0.75
+    },
+    {
+      "attribute_id": 101,
+      "value": 1
+    },
+    {
+      "attribute_id": 102,
+      "value": 2
+    },
+    {
+      "attribute_id": 1768,
+      "value": 11331
+    },
+    {
+      "attribute_id": 1259,
+      "value": 0.25
+    },
+    {
+      "attribute_id": 1132,
+      "value": 0
+    },
+    {
+      "attribute_id": 109,
+      "value": 0.67
+    },
+    {
+      "attribute_id": 110,
+      "value": 0.67
+    },
+    {
+      "attribute_id": 111,
+      "value": 0.67
+    },
+    {
+      "attribute_id": 113,
+      "value": 0.67
+    },
+    {
+      "attribute_id": 1261,
+      "value": 0.25
+    },
+    {
+      "attribute_id": 246,
+      "value": 395
+    },
+    {
+      "attribute_id": 1271,
+      "value": 10
+    },
+    {
+      "attribute_id": 633,
+      "value": 0
+    },
+    {
+      "attribute_id": 38,
+      "value": 135
+    },
+    {
+      "attribute_id": 124,
+      "value": 16777215
+    },
+    {
+      "attribute_id": 524,
+      "value": 0.75
+    },
+    {
+      "attribute_id": 277,
+      "value": 1
+    }
+  ],
+  "dogma_effects": [
+    {
+      "effect_id": 5013,
+      "is_default": false
+    },
+    {
+      "effect_id": 5014,
+      "is_default": false
+    },
+    {
+      "effect_id": 5015,
+      "is_default": false
+    },
+    {
+      "effect_id": 5016,
+      "is_default": false
+    },
+    {
+      "effect_id": 5017,
+      "is_default": false
+    },
+    {
+      "effect_id": 5030,
+      "is_default": false
+    },
+    {
+      "effect_id": 5035,
+      "is_default": false
+    }
+  ],
+  "graphic_id": 321,
+  "group_id": 237,
+  "market_group_id": 1818,
+  "mass": 1148000,
+  "name": "Velator",
+  "packaged_volume": 2500,
+  "portion_size": 1,
+  "published": true,
+  "radius": 40,
+  "type_id": 606,
+  "volume": 24500
+}

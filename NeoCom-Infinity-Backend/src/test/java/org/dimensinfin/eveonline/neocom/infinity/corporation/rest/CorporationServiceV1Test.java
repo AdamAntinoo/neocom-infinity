@@ -16,7 +16,6 @@ import org.dimensinfin.eveonline.neocom.domain.Corporation;
 import org.dimensinfin.eveonline.neocom.domain.Pilot;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCorporationsCorporationIdOk;
 import org.dimensinfin.eveonline.neocom.infinity.backend.character.pilot.rest.v1.PilotServiceV1;
-import org.dimensinfin.eveonline.neocom.infinity.backend.character.pilot.rest.v2.PilotServiceV2;
 import org.dimensinfin.eveonline.neocom.infinity.backend.corporation.domain.ShippingYardLocation;
 import org.dimensinfin.eveonline.neocom.infinity.backend.corporation.rest.v1.CorporationServiceV1;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetails;
@@ -40,7 +39,7 @@ public class CorporationServiceV1Test {
 	private LocationCatalogService locationCatalogService;
 	private CredentialDetailsService credentialDetailsService;
 	private NeoComAuthenticationProvider neoComAuthenticationProvider;
-	private PilotServiceV2 pilotServiceV2;
+	private PilotServiceV1 pilotServiceV2;
 
 	@BeforeEach
 	public void beforeEach() {
@@ -60,7 +59,7 @@ public class CorporationServiceV1Test {
 		//		Mockito.when( this.assetRepositoryWrapper.getSingleton() ).thenReturn( this.assetRepository );
 		//		Mockito.when( credentialRepositoryWrapper.getSingleton() ).thenReturn( credentialRepository );
 		//		Mockito.when( locationCatalogServiceWrapper ).thenReturn( locationCatalogService );
-		this.pilotServiceV2 = Mockito.mock( PilotServiceV2.class );
+		this.pilotServiceV2 = Mockito.mock( PilotServiceV1.class );
 	}
 
 	//	@Test
