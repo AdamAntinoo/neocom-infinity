@@ -18,10 +18,10 @@ public class PilotModelValidator implements Validator<PilotV1> {
 
 	@Override
 	public boolean validate( final Map<String, String> rowData, final PilotV1 record ) {
-		if (null != rowData.get( PILOT_ID )) Assertions.assertEquals( Integer.parseInt( rowData.get( PILOT_ID ) ), record.getPilotId() );
-		if (null != rowData.get( CORPORATION_ID )) Assertions.assertEquals( Integer.parseInt(
-				rowData.get( CORPORATION_ID ) ), record.getCorporationId()
-		);
+		if (null != rowData.get( PILOT_ID ))
+			Assertions.assertEquals( Integer.parseInt( rowData.get( PILOT_ID ) ), record.getPilotId() );
+		if (null != rowData.get( CORPORATION_ID ))
+			Assertions.assertEquals( Integer.parseInt( rowData.get( CORPORATION_ID ) ), record.getCorporationId() );
 		//		if (null != rowData.get( CORPORATION_LINK )) Assertions.assertEquals( rowData.get( CORPORATION_LINK ), record.getCorporationId().getHref() );
 		if (null != rowData.get( PILOT_PUBLIC_DATA_OBJECT )) Assertions.assertNotNull( record.getPilotPublicData() );
 		if (null != rowData.get( PILOT_RACE_DATA_OBJECT )) Assertions.assertNotNull( record.getRaceData() );

@@ -14,11 +14,21 @@ public class AcceptanceFieldMapConstants {
 	public static final String MINING_RESOURCE_ESTIMATED_VALUE = "miningResourcesEstimatedValue";
 
 	public static final String PILOT_ID = "pilotId";
+	public static final String PILOT_NAME = "name";
+	public static final String PILOT_BIRTHDAY = "birthday";
+	public static final String PILOT_GENDER = "gender";
+	public static final String PILOT_SECURITY_STATUS = "securityStatus";
+	public static final String PILOT_TOTAL_SKILL_POINTS = "totalSkillpoints";
+	public static final String PILOT_WALLET_BALANCE = "walletBalance";
+	public static final String PILOT_CURRENT_SHIP_NAME = "currentShipName";
+	public static final String PILOT_CURRENT_SHIP_TYPE_NAME = "currentShipTypeName";
+
 	public static final String CORPORATION_LINK = "corporation";
 	public static final String PILOT_PUBLIC_DATA_OBJECT = "pilotPublicData";
 	public static final String PILOT_RACE_DATA_OBJECT = "raceData";
 	public static final String PILOT_ANCESTRY_DATA_OBJECT = "ancestryData";
 	public static final String PILOT_BLOODLINE_DATA_OBJECT = "bloodlineData";
+
 
 	public static final String FITTING_ID = "fittingId";
 	public static final String FITTING_ITEMS_COUNT = "fittingItemsCount";

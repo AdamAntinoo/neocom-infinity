@@ -10,10 +10,10 @@ import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.springframework.http.ResponseEntity;
 
-import org.dimensinfin.eveonline.neocom.character.domain.PilotV1;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.authorization.rest.v1.AuthorizationFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.character.rest.v1.CharacterFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.character.rest.v2.CharacterFeignClientV2;
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.dto.PilotDto;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.industry.rest.v1.IndustryFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.market.rest.v1.MarketFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.universe.rest.v1.UniverseFeignClientV1;
@@ -22,7 +22,6 @@ import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCr
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthenticationStateResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenResponse;
-import org.dimensinfin.eveonline.neocom.infinity.backend.character.fitting.domain.FittingModel;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingBuildConfiguration;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingConfigurations;
 import org.dimensinfin.eveonline.neocom.infinity.backend.market.domain.MarketData;
@@ -100,14 +99,14 @@ public class WhenTheRequestIsProcessed extends StepSupport {
 
 	@When("the Get Pilot Fittings request for pilot {string} is processed")
 	public void the_Get_Pilot_Fittings_request_for_pilot_is_processed( final String pilotIdentifier ) throws IOException {
-		this.neocomWorld.setPilotIdentifier( Integer.parseInt( pilotIdentifier ) );
+		this.neocomWorld.setPilotId( Integer.parseInt( pilotIdentifier ) );
 		this.processRequestByType( RequestType.GET_PILOTS_FITTINGS_V2_ENDPOINT_NAME );
 	}
 
 	@When("the Get Pilot Public Data with pilot identifier {string} request is processed")
 	public void the_Get_Pilot_Public_Data_with_pilot_identifier_request_is_processed( final String pilotIdentifier ) throws IOException {
-		this.neocomWorld.setPilotIdentifier( Integer.parseInt( pilotIdentifier ) );
-		this.processRequestByType( RequestType.GET_PILOT_DATA_ENDPOINT_NAME );
+		this.neocomWorld.setPilotId( Integer.parseInt( pilotIdentifier ) );
+		this.processRequestByType( RequestType.GET_PUBLIC_PILOT_DATA_ENDPOINT_NAME );
 	}
 
 	@When("the Get Universe Market Consolidated request with region identifier {int} and item type {int}")
@@ -127,6 +126,12 @@ public class WhenTheRequestIsProcessed extends StepSupport {
 		this.processRequestByType( RequestType.VALIDATE_AUTHENTICATION );
 	}
 
+	@When("the Get Pilot Data request with pilot {int}")
+	public void the_get_pilot_data_request_with_pilot( final Integer pilotIdentifier ) throws IOException {
+		this.neocomWorld.setPilotId( pilotIdentifier );
+		this.processRequestByType( RequestType.GET_PILOT_DATA_ENDPOINT_NAME );
+	}
+
 	@When("the Store Credential request is processed")
 	public void the_store_credential_request_is_processed() throws IOException {
 		this.processRequestByType( RequestType.STORE_CREDENTIAL );
@@ -139,24 +144,15 @@ public class WhenTheRequestIsProcessed extends StepSupport {
 
 	private ResponseEntity processRequest( final RequestType requestType ) throws IOException {
 		switch (requestType) {
-			case GET_PILOT_DATA_ENDPOINT_NAME:
-				Assertions.assertTrue( this.neocomWorld.getPilotIdentifier().isPresent() );
-				final ResponseEntity<PilotV1> pilotDataResponseEntity = this.characterFeignClientV2.getPilotData(
-						this.neocomWorld.getPilotIdentifier().get(),
-						this.neocomWorld.getJwtAuthorizationToken()
-				);
-				Assertions.assertNotNull( pilotDataResponseEntity );
-				this.neocomWorld.setPilotDataResponseEntity( pilotDataResponseEntity );
-				return pilotDataResponseEntity;
-			case GET_PILOTS_FITTINGS_V2_ENDPOINT_NAME:
-				Assertions.assertTrue( this.neocomWorld.getPilotIdentifier().isPresent() );
-				final ResponseEntity<List<FittingModel>> pilotFittingsResponseEntity = this.characterFeignClientV2.getPilotFittings(
-						this.neocomWorld.getPilotIdentifier().get(),
-						this.neocomWorld.getJwtAuthorizationToken()
-				);
-				Assertions.assertNotNull( pilotFittingsResponseEntity );
-				this.neocomWorld.setPilotFittingsResponseEntity( pilotFittingsResponseEntity );
-				return pilotFittingsResponseEntity;
+			//			case GET_PILOTS_FITTINGS_V2_ENDPOINT_NAME:
+			//				Assertions.assertNotNull( this.neocomWorld.getPilotId() );
+			//				final ResponseEntity<List<FittingModel>> pilotFittingsResponseEntity = this.characterFeignClientV2.getPilotFittings(
+			//						this.neocomWorld.getPilotId(),
+			//						this.neocomWorld.getJwtAuthorizationToken()
+			//				);
+			//				Assertions.assertNotNull( pilotFittingsResponseEntity );
+			//				this.neocomWorld.setPilotFittingsResponseEntity( pilotFittingsResponseEntity );
+			//				return pilotFittingsResponseEntity;
 			case GET_ESIITEM_ENDPOINT_NAME:
 				Assertions.assertNotNull( this.neocomWorld.getItemIdentifier() );
 				final ResponseEntity<EsiItemModel> itemResponseEntity = this.universeFeignClientV2.getItem( this.neocomWorld.getItemIdentifier() );
@@ -253,6 +249,26 @@ public class WhenTheRequestIsProcessed extends StepSupport {
 				this.neocomWorld.setStoreCredentialResponseResponseEntity( storeCredentialResponseEntity );
 				this.neocomWorld.setJwtAuthorizationToken( storeCredentialResponseEntity.getBody().getJwtToken() );
 				return storeCredentialResponseEntity;
+			case GET_PUBLIC_PILOT_DATA_ENDPOINT_NAME:
+				Assertions.assertNotNull( this.neocomWorld.getPilotId() );
+				final ResponseEntity<PilotDto> pilotPublicDataResponseEntity = this.characterFeignClientV1.getPilotData(
+						this.neocomWorld.getCookies(),
+						this.neocomWorld.getJwtAuthorizationToken(),
+						this.neocomWorld.getPilotId()
+				);
+				Assertions.assertNotNull( pilotPublicDataResponseEntity );
+				this.neocomWorld.setPilotDataResponseEntity( pilotPublicDataResponseEntity );
+				return pilotPublicDataResponseEntity;
+			case GET_PILOT_DATA_ENDPOINT_NAME:
+				Assertions.assertNotNull( this.neocomWorld.getPilotId() );
+				final ResponseEntity<PilotDto> pilotDataResponseEntity = this.characterFeignClientV1.getPilotData(
+						this.neocomWorld.getCookies(),
+						this.neocomWorld.getJwtAuthorizationToken(),
+						this.neocomWorld.getPilotId()
+				);
+				Assertions.assertNotNull( pilotDataResponseEntity );
+				this.neocomWorld.setPilotDataResponseEntity( pilotDataResponseEntity );
+				return pilotDataResponseEntity;
 			default:
 				throw new NotImplementedException( "Request {} not implemented.", requestType.name() );
 		}
