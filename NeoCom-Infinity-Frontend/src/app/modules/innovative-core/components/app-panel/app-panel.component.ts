@@ -76,13 +76,13 @@ export class AppPanelComponent extends BackgroundEnabledComponent implements IVi
         this.selectionManager.updateSelection(node)
         this.fireSelectionChanged()
     }
-    /**
-     * This is an abstract methods that should be implemented by panels that require to support selections.
-     */
-    public fireSelectionChanged(): void { }
     public getSelection(): ISelectable[] {
         return this.selectionManager.getSelection()
     }
+   /**
+     * This is an abstract method that should be implemented by panels that require to support selections.
+     */
+    public fireSelectionChanged(): void { }
     /**
       Reconstructs the list of nodes to be rendered from the current DataRoot and their collaborations to the view.
       */

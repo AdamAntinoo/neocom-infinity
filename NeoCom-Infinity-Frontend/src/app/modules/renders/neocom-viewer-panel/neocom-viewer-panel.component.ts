@@ -1,7 +1,6 @@
 // - CORE
 import { Component } from '@angular/core';
 import { Input } from '@angular/core';
-import { ChangeDetectionStrategy } from '@angular/core';
 import { ICollaboration } from '@innovative/domain/interfaces/ICollaboration.interface';
 // - DOMAIN
 import { AppPanelComponent } from '@innovative/components/app-panel/app-panel.component';
@@ -9,8 +8,7 @@ import { AppPanelComponent } from '@innovative/components/app-panel/app-panel.co
 @Component({
     selector: 'neocom-viewer-panel',
     templateUrl: './neocom-viewer-panel.component.html',
-    styleUrls: ['./neocom-viewer-panel.component.scss']/*,
-    changeDetection: ChangeDetectionStrategy.OnPush*/
+    styleUrls: ['./neocom-viewer-panel.component.scss']
 })
 export class NeocomViewerPanelComponent {
     @Input() nodes2render: ICollaboration[] = [];
