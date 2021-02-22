@@ -24,11 +24,11 @@ export class TestSelectable implements ISelectable {
         this.selectState = false
     }
 }
-describe('CLASS SingleSelectionManager [Module: DOMAIN]', () => {
+fdescribe('CLASS SingleSelectionManager [Module: INNOVATIVE-CORE]', () => {
     let isolation: SupportIsolationService
 
     beforeEach(() => {
-        isolation = TestBed.get(SupportIsolationService)
+        isolation = TestBed.inject<SupportIsolationService>(SupportIsolationService)
     })
     // - C O N S T R U C T I O N   P H A S E
     describe('Construction Contract', () => {
