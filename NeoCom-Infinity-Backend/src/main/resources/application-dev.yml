@@ -31,24 +31,24 @@ spring:
   jackson:
     default-property-inclusion: NON_ABSENT
     serialization.indent_output: true
-  redis:
-    host: localhost
-    port: 5289
+  #  redis:
+  #    host: localhost
+  #    port: 5289
   #    password:
-  session:
-    store-type: redis
+#  session:
+#    store-type: redis
 
 logging.logstash:
   enabled: true
 
 P:
   runtime:
-    configuration:
-      properties:
-        path: "/build/resources/main/properties-dev"
+    #    configuration:
+    #      properties:
+    #        path: "/build/resources/main/properties-dev"
     filesystem:
       application:
-        directory: "./build/neocom-cache/NeoCom.Infinity.development"
+        directory: "./build/neocom-cache/NeoCom.Infinity.Development"
     logging:
       request: true
       response: true

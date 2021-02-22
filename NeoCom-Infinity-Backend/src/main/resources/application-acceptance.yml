@@ -32,8 +32,8 @@ spring:
 logging.logstash:
   enabled: true
 
-P:
-  runtime:
-    configuration:
-      properties:
-        path: "/build/resources/main/properties-org.dimensinfin.eveonline.neocom.infinity.acceptance"
+#P:
+#  runtime:
+#    configuration:
+#      properties:
+#        path: "/build/resources/main/properties-org.dimensinfin.eveonline.neocom.infinity.acceptance"
