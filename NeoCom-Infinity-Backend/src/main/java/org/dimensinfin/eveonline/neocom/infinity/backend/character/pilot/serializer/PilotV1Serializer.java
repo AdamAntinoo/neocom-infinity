@@ -23,7 +23,6 @@ public class PilotV1Serializer extends JsonSerializer<PilotV1> {
 			throws IOException {
 		jgen.writeStartObject();
 
-		//		jgen.writeStringField( "jsonClass", value.getJsonClass() );
 		jgen.writeNumberField( "pilotId", value.getPilotId() );
 		jgen.writeStringField( "name", value.getPilotPublicData().getName() );
 		jgen.writeStringField( "description", value.getPilotPublicData().getDescription() );

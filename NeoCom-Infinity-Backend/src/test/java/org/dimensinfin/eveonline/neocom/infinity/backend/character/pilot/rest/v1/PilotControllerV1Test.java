@@ -30,7 +30,6 @@ public class PilotControllerV1Test {
 		final Integer pilotId = TEST_PILOT_ID;
 		final Pilot pilotInstance = Mockito.mock( Pilot.class );
 		// When
-		//		Mockito.when( this.pilotServiceV1.getPilotData( pilotId ) ).thenReturn( pilotInstance );
 		Mockito.when( pilotInstance.getPilotId() ).thenReturn( pilotId );
 		Mockito.when( this.neoComAuthenticationProvider.getAuthenticatedPilot() ).thenReturn( pilotId );
 		// Test

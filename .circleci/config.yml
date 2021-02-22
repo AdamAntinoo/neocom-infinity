@@ -235,6 +235,7 @@ jobs:
             docker ps
             ./gradlew clean test
             ./gradlew clean acceptanceTest -Dcucumber.filter.tags="@NIB01" --info
+            ./gradlew acceptanceTest -Dcucumber.filter.tags="@NIB03"
 
   quality-sonarcloud-backend:
     docker:

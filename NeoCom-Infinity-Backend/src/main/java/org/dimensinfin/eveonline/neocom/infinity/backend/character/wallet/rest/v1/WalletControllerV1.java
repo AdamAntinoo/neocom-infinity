@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComAuthenticatedController;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
+import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComAuthenticatedController;
 
 @RestController
 @Validated
@@ -22,8 +22,8 @@ public class WalletControllerV1 extends NeoComAuthenticatedController {
 
 	// - C O N S T R U C T O R S
 	@Autowired
-	public WalletControllerV1( final @NotNull NeoComAuthenticationProvider neoComAuthenticationProvider,
-	                           final @NotNull WalletServiceV1 walletServiceV1 ) {
+	public WalletControllerV1( @NotNull final NeoComAuthenticationProvider neoComAuthenticationProvider,
+	                           @NotNull final WalletServiceV1 walletServiceV1 ) {
 		super( neoComAuthenticationProvider );
 		this.walletServiceV1 = walletServiceV1;
 	}
@@ -31,8 +31,8 @@ public class WalletControllerV1 extends NeoComAuthenticatedController {
 	@GetMapping(path = "/pilots/{pilotId}/wallet/balance",
 			consumes = "application/json",
 			produces = "application/json")
-	public ResponseEntity<Double> getPilotWalletBalance( final @PathVariable @NotNull Integer pilotId ) {
+	public ResponseEntity<Double> getPilotWalletBalance( @PathVariable @NotNull final Integer pilotId ) {
 		this.validateAuthorizedPilot( pilotId );
-		return new ResponseEntity<>( this.walletServiceV1.getPilotWalletBalance( pilotId ), HttpStatus.OK );
+		return new ResponseEntity<>( this.walletServiceV1.getPilotWalletBalance(), HttpStatus.OK );
 	}
 }
