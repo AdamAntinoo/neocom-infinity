@@ -20,7 +20,7 @@ public class ResourceSerializer extends JsonSerializer<Resource> {
 			throws IOException {
 		jgen.writeStartObject();
 
-		jgen.writeStringField( "jsonClass", value.getJsonClass() );
+		//		jgen.writeStringField( "jsonClass", value.getJsonClass() );
 		jgen.writeNumberField( "typeId", value.getTypeId() );
 		jgen.writeStringField( "name", value.getName() );
 		jgen.writeNumberField( "quantity", value.getQuantity() );

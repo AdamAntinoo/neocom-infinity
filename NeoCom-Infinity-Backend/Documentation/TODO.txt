@@ -2,7 +2,7 @@
 
 ## 0.20.0
 * AuthorizationTokenResponseSerializer
-* PilotV1Serializer
+* GetUniverseCategoriesCategoryIdOkSerializer
 
 * NeoComAuthenticatedService
 

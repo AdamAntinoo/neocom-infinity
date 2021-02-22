@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service;
 
 import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetailsService;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
-import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComCredentialService;
+import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComAuthenticatedService;
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
 
 @Service
-public class WalletServiceV1 extends NeoComCredentialService {
+public class WalletServiceV1 extends NeoComAuthenticatedService {
 	private final ESIDataService esiDataService;
 
 	// - C O N S T R U C T O R S
@@ -23,8 +23,8 @@ public class WalletServiceV1 extends NeoComCredentialService {
 		this.esiDataService = esiDataService;
 	}
 
-	public Double getPilotWalletBalance( final Integer pilotId ) {
-		this.neoComAuthenticationProvider.validatePilotIdentifier( pilotId );
+	// - G E T T E R S   &   S E T T E R S
+	public Double getPilotWalletBalance() {
 		return this.esiDataService.getCharactersCharacterIdWallet( this.getAuthorizedCredential() );
 	}
 }

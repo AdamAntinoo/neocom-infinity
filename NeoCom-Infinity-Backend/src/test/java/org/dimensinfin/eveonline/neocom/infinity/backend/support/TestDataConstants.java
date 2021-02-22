@@ -1,13 +1,24 @@
 package org.dimensinfin.eveonline.neocom.infinity.backend.support;
 
+import org.joda.time.DateTime;
+
 public class TestDataConstants {
 	public static class PilotConstants {
 		public static final Integer TEST_PILOT_ID = 93813310;
 		public static final String TEST_PILOT_NAME = "-TEST_PILOT_NAME-";
+		public static final String TEST_PILOT_DESCRIPTION = "-DESCRIPTION-";
 		public static final Integer TEST_PILOT_CORPORATION_ID = 98384726;
+		public static final Integer TEST_CORPORATION_CEO_ID = 91734031;
+		public static final Integer TEST_PILOT_FACTION_ID = 32;
 		public static final Integer TEST_PILOT_RACE_ID = 4;
 		public static final Integer TEST_PILOT_ANCESTRY_ID = 5;
 		public static final Integer TEST_PILOT_BLOODLINE_ID = 6;
+		public static final DateTime TEST_PILOT_BIRTHDATE = DateTime.parse( "2012-07-05T21:53:15.000Z" );
+		public static final Integer TEST_PILOT_LOCATION_SYSTEM_ID = 54323456;
+		public static final Float TEST_PILOT_SECURITY_STATUS = 0.1F;
+		public static final String TEST_PILOT_TITLE = "-TITLE-";
+		public static final Long TEST_PILOT_SKILL_POINTS = 1436765L;
+		public static final Double TEST_PILOT_WALLET_BALANCE = 432567.0;
 	}
 
 	public static class FittingConstants {
