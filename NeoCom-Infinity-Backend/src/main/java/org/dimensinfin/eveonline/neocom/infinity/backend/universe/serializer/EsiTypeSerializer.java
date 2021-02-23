@@ -20,9 +20,9 @@ public class EsiTypeSerializer extends JsonSerializer<EsiType> {
 			throws IOException {
 		jgen.writeStartObject();
 
-		//		jgen.writeStringField( "jsonClass", value.getJsonClass() );
 		jgen.writeNumberField( "typeId", value.getTypeId() );
 		jgen.writeStringField( "name", value.getName() );
+		jgen.writeStringField( "description", value.getType().getDescription() );
 		jgen.writeObjectField( "group", value.getGroup() );
 		jgen.writeObjectField( "category", value.getCategory() );
 		jgen.writeObjectField( "type", value.getType() );
