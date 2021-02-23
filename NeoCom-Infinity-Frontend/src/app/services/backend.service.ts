@@ -15,7 +15,7 @@ import { UniverseHttpWrapper } from './universe.httpwrapper'
 // - DOMAIN
 import { Pilot } from '@app/domain/Pilot.domain'
 import { Corporation } from '@app/domain/Corporation.domain'
-import { ServerStatus } from '@app/domain/ServerStatus.domain'
+import { ServerStatus } from '@domain/esi/ServerStatus.domain'
 import { Fitting } from '@app/domain/Fitting.domain'
 import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer'
 import { PilotV2 } from '@domain/character/PilotV2.domain'
@@ -69,16 +69,6 @@ export class BackendService extends PublicService {
                 console.log(">[BackendService.apiValidateAuthorizationToken_v1]> Transformation: " +
                     transformer.description)
                 const response = transformer.transform(data) as AuthenticationStateResponse
-                return response
-            }))
-    }
-    public apiGetServerInfo_v1(transformer: ResponseTransformer): Observable<ServerStatus> {
-        const request = this.APIV1 + "/server/datasource/" + environment.ESIDataSource.toLowerCase()
-        return this.httpService.wrapHttpGETCall(request)
-            .pipe(map((data: any) => {
-                console.log(">[BackendService.apiGetServerInfo_v1]> Transformation: " +
-                    transformer.description)
-                const response = transformer.transform(data) as ServerStatus
                 return response
             }))
     }
