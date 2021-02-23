@@ -1,6 +1,6 @@
 {
     "/api/v1/universe/*": {
-        "target": "http://localhost:5220",
+        "target": "http://localhost:5290",
         "secure": false,
         "logLevel": "debug",
         "timeout": 30000,

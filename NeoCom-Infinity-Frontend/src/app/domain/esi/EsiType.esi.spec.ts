@@ -1,7 +1,7 @@
 // - APP
 import { EsiType } from "./EsiType.esi"
 
-fdescribe('CLASS EsiType [Module: DOMAIN.ESI]', () => {
+describe('CLASS EsiType [Module: DOMAIN.ESI]', () => {
     let testType: EsiType
     beforeEach(() => {
         testType = new EsiType({

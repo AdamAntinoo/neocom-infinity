@@ -12,6 +12,16 @@
             <span class="label">Capsuleers:</span>
             <span cy-field-value="capsuleers" class="server-capsuleers">{{getServerCapsuleers() | number:'3.0-0'}}</span>
         </div>
+        <div class="row">
+            <div class="field" style="flex-grow: 1;">
+                <span class="label">Backend Version:</span>
+                <span cy-field-value="backendVersion" class="">{{getBackendVersion()}}</span>
+            </div>
+            <div class="field">
+                <span class="label">SDE Version:</span>
+                <span cy-field-value="backendVersion" class="">{{getSDEversion()}}</span>
+            </div>
+        </div>
         <div class="field">
             <span cy-field-value="nextDowntime" class="server-nextdowntime">{{getNextDowntime()}}</span>
         </div>

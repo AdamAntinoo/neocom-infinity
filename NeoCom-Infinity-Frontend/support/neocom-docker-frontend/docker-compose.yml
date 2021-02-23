@@ -32,31 +32,31 @@ services:
       - /home/adam/Development/NeoCom0.20/NeoCom-Infinity/NeoCom-Infinity-Frontend/support/public-simulation:/public-simulation
     command: "bin/apisimulator start /public-simulation -p 6090"
 
-  neocom-frontend-development-backend-app:
-    container_name: neocom-frontend-development-backend-app
-    image: neocom/neocom-infinity.backend
-    ports:
-      - "5220:9500"
-    environment:
-      - SPRING_PROFILES_ACTIVE=dev
-      - PROFILE=development
-      - JDBC_DATABASE_URL=jdbc:postgresql://neocom-frontend-development-postgres:5432/postgres
-      - DB_USER=neocom-user
-      - DB_PASSWORD=neocom-password
-      - NEOCOM_DATABASE_URL=jdbc:postgresql://neocom-frontend-development-postgres:5432/postgres?user=neocom-user&password=neocom-password
-      - DEFAULT_BACKEND_SERVER="http://localhost:"
-      - NEOCOM_BANNER_LOCATION=./app-banner.txt
-      - PROPERTIES_DIRECTORY=/properties-dev
-      - APPLICATION_DIRECTORY=./NeoCom.Infinity.Development
-      - SDE_DATABASE_PATH=./sde.db
+  # neocom-frontend-development-backend-app:
+  #   container_name: neocom-frontend-development-backend-app
+  #   image: neocom/neocom-infinity.backend
+  #   ports:
+  #     - "5220:9500"
+  #   environment:
+  #     - SPRING_PROFILES_ACTIVE=dev
+  #     - PROFILE=development
+  #     - JDBC_DATABASE_URL=jdbc:postgresql://neocom-frontend-development-postgres:5432/postgres
+  #     - DB_USER=neocom-user
+  #     - DB_PASSWORD=neocom-password
+  #     - NEOCOM_DATABASE_URL=jdbc:postgresql://neocom-frontend-development-postgres:5432/postgres?user=neocom-user&password=neocom-password
+  #     - DEFAULT_BACKEND_SERVER="http://localhost:"
+  #     - NEOCOM_BANNER_LOCATION=./app-banner.txt
+  #     - PROPERTIES_DIRECTORY=/properties-dev
+  #     - APPLICATION_DIRECTORY=./NeoCom.Infinity.Development
+  #     - SDE_DATABASE_PATH=./sde.db
 
-  neocom-frontend-development-postgres:
-    container_name: neocom-frontend-development-postgres
-    image: "postgres:11.2"
-    ports:
-      - "5230:5432"
-    environment:
-      - CURRENT_UID=1000
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=neocom-user
-      - POSTGRES_PASSWORD=neocom-password
+  # neocom-frontend-development-postgres:
+  #   container_name: neocom-frontend-development-postgres
+  #   image: "postgres:11.2"
+  #   ports:
+  #     - "5230:5432"
+  #   environment:
+  #     - CURRENT_UID=1000
+  #     - POSTGRES_DB=postgres
+  #     - POSTGRES_USER=neocom-user
+  #     - POSTGRES_PASSWORD=neocom-password
