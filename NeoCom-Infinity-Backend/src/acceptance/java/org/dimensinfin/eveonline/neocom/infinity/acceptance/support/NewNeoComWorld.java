@@ -5,13 +5,13 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.dto.PilotDto;
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.dto.ServerStatusDto;
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthenticationStateResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.character.fitting.domain.FittingModel;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingBuildConfiguration;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingConfigurations;
 import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.EsiItemModel;
-import org.dimensinfin.eveonline.neocom.infinity.universe.client.v1.ServerStatus;
 import org.dimensinfin.eveonline.neocom.loyalty.domain.LoyaltyServiceConfiguration;
 import org.dimensinfin.eveonline.neocom.loyalty.persistence.LoyaltyOfferEntity;
 
@@ -24,7 +24,7 @@ public class NewNeoComWorld extends CommonWorld {
 	private ResponseEntity<FittingConfigurations> fittingConfigurationsResponseEntity;
 	private ResponseEntity<FittingBuildConfiguration> fittingBuildConfigurationResponseEntity;
 	private String datasource;
-	private ResponseEntity<ServerStatus> serverStatusResponseEntity;
+	private ResponseEntity<ServerStatusDto> serverStatusResponseEntity;
 	private ResponseEntity<List<LoyaltyOfferEntity>> loyaltyOffersResponseEntity;
 	private Integer corporationId;
 	private ResponseEntity<LoyaltyServiceConfiguration> loyaltyUpdateResponseEntity;
@@ -150,11 +150,11 @@ public class NewNeoComWorld extends CommonWorld {
 		return this;
 	}
 
-	public ResponseEntity<ServerStatus> getServerStatusResponseEntity() {
+	public ResponseEntity<ServerStatusDto> getServerStatusResponseEntity() {
 		return this.serverStatusResponseEntity;
 	}
 
-	public NewNeoComWorld setServerStatusResponseEntity( final ResponseEntity<ServerStatus> serverStatusResponseEntity ) {
+	public NewNeoComWorld setServerStatusResponseEntity( final ResponseEntity<ServerStatusDto> serverStatusResponseEntity ) {
 		this.serverStatusResponseEntity = serverStatusResponseEntity;
 		return this;
 	}

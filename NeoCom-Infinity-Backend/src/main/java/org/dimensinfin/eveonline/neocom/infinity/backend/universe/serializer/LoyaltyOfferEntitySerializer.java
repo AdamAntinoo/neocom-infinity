@@ -10,7 +10,7 @@ import org.springframework.hateoas.Link;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 
 import org.dimensinfin.eveonline.neocom.infinity.backend.universe.market.rest.v1.UniverseMarketControllerV1;
-import org.dimensinfin.eveonline.neocom.infinity.backend.universe.tpe.rest.v1.EsiTypeControllerV1;
+import org.dimensinfin.eveonline.neocom.infinity.backend.universe.type.rest.v1.EsiTypeControllerV1;
 import org.dimensinfin.eveonline.neocom.loyalty.persistence.LoyaltyOfferEntity;
 
 /**

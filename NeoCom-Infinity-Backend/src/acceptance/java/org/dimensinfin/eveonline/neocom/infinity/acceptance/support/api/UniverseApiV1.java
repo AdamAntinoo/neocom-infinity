@@ -4,6 +4,7 @@ import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.dto.ServerStatusDto;
 import org.dimensinfin.eveonline.neocom.infinity.backend.market.domain.MarketData;
 import org.dimensinfin.eveonline.neocom.loyalty.domain.LoyaltyServiceConfiguration;
 import org.dimensinfin.eveonline.neocom.loyalty.persistence.LoyaltyOfferEntity;
@@ -16,6 +17,11 @@ import retrofit2.http.PATCH;
 import retrofit2.http.Path;
 
 public interface UniverseApiV1 {
+	// - G E T T E R S   &   S E T T E R S
+	@Headers({ "Content-Type: application/json" })
+	@GET("/api/v1/public/server/status")
+	Call<ServerStatusDto> getServerStatus();
+
 	@Headers({ "Content-Type: application/json" })
 	@GET("/api/v1/public/loyalty/corporations/{corporationId}")
 	Call<List<LoyaltyOfferEntity>> getLoyaltyRecommendedOfferForCorporation( @Path("corporationId") final Integer corporationId );

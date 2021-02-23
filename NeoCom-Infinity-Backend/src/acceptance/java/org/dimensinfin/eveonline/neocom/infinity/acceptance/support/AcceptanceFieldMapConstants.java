@@ -58,9 +58,13 @@ public class AcceptanceFieldMapConstants {
 	public static final String FITTING_INFO_HULL = "hull";
 	public static final String FITTING_INFO_HULL_ACTION = "hullAction";
 
+	public static final String SERVER_STATUS_SERVER = "server";
 	public static final String SERVER_STATUS_PLAYERS = "players";
-	public static final String SERVER_SERVER_VERSION = "server_version";
+	public static final String SERVER_SERVER_BACKENDVERSION = "backendVersion";
+	public static final String SERVER_SERVER_SDEVERSION = "SDEVersion";
 	public static final String SERVER_START_TIME = "start_time";
+	public static final String SERVER_START_AGO = "startAgo";
+	public static final String SERVER_NEXT_DOWNTIME = "nextDowntime";
 
 	public static final String MARKET_REGION_ID = "marketRegionId";
 

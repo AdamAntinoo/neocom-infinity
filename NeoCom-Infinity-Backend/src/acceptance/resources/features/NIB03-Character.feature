@@ -1,8 +1,8 @@
 @NIB03 @Character
-Feature: [STORY] This feature set includes the new endpoints under the /pilot.
+Feature: [NIB03] This feature set includes the new endpoints under the /pilot.
 
-  There is an endpoint to get the public data available for a Pilot.
-  There are some endpoints to get Fittings. The list and a detailed processed data for fitting build.
+  [STORY] There is an endpoint to get the public data available for a Pilot.
+  [STORY] There is another authenticated endpoint to get the Pilot information.
 
   Background:
     Given "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6OTgzODQ3MjYsImFjY291bnROYW1lIjoiVGVzdGluZyBDaGFyYWN0ZXIgQWNjb3VudCIsImlzcyI6Ik5lb0NvbS5JbmZpbml0eS5CYWNrZW5kIiwidW5pcXVlSWQiOiJ0cmFucXVpbGl0eS45MzgxMzMxMCIsInBpbG90SWQiOjkzODEzMzEwfQ.E7gm6lbTZj07pFI-s5yz7InzAPtgYKM2VyZR5z_5j81KGJ4OJVFT_Z-_0n3TKPpz1wbL6TYwbQ07zSQE9hfGcg" authorization token
