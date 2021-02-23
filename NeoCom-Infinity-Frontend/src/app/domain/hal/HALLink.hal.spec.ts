@@ -5,10 +5,8 @@ import { TestBed } from '@angular/core/testing'
 import { async } from '@angular/core/testing'
 import { HttpTestingController } from '@angular/common/http/testing'
 // - PROVIDERS
-import { SupportIsolationService } from '@app/testing/SupportIsolation.service'
 // - DOMAIN
-import { HALLink } from './HALLink.hal'
-import { EveItemDto } from '@domain/core/dto/EveItemDto.dto'
+import { SupportIsolationService } from '@app/testing/SupportIsolation.service'
 import { SupportHALResolver } from '@app/testing/SupportHALResolver.service'
 import { HALResolver } from '@app/services/HALResolver.service'
 import { HttpClient } from '@angular/common/http'
@@ -16,7 +14,7 @@ import { RouteMockUpComponent } from '@app/testing/RouteMockUp.component';
 import { routes } from '@app/testing/RouteMockUp.component';
 import { IsolationService } from '@innovative/services/isolation.service'
 
-describe('CLASS HALLink [Module: HAL]', () => {
+xdescribe('CLASS HALLink [Module: HAL]', () => {
     let isolation: SupportIsolationService
     let resolver: SupportHALResolver
 

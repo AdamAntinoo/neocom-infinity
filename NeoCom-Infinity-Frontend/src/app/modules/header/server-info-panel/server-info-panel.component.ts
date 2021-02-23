@@ -57,4 +57,12 @@ export class ServerInfoPanelComponent extends BackgroundEnabledComponent impleme
         if (null != this.serverInfo) return this.serverInfo.nextDowntime
         else return '-'
     }
+    public getBackendVersion(): string {
+        if (null != this.serverInfo) return this.serverInfo.backendVersion
+        else return '-'
+    }
+    public getSDEversion(): string {
+        if (null != this.serverInfo) return this.serverInfo.SDEVersion
+        else return '-'
+    }
 }

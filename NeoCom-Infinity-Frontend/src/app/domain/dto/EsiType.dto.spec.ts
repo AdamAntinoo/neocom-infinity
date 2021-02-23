@@ -13,7 +13,7 @@ import { EsiTypeDto } from "./EsiType.dto"
 import { IsolationService } from '@innovative/services/isolation.service'
 
 describe('CLASS EsiTypeDto [Module: DOMAIN.DTO]', () => {
-    let halResolver : SupportHALResolver
+    let halResolver: SupportHALResolver
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -27,7 +27,7 @@ describe('CLASS EsiTypeDto [Module: DOMAIN.DTO]', () => {
                 { provide: HALResolver, useClass: SupportHALResolver }
             ]
         }).compileComponents()
-        halResolver=TestBed.inject<SupportHALResolver>(SupportHALResolver)
+        halResolver = TestBed.inject<SupportHALResolver>(SupportHALResolver)
     })
 
     // - C O N S T R U C T I O N   C O N T R A C T
@@ -64,5 +64,5 @@ describe('CLASS EsiTypeDto [Module: DOMAIN.DTO]', () => {
             expect(esiType).toBeDefined()
             expect(esiType.marketData.typeId).toBe(11535)
         })
-   })
+    })
 })

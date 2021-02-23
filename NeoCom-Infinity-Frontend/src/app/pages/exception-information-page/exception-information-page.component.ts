@@ -7,7 +7,7 @@ import { AppStoreService } from '@app/services/appstore.service';
 // - DOMAIN
 import { BackendService } from '@app/services/backend.service';
 import { environment } from '@env/environment';
-import { ServerStatus } from '@app/domain/ServerStatus.domain';
+import { ServerStatus } from '@domain/esi/ServerStatus.domain';
 import { NeoComException } from '@innovative/domain/NeoComException';
 
 @Component({

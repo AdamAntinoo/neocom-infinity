@@ -24,7 +24,7 @@ export class TestSelectable implements ISelectable {
         this.selectState = false
     }
 }
-fdescribe('CLASS SingleSelectionManager [Module: INNOVATIVE-CORE]', () => {
+describe('CLASS SingleSelectionManager [Module: INNOVATIVE-CORE]', () => {
     let isolation: SupportIsolationService
 
     beforeEach(() => {
