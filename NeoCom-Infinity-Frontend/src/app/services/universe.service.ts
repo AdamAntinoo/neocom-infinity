@@ -5,9 +5,11 @@ import { map } from 'rxjs/operators'
 import { environment } from '@env/environment'
 // - SERVICES
 import { UniverseHttpWrapper } from './universe.httpwrapper'
+import { HALResolver } from './HALResolver.service'
 // - DOMAIN
 import { EsiType } from '@domain/esi/EsiType.esi'
 import { PlatformConstants } from '@env/PlatformConstants'
+import { EsiTypeDto } from '@domain/dto/EsiType.dto'
 
 @Injectable({
     providedIn: 'root'
@@ -15,7 +17,9 @@ import { PlatformConstants } from '@env/PlatformConstants'
 export class UniverseService {
     protected UNIVERSEV1: string
 
-    constructor(protected httpUniverseService: UniverseHttpWrapper) {
+    constructor(
+        protected httpUniverseService: UniverseHttpWrapper,
+        protected halResolver: HALResolver) {
         this.UNIVERSEV1 = environment.serverName + '/api/v1' + '/universe'
     }
 
@@ -25,7 +29,7 @@ export class UniverseService {
         const request = PlatformConstants.UNIVERSE_V1 + "/types/" + typeId
         return this.httpUniverseService.wrapHttpGETCall(request)
             .pipe(map((data: any) => {
-                return new EsiType(data)
+                return new EsiTypeDto(data).transform(this.halResolver)
             }))
     }
 }
