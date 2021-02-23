@@ -11,7 +11,7 @@ import { SupportIsolationService } from '@app/testing/SupportIsolation.service';
 import { environment } from '@env/environment';
 
 import { ServerInfoPanelComponent } from './server-info-panel.component';
-import { ServerStatus } from '@app/domain/ServerStatus.domain';
+import { ServerStatus } from '@domain/esi/ServerStatus.domain';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BackendService } from '@app/services/backend.service';
 import { SupportBackendService } from '@app/testing/SupportBackend.service';

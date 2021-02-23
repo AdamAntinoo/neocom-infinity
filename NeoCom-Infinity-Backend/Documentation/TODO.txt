@@ -1,6 +1,8 @@
 # Classes pending Unit Test completion
 
 ## 0.20.0
+* ServerDataControllerV1
+* ServerDataServiceV1
 * AuthorizationTokenResponseSerializer
 * GetUniverseCategoriesCategoryIdOkSerializer
 

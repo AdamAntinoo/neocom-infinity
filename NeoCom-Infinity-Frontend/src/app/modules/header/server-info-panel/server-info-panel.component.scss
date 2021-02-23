@@ -1,34 +1,44 @@
-.loading-label {
-    font-family: 'Elemental';
-    color: orange
-}
-
 .server-info-panel {
     padding: 2px;
     height: 62px;
+    opacity: 1.0;
 }
 
-#server-name {
+.server-name {
     font-size: 14px;
     font-weight: 700;
     color: orange;
 }
 
-#server-status {
+.server-status {
     float: right;
     color: green;
     font-weight: 700;
     margin-right: 2px;
 }
 
-#server-capsuleers {
+.server-capsuleers {
     float: right;
     margin-right: 2px;
 }
 
-#server-laststart {
-    float: right;
+.server-nextdowntime {
     font-size: 12px;
-    font-weight: 100;
+    font-weight: 400;
+    margin-top: 4px;
     margin-right: 2px;
+}
+
+.preparing-message {
+    color: black;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 12px;
+    margin-bottom: 2px;
+    border: 1px solid grey;
+    border-radius: 3px;
+    padding: 2px;
+    padding: 2px 20px 2px 20px;
+    background-color: lightgray;
+    opacity: 0.6;
 }

@@ -5,7 +5,7 @@ import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.Validator;
-import org.dimensinfin.eveonline.neocom.infinity.universe.client.v1.ServerStatus;
+import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.ServerStatus;
 
 import static org.dimensinfin.eveonline.neocom.infinity.acceptance.support.AcceptanceFieldMapConstants.SERVER_SERVER_VERSION;
 import static org.dimensinfin.eveonline.neocom.infinity.acceptance.support.AcceptanceFieldMapConstants.SERVER_START_TIME;

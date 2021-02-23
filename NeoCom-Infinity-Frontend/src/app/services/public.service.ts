@@ -14,6 +14,7 @@ import { HALResolver } from './HALResolver.service'
 import { LoyaltyCorporationV1 } from '@app/modules/loyalty/domain/LoyaltyCorporationV1.domain'
 import { LoyaltyOfferV1 } from '@app/modules/loyalty/domain/LoyaltyOfferV1.domain'
 import { LoyaltyOfferDto } from '@app/modules/loyalty/dto/LoyaltyOfferDto.dto'
+import { ServerStatus } from '@domain/esi/ServerStatus.domain'
 
 @Injectable({
     providedIn: 'root'
@@ -28,8 +29,16 @@ export class PublicService extends UniverseService {
         this.PUBLICV1 = environment.serverName + '/api/v1' + '/public'
     }
 
-    // - U N I V E R S E   A P I
-    public apiv1_GetPublicPilotData(pilotId: number): Observable<PublicPilotV1> {
+    // - P U B L I C   A P I
+    public apiV1_GetServerStatus(): Observable<ServerStatus> {
+        const request = this.PUBLICV1 + '/server/status'
+        return this.httpUniverseService.wrapHttpGETCall(request)
+            .pipe(map((data: any) => {
+                const response = new ServerStatus(data)
+                return response
+            }))
+    }
+   public apiv1_GetPublicPilotData(pilotId: number): Observable<PublicPilotV1> {
         const request = this.PUBLICV1 + '/pilots/' + pilotId
         return this.httpUniverseService.wrapHttpGETCall(request)
             .pipe(map((data: any) => {
