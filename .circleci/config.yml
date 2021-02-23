@@ -105,7 +105,7 @@ jobs:
       - checkout
       - run:
           name: NEOCOM-FRONTEND - Validate the CI machine configuration
-          working_directory: NeoCom-Infinity-Backend
+          working_directory: NeoCom-Infinity-Frontend
           environment:
             DOCKERIZE_VERSION: v0.3.0
           command: |
@@ -301,6 +301,8 @@ jobs:
             git add *.gradle
             git add *.properties
             git add gradle
+            git add gradlew
+            git add gradlew.bat
             git add src
             git add build/libs
             git add build/resources/main/db
