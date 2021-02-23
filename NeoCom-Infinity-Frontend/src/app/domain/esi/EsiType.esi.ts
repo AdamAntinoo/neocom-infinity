@@ -20,7 +20,7 @@ export class EsiType extends EsiNode {
     public marketData: EsiMarketData
 
     constructor(values: Object = {}) {
-        super()
+        super(values)
         // Warning. References objects can come as links so should be cleared on construction
         this.marketData = undefined
     }

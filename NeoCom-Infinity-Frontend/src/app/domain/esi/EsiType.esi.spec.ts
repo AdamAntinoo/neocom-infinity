@@ -71,7 +71,7 @@ describe('CLASS EsiType [Module: DOMAIN.ESI]', () => {
             expect(testType.volume).toBe(1.0)
             expect(testType.isBlueprint).toBeFalse()
             expect(testType.typeIconURL).toBe("https://image.eveonline.com/Type/11535_64.png")
-            expect(testType.marketData).toBeDefined()
+            expect(testType.marketData).toBeUndefined()
         })
     })
     // - G E T T E R   C O N T R A C T

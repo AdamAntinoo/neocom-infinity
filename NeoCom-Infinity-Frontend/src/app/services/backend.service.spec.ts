@@ -101,20 +101,6 @@ describe('SERVICE BackendService [Module: APP]', () => {
                 })
         })
     })
-    describe('Code Coverage Phase [apiGetServerInfo_v1]', () => {
-        it('apiGetServerInfo_v1.success: get the server info from the mocked server', () => {
-            service.apiGetServerInfo_v1(new ResponseTransformer()
-                .setDescription('Do response transformation to "ServerStatus".')
-                .setTransformation((data: any): ServerStatus => {
-                    return new ServerStatus(data)
-                }))
-                .subscribe(response => {
-                    console.log('--[apiGetServerInfo_v1]> response: ' + JSON.stringify(response))
-                    expect(response).toBeDefined()
-                    expect(response.getJsonClass()).toContain('ServerStatus')
-                })
-        })
-    })
     describe('Code Coverage Phase [apiGetCorporationPublicData_v1]', () => {
         it('apiGetCorporationPublicData_v1.success: get the corporation data from the mocked server', () => {
             const responseJson = isolationService.directAccessMockResource('corporations')

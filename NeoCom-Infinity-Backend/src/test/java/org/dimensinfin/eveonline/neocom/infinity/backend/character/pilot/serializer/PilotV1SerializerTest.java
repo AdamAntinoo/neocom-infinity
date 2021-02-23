@@ -66,7 +66,6 @@ public class PilotV1SerializerTest {
 		this.bloodlineData = Mockito.mock( GetUniverseBloodlines200Ok.class );
 		this.raceData = Mockito.mock( GetUniverseRaces200Ok.class );
 		this.corporation = Mockito.mock( PublicCorporationV1.class );
-		//		this.location = Mockito.mock( SpaceLocation.class );
 		this.shipType = Mockito.mock( EsiType.class );
 		this.esiPilotShip = Mockito.mock( GetCharactersCharacterIdShipOk.class );
 	}
