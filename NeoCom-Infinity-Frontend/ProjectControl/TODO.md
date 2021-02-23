@@ -1,4 +1,5 @@
 # Typescript classes to unit test
+* HALLink
 * TokenAuthorizationGuard
 * AuthenticationService
 * AuthenticationStateResponse
@@ -9,8 +10,7 @@
 * TradeHistoryData
 * V1LoyaltyOfferRenderComponent
 * LoyaltyOfferV1
-* EsiType
-* EsiMarketData
+* EsiMarketData.esi
 
 ## Secondary classes to test
 * HALResolver

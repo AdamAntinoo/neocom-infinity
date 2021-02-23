@@ -1,6 +1,6 @@
 package org.dimensinfin.eveonline.neocom.infinity.support.rest;
 
-import org.dimensinfin.eveonline.neocom.infinity.universe.client.v1.ServerStatus;
+import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.ServerStatus;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

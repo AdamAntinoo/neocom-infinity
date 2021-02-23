@@ -9,8 +9,6 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
-import org.springframework.hateoas.LinkRelation;
-import org.springframework.hateoas.mediatype.hal.HalConfiguration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.filter.ForwardedHeaderFilter;
 
@@ -37,15 +35,15 @@ public class NeoComInfinityBackendApplication {
 		return new ForwardedHeaderFilter();
 	}
 
-	@Bean
-	public HalConfiguration globalPolicy() {
-		return new HalConfiguration()
-				.withRenderSingleLinks( HalConfiguration.RenderSingleLinks.AS_ARRAY )
-				.withRenderSingleLinksFor(
-						LinkRelation.of( "prev" ), HalConfiguration.RenderSingleLinks.AS_SINGLE )
-				.withRenderSingleLinksFor(
-						LinkRelation.of( "next" ), HalConfiguration.RenderSingleLinks.AS_SINGLE );
-	}
+	//	@Bean
+	//	public HalConfiguration globalPolicy() {
+	//		return new HalConfiguration()
+	//				.withRenderSingleLinks( HalConfiguration.RenderSingleLinks.AS_ARRAY )
+	//				.withRenderSingleLinksFor(
+	//						LinkRelation.of( "prev" ), HalConfiguration.RenderSingleLinks.AS_SINGLE )
+	//				.withRenderSingleLinksFor(
+	//						LinkRelation.of( "next" ), HalConfiguration.RenderSingleLinks.AS_SINGLE );
+	//	}
 
 	private static final class LogoPrinter {
 		public void print() {

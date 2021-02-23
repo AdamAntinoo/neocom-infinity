@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.ITargetConfiguration;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.api.UniverseApiV1;
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.dto.ServerStatusDto;
 import org.dimensinfin.eveonline.neocom.infinity.backend.market.domain.MarketData;
 import org.dimensinfin.eveonline.neocom.infinity.support.core.CommonFeignClient;
 import org.dimensinfin.eveonline.neocom.loyalty.domain.LoyaltyServiceConfiguration;
@@ -22,6 +23,22 @@ public class UniverseFeignClientV1 extends CommonFeignClient {
 	// - C O N S T R U C T O R S
 	public UniverseFeignClientV1( final @NotNull ITargetConfiguration acceptanceTargetConfig ) {
 		super( acceptanceTargetConfig );
+	}
+
+	// - G E T T E R S   &   S E T T E R S
+	public ResponseEntity<ServerStatusDto> getServerStatus() throws IOException {
+		final String ENDPOINT_MESSAGE = "Request the current ESI and backend status.";
+		final Response<ServerStatusDto> response = new Retrofit.Builder()
+				.baseUrl( this.acceptanceTargetConfig.getBackendServer() )
+				.addConverterFactory( GSON_CONVERTER_FACTORY )
+				.build()
+				.create( UniverseApiV1.class )
+				.getServerStatus()
+				.execute();
+		if (response.isSuccessful()) {
+			LogWrapper.info( ENDPOINT_MESSAGE );
+			return new ResponseEntity<>( response.body(), HttpStatus.valueOf( response.code() ) );
+		} else throw new IOException( ENDPOINT_MESSAGE + " Failed." );
 	}
 
 	public ResponseEntity<List<LoyaltyOfferEntity>> getLoyaltyRecommendedOfferForCorporation( final Integer corporationId ) throws IOException {

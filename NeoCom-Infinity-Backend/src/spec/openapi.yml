@@ -219,6 +219,20 @@ paths:
                 $ref: '#/components/schemas/CorporationModel'
 
   # - P U B L I C
+  /api/v1/public/server/status:
+    get:
+      tags:
+        - public
+      operationId: getServerStatus
+      responses:
+        200:
+          description: >
+            Gets the NeoCom adaptation for a Character public data that is accessible from the ESI server without authentication.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerStatus'
+
   /api/v1/public/pilots/{pilotId}:
     get:
       tags:
@@ -635,6 +649,55 @@ components:
             94726838
 
     # - U N I V E R S E
+    ServerStatus:
+      type: object
+      required:
+      properties:
+        server:
+          type: string
+          description: >
+            The server selector. Once there were different ESI data sources. Now there is only the production 'Tranquility' server.
+          default:
+            Tranquility
+          example:
+            Tranquility
+        players:
+          type: integer
+          format: int32
+          description: >
+            The current number of players connected to the server.
+          example:
+            26172
+        backendVersion:
+          type: string
+          description: >
+            The backend server version identifier that should match the production tag.
+          example:
+            0.20.0
+        SDEVersion:
+          type: string
+          description: >
+            The SDE repository content version. Initially this is the date where the database was generated but should match the fuzzwork SDE
+            identifier.
+          example:
+            20201231-APP
+        start_time:
+          type: string
+          format: 'date-time'
+          description: >
+            The formatted date time when the Tranquility server was last started.
+        startAgo:
+          type: string
+          description: >
+            A text description of the time ago that the Tranquility server was started.
+          example:
+            3 hours, 28 minutes and 33 seconds ago
+        nextDowntime:
+          type: string
+          description: >
+            Textual description of the time that if left until the next downtime.
+          example:
+            Downtime in 19 hours, 27 minutes and 15 seconds
     MarketData:
       type: object
       required:

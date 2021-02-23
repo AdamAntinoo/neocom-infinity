@@ -14,6 +14,7 @@ import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.authorizatio
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.character.rest.v1.CharacterFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.character.rest.v2.CharacterFeignClientV2;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.dto.PilotDto;
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.dto.ServerStatusDto;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.industry.rest.v1.IndustryFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.market.rest.v1.MarketFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.universe.rest.v1.UniverseFeignClientV1;
@@ -130,6 +131,11 @@ public class WhenTheRequestIsProcessed extends StepSupport {
 	public void the_get_pilot_data_request_with_pilot( final Integer pilotIdentifier ) throws IOException {
 		this.neocomWorld.setPilotId( pilotIdentifier );
 		this.processRequestByType( RequestType.GET_PILOT_DATA_ENDPOINT_NAME );
+	}
+
+	@When("the Get Server Status request is processed")
+	public void the_get_server_status_request_is_processed() throws IOException {
+		this.processRequestByType( RequestType.GET_SERVER_STATUS );
 	}
 
 	@When("the Store Credential request is processed")
@@ -269,6 +275,11 @@ public class WhenTheRequestIsProcessed extends StepSupport {
 				Assertions.assertNotNull( pilotDataResponseEntity );
 				this.neocomWorld.setPilotDataResponseEntity( pilotDataResponseEntity );
 				return pilotDataResponseEntity;
+			case GET_SERVER_STATUS:
+				final ResponseEntity<ServerStatusDto> serverStatusResponseEntity = this.universeFeignClientV1.getServerStatus();
+				Assertions.assertNotNull( serverStatusResponseEntity );
+				this.neocomWorld.setServerStatusResponseEntity( serverStatusResponseEntity );
+				return serverStatusResponseEntity;
 			default:
 				throw new NotImplementedException( "Request {} not implemented.", requestType.name() );
 		}
