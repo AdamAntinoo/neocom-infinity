@@ -17,13 +17,18 @@ export class EsiType extends EsiNode {
     public volume: number
     public isBlueprint: boolean = false
     public typeIconURL: string
-    public marketData: HALLink<EsiMarketData>
+    public marketData: EsiMarketData
+
+    constructor(values: Object = {}) {
+        super()
+        // Warning. References objects can come as links so should be cleared on construction
+        this.marketData = undefined
+    }
 
     public decode() {
         if (this.group) this.group = new EsiGroup(this.group)
         if (this.category) this.category = new EsiCategory(this.category)
         if (this.type) this.type = new UniverseType(this.type)
-        // if (this.marketData) this.marketData = new HALLink<EsiMarketData>(this.marketData)
     }
     // - G E T T E R S
     public getName(): string {

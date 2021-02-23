@@ -20,11 +20,11 @@ export class SupportHALResolver extends HALResolver {
         return target
     }
     public resolve<T>(link: HALLink<T>): Observable<any> {
-        console.log('>[HALResolver.resolve]>Link: ' + link)
+        console.log('>[HALResolver.resolve]>Link: ' + link.getRelation())
         // Add mandatory headers to access backend
         return new Observable((observer) => {
             try {
-                let data = this.decodeRequestPath('GET:' + link);
+                let data = this.decodeRequestPath('GET:' + link.getHref());
                 if (null == data)
                     observer.next('');
                 else
@@ -53,11 +53,15 @@ export class SupportHALResolver extends HALResolver {
             if (request.includes('universe/items'))
                 return this.directAccessMockResource('eveitem.32880');
         }
+        if (request.includes('GET')) {
+            if (request.includes('universe/market/consolidated'))
+                return this.directAccessMockResource('market.consolidated.11535');
+        }
     }
     private directAccessMockResource(dataIdentifier: string): any {
         console.log(">[SupportHALResolver.directAccessMockResource]> dataIdentifier: " + dataIdentifier);
         const MOCK_BASE_LOCATION = '../../../support/backend-simulation/packed-responses/'
-        // Paths need to be defined on source. Constants are not valid
+        // Paths need to be defined on source. Constants are not interpolated to their value.
         let rawdata = require('../../../support/backend-simulation/packed-responses/' + dataIdentifier + '.json');
         console.log(">[SupportHALResolver.directAccessMockResource]> path: " +
             MOCK_BASE_LOCATION + dataIdentifier + '.json');

@@ -24,7 +24,7 @@ export class PublicService extends UniverseService {
     constructor(
         protected httpUniverseService: UniverseHttpWrapper,
         protected halResolver: HALResolver) {
-        super(httpUniverseService)
+        super(httpUniverseService, halResolver)
         this.PUBLICV1 = environment.serverName + '/api/v1' + '/public'
     }
 
