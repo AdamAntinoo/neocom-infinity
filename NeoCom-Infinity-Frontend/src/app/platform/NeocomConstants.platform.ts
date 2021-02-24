@@ -7,5 +7,6 @@ export const NeoComConstants = {
     PILOT_ICON_URL_PREFIX: 'https://image.eveonline.com/Character/',
     PILOT_ICON_URL_SUFFIX: '_256.jpg',
     CORPORATION_ICON_URL_PREFIX: 'http://image.eveonline.com/Corporation/',
-    CORPORATION_ICON_URL_SUFFIX: '_64.png'
+    CORPORATION_ICON_URL_SUFFIX: '_64.png',
+    ESIDATASOURCE: 'Tranquility'
 }

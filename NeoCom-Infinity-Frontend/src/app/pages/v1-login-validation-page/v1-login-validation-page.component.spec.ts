@@ -28,7 +28,7 @@ import { LoginValidationProgressComponent } from '@app/panels/login-validation-p
 import { LoginValidationExceptionComponent } from '@app/panels/login-validation-exception/login-validation-exception.component';
 import { AppInfoPanelComponent } from '@app/modules/header/app-info-panel/app-info-panel.component';
 
-xdescribe('PAGE LoginValidationPageComponent [Module: CORE]', () => {
+describe('PAGE LoginValidationPageComponent [Module: CORE]', () => {
     let component: V1LoginValidationPageComponent;
     let fixture: ComponentFixture<V1LoginValidationPageComponent>;
     let params: Subject<Params> = new Subject<Params>();
@@ -118,7 +118,7 @@ xdescribe('PAGE LoginValidationPageComponent [Module: CORE]', () => {
     });
 
     // - C O D E   C O V E R A G E   P H A S E
-    describe('Code Coverage Phase [parameterValidation]', /*fakeAsync(*/() => {
+    xdescribe('Code Coverage Phase [parameterValidation]', /*fakeAsync(*/() => {
         it('parameterValidation: validate the parameters received on the route', () => {
             let componentAsAny = component as any;
             componentAsAny.paramCode = '-ANY-CODE-';

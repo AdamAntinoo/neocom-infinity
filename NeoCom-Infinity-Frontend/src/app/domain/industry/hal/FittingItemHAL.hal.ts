@@ -46,11 +46,13 @@ export class FittingItemHAL extends HALNode {
     // }
     public async getItem(): Promise<EveItemDto> {
         console.log('Resolver: ' + this.getResolver())
+        // TODO Replace this by the download HALLink replacement
         return await this.item.access(this.getResolver())
     }
     public accessItem(): Promise<EveItemDto> {
         // console.log('Resolver: ' + this.getResolver())
-        return this.item.access(this.getResolver())
+         // TODO Replace this by the download HALLink replacement
+         return this.item.access(this.getResolver())
     }
     public async getName2(): Promise<string> {
         const halItem: EveItemDto = new EveItemDto(await this.getItem())

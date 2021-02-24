@@ -27,6 +27,7 @@ export class SupportIsolationService {
         this.storage.set(_key, null);
     }
     public getFromSession(_key: string): any {
+        console.log('--[SupportIsolationService.getFromSession]> Retrieving: ' + _key + '=' + this.storage.get(_key));
         return this.storage.get(_key);
     }
     public setToSession(_key: string, _content: any): any {

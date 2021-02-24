@@ -18,6 +18,8 @@ import { SupportAppStoreService } from './SupportAppStore.service';
 import { Pilot } from '@app/domain/Pilot.domain';
 import { IsolationService } from '@innovative/services/isolation.service';
 import { AuthenticationStateResponse } from '@domain/dto/AuthenticationStateResponse.dto';
+import { PlatformConstants } from '@env/PlatformConstants';
+import { NeoComConstants } from '@app/platform/NeocomConstants.platform';
 
 @Injectable({
     providedIn: 'root'
@@ -30,7 +32,7 @@ export class SupportBackendService {
     constructor(
         public isolation: IsolationService,
         protected appStoreService: SupportAppStoreService) {
-        this.APIV1 = environment.serverName + environment.apiVersion1;
+        this.APIV1 = environment.serverName + PlatformConstants.NEOCOM_V1;
     }
 
     // - E X C E P T I O N S
@@ -59,15 +61,13 @@ export class SupportBackendService {
                 observer.complete()
             })
     }
-    public apiValidateAuthorizationToken_v1(code: string, state: string): Observable<AuthenticationStateResponse> {
-        console.log(">[BackendService.apiValidateAuthorizationToken_v1]> code: " + code);
+    public apiv1_ValidateAuthorizationToken(code: string, state: string): Observable<AuthenticationStateResponse> {
+        console.log(">[BackendService.apiv1_ValidateAuthorizationToken]> code: " + code);
         // Construct the request to call the backend.
         let request = 'server-name' + 'api-v1' + "/validateAuthorizationToken" +
             "/code/" + code +
             "/state/" + state +
-            "/datasource/" + environment.ESIDataSource.toLowerCase();
-        // console.log("--[BackendService.apiValidateAuthorizationToken_v1]> request = " + request);
-        // console.log("--[BackendService.backendReserveAppointment]> body = " + JSON.stringify(patient));
+            "/datasource/" + NeoComConstants.ESIDATASOURCE.toLowerCase();
         return Observable.create((observer) => {
             observer.next(new AuthenticationStateResponse(
                 {

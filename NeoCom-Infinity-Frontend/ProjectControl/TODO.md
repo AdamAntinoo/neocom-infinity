@@ -1,10 +1,4 @@
 # Typescript classes to unit test
-* HALLink
-* TokenAuthorizationGuard
-* AuthenticationService
-* AuthenticationStateResponse
-* V1StartPageComponent
-* V1LoginValidationPageComponent
 * DashboardHomePageComponent
 * AppStoreService
 * TradeHistoryData
@@ -21,8 +15,12 @@
 * V2PilotRenderComponent
 * V1PilotPanelComponent
 
+
 ## Secondary classes to test
 * HALResolver
+* TokenAuthorizationGuard
+* AuthenticationService
+* AuthenticationStateResponse
 
 ## Create a solution for alternate HTTP responses
 * v1-start-page
