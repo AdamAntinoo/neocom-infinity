@@ -1,9 +1,6 @@
 // - CORE
 import { Component } from '@angular/core'
 import { OnInit } from '@angular/core'
-import { Input } from '@angular/core'
-import { HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
 // - SERVICES
 import { environment } from '@env/environment';
 import { IsolationService } from '@innovative/services/isolation.service';
@@ -11,12 +8,7 @@ import { BackendService } from '@app/services/backend.service'
 // - INNOVATIVE
 import { BackgroundEnabledComponent } from '@innovative/components/background-enabled/background-enabled.component';
 // - DOMAIN
-import { PilotV2 } from '@domain/character/PilotV2.domain'
-import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer';
-import { HALResolver } from '@app/services/HALResolver.service';
 import { NeoComCredential } from '@domain/NeoComCredential.domain';
-import { Corporation } from '@domain/Corporation.domain';
-import { AllianceV1 } from '@domain/corporation/AllianceV1.domain';
 import { NeoComFeature } from '@domain/ui/NeoComFeature.domain';
 import { NeoComException } from '@innovative/domain/NeoComException';
 import { PlatformConstants } from '@env/PlatformConstants';
@@ -37,21 +29,10 @@ import { PlatformConstants } from '@env/PlatformConstants';
     styleUrls: ['./dashboard-home-page.component.scss']
 })
 export class DashboardHomePageComponent extends BackgroundEnabledComponent implements OnInit {
-    private pilot: PilotV2
-    public corporation: Corporation
-    // private ceo: PilotV2
-    // private alliance: AllianceV1
-    public planetaryFeature: NeoComFeature // The feature to open the dashboard page for Planetary
-    public blueprintListFeature: NeoComFeature // The feature to open the list of current pilot blueprints
     public features: NeoComFeature[] = []
-
     private credential: NeoComCredential
-    public corpFuture: Promise<Corporation>
 
-    constructor(
-        protected isolationService: IsolationService,
-        protected backendService: BackendService,
-        protected halResolver: HALResolver) {
+    constructor(protected isolationService: IsolationService) {
         super()
         // Build the page features.
         this.features.push(new NeoComFeature({
@@ -81,12 +62,8 @@ export class DashboardHomePageComponent extends BackgroundEnabledComponent imple
     }
 
     public ngOnInit() {
-        this.refresh()
-    }
-    protected refresh(): void {
         try {
             this.credential = this.getCredential()
-            // this.downloadPilotPublicData(this.getPilotId())
         } catch (exception) {
             this.exception = exception
         }
@@ -94,64 +71,11 @@ export class DashboardHomePageComponent extends BackgroundEnabledComponent imple
 
     // - I N T E R A C T I O N S
     public getPilotId(): number {
-        // if (null != this.credential) 
         return this.getCredential().getAccountId()
-        // else throw new NeoComException()
-        //     .withTitle('Rendering Dashboard Page. No Credential Found.')
-        //     .withMessage('Unable to display Pilot data. There is no credential available to access.')
-        //     .withCause('Unexpected Exception. At this point there should exist a local session valid credential.')
     }
-    // public downloadPilotPublicData(pilotId: number): void {
-    //     console.log(">[DashboardHomePageComponent.downloadPilotPublicData]")
-    //     this.backendConnections.push(
-    //         this.backendService.apiGetPilotPublicData_v2(pilotId,
-    //             new ResponseTransformer().setDescription('Transform response to a HATEOAS based Pilot Public Data instance.')
-    //                 .setTransformation((entrydata: any): PilotV2 => {
-    //                     return this.halResolver.connectResolver(new PilotV2(entrydata)) as PilotV2
-    //                 }))
-    //             .subscribe((response: PilotV2) => {
-    //                 this.pilot = response
-    //                 // this.testPromise()
-    //                 this.corpFuture = this.pilot.getCorporation()
-    //                 const i = 6
-    //                 // this.downloadCorporation(this.pilot.getCorporationId())
-    //                 // TODO - Create the code to download the CEO and the alliance using also HAL code.
-    //                 // this.download
-    //                 // this.ceo = this.corporation.getCeo()
-    //                 // this.alliance = this.corporation.getAlliance()
-    //             }, (error) => {
-    //                 console.log('-[DashboardHomePageComponent.downloadPilotPublicData.exception]> Error message: ' +
-    //                     JSON.stringify(error.error))
-    //                 if (environment.showexceptions)
-    //                     if (error instanceof HttpErrorResponse)
-    //                         this.isolationService.processException(error)
-    //             })
-    //     )
-    //     console.log("<[DashboardHomePageComponent.downloadPilotPublicData]");
-    // }
-    // private downloadCorporation(corporationId: number): void {
-    //     console.log(">[DashboardHomePageComponent.downloadCorporation]")
-    //     // this.backendConnections.push(
-    //     //     this.pilot.getCorporation()
-    //     //         .subscribe((corporation: Corporation) => {
-    //     //             this.corporation = corporation
-    //     //         }, (error) => {
-    //     //             console.log('-[DashboardHomePageComponent.downloadCorporation.exception]> Error message: ' +
-    //     //                 JSON.stringify(error.error))
-    //     //             if (environment.showexceptions)
-    //     //                 if (error instanceof HttpErrorResponse)
-    //     //                     this.isolationService.processException(error)
-    //     //         })
-    //     // )
-    //     this.corpFuture = this.pilot.getCorporation()
-    // }
-    // public async testPromise() {
-    //     this.corpFuture = await this.pilot.getCorporation()
-    //     const i = 6
-    // }
     private getCredential(): NeoComCredential {
         const credentialJson = this.isolationService.getFromSession(PlatformConstants.CREDENTIAL_KEY)
-        // console.log('-[DashboardHomePageComponent.getCredential]> Credential data: ' + JSON.stringify(credentialJson))
+        console.log('Dashboard.getCredential>Credential at session: '+credentialJson)
         if (null == credentialJson)
             throw new NeoComException()
                 .withTitle('Rendering Dashboard Page. No Credential Found.')

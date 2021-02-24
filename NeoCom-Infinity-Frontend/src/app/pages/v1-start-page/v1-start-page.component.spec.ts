@@ -52,6 +52,7 @@ describe('PANEL V1StartPageComponent [Module: APP]', () => {
         fixture = TestBed.createComponent(V1StartPageComponent)
         component = fixture.componentInstance
     })
+
     // - C O N S T R U C T I O N   P H A S E
     describe('Construction Contract', () => {
         it('Should be created', () => {
@@ -61,6 +62,7 @@ describe('PANEL V1StartPageComponent [Module: APP]', () => {
             expect(component.validating).toBeTruthy()
         })
     })
+    
     // - O N I N I A T I Z A T I O N   P H A S E
     describe('On Initialization Phase', async () => {
         it('ngOnInit.success: validate the application session existence and validity', async () => {

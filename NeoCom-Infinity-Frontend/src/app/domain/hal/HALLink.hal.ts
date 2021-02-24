@@ -27,24 +27,6 @@ export class HALLink<T> {
     /** @deprecated */
     public access(resolver: HALResolver): Promise<T> {
         return null
-        // if (this.isDownloaded())
-        //     return new Observable<T>(subscriber => {
-        //         subscriber.next(this.target)
-        //         subscriber.complete()
-        //     }).toPromise()
-        // else {
-        //     return new Observable<T>(subscriber => {
-        //         if (null != resolver)
-        //             resolver.resolve(this.href)
-        //                 .subscribe((entrydata: any): void => {
-        //                     this.target = entrydata
-        //                     this.downloaded = true
-        //                     subscriber.next(this.target)
-        //                     subscriber.complete();
-        //                 })
-        //         else subscriber.next(this.target)
-        //     }).toPromise()
-        // }
     }
     // - G E T T E R S   &   S E T T E R S
     public isResolved(): boolean {

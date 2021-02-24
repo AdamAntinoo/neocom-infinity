@@ -1,56 +1,61 @@
 // - CORE
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA } from '@angular/core'
 // - TESTING
-import { async } from '@angular/core/testing';
-import { fakeAsync } from '@angular/core/testing';
-import { tick } from '@angular/core/testing';
-import { ComponentFixture } from '@angular/core/testing';
-import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { async } from '@angular/core/testing'
+import { fakeAsync } from '@angular/core/testing'
+import { tick } from '@angular/core/testing'
+import { ComponentFixture } from '@angular/core/testing'
+import { TestBed } from '@angular/core/testing'
+import { RouterTestingModule } from '@angular/router/testing'
 // - INNOVATIVE
-import { RouteMockUpComponent } from '@app/testing/RouteMockUp.component';
-import { routes } from '@app/testing/RouteMockUp.component';
-import { IsolationService } from '@innovative/services/isolation.service';
-import { HttpClientWrapperService } from '@innovative/services/httpclientwrapper.service';
-import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer';
+import { IsolationService } from '@innovative/services/isolation.service'
 // - PROVIDERS
-import { AppStoreService } from '@app/services/appstore.service';
-import { BackendService } from '@app/services/backend.service';
-import { SupportIsolationService } from '@app/testing/SupportIsolation.service';
-import { SupportAppStoreService } from '@app/testing/SupportAppStore.service';
-import { SupportBackendService } from '@app/testing/SupportBackend.service';
+import { SupportIsolationService } from '@app/testing/SupportIsolation.service'
+import { DashboardHomePageComponent } from './dashboard-home-page.component'
+import { PlatformConstants } from '@env/PlatformConstants'
+import { NeocomCredential } from '@domain/core/Credential.domain'
 
-import { AppInfoPanelComponent } from '@app/modules/header/app-info-panel/app-info-panel.component';
-import { ServerInfoPanelComponent } from '@app/modules/header/server-info-panel/server-info-panel.component';
-import { DashboardHomePageComponent } from './dashboard-home-page.component';
-
-xdescribe('PAGE DashboardHomePageComponent [Module: CORE]', () => {
-    let component: DashboardHomePageComponent;
-    let fixture: ComponentFixture<DashboardHomePageComponent>;
+describe('PAGE DashboardHomePageComponent [Module: CORE]', () => {
+    let component: DashboardHomePageComponent
+    let fixture: ComponentFixture<DashboardHomePageComponent>
+    // let isolationService: SupportIsolationService
 
     beforeEach(() => {
         TestBed.configureTestingModule({
             schemas: [NO_ERRORS_SCHEMA],
-            imports: [
-                RouterTestingModule.withRoutes(routes)
-            ],
             declarations: [
-                RouteMockUpComponent,
                 DashboardHomePageComponent,
-                AppInfoPanelComponent,
-                ServerInfoPanelComponent,
             ],
             providers: [
-                { provide: IsolationService, useClass: SupportIsolationService },
-                { provide: AppStoreService, useClass: SupportAppStoreService },
-                { provide: BackendService, useClass: SupportBackendService }
+                { provide: IsolationService, useClass: SupportIsolationService }
             ]
         })
-            .compileComponents();
-        fixture = TestBed.createComponent(DashboardHomePageComponent);
-        component = fixture.componentInstance;
-    });
-    it('should create', () => {
-        expect(component).toBeTruthy();
-    });
-});
+            .compileComponents()
+        fixture = TestBed.createComponent(DashboardHomePageComponent)
+        component = fixture.componentInstance
+        // isolationService = TestBed.inject<SupportIsolationService>(SupportIsolationService)
+    })
+
+    // - C O N S T R U C T I O N   P H A S E
+    describe('Construction Contract', () => {
+        it('Should be created', () => {
+            expect(component).toBeDefined('component has not been created.')
+        })
+        it('Initial state', () => {
+            expect(component.features).toBeDefined()
+            expect(component.features.length).toBe(3)
+        })
+    })
+
+    // - I N T E R A C T I O N S   P H A S E
+    xdescribe('Interactions Contract', () => {
+        it('getPilotId.success: get the pilot identifier contained on the credential', () => {
+            const isolationService = TestBed.inject<SupportIsolationService>(SupportIsolationService)
+            const identifier = isolationService.generateRandomNum(123456, 234567)
+            console.log('identifier=' + identifier)
+            isolationService.setToSession(PlatformConstants.CREDENTIAL_KEY, new NeocomCredential({ accountId: 123456 }))
+            const localComponent = TestBed.createComponent(DashboardHomePageComponent).componentInstance
+            expect(localComponent.getPilotId()).toBe(123456)
+        });
+    })
+})

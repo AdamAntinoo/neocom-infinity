@@ -39,7 +39,7 @@ describe('CLASS EsiType [Module: DOMAIN.ESI]', () => {
         })
     })
 
-    // - C O N S T R U C T I O N   C O N T R A C T
+    // - C O N S T R U C T I O N   P H A S E
     describe('Construction Contract', () => {
         it('Should be created', () => {
             expect(new EsiType()).toBeTruthy()

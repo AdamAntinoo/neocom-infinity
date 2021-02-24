@@ -112,13 +112,4 @@ export class V1LoginValidationPageComponent extends BackgroundEnabledComponent i
         if (uniqueId != credential.getUniqueId()) return false
         return true
     }
-    // private storeJWT(jwtToken: string): boolean {
-    //     this.isolationService.setToSession(PlatformConstants.JWTTOKEN_KEY, jwtToken)
-    //     this.isolationService.setToSession(PlatformConstants.JWTTOKEN_EXPIRATION_TIME_KEY,
-    //         addMinutes(Date.now(), 120))
-    //     return true
-    // }
-    // private storeCredential(credential: Credential): void {
-    //     this.isolationService.setToSession(PlatformConstants.CREDENTIAL_KEY, JSON.stringify(credential))
-    // }
 }

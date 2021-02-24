@@ -6,115 +6,158 @@ import { async } from '@angular/core/testing'
 import { HttpTestingController } from '@angular/common/http/testing'
 // - PROVIDERS
 // - DOMAIN
-import { SupportIsolationService } from '@app/testing/SupportIsolation.service'
-import { SupportHALResolver } from '@app/testing/SupportHALResolver.service'
-import { HALResolver } from '@app/services/HALResolver.service'
-import { HttpClient } from '@angular/common/http'
-import { RouteMockUpComponent } from '@app/testing/RouteMockUp.component';
-import { routes } from '@app/testing/RouteMockUp.component';
-import { IsolationService } from '@innovative/services/isolation.service'
+import { HALLink } from './HALLink.hal'
+import { EsiType } from '@domain/esi/EsiType.esi'
 
-xdescribe('CLASS HALLink [Module: HAL]', () => {
-    let isolation: SupportIsolationService
-    let resolver: SupportHALResolver
-
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            schemas: [NO_ERRORS_SCHEMA],
-            imports: [
-            ],
-            declarations: [],
-            providers: [
-                { provide: IsolationService, useClass: SupportIsolationService },
-                { provide: HttpClient, useClass: HttpTestingController },
-                { provide: HALResolver, useClass: SupportHALResolver }
-            ]
-        }).compileComponents()
-        isolation = TestBed.inject(SupportIsolationService)
-        resolver = TestBed.inject(SupportHALResolver)
-    }))
-
-    const testData = {
-        "rel": "item",
-        "href": "http://localhost:5200/api/v2/universe/items/10872"
-    }
-    // - C O N S T R U C T I O N   P H A S E
-    xdescribe('Construction Phase', () => {
-        // it('constructor.none: validate initial state without constructor', () => {
-        //     const instance = new HALLink<EveItemDto>()
-        //     const instanceAsAny = instance as any
-        //     expect(instance).toBeDefined()
-        //     expect(instanceAsAny.downloaded).toBeFalse()
-        //     expect(instanceAsAny.rel).toBeUndefined()
-        //     expect(instanceAsAny.href).toBeUndefined()
-        //     expect(instanceAsAny.target).toBeUndefined()
-        // })
-        // it('constructor.none: validate initial state with object data', () => {
-        //     const instance = new HALLink<EveItemDto>(testData)
-        //     const instanceAsAny = instance as any
-        //     expect(instance).toBeDefined()
-        //     expect(instanceAsAny.downloaded).toBeFalse()
-        //     expect(instanceAsAny.rel).toBe('item')
-        //     expect(instanceAsAny.href).toBe('http://localhost:5200/api/v2/universe/items/10872')
-        //     expect(instanceAsAny.target).toBeUndefined()
-        // })
+describe('CLASS HALLink [Module: HAL]', () => {
+    beforeEach(() => {
     })
-    // - G E T T E R   P H A S E
-    describe('Getter Phase', () => {
-        xit('Validate defined getters', () => {
-            // const expected = isolation.generateRandomString(32)
-            // const expectedUrl = isolation.generateRandomString(64)
-            // const instance = new HALLink({
-            //     "rel": expected,
-            //     "href": expectedUrl
-            // })
-            // expect(instance).toBeDefined()
-            // expect(instance.isDownloaded()).toBeFalse()
-            // expect(instance.getRelation()).toBe(expected)
-            // expect(instance.getHref()).toBe(expectedUrl)
-            // expect(instance.getTarget()).toBeUndefined()
+
+    // - C O N S T R U C T I O N   P H A S E
+    describe('Construction Contract', () => {
+        it('Should be created', () => {
+            expect(new HALLink<EsiType>(EsiType)).toBeTruthy()
+        })
+        it('Initial state', () => {
+            const link = new HALLink<EsiType>(EsiType)
+            const linkAsAny = link as any
+            expect(linkAsAny.downloaded).toBeFalse()
+            expect(linkAsAny.rel).toBeUndefined()
+            expect(linkAsAny.href).toBeUndefined()
+            expect(linkAsAny.factory).toBeDefined()
+            expect(link.target).toBeUndefined()
+        })
+        it('Complete construction', () => {
+            const link = new HALLink<EsiType>(EsiType).setContents({
+                "rel": "corporation",
+                "href": "http://localhost:5220/api/v1/public/corporations/98661092"
+            })
+            const linkAsAny = link as any
+            expect(linkAsAny.downloaded).toBeFalse()
+            expect(linkAsAny.rel).toBe("corporation")
+            expect(linkAsAny.href).toBe("http://localhost:5220/api/v1/public/corporations/98661092")
+            expect(linkAsAny.factory).toBeDefined()
+            expect(link.target).toBeUndefined('the target should be undefined until the link is downloaded')
         })
     })
-    // - C O V E R A G E   P H A S E
-    describe('Coverage Phase [Methods]', () => {
-        // it('access.success.downloaded: resolve the internal link and access the HAL instance.', () => {
-        //     const instance = new HALLink(testData)
-        //     const instanceAsAny = instance as any
-        //     const expected = isolation.generateRandomString(64)
-        //     expect(instance).toBeDefined()
-        //     instanceAsAny.downloaded = true
-        //     instanceAsAny.target = { message: expected }
-        //     jasmine.clock().install()
-        //     instance.access(resolver).then(target => {
-        //         expect(target['message']).toBe(expected)
-        //     })
-        //     jasmine.clock().tick(500)
-        //     jasmine.clock().uninstall()
-        // })
-        // it('access.success.not.downloaded: resolve the internal link and access the HAL instance.', () => {
-        //     const instance = new HALLink(testData)
-        //     const instanceAsAny = instance as any
-        //     expect(instance).toBeDefined()
-        //     jasmine.clock().install()
-        //     instance.access(resolver).then(target => {
-        //         console.log('>Target: '+ JSON.stringify(target))
-        //         expect(target['name']).toBe('Venture')
-        //     })
-        //     jasmine.clock().tick(500)
-        //     jasmine.clock().uninstall()
-        // })
-        // it('access.failure.not.downloaded: resolve the internal link and access the HAL instance.', () => {
-        //     const instance = new HALLink(testData)
-        //     const instanceAsAny = instance as any
-        //     instanceAsAny.href = '-INVALID-'
-        //     expect(instance).toBeDefined()
-        //     jasmine.clock().install()
-        //     instance.access(resolver).then(target => {
-        //         console.log('>Target: '+ JSON.stringify(target))
-        //         expect(target['name']).toBeUndefined()
-        //     })
-        //     jasmine.clock().tick(500)
-        //     jasmine.clock().uninstall()
-        // })
+    // - G E T T E R   C O N T R A C T
+    describe('Getter Contract - Unresolved link', () => {
+        it('isResolved.unresolved: check if the links has been resolved', () => {
+            const link = new HALLink<EsiType>(EsiType).setContents({
+                "rel": "corporation",
+                "href": "http://localhost:5220/api/v1/public/corporations/98661092"
+            })
+            expect(link.isResolved()).toBeFalse()
+        })
+        it('isDownloaded.unresolved: check the link has beed completed', () => {
+            const link = new HALLink<EsiType>(EsiType).setContents({
+                "rel": "corporation",
+                "href": "http://localhost:5220/api/v1/public/corporations/98661092"
+            })
+            expect(link.isDownloaded()).toBeFalse()
+        })
+        it('getRelation.unresolved: check content for the relation field', () => {
+            const link = new HALLink<EsiType>(EsiType).setContents({
+                "rel": "corporation",
+                "href": "http://localhost:5220/api/v1/public/corporations/98661092"
+            })
+            expect(link.getRelation()).toBe("corporation")
+        })
+        it('getHref.unresolved: check content for the link reference field', () => {
+            const link = new HALLink<EsiType>(EsiType).setContents({
+                "rel": "corporation",
+                "href": "http://localhost:5220/api/v1/public/corporations/98661092"
+            })
+            expect(link.getHref()).toBe("http://localhost:5220/api/v1/public/corporations/98661092")
+        })
+        it('getTarget.unresolved: check content for the link reference field', () => {
+            const link = new HALLink<EsiType>(EsiType).setContents({
+                "rel": "corporation",
+                "href": "http://localhost:5220/api/v1/public/corporations/98661092"
+            })
+            expect(link.getTarget()).toBeUndefined()
+        })
+    })
+    describe('Getter Contract - Resolved link', () => {
+        it('isResolved.resolved: check if the links has been resolved', () => {
+            const link = new HALLink<EsiType>(EsiType).setContents({
+                "rel": "corporation",
+                "href": "http://localhost:5220/api/v1/public/corporations/98661092"
+            })
+            expect(link.typeCast({
+                "typeId": 11535,
+                "name": "Magnetometric Sensor Cluster",
+                "description": "Description",
+                "marketData": {
+                    "rel": "marketData",
+                    "href": "http://localhost:5242/api/v1/universe/market/consolidated/byregion/10000043/11535"
+                }
+            })).toBeDefined()
+            expect(link.isResolved()).toBeTrue()
+        })
+        it('isDownloaded.resolved: check the link has beed completed', () => {
+            const link = new HALLink<EsiType>(EsiType).setContents({
+                "rel": "corporation",
+                "href": "http://localhost:5220/api/v1/public/corporations/98661092"
+            })
+            expect(link.typeCast({
+                "typeId": 11535,
+                "name": "Magnetometric Sensor Cluster",
+                "description": "Description",
+                "marketData": {
+                    "rel": "marketData",
+                    "href": "http://localhost:5242/api/v1/universe/market/consolidated/byregion/10000043/11535"
+                }
+            })).toBeDefined()
+            expect(link.isDownloaded()).toBeTrue()
+        })
+        it('getRelation.resolved: check content for the relation field', () => {
+            const link = new HALLink<EsiType>(EsiType).setContents({
+                "rel": "corporation",
+                "href": "http://localhost:5220/api/v1/public/corporations/98661092"
+            })
+            expect(link.typeCast({
+                "typeId": 11535,
+                "name": "Magnetometric Sensor Cluster",
+                "description": "Description",
+                "marketData": {
+                    "rel": "marketData",
+                    "href": "http://localhost:5242/api/v1/universe/market/consolidated/byregion/10000043/11535"
+                }
+            })).toBeDefined()
+            expect(link.getRelation()).toBe("corporation")
+        })
+        it('getHref.resolved: check content for the link reference field', () => {
+            const link = new HALLink<EsiType>(EsiType).setContents({
+                "rel": "corporation",
+                "href": "http://localhost:5220/api/v1/public/corporations/98661092"
+            })
+            expect(link.typeCast({
+                "typeId": 11535,
+                "name": "Magnetometric Sensor Cluster",
+                "description": "Description",
+                "marketData": {
+                    "rel": "marketData",
+                    "href": "http://localhost:5242/api/v1/universe/market/consolidated/byregion/10000043/11535"
+                }
+            })).toBeDefined()
+            expect(link.getHref()).toBe("http://localhost:5220/api/v1/public/corporations/98661092")
+        })
+        it('getTarget.resolved: check content for the link reference field', () => {
+            const link = new HALLink<EsiType>(EsiType).setContents({
+                "rel": "corporation",
+                "href": "http://localhost:5220/api/v1/public/corporations/98661092"
+            })
+            expect(link.typeCast({
+                "typeId": 11535,
+                "name": "Magnetometric Sensor Cluster",
+                "description": "Description",
+                "marketData": {
+                    "rel": "marketData",
+                    "href": "http://localhost:5242/api/v1/universe/market/consolidated/byregion/10000043/11535"
+                }
+            })).toBeDefined()
+            expect(link.getTarget()).toBeDefined()
+        })
     })
 })

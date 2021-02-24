@@ -86,16 +86,16 @@ describe('SERVICE BackendService [Module: APP]', () => {
             httpController.service('GET', {state:"valid"})
         })
     })
-    describe('Code Coverage Phase [apiValidateAuthorizationToken_v1]', () => {
-        it('apiValidateAuthorizationToken_v1.success: get a validated authorization from the mocked server', () => {
-            service.apiValidateAuthorizationToken_v1('-ANY-CODE-', '-ANY-STATE-', new ResponseTransformer()
+    describe('Code Coverage Phase [apiv1_ValidateAuthorizationToken]', () => {
+        it('apiv1_ValidateAuthorizationToken.success: get a validated authorization from the mocked server', () => {
+            service.apiv1_ValidateAuthorizationToken('-ANY-CODE-', '-ANY-STATE-', new ResponseTransformer()
                 .setDescription('Do response transformation to "ValidateAuthorizationTokenResponse".')
                 .setTransformation((data: any): AuthenticationStateResponse => {
-                    console.log('--[apiValidateAuthorizationToken_v1]> transformation data: ' + JSON.stringify(data))
+                    console.log('--[apiv1_ValidateAuthorizationToken]> transformation data: ' + JSON.stringify(data))
                     return new AuthenticationStateResponse(data)
                 }))
                 .subscribe(response => {
-                    console.log('--[apiValidateAuthorizationToken_v1]> response: ' + JSON.stringify(response))
+                    console.log('--[apiv1_ValidateAuthorizationToken]> response: ' + JSON.stringify(response))
                     expect(response).toBeDefined()
                     // expect(response.getResponseType()).toContain('ValidateAuthorizationTokenResponse')
                 })

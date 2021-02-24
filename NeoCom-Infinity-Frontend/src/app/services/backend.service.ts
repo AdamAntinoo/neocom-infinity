@@ -24,6 +24,7 @@ import { HALResolver } from './HALResolver.service'
 import { platformBrowser } from '@angular/platform-browser'
 import { PlatformConstants } from '@env/PlatformConstants'
 import { AuthenticationStateResponse } from '@domain/dto/AuthenticationStateResponse.dto'
+import { NeoComConstants } from '@app/platform/NeocomConstants.platform'
 
 @Injectable({
     providedIn: 'root'
@@ -56,17 +57,17 @@ export class BackendService extends PublicService {
     }
     public apiv1_ValidateAuthorizationToken(code: string, state: string,
         transformer: ResponseTransformer): Observable<AuthenticationStateResponse> {
-        console.log(">[BackendService.apiValidateAuthorizationToken_v1]> code: " + code)
+        console.log(">[BackendService.apiv1_ValidateAuthorizationToken]> code: " + code)
         // Construct the request to call the backend.
         const request = this.APIV1 + "/validateAuthorizationToken" +
             "?code=" + code +
             "&state=" + state +
-            "&datasource=" + environment.ESIDataSource.toLowerCase()
+            "&datasource=" + NeoComConstants.ESIDATASOURCE.toLowerCase()
         let headers = new HttpHeaders() // Additional mockup headers to apisimulation.
         headers = headers.set('xapp-validation-code', code)
         return this.httpService.wrapHttpGETCall(request, headers)
             .pipe(map((data: any) => {
-                console.log(">[BackendService.apiValidateAuthorizationToken_v1]> Transformation: " +
+                console.log(">[BackendService.apiv1_ValidateAuthorizationToken]> Transformation: " +
                     transformer.description)
                 const response = transformer.transform(data) as AuthenticationStateResponse
                 return response
