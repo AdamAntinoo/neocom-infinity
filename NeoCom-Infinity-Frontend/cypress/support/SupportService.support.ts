@@ -9,6 +9,7 @@ export class SupportService {
         // - PAGES
         this.translationTable['Start'] = 'v1-start-page'
         this.translationTable['Pilot Dashboard'] = 'dashboard-home-page'
+ 
         this.translationTable['Fitting Build Configuration'] = 'v1-industry-fitting-build-configuration-page'
         this.translationTable['Planetary Dashboard Page'] = 'dashboard-page'
         this.translationTable['Planetary Enter Data Page'] = 'v1-enter-planet-data-page'
@@ -17,6 +18,9 @@ export class SupportService {
         this.translationTable['Loyalty Recommendations'] = 'v1-loyalty-recommendations-page'
         // - PANELS
         this.translationTable['app-component'] = 'app-root'
+        this.translationTable['app-info'] = 'app-info-panel'
+        this.translationTable['server-info'] = 'server-info-panel'
+
         this.translationTable['feature'] = 'v2-feature'
         this.translationTable['pilot-panel'] = 'v2-pilot-public-data-panel'
         this.translationTable['fitting-summary'] = 'v1-fitting-summary-panel'

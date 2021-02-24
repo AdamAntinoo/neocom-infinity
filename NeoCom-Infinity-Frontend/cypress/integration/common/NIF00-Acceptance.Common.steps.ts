@@ -31,7 +31,7 @@ Given('a valid Credential on the session storage', function () {
 })
 Given('a valid JWT Token on the session storage', function () {
     // - Set a valid Credential on the session storage.
-    const jwtToken : string ="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6MTQyNzY2MTU3MywiYWNjb3VudE5hbWUiOiJBZGFtIEFudGlub28iLCJpc3MiOiJOZW9Db20uSW5maW5pdHkuQmFja2VuZCIsInVuaXF1ZUlkIjoidHJhbnF1aWxpdHkvOTIwMDIwNjciLCJwaWxvdElkIjo5MjAwMjA2N30.6JgBvtHyhvD8aY8-I4075tb433mYMpn9sNeYCkIO28LbhqVR4CZ-x1t_sk4IOLLtzSN07bF4c7ZceWw_ta4Brw"
+    const jwtToken: string = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6MTQyNzY2MTU3MywiYWNjb3VudE5hbWUiOiJBZGFtIEFudGlub28iLCJpc3MiOiJOZW9Db20uSW5maW5pdHkuQmFja2VuZCIsInVuaXF1ZUlkIjoidHJhbnF1aWxpdHkvOTIwMDIwNjciLCJwaWxvdElkIjo5MjAwMjA2N30.6JgBvtHyhvD8aY8-I4075tb433mYMpn9sNeYCkIO28LbhqVR4CZ-x1t_sk4IOLLtzSN07bF4c7ZceWw_ta4Brw"
     supportService.setToSession(PlatformConstants.JWTTOKEN_KEY, jwtToken)
 })
 Given('a valid NEOCOM-INFINITY cookie', function () {
@@ -153,6 +153,12 @@ Then('field named {string} has contents {string}',
                 .contains(fieldValue, { matchCase: false })
         })
     })
+Then('field named {string} should exist', function (fieldName: string) {
+    cy.get('@target').within(($item) => {
+        cy.get('.field').find('[cy-field-value="' + fieldName + '"]')
+            .should('exist')
+    })
+})
 Then('field named {string} should not exist', function (fieldName: string) {
     cy.get('@target').within(($item) => {
         cy.get('.field').find('[cy-field-value="' + fieldName + '"]')

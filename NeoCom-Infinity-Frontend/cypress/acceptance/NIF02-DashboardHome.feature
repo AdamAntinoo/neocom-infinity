@@ -15,6 +15,34 @@ Feature: [NIF02]-Display the character dashboard page.
         Then the page "Pilot Dashboard" has 2 sections
         Then the section "header" has 2 panels
 
+    @NIF02 @NIF02.02
+    Scenario: [NIF02.02]-The application info panel has the name and the front end version.
+        Given the application NeoCom-Infinity-Frontend
+        Given a clean cookie repository
+        Given a valid NEOCOM-INFINITY cookie
+        Given a valid JWT Token on the session storage
+        Given a valid Credential on the session storage
+        When the page "Pilot Dashboard" is activated
+        Given the target is the panel of type "app-info"
+        And field named "app-name" has contents "NEOCOM-INFINITY"
+        And field named "app-version" has contents "0.20.0 dev"
+
+    @NIF02 @NIF02.03
+    Scenario: [NIF02.03]-The server status panel contains field information about the ESI backend status and the backend status.
+        Given the application NeoCom-Infinity-Frontend
+        Given a clean cookie repository
+        Given a valid NEOCOM-INFINITY cookie
+        Given a valid JWT Token on the session storage
+        Given a valid Credential on the session storage
+        When the page "Pilot Dashboard" is activated
+        Given the target is the panel of type "server-info"
+        And field named "serverName" has contents "Tranquility"
+        And field named "serverStatus" has contents "ONLINE"
+        And field named "capsuleers" has contents "26,172"
+        And field named "backendVersion" has contents "0.20.0"
+        And field named "sdeVersion" has contents "20201231-APP"
+        And field named "nextDowntime" should exist
+
 # This page is where to show the Corporation data along with the Pilot data. Also there is a toolbar where to select the feature to work with. There are a set of dashboard pages, each one for a different feature plus this one that will not show any feature activated.
 
 # Background: Prepare the environment for the page Dashboard Page
