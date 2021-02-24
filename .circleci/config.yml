@@ -304,14 +304,6 @@ jobs:
             git add gradlew
             git add gradlew.bat
             git add src
-            git add build/libs
-            git add build/resources/main/db
-            git add build/resources/main/i18
-            git add build/resources/main/properties
-            git add build/resources/main/app-banner.txt
-            git add build/resources/main/application.properties
-            git add build/resources/main/application.yml
-            git add build/resources/main/logback.xml
             git commit -m "-[HEROKU] Commiting code for deployment"
       - run:
           name: BACKEND - Deploy Master to Heroku
@@ -333,6 +325,8 @@ jobs:
           command: |
             node -v
             sed -i '/bahmutov.add/d' package.json
+            sed -i '/@cypress/d' package.json
+            sed -i '/"cypress"/d' package.json
       - run:
           name: FRONTEND - Clone Heroku repository
           working_directory: NeoCom-Infinity-Frontend
@@ -344,7 +338,7 @@ jobs:
             git add *.*
             git add config
             git add src
-            git commit -m "-[HEROKU] Commiting code for deployment at development"
+            git commit -m "-[HEROKU] Commiting code for deployment at neocom-infinity-frontend Development"
       - run:
           name: FRONTEND - Deploy Master to Heroku
           environment:
@@ -419,6 +413,7 @@ workflows:
       - stage-backend-to-heroku:
           requires:
             - start-job
+            - quality-sonarcloud-backend
           filters:
             branches:
               only:
@@ -462,6 +457,15 @@ workflows:
               only:
                 - test
                 - hotfix
+      - stage-frontend-to-heroku:
+          requires:
+            - start-job
+            - quality-sonarcloud-backend
+          filters:
+            branches:
+              only:
+                - test
+                - deploy
 
   neocom-infinity-deploy:
     jobs:
