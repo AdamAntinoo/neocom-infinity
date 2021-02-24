@@ -288,7 +288,7 @@ jobs:
           environment:
             PROFILE: "production"
           command: |
-            ./gradlew bootJar
+            ./gradlew dependencies bootJar
       - run:
           name: BACKEND - Create the repository contents to move to Heroku for deployment
           working_directory: NeoCom-Infinity-Backend
