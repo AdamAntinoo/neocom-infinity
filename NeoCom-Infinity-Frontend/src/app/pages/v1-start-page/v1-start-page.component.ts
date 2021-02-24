@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 // - SERVICES
 import { BackendService } from '@app/services/backend.service';
 import { AuthenticationStateResponse } from '@domain/dto/AuthenticationStateResponse.dto';
+import { environment } from '@env/environment';
 import { PlatformConstants } from '@env/PlatformConstants';
 // - INNOVATIVE
 import { BackgroundEnabledComponent } from '@innovative/components/background-enabled/background-enabled.component';
@@ -48,6 +49,9 @@ export class V1StartPageComponent extends BackgroundEnabledComponent implements 
                 console.log('-[V1StartPageComponent.ngOnInit.exception]> Error message: ' + JSON.stringify(error.error))
                 setTimeout(() => this.validating = false, 1000)
             }))
+    }
+    public getLoginLink(): string{
+        return environment.loginLink
     }
     private pageChange(route: string): void {
         console.log('><[ngOnInit.pageChange]> Route: ' + route);

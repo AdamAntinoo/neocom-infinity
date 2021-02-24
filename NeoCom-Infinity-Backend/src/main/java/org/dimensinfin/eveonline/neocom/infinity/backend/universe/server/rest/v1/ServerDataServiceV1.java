@@ -32,7 +32,7 @@ public class ServerDataServiceV1 {
 		return new ServerStatus.Builder()
 				.withServer( ESIDataProvider.DEFAULT_ESI_SERVER )
 				.withBackendVersion( this.getApplicationVersion() )
-				.withSDEVersion( this.sdeRepository.accessSDEVersion() )
+				.withSDEVersion( "2021-TEST" ) // Use a literal until the new DM library version is ready.
 				.withStatus( this.esiDataService.getUniverseStatus( ESIDataProvider.DEFAULT_ESI_SERVER ) )
 				.build();
 	}

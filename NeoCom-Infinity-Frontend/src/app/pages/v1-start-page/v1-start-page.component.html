@@ -6,7 +6,7 @@
         <div cy-field-value="validation-message" class="validation-message" *ngIf="validating; else login">VALIDANDO AUTENTICACION DEL PILOTO...</div>
     </div>
     <ng-template #login>
-        <a cy-name="EVE-login-button" class="eve-login-request" href="https://login.eveonline.com/v2/oauth/authorize/?response_type=code&client_id=eacaa9cd36594189877544d851753734&state=LU5FT0NPTS5JTkZJTklUWS1QUk9EVUNUSU9OLVZBTElEIFNUQVRFIFNUUklORy0=&redirect_uri=http%3A%2F%2Flocalhost%3A5202%2Fapp%2FloginValidation&scope=publicData%20esi-corporations.read_structures.v1%20esi-characters.read_loyalty.v1%20esi-industry.read_character_jobs.v1%20esi-characters.read_corporation_roles.v1%20esi-industry.read_character_mining.v1">
+        <a cy-name="EVE-login-button" class="eve-login-request" href="{{getLoginLink()}}">
             <img src="assets/media/eve-sso-login-white-large.png">
         </a>
     </ng-template>
