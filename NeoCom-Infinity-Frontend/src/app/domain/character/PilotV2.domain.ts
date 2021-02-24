@@ -14,25 +14,17 @@ import { UniverseRaceData } from '@domain/esi/UniverseRaceData.esi';
 import { UniverseAncestryData } from '@domain/esi/UniverseAncestryData.esi';
 import { UniverseBloodlineData } from '@domain/esi/UniverseBloodlineData.esi';
 import { NeoComConstants } from '@app/platform/NeocomConstants.platform';
+import { PublicPilotV1 } from './PublicPilotV1.domain';
 
-export class PilotV2 extends HALNode {
-    public pilotId: number
-    public name:string
-    public corporation: CorporationV1
-    public birthday:string
-    public description:string
-    public gender:string
-    public securityStatus:number
-    public titles:string[]
-    public url4Icon: string
+export class PilotV2 extends PublicPilotV1 {
+    public totalSkillpoints:number
+    public walletBalance:number
+    public currentShipName:string
+    public currentShipTypeName:string
     public lastKnownLocation: SpaceLocationV1
-    public raceData: UniverseRaceData
-    public ancestryData: UniverseAncestryData
-    public bloodlineData: UniverseBloodlineData
 
     constructor(values: Object = {}) {
-        super()
-        Object.assign(this, values)
+        super(values)
         this.jsonClass = 'Pilot';
     }
 

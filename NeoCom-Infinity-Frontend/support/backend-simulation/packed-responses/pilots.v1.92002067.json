@@ -1,7 +1,7 @@
 {
     "pilotId": 93813310,
     "name": "Perico Tuerto",
-    "description": "",
+    "description": "-Description-",
     "corporation": {
         "rel": "corporation",
         "href": "http://localhost:5220/api/v1/public/corporations/98661092"
