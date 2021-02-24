@@ -53,40 +53,6 @@ response:
 
 ---
 
-simlet: pilots-v2-93813310
-
-request:
-  - method: GET
-  - uriPathPattern: "/api/v2/neocom/pilots/93813310"
-
-response:
-  from: template
-  status: 200
-  headers:
-    - "Content-Type: application/json; Cookie: jwtToken=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6OTgzODQ3MjYsImFjY291bnROYW1lIjoiQmV0aCBSaXBsZXkiLCJpc3MiOiJOZW9Db20uSW5maW5pdHkuQmFja2VuZCIsInVuaXF1ZUlkIjoidHJhbnF1aWxpdHkvOTIyMjM2NDciLCJwaWxvdElkIjo5MjIyMzY0N30.Qom8COyZB2sW3bCGm9pnGcIOqw-E2yKDsmGklQW6r9Fhu8jJpkNUv5TUhU2cJjIg5jX3082bZ6eKtRZ3z10vGw"
-  body:
-    type: text
-    file: "${sim.path}/packed-responses/pilots.v2.93813310.json"
-
----
-
-simlet: pilots-v2-ceo
-
-request:
-  - method: GET
-  - uriPathPattern: "/api/v2/neocom/pilots/{pilotId}"
-
-response:
-  from: template
-  status: 200
-  headers:
-    - "Content-Type: application/json; Cookie: jwtToken=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6OTgzODQ3MjYsImFjY291bnROYW1lIjoiQmV0aCBSaXBsZXkiLCJpc3MiOiJOZW9Db20uSW5maW5pdHkuQmFja2VuZCIsInVuaXF1ZUlkIjoidHJhbnF1aWxpdHkvOTIyMjM2NDciLCJwaWxvdElkIjo5MjIyMzY0N30.Qom8COyZB2sW3bCGm9pnGcIOqw-E2yKDsmGklQW6r9Fhu8jJpkNUv5TUhU2cJjIg5jX3082bZ6eKtRZ3z10vGw"
-  body:
-    type: text
-    file: "${sim.path}/packed-responses/pilots.v2.ceo.json"
-
----
-
 simlet: corporations-98384726
 
 request:
@@ -471,14 +437,14 @@ response:
   status: 200
   headers:
     - "Content-Type: application/json"
-    - "Set-Cookie: NEOCOM-INFINITY=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6MTIzNDU2LCJhY2NvdW50TmFtZSI6IlRlc3RpbmcgQ2hhcmFjdGVyIEFjY291bnQiLCJpc3MiOiJOZW9Db20uSW5maW5pdHkuQmFja2VuZCIsInVuaXF1ZUlkIjoidHJhbnF1aWxpdHkuOTM4MTMzMTAiLCJwaWxvdElkIjo5MzgxMzMxMH0.P-o3mnrT-LzGzvKLU2KhRIpZEIECsyrtXEpmkXvNjZHLNd4pTyRNZ1lTd1h98CfRUDY6gp8jfwMuomGvTUHYKw; Max-Age=604800; Expires=Thu, 11-Feb-2021 18:40:51 GMT; Path=/; HttpOnly"
+    - "Set-Cookie: NEOCOM-INFINITY=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6MTQyNzY2MTU3MywiYWNjb3VudE5hbWUiOiJBZGFtIEFudGlub28iLCJpc3MiOiJOZW9Db20uSW5maW5pdHkuQmFja2VuZCIsInVuaXF1ZUlkIjoidHJhbnF1aWxpdHkvOTIwMDIwNjciLCJwaWxvdElkIjo5MjAwMjA2N30.6JgBvtHyhvD8aY8-I4075tb433mYMpn9sNeYCkIO28LbhqVR4CZ-x1t_sk4IOLLtzSN07bF4c7ZceWw_ta4Brw; Max-Age=604800; Expires=Thu, 11-Feb-2021 18:40:51 GMT; Path=/; HttpOnly"
     - "Decoded-Content: {
-      sub: ESI OAuth2 Authentication,
-      corporationId: 98384726,
-      accountName: Testing Character Account,
-      iss: NeoCom.Infinity.Backend,
-      uniqueId: tranquility/93813310,
-      pilotId: 93813310
+        sub: ESI OAuth2 Authentication,
+        corporationId: 1427661573,
+        accountName: Adam Antinoo,
+        iss: NeoCom.Infinity.Backend,
+        uniqueId: tranquility/92002067,
+        pilotId: 92002067
       }"
   body:
     type: text
@@ -497,11 +463,45 @@ response:
 
 ---
 
+simlet: v1-pilots-92002067
+
+request:
+  - method: GET
+  - uriPathPattern: "/api/v1/neocom/pilots/92002067"
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json; Cookie: jwtToken=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6OTgzODQ3MjYsImFjY291bnROYW1lIjoiQmV0aCBSaXBsZXkiLCJpc3MiOiJOZW9Db20uSW5maW5pdHkuQmFja2VuZCIsInVuaXF1ZUlkIjoidHJhbnF1aWxpdHkvOTIyMjM2NDciLCJwaWxvdElkIjo5MjIyMzY0N30.Qom8COyZB2sW3bCGm9pnGcIOqw-E2yKDsmGklQW6r9Fhu8jJpkNUv5TUhU2cJjIg5jX3082bZ6eKtRZ3z10vGw"
+  body:
+    type: text
+    file: "${sim.path}/packed-responses/pilots.v1.92002067.json"
+
+---
+
 simlet: v1-pilots-93813310
 
 request:
   - method: GET
   - uriPathPattern: "/api/v1/neocom/pilots/93813310"
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json; Cookie: jwtToken=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6OTgzODQ3MjYsImFjY291bnROYW1lIjoiQmV0aCBSaXBsZXkiLCJpc3MiOiJOZW9Db20uSW5maW5pdHkuQmFja2VuZCIsInVuaXF1ZUlkIjoidHJhbnF1aWxpdHkvOTIyMjM2NDciLCJwaWxvdElkIjo5MjIyMzY0N30.Qom8COyZB2sW3bCGm9pnGcIOqw-E2yKDsmGklQW6r9Fhu8jJpkNUv5TUhU2cJjIg5jX3082bZ6eKtRZ3z10vGw"
+  body:
+    type: text
+    file: "${sim.path}/packed-responses/pilots.v1.93813310.json"
+
+---
+
+simlet: v1-pilots-any
+
+request:
+  - method: GET
+  - uriPathPattern: "/api/v1/neocom/pilots/{pilotId}"
 
 response:
   from: template
