@@ -40,7 +40,4 @@ export class V2PilotRenderComponent {
     public getLastLocation(): string {
         return this.node.getLastKnownLocation()
     }
-    // public getPilotIcon () : string{
-    //     return this.node.
-    // }
 }

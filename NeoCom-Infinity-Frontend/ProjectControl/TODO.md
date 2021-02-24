@@ -12,6 +12,14 @@
 * LoyaltyOfferV1
 * EsiMarketData.esi
 * ServerInfoPanelComponent
+* AppInfoPanelComponent
+* ServerInfoPanelComponent
+* DashboardHomePageComponent
+* PublicPilotV1
+* PilotV2
+* V2PilotRenderComponent
+* V2PilotRenderComponent
+* V1PilotPanelComponent
 
 ## Secondary classes to test
 * HALResolver
