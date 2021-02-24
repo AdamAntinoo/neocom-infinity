@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 // - HTTP PACKAGE
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
+import { IsolationService } from './isolation.service';
 // - SERVICES
 
 @Injectable({
@@ -11,7 +12,9 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class HttpClientWrapperService {
 
-    constructor(protected http: HttpClient) { }
+    constructor(
+        protected http: HttpClient,
+        protected isolationService : IsolationService) { }
 
     // -  H T T P   W R A P P E R S
     /**

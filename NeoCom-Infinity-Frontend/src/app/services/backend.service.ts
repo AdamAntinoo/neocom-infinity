@@ -54,7 +54,7 @@ export class BackendService extends PublicService {
                 return new AuthenticationStateResponse(data)
             }))
     }
-    public apiValidateAuthorizationToken_v1(code: string, state: string,
+    public apiv1_ValidateAuthorizationToken(code: string, state: string,
         transformer: ResponseTransformer): Observable<AuthenticationStateResponse> {
         console.log(">[BackendService.apiValidateAuthorizationToken_v1]> code: " + code)
         // Construct the request to call the backend.
@@ -72,6 +72,14 @@ export class BackendService extends PublicService {
                 return response
             }))
     }
+    public apiv1_GetPilotData(pilotId: number): Observable<PilotV2> {
+        const request = this.APIV1 + "/pilots/" + pilotId
+        return this.httpService.wrapHttpGETCall(request)
+            .pipe(map((data: any) => {
+                return new PilotV2(data)
+            }))
+    }
+
     public apiGetCorporationPublicData_v1(corporationId: number, transformer: ResponseTransformer): Observable<Corporation> {
         const request = this.APIV1 + "/corporations/" + corporationId
         return this.httpService.wrapHttpGETCall(request)

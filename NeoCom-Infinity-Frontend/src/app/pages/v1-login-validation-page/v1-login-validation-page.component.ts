@@ -52,7 +52,7 @@ export class V1LoginValidationPageComponent extends BackgroundEnabledComponent i
             if (this.parameterValidation()) {
                 console.log('-[V1LoginValidationPageComponent.<ngOnInit>] Validation should be true')
                 // Pass the authentication token to the backend to register the Credential and generate the JWT token.
-                this.backendConnections.push(this.backendService.apiValidateAuthorizationToken_v1(
+                this.backendConnections.push(this.backendService.apiv1_ValidateAuthorizationToken(
                     this.paramCode, this.paramState,
                     new ResponseTransformer().setDescription('Do response transformation to "ValidateAuthorizationTokenResponse"')
                         .setTransformation((data: any): AuthenticationStateResponse => {
