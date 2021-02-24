@@ -20,9 +20,9 @@ export class SupportService {
         this.translationTable['app-component'] = 'app-root'
         this.translationTable['app-info'] = 'app-info-panel'
         this.translationTable['server-info'] = 'server-info-panel'
+        this.translationTable['pilot-list'] = 'v1-pilot-panel'
 
         this.translationTable['feature'] = 'v2-feature'
-        this.translationTable['pilot-panel'] = 'v2-pilot-public-data-panel'
         this.translationTable['fitting-summary'] = 'v1-fitting-summary-panel'
         this.translationTable['fitting-saved-configuration'] = 'v1-fitting-configuration-panel'
         this.translationTable['fitting-target-configuration'] = 'v1-fitting-configuration-panel'
@@ -41,7 +41,7 @@ export class SupportService {
         this.translationTable['selected-resources'] = 'v1-selected-resources-panel'
         // - RENDERS
         this.translationTable['exception'] = 'div'
-        this.translationTable['pilot'] = 'v1-public-pilot'
+        this.translationTable['pilot'] = 'v2-pilot'
         this.translationTable['feature-button'] = 'v1-feature-button'
         this.translationTable['planetary-system'] = 'v1-planetary-system'
         this.translationTable['processed-blueprint'] = 'v1-blueprint'
