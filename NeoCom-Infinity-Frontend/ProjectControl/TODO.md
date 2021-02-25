@@ -1,11 +1,4 @@
 # Typescript classes to unit test
-* DashboardHomePageComponent
-* AppStoreService
-* TradeHistoryData
-* V1LoyaltyOfferRenderComponent
-* LoyaltyOfferV1
-* EsiMarketData.esi
-* ServerInfoPanelComponent
 * AppInfoPanelComponent
 * ServerInfoPanelComponent
 * DashboardHomePageComponent
@@ -14,6 +7,7 @@
 * V2PilotRenderComponent
 * V2PilotRenderComponent
 * V1PilotPanelComponent
+* V1LoyaltyOfferRenderComponent
 
 
 ## Secondary classes to test
@@ -21,6 +15,7 @@
 * TokenAuthorizationGuard
 * AuthenticationService
 * AuthenticationStateResponse
+* AppStoreService
 
 ## Create a solution for alternate HTTP responses
 * v1-start-page

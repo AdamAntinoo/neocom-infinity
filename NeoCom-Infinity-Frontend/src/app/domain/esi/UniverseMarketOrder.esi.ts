@@ -13,4 +13,6 @@ export class UniverseMarketOrder extends EsiNode {
     public typeId: number
     public volumeRemain: number
     public volumeTotal: number
+
+    protected decode (): void {}
 }

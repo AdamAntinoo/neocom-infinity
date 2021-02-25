@@ -1,16 +1,17 @@
 // - DOMAIN
 import { ESIUniverseDataService } from '@app/services/ESIUniverseData.service';
+import { EsiNode } from './EsiNode.esi';
 import { UniversePlanet } from './UniversePlanet.esi';
 
-export class UniverseSystem {
+export class UniverseSystem extends EsiNode {
     private planets: any[]
     private planetIds: number[] = []
     private planetData: UniversePlanet[] = []
 
-    constructor(values: Object = {}) {
-        Object.assign(this, values);
-        this.decode()
-    }
+    // constructor(values: Object = {}) {
+    //     Object.assign(this, values);
+    //     this.decode()
+    // }
     /**
      * THis method is to reconstruct dependencies when them depend on external services to retrieve the data to be expanded.
      * @param esiDataService The service to use to recover the detailed data.
@@ -20,7 +21,7 @@ export class UniverseSystem {
             this.planetData.push(new UniversePlanet(esiDataService.apiEsiUniversePlanetsData(identifier)))
         }
     }
-    private decode(): void {
+    protected decode(): void {
         // Process data to get the list of planet ids.
         if (this.planets) {
             for (let planetEntry of this.planets) {

@@ -1,6 +1,7 @@
 // - CORE
 import { NO_ERRORS_SCHEMA } from '@angular/core'
 import { HttpHeaders } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 // - HTTP PACKAGE
 import { HttpClientTestingModule } from '@angular/common/http/testing'
 import { HttpTestingController } from '@angular/common/http/testing'
@@ -11,6 +12,8 @@ import { TestBed } from '@angular/core/testing'
 import { RouterTestingModule } from '@angular/router/testing'
 // - APP
 import { UniverseHttpWrapper } from './universe.httpwrapper'
+import { IsolationService } from '@innovative/services/isolation.service'
+import { SupportIsolationService } from '@app/testing/SupportIsolation.service'
 
 describe('SERVICE UniverseHttpWrapper [Module: APP]', () => {
     let wrapper: UniverseHttpWrapper
@@ -21,8 +24,12 @@ describe('SERVICE UniverseHttpWrapper [Module: APP]', () => {
             schemas: [NO_ERRORS_SCHEMA],
             imports: [
                 HttpClientTestingModule
+            ],
+            providers: [
+                { provide: IsolationService, useClass: SupportIsolationService },
+                { provide: HttpClient, useClass: HttpTestingController }
             ]
-        })
+       })
             .compileComponents()
         wrapper = TestBed.inject(UniverseHttpWrapper)
     })

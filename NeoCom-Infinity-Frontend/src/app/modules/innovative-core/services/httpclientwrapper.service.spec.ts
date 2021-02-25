@@ -14,6 +14,8 @@ import { routes } from '../../../testing/RouteMockUp.component';
 import { HttpClientWrapperService } from './httpclientwrapper.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { IsolationService } from './isolation.service';
+import { SupportIsolationService } from '@app/testing/SupportIsolation.service';
 
 describe('SERVICE HttpClientWrapperService [Module: APP]', () => {
     let service: HttpClientWrapperService;
@@ -29,7 +31,7 @@ describe('SERVICE HttpClientWrapperService [Module: APP]', () => {
                 RouteMockUpComponent,
             ],
             providers: [
-                // { provide: IsolationService, useClass: SupportIsolationService },
+                { provide: IsolationService, useClass: SupportIsolationService },
                 {
                     provide: HttpClient, useValue: {
                         get: (request: string, headers?: object) => {
