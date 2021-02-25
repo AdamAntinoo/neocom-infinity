@@ -91,6 +91,10 @@ Then('the section {string} has {int} panels', function (sectionName: string, pan
     cy.get('app-root').find('[cy-section-name="' + sectionName + '"]').find('.panel')
         .should('have.length', panelCount)
 })
+Given('the target is the section named {string}', function (sectionName: string) {
+    cy.get('app-root').find('[cy-section-name="' + sectionName + '"]')
+    .as('target-panel').as('target')
+})
 
 // - S P I N N E R
 Then('the loading panel shows {string}', function (loadingMessage: string) {

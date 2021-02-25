@@ -1,10 +1,3 @@
-// - CORE
-import { Observable } from 'rxjs'
-// - DOMAIN
-import { HALResolver } from '@app/services/HALResolver.service'
-import { ObjectIterateeCustom } from 'cypress/types/lodash'
-import { HALLink } from './HALLink.hal'
-
 export class HALLinkArray<T> {
     private downloaded: boolean = false
     private rel: string

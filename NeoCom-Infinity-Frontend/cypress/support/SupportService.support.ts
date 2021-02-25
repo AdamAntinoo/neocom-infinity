@@ -9,13 +9,14 @@ export class SupportService {
         // - PAGES
         this.translationTable['Start'] = 'v1-start-page'
         this.translationTable['Pilot Dashboard'] = 'dashboard-home-page'
- 
-        this.translationTable['Fitting Build Configuration'] = 'v1-industry-fitting-build-configuration-page'
+        this.translationTable['Industry Dashboard'] = 'industry-dashboard-page'
         this.translationTable['Planetary Dashboard Page'] = 'dashboard-page'
+        this.translationTable['Loyalty Recommendations'] = 'v1-loyalty-recommendations-page'
+        this.translationTable['Blueprint Manufacture CostIndex'] = 'v1-blueprint-list-page'
+
+        this.translationTable['Fitting Build Configuration'] = 'v1-industry-fitting-build-configuration-page'
         this.translationTable['Planetary Enter Data Page'] = 'v1-enter-planet-data-page'
         this.translationTable['Resource Research Page'] = 'v1-resource-research-page'
-        this.translationTable['Blueprint Manufacture CostIndex'] = 'v1-blueprint-list-page'
-        this.translationTable['Loyalty Recommendations'] = 'v1-loyalty-recommendations-page'
         // - PANELS
         this.translationTable['app-component'] = 'app-root'
         this.translationTable['app-info'] = 'app-info-panel'
@@ -23,6 +24,7 @@ export class SupportService {
         this.translationTable['pilot-list'] = 'v1-pilot-panel'
 
         this.translationTable['feature'] = 'v2-feature'
+
         this.translationTable['fitting-summary'] = 'v1-fitting-summary-panel'
         this.translationTable['fitting-saved-configuration'] = 'v1-fitting-configuration-panel'
         this.translationTable['fitting-target-configuration'] = 'v1-fitting-configuration-panel'
@@ -42,6 +44,7 @@ export class SupportService {
         // - RENDERS
         this.translationTable['exception'] = 'div'
         this.translationTable['pilot'] = 'v2-pilot'
+
         this.translationTable['feature-button'] = 'v1-feature-button'
         this.translationTable['planetary-system'] = 'v1-planetary-system'
         this.translationTable['processed-blueprint'] = 'v1-blueprint'
@@ -67,7 +70,8 @@ export class SupportService {
         this.routeTranslationTable['Pilot Dashboard'] = '/dashboard'
         this.routeTranslationTable['Planetary Dashboard Page'] = '/planetary/dashboard'
         this.routeTranslationTable['Resource Research Page'] = '/planetary/resource-research'
-        this.routeTranslationTable['Blueprint Manufacture CostIndex'] = '/industry/manufacture/blueprints'
+        this.routeTranslationTable['Industry Dashboard'] = '/industry/dashboard'
+        // this.routeTranslationTable['Blueprint Manufacture CostIndex'] = '/industry/manufacture/blueprints'
     }
     /**
      * Replaces symbolic names by the application names so if there are version changes the acceptance scritps should not change.
