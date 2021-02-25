@@ -18,6 +18,7 @@ Feature: [NIF01]-Test the validation for a valid authentication and the flow to 
         When the loading panel completes
         Then target has an actionable image named "EVE-login-button"
         And field named "validation-message" should not exist
+        And target has link pointing "https://login.eveonline.com/v2/oauth/authorize/?response_type=code&client_id=eacaa9cd36594189877544d851753734&state=LU5FT0NPTS5JTkZJTklUWS1QUk9EVUNUSU9OLVZBTElEIFNUQVRFIFNUUklORy0=&redirect_uri=http%3A%2F%2Flocalhost%3A5202%2Fapp%2FloginValidation&scope=publicData%20esi-corporations.read_structures.v1%20esi-characters.read_loyalty.v1%20esi-industry.read_character_jobs.v1%20esi-characters.read_corporation_roles.v1%20esi-industry.read_character_mining.v1"
 
     @NIF01.02
     Scenario: [NIF01.02]-Start the application and go to the landing page. If the authorization is valid then validate we land into the Dashboard.
@@ -32,4 +33,4 @@ Feature: [NIF01]-Test the validation for a valid authentication and the flow to 
         And field named "title-message" has contents "NeoCom / SSO EVE Online"
         And field named "validation-message" has contents "VALIDANDO AUTENTICACION DEL PILOTO..."
         When the loading panel completes
-        Then the page is page "Dashboard"
+        Then the page is page "Pilot Dashboard"
