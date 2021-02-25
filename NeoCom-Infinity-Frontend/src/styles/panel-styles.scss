@@ -23,6 +23,10 @@ $panel-corner-marker-displacement: -1px;
 $panel-background-hover-green: #0B3D03;
 $panel-background-hover-blue: #0B3D03;
 //  A L L   P A N E L S
+.panel-inset {
+    padding: $panel-padding;
+}
+
 .panel-red,
 .panel-pink,
 .panel-orange,

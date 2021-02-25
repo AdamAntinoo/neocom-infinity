@@ -15,8 +15,10 @@ import { V1FittingContentsPanelComponent } from './panels/v1-fitting-contents-pa
 import { NgDragDropModule } from 'ng-drag-drop'
 import { AppCommonModule } from '@common/common.module'
 import { HeaderModule } from '../header/header.module';
+import { IndustryDashboardPageComponent } from './pages/industry-dashboard-page/industry-dashboard-page.component';
 
 const routes: Routes = [
+    { path: 'dashboard', component: IndustryDashboardPageComponent },
     { path: 'fittings/buildConfiguration/:fittingId', component: V1IndustryFittingBuildConfigurationPageComponent },
     { path: 'manufacture', loadChildren: () => import('./manufacture/manufacture.module').then(m => m.ManufactureModule) },
 ]
@@ -36,6 +38,7 @@ const routes: Routes = [
         V1IndustryFittingBuildConfigurationPageComponent,
         V1FittingConfigurationPanelComponent,
         V1FittingContentsPanelComponent,
+        IndustryDashboardPageComponent,
     ],
     exports: [RouterModule]
 })

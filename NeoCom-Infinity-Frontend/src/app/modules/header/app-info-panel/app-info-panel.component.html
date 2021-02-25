@@ -1,9 +1,11 @@
 <div class="neocom-panel panel-white app-info-panel">
-    <div class="field">
-        <span cy-field-value="app-name" class="app-name">{{getName()}}</span>
-    </div>
-    <div class="field">
-        <span cy-field-value="app-version" class="app-version" style="margin-left:10px;">{{getVersion()}}</span>
+    <div class="row">
+        <div class="field">
+            <span cy-field-value="app-name" class="app-name">{{getName()}}</span>
+        </div>
+        <div class="field app-version-position">
+            <span cy-field-value="app-version" class="app-version">{{getVersion()}}</span>
+        </div>
     </div>
     <span class="app-copyright proxima-ff">{{getCopyright()}}</span>
 </div>

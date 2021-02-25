@@ -45,10 +45,10 @@ export class DashboardHomePageComponent extends BackgroundEnabledComponent imple
         }))
         this.features.push(new NeoComFeature({
             id: "blueprint-analysis",
-            label: "Catalogo de Blueprints",
+            label: "Gestion de Industria",
             enabled: true,
             interaction: 'PAGEROUTE',
-            route: "/industry/manufacture/blueprints",
+            route: "/industry/dashboard",
             imageRef: 'assets/media/blueprints-feature.jpeg'
         }))
         this.features.push(new NeoComFeature({
