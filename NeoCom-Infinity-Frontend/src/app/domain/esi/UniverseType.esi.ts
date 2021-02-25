@@ -1,4 +1,6 @@
-export class UniverseType {
+import { EsiNode } from "./EsiNode.esi"
+
+export class UniverseType extends EsiNode{
     public typeId: number
     public name: string
     public description: string
@@ -9,7 +11,5 @@ export class UniverseType {
     public packagedVolume: number
     public volume: number
 
-    constructor(values: Object = {}) {
-        Object.assign(this, values);
-    }
+    protected decode (): void {}
 }

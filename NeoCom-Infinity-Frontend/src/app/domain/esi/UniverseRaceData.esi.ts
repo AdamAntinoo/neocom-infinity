@@ -6,4 +6,6 @@ export class UniverseRaceData extends EsiNode {
     public description: string
     public name: string
     public raceId: number
+
+    protected decode (): void {}
 }

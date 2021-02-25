@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { V1LoyaltyCorporationSelectionPanelComponent } from './v1-loyalty-corporation-selection-panel.component';
 
-describe('V1LoyaltyCorporationSelectionPanelComponent', () => {
+xdescribe('V1LoyaltyCorporationSelectionPanelComponent', () => {
   let component: V1LoyaltyCorporationSelectionPanelComponent;
   let fixture: ComponentFixture<V1LoyaltyCorporationSelectionPanelComponent>;
 

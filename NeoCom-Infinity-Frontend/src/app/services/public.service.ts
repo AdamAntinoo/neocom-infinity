@@ -38,7 +38,7 @@ export class PublicService extends UniverseService {
                 return response
             }))
     }
-   public apiv1_GetPublicPilotData(pilotId: number): Observable<PublicPilotV1> {
+    public apiv1_GetPublicPilotData(pilotId: number): Observable<PublicPilotV1> {
         const request = this.PUBLICV1 + '/pilots/' + pilotId
         return this.httpUniverseService.wrapHttpGETCall(request)
             .pipe(map((data: any) => {

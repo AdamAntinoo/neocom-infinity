@@ -1,12 +1,7 @@
 // - CORE
-import { Component } from '@angular/core';
-import { ViewChild } from '@angular/core';
 import { EsiMarketData } from '@domain/esi/EsiMarketData.esi';
-import { EsiMarketsRegionsHistory } from '@domain/esi/EsiMarketsRegionsHistory.esi';
 import { EsiMarketsRegionsHistoryRecord } from '@domain/esi/EsiMarketsRegionsHistoryRecord.esi';
 import { EsiType } from '@domain/esi/EsiType.esi';
-import { HALLink } from '@domain/hal/HALLink.hal';
-import { MarketOrderDto } from '@domain/industry/dto/MarketOrderDto.dto';
 import { NeoCom } from '@domain/NeoCom.domain';
 
 export class LoyaltyOfferV1 extends NeoCom {
@@ -35,6 +30,7 @@ export class LoyaltyOfferV1 extends NeoCom {
         this.marketHistory = []
     }
 
+    // - G E T T E R S
     public getType(): EsiType {
         return this.type
     }

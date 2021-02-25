@@ -11,8 +11,9 @@ export class EsiMarketData extends EsiNode {
     private sellOrders: UniverseMarketOrder[]
     private sellDeep: number
     private sellAverage: number
+    private marketWidth:number
 
-    public decode() {
+    protected decode() {
         if (this.bestSellOrder) this.bestSellOrder = new MarketOrderDto(this.bestSellOrder)
         if (this.bestBuyOrder) this.bestBuyOrder = new MarketOrderDto(this.bestBuyOrder)
         if (this.sellOrders) {

@@ -48,8 +48,8 @@ describe('PAGE DashboardHomePageComponent [Module: CORE]', () => {
     })
 
     // - I N T E R A C T I O N S   P H A S E
-    xdescribe('Interactions Contract', () => {
-        it('getPilotId.success: get the pilot identifier contained on the credential', () => {
+    describe('Interactions Contract', () => {
+        xit('getPilotId.success: get the pilot identifier contained on the credential', () => {
             const isolationService = TestBed.inject<SupportIsolationService>(SupportIsolationService)
             const identifier = isolationService.generateRandomNum(123456, 234567)
             console.log('identifier=' + identifier)
