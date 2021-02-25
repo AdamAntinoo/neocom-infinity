@@ -180,6 +180,12 @@ Then('the Feature has the label {string}', function (title: string) {
     cy.get('@target').find('.feature-label').contains(title, { matchCase: false })
 })
 
+// - L I N K S
+Then('target has link pointing {string}', function (linkDestination: string) {
+    cy.get('@target')
+    .find('a').should("have.attr", "href", linkDestination);
+})
+
 // - I M A G E   B U T T O N S
 Then('target has an actionable image named {string}', function (buttonName: string) {
     cy.get('@target').find('[cy-name="' + buttonName + '"]').should('exist')
