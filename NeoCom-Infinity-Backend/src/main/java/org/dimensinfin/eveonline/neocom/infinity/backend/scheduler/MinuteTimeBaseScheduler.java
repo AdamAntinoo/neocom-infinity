@@ -10,7 +10,9 @@ import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import org.dimensinfin.eveonline.neocom.database.repositories.CredentialRepository;
 import org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.config.SchedulerConfiguration;
+import org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.jobs.CredentialJobGenerator;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 import org.dimensinfin.eveonline.neocom.service.scheduler.JobScheduler;
 import org.dimensinfin.logging.LogWrapper;
@@ -30,41 +32,21 @@ import static org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.config
 @Component
 public class MinuteTimeBaseScheduler {
 	private final IConfigurationService configurationService;
-	//	private final CredentialRepository credentialRepository;
 	private final SchedulerConfiguration schedulerConfiguration;
-	//	private final MiningRepository miningRepository;
-	//	private final LocationCatalogService locationCatalogService;
-	//	private final ESIDataService esiDataService;
-	//	private final SDERepository sdeRepository;
-	//	private final DataStoreService dataStoreService;
-	//	private final ResourceFactory resourceFactory;
+	private final CredentialRepository credentialRepository;
+	private final JobServicePackager jobServicePackager;
 
 	// - C O N S T R U C T O R S
 	@Autowired
 	public MinuteTimeBaseScheduler( @NotNull final IConfigurationService configurationService,
-	                                @NotNull final SchedulerConfiguration schedulerConfiguration ) {
+	                                @NotNull final SchedulerConfiguration schedulerConfiguration,
+	                                @NotNull final CredentialRepository credentialRepository,
+	                                @NotNull final JobServicePackager jobServicePackager ) {
 		this.configurationService = configurationService;
 		this.schedulerConfiguration = schedulerConfiguration;
+		this.credentialRepository = credentialRepository;
+		this.jobServicePackager = jobServicePackager;
 	}
-	//	                                public MinuteTimeBaseScheduler( @NotNull final IConfigurationService configurationService,
-	//	                                @NotNull final CredentialRepositoryWrapper credentialRepositoryWrapper,
-	//	                                @NotNull final SchedulerConfiguration schedulerConfiguration,
-	//	                                @NotNull final MiningRepositoryWrapper miningRepositoryWrapper,
-	//	                                @NotNull final LocationCatalogService locationCatalogService,
-	//	                                @NotNull final ESIDataService esiDataService,
-	//	                                @NotNull final SDERepository sdeRepository,
-	//	                                @NotNull final DataStoreService dataStoreService,
-	//	                                @NotNull final ResourceFactory resourceFactory ) {
-	//		this.configurationService = configurationService;
-	//		this.credentialRepository = credentialRepositoryWrapper.getSingleton();
-	//		this.schedulerConfiguration = schedulerConfiguration;
-	//		this.miningRepository = miningRepositoryWrapper.getSingleton();
-	//		this.locationCatalogService = locationCatalogService;
-	//		this.esiDataService = esiDataService;
-	//		this.sdeRepository = sdeRepository;
-	//		this.dataStoreService = dataStoreService;
-	//		this.resourceFactory = resourceFactory;
-	//	}
 
 	/**
 	 * This method is executed after the application starts and registers the credential job generator into the minute scheduler.
@@ -75,15 +57,8 @@ public class MinuteTimeBaseScheduler {
 	public void registerCredentialJobGenerator() {
 		LogWrapper.enter();
 		JobScheduler.getJobScheduler().registerJob( new CredentialJobGenerator.Builder()
-				.withConfigurationService( this.configurationService )
-				//				.withCredentialRepository( this.credentialRepository )
-				.withSchedulerConfiguration( this.schedulerConfiguration )
-				//				.withLocationCatalogService( this.locationCatalogService )
-				//				.withMiningRepository( this.miningRepository )
-				//				.withEsiDataService( this.esiDataService )
-				//				.withSDERepository( this.sdeRepository )
-				//				.withDataStore( this.dataStoreService )
-				//				.withResourceFactory( this.resourceFactory )
+				.withCredentialRepository( this.credentialRepository )
+				.withJobServicePackager( this.jobServicePackager )
 				.addCronSchedule( this.configurationService.getResourceString( CRON_SCHEDULE_CREDENTIAL_JOB_GENERATOR_PROPERTY_NAME, "* - *" ) )
 				.build() );
 		LogWrapper.exit();

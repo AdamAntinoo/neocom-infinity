@@ -7,20 +7,11 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
-import org.dimensinfin.eveonline.neocom.database.repositories.SDERepository;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdBlueprints200Ok;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.domain.ProcessedBlueprint;
-import org.dimensinfin.eveonline.neocom.infinity.service.DataStoreService;
-import org.dimensinfin.eveonline.neocom.service.ESIDataService;
-import org.dimensinfin.eveonline.neocom.service.ResourceFactory;
-import org.dimensinfin.eveonline.neocom.service.scheduler.domain.Job;
 
-public class BlueprintProcessorJob extends Job {
+public class BlueprintProcessorJob extends NeoComBackendJob {
 	private Credential credential;
-	private ESIDataService esiDataService;
-	private SDERepository sdeRepository;
-	private DataStoreService dataStoreService;
-	private ResourceFactory resourceFactory;
 
 	// - C O N S T R U C T O R S
 	private BlueprintProcessorJob() {}
@@ -44,24 +35,25 @@ public class BlueprintProcessorJob extends Job {
 	 */
 	@Override
 	public Boolean call() throws Exception {
-		final List<GetCharactersCharacterIdBlueprints200Ok> blueprints = this.esiDataService.getCharactersCharacterIdBlueprints( credential );
+		final List<GetCharactersCharacterIdBlueprints200Ok> blueprints = this.jobServicePackager.getEsiDataService()
+				.getCharactersCharacterIdBlueprints( this.credential );
 		final List<ProcessedBlueprint> processedBlueprints = blueprints.stream()
 				.map( blueprint -> blueprint.getTypeId() )
 				.distinct()
 				.map( blueprintType -> new ProcessedBlueprint.Builder()
 						.withType( blueprintType.intValue() )
-						.withBOM( this.sdeRepository.accessBillOfMaterials( blueprintType ) )
-						.withOutput( this.resourceFactory.generateType4Id(
-								this.sdeRepository.accessModule4Blueprint( blueprintType.intValue() )
+						.withBOM( this.jobServicePackager.getSdeRepository().accessBillOfMaterials( blueprintType ) )
+						.withOutput( this.jobServicePackager.getResourceFactory().generateType4Id(
+								this.jobServicePackager.getSdeRepository().accessModule4Blueprint( blueprintType.intValue() )
 						) )
 						.build() )
 				.collect( Collectors.toList() );
-		this.dataStoreService.updateProcessedBlueprint( credential, processedBlueprints );
+		this.jobServicePackager.getDataStoreService().updateProcessedBlueprint( this.credential, processedBlueprints );
 		return true;
 	}
 
 	// - B U I L D E R
-	public static class Builder extends Job.Builder<BlueprintProcessorJob, BlueprintProcessorJob.Builder> {
+	public static class Builder extends NeoComBackendJob.Builder<BlueprintProcessorJob, BlueprintProcessorJob.Builder> {
 		private BlueprintProcessorJob onConstruction;
 
 		// - C O N S T R U C T O R S
@@ -69,28 +61,13 @@ public class BlueprintProcessorJob extends Job {
 			this.onConstruction = new BlueprintProcessorJob();
 		}
 
+		@Override
+		public BlueprintProcessorJob build() {
+			return this.onConstruction;
+		}
+
 		public BlueprintProcessorJob.Builder withCredential( final Credential credential ) {
-			this.onConstruction.credential = Objects.requireNonNull( credential );
-			return this;
-		}
-
-		public BlueprintProcessorJob.Builder withDataStore( final DataStoreService dataStoreService ) {
-			this.onConstruction.dataStoreService = Objects.requireNonNull( dataStoreService );
-			return this;
-		}
-
-		public BlueprintProcessorJob.Builder withEsiDataService( final ESIDataService esiDataService ) {
-			this.onConstruction.esiDataService = Objects.requireNonNull( esiDataService );
-			return this;
-		}
-
-		public BlueprintProcessorJob.Builder withResourceFactory( final ResourceFactory resourceFactory ) {
-			this.onConstruction.resourceFactory = Objects.requireNonNull( resourceFactory );
-			return this;
-		}
-
-		public BlueprintProcessorJob.Builder withSDERepository( final SDERepository sdeRepository ) {
-			this.onConstruction.sdeRepository = Objects.requireNonNull( sdeRepository );
+			this.getActual().credential = Objects.requireNonNull( credential );
 			return this;
 		}
 
@@ -103,10 +80,6 @@ public class BlueprintProcessorJob extends Job {
 		@Override
 		protected BlueprintProcessorJob.Builder getActualBuilder() {
 			return this;
-		}
-
-		public BlueprintProcessorJob build() {
-			return this.onConstruction;
 		}
 	}
 }
