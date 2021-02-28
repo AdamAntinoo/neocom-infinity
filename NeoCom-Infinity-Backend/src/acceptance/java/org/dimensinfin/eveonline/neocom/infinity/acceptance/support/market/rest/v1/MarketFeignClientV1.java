@@ -7,9 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.ITargetConfiguration;
-import org.dimensinfin.eveonline.neocom.infinity.backend.market.domain.MarketData;
 import org.dimensinfin.eveonline.neocom.infinity.support.core.CommonFeignClient;
 import org.dimensinfin.eveonline.neocom.infinity.support.rest.NeoComApiv1;
+import org.dimensinfin.eveonline.neocom.market.MarketData;
 import org.dimensinfin.logging.LogWrapper;
 
 import retrofit2.Response;

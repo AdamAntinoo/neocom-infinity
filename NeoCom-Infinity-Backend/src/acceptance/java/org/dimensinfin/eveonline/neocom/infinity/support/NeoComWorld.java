@@ -13,22 +13,14 @@ import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCr
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenResponse;
-import org.dimensinfin.eveonline.neocom.infinity.backend.market.domain.MarketData;
 import org.dimensinfin.eveonline.neocom.infinity.support.corporation.rest.v1.CorporationResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.corporation.rest.v1.LocationAssetContainer;
 import org.dimensinfin.eveonline.neocom.infinity.support.fitting.rest.v1.FittingResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.neoitem.rest.v1.NeoItemTransport;
 import org.dimensinfin.eveonline.neocom.infinity.support.pilot.rest.v1.PilotResponse;
+import org.dimensinfin.eveonline.neocom.market.MarketData;
 
 public class NeoComWorld extends NewNeoComWorld {
-	//	public String getJwtAuthorizationToken() {
-	//		return jwtAuthorizationToken;
-	//	}
-	//
-	//	public NeoComWorld setJwtAuthorizationToken( final String jwtAuthorizationToken ) {
-	//		this.jwtAuthorizationToken = jwtAuthorizationToken;
-	//		return this;
-	//	}
 	private Integer itemIdentifier;
 	private Integer regionId;
 	private Integer typeId;

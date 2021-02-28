@@ -5,14 +5,14 @@ import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.Validator;
-import org.dimensinfin.eveonline.neocom.infinity.backend.market.domain.MarketOrder;
+import org.dimensinfin.eveonline.neocom.market.MarketOrder;
 
 public class MarketOrderValidator implements Validator<MarketOrder> {
 	public static final String MARKETORDER_TYPE_ID = "typeId";
 	public static final String MARKETORDER_PRICE = "price";
 	public static final String MARKETORDER_ORDER_ID = "orderId";
 	public static final String MARKETORDER_VOLUME_REMAIN = "volumeRemain";
-	public static final String MARKETORDER_VOLUME_TOTAL= "volumeTotal";
+	public static final String MARKETORDER_VOLUME_TOTAL = "volumeTotal";
 
 	@Override
 	public boolean validate( final Map<String, String> rowData, final MarketOrder record ) {
