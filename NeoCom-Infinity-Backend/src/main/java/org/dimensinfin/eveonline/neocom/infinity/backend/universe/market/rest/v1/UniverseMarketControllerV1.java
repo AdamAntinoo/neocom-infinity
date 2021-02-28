@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.dimensinfin.eveonline.neocom.infinity.backend.market.domain.MarketData;
 import org.dimensinfin.eveonline.neocom.infinity.backend.market.rest.v1.MarketServiceV1;
+import org.dimensinfin.eveonline.neocom.market.MarketData;
 
 @RestController
 @Validated

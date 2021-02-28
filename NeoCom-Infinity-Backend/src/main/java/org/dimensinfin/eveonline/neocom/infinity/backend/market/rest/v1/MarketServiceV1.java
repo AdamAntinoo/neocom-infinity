@@ -15,21 +15,20 @@ import org.dimensinfin.eveonline.neocom.domain.space.Station;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCorporationsCorporationIdOk;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetMarketsRegionIdOrders200Ok;
 import org.dimensinfin.eveonline.neocom.infinity.backend.market.converter.GetMarketsRegionIdOrdersToMarketOrderConverter;
-import org.dimensinfin.eveonline.neocom.infinity.backend.market.domain.MarketData;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetailsService;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
-import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComCredentialService;
+import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComAuthenticatedService;
+import org.dimensinfin.eveonline.neocom.market.MarketData;
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
 import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;
 
-import static org.dimensinfin.eveonline.neocom.infinity.backend.market.domain.MarketData.MARKET_DEEP_RANGE;
+import static org.dimensinfin.eveonline.neocom.market.service.MarketService.MARKET_DEEP_RANGE;
 import static org.dimensinfin.eveonline.neocom.service.ESIDataService.PREDEFINED_MARKET_HUB_STATION_ID;
 
 @Service
-public class MarketServiceV1 extends NeoComCredentialService {
+public class MarketServiceV1 extends NeoComAuthenticatedService {
 	private final ESIDataService esiDataService;
 	private final LocationCatalogService locationCatalogService;
-	//	private final PilotPreferencesRepository pilotPreferencesRepository;
 
 	// - C O N S T R U C T O R S
 	@Autowired

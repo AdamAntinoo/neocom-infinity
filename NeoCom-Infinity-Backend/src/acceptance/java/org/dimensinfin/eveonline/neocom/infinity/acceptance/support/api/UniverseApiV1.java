@@ -5,9 +5,9 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.dto.ServerStatusDto;
-import org.dimensinfin.eveonline.neocom.infinity.backend.market.domain.MarketData;
 import org.dimensinfin.eveonline.neocom.loyalty.domain.LoyaltyServiceConfiguration;
 import org.dimensinfin.eveonline.neocom.loyalty.persistence.LoyaltyOfferEntity;
+import org.dimensinfin.eveonline.neocom.market.MarketData;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

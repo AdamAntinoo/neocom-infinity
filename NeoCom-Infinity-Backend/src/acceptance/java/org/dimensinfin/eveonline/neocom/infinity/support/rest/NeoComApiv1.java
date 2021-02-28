@@ -10,10 +10,10 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.Au
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingBuildConfiguration;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingConfigurations;
-import org.dimensinfin.eveonline.neocom.infinity.backend.market.domain.MarketData;
 import org.dimensinfin.eveonline.neocom.infinity.support.corporation.rest.v1.CorporationResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.corporation.rest.v1.LocationAssetContainer;
 import org.dimensinfin.eveonline.neocom.infinity.support.fitting.rest.v1.FittingResponse;
+import org.dimensinfin.eveonline.neocom.market.MarketData;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

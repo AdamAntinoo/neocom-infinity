@@ -10,10 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.ITargetConfiguration;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.api.UniverseApiV1;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.dto.ServerStatusDto;
-import org.dimensinfin.eveonline.neocom.infinity.backend.market.domain.MarketData;
 import org.dimensinfin.eveonline.neocom.infinity.support.core.CommonFeignClient;
 import org.dimensinfin.eveonline.neocom.loyalty.domain.LoyaltyServiceConfiguration;
 import org.dimensinfin.eveonline.neocom.loyalty.persistence.LoyaltyOfferEntity;
+import org.dimensinfin.eveonline.neocom.market.MarketData;
 import org.dimensinfin.logging.LogWrapper;
 
 import retrofit2.Response;

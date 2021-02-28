@@ -25,13 +25,13 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.Au
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingBuildConfiguration;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingConfigurations;
-import org.dimensinfin.eveonline.neocom.infinity.backend.market.domain.MarketData;
 import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.EsiItemModel;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
 import org.dimensinfin.eveonline.neocom.infinity.support.NeoComWorld;
 import org.dimensinfin.eveonline.neocom.infinity.support.RequestType;
 import org.dimensinfin.eveonline.neocom.loyalty.domain.LoyaltyServiceConfiguration;
 import org.dimensinfin.eveonline.neocom.loyalty.persistence.LoyaltyOfferEntity;
+import org.dimensinfin.eveonline.neocom.market.MarketData;
 import org.dimensinfin.logging.LogWrapper;
 
 import io.cucumber.java.en.When;
