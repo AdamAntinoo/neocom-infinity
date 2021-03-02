@@ -125,6 +125,7 @@ jobs:
           name: NEOCOM-FRONTEND - Run the list of approved acceptance tests
           working_directory: NeoCom-Infinity-Frontend
           command: |
+            npm run acceptance:ready
             npm run acceptance:cypress:NIF01
 
   # - B A C K E N D
@@ -250,6 +251,7 @@ jobs:
           working_directory: NeoCom-Infinity-Backend
           environment:
             PROFILE: "production"
+            sonar.login: "852b9705880c9090a25e0d76440c1585c5d03fe4"
           command: |
             ./gradlew test jacocoTestReport sonarqube
 
