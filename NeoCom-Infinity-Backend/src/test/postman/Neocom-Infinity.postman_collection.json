@@ -46,7 +46,15 @@
 					"response": []
 				},
 				{
-					"name": "OAuth Authorization Token",
+					"name": "OAuth v2 Authorization Token",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"connection": true,
+							"accept-encoding": true,
+							"accept": true
+						},
+						"strictSSL": false
+					},
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -56,17 +64,33 @@
 							{
 								"key": "Content-Type",
 								"type": "text",
-								"value": "application/json"
+								"value": "application/x-www-form-urlencoded"
 							},
 							{
 								"key": "Authorization",
 								"type": "text",
 								"value": "Basic ZWFjYWE5Y2QzNjU5NDE4OTg3NzU0NGQ4NTE3NTM3MzQ6RjVTR04xc1VobHBnb053bmlKeGlTaHpIRUM1M0dERUJhUXNIRzBqRw=="
+							},
+							{
+								"key": "Host",
+								"value": "https://login.eveonline.com/",
+								"type": "text"
 							}
 						],
 						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"auth-token\": \"CONTENT-FOR-AUTH-TOKEN\"\n}"
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "{{code}}",
+									"type": "text"
+								}
+							]
 						},
 						"url": {
 							"raw": "{{esiAuthServer}}/v2/oauth/token",
@@ -304,7 +328,7 @@
 			]
 		},
 		{
-			"name": "NeoComSupport",
+			"name": "NeoCom.Support",
 			"item": [
 				{
 					"name": "Find Credential By Id",
@@ -476,6 +500,50 @@
 			"name": "NeoCom.Service",
 			"item": [
 				{
+					"name": "Validate State",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{apiv1}}/neocom/validateAuthenticationState",
+							"host": [
+								"{{backendServer}}{{apiv1}}"
+							],
+							"path": [
+								"neocom",
+								"validateAuthenticationState"
+							]
+						},
+						"description": "Checks if the client still has a valid session. If so the client will receive a new JWT and can continue entering the app.\nIf not valid then it will be prompted to login again through the EVE SSO Login service."
+					},
+					"response": []
+				},
+				{
 					"name": "Validate Authorization Token",
 					"event": [
 						{
@@ -531,6 +599,99 @@
 									"key": "datasource",
 									"value": "tranquility"
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store Credential",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"jsonClass\": \"Credential\",\n    \"className\": \"org.dimensinfin.eveonline.neocom.infinity.authorization.rest.CredentialTransport\",\n    \"accountId\": 93813310,\n    \"accountName\": \"Adam Antinoo\",\n    \"corporationId\": 7654321,\n    \"assetsCount\": 3000\n}"
+						},
+						"url": {
+							"raw": "{{backendServer}}{{apiv1}}/neocom/credentials/93813310",
+							"host": [
+								"{{backendServer}}{{apiv1}}"
+							],
+							"path": [
+								"neocom",
+								"credentials",
+								"93813310"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Pilot Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "xApp-Name",
+								"value": "Postman API Development",
+								"type": "text"
+							},
+							{
+								"key": "xApp-Version",
+								"value": "{{appVersion}}",
+								"type": "text"
+							},
+							{
+								"key": "xApp-Platform",
+								"value": "{{appStagePlatform}}",
+								"type": "text"
+							},
+							{
+								"key": "xApp-Signature",
+								"value": "S0000.0020.0000",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{neocomv1}}/pilots/{{pilotId}}",
+							"host": [
+								"{{backendServer}}{{neocomv1}}"
+							],
+							"path": [
+								"pilots",
+								"{{pilotId}}"
 							]
 						}
 					},
@@ -600,40 +761,6 @@
 							"path": [
 								"corporation",
 								"93813311"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Pilot Data",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{jwtToken}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{backendServer}}{{apiv1}}/pilots/92223647",
-							"host": [
-								"{{backendServer}}{{apiv1}}"
-							],
-							"path": [
-								"pilots",
-								"92223647"
 							]
 						}
 					},
@@ -854,38 +981,6 @@
 								"corporations",
 								"{{corporationId}}",
 								"assetsbylocation"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Store Credential",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"jsonClass\": \"Credential\",\n    \"className\": \"org.dimensinfin.eveonline.neocom.infinity.authorization.rest.CredentialTransport\",\n    \"accountId\": 93813310,\n    \"accountName\": \"Adam Antinoo\",\n    \"corporationId\": 7654321,\n    \"assetsCount\": 3000\n}"
-						},
-						"url": {
-							"raw": "{{backendServer}}{{apiv1}}/neocom/credentials/93813310",
-							"host": [
-								"{{backendServer}}{{apiv1}}"
-							],
-							"path": [
-								"neocom",
-								"credentials",
-								"93813310"
 							]
 						}
 					},
@@ -1141,16 +1236,21 @@
 								"key": "Content-Type",
 								"value": "application/json",
 								"type": "text"
+							},
+							{
+								"key": "xApp-Signature",
+								"value": "S0000.0020.0000",
+								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "{{backendIndustryv1}}/neocom/industry/manufacture/blueprints/costindex",
+							"raw": "{{backendServer}}{{industryv1}}/pilots/{{pilotId}}/manufacture/blueprints/costindex",
 							"host": [
-								"{{backendIndustryv1}}"
+								"{{backendServer}}{{industryv1}}"
 							],
 							"path": [
-								"neocom",
-								"industry",
+								"pilots",
+								"{{pilotId}}",
 								"manufacture",
 								"blueprints",
 								"costindex"
@@ -1217,7 +1317,7 @@
 					"response": []
 				},
 				{
-					"name": "Get Server Status",
+					"name": "Get Universe MarketByRegion Type",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -1226,36 +1326,8 @@
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{backendServer}}{{apiv1}}/server/datasource/tranquility",
-							"host": [
-								"{{backendServer}}{{apiv1}}"
-							],
-							"path": [
-								"server",
-								"datasource",
-								"tranquility"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Universe MarketByRegion 4Type",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
+								"type": "text",
+								"value": "application/json"
 							}
 						],
 						"url": {
@@ -1308,14 +1380,14 @@
 			"name": "NeoCom.Public",
 			"item": [
 				{
-					"name": "GetPilotPublicData",
+					"name": "Get Pilot Public Data",
 					"request": {
 						"method": "GET",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
+								"type": "text",
+								"value": "application/json"
 							}
 						],
 						"url": {
@@ -1333,14 +1405,14 @@
 					"response": []
 				},
 				{
-					"name": "GetCorporationPublicData",
+					"name": "Get Corporation Public Data",
 					"request": {
 						"method": "GET",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
+								"type": "text",
+								"value": "application/json"
 							}
 						],
 						"url": {
@@ -1351,6 +1423,33 @@
 							"path": [
 								"corporations",
 								"98661092"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Server Status",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{publicv1}}/server/status",
+							"host": [
+								"{{backendServer}}{{publicv1}}"
+							],
+							"path": [
+								"server",
+								"status"
 							]
 						}
 					},
@@ -1368,16 +1467,45 @@
 							}
 						],
 						"url": {
-							"raw": "{{backendServer}}{{publicv1}}/loyalty/corporations/1000179",
+							"raw": "{{backendServer}}{{publicv1}}/loyalty/corporations/1000182",
 							"host": [
 								"{{backendServer}}{{publicv1}}"
 							],
 							"path": [
 								"loyalty",
 								"corporations",
-								"1000179"
+								"1000182"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Loyalty Service Configuration",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"marketRegionId\": 10000002\n}"
+						},
+						"url": {
+							"raw": "{{backendServer}}{{publicv1}}/loyalty/configuration",
+							"host": [
+								"{{backendServer}}{{publicv1}}"
+							],
+							"path": [
+								"loyalty",
+								"configuration"
+							]
+						},
+						"description": "Changes the allowed fields for the Loyalty Service. This will allow to select another market hub for proce referral."
 					},
 					"response": []
 				}
