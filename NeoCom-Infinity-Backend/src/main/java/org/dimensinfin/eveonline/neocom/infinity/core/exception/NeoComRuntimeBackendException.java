@@ -62,6 +62,7 @@ public class NeoComRuntimeBackendException extends NeoComRuntimeException {
 	}
 
 	public NeoComRuntimeBackendException( final NeoComRestError error ) {
+		super( error.getMessage() );
 		this.errorName = error.getErrorName();
 		this.errorCode = error.getErrorCode();
 		this.causeMessage = error.getCause();
@@ -70,6 +71,7 @@ public class NeoComRuntimeBackendException extends NeoComRuntimeException {
 	}
 
 	public NeoComRuntimeBackendException( final RestExceptionResponse exceptionResponse ) {
+		super( exceptionResponse.getMessage() );
 		this.errorName = exceptionResponse.getErrorName();
 		this.errorCode = exceptionResponse.getErrorCode();
 		this.causeMessage = exceptionResponse.getCause();
@@ -78,6 +80,7 @@ public class NeoComRuntimeBackendException extends NeoComRuntimeException {
 	}
 
 	public NeoComRuntimeBackendException( final NeoComRestError error, final String cause ) {
+		super( error.getMessage() );
 		this.errorName = error.getErrorName();
 		this.errorCode = error.getErrorCode();
 		this.causeMessage = cause;
@@ -90,6 +93,7 @@ public class NeoComRuntimeBackendException extends NeoComRuntimeException {
 		return this.causeMessage;
 	}
 
+	@Override
 	public String getErrorCode() {
 		return this.errorCode;
 	}

@@ -10,6 +10,8 @@
 * CredentialJobGenerator
 * ProcessedBlueprint
 * PricedResourceSerializer
+* JobServicePackager
+* MarketServiceV1
 
 * NeoComAuthenticatedService
 
