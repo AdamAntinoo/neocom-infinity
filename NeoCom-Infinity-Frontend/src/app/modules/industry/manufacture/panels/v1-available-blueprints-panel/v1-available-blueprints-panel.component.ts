@@ -91,7 +91,7 @@ export class V1AvailableBlueprintsPanelComponent extends AppPanelComponent imple
      * During blueprint processing there are pending events that complete when the blueprint item is downloaded. This should fire some sort of refresh event that should redraw the page.
      */
     private accessBlueprintList(): void {
-        console.log(">[V1AvailableBlueprintsPanelComponent.accessKnownSystems]")
+        console.log(">[V1AvailableBlueprintsPanelComponent.accessBlueprintList]")
         this.backendConnections.push(
             this.industryService.apiv1_GetProcessedBlueprints(this.processedBlueprintTransformer)
                 .subscribe((response: ProcessedBlueprint[]) => {
@@ -100,14 +100,14 @@ export class V1AvailableBlueprintsPanelComponent extends AppPanelComponent imple
                         this.blueprintList.length)
                     this.completeDowload(this.blueprintList) // Notify the completion of the download.
                 }, (error) => {
-                    console.log('-[V1KnownSystemsPanelComponent.accessKnownSystems.exception]> Error message: ' +
+                    console.log('-[V1KnownSystemsPanelComponent.accessBlueprintList.exception]> Error message: ' +
                         JSON.stringify(error.error))
                     if (environment.showexceptions)
                         if (error instanceof HttpErrorResponse)
                             this.isolationService.processException(error)
                 })
         )
-        console.log("<[V1AvailableBlueprintsPanelComponent.accessKnownSystems]")
+        console.log("<[V1AvailableBlueprintsPanelComponent.accessBlueprintList]")
     }
     private sortBlueprintByName(inputs: ProcessedBlueprint[]): ProcessedBlueprint[] {
         return inputs.sort((element1, element2) =>

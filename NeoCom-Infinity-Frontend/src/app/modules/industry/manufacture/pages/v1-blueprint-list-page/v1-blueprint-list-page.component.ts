@@ -19,7 +19,11 @@ export class V1BlueprintListPageComponent {
         this.self = this
     }
 
-    public signalSelection(target: ProcessedBlueprint): void {
+     // - I N T E R A C T I O N S
+     public getPilotId() : number {
+        return 100
+    }
+   public signalSelection(target: ProcessedBlueprint): void {
         if (target) {
             console.log('-[V1BlueprintListPageComponent.signalSelection]> Select')
             this.selectedBlueprint = target
