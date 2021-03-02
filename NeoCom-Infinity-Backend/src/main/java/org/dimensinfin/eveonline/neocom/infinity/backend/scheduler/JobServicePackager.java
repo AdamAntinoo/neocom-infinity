@@ -4,6 +4,7 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.stereotype.Component;
 
+import org.dimensinfin.eveonline.neocom.database.repositories.PilotPreferencesRepository;
 import org.dimensinfin.eveonline.neocom.database.repositories.SDERepository;
 import org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.config.SchedulerConfiguration;
 import org.dimensinfin.eveonline.neocom.infinity.service.DataStoreService;
@@ -27,6 +28,7 @@ public class JobServicePackager {
 	private final DataStoreService dataStoreService;
 	private final ResourceFactory resourceFactory;
 	private final MarketService marketService;
+	private final PilotPreferencesRepository preferencesRepository;
 
 	// - C O N S T R U C T O R S
 	private JobServicePackager( @NotNull final IConfigurationService configurationService,
@@ -36,7 +38,8 @@ public class JobServicePackager {
 	                            @NotNull final SDERepository sdeRepository,
 	                            @NotNull final DataStoreService dataStoreService,
 	                            @NotNull final ResourceFactory resourceFactory,
-	                            @NotNull final MarketService marketService ) {
+	                            @NotNull final MarketService marketService,
+	                            @NotNull final PilotPreferencesRepository preferencesRepository ) {
 		this.configurationService = configurationService;
 		this.schedulerConfiguration = schedulerConfiguration;
 		this.esiDataService = esiDataService;
@@ -45,6 +48,7 @@ public class JobServicePackager {
 		this.dataStoreService = dataStoreService;
 		this.resourceFactory = resourceFactory;
 		this.marketService = marketService;
+		this.preferencesRepository = preferencesRepository;
 	}
 
 	// - G E T T E R S   &   S E T T E R S
@@ -68,6 +72,10 @@ public class JobServicePackager {
 		return this.marketService;
 	}
 
+	public PilotPreferencesRepository getPreferencesRepository() {
+		return this.preferencesRepository;
+	}
+
 	public ResourceFactory getResourceFactory() {
 		return this.resourceFactory;
 	}
@@ -78,5 +86,9 @@ public class JobServicePackager {
 
 	public SchedulerConfiguration getSchedulerConfiguration() {
 		return this.schedulerConfiguration;
+	}
+
+	public SDERepository getSdeRepository() {
+		return this.sdeRepository;
 	}
 }

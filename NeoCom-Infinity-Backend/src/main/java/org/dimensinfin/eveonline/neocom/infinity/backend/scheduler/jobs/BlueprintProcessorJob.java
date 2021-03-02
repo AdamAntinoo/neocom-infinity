@@ -1,7 +1,6 @@
 package org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.jobs;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -10,19 +9,12 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.domain.EsiType;
-import org.dimensinfin.eveonline.neocom.domain.PricedResource;
-import org.dimensinfin.eveonline.neocom.domain.Resource;
-import org.dimensinfin.eveonline.neocom.domain.space.SpaceLocation;
-import org.dimensinfin.eveonline.neocom.domain.space.SpaceRegion;
-import org.dimensinfin.eveonline.neocom.domain.space.Station;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdBlueprints200Ok;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetMarketsRegionIdOrders200Ok;
+import org.dimensinfin.eveonline.neocom.industry.domain.PricedResource;
+import org.dimensinfin.eveonline.neocom.industry.domain.Resource;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.domain.ProcessedBlueprint;
-import org.dimensinfin.eveonline.neocom.infinity.backend.market.converter.GetMarketsRegionIdOrdersToMarketOrderConverter;
 import org.dimensinfin.eveonline.neocom.market.MarketData;
-
-import static org.dimensinfin.eveonline.neocom.market.service.MarketService.MARKET_DEEP_RANGE;
-import static org.dimensinfin.eveonline.neocom.service.ESIDataService.PREDEFINED_MARKET_HUB_STATION_ID;
 
 public class BlueprintProcessorJob extends NeoComBackendJob {
 	private Credential credential;
@@ -49,6 +41,9 @@ public class BlueprintProcessorJob extends NeoComBackendJob {
 	 */
 	@Override
 	public Boolean call() throws Exception {
+		final int defaultRegionId = this.jobServicePackager.getPreferencesRepository()
+				.accessMarketRegionId( this.credential.getAccountId() )
+				.getNumberValue().intValue();
 		final List<GetCharactersCharacterIdBlueprints200Ok> blueprints = this.jobServicePackager.getEsiDataService()
 				.getCharactersCharacterIdBlueprints( this.credential );
 		final List<ProcessedBlueprint> processedBlueprints = blueprints.stream()
@@ -57,16 +52,16 @@ public class BlueprintProcessorJob extends NeoComBackendJob {
 				.map( blueprintType -> {
 					final int outputModuleId = this.jobServicePackager.getSDERepository().accessModule4Blueprint( blueprintType );
 					final EsiType outputModule = this.jobServicePackager.getResourceFactory().generateType4Id( outputModuleId );
-					final int defaultRegionId = ((SpaceRegion) Objects.requireNonNull( this.jobServicePackager.getLocationCatalogService()
-							.searchLocation4Id( PREDEFINED_MARKET_HUB_STATION_ID ) )).getRegionId();
-					final MarketData outputMarketData = this.getMarketConsolidatedByRegion4ItemId( defaultRegionId, outputModuleId );
+					final MarketData outputMarketData = this.jobServicePackager.getMarketService()
+							.getMarketConsolidatedByRegion4ItemId( defaultRegionId, outputModuleId );
 					final List<Resource> bom = this.jobServicePackager.getSDERepository().accessBillOfMaterials( blueprintType );
 					final List<PricedResource> bomPriced = new ArrayList<>();
 					for (final Resource resource : bom) {
-						final MarketData marketData = this.getMarketConsolidatedByRegion4ItemId( defaultRegionId, resource.getTypeId() );
+						final MarketData marketData = this.jobServicePackager.getMarketService()
+								.getMarketConsolidatedByRegion4ItemId( defaultRegionId, resource.getTypeId() );
 						bomPriced.add( new PricedResource.Builder()
 								.withMarketData( marketData )
-								.withPrice( marketData.getBestSellOrder().getPrice() )
+								.withPrice( this.getBestSellPriceFromMarketData( marketData ) )
 								.withItemType( resource.getType() )
 								.withGroup( resource.getGroup() )
 								.withCategory( resource.getCategory() )
@@ -85,69 +80,13 @@ public class BlueprintProcessorJob extends NeoComBackendJob {
 		return true;
 	}
 
-	private double calculateResourceCost( final Resource resource ) {
-		final SpaceLocation marketHub = this.jobServicePackager.getLocationCatalogService()
-				.searchLocation4Id( PREDEFINED_MARKET_HUB_STATION_ID );
-		return this.jobServicePackager.getMarketService().getLowestSellPrice(
-				this.jobServicePackager.getEsiDataService().getUniverseMarketOrdersForId( ((SpaceRegion) marketHub).getRegionId(),
-						resource.getTypeId() ),
-				this.jobServicePackager.getEsiDataService().getRegionMarketHub( ((SpaceRegion) marketHub).getRegionId() ).getSolarSystemId()
-		);
-	}
-
-	private double getLowestSellPrice( final List<GetMarketsRegionIdOrders200Ok> orders, final int targetSystem ) {
-		double minPrice = Double.MAX_VALUE;
-		for (final GetMarketsRegionIdOrders200Ok order : orders) {
-			if ((Boolean.TRUE.equals( order.getIsBuyOrder() )) || (order.getSystemId() != targetSystem)) continue;
-			if (order.getPrice() < minPrice) minPrice = order.getPrice();
-		}
-		return minPrice;
-	}
-
-	private MarketData getMarketConsolidatedByRegion4ItemId( final Integer regionId, final Integer typeId ) {
-		final Station regionHub = this.jobServicePackager.getEsiDataService().getRegionMarketHub( regionId );
-		final List<GetMarketsRegionIdOrders200Ok> sellOrders = this.getMarketHubSellOrders4Id( regionHub, typeId );
-		final List<GetMarketsRegionIdOrders200Ok> buyOrders = this.getMarketHubBuyOrders4Id( regionHub, typeId );
-		return new MarketData.Builder()
-				.withTypeId( typeId )
-				.withBestSellOrder( sellOrders.isEmpty() ?
-						null :
-						new GetMarketsRegionIdOrdersToMarketOrderConverter( this.jobServicePackager.getLocationCatalogService() )
-								.convert( sellOrders.get( 0 ) ) )
-				.withSellOrders( sellOrders )
-				.withBestBuyOrder( buyOrders.isEmpty() ?
-						null :
-						new GetMarketsRegionIdOrdersToMarketOrderConverter( this.jobServicePackager.getLocationCatalogService() )
-								.convert( buyOrders.get( 0 ) ) )
-				.build();
-	}
-
-	private List<GetMarketsRegionIdOrders200Ok> getMarketHubBuyOrders4Id( final Station hub, final Integer itemId ) {
-		return this.jobServicePackager.getEsiDataService().getUniverseMarketOrdersForId( hub.getRegionId(), itemId )
-				.stream()
-				.filter( GetMarketsRegionIdOrders200Ok::getIsBuyOrder )
-				.filter( order -> order.getSystemId().equals( hub.getSolarSystemId() ) ) // Filter only orders for the hub system
-				.sorted( Comparator.comparingDouble( GetMarketsRegionIdOrders200Ok::getPrice ) )
-				.collect( Collectors.toList() );
-	}
-
-	private List<GetMarketsRegionIdOrders200Ok> getMarketHubSellOrders4Id( final Station hub, final Integer itemId ) {
-		final List<GetMarketsRegionIdOrders200Ok> orders =
-				this.jobServicePackager.getEsiDataService().getUniverseMarketOrdersForId( hub.getRegionId(), itemId );
-		//		final Optional<Double> priceLimitOptional = orders.stream()
-		//				.filter( order -> !order.getIsBuyOrder() ) // Filter only SELL orders
-		//				.filter( order -> order.getSystemId() == hub.getSolarSystemId() ) // Filter only orders for the hub system
-		//				.map( GetMarketsRegionIdOrders200Ok::getPrice )
-		//				.min( Double::compare );
-		//		if (priceLimitOptional.isPresent()) {
-		final double priceLimit = this.getLowestSellPrice( orders, hub.getSolarSystemId() ) * MARKET_DEEP_RANGE;
-		return orders
-				.stream()
-				.filter( order -> !order.getIsBuyOrder() ) // Filter only SELL orders
-				.filter( order -> order.getSystemId().equals( hub.getSolarSystemId() ) ) // Filter only orders for the hub system
-				.filter( order -> order.getPrice() <= priceLimit )
-				.sorted( Comparator.comparingDouble( GetMarketsRegionIdOrders200Ok::getPrice ) )
-				.collect( Collectors.toList() );
+	private Double getBestSellPriceFromMarketData( final MarketData data ) {
+		final List<GetMarketsRegionIdOrders200Ok> orders = data.getSellOrders();
+		if (orders.isEmpty()) return 0.0;
+		else
+			return orders.stream()
+					.mapToDouble( order -> order.getPrice() )
+					.max().orElse( 0 );
 	}
 
 	// - B U I L D E R

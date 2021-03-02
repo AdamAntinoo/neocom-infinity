@@ -23,8 +23,8 @@ public class GetCharactersCharacterIdFittingsToFittingV2Converter implements Con
 				.withShipHull( this.resourceFactory.generateType4Id( input.getShipTypeId() ) )
 				.withFittingDescription( input )
 				.build();
-		for (CharacterscharacterIdfittingsItems item : input.getItems())
-			fitting.addFittingItem( new FittingItem.Builder().withFittingItem( item ).build() );
+		for (final CharacterscharacterIdfittingsItems item : input.getItems())
+			fitting.addFittingItem( new FittingItem.Builder().withFittingData( item ).build() );
 		return fitting;
 	}
 }
