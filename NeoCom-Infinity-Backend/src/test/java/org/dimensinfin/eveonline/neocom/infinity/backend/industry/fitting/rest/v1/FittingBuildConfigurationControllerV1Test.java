@@ -8,6 +8,7 @@ import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingConfigurations;
+import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
 
 import static org.dimensinfin.eveonline.neocom.infinity.backend.support.TestDataConstants.FittingConstants.TEST_FITTING_ID;
 
@@ -48,8 +49,10 @@ public class FittingBuildConfigurationControllerV1Test {
 				.build();
 		// When
 		Mockito.when( this.fittingBuildConfigurationServiceV1.getFittingConfigurations( fittingId ) ).thenReturn( fittingConfigurations );
+		final NeoComAuthenticationProvider neoComAuthenticationProvider = Mockito.mock( NeoComAuthenticationProvider.class );
 		// Test
 		final FittingBuildConfigurationControllerV1 fittingBuildConfigurationControllerV1 = new FittingBuildConfigurationControllerV1(
+				neoComAuthenticationProvider,
 				this.fittingBuildConfigurationServiceV1
 		);
 		final ResponseEntity<FittingConfigurations> obtained = fittingBuildConfigurationControllerV1.getFittingConfigurations( fittingId );

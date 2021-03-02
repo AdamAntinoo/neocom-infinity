@@ -17,7 +17,7 @@ import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterI
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseCategoriesCategoryIdOk;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseGroupsGroupIdOk;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseTypesTypeIdOk;
-import org.dimensinfin.eveonline.neocom.provider.ESIUniverseDataProvider;
+import org.dimensinfin.eveonline.neocom.service.ESIDataService;
 
 class NeoAssetSerializerTest {
 	private ObjectMapper objectMapper;
@@ -25,9 +25,9 @@ class NeoAssetSerializerTest {
 	@BeforeEach
 	public void beforeEach() {
 		this.objectMapper = new ObjectMapper();
-		SimpleModule module = new SimpleModule();
+		final SimpleModule module = new SimpleModule();
 		module.addSerializer( NeoAsset.class, new NeoAssetSerializer() );
-		objectMapper.registerModule( module );
+		this.objectMapper.registerModule( module );
 	}
 
 	@Test
@@ -42,11 +42,11 @@ class NeoAssetSerializerTest {
 		final GetUniverseCategoriesCategoryIdOk esiCategory = Mockito.mock( GetUniverseCategoriesCategoryIdOk.class );
 		Mockito.when( esiCategory.getCategoryId() ).thenReturn( 4 );
 		Mockito.when( esiCategory.getName() ).thenReturn( "Material" );
-		final ESIUniverseDataProvider esiDataProvider = Mockito.mock( ESIUniverseDataProvider.class );
-		Mockito.when( esiDataProvider.searchEsiItem4Id( Mockito.anyInt() ) ).thenReturn( esiItem );
-		Mockito.when( esiDataProvider.searchItemGroup4Id( Mockito.anyInt() ) ).thenReturn( esiGroup );
-		Mockito.when( esiDataProvider.searchItemCategory4Id( Mockito.anyInt() ) ).thenReturn( esiCategory );
-		NeoItem.injectEsiUniverseDataAdapter( esiDataProvider );
+		final ESIDataService esiDataService = Mockito.mock( ESIDataService.class );
+		Mockito.when( esiDataService.searchEsiItem4Id( Mockito.anyInt() ) ).thenReturn( esiItem );
+		Mockito.when( esiDataService.searchItemGroup4Id( Mockito.anyInt() ) ).thenReturn( esiGroup );
+		Mockito.when( esiDataService.searchItemCategory4Id( Mockito.anyInt() ) ).thenReturn( esiCategory );
+		NeoItem.injectEsiUniverseDataAdapter( esiDataService );
 		final GetCharactersCharacterIdAssets200Ok esiAssetOk = new GetCharactersCharacterIdAssets200Ok();
 		esiAssetOk.setItemId( 123456L );
 		esiAssetOk.setTypeId( 34 );
@@ -73,7 +73,7 @@ class NeoAssetSerializerTest {
 						.build() );
 		final String expected = "{\"jsonClass\":\"NeoAsset\",\"UUID\":null,\"assetId\":123456,\"type\":34,\"locationId\":12345,\"name\":\"Tritanium\",\"groupId\":18,\"groupName\":\"Mineral\",\"categoryId\":4,\"categoryName\":\"Material\",\"tech\":\"Tech I\",\"volume\":0.0,\"price\":0.0,\"quantity\":10}";
 
-		String obtained = objectMapper.writeValueAsString( asset );
+		final String obtained = this.objectMapper.writeValueAsString( asset );
 		Assertions.assertEquals( expected, obtained );
 	}
 }
