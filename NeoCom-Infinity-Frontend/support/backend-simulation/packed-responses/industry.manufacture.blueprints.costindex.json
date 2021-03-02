@@ -1,9 +1,42 @@
 [{
-        "blueprintType": 31741,
+        "blueprintTypeId": 31741,
+        "blueprint": {
+            "typeId": 31741,
+            "name": "Small Kinetic Shield Reinforcer I Blueprint",
+            "description": "",
+            "group": {
+                "groupId": 787,
+                "groupName": "Rig Blueprint",
+                "groupCategoryId": 9
+            },
+            "category": {
+                "categoryId": 9,
+                "categoryName": "Blueprint"
+            },
+            "type": {
+                "typeId": 31741,
+                "name": "Small Kinetic Shield Reinforcer I Blueprint",
+                "description": "",
+                "groupId": 787,
+                "marketGroupId": 1267,
+                "capacity": 0.0,
+                "mass": 0.0,
+                "packagedVolume": 0.01,
+                "volume": 0.01
+            },
+            "tech": "Tech I",
+            "volume": 0.01,
+            "isBlueprint": true,
+            "typeIconURL": "https://image.eveonline.com/Type/31741_64.png",
+            "marketData": {
+                "rel": "marketData",
+                "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/31741"
+            }
+        },
         "output": {
-            "jsonClass": "EsiType",
             "typeId": 31740,
             "name": "Small Kinetic Shield Reinforcer I",
+            "description": "This ship modification is designed to increase the kinetic resistance of ship shields at the expense of increased signature radius.\r\n\r\nPenalty: Using more than one type of this module or similar modules that affect the same attribute on the ship will be penalized.\r\n\r\nThe drawbacks of fitting this rig may be reduced by training the <a href=showinfo:26261>Shield Rigging</a> skill.",
             "group": {
                 "groupId": 774,
                 "groupName": "Rig Shield",
@@ -17,6 +50,7 @@
                 "typeId": 31740,
                 "name": "Small Kinetic Shield Reinforcer I",
                 "description": "This ship modification is designed to increase the kinetic resistance of ship shields at the expense of increased signature radius.\r\n\r\nPenalty: Using more than one type of this module or similar modules that affect the same attribute on the ship will be penalized.\r\n\r\nThe drawbacks of fitting this rig may be reduced by training the <a href=showinfo:26261>Shield Rigging</a> skill.",
+                "groupId": 774,
                 "marketGroupId": 1234,
                 "capacity": 0.0,
                 "mass": 200.0,
@@ -29,14 +63,135 @@
             "typeIconURL": "https://image.eveonline.com/Type/31740_64.png",
             "marketData": {
                 "rel": "marketData",
-                "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/31740"
+                "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/31740"
             }
         },
-        "bom": [{
-                "jsonClass": "Resource",
+        "outputMarketData": {
+            "typeId": 31740,
+            "bestSellOrder": {
+                "station": {
+                    "locationType": "STATION",
+                    "locationId": 60003760,
+                    "stationId": 60003760,
+                    "stationName": "Jita IV - Moon 4 - Caldari Navy Assembly Plant",
+                    "solarSystemId": 30000142,
+                    "solarSystemName": "Jita",
+                    "securityClass": "B",
+                    "securityStatus": 0.94591314,
+                    "constellationId": 20000020,
+                    "constellationName": "Kimotoro",
+                    "regionId": 10000002,
+                    "regionName": "The Forge"
+                },
+                "orderId": 5931756587,
+                "price": 10800.0,
+                "typeId": 31740,
+                "volumeRemain": 10,
+                "volumeTotal": 10,
+                "buyOrder": false
+            },
+            "bestBuyOrder": {
+                "station": {
+                    "locationType": "STATION",
+                    "locationId": 60003760,
+                    "stationId": 60003760,
+                    "stationName": "Jita IV - Moon 4 - Caldari Navy Assembly Plant",
+                    "solarSystemId": 30000142,
+                    "solarSystemName": "Jita",
+                    "securityClass": "B",
+                    "securityStatus": 0.94591314,
+                    "constellationId": 20000020,
+                    "constellationName": "Kimotoro",
+                    "regionId": 10000002,
+                    "regionName": "The Forge"
+                },
+                "orderId": 5919316986,
+                "price": 10.0,
+                "typeId": 31740,
+                "volumeRemain": 986,
+                "volumeTotal": 1000,
+                "buyOrder": true
+            },
+            "sellOrders": [{
+                    "duration": 3,
+                    "isBuyOrder": false,
+                    "issued": "2021-02-28T08:28:52.000Z",
+                    "locationId": 60003760,
+                    "minVolume": 1,
+                    "orderId": 5931756587,
+                    "price": 10800.0,
+                    "range": "REGION",
+                    "systemId": 30000142,
+                    "typeId": 31740,
+                    "volumeRemain": 10,
+                    "volumeTotal": 10
+                },
+                {
+                    "duration": 90,
+                    "isBuyOrder": false,
+                    "issued": "2021-02-27T23:34:56.000Z",
+                    "locationId": 60003760,
+                    "minVolume": 1,
+                    "orderId": 5937676696,
+                    "price": 10800.0,
+                    "range": "REGION",
+                    "systemId": 30000142,
+                    "typeId": 31740,
+                    "volumeRemain": 300,
+                    "volumeTotal": 917
+                },
+                {
+                    "duration": 3,
+                    "isBuyOrder": false,
+                    "issued": "2021-02-26T15:47:55.000Z",
+                    "locationId": 60003760,
+                    "minVolume": 1,
+                    "orderId": 5936255164,
+                    "price": 10860.0,
+                    "range": "REGION",
+                    "systemId": 30000142,
+                    "typeId": 31740,
+                    "volumeRemain": 29,
+                    "volumeTotal": 38
+                },
+                {
+                    "duration": 90,
+                    "isBuyOrder": false,
+                    "issued": "2021-02-26T06:32:00.000Z",
+                    "locationId": 60003760,
+                    "minVolume": 1,
+                    "orderId": 5933462111,
+                    "price": 10890.0,
+                    "range": "REGION",
+                    "systemId": 30000142,
+                    "typeId": 31740,
+                    "volumeRemain": 578,
+                    "volumeTotal": 800
+                },
+                {
+                    "duration": 90,
+                    "isBuyOrder": false,
+                    "issued": "2021-02-25T20:00:40.000Z",
+                    "locationId": 60003760,
+                    "minVolume": 1,
+                    "orderId": 5922777941,
+                    "price": 10900.0,
+                    "range": "REGION",
+                    "systemId": 30000142,
+                    "typeId": 31740,
+                    "volumeRemain": 48,
+                    "volumeTotal": 200
+                }
+            ],
+            "sellDeep": 965,
+            "sellAverage": 10860.683937823835,
+            "marketWidth": 10790.0,
+            "sellRegionId": 10000002
+        },
+        "billOfMaterials": [{
                 "typeId": 25601,
                 "name": "Fried Interface Circuit",
-                "quantity": 3,
+                "quantity": 0,
                 "group": {
                     "groupId": 754,
                     "groupName": "Salvaged Materials",
@@ -50,6 +205,7 @@
                     "typeId": 25601,
                     "name": "Fried Interface Circuit",
                     "description": "Interface Circuits are common building blocks of starship subsystems. This one seems a little worse for wear but might be useful for something with a little ingenuity. ",
+                    "groupId": 754,
                     "marketGroupId": 1863,
                     "capacity": 0.0,
                     "mass": 0.0,
@@ -60,16 +216,16 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/25601_64.png",
+                "price": 1928.0,
                 "marketData": {
                     "rel": "marketData",
-                    "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/25601"
+                    "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/25601"
                 }
             },
             {
-                "jsonClass": "Resource",
                 "typeId": 25589,
                 "name": "Malfunctioning Shield Emitter",
-                "quantity": 2,
+                "quantity": 0,
                 "group": {
                     "groupId": 754,
                     "groupName": "Salvaged Materials",
@@ -83,6 +239,7 @@
                     "typeId": 25589,
                     "name": "Malfunctioning Shield Emitter",
                     "description": "This Shield Emitter, while not being totally out of commission doesn't seem to be living up to its full potential. With some tender loving care the parts could be put to good use. ",
+                    "groupId": 754,
                     "marketGroupId": 1863,
                     "capacity": 0.0,
                     "mass": 0.0,
@@ -93,16 +250,16 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/25589_64.png",
+                "price": 729.0,
                 "marketData": {
                     "rel": "marketData",
-                    "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/25589"
+                    "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/25589"
                 }
             },
             {
-                "jsonClass": "Resource",
                 "typeId": 25599,
                 "name": "Charred Micro Circuit",
-                "quantity": 3,
+                "quantity": 0,
                 "group": {
                     "groupId": 754,
                     "groupName": "Salvaged Materials",
@@ -116,6 +273,7 @@
                     "typeId": 25599,
                     "name": "Charred Micro Circuit",
                     "description": "Micro Circuits are one of the most common electronics components seen in use. This one has seen better days but could still be of some use.",
+                    "groupId": 754,
                     "marketGroupId": 1863,
                     "capacity": 0.0,
                     "mass": 0.0,
@@ -126,16 +284,16 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/25599_64.png",
+                "price": 314.2,
                 "marketData": {
                     "rel": "marketData",
-                    "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/25599"
+                    "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/25599"
                 }
             },
             {
-                "jsonClass": "Resource",
                 "typeId": 31741,
                 "name": "Small Kinetic Shield Reinforcer I Blueprint",
-                "quantity": 1,
+                "quantity": 0,
                 "group": {
                     "groupId": 787,
                     "groupName": "Rig Blueprint",
@@ -149,6 +307,7 @@
                     "typeId": 31741,
                     "name": "Small Kinetic Shield Reinforcer I Blueprint",
                     "description": "",
+                    "groupId": 787,
                     "marketGroupId": 1267,
                     "capacity": 0.0,
                     "mass": 0.0,
@@ -159,16 +318,16 @@
                 "volume": 0.01,
                 "isBlueprint": true,
                 "typeIconURL": "https://image.eveonline.com/Type/31741_64.png",
+                "price": 2249000.0,
                 "marketData": {
                     "rel": "marketData",
-                    "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/31741"
+                    "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/31741"
                 }
             },
             {
-                "jsonClass": "Resource",
                 "typeId": 3380,
                 "name": "Industry",
-                "quantity": 1,
+                "quantity": 0,
                 "group": {
                     "groupId": 268,
                     "groupName": "Production",
@@ -182,6 +341,7 @@
                     "typeId": 3380,
                     "name": "Industry",
                     "description": "Allows basic operation of factories. 4% reduction in manufacturing time per skill level.",
+                    "groupId": 268,
                     "marketGroupId": 369,
                     "capacity": 0.0,
                     "mass": 0.0,
@@ -192,16 +352,16 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/3380_64.png",
+                "price": 30000.0,
                 "marketData": {
                     "rel": "marketData",
-                    "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/3380"
+                    "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/3380"
                 }
             },
             {
-                "jsonClass": "Resource",
                 "typeId": 26261,
                 "name": "Shield Rigging",
-                "quantity": 1,
+                "quantity": 0,
                 "group": {
                     "groupId": 269,
                     "groupName": "Rigging",
@@ -215,6 +375,7 @@
                     "typeId": 26261,
                     "name": "Shield Rigging",
                     "description": "Advanced understanding of shield systems. Allows makeshift modifications to shield systems through the use of rigs. \r\n\r\n10% reduction in Shield Rig drawbacks per level.",
+                    "groupId": 269,
                     "marketGroupId": 372,
                     "capacity": 0.0,
                     "mass": 0.0,
@@ -225,19 +386,53 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/26261_64.png",
+                "price": 497400.0,
                 "marketData": {
                     "rel": "marketData",
-                    "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/26261"
+                    "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/26261"
                 }
             }
         ]
     },
     {
-        "blueprintType": 31118,
+        "blueprintTypeId": 31118,
+        "blueprint": {
+            "typeId": 31118,
+            "name": "Small Cargohold Optimization I Blueprint",
+            "description": "",
+            "group": {
+                "groupId": 787,
+                "groupName": "Rig Blueprint",
+                "groupCategoryId": 9
+            },
+            "category": {
+                "categoryId": 9,
+                "categoryName": "Blueprint"
+            },
+            "type": {
+                "typeId": 31118,
+                "name": "Small Cargohold Optimization I Blueprint",
+                "description": "",
+                "groupId": 787,
+                "marketGroupId": 1240,
+                "capacity": 0.0,
+                "mass": 0.0,
+                "packagedVolume": 0.01,
+                "volume": 0.01
+            },
+            "tech": "Tech I",
+            "volume": 0.01,
+            "isBlueprint": true,
+            "typeIconURL": "https://image.eveonline.com/Type/31118_64.png",
+            "marketData": {
+                "rel": "marketData",
+                "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/31118"
+            }
+        },
         "output": {
-            "jsonClass": "EsiType",
             "typeId": 31117,
             "name": "Small Cargohold Optimization I",
+            "description": "This ship modification is designed to increase a ship's cargo capacity at the expense of armor amount.\r\n\r\nThe drawbacks of fitting this rig may be reduced by training the <a href=showinfo:26254>Astronautics Rigging</a> skill.",
             "group": {
                 "groupId": 782,
                 "groupName": "Rig Navigation",
@@ -251,6 +446,7 @@
                 "typeId": 31117,
                 "name": "Small Cargohold Optimization I",
                 "description": "This ship modification is designed to increase a ship's cargo capacity at the expense of armor amount.\r\n\r\nThe drawbacks of fitting this rig may be reduced by training the <a href=showinfo:26254>Astronautics Rigging</a> skill.",
+                "groupId": 782,
                 "marketGroupId": 1210,
                 "capacity": 0.0,
                 "mass": 200.0,
@@ -263,14 +459,93 @@
             "typeIconURL": "https://image.eveonline.com/Type/31117_64.png",
             "marketData": {
                 "rel": "marketData",
-                "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/31117"
+                "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/31117"
             }
         },
-        "bom": [{
-                "jsonClass": "Resource",
+        "outputMarketData": {
+            "typeId": 31117,
+            "bestSellOrder": {
+                "station": {
+                    "locationType": "STATION",
+                    "locationId": 60003760,
+                    "stationId": 60003760,
+                    "stationName": "Jita IV - Moon 4 - Caldari Navy Assembly Plant",
+                    "solarSystemId": 30000142,
+                    "solarSystemName": "Jita",
+                    "securityClass": "B",
+                    "securityStatus": 0.94591314,
+                    "constellationId": 20000020,
+                    "constellationName": "Kimotoro",
+                    "regionId": 10000002,
+                    "regionName": "The Forge"
+                },
+                "orderId": 5935593045,
+                "price": 79960.0,
+                "typeId": 31117,
+                "volumeRemain": 182,
+                "volumeTotal": 190,
+                "buyOrder": false
+            },
+            "bestBuyOrder": {
+                "station": {
+                    "locationType": "STATION",
+                    "locationId": 60003760,
+                    "stationId": 60003760,
+                    "stationName": "Jita IV - Moon 4 - Caldari Navy Assembly Plant",
+                    "solarSystemId": 30000142,
+                    "solarSystemName": "Jita",
+                    "securityClass": "B",
+                    "securityStatus": 0.94591314,
+                    "constellationId": 20000020,
+                    "constellationName": "Kimotoro",
+                    "regionId": 10000002,
+                    "regionName": "The Forge"
+                },
+                "orderId": 5884909281,
+                "price": 20030.0,
+                "typeId": 31117,
+                "volumeRemain": 1000,
+                "volumeTotal": 1000,
+                "buyOrder": true
+            },
+            "sellOrders": [{
+                    "duration": 14,
+                    "isBuyOrder": false,
+                    "issued": "2021-02-25T19:37:17.000Z",
+                    "locationId": 60003760,
+                    "minVolume": 1,
+                    "orderId": 5935593045,
+                    "price": 79960.0,
+                    "range": "REGION",
+                    "systemId": 30000142,
+                    "typeId": 31117,
+                    "volumeRemain": 182,
+                    "volumeTotal": 190
+                },
+                {
+                    "duration": 90,
+                    "isBuyOrder": false,
+                    "issued": "2021-02-24T18:26:59.000Z",
+                    "locationId": 60003760,
+                    "minVolume": 1,
+                    "orderId": 5934714408,
+                    "price": 79990.0,
+                    "range": "REGION",
+                    "systemId": 30000142,
+                    "typeId": 31117,
+                    "volumeRemain": 36,
+                    "volumeTotal": 50
+                }
+            ],
+            "sellDeep": 218,
+            "sellAverage": 79964.95412844037,
+            "marketWidth": 59930.0,
+            "sellRegionId": 10000002
+        },
+        "billOfMaterials": [{
                 "typeId": 25601,
                 "name": "Fried Interface Circuit",
-                "quantity": 6,
+                "quantity": 0,
                 "group": {
                     "groupId": 754,
                     "groupName": "Salvaged Materials",
@@ -284,6 +559,7 @@
                     "typeId": 25601,
                     "name": "Fried Interface Circuit",
                     "description": "Interface Circuits are common building blocks of starship subsystems. This one seems a little worse for wear but might be useful for something with a little ingenuity. ",
+                    "groupId": 754,
                     "marketGroupId": 1863,
                     "capacity": 0.0,
                     "mass": 0.0,
@@ -294,16 +570,16 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/25601_64.png",
+                "price": 1928.0,
                 "marketData": {
                     "rel": "marketData",
-                    "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/25601"
+                    "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/25601"
                 }
             },
             {
-                "jsonClass": "Resource",
                 "typeId": 25595,
                 "name": "Alloyed Tritanium Bar",
-                "quantity": 4,
+                "quantity": 0,
                 "group": {
                     "groupId": 754,
                     "groupName": "Salvaged Materials",
@@ -317,6 +593,7 @@
                     "typeId": 25595,
                     "name": "Alloyed Tritanium Bar",
                     "description": "Tritanium based alloy for use in applications requiring extremely high strength and temperature resistance. Some examples are thruster mounts or afterburner nozzles.",
+                    "groupId": 754,
                     "marketGroupId": 1863,
                     "capacity": 0.0,
                     "mass": 0.0,
@@ -327,16 +604,16 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/25595_64.png",
+                "price": 4093.0,
                 "marketData": {
                     "rel": "marketData",
-                    "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/25595"
+                    "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/25595"
                 }
             },
             {
-                "jsonClass": "Resource",
                 "typeId": 25598,
                 "name": "Tripped Power Circuit",
-                "quantity": 3,
+                "quantity": 0,
                 "group": {
                     "groupId": 754,
                     "groupName": "Salvaged Materials",
@@ -350,6 +627,7 @@
                     "typeId": 25598,
                     "name": "Tripped Power Circuit",
                     "description": "A closed loop electrical network with redundant autonomous switchgear. This unit has all of its breakers tripped but isn't beyond repair. ",
+                    "groupId": 754,
                     "marketGroupId": 1863,
                     "capacity": 0.0,
                     "mass": 0.0,
@@ -360,16 +638,16 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/25598_64.png",
+                "price": 2200.0,
                 "marketData": {
                     "rel": "marketData",
-                    "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/25598"
+                    "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/25598"
                 }
             },
             {
-                "jsonClass": "Resource",
                 "typeId": 31118,
                 "name": "Small Cargohold Optimization I Blueprint",
-                "quantity": 1,
+                "quantity": 0,
                 "group": {
                     "groupId": 787,
                     "groupName": "Rig Blueprint",
@@ -383,6 +661,7 @@
                     "typeId": 31118,
                     "name": "Small Cargohold Optimization I Blueprint",
                     "description": "",
+                    "groupId": 787,
                     "marketGroupId": 1240,
                     "capacity": 0.0,
                     "mass": 0.0,
@@ -393,16 +672,16 @@
                 "volume": 0.01,
                 "isBlueprint": true,
                 "typeIconURL": "https://image.eveonline.com/Type/31118_64.png",
+                "price": 1490000.0,
                 "marketData": {
                     "rel": "marketData",
-                    "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/31118"
+                    "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/31118"
                 }
             },
             {
-                "jsonClass": "Resource",
                 "typeId": 3380,
                 "name": "Industry",
-                "quantity": 1,
+                "quantity": 0,
                 "group": {
                     "groupId": 268,
                     "groupName": "Production",
@@ -416,6 +695,7 @@
                     "typeId": 3380,
                     "name": "Industry",
                     "description": "Allows basic operation of factories. 4% reduction in manufacturing time per skill level.",
+                    "groupId": 268,
                     "marketGroupId": 369,
                     "capacity": 0.0,
                     "mass": 0.0,
@@ -426,16 +706,16 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/3380_64.png",
+                "price": 30000.0,
                 "marketData": {
                     "rel": "marketData",
-                    "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/3380"
+                    "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/3380"
                 }
             },
             {
-                "jsonClass": "Resource",
                 "typeId": 26254,
                 "name": "Astronautics Rigging",
-                "quantity": 1,
+                "quantity": 0,
                 "group": {
                     "groupId": 269,
                     "groupName": "Rigging",
@@ -449,6 +729,7 @@
                     "typeId": 26254,
                     "name": "Astronautics Rigging",
                     "description": "Advanced understanding of a ships navigational systems. Allows makeshift modifications to warp drive, sub warp drive and other navigational systems through the use of rigs. \r\n\r\n10% reduction in Astronautics Rig drawbacks per level.",
+                    "groupId": 269,
                     "marketGroupId": 372,
                     "capacity": 0.0,
                     "mass": 0.0,
@@ -459,19 +740,53 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/26254_64.png",
+                "price": 19900.0,
                 "marketData": {
                     "rel": "marketData",
-                    "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/26254"
+                    "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/26254"
                 }
             }
         ]
     },
     {
-        "blueprintType": 31395,
+        "blueprintTypeId": 31395,
+        "blueprint": {
+            "typeId": 31395,
+            "name": "Small Powergrid Subroutine Maximizer I Blueprint",
+            "description": "",
+            "group": {
+                "groupId": 787,
+                "groupName": "Rig Blueprint",
+                "groupCategoryId": 9
+            },
+            "category": {
+                "categoryId": 9,
+                "categoryName": "Blueprint"
+            },
+            "type": {
+                "typeId": 31395,
+                "name": "Small Powergrid Subroutine Maximizer I Blueprint",
+                "description": "",
+                "groupId": 787,
+                "marketGroupId": 1252,
+                "capacity": 0.0,
+                "mass": 0.0,
+                "packagedVolume": 0.01,
+                "volume": 0.01
+            },
+            "tech": "Tech I",
+            "volume": 0.01,
+            "isBlueprint": true,
+            "typeIconURL": "https://image.eveonline.com/Type/31395_64.png",
+            "marketData": {
+                "rel": "marketData",
+                "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/31395"
+            }
+        },
         "output": {
-            "jsonClass": "EsiType",
             "typeId": 31394,
             "name": "Small Powergrid Subroutine Maximizer I",
+            "description": "This ship modification is designed to reduce a ship's CPU need for all power upgrade modules.",
             "group": {
                 "groupId": 781,
                 "groupName": "Rig Core",
@@ -485,6 +800,7 @@
                 "typeId": 31394,
                 "name": "Small Powergrid Subroutine Maximizer I",
                 "description": "This ship modification is designed to reduce a ship's CPU need for all power upgrade modules.",
+                "groupId": 781,
                 "marketGroupId": 1222,
                 "capacity": 0.0,
                 "mass": 200.0,
@@ -497,14 +813,99 @@
             "typeIconURL": "https://image.eveonline.com/Type/31394_64.png",
             "marketData": {
                 "rel": "marketData",
-                "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/31394"
+                "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/31394"
             }
         },
-        "bom": [{
-                "jsonClass": "Resource",
+        "outputMarketData": {
+            "typeId": 31394,
+            "bestSellOrder": {
+                "station": {
+                    "locationType": "STATION",
+                    "locationId": 60003760,
+                    "stationId": 60003760,
+                    "stationName": "Jita IV - Moon 4 - Caldari Navy Assembly Plant",
+                    "solarSystemId": 30000142,
+                    "solarSystemName": "Jita",
+                    "securityClass": "B",
+                    "securityStatus": 0.94591314,
+                    "constellationId": 20000020,
+                    "constellationName": "Kimotoro",
+                    "regionId": 10000002,
+                    "regionName": "The Forge"
+                },
+                "orderId": 5927187512,
+                "price": 108800.0,
+                "typeId": 31394,
+                "volumeRemain": 124,
+                "volumeTotal": 141,
+                "buyOrder": false
+            },
+            "sellOrders": [{
+                    "duration": 90,
+                    "isBuyOrder": false,
+                    "issued": "2021-02-22T12:00:38.000Z",
+                    "locationId": 60003760,
+                    "minVolume": 1,
+                    "orderId": 5927187512,
+                    "price": 108800.0,
+                    "range": "REGION",
+                    "systemId": 30000142,
+                    "typeId": 31394,
+                    "volumeRemain": 124,
+                    "volumeTotal": 141
+                },
+                {
+                    "duration": 90,
+                    "isBuyOrder": false,
+                    "issued": "2021-02-22T20:42:48.000Z",
+                    "locationId": 60003760,
+                    "minVolume": 1,
+                    "orderId": 5931949524,
+                    "price": 108800.0,
+                    "range": "REGION",
+                    "systemId": 30000142,
+                    "typeId": 31394,
+                    "volumeRemain": 46,
+                    "volumeTotal": 50
+                },
+                {
+                    "duration": 90,
+                    "isBuyOrder": false,
+                    "issued": "2021-02-21T19:55:17.000Z",
+                    "locationId": 60003760,
+                    "minVolume": 1,
+                    "orderId": 5932115650,
+                    "price": 109000.0,
+                    "range": "REGION",
+                    "systemId": 30000142,
+                    "typeId": 31394,
+                    "volumeRemain": 2,
+                    "volumeTotal": 9
+                },
+                {
+                    "duration": 90,
+                    "isBuyOrder": false,
+                    "issued": "2020-12-06T04:09:16.000Z",
+                    "locationId": 60003760,
+                    "minVolume": 1,
+                    "orderId": 5865402246,
+                    "price": 110000.0,
+                    "range": "REGION",
+                    "systemId": 30000142,
+                    "typeId": 31394,
+                    "volumeRemain": 18,
+                    "volumeTotal": 430
+                }
+            ],
+            "sellDeep": 190,
+            "sellAverage": 108915.78947368421,
+            "marketWidth": -1.0,
+            "sellRegionId": 10000002
+        },
+        "billOfMaterials": [{
                 "typeId": 25601,
                 "name": "Fried Interface Circuit",
-                "quantity": 3,
+                "quantity": 0,
                 "group": {
                     "groupId": 754,
                     "groupName": "Salvaged Materials",
@@ -518,6 +919,7 @@
                     "typeId": 25601,
                     "name": "Fried Interface Circuit",
                     "description": "Interface Circuits are common building blocks of starship subsystems. This one seems a little worse for wear but might be useful for something with a little ingenuity. ",
+                    "groupId": 754,
                     "marketGroupId": 1863,
                     "capacity": 0.0,
                     "mass": 0.0,
@@ -528,16 +930,16 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/25601_64.png",
+                "price": 1928.0,
                 "marketData": {
                     "rel": "marketData",
-                    "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/25601"
+                    "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/25601"
                 }
             },
             {
-                "jsonClass": "Resource",
                 "typeId": 25594,
                 "name": "Tangled Power Conduit",
-                "quantity": 2,
+                "quantity": 0,
                 "group": {
                     "groupId": 754,
                     "groupName": "Salvaged Materials",
@@ -551,6 +953,7 @@
                     "typeId": 25594,
                     "name": "Tangled Power Conduit",
                     "description": "Power Conduit runs through ships delivering energy like arteries deliver blood through a body. Large ships can have hundreds of miles of conduit. This conduit is tangled and knotted as it seems to have gone through some sort of catastrophe.",
+                    "groupId": 754,
                     "marketGroupId": 1863,
                     "capacity": 0.0,
                     "mass": 0.0,
@@ -561,16 +964,16 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/25594_64.png",
+                "price": 66670.0,
                 "marketData": {
                     "rel": "marketData",
-                    "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/25594"
+                    "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/25594"
                 }
             },
             {
-                "jsonClass": "Resource",
                 "typeId": 25598,
                 "name": "Tripped Power Circuit",
-                "quantity": 3,
+                "quantity": 0,
                 "group": {
                     "groupId": 754,
                     "groupName": "Salvaged Materials",
@@ -584,6 +987,7 @@
                     "typeId": 25598,
                     "name": "Tripped Power Circuit",
                     "description": "A closed loop electrical network with redundant autonomous switchgear. This unit has all of its breakers tripped but isn't beyond repair. ",
+                    "groupId": 754,
                     "marketGroupId": 1863,
                     "capacity": 0.0,
                     "mass": 0.0,
@@ -594,16 +998,16 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/25598_64.png",
+                "price": 2200.0,
                 "marketData": {
                     "rel": "marketData",
-                    "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/25598"
+                    "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/25598"
                 }
             },
             {
-                "jsonClass": "Resource",
                 "typeId": 31395,
                 "name": "Small Powergrid Subroutine Maximizer I Blueprint",
-                "quantity": 1,
+                "quantity": 0,
                 "group": {
                     "groupId": 787,
                     "groupName": "Rig Blueprint",
@@ -617,6 +1021,7 @@
                     "typeId": 31395,
                     "name": "Small Powergrid Subroutine Maximizer I Blueprint",
                     "description": "",
+                    "groupId": 787,
                     "marketGroupId": 1252,
                     "capacity": 0.0,
                     "mass": 0.0,
@@ -627,16 +1032,16 @@
                 "volume": 0.01,
                 "isBlueprint": true,
                 "typeIconURL": "https://image.eveonline.com/Type/31395_64.png",
+                "price": 5000000.0,
                 "marketData": {
                     "rel": "marketData",
-                    "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/31395"
+                    "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/31395"
                 }
             },
             {
-                "jsonClass": "Resource",
                 "typeId": 3380,
                 "name": "Industry",
-                "quantity": 1,
+                "quantity": 0,
                 "group": {
                     "groupId": 268,
                     "groupName": "Production",
@@ -650,6 +1055,7 @@
                     "typeId": 3380,
                     "name": "Industry",
                     "description": "Allows basic operation of factories. 4% reduction in manufacturing time per skill level.",
+                    "groupId": 268,
                     "marketGroupId": 369,
                     "capacity": 0.0,
                     "mass": 0.0,
@@ -660,16 +1066,16 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/3380_64.png",
+                "price": 30000.0,
                 "marketData": {
                     "rel": "marketData",
-                    "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/3380"
+                    "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/3380"
                 }
             },
             {
-                "jsonClass": "Resource",
                 "typeId": 26252,
                 "name": "Jury Rigging",
-                "quantity": 1,
+                "quantity": 0,
                 "group": {
                     "groupId": 269,
                     "groupName": "Rigging",
@@ -683,6 +1089,7 @@
                     "typeId": 26252,
                     "name": "Jury Rigging",
                     "description": "General understanding of the inner workings of starship components. Allows makeshift modifications to ship systems through the use of rigs. Required learning for further study in the field of rigging. ",
+                    "groupId": 269,
                     "marketGroupId": 372,
                     "capacity": 0.0,
                     "mass": 0.0,
@@ -693,19 +1100,53 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/26252_64.png",
+                "price": 989.0,
                 "marketData": {
                     "rel": "marketData",
-                    "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/26252"
+                    "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/26252"
                 }
             }
         ]
     },
     {
-        "blueprintType": 31717,
+        "blueprintTypeId": 31717,
+        "blueprint": {
+            "typeId": 31717,
+            "name": "Small EM Shield Reinforcer I Blueprint",
+            "description": "",
+            "group": {
+                "groupId": 787,
+                "groupName": "Rig Blueprint",
+                "groupCategoryId": 9
+            },
+            "category": {
+                "categoryId": 9,
+                "categoryName": "Blueprint"
+            },
+            "type": {
+                "typeId": 31717,
+                "name": "Small EM Shield Reinforcer I Blueprint",
+                "description": "",
+                "groupId": 787,
+                "marketGroupId": 1267,
+                "capacity": 0.0,
+                "mass": 0.0,
+                "packagedVolume": 0.01,
+                "volume": 0.01
+            },
+            "tech": "Tech I",
+            "volume": 0.01,
+            "isBlueprint": true,
+            "typeIconURL": "https://image.eveonline.com/Type/31717_64.png",
+            "marketData": {
+                "rel": "marketData",
+                "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/31717"
+            }
+        },
         "output": {
-            "jsonClass": "EsiType",
             "typeId": 31716,
             "name": "Small EM Shield Reinforcer I",
+            "description": "This ship modification is designed to increase the EM resistance of ship shields at the expense of increased signature radius.\r\n\r\nPenalty: Using more than one type of this module or similar modules that affect the same attribute on the ship will be penalized.\r\n\r\nThe drawbacks of fitting this rig may be reduced by training the <a href=showinfo:26261>Shield Rigging</a> skill.",
             "group": {
                 "groupId": 774,
                 "groupName": "Rig Shield",
@@ -719,6 +1160,7 @@
                 "typeId": 31716,
                 "name": "Small EM Shield Reinforcer I",
                 "description": "This ship modification is designed to increase the EM resistance of ship shields at the expense of increased signature radius.\r\n\r\nPenalty: Using more than one type of this module or similar modules that affect the same attribute on the ship will be penalized.\r\n\r\nThe drawbacks of fitting this rig may be reduced by training the <a href=showinfo:26261>Shield Rigging</a> skill.",
+                "groupId": 774,
                 "marketGroupId": 1234,
                 "capacity": 0.0,
                 "mass": 200.0,
@@ -731,14 +1173,121 @@
             "typeIconURL": "https://image.eveonline.com/Type/31716_64.png",
             "marketData": {
                 "rel": "marketData",
-                "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/31716"
+                "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/31716"
             }
         },
-        "bom": [{
-                "jsonClass": "Resource",
+        "outputMarketData": {
+            "typeId": 31716,
+            "bestSellOrder": {
+                "station": {
+                    "locationType": "STATION",
+                    "locationId": 60003760,
+                    "stationId": 60003760,
+                    "stationName": "Jita IV - Moon 4 - Caldari Navy Assembly Plant",
+                    "solarSystemId": 30000142,
+                    "solarSystemName": "Jita",
+                    "securityClass": "B",
+                    "securityStatus": 0.94591314,
+                    "constellationId": 20000020,
+                    "constellationName": "Kimotoro",
+                    "regionId": 10000002,
+                    "regionName": "The Forge"
+                },
+                "orderId": 5938206903,
+                "price": 17440.0,
+                "typeId": 31716,
+                "volumeRemain": 37,
+                "volumeTotal": 100,
+                "buyOrder": false
+            },
+            "bestBuyOrder": {
+                "station": {
+                    "locationType": "STATION",
+                    "locationId": 60003760,
+                    "stationId": 60003760,
+                    "stationName": "Jita IV - Moon 4 - Caldari Navy Assembly Plant",
+                    "solarSystemId": 30000142,
+                    "solarSystemName": "Jita",
+                    "securityClass": "B",
+                    "securityStatus": 0.94591314,
+                    "constellationId": 20000020,
+                    "constellationName": "Kimotoro",
+                    "regionId": 10000002,
+                    "regionName": "The Forge"
+                },
+                "orderId": 5931419458,
+                "price": 1.0,
+                "typeId": 31716,
+                "volumeRemain": 10000,
+                "volumeTotal": 10000,
+                "buyOrder": true
+            },
+            "sellOrders": [{
+                    "duration": 30,
+                    "isBuyOrder": false,
+                    "issued": "2021-02-28T13:50:08.000Z",
+                    "locationId": 60003760,
+                    "minVolume": 1,
+                    "orderId": 5938206903,
+                    "price": 17440.0,
+                    "range": "REGION",
+                    "systemId": 30000142,
+                    "typeId": 31716,
+                    "volumeRemain": 37,
+                    "volumeTotal": 100
+                },
+                {
+                    "duration": 14,
+                    "isBuyOrder": false,
+                    "issued": "2021-02-28T12:31:16.000Z",
+                    "locationId": 60003760,
+                    "minVolume": 1,
+                    "orderId": 5938138603,
+                    "price": 17460.0,
+                    "range": "REGION",
+                    "systemId": 30000142,
+                    "typeId": 31716,
+                    "volumeRemain": 54,
+                    "volumeTotal": 100
+                },
+                {
+                    "duration": 90,
+                    "isBuyOrder": false,
+                    "issued": "2021-02-21T00:28:23.000Z",
+                    "locationId": 60003760,
+                    "minVolume": 1,
+                    "orderId": 5931272163,
+                    "price": 17470.0,
+                    "range": "REGION",
+                    "systemId": 30000142,
+                    "typeId": 31716,
+                    "volumeRemain": 761,
+                    "volumeTotal": 1111
+                },
+                {
+                    "duration": 90,
+                    "isBuyOrder": false,
+                    "issued": "2021-02-21T00:24:58.000Z",
+                    "locationId": 60003760,
+                    "minVolume": 1,
+                    "orderId": 5931269316,
+                    "price": 17480.0,
+                    "range": "REGION",
+                    "systemId": 30000142,
+                    "typeId": 31716,
+                    "volumeRemain": 655,
+                    "volumeTotal": 655
+                }
+            ],
+            "sellDeep": 1507,
+            "sellAverage": 17473.251493032516,
+            "marketWidth": 17439.0,
+            "sellRegionId": 10000002
+        },
+        "billOfMaterials": [{
                 "typeId": 25601,
                 "name": "Fried Interface Circuit",
-                "quantity": 3,
+                "quantity": 0,
                 "group": {
                     "groupId": 754,
                     "groupName": "Salvaged Materials",
@@ -752,6 +1301,7 @@
                     "typeId": 25601,
                     "name": "Fried Interface Circuit",
                     "description": "Interface Circuits are common building blocks of starship subsystems. This one seems a little worse for wear but might be useful for something with a little ingenuity. ",
+                    "groupId": 754,
                     "marketGroupId": 1863,
                     "capacity": 0.0,
                     "mass": 0.0,
@@ -762,16 +1312,16 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/25601_64.png",
+                "price": 1928.0,
                 "marketData": {
                     "rel": "marketData",
-                    "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/25601"
+                    "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/25601"
                 }
             },
             {
-                "jsonClass": "Resource",
                 "typeId": 25589,
                 "name": "Malfunctioning Shield Emitter",
-                "quantity": 2,
+                "quantity": 0,
                 "group": {
                     "groupId": 754,
                     "groupName": "Salvaged Materials",
@@ -785,6 +1335,7 @@
                     "typeId": 25589,
                     "name": "Malfunctioning Shield Emitter",
                     "description": "This Shield Emitter, while not being totally out of commission doesn't seem to be living up to its full potential. With some tender loving care the parts could be put to good use. ",
+                    "groupId": 754,
                     "marketGroupId": 1863,
                     "capacity": 0.0,
                     "mass": 0.0,
@@ -795,16 +1346,16 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/25589_64.png",
+                "price": 729.0,
                 "marketData": {
                     "rel": "marketData",
-                    "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/25589"
+                    "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/25589"
                 }
             },
             {
-                "jsonClass": "Resource",
                 "typeId": 25599,
                 "name": "Charred Micro Circuit",
-                "quantity": 3,
+                "quantity": 0,
                 "group": {
                     "groupId": 754,
                     "groupName": "Salvaged Materials",
@@ -818,6 +1369,7 @@
                     "typeId": 25599,
                     "name": "Charred Micro Circuit",
                     "description": "Micro Circuits are one of the most common electronics components seen in use. This one has seen better days but could still be of some use.",
+                    "groupId": 754,
                     "marketGroupId": 1863,
                     "capacity": 0.0,
                     "mass": 0.0,
@@ -828,16 +1380,16 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/25599_64.png",
+                "price": 314.2,
                 "marketData": {
                     "rel": "marketData",
-                    "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/25599"
+                    "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/25599"
                 }
             },
             {
-                "jsonClass": "Resource",
                 "typeId": 31717,
                 "name": "Small EM Shield Reinforcer I Blueprint",
-                "quantity": 1,
+                "quantity": 0,
                 "group": {
                     "groupId": 787,
                     "groupName": "Rig Blueprint",
@@ -851,6 +1403,7 @@
                     "typeId": 31717,
                     "name": "Small EM Shield Reinforcer I Blueprint",
                     "description": "",
+                    "groupId": 787,
                     "marketGroupId": 1267,
                     "capacity": 0.0,
                     "mass": 0.0,
@@ -861,16 +1414,16 @@
                 "volume": 0.01,
                 "isBlueprint": true,
                 "typeIconURL": "https://image.eveonline.com/Type/31717_64.png",
+                "price": 2150000.0,
                 "marketData": {
                     "rel": "marketData",
-                    "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/31717"
+                    "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/31717"
                 }
             },
             {
-                "jsonClass": "Resource",
                 "typeId": 3380,
                 "name": "Industry",
-                "quantity": 1,
+                "quantity": 0,
                 "group": {
                     "groupId": 268,
                     "groupName": "Production",
@@ -884,6 +1437,7 @@
                     "typeId": 3380,
                     "name": "Industry",
                     "description": "Allows basic operation of factories. 4% reduction in manufacturing time per skill level.",
+                    "groupId": 268,
                     "marketGroupId": 369,
                     "capacity": 0.0,
                     "mass": 0.0,
@@ -894,16 +1448,16 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/3380_64.png",
+                "price": 30000.0,
                 "marketData": {
                     "rel": "marketData",
-                    "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/3380"
+                    "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/3380"
                 }
             },
             {
-                "jsonClass": "Resource",
                 "typeId": 26261,
                 "name": "Shield Rigging",
-                "quantity": 1,
+                "quantity": 0,
                 "group": {
                     "groupId": 269,
                     "groupName": "Rigging",
@@ -917,6 +1471,7 @@
                     "typeId": 26261,
                     "name": "Shield Rigging",
                     "description": "Advanced understanding of shield systems. Allows makeshift modifications to shield systems through the use of rigs. \r\n\r\n10% reduction in Shield Rig drawbacks per level.",
+                    "groupId": 269,
                     "marketGroupId": 372,
                     "capacity": 0.0,
                     "mass": 0.0,
@@ -927,19 +1482,53 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/26261_64.png",
+                "price": 497400.0,
                 "marketData": {
                     "rel": "marketData",
-                    "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/26261"
+                    "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/26261"
                 }
             }
         ]
     },
     {
-        "blueprintType": 31359,
+        "blueprintTypeId": 31359,
+        "blueprint": {
+            "typeId": 31359,
+            "name": "Small Ancillary Current Router I Blueprint",
+            "description": "",
+            "group": {
+                "groupId": 787,
+                "groupName": "Rig Blueprint",
+                "groupCategoryId": 9
+            },
+            "category": {
+                "categoryId": 9,
+                "categoryName": "Blueprint"
+            },
+            "type": {
+                "typeId": 31359,
+                "name": "Small Ancillary Current Router I Blueprint",
+                "description": "",
+                "groupId": 787,
+                "marketGroupId": 1252,
+                "capacity": 0.0,
+                "mass": 0.0,
+                "packagedVolume": 0.01,
+                "volume": 0.01
+            },
+            "tech": "Tech I",
+            "volume": 0.01,
+            "isBlueprint": true,
+            "typeIconURL": "https://image.eveonline.com/Type/31359_64.png",
+            "marketData": {
+                "rel": "marketData",
+                "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/31359"
+            }
+        },
         "output": {
-            "jsonClass": "EsiType",
             "typeId": 31358,
             "name": "Small Ancillary Current Router I",
+            "description": "This ship modification is designed to increase a ship's powergrid capacity.",
             "group": {
                 "groupId": 781,
                 "groupName": "Rig Core",
@@ -953,6 +1542,7 @@
                 "typeId": 31358,
                 "name": "Small Ancillary Current Router I",
                 "description": "This ship modification is designed to increase a ship's powergrid capacity.",
+                "groupId": 781,
                 "marketGroupId": 1222,
                 "capacity": 0.0,
                 "mass": 200.0,
@@ -965,14 +1555,163 @@
             "typeIconURL": "https://image.eveonline.com/Type/31358_64.png",
             "marketData": {
                 "rel": "marketData",
-                "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/31358"
+                "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/31358"
             }
         },
-        "bom": [{
-                "jsonClass": "Resource",
+        "outputMarketData": {
+            "typeId": 31358,
+            "bestSellOrder": {
+                "station": {
+                    "locationType": "STATION",
+                    "locationId": 60003760,
+                    "stationId": 60003760,
+                    "stationName": "Jita IV - Moon 4 - Caldari Navy Assembly Plant",
+                    "solarSystemId": 30000142,
+                    "solarSystemName": "Jita",
+                    "securityClass": "B",
+                    "securityStatus": 0.94591314,
+                    "constellationId": 20000020,
+                    "constellationName": "Kimotoro",
+                    "regionId": 10000002,
+                    "regionName": "The Forge"
+                },
+                "orderId": 5932908289,
+                "price": 576300.0,
+                "typeId": 31358,
+                "volumeRemain": 31,
+                "volumeTotal": 200,
+                "buyOrder": false
+            },
+            "bestBuyOrder": {
+                "station": {
+                    "locationType": "STATION",
+                    "locationId": 60003760,
+                    "stationId": 60003760,
+                    "stationName": "Jita IV - Moon 4 - Caldari Navy Assembly Plant",
+                    "solarSystemId": 30000142,
+                    "solarSystemName": "Jita",
+                    "securityClass": "B",
+                    "securityStatus": 0.94591314,
+                    "constellationId": 20000020,
+                    "constellationName": "Kimotoro",
+                    "regionId": 10000002,
+                    "regionName": "The Forge"
+                },
+                "orderId": 5872475730,
+                "price": 408200.0,
+                "typeId": 31358,
+                "volumeRemain": 25,
+                "volumeTotal": 30,
+                "buyOrder": true
+            },
+            "sellOrders": [{
+                    "duration": 90,
+                    "isBuyOrder": false,
+                    "issued": "2021-02-25T19:54:30.000Z",
+                    "locationId": 60003760,
+                    "minVolume": 1,
+                    "orderId": 5932908289,
+                    "price": 576300.0,
+                    "range": "REGION",
+                    "systemId": 30000142,
+                    "typeId": 31358,
+                    "volumeRemain": 31,
+                    "volumeTotal": 200
+                },
+                {
+                    "duration": 90,
+                    "isBuyOrder": false,
+                    "issued": "2021-02-25T13:01:24.000Z",
+                    "locationId": 60003760,
+                    "minVolume": 1,
+                    "orderId": 5932515672,
+                    "price": 576800.0,
+                    "range": "REGION",
+                    "systemId": 30000142,
+                    "typeId": 31358,
+                    "volumeRemain": 22,
+                    "volumeTotal": 50
+                },
+                {
+                    "duration": 90,
+                    "isBuyOrder": false,
+                    "issued": "2021-02-24T11:50:46.000Z",
+                    "locationId": 60003760,
+                    "minVolume": 1,
+                    "orderId": 5934440397,
+                    "price": 579500.0,
+                    "range": "REGION",
+                    "systemId": 30000142,
+                    "typeId": 31358,
+                    "volumeRemain": 49,
+                    "volumeTotal": 50
+                },
+                {
+                    "duration": 7,
+                    "isBuyOrder": false,
+                    "issued": "2021-02-23T12:51:15.000Z",
+                    "locationId": 60003760,
+                    "minVolume": 1,
+                    "orderId": 5933619195,
+                    "price": 580900.0,
+                    "range": "REGION",
+                    "systemId": 30000142,
+                    "typeId": 31358,
+                    "volumeRemain": 1,
+                    "volumeTotal": 1
+                },
+                {
+                    "duration": 30,
+                    "isBuyOrder": false,
+                    "issued": "2021-02-20T06:08:27.000Z",
+                    "locationId": 60003469,
+                    "minVolume": 1,
+                    "orderId": 5930419410,
+                    "price": 583000.0,
+                    "range": "REGION",
+                    "systemId": 30000142,
+                    "typeId": 31358,
+                    "volumeRemain": 36,
+                    "volumeTotal": 73
+                },
+                {
+                    "duration": 90,
+                    "isBuyOrder": false,
+                    "issued": "2021-01-28T04:18:54.000Z",
+                    "locationId": 60003760,
+                    "minVolume": 1,
+                    "orderId": 5909677625,
+                    "price": 589600.0,
+                    "range": "REGION",
+                    "systemId": 30000142,
+                    "typeId": 31358,
+                    "volumeRemain": 35,
+                    "volumeTotal": 35
+                },
+                {
+                    "duration": 90,
+                    "isBuyOrder": false,
+                    "issued": "2021-01-28T02:11:30.000Z",
+                    "locationId": 60003760,
+                    "minVolume": 1,
+                    "orderId": 5909624500,
+                    "price": 590000.0,
+                    "range": "REGION",
+                    "systemId": 30000142,
+                    "typeId": 31358,
+                    "volumeRemain": 24,
+                    "volumeTotal": 32
+                }
+            ],
+            "sellDeep": 198,
+            "sellAverage": 582400.505050505,
+            "marketWidth": 168100.0,
+            "sellRegionId": 10000002
+        },
+        "billOfMaterials": [{
                 "typeId": 25600,
                 "name": "Burned Logic Circuit",
-                "quantity": 10,
+                "quantity": 0,
                 "group": {
                     "groupId": 754,
                     "groupName": "Salvaged Materials",
@@ -986,6 +1725,7 @@
                     "typeId": 25600,
                     "name": "Burned Logic Circuit",
                     "description": "Autonomous field programmable holographic signal processor with embedded holographic data storage. Used in most modern computers, the ubiquitous AFPHSPEHDS is colloquially known as the \"Aphid\". This name leads of course to many bad puns about bugs in the system. ",
+                    "groupId": 754,
                     "marketGroupId": 1863,
                     "capacity": 0.0,
                     "mass": 0.0,
@@ -996,16 +1736,16 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/25600_64.png",
+                "price": 33760.0,
                 "marketData": {
                     "rel": "marketData",
-                    "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/25600"
+                    "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/25600"
                 }
             },
             {
-                "jsonClass": "Resource",
                 "typeId": 25594,
                 "name": "Tangled Power Conduit",
-                "quantity": 2,
+                "quantity": 0,
                 "group": {
                     "groupId": 754,
                     "groupName": "Salvaged Materials",
@@ -1019,6 +1759,7 @@
                     "typeId": 25594,
                     "name": "Tangled Power Conduit",
                     "description": "Power Conduit runs through ships delivering energy like arteries deliver blood through a body. Large ships can have hundreds of miles of conduit. This conduit is tangled and knotted as it seems to have gone through some sort of catastrophe.",
+                    "groupId": 754,
                     "marketGroupId": 1863,
                     "capacity": 0.0,
                     "mass": 0.0,
@@ -1029,16 +1770,16 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/25594_64.png",
+                "price": 66670.0,
                 "marketData": {
                     "rel": "marketData",
-                    "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/25594"
+                    "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/25594"
                 }
             },
             {
-                "jsonClass": "Resource",
                 "typeId": 25598,
                 "name": "Tripped Power Circuit",
-                "quantity": 10,
+                "quantity": 0,
                 "group": {
                     "groupId": 754,
                     "groupName": "Salvaged Materials",
@@ -1052,6 +1793,7 @@
                     "typeId": 25598,
                     "name": "Tripped Power Circuit",
                     "description": "A closed loop electrical network with redundant autonomous switchgear. This unit has all of its breakers tripped but isn't beyond repair. ",
+                    "groupId": 754,
                     "marketGroupId": 1863,
                     "capacity": 0.0,
                     "mass": 0.0,
@@ -1062,16 +1804,16 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/25598_64.png",
+                "price": 2200.0,
                 "marketData": {
                     "rel": "marketData",
-                    "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/25598"
+                    "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/25598"
                 }
             },
             {
-                "jsonClass": "Resource",
                 "typeId": 31359,
                 "name": "Small Ancillary Current Router I Blueprint",
-                "quantity": 1,
+                "quantity": 0,
                 "group": {
                     "groupId": 787,
                     "groupName": "Rig Blueprint",
@@ -1085,6 +1827,7 @@
                     "typeId": 31359,
                     "name": "Small Ancillary Current Router I Blueprint",
                     "description": "",
+                    "groupId": 787,
                     "marketGroupId": 1252,
                     "capacity": 0.0,
                     "mass": 0.0,
@@ -1095,16 +1838,16 @@
                 "volume": 0.01,
                 "isBlueprint": true,
                 "typeIconURL": "https://image.eveonline.com/Type/31359_64.png",
+                "price": 2100000.0,
                 "marketData": {
                     "rel": "marketData",
-                    "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/31359"
+                    "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/31359"
                 }
             },
             {
-                "jsonClass": "Resource",
                 "typeId": 3380,
                 "name": "Industry",
-                "quantity": 1,
+                "quantity": 0,
                 "group": {
                     "groupId": 268,
                     "groupName": "Production",
@@ -1118,6 +1861,7 @@
                     "typeId": 3380,
                     "name": "Industry",
                     "description": "Allows basic operation of factories. 4% reduction in manufacturing time per skill level.",
+                    "groupId": 268,
                     "marketGroupId": 369,
                     "capacity": 0.0,
                     "mass": 0.0,
@@ -1128,16 +1872,16 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/3380_64.png",
+                "price": 30000.0,
                 "marketData": {
                     "rel": "marketData",
-                    "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/3380"
+                    "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/3380"
                 }
             },
             {
-                "jsonClass": "Resource",
                 "typeId": 26252,
                 "name": "Jury Rigging",
-                "quantity": 1,
+                "quantity": 0,
                 "group": {
                     "groupId": 269,
                     "groupName": "Rigging",
@@ -1151,6 +1895,7 @@
                     "typeId": 26252,
                     "name": "Jury Rigging",
                     "description": "General understanding of the inner workings of starship components. Allows makeshift modifications to ship systems through the use of rigs. Required learning for further study in the field of rigging. ",
+                    "groupId": 269,
                     "marketGroupId": 372,
                     "capacity": 0.0,
                     "mass": 0.0,
@@ -1161,9 +1906,10 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/26252_64.png",
+                "price": 989.0,
                 "marketData": {
                     "rel": "marketData",
-                    "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/26252"
+                    "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/26252"
                 }
             }
         ]
