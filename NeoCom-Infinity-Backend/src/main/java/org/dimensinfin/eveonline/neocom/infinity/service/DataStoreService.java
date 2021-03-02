@@ -11,13 +11,13 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.industry.domain.Process
 
 @Service
 public class DataStoreService {
-	private Map<Credential, List<ProcessedBlueprint>> processedBlueprintsStore = new HashMap<>();
+	private final Map<Credential, List<ProcessedBlueprint>> processedBlueprintsStore = new HashMap<>();
 
 	public List<ProcessedBlueprint> accessProcessedBlueprints( final Credential credential ) {
 		return this.processedBlueprintsStore.get( credential );
 	}
 
-	public void updateProcessedBlueprint( final Credential credential, final List<ProcessedBlueprint> blueprint ) {
-		this.processedBlueprintsStore.put( credential, blueprint );
+	public void updateProcessedBlueprint( final Credential credential, final List<ProcessedBlueprint> blueprintList ) {
+		this.processedBlueprintsStore.put( credential, blueprintList );
 	}
 }

@@ -3,6 +3,13 @@
 ## 0.20.0
 * AuthorizationTokenResponseSerializer
 * GetUniverseCategoriesCategoryIdOkSerializer
+* BlueprintProcessorJob
+* IndustryManufactureServiceV1
+* IndustryManufactureControllerV1
+* DataStoreService
+* CredentialJobGenerator
+* ProcessedBlueprint
+* PricedResourceSerializer
 
 * NeoComAuthenticatedService
 

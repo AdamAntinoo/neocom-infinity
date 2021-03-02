@@ -3,7 +3,7 @@ package org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domai
 import java.util.Objects;
 
 import org.dimensinfin.eveonline.neocom.domain.space.Station;
-import org.dimensinfin.eveonline.neocom.infinity.backend.market.domain.MarketOrder;
+import org.dimensinfin.eveonline.neocom.market.MarketOrder;
 
 public class BuyBuildAction extends BuildAction {
 	private Station corporationHome;
@@ -37,6 +37,16 @@ public class BuyBuildAction extends BuildAction {
 		}
 
 		// - G E T T E R S   &   S E T T E R S
+		public BuyBuildAction.Builder withCorporationHome( final Station corporationHome ) {
+			this.getActual().corporationHome = Objects.requireNonNull( corporationHome );
+			return this.getActualBuilder();
+		}
+
+		public BuyBuildAction.Builder withMarketOrder( final MarketOrder marketOrder ) {
+			this.getActual().marketOrder = Objects.requireNonNull( marketOrder );
+			return this.getActualBuilder();
+		}
+
 		@Override
 		protected BuyBuildAction getActual() {
 			if (null == this.onConstruction)
@@ -49,18 +59,9 @@ public class BuyBuildAction extends BuildAction {
 			return this;
 		}
 
+		@Override
 		public BuyBuildAction build() {
 			return this.onConstruction;
-		}
-
-		public BuyBuildAction.Builder withCorporationHome( final Station corporationHome ) {
-			this.getActual().corporationHome = Objects.requireNonNull( corporationHome );
-			return this.getActualBuilder();
-		}
-
-		public BuyBuildAction.Builder withMarketOrder( final MarketOrder marketOrder ) {
-			this.getActual().marketOrder = Objects.requireNonNull( marketOrder );
-			return this.getActualBuilder();
 		}
 	}
 }

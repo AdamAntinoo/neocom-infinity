@@ -18,7 +18,7 @@ public abstract class NeoComAuthenticatedController {
 				.build();
 	}
 
-	private final NeoComAuthenticationProvider neoComAuthenticationProvider;
+	protected final NeoComAuthenticationProvider neoComAuthenticationProvider;
 
 	// - C O N S T R U C T O R S
 	public NeoComAuthenticatedController( @NotNull final NeoComAuthenticationProvider neoComAuthenticationProvider ) {
