@@ -10,9 +10,9 @@ import org.junit.jupiter.api.Assertions;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.core.StationValidator;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.market.MarketDataValidator;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.market.MarketOrderValidator;
-import org.dimensinfin.eveonline.neocom.infinity.backend.market.domain.MarketData;
 import org.dimensinfin.eveonline.neocom.infinity.support.ConverterContainer;
 import org.dimensinfin.eveonline.neocom.infinity.support.NeoComWorld;
+import org.dimensinfin.eveonline.neocom.market.MarketData;
 
 import io.cucumber.java.en.Then;
 
