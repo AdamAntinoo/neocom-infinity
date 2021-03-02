@@ -70,6 +70,7 @@ public class MarketServiceV1 extends NeoComAuthenticatedService {
 		final List<GetMarketsRegionIdOrders200Ok> buyOrders = this.getMarketHubBuyOrders4Id( regionHub, typeId );
 		return new MarketData.Builder()
 				.withTypeId( typeId )
+				.withRegionHub( regionHub )
 				.withBestSellOrder( sellOrders.isEmpty() ?
 						null :
 						new GetMarketsRegionIdOrdersToMarketOrderConverter( this.locationCatalogService ).convert( sellOrders.get( 0 ) ) )
