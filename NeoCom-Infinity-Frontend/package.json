@@ -13,7 +13,10 @@
         "test:dev": "ng test --code-coverage --watch --progress ",
         "test:prod": "ng test --watch=false --no-progress --browsers=ChromeHeadlessCI",
         "cypress:run": "cypress run ",
+        "acceptance:ready": "export NODE_ENV=integration && export PORT=5200 && npm start &",
         "acceptance:cypress:NIF01": "cypress run --spec ./cypress/acceptance/NIF01-LoginAuthentication.feature",
+        "acceptance:cypress:NIF02": "cypress run --spec ./cypress/acceptance/NIF02-DashboardHome.feature",
+        "acceptance:cypress:NIF09": "cypress run --spec ./cypress/acceptance/NIF09-IndustryDashboard.feature",
         "heroku-postbuild": "ng build --configuration=${NODE_ENV}",
         "serve:integration": "export NODE_ENV=integration && export PORT=5202 && npm run build:dev && npm start"
     },
