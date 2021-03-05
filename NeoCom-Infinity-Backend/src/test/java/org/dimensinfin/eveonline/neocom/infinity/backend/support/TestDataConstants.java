@@ -43,4 +43,19 @@ public class TestDataConstants {
 	public static class ProcessedBlueprintConstants {
 		public static final Integer TEST_PROCESSED_BLUEPRINT_ID = 31717;
 	}
+
+	public static final class MarketDataConstants {
+		public static final Double TEST_MARKET_DATA_BEST_SELL_PRICE = 345.98;
+		public static final Double TEST_MARKET_DATA_BEST_BUY_PRICE = 164.09;
+	}
+
+	public static final class MarketOrderConstants {
+		public static final Long TEST_MARKET_ORDER_ID = 4275798L;
+		public static final Integer TEST_MARKET_ORDER_TYPE_ID = 16636;
+		public static final Integer TEST_MARKET_ORDER_SYSTEM_ID = 60003760;
+		public static final Double TEST_MARKET_ORDER_PRICE = 345.98;
+		public static final Integer TEST_MARKET_ORDER_VOLUME_REMAIN = 100;
+		public static final Integer TEST_MARKET_ORDER_VOLUME_TOTAL = 200;
+	}
+
 }
