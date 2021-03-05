@@ -8,15 +8,12 @@ import java.util.concurrent.TimeUnit;
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.joda.JodaModule;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import org.redisson.Redisson;
 import org.redisson.api.RBucket;
 import org.redisson.api.RMapCache;
 import org.redisson.api.RedissonClient;
-import org.redisson.codec.JsonJacksonCodec;
 import org.redisson.config.Config;
 
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseTypesTypeIdOk;
@@ -36,17 +33,11 @@ import org.dimensinfin.logging.LogWrapper;
  */
 public class RedisDataStoreImplementation implements IDataStore {
 	protected static final String REDIS_SEPARATOR = ":";
-	protected static final ObjectMapper neocomObjectMapper = new ObjectMapper();
-	protected static final JsonJacksonCodec codec = new JsonJacksonCodec( neocomObjectMapper );
 	protected static final String LOWEST_SELL_ORDER_MAP = "LSO";
 	protected static final String ESITYPE_CACHE_NAME = "ESIT";
 	protected static final Integer LOWEST_SELL_ORDER_TTL = 300;
 	private static final String COST_INDEX_BLUEPRINTS_CACHE_NAME = "BCI";
 	private static final Integer COST_INDEX_BLUEPRINTS_TTL = 12;
-
-	static {
-		neocomObjectMapper.registerModule( new JodaModule() );
-	}
 
 	protected final RedissonClient redisClient;
 
@@ -62,7 +53,7 @@ public class RedisDataStoreImplementation implements IDataStore {
 	@Nullable
 	public GetUniverseTypesTypeIdOk accessEsiItem4Id( final int typeId, final ESIDataService.EsiItemPassThrough esiItemPassThrough ) {
 		final RBucket<GetUniverseTypesTypeIdOk> esiIBucket = this.redisClient
-				.getBucket( this.generateEsiItemUniqueId( typeId ), new JsonJacksonCodec() );
+				.getBucket( this.generateEsiItemUniqueId( typeId ) );
 		if (null == esiIBucket.get()) {
 			final GetUniverseTypesTypeIdOk type;
 			try {
@@ -93,7 +84,7 @@ public class RedisDataStoreImplementation implements IDataStore {
 	public MarketOrder accessLowestSellOrder( final Integer regionId, final Integer typeId,
 	                                          final MarketService.LowestSellOrderPassThrough lowestSellOrderReloadMethod ) {
 		final String uniqueLSOKey = this.generateLowestSellOrderUniqueId( regionId );
-		final RMapCache<String, MarketOrder> LSOMap = this.redisClient.getMapCache( uniqueLSOKey, codec );
+		final RMapCache<String, MarketOrder> LSOMap = this.redisClient.getMapCache( uniqueLSOKey );
 		final MarketOrder entry = LSOMap.get( uniqueLSOKey + REDIS_SEPARATOR + typeId );
 		if (null == entry) { // The data is not on the cache. Fetch it from the service and update the cache.
 			final MarketOrder order;
@@ -121,7 +112,7 @@ public class RedisDataStoreImplementation implements IDataStore {
 	@Override
 	public List<ProcessedBlueprint> accessProcessedBlueprints( final Integer pilotId ) {
 		final String uniqueLSOKey = this.generateBlueprintCostIndexUniqueId( pilotId );
-		final RMapCache<String, ProcessedBlueprint> BCIMap = this.redisClient.getMapCache( uniqueLSOKey, codec );
+		final RMapCache<String, ProcessedBlueprint> BCIMap = this.redisClient.getMapCache( uniqueLSOKey );
 		try {
 			return new ArrayList<>( BCIMap.values() );
 		} catch (final RuntimeException rte) {
@@ -133,7 +124,7 @@ public class RedisDataStoreImplementation implements IDataStore {
 	@Override
 	public void updateProcessedBlueprint( final Integer pilotId, final ProcessedBlueprint blueprint ) {
 		final String uniqueLSOKey = this.generateBlueprintCostIndexUniqueId( pilotId );
-		final RMapCache<String, ProcessedBlueprint> BCIMap = this.redisClient.getMapCache( uniqueLSOKey, codec );
+		final RMapCache<String, ProcessedBlueprint> BCIMap = this.redisClient.getMapCache( uniqueLSOKey );
 		try {
 			BCIMap.put( uniqueLSOKey + REDIS_SEPARATOR + blueprint.getBlueprintTypeId(), blueprint );
 		} catch (final RuntimeException rte) {
