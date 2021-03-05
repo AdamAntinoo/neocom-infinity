@@ -20,29 +20,29 @@ import org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants;
 @JsonComponent
 public class PricedResourceSerializer extends JsonSerializer<PricedResource> {
 	@Override
-	public void serialize( final PricedResource value, final JsonGenerator jgen, final SerializerProvider provider )
+	public void serialize( final PricedResource value, final JsonGenerator gen, final SerializerProvider provider )
 			throws IOException {
-		jgen.writeStartObject();
+		gen.writeStartObject();
 
-		jgen.writeNumberField( "typeId", value.getTypeId() );
-		jgen.writeStringField( "name", value.getName() );
-		jgen.writeNumberField( "quantity", value.getQuantity() );
-		jgen.writeObjectField( "group", value.getGroup() );
-		jgen.writeObjectField( "category", value.getCategory() );
-		jgen.writeObjectField( "type", value.getType() );
-		jgen.writeStringField( "tech", value.getTech() );
-		jgen.writeNumberField( "volume", value.getType().getVolume() );
-		jgen.writeBooleanField( "isBlueprint", value.getCategoryName().equalsIgnoreCase( GlobalWideConstants.EveGlobal.BLUEPRINT ) );
-		jgen.writeStringField( "typeIconURL", value.getTypeIconURL() );
-		jgen.writeNumberField( "price", value.getMarketPrice() );
+		gen.writeNumberField( "typeId", value.getTypeId() );
+		gen.writeStringField( "name", value.getName() );
+		gen.writeNumberField( "quantity", value.getQuantity() );
+		if (null != value.getGroup()) gen.writeObjectField( "group", value.getGroup() );
+		if (null != value.getCategory()) gen.writeObjectField( "category", value.getCategory() );
+		if (null != value.getType()) gen.writeObjectField( "type", value.getType() );
+		gen.writeStringField( "tech", value.getTech() );
+		gen.writeNumberField( "volume", value.getType().getVolume() );
+		gen.writeBooleanField( "isBlueprint", value.getCategoryName().equalsIgnoreCase( GlobalWideConstants.EveGlobal.BLUEPRINT ) );
+		gen.writeStringField( "typeIconURL", value.getTypeIconURL() );
+		gen.writeNumberField( "price", value.getMarketPrice() );
 
 		// Additional HAL fields for market data.
 		final Link marketLink = WebMvcLinkBuilder.linkTo(
 				WebMvcLinkBuilder.methodOn( UniverseMarketControllerV1.class )
 						.getMarketConsolidatedByRegion4ItemId( value.getMarketData().getSellRegionId(), value.getTypeId() )
 		).withRel( "marketData" );
-		jgen.writeObjectField( "marketData", marketLink );
+		gen.writeObjectField( "marketData", marketLink );
 
-		jgen.writeEndObject();
+		gen.writeEndObject();
 	}
 }
