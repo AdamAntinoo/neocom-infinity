@@ -1,5 +1,5 @@
 // - P R O D U C T I O N
 dependencies {
     // N E O C O M
-    implementation "org.bitbucket.evedimensinfin:neocom-datamanagement:0.20.5"
+    implementation "org.bitbucket.evedimensinfin:neocom-datamanagement:0.20.6"
 }

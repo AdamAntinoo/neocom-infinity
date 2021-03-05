@@ -3,12 +3,16 @@ buildscript {
     repositories {
         mavenLocal()
         mavenCentral()
+        jcenter()
     }
     dependencies {
         classpath 'org.springframework.cloud:spring-cloud-contract-gradle-plugin:2.2.2.RELEASE'
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:2.2.1.RELEASE")
+    }
+    dependencies {
+        classpath "com.github.sedovalx.gradle:gradle-aspectj-binary:1.0.45"
     }
 }
 plugins {
@@ -21,10 +25,12 @@ plugins {
     id "org.sonarqube" version "3.0"
     id "org.hidetake.swagger.generator" version "2.18.2"
 }
+//apply plugin: 'com.github.sedovalx.gradle-aspectj-binary'
 
 repositories {
     mavenLocal()
     mavenCentral()
+    jcenter()
     maven { url 'https://jitpack.io' }
 }
 
@@ -148,3 +154,13 @@ sonarqube {
         property "sonar.login", "fd5ec42949cc79a93ef45dc873f14f95cf63c224"
     }
 }
+
+// - A S P E C T J
+//aspectjBinary {
+//    applyJavaPlugin = true
+//    weaveClasses {
+//        source = '1.8'
+//        target = '1.8'
+//        writeToLog = true
+//    }
+//}

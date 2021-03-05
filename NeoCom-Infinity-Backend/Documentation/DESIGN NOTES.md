@@ -94,3 +94,31 @@ So the new job should not be reinserted on the queue even it is the time
 until any other of their previous copies has benn completed. This way if
 a asset download job it is scheduled but the previous download is not completed
 then it will wait another cycle to match their schedule and be scheduled.
+
+[HOW TO SET ENVIRONMENT TO USE IN TEST MOCKS]
+	protected static void setEnv( final Map<String, String> newenv ) throws Exception {
+		try {
+			final Class<?> processEnvironmentClass = Class.forName( "java.lang.ProcessEnvironment" );
+			final Field theEnvironmentField = processEnvironmentClass.getDeclaredField( "theEnvironment" );
+			theEnvironmentField.setAccessible( true );
+			final Map<String, String> env = (Map<String, String>) theEnvironmentField.get( null );
+			env.putAll( newenv );
+			final Field theCaseInsensitiveEnvironmentField = processEnvironmentClass.getDeclaredField( "theCaseInsensitiveEnvironment" );
+			theCaseInsensitiveEnvironmentField.setAccessible( true );
+			final Map<String, String> cienv = (Map<String, String>) theCaseInsensitiveEnvironmentField.get( null );
+			cienv.putAll( newenv );
+		} catch (final NoSuchFieldException e) {
+			final Class[] classes = Collections.class.getDeclaredClasses();
+			final Map<String, String> env = System.getenv();
+			for (final Class cl : classes) {
+				if ("java.util.Collections$UnmodifiableMap".equals( cl.getName() )) {
+					final Field field = cl.getDeclaredField( "m" );
+					field.setAccessible( true );
+					final Object obj = field.get( env );
+					final Map<String, String> map = (Map<String, String>) obj;
+					map.clear();
+					map.putAll( newenv );
+				}
+			}
+		}
+	}
