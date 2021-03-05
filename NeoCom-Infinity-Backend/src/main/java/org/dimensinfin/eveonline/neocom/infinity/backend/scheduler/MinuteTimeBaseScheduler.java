@@ -14,6 +14,7 @@ import org.dimensinfin.eveonline.neocom.database.repositories.CredentialReposito
 import org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.config.SchedulerConfiguration;
 import org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.jobs.CredentialJobGenerator;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
+import org.dimensinfin.eveonline.neocom.service.ESIDataService;
 import org.dimensinfin.eveonline.neocom.service.scheduler.JobScheduler;
 import org.dimensinfin.logging.LogWrapper;
 
@@ -31,6 +32,7 @@ import static org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.config
  */
 @Component
 public class MinuteTimeBaseScheduler {
+	private final ESIDataService esiDataService;
 	private final IConfigurationService configurationService;
 	private final SchedulerConfiguration schedulerConfiguration;
 	private final CredentialRepository credentialRepository;
@@ -38,10 +40,12 @@ public class MinuteTimeBaseScheduler {
 
 	// - C O N S T R U C T O R S
 	@Autowired
-	public MinuteTimeBaseScheduler( @NotNull final IConfigurationService configurationService,
+	public MinuteTimeBaseScheduler( @NotNull final ESIDataService esiDataService,
+	                                @NotNull final IConfigurationService configurationService,
 	                                @NotNull final SchedulerConfiguration schedulerConfiguration,
 	                                @NotNull final CredentialRepository credentialRepository,
 	                                @NotNull final JobServicePackager jobServicePackager ) {
+		this.esiDataService = esiDataService;
 		this.configurationService = configurationService;
 		this.schedulerConfiguration = schedulerConfiguration;
 		this.credentialRepository = credentialRepository;
