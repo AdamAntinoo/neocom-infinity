@@ -68,7 +68,7 @@ public class CredentialJobGenerator extends Job {
 				//							)
 				//							.build() );
 				if (this.jobServicePackager.getSchedulerConfiguration().getAllowedProcessingBlueprints())
-					JobScheduler.getJobScheduler().registerJob( new BlueprintProcessorJob.Builder()
+					JobScheduler.getJobScheduler().registerAndRunJob( new BlueprintProcessorJob.Builder()
 							.withCredential( credential )
 							.withJobServicePackager( this.jobServicePackager )
 							.addCronSchedule(

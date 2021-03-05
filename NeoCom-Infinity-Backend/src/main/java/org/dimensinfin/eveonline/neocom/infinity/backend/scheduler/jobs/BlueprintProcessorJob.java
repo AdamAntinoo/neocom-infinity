@@ -3,7 +3,6 @@ package org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.jobs;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -12,9 +11,10 @@ import org.dimensinfin.eveonline.neocom.domain.EsiType;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdBlueprints200Ok;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetMarketsRegionIdOrders200Ok;
 import org.dimensinfin.eveonline.neocom.industry.domain.PricedResource;
+import org.dimensinfin.eveonline.neocom.industry.domain.ProcessedBlueprint;
 import org.dimensinfin.eveonline.neocom.industry.domain.Resource;
-import org.dimensinfin.eveonline.neocom.infinity.backend.industry.domain.ProcessedBlueprint;
 import org.dimensinfin.eveonline.neocom.market.MarketData;
+import org.dimensinfin.logging.LogWrapper;
 
 public class BlueprintProcessorJob extends NeoComBackendJob {
 	private Credential credential;
@@ -41,42 +41,66 @@ public class BlueprintProcessorJob extends NeoComBackendJob {
 	 */
 	@Override
 	public Boolean call() throws Exception {
-		final int defaultRegionId = this.jobServicePackager.getPreferencesRepository()
-				.accessMarketRegionId( this.credential.getAccountId() )
-				.getNumberValue().intValue();
-		final List<GetCharactersCharacterIdBlueprints200Ok> blueprints = this.jobServicePackager.getEsiDataService()
-				.getCharactersCharacterIdBlueprints( this.credential );
-		final List<ProcessedBlueprint> processedBlueprints = blueprints.stream()
-				.map( blueprint -> blueprint.getTypeId() )
-				.distinct()
-				.map( blueprintType -> {
-					final int outputModuleId = this.jobServicePackager.getSDERepository().accessModule4Blueprint( blueprintType );
-					final EsiType outputModule = this.jobServicePackager.getResourceFactory().generateType4Id( outputModuleId );
-					final MarketData outputMarketData = this.jobServicePackager.getMarketService()
-							.getMarketConsolidatedByRegion4ItemId( defaultRegionId, outputModuleId );
-					final List<Resource> bom = this.jobServicePackager.getSDERepository().accessBillOfMaterials( blueprintType );
-					final List<PricedResource> bomPriced = new ArrayList<>();
-					for (final Resource resource : bom) {
-						final MarketData marketData = this.jobServicePackager.getMarketService()
-								.getMarketConsolidatedByRegion4ItemId( defaultRegionId, resource.getTypeId() );
-						bomPriced.add( new PricedResource.Builder()
-								.withMarketData( marketData )
-								.withPrice( this.getBestSellPriceFromMarketData( marketData ) )
-								.withItemType( resource.getType() )
-								.withGroup( resource.getGroup() )
-								.withCategory( resource.getCategory() )
-								.build()
-						);
-					}
-					return new ProcessedBlueprint.Builder()
-							.withBlueprint( this.jobServicePackager.getResourceFactory().generateType4Id( blueprintType ) )
-							.withOutput( outputModule )
-							.withOutputMarketData( outputMarketData )
-							.withBOM( bomPriced )
-							.build();
-				} )
-				.collect( Collectors.toList() );
-		this.jobServicePackager.getDataStoreService().updateProcessedBlueprint( this.credential, processedBlueprints );
+		LogWrapper.enter();
+		try {
+			final int defaultRegionId = this.jobServicePackager.getPreferencesRepository()
+					.accessMarketRegionId( this.credential.getAccountId() )
+					.getNumberValue().intValue();
+			final List<GetCharactersCharacterIdBlueprints200Ok> blueprints = this.jobServicePackager.getEsiDataService()
+					.getCharactersCharacterIdBlueprints( this.credential );
+			//		final List<ProcessedBlueprint> processedBlueprints =
+			blueprints.stream()
+					.map( GetCharactersCharacterIdBlueprints200Ok::getTypeId )
+					.distinct()
+					.map( blueprintType -> {
+						final int outputModuleId = this.jobServicePackager.getSDERepository().accessModule4Blueprint( blueprintType );
+						final EsiType outputModule = this.jobServicePackager.getResourceFactory().generateType4Id( outputModuleId );
+						final MarketData outputMarketData = this.jobServicePackager.getMarketService()
+								.getMarketConsolidatedByRegion4ItemId( defaultRegionId, outputModuleId );
+						final List<Resource> bom = this.jobServicePackager.getSDERepository().accessBillOfMaterials( blueprintType );
+						final List<PricedResource> bomPriced = new ArrayList<>();
+						for (final Resource resource : bom) {
+							final MarketData marketData = this.jobServicePackager.getMarketService()
+									.getMarketConsolidatedByRegion4ItemId( defaultRegionId, resource.getTypeId() );
+							bomPriced.add( new PricedResource.Builder()
+									.withMarketData( marketData )
+									.withPrice( this.getBestSellPriceFromMarketData( marketData ) )
+									.withItemType( resource.getType() )
+									.withGroup( resource.getGroup() )
+									.withCategory( resource.getCategory() )
+									.build()
+							);
+						}
+						final EsiType blueprint = this.jobServicePackager.getResourceFactory().generateType4Id( blueprintType );
+						final MarketData blueprintMarketData = this.jobServicePackager.getMarketService()
+								.getMarketConsolidatedByRegion4ItemId( defaultRegionId, blueprint.getTypeId() );
+						return new ProcessedBlueprint.Builder()
+								.withBlueprint( new PricedResource.Builder()
+										.withCategory( blueprint.getCategory() )
+										.withGroup( blueprint.getGroup() )
+										.withItemType( blueprint.getType() )
+										.withMarketData( blueprintMarketData )
+										.withPrice( this.getBestSellPriceFromMarketData( blueprintMarketData ) )
+										.build()
+								)
+								.withOutput( new PricedResource.Builder()
+										.withCategory( outputModule.getCategory() )
+										.withGroup( outputModule.getGroup() )
+										.withItemType( outputModule.getType() )
+										.withMarketData( outputMarketData )
+										.withPrice( this.getBestSellPriceFromMarketData( outputMarketData ) )
+										.build() )
+								.withOutputMarketData( outputMarketData )
+								.withBOM( bomPriced )
+								.build();
+					} )
+					.forEach( blueprint -> this.jobServicePackager.getDataStoreService()
+							.updateProcessedBlueprint( this.credential.getAccountId(), blueprint ) );
+		} catch (final Exception rte) {
+			LogWrapper.error( rte );
+		} finally {
+			LogWrapper.exit();
+		}
 		return true;
 	}
 
