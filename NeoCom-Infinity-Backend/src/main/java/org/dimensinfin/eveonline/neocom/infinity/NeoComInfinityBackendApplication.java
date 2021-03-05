@@ -35,16 +35,6 @@ public class NeoComInfinityBackendApplication {
 		return new ForwardedHeaderFilter();
 	}
 
-	//	@Bean
-	//	public HalConfiguration globalPolicy() {
-	//		return new HalConfiguration()
-	//				.withRenderSingleLinks( HalConfiguration.RenderSingleLinks.AS_ARRAY )
-	//				.withRenderSingleLinksFor(
-	//						LinkRelation.of( "prev" ), HalConfiguration.RenderSingleLinks.AS_SINGLE )
-	//				.withRenderSingleLinksFor(
-	//						LinkRelation.of( "next" ), HalConfiguration.RenderSingleLinks.AS_SINGLE );
-	//	}
-
 	private static final class LogoPrinter {
 		public void print() {
 			this.printVersion( this.readAllBytes() );
