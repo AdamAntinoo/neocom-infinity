@@ -22,7 +22,6 @@ import org.dimensinfin.eveonline.neocom.database.entities.MiningExtractionEntity
 import org.dimensinfin.eveonline.neocom.database.entities.NeoAsset;
 import org.dimensinfin.eveonline.neocom.database.entities.PilotPreferencesEntity;
 import org.dimensinfin.eveonline.neocom.industry.persistence.JobEntity;
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
 import org.dimensinfin.eveonline.neocom.loyalty.persistence.LoyaltyOfferEntity;
 import org.dimensinfin.logging.LogWrapper;
 
@@ -56,17 +55,6 @@ public class SBNeoComDBAdapter implements NeoComDatabaseService {
 	private Dao<LoyaltyOfferEntity, Integer> loyaltyOfferDao;
 
 	// - C O N S T R U C T O R S
-	protected SBNeoComDBAdapter() {
-		LogWrapper.enter();
-		final String connectionDescriptor = System.getenv( "NEOCOM_DATABASE_URL" );
-		if (null == connectionDescriptor)
-			throw new NeoComRuntimeBackendException( NeoComRuntimeBackendException.errorINITIALIZATIONEXCEPTION(
-					new RuntimeException( "Required environment variable 'NEOCOM_DATABASE_URL' is not declared." )
-			) );
-		this.databaseConnectionDescriptor = Objects.requireNonNull( connectionDescriptor );
-		LogWrapper.exit();
-	}
-
 	@Inject
 	public SBNeoComDBAdapter( @NotNull @Named("NeoComDatabaseUrl") final String connectionDescriptor ) {
 		LogWrapper.info( connectionDescriptor );
@@ -168,23 +156,4 @@ public class SBNeoComDBAdapter implements NeoComDatabaseService {
 		}
 		LogWrapper.exit( MessageFormat.format( "Current database state: {0}", this.isOpen ) );
 	}
-
-	// - B U I L D E R
-	//	public static class Builder {
-	//		private final SBNeoComDBAdapter onConstruction;
-	//
-	//		// - C O N S T R U C T O R S
-	//		public Builder() {
-	//			this.onConstruction = new SBNeoComDBAdapter();
-	//		}
-	//
-	//		public SBNeoComDBAdapter build() /*throws SQLException */ {
-	//			return this.onConstruction;
-	//		}
-	//
-	//		public SBNeoComDBAdapter.Builder withDatabaseConnectionDescriptor( final String databaseConnectionDescriptor ) {
-	//			this.onConstruction.databaseConnectionDescriptor = Objects.requireNonNull( databaseConnectionDescriptor );
-	//			return this;
-	//		}
-	//	}
 }
