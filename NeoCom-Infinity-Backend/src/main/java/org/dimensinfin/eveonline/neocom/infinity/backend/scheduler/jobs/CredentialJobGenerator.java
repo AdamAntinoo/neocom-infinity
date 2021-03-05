@@ -7,10 +7,12 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.database.repositories.CredentialRepository;
 import org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.JobServicePackager;
+import org.dimensinfin.eveonline.neocom.infinity.mining.MiningExtractionsProcess;
 import org.dimensinfin.eveonline.neocom.service.logger.NeoComLogger;
 import org.dimensinfin.eveonline.neocom.service.scheduler.JobScheduler;
 import org.dimensinfin.eveonline.neocom.service.scheduler.domain.Job;
 
+import static org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.config.CronSchedulePropertyNameDefinitions.CRON_SCHEDULE_MINING_EXTRACTIONS_PROPERTY_NAME;
 import static org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.config.CronSchedulePropertyNameDefinitions.CRON_SCHEDULE_PROCESSING_BLUEPRINTS_PROPERTY_NAME;
 
 /**
@@ -59,16 +61,16 @@ public class CredentialJobGenerator extends Job {
 		// Read the list of Credentials and process them.
 		for (final Credential credential : this.credentialRepository.accessAllCredentials()) {
 			if (this.jobServicePackager.getSchedulerConfiguration().getAllowedToRun()) {
-				//				if (this.jobServicePackager.getSchedulerConfiguration().getAllowedMiningExtractions())
-				//					JobScheduler.getJobScheduler().registerJob( new MiningExtractionsProcess.Builder()
-				//							.withCredential( credential )
-				//							.withJobServicePackager( this.jobServicePackager )
-				//							.addCronSchedule( this.jobServicePackager.getConfigurationService().getResourceString(
-				//									CRON_SCHEDULE_MINING_EXTRACTIONS_PROPERTY_NAME, "* - *" )
-				//							)
-				//							.build() );
+				if (this.jobServicePackager.getSchedulerConfiguration().getAllowedMiningExtractions())
+					JobScheduler.getJobScheduler().registerJob( new MiningExtractionsProcess.Builder()
+							.withCredential( credential )
+							.withJobServicePackager( this.jobServicePackager )
+							.addCronSchedule( this.jobServicePackager.getConfigurationService().getResourceString(
+									CRON_SCHEDULE_MINING_EXTRACTIONS_PROPERTY_NAME, "* - *" )
+							)
+							.build() );
 				if (this.jobServicePackager.getSchedulerConfiguration().getAllowedProcessingBlueprints())
-					JobScheduler.getJobScheduler().registerAndRunJob( new BlueprintProcessorJob.Builder()
+					JobScheduler.getJobScheduler().registerJob( new BlueprintProcessorJob.Builder()
 							.withCredential( credential )
 							.withJobServicePackager( this.jobServicePackager )
 							.addCronSchedule(

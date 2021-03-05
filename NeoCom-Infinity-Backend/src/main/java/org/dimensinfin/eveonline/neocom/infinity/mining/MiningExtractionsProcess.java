@@ -5,23 +5,17 @@ import java.util.Objects;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
-import org.dimensinfin.eveonline.neocom.database.repositories.MiningRepository;
+import org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.jobs.NeoComBackendJob;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComSBException;
-import org.dimensinfin.eveonline.neocom.miningextraction.service.MiningExtractionDownloader;
-import org.dimensinfin.eveonline.neocom.miningextraction.service.MiningExtractionPersistent;
-import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
-import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;
 import org.dimensinfin.eveonline.neocom.service.logger.NeoComLogger;
-import org.dimensinfin.eveonline.neocom.service.scheduler.domain.Job;
 
-public class MiningExtractionsProcess extends Job {
-	private MiningRepository miningRepository;
+public class MiningExtractionsProcess extends NeoComBackendJob {
 	private Credential credential;
-	private ESIDataProvider esiDataProvider;
-	private LocationCatalogService locationCatalogService;
 
+// - C O N S T R U C T O R S
 	private MiningExtractionsProcess() {}
 
+// - G E T T E R S   &   S E T T E R S
 	// - J O B
 	@Override
 	public int getUniqueIdentifier() {
@@ -39,7 +33,7 @@ public class MiningExtractionsProcess extends Job {
 	}
 
 	@Override
-	public boolean equals( Object o ) {
+	public boolean equals( final Object o ) {
 		return super.equals( o );
 	}
 
@@ -55,13 +49,13 @@ public class MiningExtractionsProcess extends Job {
 	public Boolean call() {
 		NeoComLogger.enter();
 		try {
-			new MiningExtractionPersistent.Builder()
-					.withMiningRepository( this.miningRepository ).build()
-					.persistMiningExtractions( new MiningExtractionDownloader.Builder()
-							.withCredential( this.credential )
-							.withEsiDataProvider( this.esiDataProvider )
-							.withLocationCatalogService( this.locationCatalogService ).build()
-							.downloadMiningExtractions() );
+			//			new MiningExtractionPersistent.Builder()
+			//					.withMiningRepository( this.jobServicePackager.getMiningRepository() ).build()
+			//					.persistMiningExtractions( new MiningExtractionDownloader.Builder()
+			//							.withCredential( this.credential )
+			//							.withEsiDataProvider( this.jobServicePackager.getEsiDataService() )
+			//							.withLocationCatalogService( this.jobServicePackager.getLocationCatalogService() ).build()
+			//							.downloadMiningExtractions() );
 		} catch (final RuntimeException rtex) {
 			NeoComLogger.error( rtex );
 			throw new NeoComSBException( rtex );
@@ -71,11 +65,22 @@ public class MiningExtractionsProcess extends Job {
 	}
 
 	// - B U I L D E R
-	public static class Builder extends Job.Builder<MiningExtractionsProcess, MiningExtractionsProcess.Builder> {
+	public static class Builder extends NeoComBackendJob.Builder<MiningExtractionsProcess, MiningExtractionsProcess.Builder> {
 		private MiningExtractionsProcess onConstruction;
 
+		// - C O N S T R U C T O R S
 		public Builder() {
 			this.onConstruction = new MiningExtractionsProcess();
+		}
+
+		@Override
+		public MiningExtractionsProcess build() {
+			return this.onConstruction;
+		}
+
+		public MiningExtractionsProcess.Builder withCredential( final Credential credential ) {
+			this.getActual().credential = Objects.requireNonNull( credential );
+			return this;
 		}
 
 		@Override
@@ -86,39 +91,6 @@ public class MiningExtractionsProcess extends Job {
 
 		@Override
 		protected MiningExtractionsProcess.Builder getActualBuilder() {
-			return this;
-		}
-
-		@Override
-		public MiningExtractionsProcess build() {
-			Objects.requireNonNull( this.onConstruction.credential );
-			Objects.requireNonNull( this.onConstruction.esiDataProvider );
-			Objects.requireNonNull( this.onConstruction.locationCatalogService );
-			Objects.requireNonNull( this.onConstruction.miningRepository );
-			return this.onConstruction;
-		}
-
-		public MiningExtractionsProcess.Builder withCredential( final Credential credential ) {
-			Objects.requireNonNull( credential );
-			this.onConstruction.credential = credential;
-			return this;
-		}
-
-		public MiningExtractionsProcess.Builder withEsiDataProvider( final ESIDataProvider esiDataProvider ) {
-			Objects.requireNonNull( esiDataProvider );
-			this.onConstruction.esiDataProvider = esiDataProvider;
-			return this;
-		}
-
-		public MiningExtractionsProcess.Builder withLocationCatalogService( final LocationCatalogService locationCatalogService ) {
-			Objects.requireNonNull( locationCatalogService );
-			this.onConstruction.locationCatalogService = locationCatalogService;
-			return this;
-		}
-
-		public MiningExtractionsProcess.Builder withMiningRepository( final MiningRepository miningRepository ) {
-			Objects.requireNonNull( miningRepository );
-			this.onConstruction.miningRepository = miningRepository;
 			return this;
 		}
 	}
