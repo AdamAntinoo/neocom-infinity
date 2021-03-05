@@ -33,7 +33,7 @@ public class MinuteTimeBaseSchedulerTest {
 	@Test
 	public void constructorContract() {
 		final MinuteTimeBaseScheduler minuteScheduler = new MinuteTimeBaseScheduler(
-				this.configurationService,
+				esiDataService, this.configurationService,
 				this.schedulerConfiguration,
 				this.credentialRepository,
 				this.jobServicePackager );
@@ -59,7 +59,7 @@ public class MinuteTimeBaseSchedulerTest {
 			mocked.when( JobScheduler::getJobScheduler ).thenReturn( jobScheduler );
 			// Test
 			final MinuteTimeBaseScheduler minuteScheduler = new MinuteTimeBaseScheduler(
-					this.configurationService,
+					esiDataService, this.configurationService,
 					this.schedulerConfiguration,
 					this.credentialRepository,
 					this.jobServicePackager );
@@ -77,7 +77,7 @@ public class MinuteTimeBaseSchedulerTest {
 		Mockito.when( this.configurationService.getResourceString( Mockito.anyString(), Mockito.anyString() ) ).thenReturn( "* - *" );
 		// Test
 		final MinuteTimeBaseScheduler minuteScheduler = new MinuteTimeBaseScheduler(
-				this.configurationService,
+				esiDataService, this.configurationService,
 				this.schedulerConfiguration,
 				this.credentialRepository,
 				this.jobServicePackager );
@@ -99,7 +99,7 @@ public class MinuteTimeBaseSchedulerTest {
 			mocked.when( JobScheduler::getJobScheduler ).thenReturn( jobScheduler );
 			// Test
 			final MinuteTimeBaseScheduler minuteScheduler = new MinuteTimeBaseScheduler(
-					this.configurationService,
+					esiDataService, this.configurationService,
 					this.schedulerConfiguration,
 					this.credentialRepository,
 					this.jobServicePackager );

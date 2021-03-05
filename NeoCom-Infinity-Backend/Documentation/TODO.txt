@@ -1,6 +1,11 @@
 # Classes pending Unit Test completion
 
 ## 0.20.0
+* EsiTypeSerializer
+* PricedResourceSerializer
+* ResourceSerializer
+* ProcessedBlueprintSerializer
+
 * AuthorizationTokenResponseSerializer
 * GetUniverseCategoriesCategoryIdOkSerializer
 * BlueprintProcessorJob

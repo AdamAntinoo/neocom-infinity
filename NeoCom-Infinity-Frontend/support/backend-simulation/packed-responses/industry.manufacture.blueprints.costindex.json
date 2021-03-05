@@ -1,9 +1,9 @@
 [{
-        "blueprintTypeId": 31741,
+        "blueprintTypeId": 31717,
         "blueprint": {
-            "typeId": 31741,
-            "name": "Small Kinetic Shield Reinforcer I Blueprint",
-            "description": "",
+            "typeId": 31717,
+            "name": "Small EM Shield Reinforcer I Blueprint",
+            "quantity": 0,
             "group": {
                 "groupId": 787,
                 "groupName": "Rig Blueprint",
@@ -14,8 +14,8 @@
                 "categoryName": "Blueprint"
             },
             "type": {
-                "typeId": 31741,
-                "name": "Small Kinetic Shield Reinforcer I Blueprint",
+                "typeId": 31717,
+                "name": "Small EM Shield Reinforcer I Blueprint",
                 "description": "",
                 "groupId": 787,
                 "marketGroupId": 1267,
@@ -27,16 +27,17 @@
             "tech": "Tech I",
             "volume": 0.01,
             "isBlueprint": true,
-            "typeIconURL": "https://image.eveonline.com/Type/31741_64.png",
+            "typeIconURL": "https://image.eveonline.com/Type/31717_64.png",
+            "price": 2250000.0,
             "marketData": {
                 "rel": "marketData",
-                "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/31741"
+                "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/31717"
             }
         },
         "output": {
-            "typeId": 31740,
-            "name": "Small Kinetic Shield Reinforcer I",
-            "description": "This ship modification is designed to increase the kinetic resistance of ship shields at the expense of increased signature radius.\r\n\r\nPenalty: Using more than one type of this module or similar modules that affect the same attribute on the ship will be penalized.\r\n\r\nThe drawbacks of fitting this rig may be reduced by training the <a href=showinfo:26261>Shield Rigging</a> skill.",
+            "typeId": 31716,
+            "name": "Small EM Shield Reinforcer I",
+            "quantity": 0,
             "group": {
                 "groupId": 774,
                 "groupName": "Rig Shield",
@@ -47,9 +48,9 @@
                 "categoryName": "Module"
             },
             "type": {
-                "typeId": 31740,
-                "name": "Small Kinetic Shield Reinforcer I",
-                "description": "This ship modification is designed to increase the kinetic resistance of ship shields at the expense of increased signature radius.\r\n\r\nPenalty: Using more than one type of this module or similar modules that affect the same attribute on the ship will be penalized.\r\n\r\nThe drawbacks of fitting this rig may be reduced by training the <a href=showinfo:26261>Shield Rigging</a> skill.",
+                "typeId": 31716,
+                "name": "Small EM Shield Reinforcer I",
+                "description": "This ship modification is designed to increase the EM resistance of ship shields at the expense of increased signature radius.\r\n\r\nPenalty: Using more than one type of this module or similar modules that affect the same attribute on the ship will be penalized.\r\n\r\nThe drawbacks of fitting this rig may be reduced by training the <a href=showinfo:26261>Shield Rigging</a> skill.",
                 "groupId": 774,
                 "marketGroupId": 1234,
                 "capacity": 0.0,
@@ -60,14 +61,15 @@
             "tech": "Tech I",
             "volume": 5.0,
             "isBlueprint": false,
-            "typeIconURL": "https://image.eveonline.com/Type/31740_64.png",
+            "typeIconURL": "https://image.eveonline.com/Type/31716_64.png",
+            "price": 19990.0,
             "marketData": {
                 "rel": "marketData",
-                "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/31740"
+                "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/31716"
             }
         },
         "outputMarketData": {
-            "typeId": 31740,
+            "typeId": 31716,
             "bestSellOrder": {
                 "station": {
                     "locationType": "STATION",
@@ -83,11 +85,11 @@
                     "regionId": 10000002,
                     "regionName": "The Forge"
                 },
-                "orderId": 5931756587,
-                "price": 10800.0,
-                "typeId": 31740,
-                "volumeRemain": 10,
-                "volumeTotal": 10,
+                "orderId": 5942545841,
+                "price": 19990.0,
+                "typeId": 31716,
+                "volumeRemain": 519,
+                "volumeTotal": 524,
                 "buyOrder": false
             },
             "bestBuyOrder": {
@@ -105,88 +107,48 @@
                     "regionId": 10000002,
                     "regionName": "The Forge"
                 },
-                "orderId": 5919316986,
-                "price": 10.0,
-                "typeId": 31740,
-                "volumeRemain": 986,
-                "volumeTotal": 1000,
+                "orderId": 5931419458,
+                "price": 1.0,
+                "typeId": 31716,
+                "volumeRemain": 10000,
+                "volumeTotal": 10000,
                 "buyOrder": true
             },
             "sellOrders": [{
-                    "duration": 3,
+                    "duration": 90,
                     "isBuyOrder": false,
-                    "issued": "2021-02-28T08:28:52.000Z",
+                    "issued": "2021-03-05T18:04:23.000Z",
                     "locationId": 60003760,
                     "minVolume": 1,
-                    "orderId": 5931756587,
-                    "price": 10800.0,
+                    "orderId": 5942545841,
+                    "price": 19990.0,
                     "range": "REGION",
                     "systemId": 30000142,
-                    "typeId": 31740,
-                    "volumeRemain": 10,
-                    "volumeTotal": 10
+                    "typeId": 31716,
+                    "volumeRemain": 519,
+                    "volumeTotal": 524
                 },
                 {
                     "duration": 90,
                     "isBuyOrder": false,
-                    "issued": "2021-02-27T23:34:56.000Z",
+                    "issued": "2021-02-06T04:11:57.000Z",
                     "locationId": 60003760,
                     "minVolume": 1,
-                    "orderId": 5937676696,
-                    "price": 10800.0,
+                    "orderId": 5916396385,
+                    "price": 20000.0,
                     "range": "REGION",
                     "systemId": 30000142,
-                    "typeId": 31740,
-                    "volumeRemain": 300,
-                    "volumeTotal": 917
-                },
-                {
-                    "duration": 3,
-                    "isBuyOrder": false,
-                    "issued": "2021-02-26T15:47:55.000Z",
-                    "locationId": 60003760,
-                    "minVolume": 1,
-                    "orderId": 5936255164,
-                    "price": 10860.0,
-                    "range": "REGION",
-                    "systemId": 30000142,
-                    "typeId": 31740,
-                    "volumeRemain": 29,
-                    "volumeTotal": 38
-                },
-                {
-                    "duration": 90,
-                    "isBuyOrder": false,
-                    "issued": "2021-02-26T06:32:00.000Z",
-                    "locationId": 60003760,
-                    "minVolume": 1,
-                    "orderId": 5933462111,
-                    "price": 10890.0,
-                    "range": "REGION",
-                    "systemId": 30000142,
-                    "typeId": 31740,
-                    "volumeRemain": 578,
-                    "volumeTotal": 800
-                },
-                {
-                    "duration": 90,
-                    "isBuyOrder": false,
-                    "issued": "2021-02-25T20:00:40.000Z",
-                    "locationId": 60003760,
-                    "minVolume": 1,
-                    "orderId": 5922777941,
-                    "price": 10900.0,
-                    "range": "REGION",
-                    "systemId": 30000142,
-                    "typeId": 31740,
-                    "volumeRemain": 48,
-                    "volumeTotal": 200
+                    "typeId": 31716,
+                    "volumeRemain": 92,
+                    "volumeTotal": 1626
                 }
             ],
-            "sellDeep": 965,
-            "sellAverage": 10860.683937823835,
-            "marketWidth": 10790.0,
-            "sellRegionId": 10000002
+            "sellDeep": 611,
+            "sellAverage": 19991.505728314238,
+            "marketWidth": 19989.0,
+            "sellRegionId": 10000002,
+            "bestBuyPrice": 1.0,
+            "bestSellPrice": 19990.0
         },
         "billOfMaterials": [{
                 "typeId": 25601,
@@ -216,7 +178,7 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/25601_64.png",
-                "price": 1928.0,
+                "price": 2100.0,
                 "marketData": {
                     "rel": "marketData",
                     "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/25601"
@@ -250,7 +212,7 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/25589_64.png",
-                "price": 729.0,
+                "price": 450.1,
                 "marketData": {
                     "rel": "marketData",
                     "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/25589"
@@ -284,15 +246,15 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/25599_64.png",
-                "price": 314.2,
+                "price": 422.0,
                 "marketData": {
                     "rel": "marketData",
                     "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/25599"
                 }
             },
             {
-                "typeId": 31741,
-                "name": "Small Kinetic Shield Reinforcer I Blueprint",
+                "typeId": 31717,
+                "name": "Small EM Shield Reinforcer I Blueprint",
                 "quantity": 0,
                 "group": {
                     "groupId": 787,
@@ -304,8 +266,8 @@
                     "categoryName": "Blueprint"
                 },
                 "type": {
-                    "typeId": 31741,
-                    "name": "Small Kinetic Shield Reinforcer I Blueprint",
+                    "typeId": 31717,
+                    "name": "Small EM Shield Reinforcer I Blueprint",
                     "description": "",
                     "groupId": 787,
                     "marketGroupId": 1267,
@@ -317,11 +279,11 @@
                 "tech": "Tech I",
                 "volume": 0.01,
                 "isBlueprint": true,
-                "typeIconURL": "https://image.eveonline.com/Type/31741_64.png",
-                "price": 2249000.0,
+                "typeIconURL": "https://image.eveonline.com/Type/31717_64.png",
+                "price": 2250000.0,
                 "marketData": {
                     "rel": "marketData",
-                    "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/31741"
+                    "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/31717"
                 }
             },
             {
@@ -399,7 +361,7 @@
         "blueprint": {
             "typeId": 31118,
             "name": "Small Cargohold Optimization I Blueprint",
-            "description": "",
+            "quantity": 0,
             "group": {
                 "groupId": 787,
                 "groupName": "Rig Blueprint",
@@ -424,15 +386,16 @@
             "volume": 0.01,
             "isBlueprint": true,
             "typeIconURL": "https://image.eveonline.com/Type/31118_64.png",
+            "price": 1490000.0,
             "marketData": {
                 "rel": "marketData",
-                "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/31118"
+                "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/31118"
             }
         },
         "output": {
             "typeId": 31117,
             "name": "Small Cargohold Optimization I",
-            "description": "This ship modification is designed to increase a ship's cargo capacity at the expense of armor amount.\r\n\r\nThe drawbacks of fitting this rig may be reduced by training the <a href=showinfo:26254>Astronautics Rigging</a> skill.",
+            "quantity": 0,
             "group": {
                 "groupId": 782,
                 "groupName": "Rig Navigation",
@@ -457,9 +420,10 @@
             "volume": 5.0,
             "isBlueprint": false,
             "typeIconURL": "https://image.eveonline.com/Type/31117_64.png",
+            "price": 79930.0,
             "marketData": {
                 "rel": "marketData",
-                "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/31117"
+                "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/31117"
             }
         },
         "outputMarketData": {
@@ -479,11 +443,11 @@
                     "regionId": 10000002,
                     "regionName": "The Forge"
                 },
-                "orderId": 5935593045,
-                "price": 79960.0,
+                "orderId": 5942561804,
+                "price": 79930.0,
                 "typeId": 31117,
-                "volumeRemain": 182,
-                "volumeTotal": 190,
+                "volumeRemain": 22,
+                "volumeTotal": 25,
                 "buyOrder": false
             },
             "bestBuyOrder": {
@@ -502,45 +466,61 @@
                     "regionName": "The Forge"
                 },
                 "orderId": 5884909281,
-                "price": 20030.0,
+                "price": 20040.0,
                 "typeId": 31117,
                 "volumeRemain": 1000,
                 "volumeTotal": 1000,
                 "buyOrder": true
             },
             "sellOrders": [{
-                    "duration": 14,
+                    "duration": 90,
                     "isBuyOrder": false,
-                    "issued": "2021-02-25T19:37:17.000Z",
+                    "issued": "2021-03-05T18:26:39.000Z",
                     "locationId": 60003760,
                     "minVolume": 1,
-                    "orderId": 5935593045,
-                    "price": 79960.0,
+                    "orderId": 5942561804,
+                    "price": 79930.0,
                     "range": "REGION",
                     "systemId": 30000142,
                     "typeId": 31117,
-                    "volumeRemain": 182,
-                    "volumeTotal": 190
+                    "volumeRemain": 22,
+                    "volumeTotal": 25
                 },
                 {
                     "duration": 90,
                     "isBuyOrder": false,
-                    "issued": "2021-02-24T18:26:59.000Z",
+                    "issued": "2021-03-05T18:04:23.000Z",
                     "locationId": 60003760,
                     "minVolume": 1,
-                    "orderId": 5934714408,
-                    "price": 79990.0,
+                    "orderId": 5942545839,
+                    "price": 79940.0,
                     "range": "REGION",
                     "systemId": 30000142,
                     "typeId": 31117,
-                    "volumeRemain": 36,
-                    "volumeTotal": 50
+                    "volumeRemain": 1238,
+                    "volumeTotal": 1240
+                },
+                {
+                    "duration": 90,
+                    "isBuyOrder": false,
+                    "issued": "2021-03-03T09:38:36.000Z",
+                    "locationId": 60003760,
+                    "minVolume": 1,
+                    "orderId": 5940662606,
+                    "price": 79950.0,
+                    "range": "REGION",
+                    "systemId": 30000142,
+                    "typeId": 31117,
+                    "volumeRemain": 197,
+                    "volumeTotal": 200
                 }
             ],
-            "sellDeep": 218,
-            "sellAverage": 79964.95412844037,
-            "marketWidth": 59930.0,
-            "sellRegionId": 10000002
+            "sellDeep": 1457,
+            "sellAverage": 79941.20109814688,
+            "marketWidth": 59890.0,
+            "sellRegionId": 10000002,
+            "bestBuyPrice": 20040.0,
+            "bestSellPrice": 79930.0
         },
         "billOfMaterials": [{
                 "typeId": 25601,
@@ -570,7 +550,7 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/25601_64.png",
-                "price": 1928.0,
+                "price": 2100.0,
                 "marketData": {
                     "rel": "marketData",
                     "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/25601"
@@ -604,7 +584,7 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/25595_64.png",
-                "price": 4093.0,
+                "price": 3926.0,
                 "marketData": {
                     "rel": "marketData",
                     "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/25595"
@@ -638,7 +618,7 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/25598_64.png",
-                "price": 2200.0,
+                "price": 2677.0,
                 "marketData": {
                     "rel": "marketData",
                     "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/25598"
@@ -740,7 +720,7 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/26254_64.png",
-                "price": 19900.0,
+                "price": 9.04,
                 "marketData": {
                     "rel": "marketData",
                     "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/26254"
@@ -753,7 +733,7 @@
         "blueprint": {
             "typeId": 31395,
             "name": "Small Powergrid Subroutine Maximizer I Blueprint",
-            "description": "",
+            "quantity": 0,
             "group": {
                 "groupId": 787,
                 "groupName": "Rig Blueprint",
@@ -778,15 +758,16 @@
             "volume": 0.01,
             "isBlueprint": true,
             "typeIconURL": "https://image.eveonline.com/Type/31395_64.png",
+            "price": 3250000.0,
             "marketData": {
                 "rel": "marketData",
-                "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/31395"
+                "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/31395"
             }
         },
         "output": {
             "typeId": 31394,
             "name": "Small Powergrid Subroutine Maximizer I",
-            "description": "This ship modification is designed to reduce a ship's CPU need for all power upgrade modules.",
+            "quantity": 0,
             "group": {
                 "groupId": 781,
                 "groupName": "Rig Core",
@@ -811,9 +792,10 @@
             "volume": 5.0,
             "isBlueprint": false,
             "typeIconURL": "https://image.eveonline.com/Type/31394_64.png",
+            "price": 89990.0,
             "marketData": {
                 "rel": "marketData",
-                "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/31394"
+                "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/31394"
             }
         },
         "outputMarketData": {
@@ -834,73 +816,47 @@
                     "regionName": "The Forge"
                 },
                 "orderId": 5927187512,
-                "price": 108800.0,
+                "price": 89990.0,
                 "typeId": 31394,
-                "volumeRemain": 124,
+                "volumeRemain": 91,
                 "volumeTotal": 141,
                 "buyOrder": false
             },
             "sellOrders": [{
                     "duration": 90,
                     "isBuyOrder": false,
-                    "issued": "2021-02-22T12:00:38.000Z",
+                    "issued": "2021-03-01T15:51:44.000Z",
                     "locationId": 60003760,
                     "minVolume": 1,
                     "orderId": 5927187512,
-                    "price": 108800.0,
+                    "price": 89990.0,
                     "range": "REGION",
                     "systemId": 30000142,
                     "typeId": 31394,
-                    "volumeRemain": 124,
+                    "volumeRemain": 91,
                     "volumeTotal": 141
                 },
                 {
                     "duration": 90,
                     "isBuyOrder": false,
-                    "issued": "2021-02-22T20:42:48.000Z",
+                    "issued": "2021-03-01T09:37:53.000Z",
                     "locationId": 60003760,
                     "minVolume": 1,
-                    "orderId": 5931949524,
-                    "price": 108800.0,
+                    "orderId": 5939019644,
+                    "price": 90000.0,
                     "range": "REGION",
                     "systemId": 30000142,
                     "typeId": 31394,
-                    "volumeRemain": 46,
-                    "volumeTotal": 50
-                },
-                {
-                    "duration": 90,
-                    "isBuyOrder": false,
-                    "issued": "2021-02-21T19:55:17.000Z",
-                    "locationId": 60003760,
-                    "minVolume": 1,
-                    "orderId": 5932115650,
-                    "price": 109000.0,
-                    "range": "REGION",
-                    "systemId": 30000142,
-                    "typeId": 31394,
-                    "volumeRemain": 2,
-                    "volumeTotal": 9
-                },
-                {
-                    "duration": 90,
-                    "isBuyOrder": false,
-                    "issued": "2020-12-06T04:09:16.000Z",
-                    "locationId": 60003760,
-                    "minVolume": 1,
-                    "orderId": 5865402246,
-                    "price": 110000.0,
-                    "range": "REGION",
-                    "systemId": 30000142,
-                    "typeId": 31394,
-                    "volumeRemain": 18,
-                    "volumeTotal": 430
+                    "volumeRemain": 10,
+                    "volumeTotal": 10
                 }
             ],
-            "sellDeep": 190,
-            "sellAverage": 108915.78947368421,
+            "sellDeep": 101,
+            "sellAverage": 89990.9900990099,
             "marketWidth": -1.0,
-            "sellRegionId": 10000002
+            "sellRegionId": 10000002,
+            "bestBuyPrice": 0.0,
+            "bestSellPrice": 89990.0
         },
         "billOfMaterials": [{
                 "typeId": 25601,
@@ -930,7 +886,7 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/25601_64.png",
-                "price": 1928.0,
+                "price": 2100.0,
                 "marketData": {
                     "rel": "marketData",
                     "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/25601"
@@ -964,7 +920,7 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/25594_64.png",
-                "price": 66670.0,
+                "price": 63850.0,
                 "marketData": {
                     "rel": "marketData",
                     "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/25594"
@@ -998,7 +954,7 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/25598_64.png",
-                "price": 2200.0,
+                "price": 2677.0,
                 "marketData": {
                     "rel": "marketData",
                     "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/25598"
@@ -1032,7 +988,7 @@
                 "volume": 0.01,
                 "isBlueprint": true,
                 "typeIconURL": "https://image.eveonline.com/Type/31395_64.png",
-                "price": 5000000.0,
+                "price": 3250000.0,
                 "marketData": {
                     "rel": "marketData",
                     "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/31395"
@@ -1100,7 +1056,7 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/26252_64.png",
-                "price": 989.0,
+                "price": 500.3,
                 "marketData": {
                     "rel": "marketData",
                     "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/26252"
@@ -1109,11 +1065,11 @@
         ]
     },
     {
-        "blueprintTypeId": 31717,
+        "blueprintTypeId": 31741,
         "blueprint": {
-            "typeId": 31717,
-            "name": "Small EM Shield Reinforcer I Blueprint",
-            "description": "",
+            "typeId": 31741,
+            "name": "Small Kinetic Shield Reinforcer I Blueprint",
+            "quantity": 0,
             "group": {
                 "groupId": 787,
                 "groupName": "Rig Blueprint",
@@ -1124,8 +1080,8 @@
                 "categoryName": "Blueprint"
             },
             "type": {
-                "typeId": 31717,
-                "name": "Small EM Shield Reinforcer I Blueprint",
+                "typeId": 31741,
+                "name": "Small Kinetic Shield Reinforcer I Blueprint",
                 "description": "",
                 "groupId": 787,
                 "marketGroupId": 1267,
@@ -1137,16 +1093,17 @@
             "tech": "Tech I",
             "volume": 0.01,
             "isBlueprint": true,
-            "typeIconURL": "https://image.eveonline.com/Type/31717_64.png",
+            "typeIconURL": "https://image.eveonline.com/Type/31741_64.png",
+            "price": 2199000.0,
             "marketData": {
                 "rel": "marketData",
-                "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/31717"
+                "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/31741"
             }
         },
         "output": {
-            "typeId": 31716,
-            "name": "Small EM Shield Reinforcer I",
-            "description": "This ship modification is designed to increase the EM resistance of ship shields at the expense of increased signature radius.\r\n\r\nPenalty: Using more than one type of this module or similar modules that affect the same attribute on the ship will be penalized.\r\n\r\nThe drawbacks of fitting this rig may be reduced by training the <a href=showinfo:26261>Shield Rigging</a> skill.",
+            "typeId": 31740,
+            "name": "Small Kinetic Shield Reinforcer I",
+            "quantity": 0,
             "group": {
                 "groupId": 774,
                 "groupName": "Rig Shield",
@@ -1157,9 +1114,9 @@
                 "categoryName": "Module"
             },
             "type": {
-                "typeId": 31716,
-                "name": "Small EM Shield Reinforcer I",
-                "description": "This ship modification is designed to increase the EM resistance of ship shields at the expense of increased signature radius.\r\n\r\nPenalty: Using more than one type of this module or similar modules that affect the same attribute on the ship will be penalized.\r\n\r\nThe drawbacks of fitting this rig may be reduced by training the <a href=showinfo:26261>Shield Rigging</a> skill.",
+                "typeId": 31740,
+                "name": "Small Kinetic Shield Reinforcer I",
+                "description": "This ship modification is designed to increase the kinetic resistance of ship shields at the expense of increased signature radius.\r\n\r\nPenalty: Using more than one type of this module or similar modules that affect the same attribute on the ship will be penalized.\r\n\r\nThe drawbacks of fitting this rig may be reduced by training the <a href=showinfo:26261>Shield Rigging</a> skill.",
                 "groupId": 774,
                 "marketGroupId": 1234,
                 "capacity": 0.0,
@@ -1170,14 +1127,15 @@
             "tech": "Tech I",
             "volume": 5.0,
             "isBlueprint": false,
-            "typeIconURL": "https://image.eveonline.com/Type/31716_64.png",
+            "typeIconURL": "https://image.eveonline.com/Type/31740_64.png",
+            "price": 10880.0,
             "marketData": {
                 "rel": "marketData",
-                "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/31716"
+                "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/31740"
             }
         },
         "outputMarketData": {
-            "typeId": 31716,
+            "typeId": 31740,
             "bestSellOrder": {
                 "station": {
                     "locationType": "STATION",
@@ -1193,11 +1151,11 @@
                     "regionId": 10000002,
                     "regionName": "The Forge"
                 },
-                "orderId": 5938206903,
-                "price": 17440.0,
-                "typeId": 31716,
-                "volumeRemain": 37,
-                "volumeTotal": 100,
+                "orderId": 5941907306,
+                "price": 10880.0,
+                "typeId": 31740,
+                "volumeRemain": 145,
+                "volumeTotal": 200,
                 "buyOrder": false
             },
             "bestBuyOrder": {
@@ -1215,74 +1173,48 @@
                     "regionId": 10000002,
                     "regionName": "The Forge"
                 },
-                "orderId": 5931419458,
-                "price": 1.0,
-                "typeId": 31716,
-                "volumeRemain": 10000,
-                "volumeTotal": 10000,
+                "orderId": 5919316986,
+                "price": 3010.0,
+                "typeId": 31740,
+                "volumeRemain": 985,
+                "volumeTotal": 1000,
                 "buyOrder": true
             },
             "sellOrders": [{
-                    "duration": 30,
+                    "duration": 90,
                     "isBuyOrder": false,
-                    "issued": "2021-02-28T13:50:08.000Z",
+                    "issued": "2021-03-04T21:50:01.000Z",
                     "locationId": 60003760,
                     "minVolume": 1,
-                    "orderId": 5938206903,
-                    "price": 17440.0,
+                    "orderId": 5941907306,
+                    "price": 10880.0,
                     "range": "REGION",
                     "systemId": 30000142,
-                    "typeId": 31716,
-                    "volumeRemain": 37,
-                    "volumeTotal": 100
-                },
-                {
-                    "duration": 14,
-                    "isBuyOrder": false,
-                    "issued": "2021-02-28T12:31:16.000Z",
-                    "locationId": 60003760,
-                    "minVolume": 1,
-                    "orderId": 5938138603,
-                    "price": 17460.0,
-                    "range": "REGION",
-                    "systemId": 30000142,
-                    "typeId": 31716,
-                    "volumeRemain": 54,
-                    "volumeTotal": 100
+                    "typeId": 31740,
+                    "volumeRemain": 145,
+                    "volumeTotal": 200
                 },
                 {
                     "duration": 90,
                     "isBuyOrder": false,
-                    "issued": "2021-02-21T00:28:23.000Z",
+                    "issued": "2021-02-26T06:32:00.000Z",
                     "locationId": 60003760,
                     "minVolume": 1,
-                    "orderId": 5931272163,
-                    "price": 17470.0,
+                    "orderId": 5933462111,
+                    "price": 10890.0,
                     "range": "REGION",
                     "systemId": 30000142,
-                    "typeId": 31716,
-                    "volumeRemain": 761,
-                    "volumeTotal": 1111
-                },
-                {
-                    "duration": 90,
-                    "isBuyOrder": false,
-                    "issued": "2021-02-21T00:24:58.000Z",
-                    "locationId": 60003760,
-                    "minVolume": 1,
-                    "orderId": 5931269316,
-                    "price": 17480.0,
-                    "range": "REGION",
-                    "systemId": 30000142,
-                    "typeId": 31716,
-                    "volumeRemain": 655,
-                    "volumeTotal": 655
+                    "typeId": 31740,
+                    "volumeRemain": 554,
+                    "volumeTotal": 800
                 }
             ],
-            "sellDeep": 1507,
-            "sellAverage": 17473.251493032516,
-            "marketWidth": 17439.0,
-            "sellRegionId": 10000002
+            "sellDeep": 699,
+            "sellAverage": 10887.925608011445,
+            "marketWidth": 7870.0,
+            "sellRegionId": 10000002,
+            "bestBuyPrice": 3010.0,
+            "bestSellPrice": 10880.0
         },
         "billOfMaterials": [{
                 "typeId": 25601,
@@ -1312,7 +1244,7 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/25601_64.png",
-                "price": 1928.0,
+                "price": 2100.0,
                 "marketData": {
                     "rel": "marketData",
                     "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/25601"
@@ -1346,7 +1278,7 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/25589_64.png",
-                "price": 729.0,
+                "price": 450.1,
                 "marketData": {
                     "rel": "marketData",
                     "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/25589"
@@ -1380,15 +1312,15 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/25599_64.png",
-                "price": 314.2,
+                "price": 422.0,
                 "marketData": {
                     "rel": "marketData",
                     "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/25599"
                 }
             },
             {
-                "typeId": 31717,
-                "name": "Small EM Shield Reinforcer I Blueprint",
+                "typeId": 31741,
+                "name": "Small Kinetic Shield Reinforcer I Blueprint",
                 "quantity": 0,
                 "group": {
                     "groupId": 787,
@@ -1400,8 +1332,8 @@
                     "categoryName": "Blueprint"
                 },
                 "type": {
-                    "typeId": 31717,
-                    "name": "Small EM Shield Reinforcer I Blueprint",
+                    "typeId": 31741,
+                    "name": "Small Kinetic Shield Reinforcer I Blueprint",
                     "description": "",
                     "groupId": 787,
                     "marketGroupId": 1267,
@@ -1413,11 +1345,11 @@
                 "tech": "Tech I",
                 "volume": 0.01,
                 "isBlueprint": true,
-                "typeIconURL": "https://image.eveonline.com/Type/31717_64.png",
-                "price": 2150000.0,
+                "typeIconURL": "https://image.eveonline.com/Type/31741_64.png",
+                "price": 2199000.0,
                 "marketData": {
                     "rel": "marketData",
-                    "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/31717"
+                    "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/31741"
                 }
             },
             {
@@ -1495,7 +1427,7 @@
         "blueprint": {
             "typeId": 31359,
             "name": "Small Ancillary Current Router I Blueprint",
-            "description": "",
+            "quantity": 0,
             "group": {
                 "groupId": 787,
                 "groupName": "Rig Blueprint",
@@ -1520,15 +1452,16 @@
             "volume": 0.01,
             "isBlueprint": true,
             "typeIconURL": "https://image.eveonline.com/Type/31359_64.png",
+            "price": 0.0,
             "marketData": {
                 "rel": "marketData",
-                "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/31359"
+                "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/31359"
             }
         },
         "output": {
             "typeId": 31358,
             "name": "Small Ancillary Current Router I",
-            "description": "This ship modification is designed to increase a ship's powergrid capacity.",
+            "quantity": 0,
             "group": {
                 "groupId": 781,
                 "groupName": "Rig Core",
@@ -1553,9 +1486,10 @@
             "volume": 5.0,
             "isBlueprint": false,
             "typeIconURL": "https://image.eveonline.com/Type/31358_64.png",
+            "price": 574900.0,
             "marketData": {
                 "rel": "marketData",
-                "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000043/31358"
+                "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/31358"
             }
         },
         "outputMarketData": {
@@ -1575,11 +1509,11 @@
                     "regionId": 10000002,
                     "regionName": "The Forge"
                 },
-                "orderId": 5932908289,
-                "price": 576300.0,
+                "orderId": 5942548933,
+                "price": 574900.0,
                 "typeId": 31358,
-                "volumeRemain": 31,
-                "volumeTotal": 200,
+                "volumeRemain": 36,
+                "volumeTotal": 50,
                 "buyOrder": false
             },
             "bestBuyOrder": {
@@ -1607,106 +1541,178 @@
             "sellOrders": [{
                     "duration": 90,
                     "isBuyOrder": false,
-                    "issued": "2021-02-25T19:54:30.000Z",
+                    "issued": "2021-03-05T18:08:37.000Z",
                     "locationId": 60003760,
                     "minVolume": 1,
-                    "orderId": 5932908289,
-                    "price": 576300.0,
+                    "orderId": 5942548933,
+                    "price": 574900.0,
                     "range": "REGION",
                     "systemId": 30000142,
                     "typeId": 31358,
-                    "volumeRemain": 31,
+                    "volumeRemain": 36,
+                    "volumeTotal": 50
+                },
+                {
+                    "duration": 90,
+                    "isBuyOrder": false,
+                    "issued": "2021-03-05T17:28:33.000Z",
+                    "locationId": 60003760,
+                    "minVolume": 1,
+                    "orderId": 5941796110,
+                    "price": 575000.0,
+                    "range": "REGION",
+                    "systemId": 30000142,
+                    "typeId": 31358,
+                    "volumeRemain": 52,
+                    "volumeTotal": 100
+                },
+                {
+                    "duration": 90,
+                    "isBuyOrder": false,
+                    "issued": "2021-03-05T04:05:24.000Z",
+                    "locationId": 60003760,
+                    "minVolume": 1,
+                    "orderId": 5942080971,
+                    "price": 579500.0,
+                    "range": "REGION",
+                    "systemId": 30000142,
+                    "typeId": 31358,
+                    "volumeRemain": 6,
+                    "volumeTotal": 56
+                },
+                {
+                    "duration": 90,
+                    "isBuyOrder": false,
+                    "issued": "2021-03-05T03:56:19.000Z",
+                    "locationId": 60003760,
+                    "minVolume": 1,
+                    "orderId": 5942091318,
+                    "price": 579600.0,
+                    "range": "REGION",
+                    "systemId": 30000142,
+                    "typeId": 31358,
+                    "volumeRemain": 44,
+                    "volumeTotal": 45
+                },
+                {
+                    "duration": 90,
+                    "isBuyOrder": false,
+                    "issued": "2021-03-05T02:39:56.000Z",
+                    "locationId": 60003760,
+                    "minVolume": 1,
+                    "orderId": 5941343338,
+                    "price": 580100.0,
+                    "range": "REGION",
+                    "systemId": 30000142,
+                    "typeId": 31358,
+                    "volumeRemain": 145,
                     "volumeTotal": 200
                 },
                 {
                     "duration": 90,
                     "isBuyOrder": false,
-                    "issued": "2021-02-25T13:01:24.000Z",
+                    "issued": "2021-03-04T23:22:04.000Z",
                     "locationId": 60003760,
                     "minVolume": 1,
-                    "orderId": 5932515672,
-                    "price": 576800.0,
+                    "orderId": 5941965339,
+                    "price": 580400.0,
                     "range": "REGION",
                     "systemId": 30000142,
                     "typeId": 31358,
-                    "volumeRemain": 22,
-                    "volumeTotal": 50
+                    "volumeRemain": 118,
+                    "volumeTotal": 150
                 },
                 {
                     "duration": 90,
                     "isBuyOrder": false,
-                    "issued": "2021-02-24T11:50:46.000Z",
+                    "issued": "2021-03-04T22:18:12.000Z",
                     "locationId": 60003760,
                     "minVolume": 1,
-                    "orderId": 5934440397,
-                    "price": 579500.0,
+                    "orderId": 5941927510,
+                    "price": 584900.0,
                     "range": "REGION",
                     "systemId": 30000142,
                     "typeId": 31358,
-                    "volumeRemain": 49,
-                    "volumeTotal": 50
+                    "volumeRemain": 23,
+                    "volumeTotal": 30
                 },
                 {
-                    "duration": 7,
+                    "duration": 90,
                     "isBuyOrder": false,
-                    "issued": "2021-02-23T12:51:15.000Z",
+                    "issued": "2021-03-04T21:50:01.000Z",
                     "locationId": 60003760,
                     "minVolume": 1,
-                    "orderId": 5933619195,
-                    "price": 580900.0,
+                    "orderId": 5941907299,
+                    "price": 585000.0,
+                    "range": "REGION",
+                    "systemId": 30000142,
+                    "typeId": 31358,
+                    "volumeRemain": 579,
+                    "volumeTotal": 600
+                },
+                {
+                    "duration": 90,
+                    "isBuyOrder": false,
+                    "issued": "2021-03-04T14:32:45.000Z",
+                    "locationId": 60003760,
+                    "minVolume": 1,
+                    "orderId": 5941586806,
+                    "price": 589300.0,
+                    "range": "REGION",
+                    "systemId": 30000142,
+                    "typeId": 31358,
+                    "volumeRemain": 17,
+                    "volumeTotal": 25
+                },
+                {
+                    "duration": 90,
+                    "isBuyOrder": false,
+                    "issued": "2021-03-04T13:34:17.000Z",
+                    "locationId": 60003760,
+                    "minVolume": 1,
+                    "orderId": 5941551496,
+                    "price": 589400.0,
+                    "range": "REGION",
+                    "systemId": 30000142,
+                    "typeId": 31358,
+                    "volumeRemain": 308,
+                    "volumeTotal": 319
+                },
+                {
+                    "duration": 90,
+                    "isBuyOrder": false,
+                    "issued": "2021-03-04T12:36:07.000Z",
+                    "locationId": 60003760,
+                    "minVolume": 1,
+                    "orderId": 5941517328,
+                    "price": 589600.0,
+                    "range": "REGION",
+                    "systemId": 30000142,
+                    "typeId": 31358,
+                    "volumeRemain": 19,
+                    "volumeTotal": 20
+                },
+                {
+                    "duration": 14,
+                    "isBuyOrder": false,
+                    "issued": "2021-03-04T20:48:08.000Z",
+                    "locationId": 60003760,
+                    "minVolume": 1,
+                    "orderId": 5941861879,
+                    "price": 600000.0,
                     "range": "REGION",
                     "systemId": 30000142,
                     "typeId": 31358,
                     "volumeRemain": 1,
                     "volumeTotal": 1
-                },
-                {
-                    "duration": 30,
-                    "isBuyOrder": false,
-                    "issued": "2021-02-20T06:08:27.000Z",
-                    "locationId": 60003469,
-                    "minVolume": 1,
-                    "orderId": 5930419410,
-                    "price": 583000.0,
-                    "range": "REGION",
-                    "systemId": 30000142,
-                    "typeId": 31358,
-                    "volumeRemain": 36,
-                    "volumeTotal": 73
-                },
-                {
-                    "duration": 90,
-                    "isBuyOrder": false,
-                    "issued": "2021-01-28T04:18:54.000Z",
-                    "locationId": 60003760,
-                    "minVolume": 1,
-                    "orderId": 5909677625,
-                    "price": 589600.0,
-                    "range": "REGION",
-                    "systemId": 30000142,
-                    "typeId": 31358,
-                    "volumeRemain": 35,
-                    "volumeTotal": 35
-                },
-                {
-                    "duration": 90,
-                    "isBuyOrder": false,
-                    "issued": "2021-01-28T02:11:30.000Z",
-                    "locationId": 60003760,
-                    "minVolume": 1,
-                    "orderId": 5909624500,
-                    "price": 590000.0,
-                    "range": "REGION",
-                    "systemId": 30000142,
-                    "typeId": 31358,
-                    "volumeRemain": 24,
-                    "volumeTotal": 32
                 }
             ],
-            "sellDeep": 198,
-            "sellAverage": 582400.505050505,
-            "marketWidth": 168100.0,
-            "sellRegionId": 10000002
+            "sellDeep": 1348,
+            "sellAverage": 584347.8486646884,
+            "marketWidth": 166700.0,
+            "sellRegionId": 10000002,
+            "bestBuyPrice": 408200.0,
+            "bestSellPrice": 574900.0
         },
         "billOfMaterials": [{
                 "typeId": 25600,
@@ -1736,7 +1742,7 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/25600_64.png",
-                "price": 33760.0,
+                "price": 35990.0,
                 "marketData": {
                     "rel": "marketData",
                     "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/25600"
@@ -1770,7 +1776,7 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/25594_64.png",
-                "price": 66670.0,
+                "price": 63850.0,
                 "marketData": {
                     "rel": "marketData",
                     "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/25594"
@@ -1804,7 +1810,7 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/25598_64.png",
-                "price": 2200.0,
+                "price": 2677.0,
                 "marketData": {
                     "rel": "marketData",
                     "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/25598"
@@ -1838,7 +1844,7 @@
                 "volume": 0.01,
                 "isBlueprint": true,
                 "typeIconURL": "https://image.eveonline.com/Type/31359_64.png",
-                "price": 2100000.0,
+                "price": 1590000.0,
                 "marketData": {
                     "rel": "marketData",
                     "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/31359"
@@ -1906,7 +1912,7 @@
                 "volume": 0.01,
                 "isBlueprint": false,
                 "typeIconURL": "https://image.eveonline.com/Type/26252_64.png",
-                "price": 989.0,
+                "price": 500.3,
                 "marketData": {
                     "rel": "marketData",
                     "href": "http://localhost:5240/api/v1/universe/market/consolidated/byregion/10000002/26252"
