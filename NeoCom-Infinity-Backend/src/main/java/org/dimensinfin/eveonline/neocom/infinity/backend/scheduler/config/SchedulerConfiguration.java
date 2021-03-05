@@ -9,12 +9,16 @@ import org.springframework.stereotype.Component;
 import org.dimensinfin.eveonline.neocom.infinity.adapter.ConfigurationServiceWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.service.SBConfigurationService;
 
+import static org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.config.CronSchedulePropertyNameDefinitions.ALLOWED_MININGEXTRACTIONS_SETTING;
+import static org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.config.CronSchedulePropertyNameDefinitions.ALLOWED_PROCESSING_BLUEPRINTS_SETTING;
+import static org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.config.CronSchedulePropertyNameDefinitions.ALLOWED_TO_RUN_SETTING;
+
+/**
+ * Get the flag configurations fro the different jobs.
+ * By default the service is active but all the periodic jobs are disabled.
+ */
 @Component
 public class SchedulerConfiguration {
-	private static final String ALLOWED_TO_RUN_SETTING = "P.scheduler.allowedtorun";
-	private static final String ALLOWED_MININGEXTRACTIONS_SETTING = "P.scheduler.allowedminingextractions";
-	private static final String ALLOWED_PROCESSING_BLUEPRINTS_SETTING = "P.scheduler.allowed.processingblueprints";
-
 	private final SBConfigurationService configurationService;
 
 	// - C O N S T R U C T O R S
@@ -25,14 +29,14 @@ public class SchedulerConfiguration {
 
 	// - G E T T E R S   &   S E T T E R S
 	public Boolean getAllowedMiningExtractions() {
-		return this.configurationService.getResourceBoolean( ALLOWED_MININGEXTRACTIONS_SETTING );
+		return this.configurationService.getResourceBoolean( ALLOWED_MININGEXTRACTIONS_SETTING, false );
 	}
 
 	public Boolean getAllowedProcessingBlueprints() {
-		return this.configurationService.getResourceBoolean( ALLOWED_PROCESSING_BLUEPRINTS_SETTING );
+		return this.configurationService.getResourceBoolean( ALLOWED_PROCESSING_BLUEPRINTS_SETTING, false );
 	}
 
 	public Boolean getAllowedToRun() {
-		return this.configurationService.getResourceBoolean( ALLOWED_TO_RUN_SETTING );
+		return this.configurationService.getResourceBoolean( ALLOWED_TO_RUN_SETTING, true );
 	}
 }
