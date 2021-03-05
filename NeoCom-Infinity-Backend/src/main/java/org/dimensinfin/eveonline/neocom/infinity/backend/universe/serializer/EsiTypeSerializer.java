@@ -11,34 +11,34 @@ import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 
 import org.dimensinfin.eveonline.neocom.domain.EsiType;
 import org.dimensinfin.eveonline.neocom.infinity.backend.universe.market.rest.v1.UniverseMarketControllerV1;
+import org.dimensinfin.eveonline.neocom.market.service.MarketService;
 import org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants;
 
 @JsonComponent
 public class EsiTypeSerializer extends JsonSerializer<EsiType> {
 	@Override
-	public void serialize( final EsiType value, final JsonGenerator jgen, final SerializerProvider provider )
+	public void serialize( final EsiType value, final JsonGenerator gen, final SerializerProvider provider )
 			throws IOException {
-		jgen.writeStartObject();
+		gen.writeStartObject();
 
-		jgen.writeNumberField( "typeId", value.getTypeId() );
-		jgen.writeStringField( "name", value.getName() );
-		jgen.writeStringField( "description", value.getType().getDescription() );
-		jgen.writeObjectField( "group", value.getGroup() );
-		jgen.writeObjectField( "category", value.getCategory() );
-		jgen.writeObjectField( "type", value.getType() );
-		jgen.writeStringField( "tech", value.getTech() );
-		jgen.writeNumberField( "volume", value.getType().getVolume() );
-		jgen.writeBooleanField( "isBlueprint", value.getCategoryName().equalsIgnoreCase( GlobalWideConstants.EveGlobal.BLUEPRINT ) );
-		jgen.writeStringField( "typeIconURL", value.getTypeIconURL() );
+		gen.writeNumberField( "typeId", value.getTypeId() );
+		gen.writeStringField( "name", value.getName() );
+		gen.writeStringField( "description", value.getType().getDescription() );
+		if (null != value.getGroup()) gen.writeObjectField( "group", value.getGroup() );
+		if (null != value.getCategory()) gen.writeObjectField( "category", value.getCategory() );
+		if (null != value.getType()) gen.writeObjectField( "type", value.getType() );
+		gen.writeStringField( "tech", value.getTech() );
+		gen.writeNumberField( "volume", value.getType().getVolume() );
+		gen.writeBooleanField( "isBlueprint", value.getCategoryName().equalsIgnoreCase( GlobalWideConstants.EveGlobal.BLUEPRINT ) );
+		gen.writeStringField( "typeIconURL", value.getTypeIconURL() );
 
 		// Additional HAL fields for market data.
-		final Integer regionId = 10000043;
 		final Link marketLink = WebMvcLinkBuilder.linkTo(
 				WebMvcLinkBuilder.methodOn( UniverseMarketControllerV1.class )
-						.getMarketConsolidatedByRegion4ItemId( regionId, value.getTypeId() )
+						.getMarketConsolidatedByRegion4ItemId( MarketService.PREDEFINED_MARKET_REGION_ID, value.getTypeId() )
 		).withRel( "marketData" );
-		jgen.writeObjectField( "marketData", marketLink );
+		gen.writeObjectField( "marketData", marketLink );
 
-		jgen.writeEndObject();
+		gen.writeEndObject();
 	}
 }

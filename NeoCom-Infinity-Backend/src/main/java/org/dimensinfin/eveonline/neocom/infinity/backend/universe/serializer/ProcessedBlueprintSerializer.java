@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import org.springframework.boot.jackson.JsonComponent;
 
-import org.dimensinfin.eveonline.neocom.infinity.backend.industry.domain.ProcessedBlueprint;
+import org.dimensinfin.eveonline.neocom.industry.domain.ProcessedBlueprint;
 
 /**
  * @author Adam Antinoo (adamantinoo.git@gmail.com)
@@ -16,16 +16,16 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.industry.domain.Process
 @JsonComponent
 public class ProcessedBlueprintSerializer extends JsonSerializer<ProcessedBlueprint> {
 	@Override
-	public void serialize( final ProcessedBlueprint value, final JsonGenerator jgen, final SerializerProvider provider )
+	public void serialize( final ProcessedBlueprint value, final JsonGenerator gen, final SerializerProvider provider )
 			throws IOException {
-		jgen.writeStartObject();
+		gen.writeStartObject();
 
-		jgen.writeNumberField( "blueprintTypeId", value.getBlueprintTypeId() );
-		jgen.writeObjectField( "blueprint", value.getBlueprint() );
-		jgen.writeObjectField( "output", value.getOutput() );
-		jgen.writeObjectField( "outputMarketData", value.getOutputMarketData() );
-		jgen.writeObjectField( "billOfMaterials", value.getBom() );
+		gen.writeNumberField( "blueprintTypeId", value.getBlueprintTypeId() );
+		if (null != value.getBlueprint()) gen.writeObjectField( "blueprint", value.getBlueprint() );
+		if (null != value.getOutput()) gen.writeObjectField( "output", value.getOutput() );
+		if (null != value.getOutputMarketData()) gen.writeObjectField( "outputMarketData", value.getOutputMarketData() );
+		if (null != value.getBom()) gen.writeObjectField( "billOfMaterials", value.getBom() );
 
-		jgen.writeEndObject();
+		gen.writeEndObject();
 	}
 }

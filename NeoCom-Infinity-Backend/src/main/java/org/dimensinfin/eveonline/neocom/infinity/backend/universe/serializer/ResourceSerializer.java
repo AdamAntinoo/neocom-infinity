@@ -13,21 +13,21 @@ import org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants;
 @JsonComponent
 public class ResourceSerializer extends JsonSerializer<Resource> {
 	@Override
-	public void serialize( final Resource value, final JsonGenerator jgen, final SerializerProvider provider )
+	public void serialize( final Resource value, final JsonGenerator gen, final SerializerProvider provider )
 			throws IOException {
-		jgen.writeStartObject();
+		gen.writeStartObject();
 
-		jgen.writeNumberField( "typeId", value.getTypeId() );
-		jgen.writeStringField( "name", value.getName() );
-		jgen.writeNumberField( "quantity", value.getQuantity() );
-		jgen.writeObjectField( "group", value.getGroup() );
-		jgen.writeObjectField( "category", value.getCategory() );
-		jgen.writeObjectField( "type", value.getType() );
-		jgen.writeStringField( "tech", value.getTech() );
-		jgen.writeNumberField( "volume", value.getType().getVolume() );
-		jgen.writeBooleanField( "isBlueprint", value.getCategoryName().equalsIgnoreCase( GlobalWideConstants.EveGlobal.BLUEPRINT ) );
-		jgen.writeStringField( "typeIconURL", value.getTypeIconURL() );
+		gen.writeNumberField( "typeId", value.getTypeId() );
+		gen.writeStringField( "name", value.getName() );
+		gen.writeNumberField( "quantity", value.getQuantity() );
+		if (null != value.getGroup()) gen.writeObjectField( "group", value.getGroup() );
+		if (null != value.getCategory()) gen.writeObjectField( "category", value.getCategory() );
+		if (null != value.getType()) gen.writeObjectField( "type", value.getType() );
+		gen.writeStringField( "tech", value.getTech() );
+		gen.writeNumberField( "volume", value.getType().getVolume() );
+		gen.writeBooleanField( "isBlueprint", value.getCategoryName().equalsIgnoreCase( GlobalWideConstants.EveGlobal.BLUEPRINT ) );
+		gen.writeStringField( "typeIconURL", value.getTypeIconURL() );
 
-		jgen.writeEndObject();
+		gen.writeEndObject();
 	}
 }
