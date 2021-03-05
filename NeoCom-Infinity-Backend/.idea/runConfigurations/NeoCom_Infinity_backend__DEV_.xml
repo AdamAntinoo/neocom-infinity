@@ -11,6 +11,7 @@
       <env name="APPLICATION_DIRECTORY" value="./build/NeoCom.Infinity.Development" />
       <env name="SDE_DATABASE_PATH" value="/build/resources/main/sde.db" />
       <env name="PROFILE" value="development" />
+      <env name="REDIS_URL" value="redis://localhost:6379" />
     </envs>
     <option name="MAIN_CLASS_NAME" value="org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendApplication" />
     <module name="NeoCom.Infinity.Backend.main" />

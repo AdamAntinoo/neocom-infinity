@@ -1,17 +1,5 @@
 server:
   port: 9500
-  servlet:
-    session:
-      cookie:
-        comment: "NeoCom Authorization"
-        http-only: true
-        secure: true
-        max-age: 7d
-      timeout: 7d
-      persistent: true
-      redis:
-        flush-mode: on_save
-        namespace: "spring:session"
 scheduler:
   allowedToRun: true
   allowedMiningExtractions: true
@@ -31,12 +19,6 @@ spring:
   jackson:
     default-property-inclusion: NON_ABSENT
     serialization.indent_output: true
-  #  redis:
-  #    host: localhost
-  #    port: 5289
-  #    password:
-#  session:
-#    store-type: redis
 
 logging.logstash:
   enabled: true

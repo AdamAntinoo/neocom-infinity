@@ -74,10 +74,15 @@ println "Applying [$profile] configuration"
 apply from: envScript
 // - D I M E N S I N F I N
 dependencies {
+    // C O R E   D E P E N D E N C I E S
+    implementation 'org.apache.commons:commons-lang3:3.9'
+    implementation 'com.annimon:stream:1.1.9' // Android compatible streams
+    implementation 'com.google.inject:guice:4.2.3' // Google injection library compatible with Android
+    implementation 'org.redisson:redisson:3.15.0' // Redisson Redis client to implements second level cache
     // D I M E N S I N F I N
     implementation 'org.bitbucket.dimensinfin:core-lib:3.2.1'
     implementation 'org.bitbucket.dimensinfin:annotations:0.3.1'
-    implementation 'org.bitbucket.evedimensinfin.neocom-java-core:esi.swagger-api:0.20.0'
+    implementation 'org.bitbucket.evedimensinfin.neocom-java-core:esi.swagger-api:0.20.6'
 }
 
 // - U N I T   T E S T I N G

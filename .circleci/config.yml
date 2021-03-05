@@ -140,9 +140,10 @@ jobs:
           environment:
             PROFILE: "production"
           command: |
-            ./gradlew dependencies
+            ./gradlew dependencies --refresh-dependencies
       - save_cache:
           paths:
+            - ~/NeoCom-Infinity-Backend/gradle
             - ~/NeoCom-Infinity-Backend/.gradle
           key: backend-dependencies-{{ checksum "~/project/NeoCom-Infinity-Backend/dependencies.gradle" }}
   compile-backend-job:
@@ -163,9 +164,6 @@ jobs:
   unittest-backend-job:
     docker:
       - image: circleci/openjdk:11-jdk
-        environment:
-          _JAVA_OPTIONS: "-Xmx3g"
-          GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2"
     steps:
       - checkout
       - restore_cache:
@@ -181,6 +179,7 @@ jobs:
             DB_PASSWORD: inno-password
             SPRING_PROFILES_ACTIVE: test
             PROFILE: "production"
+            REDIS_URL: "redis://localhost:6379"
           command: |
             ./gradlew test
       - store_test_results:
