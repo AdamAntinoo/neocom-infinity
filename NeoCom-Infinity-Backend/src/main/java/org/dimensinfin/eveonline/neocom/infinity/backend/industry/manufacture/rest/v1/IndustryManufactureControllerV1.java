@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import org.dimensinfin.eveonline.neocom.industry.domain.ProcessedBlueprint;
+import org.dimensinfin.eveonline.neocom.industry.domain.ProcessedBlueprintSummary;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.IndustryControllerV1;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
 
@@ -31,6 +32,15 @@ public class IndustryManufactureControllerV1 extends IndustryControllerV1 {
 	}
 
 	// - G E T T E R S   &   S E T T E R S
+	@GetMapping(path = "/pilots/{pilotId}/manufacture/blueprints/{blueprintUID}",
+			consumes = "application/json",
+			produces = "application/json")
+	@Cacheable(lifetime = 15, unit = TimeUnit.MINUTES)
+	public ResponseEntity<ProcessedBlueprint> getBlueprints4Pilot4UID( @PathVariable @NotNull final Integer pilotId,
+	                                                                   @PathVariable @NotNull final String blueprintUID ) {
+		this.neoComAuthenticationProvider.validatePilotIdentifier( pilotId );
+		return new ResponseEntity<>( this.industryManufactureServiceV1.getBlueprints4Pilot4UID( pilotId, blueprintUID ), HttpStatus.OK );
+	}
 
 	/**
 	 * Analyze the list of blueprints accessible to the selected pilot. Calculate the Bill Of Materials, the production cost and the current market
@@ -40,11 +50,11 @@ public class IndustryManufactureControllerV1 extends IndustryControllerV1 {
 	 *
 	 * @return the list of Blueprints along with the information required to display and help to make decisions at the front end user interface.
 	 */
-	@GetMapping(path = "/pilots/{pilotId}/manufacture/blueprints/costindex",
+	@GetMapping(path = "/pilots/{pilotId}/manufacture/blueprints",
 			consumes = "application/json",
 			produces = "application/json")
 	@Cacheable(lifetime = 15, unit = TimeUnit.MINUTES)
-	public ResponseEntity<List<ProcessedBlueprint>> getBlueprints4PilotWithCostIndex( @PathVariable @NotNull final Integer pilotId ) {
+	public ResponseEntity<List<ProcessedBlueprintSummary>> getBlueprints4PilotWithCostIndex( @PathVariable @NotNull final Integer pilotId ) {
 		this.neoComAuthenticationProvider.validatePilotIdentifier( pilotId );
 		return new ResponseEntity<>( this.industryManufactureServiceV1.getBlueprints4PilotWithCostIndex( pilotId ), HttpStatus.OK );
 	}

@@ -32,7 +32,7 @@ import org.dimensinfin.logging.LogWrapper;
  * @since 0.20.0
  */
 public class RedisDataStoreImplementation implements IDataStore {
-	protected static final String REDIS_SEPARATOR = ":";
+	public static final String REDIS_SEPARATOR = ":";
 	protected static final String LOWEST_SELL_ORDER_MAP = "LSO";
 	protected static final String ESITYPE_CACHE_NAME = "ESIT";
 	protected static final Integer LOWEST_SELL_ORDER_TTL = 300;
@@ -122,6 +122,18 @@ public class RedisDataStoreImplementation implements IDataStore {
 	}
 
 	@Override
+	public ProcessedBlueprint accessProcessedBlueprintsByUID( final Integer pilotId, final String blueprintUID ) {
+		final String uniqueLSOKey = this.generateBlueprintCostIndexUniqueId( pilotId );
+		final RMapCache<String, ProcessedBlueprint> BCIMap = this.redisClient.getMapCache( uniqueLSOKey );
+		return BCIMap.get( blueprintUID );
+	}
+
+	@Override
+	public String generateBlueprintCostIndexUniqueId( final Integer pilotId ) {
+		return COST_INDEX_BLUEPRINTS_CACHE_NAME + REDIS_SEPARATOR + pilotId;
+	}
+
+	@Override
 	public void updateProcessedBlueprint( final Integer pilotId, final ProcessedBlueprint blueprint ) {
 		final String uniqueLSOKey = this.generateBlueprintCostIndexUniqueId( pilotId );
 		final RMapCache<String, ProcessedBlueprint> BCIMap = this.redisClient.getMapCache( uniqueLSOKey );
@@ -130,10 +142,6 @@ public class RedisDataStoreImplementation implements IDataStore {
 		} catch (final RuntimeException rte) {
 			LogWrapper.error( rte );
 		}
-	}
-
-	private String generateBlueprintCostIndexUniqueId( final Integer pilotId ) {
-		return COST_INDEX_BLUEPRINTS_CACHE_NAME + REDIS_SEPARATOR + pilotId;
 	}
 
 	private String generateEsiItemUniqueId( final Integer typeId ) {
