@@ -31,6 +31,16 @@
                 <span cy-field-label="costIndex" class="label">INDICE</span>
                 <span cy-field-value="costIndex" class="cost-index">{{getCostIndex() | number:'3.0-0'}}</span>
             </div>
+            <div cy-name="moduleProduced" class="field row">
+                <span cy-field-label="moduleProduced" class="label">OUTPUT</span>
+                <span cy-field-value="moduleProduced" class="">{{getModuleName()}}</span>
+                <span cy-field-label="outputPrice" class="label">PRECIO VENTA</span>
+                <span cy-field-value="outputPrice" class="right">{{getOutputPrice() | iskscaled}}</span>
+            </div>
+            <div cy-name="costIndex" class="field">
+                <span cy-field-label="costIndex" class="label">INDICE</span>
+                <span cy-field-value="costIndex" class="right">{{getCostIndex() | number:'3.0-0'}}</span>
+            </div>
         </div>
     </div>
 </div>
