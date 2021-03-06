@@ -16,9 +16,10 @@ import { NgDragDropModule } from 'ng-drag-drop'
 import { AppCommonModule } from '@common/common.module'
 import { HeaderModule } from '../header/header.module';
 import { IndustryDashboardPageComponent } from './pages/industry-dashboard-page/industry-dashboard-page.component';
+import { TokenAuthorizationGuard } from '@app/security/token-authorization.guard'
 
 const routes: Routes = [
-    { path: 'dashboard', component: IndustryDashboardPageComponent },
+    { path: 'dashboard', component: IndustryDashboardPageComponent , canActivate: [TokenAuthorizationGuard] },
     { path: 'fittings/buildConfiguration/:fittingId', component: V1IndustryFittingBuildConfigurationPageComponent },
     { path: 'manufacture', loadChildren: () => import('./manufacture/manufacture.module').then(m => m.ManufactureModule) },
 ]

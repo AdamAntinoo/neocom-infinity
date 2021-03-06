@@ -15,9 +15,10 @@ import { V1ManufactureResearchPageComponent } from '../pages/v1-manufacture-rese
 // import { V1TopBOMPanelComponent } from '../panel/v1-top-bompanel/v1-top-bompanel.component';
 import { SharedModule } from '@shared/shared.module';
 import { V1BlueprintBOMPanelComponent } from './panels/v1-blueprint-bompanel/v1-blueprint-bompanel.component';
+import { TokenAuthorizationGuard } from '@app/security/token-authorization.guard';
 
 const routes: Routes = [
-  { path: 'blueprints', component: V1BlueprintListPageComponent },
+  { path: 'blueprints', component: V1BlueprintListPageComponent , canActivate: [TokenAuthorizationGuard]},
   { path: 'research/:blueprintId', component: V1ManufactureResearchPageComponent },
 ];
 
