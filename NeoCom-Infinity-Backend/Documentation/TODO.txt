@@ -1,10 +1,14 @@
 # Classes pending Unit Test completion
 
 ## 0.20.0
+* IndustryManufactureControllerV1
+* IndustryManufactureServiceV1
+* ProcessedBlueprintToSummaryConverter
 * EsiTypeSerializer
 * PricedResourceSerializer
 * ResourceSerializer
 * ProcessedBlueprintSerializer
+* CredentialJobGenerator
 
 * AuthorizationTokenResponseSerializer
 * GetUniverseCategoriesCategoryIdOkSerializer
