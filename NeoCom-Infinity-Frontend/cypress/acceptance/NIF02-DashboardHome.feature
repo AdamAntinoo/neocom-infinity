@@ -15,13 +15,13 @@ Feature: [NIF02]-Display the character dashboard page.
 
     @NIF02 @NIF02.01
     Scenario: [NIF02.01]-Check that the Dashboard Home Page has the correct header panels.
-            Given the page "Pilot Dashboard" is activated
-    Then the page "Pilot Dashboard" has 2 sections
+        Given the page "Pilot Dashboard" is activated
+        Then the page "Pilot Dashboard" has 2 sections
         Then the section "header" has 2 panels
 
     @NIF02 @NIF02.02
     Scenario: [NIF02.02]-The application info panel has the name and the front end version.
-         Given the target is the panel of type "app-info"
+        Given the target is the panel of type "app-info"
         And field named "app-name" has contents "NEOCOM-INFINITY"
         And field named "app-version" has contents "0.20.0 dev"
 

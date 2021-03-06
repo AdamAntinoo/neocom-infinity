@@ -5,24 +5,41 @@ Feature: [NIF07] The analisys for the list of blueprints available to a Pilot. O
     [STORY][FRONTEND] The new Industry section should have a page with all the available Blueprints with some manufacture cost and
     a profit index. This section is authenticated.
 
-    Background: manufacture landing page
-        Given the application NeoCom-Infinity
+    Background: Industry Manufacture autehntication access
+        Given the application NeoCom-Infinity-Frontend
+        Given a clean cookie repository
+        Given a valid NEOCOM-INFINITY cookie
+        Given a valid JWT Token on the session storage
+        Given a valid Credential on the session storage
 
     # - R E S O U R C E   S E A R C H   P A G E
     @NIF07.01
     Scenario: [NIF07.01]-When the Industry Manufacture Blueprints page is entered there is a panel with the list of blueprints available to the Pilot.
-        When activate the page Industry Manufacture Blueprints Page
-        Then the page "Blueprint Manufacture CostIndex" has 1 panels
+        Given the page "Blueprint Manufacture CostIndex" is activated
+        Then the page "Blueprint Manufacture CostIndex" has 2 sections
+        Then the section "header" has 2 panels
+        # - Select the content section
+        Given the target is the section named "industry-dashboard"
+        Then the section has the title "INDUSTRIA -> ANALISIS BLUEPRINTS"
+        And the section "industry-dashboard" has 2 panels
+        # - Select the panel with the list of blueprints
         Given the target is the panel of type "available-blueprints"
-        Then the target has the title "AVAILABLE BLUEPRINTS"
-
-    @NIF07.02
-    Scenario: [NIF07.02]-On this page there is a list of Blueprints. Validate the content information for any of the blueprints.
-        When activate the page Industry Manufacture Blueprints Page
-        Given the target is the panel of type "available-blueprints"
-        Then the target has the title "AVAILABLE BLUEPRINTS"
+        Then the panel loading message contains "DESCARGANDO BLUEPRINTS..."
+        When the panel loaging message completes
         Then the target has 5 "processed-blueprint"
-        Given the target the "processed-blueprint" with id "typeid-31395"
-        Then field named "blueprintName" with label "BLUEPRINT NAME" has contents "Small Powergrid Subroutine Maximizer I Blueprint"
-        And field named "moduleProduced" with label "MODULE PRODUCED" has contents "Small Powergrid Subroutine Maximizer I"
-        And field named "manufactureCost" with label "MANUFACTURE COST" has contents "ISK"
+# Then the target has the title "AVAILABLE BLUEPRINTS"
+
+# When activate the page Industry Manufacture Blueprints Page
+# Then the page "Blueprint Manufacture CostIndex" has 1 panels
+# Given the target is the panel of type "available-blueprints"
+
+# @NIF07.02
+# Scenario: [NIF07.02]-On this page there is a list of Blueprints. Validate the content information for any of the blueprints.
+#     When activate the page Industry Manufacture Blueprints Page
+#     Given the target is the panel of type "available-blueprints"
+#     Then the target has the title "AVAILABLE BLUEPRINTS"
+#     Then the target has 5 "processed-blueprint"
+#     Given the target the "processed-blueprint" with id "typeid-31395"
+#     Then field named "blueprintName" with label "BLUEPRINT NAME" has contents "Small Powergrid Subroutine Maximizer I Blueprint"
+#     And field named "moduleProduced" with label "MODULE PRODUCED" has contents "Small Powergrid Subroutine Maximizer I"
+#     And field named "manufactureCost" with label "MANUFACTURE COST" has contents "ISK"

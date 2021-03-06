@@ -13,6 +13,8 @@
             </v1-bomresource>
             <v1-bomgroup *ngIf="node.jsonClass === 'BOMGroup'" [container]="container" [node]="node" [variant]="variant">
             </v1-bomgroup>
+            <v1-blueprint *ngIf="node.jsonClass === 'ProcessedBlueprintSummary'" [container]="container" [node]="node" [variant]="variant">
+            </v1-blueprint>
             <v1-blueprint *ngIf="node.jsonClass === 'ProcessedBlueprint'" [container]="container" [node]="node" [variant]="variant">
             </v1-blueprint>
             <v1-bomresource *ngIf="node.jsonClass === 'IndustryResource'" [container]="container" [node]="node" [variant]="variant">

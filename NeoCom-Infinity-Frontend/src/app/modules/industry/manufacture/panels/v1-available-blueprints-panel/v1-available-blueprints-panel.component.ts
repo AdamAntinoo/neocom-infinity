@@ -17,6 +17,10 @@ import { environment } from '@env/environment'
 import { ProcessedBlueprintDto } from '@app/modules/industry/dto/ProcessedBlueprintDto.dto'
 import { ESIUniverseDataService } from '@app/services/ESIUniverseData.service'
 import { V1BlueprintListPageComponent } from '../../pages/v1-blueprint-list-page/v1-blueprint-list-page.component'
+import { V1ProcessedBlueprintSummary } from '@app/modules/industry/domain/V1ProcessedBlueprintSummary.domain'
+import { NeoComCredential } from '@domain/NeoComCredential.domain'
+import { PlatformConstants } from '@env/PlatformConstants'
+import { NeoComException } from '@innovative/domain/NeoComException'
 
 @Component({
     selector: 'v1-available-blueprints-panel',
@@ -27,7 +31,7 @@ export class V1AvailableBlueprintsPanelComponent extends AppPanelComponent imple
     @Input() container: V1BlueprintListPageComponent
 
     private processedBlueprintTransformer: ResponseTransformer
-    private blueprintList: ProcessedBlueprint[] = []
+    private blueprintList: V1ProcessedBlueprintSummary[] = []
 
     constructor(
         protected isolationService: IsolationService,
@@ -35,13 +39,13 @@ export class V1AvailableBlueprintsPanelComponent extends AppPanelComponent imple
         super()
         this.processedBlueprintTransformer = new ResponseTransformer()
             .setDescription('Do response transformation to "ProcessedBlueprint".')
-            .setTransformation((entrydata: any): ProcessedBlueprint[] => {
-                let results: ProcessedBlueprint[] = []
+            .setTransformation((entrydata: any): V1ProcessedBlueprintSummary[] => {
+                let results: V1ProcessedBlueprintSummary[] = []
                 if (entrydata instanceof Array) {
                     for (let key in entrydata)
-                        results.push(new ProcessedBlueprintDto(entrydata[key]).transform(this.industryService))
+                        results.push(new V1ProcessedBlueprintSummary(entrydata[key]))
                 } else
-                    results.push(new ProcessedBlueprintDto(entrydata).transform(this.industryService))
+                    results.push(new V1ProcessedBlueprintSummary(entrydata))
                 return results
             })
     }
@@ -83,35 +87,56 @@ export class V1AvailableBlueprintsPanelComponent extends AppPanelComponent imple
     public refresh(): void {
         console.log(">[V1AvailableBlueprintsPanelComponent.refresh]")
         this.clean()
-        this.accessBlueprintList()
+        this.accessBlueprintSummaryList()
         console.log("<[V1AvailableBlueprintsPanelComponent.refresh]")
     }
     /**
      * Download the list of blueprints, converting them into a list of <code>ProcessedBlueprint</code> that can be rendered to show the manufacture costs and its comparison to the manufactured item cost.
      * During blueprint processing there are pending events that complete when the blueprint item is downloaded. This should fire some sort of refresh event that should redraw the page.
      */
-    private accessBlueprintList(): void {
-        console.log(">[V1AvailableBlueprintsPanelComponent.accessBlueprintList]")
+    private accessBlueprintSummaryList(): void {
+        console.log(">[V1AvailableBlueprintsPanelComponent.accessBlueprintSummaryList]")
         this.backendConnections.push(
-            this.industryService.apiv1_GetProcessedBlueprints(this.processedBlueprintTransformer)
-                .subscribe((response: ProcessedBlueprint[]) => {
-                    this.blueprintList = this.sortBlueprintByName(response)
-                    console.log('-[V1AvailableBlueprintsPanelComponent.accessBlueprintList]> Nodes downloaded: ' +
+            this.industryService.apiv1_GetProcessedBlueprints(this.getPilotId(), this.processedBlueprintTransformer)
+                .subscribe((response: V1ProcessedBlueprintSummary[]) => {
+                    this.blueprintList = this.sortBlueprintByCostIndex(response)
+                    console.log('-[V1AvailableBlueprintsPanelComponent.accessBlueprintSummaryList]> Nodes downloaded: ' +
                         this.blueprintList.length)
                     this.completeDowload(this.blueprintList) // Notify the completion of the download.
                 }, (error) => {
-                    console.log('-[V1KnownSystemsPanelComponent.accessBlueprintList.exception]> Error message: ' +
+                    console.log('-[V1KnownSystemsPanelComponent.accessBlueprintSummaryList.exception]> Error message: ' +
                         JSON.stringify(error.error))
                     if (environment.showexceptions)
                         if (error instanceof HttpErrorResponse)
                             this.isolationService.processException(error)
                 })
         )
-        console.log("<[V1AvailableBlueprintsPanelComponent.accessBlueprintList]")
+        console.log("<[V1AvailableBlueprintsPanelComponent.accessBlueprintSummaryList]")
     }
-    private sortBlueprintByName(inputs: ProcessedBlueprint[]): ProcessedBlueprint[] {
+    private sortBlueprintByName(inputs: V1ProcessedBlueprintSummary[]): V1ProcessedBlueprintSummary[] {
         return inputs.sort((element1, element2) =>
             0 - (element2.getName() > element1.getName() ? -1 : 1)
         )
+    }
+    private sortBlueprintByCostIndex(inputs: V1ProcessedBlueprintSummary[]): V1ProcessedBlueprintSummary[] {
+        return inputs.sort((element1, element2) =>
+            0 - (element2.costIndex > element1.costIndex ? -1 : 1)
+        )
+    }
+    public getPilotId(): number {
+        return this.getCredential().getAccountId()
+    }
+    private getCredential(): NeoComCredential {
+        const credentialJson = this.isolationService.getFromSession(PlatformConstants.CREDENTIAL_KEY)
+        console.log('Dashboard.getCredential>Credential at session: '+credentialJson)
+        if (null == credentialJson)
+            throw new NeoComException()
+                .withTitle('Rendering Dashboard Page. No Credential Found.')
+                .withMessage('Unable to display Pilot data. There is no credential available to access data.')
+                .withCause('Unexpected Exception. At this point then should exist a local session valid credential.')
+        else {
+            const credential = new NeoComCredential(JSON.parse(credentialJson))
+            return credential
+        }
     }
 }

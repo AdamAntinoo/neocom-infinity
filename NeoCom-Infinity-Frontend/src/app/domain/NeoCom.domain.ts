@@ -13,8 +13,8 @@ export class NeoCom implements INode, ICollaboration, IExpandable, ISelectable {
 
     constructor(values: Object = {}) {
         Object.assign(this, values)
-        this.decode()
         this.jsonClass = 'NeoCom'
+        this.decode()
     }
     public decode(): void { 
         console.log('[Decode]> '+this.jsonClass)
