@@ -22,6 +22,9 @@
 .print ">>> Create Inventory types data..."
 .mode csv
 .import invTypes.csv invTypes
+.print ">>> Create Industry Activity timing data..."
+.mode csv
+.import industryActivity.csv industryActivity
 .print ">>> Create Industry Materials Production List..."
 .mode csv
 .import industryActivityMaterials.csv industryActivityMaterials

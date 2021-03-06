@@ -6,7 +6,7 @@ downloadFiles() {
   cd "${WORKING_DIRECTORY}/downloads" || exit 1
   rm *.*
   allFiles=("mapRegions" "mapConstellations" "mapSolarSystems" "staStationTypes" "planetSchematicsPinMap" "planetSchematicsTypeMap" "invTypes"
-    "industryActivityMaterials" "industryActivitySkills" "industryActivityProducts")
+    "industryActivity" "industryActivityMaterials" "industryActivitySkills" "industryActivityProducts")
 
   for file in ${allFiles[@]}; do
     curl -L -o "$file.csv.bz2" "https://www.fuzzwork.co.uk/dump/latest/$file.csv.bz2"
