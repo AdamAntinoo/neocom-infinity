@@ -22,6 +22,7 @@ export class SupportService {
         this.translationTable['app-info'] = 'app-info-panel'
         this.translationTable['server-info'] = 'server-info-panel'
         this.translationTable['pilot-list'] = 'v1-pilot-panel'
+        this.translationTable['available-blueprints'] = 'v1-available-blueprints-panel'
 
         this.translationTable['feature'] = 'v2-feature'
 
@@ -29,7 +30,6 @@ export class SupportService {
         this.translationTable['fitting-saved-configuration'] = 'v1-fitting-configuration-panel'
         this.translationTable['fitting-target-configuration'] = 'v1-fitting-configuration-panel'
         this.translationTable['fitting-contents'] = 'v1-fitting-contents-panel'
-        this.translationTable['available-blueprints'] = 'v1-available-blueprints-panel'
         this.translationTable['system-selection'] = 'v1-system-selection-panel'
         // this.translationTable['fitting-module'] = 'v1-fitting-item'
         this.translationTable['fitting-group'] = 'v1-fitting-group'
@@ -44,10 +44,10 @@ export class SupportService {
         // - RENDERS
         this.translationTable['exception'] = 'div'
         this.translationTable['pilot'] = 'v2-pilot'
+        this.translationTable['processed-blueprint'] = 'v1-blueprint'
 
         this.translationTable['feature-button'] = 'v1-feature-button'
         this.translationTable['planetary-system'] = 'v1-planetary-system'
-        this.translationTable['processed-blueprint'] = 'v1-blueprint'
         // this.translationTable['request'] = 'v1-request'
         // this.translationTable['coil'] = 'v1-coil'
         // this.translationTable['build-countdown-timer'] = 'v1-build-countdown-timer'
@@ -71,7 +71,7 @@ export class SupportService {
         this.routeTranslationTable['Planetary Dashboard Page'] = '/planetary/dashboard'
         this.routeTranslationTable['Resource Research Page'] = '/planetary/resource-research'
         this.routeTranslationTable['Industry Dashboard'] = '/industry/dashboard'
-        // this.routeTranslationTable['Blueprint Manufacture CostIndex'] = '/industry/manufacture/blueprints'
+        this.routeTranslationTable['Blueprint Manufacture CostIndex'] = '/industry/manufacture/blueprints'
     }
     /**
      * Replaces symbolic names by the application names so if there are version changes the acceptance scritps should not change.

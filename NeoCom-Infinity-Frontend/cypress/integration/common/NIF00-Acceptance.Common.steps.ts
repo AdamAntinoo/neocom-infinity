@@ -93,7 +93,10 @@ Then('the section {string} has {int} panels', function (sectionName: string, pan
 })
 Given('the target is the section named {string}', function (sectionName: string) {
     cy.get('app-root').find('[cy-section-name="' + sectionName + '"]')
-    .as('target-panel').as('target')
+        .as('target-panel').as('target')
+})
+Then('the section has the title {string}', function (title: string) {
+    cy.get('@target-page').find('.section-title').contains(title, { matchCase: false })
 })
 
 // - S P I N N E R
@@ -134,6 +137,12 @@ Then('the target has {int} {string}', function (count: number, symbolicName: str
     cy.get('@target').within(($item) => {
         cy.get(tag).should('have.length', count)
     })
+})
+Then('the panel loading message contains {string}', function (message: string) {
+    cy.get('@target').find('.loading-box').contains(message, { matchCase: false })
+})
+When('the panel loaging message completes', function () {
+    cy.wait(2000)
 })
 
 // - F I E L D S
@@ -187,7 +196,7 @@ Then('the Feature has the label {string}', function (title: string) {
 // - L I N K S
 Then('target has link pointing {string}', function (linkDestination: string) {
     cy.get('@target')
-    .find('a').should("have.attr", "href", linkDestination);
+        .find('a').should("have.attr", "href", linkDestination);
 })
 
 // - I M A G E   B U T T O N S
