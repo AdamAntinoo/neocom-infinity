@@ -63,6 +63,7 @@ public class BlueprintProcessorJob extends NeoComBackendJob {
 							final MarketData marketData = this.jobServicePackager.getMarketService()
 									.getMarketConsolidatedByRegion4ItemId( defaultRegionId, resource.getTypeId() );
 							bomPriced.add( new PricedResource.Builder()
+									.withQuantity( resource.getQuantity() )
 									.withMarketData( marketData )
 									.withPrice( this.getBestSellPriceFromMarketData( marketData ) )
 									.withItemType( resource.getType() )
