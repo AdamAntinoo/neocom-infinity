@@ -1244,7 +1244,64 @@
 							}
 						],
 						"url": {
-							"raw": "{{backendServer}}{{industryv1}}/pilots/{{pilotId}}/manufacture/blueprints/costindex",
+							"raw": "{{backendServer}}{{industryv1}}/pilots/{{pilotId}}/manufacture/blueprints",
+							"host": [
+								"{{backendServer}}{{industryv1}}"
+							],
+							"path": [
+								"pilots",
+								"{{pilotId}}",
+								"manufacture",
+								"blueprints"
+							]
+						},
+						"description": "Gets the list of blueprints that can be used by the request Pilot. The blueprints has the BOM for the construction of the item and some additional market data references to calculate the manufacture costs."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Processed Blueprint By UID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "xApp-Name",
+								"value": "Postman API Development",
+								"type": "text"
+							},
+							{
+								"key": "xApp-Version",
+								"value": "{{appVersion}}",
+								"type": "text"
+							},
+							{
+								"key": "xApp-Platform",
+								"value": "{{appStagePlatform}}",
+								"type": "text"
+							},
+							{
+								"key": "xApp-Signature",
+								"value": "S0000.0020.0000",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{industryv1}}/pilots/{{pilotId}}/manufacture/blueprints/BCI:93813310:31717",
 							"host": [
 								"{{backendServer}}{{industryv1}}"
 							],
@@ -1253,10 +1310,10 @@
 								"{{pilotId}}",
 								"manufacture",
 								"blueprints",
-								"costindex"
+								"BCI:93813310:31717"
 							]
 						},
-						"description": "Gets the list of blueprints that can be used by the request Pilot. The blueprints has the BOM for the construction of the item and some additional market data references to calculate the manufacture costs."
+						"description": "Get a specific blueprint detailed data from the pilot set of blueprints."
 					},
 					"response": []
 				}

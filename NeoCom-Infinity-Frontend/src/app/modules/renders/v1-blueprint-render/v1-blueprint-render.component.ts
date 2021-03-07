@@ -24,27 +24,31 @@ export class V1BlueprintRenderComponent extends V2NodeContainerRenderComponent {
     }
     public getTypeIconUrl(): string {
         if (this.node) {
-             return this.getNode().getBlueprintTypeIconURL()
+            return this.getNode().getBlueprintTypeIconURL()
         } else return NeoComConstants.DEFAULT_ICON_PLACEHOLDER
     }
     public getName(): string {
-        if (this.node)  return this.getNode().getBlueprintName()
+        if (this.node) return this.getNode().getBlueprintName()
         return '-'
     }
     public getModuleName(): string {
         if (this.node) return this.getNode().getOutputName()
         return '-'
     }
-    public getManufactureCost():number{
+    public getManufactureCost(): number {
         if (this.node) return this.getNode().manufactureMaterialCost
-        return 0.0       
+        return 0.0
     }
-    public getOutputPrice():number{
+    public getOutputPrice(): number {
         if (this.node) return this.getNode().outputPrice
         return 0.0
     }
-    public getCostIndex():number{
-        if (this.node) return this.getNode().costIndex*100.0
+    public getCostIndex(): number {
+        if (this.node) return this.getNode().costIndex * 100.0
         return 0.0
+    }
+    public getOutputIconUrl(): string {
+        if (this.node) return this.getNode().outputTypeIconURL
+        else return NeoComConstants.DEFAULT_ICON_PLACEHOLDER
     }
 }
