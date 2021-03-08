@@ -8,7 +8,7 @@ export class V1ProcessedBlueprintSummary extends NeoCom {
     public blueprintTypeName: string
     public blueprintTypeIconURL: string
     public outputTypeId: number
-    public outputTypeName:string
+    public outputTypeName: string
     public outputTypeIconURL: string
     public outputPrice: number
     public tradeStation: Station
@@ -16,23 +16,17 @@ export class V1ProcessedBlueprintSummary extends NeoCom {
     public costIndex: number
 
     public decode(): void {
-        this.jsonClass='ProcessedBlueprintSummary'
+        this.jsonClass = 'ProcessedBlueprintSummary'
         if (this.tradeStation) this.tradeStation = new Station(this.tradeStation)
     }
     // - G E T T E R S
-    public getUniqueId():string{
+    public getUniqueId(): string {
         return this.uid
     }
-    public getName(): string {
+    public getBlueprintName(): string {
         return this.blueprintTypeName
     }
-    public getBlueprintTypeIconURL ():string{
-        return this.blueprintTypeIconURL
-    }
-    public getBlueprintName():string{
-        return this.blueprintTypeName
-    }
-    public getOutputName():string{
+    public getOutputName(): string {
         return this.outputTypeName
     }
 }

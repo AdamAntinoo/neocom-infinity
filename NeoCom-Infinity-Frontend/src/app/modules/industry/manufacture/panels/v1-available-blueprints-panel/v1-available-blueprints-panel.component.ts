@@ -113,11 +113,6 @@ export class V1AvailableBlueprintsPanelComponent extends AppPanelComponent imple
         )
         console.log("<[V1AvailableBlueprintsPanelComponent.accessBlueprintSummaryList]")
     }
-    private sortBlueprintByName(inputs: V1ProcessedBlueprintSummary[]): V1ProcessedBlueprintSummary[] {
-        return inputs.sort((element1, element2) =>
-            0 - (element2.getName() > element1.getName() ? -1 : 1)
-        )
-    }
     private sortBlueprintByCostIndex(inputs: V1ProcessedBlueprintSummary[]): V1ProcessedBlueprintSummary[] {
         return inputs.sort((element1, element2) =>
             0 - (element2.costIndex > element1.costIndex ? -1 : 1)

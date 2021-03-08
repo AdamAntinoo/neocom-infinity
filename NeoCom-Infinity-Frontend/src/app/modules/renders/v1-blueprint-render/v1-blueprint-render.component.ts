@@ -18,20 +18,18 @@ export class V1BlueprintRenderComponent extends V2NodeContainerRenderComponent {
         return this.node as V1ProcessedBlueprintSummary
     }
     public getUniqueId(): string {
-        if (this.node)
-            if (this.getNode().blueprintTypeId) return 'typeid-' + this.getNode().getUniqueId()
+        if (this.node) return this.getNode().getUniqueId()
         return '-'
     }
-    public getTypeIconUrl(): string {
-        if (this.node) {
-            return this.getNode().getBlueprintTypeIconURL()
-        } else return NeoComConstants.DEFAULT_ICON_PLACEHOLDER
+    public getBlueprintIconUrl(): string {
+        if (this.node) return this.getNode().blueprintTypeIconURL
+        else return NeoComConstants.DEFAULT_ICON_PLACEHOLDER
     }
-    public getName(): string {
+    public getBlueprintName(): string {
         if (this.node) return this.getNode().getBlueprintName()
         return '-'
     }
-    public getModuleName(): string {
+    public getOutputName(): string {
         if (this.node) return this.getNode().getOutputName()
         return '-'
     }
