@@ -27,19 +27,14 @@ Feature: [NIF07] The analisys for the list of blueprints available to a Pilot. O
         Then the panel loading message contains "DESCARGANDO BLUEPRINTS..."
         When the panel loaging message completes
         Then the target has 5 "processed-blueprint"
-# Then the target has the title "AVAILABLE BLUEPRINTS"
 
-# When activate the page Industry Manufacture Blueprints Page
-# Then the page "Blueprint Manufacture CostIndex" has 1 panels
-# Given the target is the panel of type "available-blueprints"
-
-# @NIF07.02
-# Scenario: [NIF07.02]-On this page there is a list of Blueprints. Validate the content information for any of the blueprints.
-#     When activate the page Industry Manufacture Blueprints Page
-#     Given the target is the panel of type "available-blueprints"
-#     Then the target has the title "AVAILABLE BLUEPRINTS"
-#     Then the target has 5 "processed-blueprint"
-#     Given the target the "processed-blueprint" with id "typeid-31395"
-#     Then field named "blueprintName" with label "BLUEPRINT NAME" has contents "Small Powergrid Subroutine Maximizer I Blueprint"
-#     And field named "moduleProduced" with label "MODULE PRODUCED" has contents "Small Powergrid Subroutine Maximizer I"
-#     And field named "manufactureCost" with label "MANUFACTURE COST" has contents "ISK"
+    @NIF07.02
+    Scenario: [NIF07.02]-On this page there is a list of Blueprints. Validate the content information for any of the blueprints.
+        Given the page "Blueprint Manufacture CostIndex" is activated
+        Given the target is the panel of type "available-blueprints"
+        Given the target the "processed-blueprint" with id "BCI:93813310:31741"
+        Then field named "blueprintName" with label "BLUEPRINT" has contents "Small Kinetic Shield Reinforcer I Blueprint"
+        And field named "moduleProduced" with label "OUTPUT" has contents "Small Cargohold Optimization I"
+        And field named "manufactureCost" with label "COSTE FABRICACION" has contents "9,037 ISK"
+        And field named "outputPrice" with label "PRECIO VENTA" has contents "10,880 ISK"
+        And field named "costIndex" with label "INDICE" has contents "108"

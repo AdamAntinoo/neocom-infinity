@@ -40,10 +40,6 @@ public class TestDataConstants {
 		public static final String TEST_ESI_ITEM_HULLGROUP_NAME = "frigate";
 	}
 
-	public static class ProcessedBlueprintConstants {
-		public static final Integer TEST_PROCESSED_BLUEPRINT_ID = 31717;
-	}
-
 	public static final class MarketDataConstants {
 		public static final Double TEST_MARKET_DATA_BEST_SELL_PRICE = 345.98;
 		public static final Double TEST_MARKET_DATA_BEST_BUY_PRICE = 164.09;
@@ -58,4 +54,20 @@ public class TestDataConstants {
 		public static final Integer TEST_MARKET_ORDER_VOLUME_TOTAL = 200;
 	}
 
+	public static class ProcessedBlueprintConstants {
+		public static final Integer TEST_PROCESSED_BLUEPRINT_ID = 31717;
+	}
+
+	public static class ProcessedBlueprintSummaryConstants {
+		public static final String TEST_PROCESSED_BLUEPRINT_UID = "BCI:93813310:31359";
+		public static final Double TEST_PROCESSED_BLUEPRINT_MANUFACTURE_COST = 538910.0;
+		public static final Double TEST_PROCESSED_BLUEPRINT_COST_INDEX = 0.959937651927038;
+		public static final String TEST_PROCESSED_BLUEPRINT_BLUEPRINT_TYPE_ICON_URL = "-TEST_PROCESSED_BLUEPRINT_BLUEPRINT_TYPE_ICON_URL-";
+		public static final Integer TEST_PROCESSED_BLUEPRINT_BLUEPRINT_TYPE_ID = 31359;
+		public static final String TEST_PROCESSED_BLUEPRINT_BLUEPRINT_TYPE_NAME = "Small Ancillary Current Router I Blueprint";
+		public static final Double TEST_PROCESSED_BLUEPRINT_OUTPUT_PRICE = 574800.0;
+		public static final String TEST_PROCESSED_BLUEPRINT_OUTPUT_TYPE_ICON_URL = "-TEST_PROCESSED_OUTPUT_BLUEPRINT_TYPE_ICON_URL-";
+		public static final Integer TEST_PROCESSED_BLUEPRINT_OUTPUT_TYPE_ID = 31358;
+		public static final String TEST_PROCESSED_BLUEPRINT_OUTPUT_TYPE_NAME = "Small Ancillary Current Router I";
+	}
 }

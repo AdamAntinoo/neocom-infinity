@@ -1,4 +1,8 @@
 # Typescript classes to unit test
+* IndustryDashboardPageComponent
+* V1BlueprintListPageComponent
+* V1AvailableBlueprintsPanelComponent
+* V1ProcessedBlueprintSummary
 * AppInfoPanelComponent
 * ServerInfoPanelComponent
 * DashboardHomePageComponent
@@ -8,9 +12,6 @@
 * V2PilotRenderComponent
 * V1PilotPanelComponent
 * V1LoyaltyOfferRenderComponent
-* IndustryDashboardPageComponent
-* V1BlueprintListPageComponent
-* V1AvailableBlueprintsPanelComponent
 
 ## Secondary classes to test
 * HALResolver
