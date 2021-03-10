@@ -5,7 +5,7 @@ Feature: [NIF07] The analisys for the list of blueprints available to a Pilot. O
     [STORY][FRONTEND] The new Industry section should have a page with all the available Blueprints with some manufacture cost and
     a profit index. This section is authenticated.
 
-    Background: Industry Manufacture autehntication access
+    Background: Industry Manufacture authentication access
         Given the application NeoCom-Infinity-Frontend
         Given a clean cookie repository
         Given a valid NEOCOM-INFINITY cookie
