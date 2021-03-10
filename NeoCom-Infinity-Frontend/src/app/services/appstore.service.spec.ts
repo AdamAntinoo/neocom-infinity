@@ -93,32 +93,32 @@ xdescribe('SERVICE AppStoreService [Module: CORE]', () => {
         });
     });
     describe('Code Coverage Phase [Global Store]', () => {
-        it('accessCredential.success: get the session stored credential', () => {
-            const credential = new Credential(
-                {
-                    "jsonClass": "Credential",
-                    "uniqueId": "tranquility/92223647",
-                    "accountId": 92223647,
-                    "accountName": "Beth Ripley",
-                    "corporationId": 98384726,
-                    "assetsCount": 1476,
-                    "walletBalance": 6.309543632E8,
-                    "raceName": "Amarr",
-                    "dataSource": "tranquility"
-                }
-            );
-            isolationService.setToSession(PlatformConstants.CREDENTIAL_KEY, credential);
-            let obtained: Credential = service.accessCredential();
-            expect(obtained).toBeDefined();
-            expect(obtained.getJsonClass()).toBe('Credential');
-            expect(obtained.getAccountName()).toBe('Beth Ripley');
-            isolationService.setToSession(PlatformConstants.CREDENTIAL_KEY, null);
-            try {
-                obtained = service.accessCredential();
-            } catch (exception) {
-                expect(exception).toBeDefined();
-                expect(exception.getUserMessage().toEqual(ExceptionCatalog.AUTHORIZATION_MISSING.getUserMessage()))
-            }
+        xit('accessCredential.success: get the session stored credential', () => {
+            // const credential = new Credential(
+            //     {
+            //         "jsonClass": "Credential",
+            //         "uniqueId": "tranquility/92223647",
+            //         "accountId": 92223647,
+            //         "accountName": "Beth Ripley",
+            //         "corporationId": 98384726,
+            //         "assetsCount": 1476,
+            //         "walletBalance": 6.309543632E8,
+            //         "raceName": "Amarr",
+            //         "dataSource": "tranquility"
+            //     }
+            // );
+            // isolationService.setToSession(PlatformConstants.CREDENTIAL_KEY, credential);
+            // let obtained: Credential = service.accessCredential();
+            // expect(obtained).toBeDefined();
+            // expect(obtained.getJsonClass()).toBe('Credential');
+            // expect(obtained.getAccountName()).toBe('Beth Ripley');
+            // isolationService.setToSession(PlatformConstants.CREDENTIAL_KEY, null);
+            // try {
+            //     obtained = service.accessCredential();
+            // } catch (exception) {
+            //     expect(exception).toBeDefined();
+            //     expect(exception.getUserMessage().toEqual(ExceptionCatalog.AUTHORIZATION_MISSING.getUserMessage()))
+            // }
         });
         // });
         // describe('Code Coverage Phase [Global Store]', () => {
