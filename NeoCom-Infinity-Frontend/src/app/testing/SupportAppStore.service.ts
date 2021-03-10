@@ -22,11 +22,16 @@ import { CorporationDataResponse } from '@app/domain/dto/CorporationDataResponse
 import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer';
 import { Fitting } from '@domain/Fitting.domain';
 import { IsolationService } from '@innovative/services/isolation.service';
+import { NeoComCredential } from '@domain/NeoComCredential.domain';
+import { PlatformConstants } from '@env/PlatformConstants';
+import { NeoComException } from '@innovative/domain/NeoComException';
+import { ExceptionCodes } from '@app/platform/ExceptionCodes';
 
 @Injectable({
     providedIn: 'root'
 })
 export class SupportAppStoreService {
+    private currentPilotId:number
     private credential: Credential;
     private corporationActiveCache: Subject<Corporation | Corporation[]> = new Subject();
     private pilotActiveCache: Subject<Pilot | Pilot[]> = new Subject();
@@ -47,6 +52,27 @@ export class SupportAppStoreService {
             observer.complete();
         });
     }
+    public getPilotId(): number {
+        return this.currentPilotId
+    }
+    public setPilotId( newId:number) : void{
+        this.currentPilotId = newId
+    }
+    private getCredential(): NeoComCredential {
+        const credentialJson = this.isolation.getFromSession(PlatformConstants.CREDENTIAL_KEY)
+        console.log('Dashboard.getCredential>Credential at session: ' + credentialJson)
+        if (null == credentialJson)
+            throw new NeoComException()
+                .withCode(ExceptionCodes.AUTHENTICATION_EXCEPTION)
+                .withTitle('Rendering Dashboard Page. No Credential Found.')
+                .withMessage('Unable to display Pilot data. There is no credential available to access data.')
+                .withCause('Unexpected Exception. At this point then should exist a local session valid credential.')
+        else {
+            const credential = new NeoComCredential(JSON.parse(credentialJson))
+            return credential
+        }
+    }
+
     // - G L O B A L   A C C E S S   M E T H O D S
     public isEmpty(target?: any): boolean {
         if (null == target) return true;
