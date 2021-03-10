@@ -2,8 +2,11 @@
 import { NeoCom } from '@app/domain/NeoCom.domain';
 
 export class NeoComException extends NeoCom {
+    /** @deprecated */
     public status: number = 0;
+    /** @deprecated */
     public statusText: string = 'Undefined Exception';
+    /** @deprecated */
     public allowsRetry: boolean = false;
     public code: string
     public title: string
@@ -44,8 +47,8 @@ export class NeoComException extends NeoCom {
         this.userMessage = message;
         return this;
     }
+    /** @deprecated */
     public setRetryable(retry: boolean): NeoComException {
-        this.allowsRetry = retry;
-        return this;
+        return this
     }
 }
