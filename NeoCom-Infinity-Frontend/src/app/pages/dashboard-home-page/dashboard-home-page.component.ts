@@ -12,6 +12,7 @@ import { NeoComCredential } from '@domain/NeoComCredential.domain';
 import { NeoComFeature } from '@domain/ui/NeoComFeature.domain';
 import { NeoComException } from '@innovative/domain/NeoComException';
 import { PlatformConstants } from '@env/PlatformConstants';
+import { AppStoreService } from '@app/services/appstore.service';
 /**
  * This is the landing page for a login. The page has teh next structure:
  * ROW 1 - The application header and the current server status.
@@ -28,13 +29,13 @@ import { PlatformConstants } from '@env/PlatformConstants';
     templateUrl: './dashboard-home-page.component.html',
     styleUrls: ['./dashboard-home-page.component.scss']
 })
-export class DashboardHomePageComponent extends BackgroundEnabledComponent implements OnInit {
+export class DashboardHomePageComponent {
     public features: NeoComFeature[] = []
-    private credential: NeoComCredential
 
-    constructor(protected isolationService: IsolationService) {
-        super()
-        // Build the page features.
+    constructor(
+        protected isolationService: IsolationService,
+        protected appStore:AppStoreService) {
+         // Build the page features.
         this.features.push(new NeoComFeature({
             id: "planetary-dashboard",
             label: "Interacciones Planetarias",
@@ -61,29 +62,13 @@ export class DashboardHomePageComponent extends BackgroundEnabledComponent imple
         }))
     }
 
-    public ngOnInit() {
-        try {
-            this.credential = this.getCredential()
-        } catch (exception) {
-            this.exception = exception
-        }
-    }
-
     // - I N T E R A C T I O N S
     public getPilotId(): number {
-        return this.getCredential().getAccountId()
-    }
-    private getCredential(): NeoComCredential {
-        const credentialJson = this.isolationService.getFromSession(PlatformConstants.CREDENTIAL_KEY)
-        console.log('Dashboard.getCredential>Credential at session: '+credentialJson)
-        if (null == credentialJson)
-            throw new NeoComException()
-                .withTitle('Rendering Dashboard Page. No Credential Found.')
-                .withMessage('Unable to display Pilot data. There is no credential available to access data.')
-                .withCause('Unexpected Exception. At this point then should exist a local session valid credential.')
-        else {
-            const credential = new NeoComCredential(JSON.parse(credentialJson))
-            return credential
+        try {
+            return this.appStore.getPilotId()
+        } catch (exception) {
+            this.isolationService.processException(exception)
+            return undefined
         }
     }
 }

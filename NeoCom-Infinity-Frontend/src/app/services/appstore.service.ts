@@ -23,6 +23,8 @@ import { AppCoreStoreService } from '@innovative/services/AppCoreStoreService.se
 import { BackendHttpWrapper } from './backend.httpwrapper';
 import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer';
 import { PlatformConstants } from '@env/PlatformConstants';
+import { ExceptionCodes } from '@app/platform/ExceptionCodes';
+import { NeoComCredential } from '@domain/NeoComCredential.domain';
 
 @Injectable({
     providedIn: 'root'
@@ -40,24 +42,36 @@ export class AppStoreService extends AppCoreStoreService {
         protected backendService: BackendService,
         protected httpService: BackendHttpWrapper) {
         super()
-        // - S T O R E   D A T A   S E C T I O N
-        // this.corporationActiveCache = new ActiveCacheWrapper<Corporation>()
-        //     .setTimedCache(false) // Contents do not expire.
-        //     .setReturnObsoletes(false) // If the content is expired then wait for a new request.
-        //     .setDownloader((): Observable<Corporation | Corporation[]> => {
-        //         const corporationId = this.getCorporationIdentifier();
-        //         return this.downloadCorporation(corporationId);
-        //     });
-        // this.pilotActiveCache = new ActiveCacheWrapper<Pilot>()
-        //     .setTimedCache(false) // Contents do not expire.
-        //     .setReturnObsoletes(false) // If the content is expired then wait for a new request.
-        //     .setDownloader((): Observable<Pilot | Pilot[]> => {
-        //         const pilotId = this.getPilotIdentifier();
-        //         return this.downloadPilot(pilotId);
-        //     });
+    }
+    // - P I L O T
+    /**
+    * @throws NeoComException(ExceptionCodes.AUTHENTICATION_EXCEPTION)
+    */
+    public getPilotId(): number {
+        return this.getCredential().getAccountId()
+    }
+    /**
+    * @throws NeoComException(ExceptionCodes.AUTHENTICATION_EXCEPTION)
+    */
+    private getCredential(): NeoComCredential {
+        const credentialJson = this.isolationService.getFromSession(PlatformConstants.CREDENTIAL_KEY)
+        console.log('Dashboard.getCredential>Credential at session: ' + credentialJson)
+        if (null == credentialJson)
+            throw new NeoComException()
+                .withCode(ExceptionCodes.AUTHENTICATION_EXCEPTION)
+                .withTitle('Rendering Dashboard Page. No Credential Found.')
+                .withMessage('Unable to display Pilot data. There is no credential available to access data.')
+                .withCause('Unexpected Exception. At this point then should exist a local session valid credential.')
+        else {
+            const credential = new NeoComCredential(JSON.parse(credentialJson))
+            return credential
+        }
     }
 
+
+
     // - R O U T I N G
+    /** @deprecated */
     public route2Destination(page: string): void {
         this.router.navigate([page]);
     }
@@ -83,24 +97,23 @@ export class AppStoreService extends AppCoreStoreService {
     // }
 
     // - G L O B A L   S T O R E
-    public accessCredential(): Credential {
-        return this.getCredential();
-    }
-    public getCredential(): Credential {
-        const credentialJson = this.isolationService.getFromSession(PlatformConstants.CREDENTIAL_KEY);
-        if (null == credentialJson) throw new NeoComException(ExceptionCatalog.AUTHORIZATION_MISSING)
-        const credential = new Credential(JSON.parse(credentialJson));
-        return credential;
-    }
+    // /** @deprecated */
+    // public accessCredential(): Credential {
+    //     return this.getCredential();
+    // }
+    /** @deprecated */
     public getCorporationIdentifier(): number {
         return this.getCredential().getCorporationId();
     }
+    /** @deprecated */
     public getPilotIdentifier(): number {
         return this.getCredential().getAccountId();
     }
+    /** @deprecated */
     public getLastInterceptedException(): NeoComException {
         return this.lastInterceptedException;
     }
+    /** @deprecated */
     public setLastInterceptedException(exception: NeoComException): void {
         this.lastInterceptedException = exception;
     }
@@ -109,18 +122,22 @@ export class AppStoreService extends AppCoreStoreService {
     /**
      * Resets and clears the cached stored contents so on next login we should reload all data.
      */
+    /** @deprecated */
     public clearStore(): void {
         // Clear dynamic caches.
         this.corporationActiveCache.clear();
     }
     // - C O R P O R A T I O N
+    /** @deprecated */
     public accessCorporation(): Observable<Corporation | Corporation[]> {
         return this.corporationActiveCache.accessData();
     }
     // - P I L O T
+    /** @deprecated */
     public accessPilot(): Observable<Pilot | Pilot[]> {
         return this.pilotActiveCache.accessData();
     }
+    /** @deprecated */
     public accessPilotFittings(transformer: ResponseTransformer): Observable<Fitting | Fitting[]> {
         let pilotId = this.getCredential().getAccountId();
         return this.backendService.apiGetPilotFittings_v1(pilotId, transformer);
@@ -153,18 +170,4 @@ export class AppStoreService extends AppCoreStoreService {
         const token = this.isolationService.JWTDecode(codedToken);
         return token["uniqueId"];
     }
-
-    // - N O T I F I C A T I O N S
-    // public successNotification(_message: string, _title?: string, _options?: any): void {
-    //     this.isolationService.successNotification(_message, _title, _options);
-    // }
-    // public errorNotification(_message: string, _title?: string, _options?: any): void {
-    //     this.isolationService.errorNotification(_message, _title, _options);
-    // }
-    // public warningNotification(_message: string, _title?: string, _options?: any): void {
-    //     this.isolationService.warningNotification(_message, _title, _options);
-    // }
-    // public infoNotification(_message: string, _title?: string, _options?: any): void {
-    //     this.isolationService.infoNotification(_message, _title, _options);
-    // }
-}  
+}

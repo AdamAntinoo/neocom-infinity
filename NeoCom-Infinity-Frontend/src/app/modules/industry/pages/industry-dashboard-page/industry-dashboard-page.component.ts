@@ -12,29 +12,37 @@ import { NeoComCredential } from '@domain/NeoComCredential.domain';
 import { NeoComFeature } from '@domain/ui/NeoComFeature.domain';
 import { NeoComException } from '@innovative/domain/NeoComException';
 import { PlatformConstants } from '@env/PlatformConstants';
+import { AppStoreService } from '@app/services/appstore.service';
 
 @Component({
-  selector: 'industry-dashboard-page',
-  templateUrl: './industry-dashboard-page.component.html',
-  styleUrls: ['./industry-dashboard-page.component.scss']
+    selector: 'industry-dashboard-page',
+    templateUrl: './industry-dashboard-page.component.html',
+    styleUrls: ['./industry-dashboard-page.component.scss']
 })
-export class IndustryDashboardPageComponent  {
+export class IndustryDashboardPageComponent {
     public features: NeoComFeature[] = []
-    
-    constructor(){
-                // Build the page features.
-                this.features.push(new NeoComFeature({
-                    id: "blueprint-analysis",
-                    label: "Gestion de Blueprints",
-                    enabled: true,
-                    interaction: 'PAGEROUTE',
-                    route: "/industry/manufacture/blueprints",
-                    imageRef: 'assets/media/blueprints-feature.jpeg'
-                }))
-            }
+
+    constructor(
+        protected isolationService: IsolationService,
+        protected appStore: AppStoreService) {
+        // Build the page features.
+        this.features.push(new NeoComFeature({
+            id: "blueprint-analysis",
+            label: "Gestion de Blueprints",
+            enabled: true,
+            interaction: 'PAGEROUTE',
+            route: "/industry/manufacture/blueprints",
+            imageRef: 'assets/media/blueprints-feature.jpeg'
+        }))
+    }
 
     // - I N T E R A C T I O N S
-    public getPilotId() : number {
-        return 100
+    public getPilotId(): number {
+        try {
+            return this.appStore.getPilotId()
+        } catch (exception) {
+            this.isolationService.processException(exception)
+            return undefined
+        }
     }
 }
