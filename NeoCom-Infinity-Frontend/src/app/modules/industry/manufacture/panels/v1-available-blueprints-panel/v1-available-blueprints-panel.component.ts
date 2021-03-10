@@ -64,7 +64,7 @@ export class V1AvailableBlueprintsPanelComponent extends AppPanelComponent imple
     public enterSelected(target: any): void {
         console.log(">[enterSelected.enterSelected]")
         if (target instanceof ProcessedBlueprint) {
-            if (this.container) this.container.signalSelection(target)
+            if (this.container) this.container.signalBlueprintSelection(target)
         }
     }
     /**
@@ -76,8 +76,8 @@ export class V1AvailableBlueprintsPanelComponent extends AppPanelComponent imple
             const target = targetList[0]
             if (target) {
                 if (target instanceof ProcessedBlueprint)
-                    this.container.signalSelection(target)
-            } else this.container.signalSelection(undefined)
+                    this.container.signalBlueprintSelection(target)
+            } else this.container.signalBlueprintSelection(undefined)
         }
     }
 
@@ -123,7 +123,7 @@ export class V1AvailableBlueprintsPanelComponent extends AppPanelComponent imple
     }
     private getCredential(): NeoComCredential {
         const credentialJson = this.isolationService.getFromSession(PlatformConstants.CREDENTIAL_KEY)
-        console.log('Dashboard.getCredential>Credential at session: '+credentialJson)
+        console.log('Dashboard.getCredential>Credential at session: ' + credentialJson)
         if (null == credentialJson)
             throw new NeoComException()
                 .withTitle('Rendering Dashboard Page. No Credential Found.')
