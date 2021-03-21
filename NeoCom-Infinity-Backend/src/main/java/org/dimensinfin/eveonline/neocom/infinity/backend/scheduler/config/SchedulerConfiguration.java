@@ -1,13 +1,11 @@
 package org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.config;
 
-import java.util.Objects;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import org.dimensinfin.eveonline.neocom.infinity.adapter.ConfigurationServiceWrapper;
-import org.dimensinfin.eveonline.neocom.infinity.service.SBConfigurationService;
+import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 
 import static org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.config.CronSchedulePropertyNameDefinitions.ALLOWED_MININGEXTRACTIONS_SETTING;
 import static org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.config.CronSchedulePropertyNameDefinitions.ALLOWED_PROCESSING_BLUEPRINTS_SETTING;
@@ -19,12 +17,12 @@ import static org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.config
  */
 @Component
 public class SchedulerConfiguration {
-	private final SBConfigurationService configurationService;
+	private final IConfigurationService configurationService;
 
 	// - C O N S T R U C T O R S
 	@Autowired
-	protected SchedulerConfiguration( final @NotNull ConfigurationServiceWrapper configurationServiceWrapper ) {
-		this.configurationService = (SBConfigurationService) Objects.requireNonNull( configurationServiceWrapper.getSingleton() );
+	protected SchedulerConfiguration( @NotNull final IConfigurationService configurationService ) {
+		this.configurationService = configurationService;
 	}
 
 	// - G E T T E R S   &   S E T T E R S

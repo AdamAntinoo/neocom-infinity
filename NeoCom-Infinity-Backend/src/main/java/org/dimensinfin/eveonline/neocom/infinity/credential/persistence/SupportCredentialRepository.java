@@ -13,8 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+import org.dimensinfin.eveonline.neocom.database.NeoComDatabaseService;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBNeoComDBAdapter;
 import org.dimensinfin.logging.LogWrapper;
 
 @Profile({ "acceptance", "dev" })
@@ -24,7 +24,7 @@ public class SupportCredentialRepository {
 
 	// - C O N S T R U C T O R S
 	@Autowired
-	public SupportCredentialRepository( @NotNull final SBNeoComDBAdapter neoComDatabaseService ) {
+	public SupportCredentialRepository( @NotNull final NeoComDatabaseService neoComDatabaseService ) {
 		try {
 			this.credentialDao = Objects.requireNonNull( neoComDatabaseService.getCredentialDao() );
 		} catch (final SQLException throwables) {

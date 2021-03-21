@@ -10,11 +10,11 @@ import org.dimensinfin.eveonline.neocom.database.core.ISDEDatabaseService;
 import org.dimensinfin.eveonline.neocom.database.repositories.AssetRepository;
 import org.dimensinfin.eveonline.neocom.database.repositories.CredentialRepository;
 import org.dimensinfin.eveonline.neocom.database.repositories.PilotPreferencesRepository;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBFileSystemAdapter;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBNeoComDBAdapter;
-import org.dimensinfin.eveonline.neocom.infinity.backend.sde.service.SBSDEDatabaseService;
 import org.dimensinfin.eveonline.neocom.infinity.service.RedisDataStoreImplementation;
 import org.dimensinfin.eveonline.neocom.infinity.service.SBConfigurationService;
+import org.dimensinfin.eveonline.neocom.infinity.service.SBFileSystemService;
+import org.dimensinfin.eveonline.neocom.infinity.service.SBNeoComDBService;
+import org.dimensinfin.eveonline.neocom.infinity.service.SBSDEDatabaseService;
 import org.dimensinfin.eveonline.neocom.loyalty.persistence.LoyaltyOffersRepository;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 import org.dimensinfin.eveonline.neocom.provider.IFileSystem;
@@ -71,52 +71,21 @@ public class NeoComInfinityBackendDependenciesModule extends AbstractModule {
 				.in( Singleton.class );
 		this.bind( IFileSystem.class )
 				.annotatedWith( Names.named( DMServicesDependenciesModule.IFILE_SYSTEM ) )
-				.to( SBFileSystemAdapter.class )
+				.to( SBFileSystemService.class )
 				.in( Singleton.class );
 		this.bind( IStoreCache.class )
 				.annotatedWith( Names.named( DMServicesDependenciesModule.ISTORE_CACHE ) )
 				.to( MemoryStoreCacheService.class )
 				.in( Singleton.class );
 
-		// Bind DM services until this is declared on the DM library.
-		//		this.bind( RetrofitService.class )
-		//				.annotatedWith( Names.named( DMServicesDependenciesModule.RETROFIT_SERVICE ) )
-		//				.to( RetrofitService.class )
-		//				.in( Singleton.class );
-		//		this.bind( LocationCatalogService.class )
-		//				.annotatedWith( Names.named( DMServicesDependenciesModule.LOCATION_CATALOG_SERVICE ) )
-		//				.to( LocationCatalogService.class )
-		//				.in( Singleton.class );
-		//		this.bind( ESIDataService.class )
-		//				.annotatedWith( Names.named( DMServicesDependenciesModule.ESIDATA_SERVICE ) )
-		//				.to( ESIDataService.class )
-		//				.in( Singleton.class );
-		//		this.bind( ResourceFactory.class )
-		//				.annotatedWith( Names.named( DMServicesDependenciesModule.RESOURCE_FACTORY ) )
-		//				.to( ResourceFactory.class )
-		//				.in( Singleton.class );
-		//		this.bind( LoyaltyService.class )
-		//				.annotatedWith( Names.named( DMServicesDependenciesModule.LOYALTY_SERVICE ) )
-		//				.to( LoyaltyService.class )
-		//				.in( Singleton.class );
-		//		this.bind( MarketService.class )
-		//				.annotatedWith( Names.named( DMServicesDependenciesModule.MARKET_SERVICE ) )
-		//				.to( MarketService.class )
-		//				.in( Singleton.class );
-		//		this.bind( CharacterService.class )
-		//				.annotatedWith( Names.named( DMServicesDependenciesModule.CHARACTER_SERVICE ) )
-		//				.to( CharacterService.class )
-		//				.in( Singleton.class );
-
+		// Bind database services
 		this.bind( ISDEDatabaseService.class )
 				.annotatedWith( Names.named( "ISDEDatabaseService" ) )
 				.to( SBSDEDatabaseService.class )
 				.in( Singleton.class );
-
-		// Bind database services
 		this.bind( NeoComDatabaseService.class )
 				.annotatedWith( Names.named( DMServicesDependenciesModule.INEOCOM_DATABASE_SERVICE ) )
-				.to( SBNeoComDBAdapter.class )
+				.to( SBNeoComDBService.class )
 				.in( Singleton.class );
 		this.bind( CredentialRepository.class )
 				.annotatedWith( Names.named( "CredentialRepository" ) )

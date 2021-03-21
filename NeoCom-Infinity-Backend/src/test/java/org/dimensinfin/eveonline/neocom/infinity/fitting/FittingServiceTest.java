@@ -16,7 +16,6 @@ import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterI
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseCategoriesCategoryIdOk;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseGroupsGroupIdOk;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseTypesTypeIdOk;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.ESIDataProviderWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetails;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetailsService;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
@@ -49,7 +48,7 @@ public class FittingServiceTest {
 	@Test
 	void getPilotFittingsSuccess() {
 		// Given
-		final ESIDataProviderWrapper esiDataProviderWrapper = Mockito.mock( ESIDataProviderWrapper.class );
+		//		final ESIDataProviderWrapper esiDataProviderWrapper = Mockito.mock( ESIDataProviderWrapper.class );
 		final ESIDataProvider esiDataProvider = Mockito.mock( ESIDataProvider.class );
 		final CredentialDetailsService credentialDetailsService = Mockito.mock( CredentialDetailsService.class );
 		final NeoComAuthenticationProvider neoComAuthenticationProvider = Mockito.mock( NeoComAuthenticationProvider.class );
@@ -62,7 +61,7 @@ public class FittingServiceTest {
 		Mockito.when( neoComAuthenticationProvider.getAuthenticatedUniqueId() ).thenReturn( "-TESTING-UNIQUE-ID-" );
 		Mockito.when( credentialDetailsService.loadUserByUsername( Mockito.anyString() ) ).thenReturn( credentialDetails );
 		Mockito.when( credentialDetails.getCredential() ).thenReturn( credential );
-		Mockito.when( esiDataProviderWrapper.getSingleton() ).thenReturn( esiDataProvider );
+		//		Mockito.when( esiDataProviderWrapper.getSingleton() ).thenReturn( esiDataProvider );
 		final List<GetCharactersCharacterIdFittings200Ok> fittingList = new ArrayList<>();
 		fittingList.add( characterFitting );
 		Mockito.when( esiDataProvider.getCharactersCharacterIdFittings( credential ) )
@@ -71,7 +70,7 @@ public class FittingServiceTest {
 		Mockito.when( characterFitting.getItems() ).thenReturn( new ArrayList<>() );
 
 		// Test
-		final FittingService fittingService = new FittingService( esiDataProviderWrapper, credentialDetailsService, neoComAuthenticationProvider );
+		final FittingService fittingService = new FittingService( this.esiDataService, credentialDetailsService, neoComAuthenticationProvider );
 		final ResponseEntity<List<Fitting>> obtained = fittingService.getPilotFittings();
 
 		// Asserts
@@ -81,7 +80,7 @@ public class FittingServiceTest {
 	@Test
 	void getPilotFittingsNeoComNotFoundException() {
 		// Given
-		final ESIDataProviderWrapper esiDataProviderWrapper = Mockito.mock( ESIDataProviderWrapper.class );
+		//		final ESIDataProviderWrapper esiDataProviderWrapper = Mockito.mock( ESIDataProviderWrapper.class );
 		final ESIDataProvider esiDataProvider = Mockito.mock( ESIDataProvider.class );
 		final CredentialDetailsService credentialDetailsService = Mockito.mock( CredentialDetailsService.class );
 		final NeoComAuthenticationProvider neoComAuthenticationProvider = Mockito.mock( NeoComAuthenticationProvider.class );
@@ -94,14 +93,14 @@ public class FittingServiceTest {
 		Mockito.when( neoComAuthenticationProvider.getAuthenticatedUniqueId() ).thenReturn( "-TESTING-UNIQUE-ID-" );
 		Mockito.when( credentialDetailsService.loadUserByUsername( Mockito.anyString() ) ).thenReturn( credentialDetails );
 		Mockito.when( credentialDetails.getCredential() ).thenReturn( credential );
-		Mockito.when( esiDataProviderWrapper.getSingleton() ).thenReturn( esiDataProvider );
+		//		Mockito.when( esiDataProviderWrapper.getSingleton() ).thenReturn( esiDataProvider );
 		Mockito.when( esiDataProvider.getCharactersCharacterIdFittings( credential ) )
 				.thenReturn( null );
 		Mockito.when( characterFitting.getShipTypeId() ).thenReturn( 32880 );
 		Mockito.when( characterFitting.getItems() ).thenReturn( new ArrayList<>() );
 
 		// Test
-		final FittingService fittingService = new FittingService( esiDataProviderWrapper, credentialDetailsService, neoComAuthenticationProvider );
+		final FittingService fittingService = new FittingService( this.esiDataService, credentialDetailsService, neoComAuthenticationProvider );
 		final NeoComNotFoundException thrown = Assertions.assertThrows( NeoComNotFoundException.class,
 				() -> fittingService.getPilotFittings(),
 				"Expected fittingService.getPilotFittings() to throw null verification, but it didn't." );

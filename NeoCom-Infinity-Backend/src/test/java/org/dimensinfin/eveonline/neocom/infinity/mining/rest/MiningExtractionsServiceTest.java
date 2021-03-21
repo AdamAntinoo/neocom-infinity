@@ -13,7 +13,6 @@ import org.dimensinfin.eveonline.neocom.database.entities.MiningExtractionEntity
 import org.dimensinfin.eveonline.neocom.database.repositories.MiningRepository;
 import org.dimensinfin.eveonline.neocom.domain.EsiType;
 import org.dimensinfin.eveonline.neocom.domain.space.SpaceSystem;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.MiningRepositoryWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetails;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetailsService;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
@@ -25,7 +24,7 @@ public class MiningExtractionsServiceTest {
 
 	private NeoComAuthenticationProvider authenticationProvider;
 	private CredentialDetailsService credentialDetailsService;
-	private MiningRepositoryWrapper miningRepositoryWrapper;
+	//	private MiningRepository miningRepositoryWrapper;
 	private MiningRepository miningRepository;
 	private ResourceFactory resourceFactory;
 
@@ -33,7 +32,7 @@ public class MiningExtractionsServiceTest {
 	public void beforeEach() {
 		this.authenticationProvider = Mockito.mock( NeoComAuthenticationProvider.class );
 		this.credentialDetailsService = Mockito.mock( CredentialDetailsService.class );
-		this.miningRepositoryWrapper = Mockito.mock( MiningRepositoryWrapper.class );
+		//		this.miningRepositoryWrapper = Mockito.mock( MiningRepositoryWrapper.class );
 		this.miningRepository = Mockito.mock( MiningRepository.class );
 		this.resourceFactory = Mockito.mock( ResourceFactory.class );
 	}
@@ -43,7 +42,7 @@ public class MiningExtractionsServiceTest {
 		final MiningExtractionsService miningExtractionsService = new MiningExtractionsService(
 				this.authenticationProvider,
 				this.credentialDetailsService,
-				this.miningRepositoryWrapper,
+				this.miningRepository,
 				this.resourceFactory );
 		Assertions.assertNotNull( miningExtractionsService );
 	}
@@ -101,14 +100,14 @@ public class MiningExtractionsServiceTest {
 		Mockito.when( this.authenticationProvider.getAuthenticatedUniqueId() ).thenReturn( "-CREDENTIAL-UNIQUEID-" );
 		Mockito.when( this.credentialDetailsService.loadUserByUsername( "-CREDENTIAL-UNIQUEID-" ) ).thenReturn( credentialDetails );
 		Mockito.when( credentialDetails.getCredential() ).thenReturn( credential );
-		Mockito.when( this.miningRepositoryWrapper.getSingleton() ).thenReturn( miningRepositoryLocal );
+		//		Mockito.when( this.miningRepositoryWrapper.getSingleton() ).thenReturn( miningRepositoryLocal );
 		Mockito.when( miningRepositoryLocal.accessTodayMiningExtractions4Pilot( credential ) ).thenReturn( miningExtractions );
 		Mockito.when( neoItem.getTypeId() ).thenReturn( 345 );
 		// Test
 		final MiningExtractionsService miningExtractionsService = new MiningExtractionsService(
 				this.authenticationProvider,
 				this.credentialDetailsService,
-				this.miningRepositoryWrapper,
+				this.miningRepository,
 				this.resourceFactory );
 		final List<MiningExtractionEntity> obtained = miningExtractionsService.getTodayMiningExtractions4Pilot();
 		// Assertions

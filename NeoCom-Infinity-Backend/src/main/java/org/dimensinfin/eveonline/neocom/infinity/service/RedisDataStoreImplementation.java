@@ -44,9 +44,12 @@ public class RedisDataStoreImplementation implements IDataStore {
 	// - C O N S T R U C T O R S
 	@Inject
 	public RedisDataStoreImplementation( @NotNull @Named(DMServicesDependenciesModule.REDIS_DATABASE_URL) final String redisAddress ) {
+		LogWrapper.enter();
+		LogWrapper.info( "Redis connection link: " + redisAddress );
 		final Config config = new Config();
 		config.useSingleServer().setAddress( redisAddress );
 		this.redisClient = Redisson.create( config );
+		LogWrapper.exit();
 	}
 
 	@Override
