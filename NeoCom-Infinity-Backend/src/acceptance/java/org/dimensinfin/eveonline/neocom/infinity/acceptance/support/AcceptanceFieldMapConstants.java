@@ -80,4 +80,16 @@ public class AcceptanceFieldMapConstants {
 	public static final String JWTTOKEN_ACCOUNT_NAME = "accountName";
 	public static final String JWTTOKEN_UNIQUE_ID = "uniqueId";
 	public static final String JWTTOKEN_PILOT_ID = "pilotId";
+
+	public static final String BLUEPRINT_UID = "uid";
+	public static final String BLUEPRINT_BLUEPRINT_TYPE_ID = "blueprintTypeId";
+	public static final String BLUEPRINT_BLUEPRINT_TYPE_NAME = "blueprintTypeName";
+	public static final String BLUEPRINT_BLUEPRINT_ICON_URL = "blueprintTypeIconURL";
+	public static final String BLUEPRINT_OUTPUT_TYPE_ID = "outputTypeId";
+	public static final String BLUEPRINT_OUTPUT_TYPE_NAME = "outputTypeName";
+	public static final String BLUEPRINT_OUTPUT_ICON_URL = "outputTypeIconURL";
+	public static final String BLUEPRINT_OUTPUT_PRICE = "outputPrice";
+	public static final String BLUEPRINT_MANUFACTURE_MATERIAL_COST = "manufactureMaterialCost";
+	public static final String BLUEPRINT_COST_INDEX = "costIndex";
+
 }

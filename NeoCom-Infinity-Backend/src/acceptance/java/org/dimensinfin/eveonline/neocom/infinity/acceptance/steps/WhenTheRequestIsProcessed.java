@@ -15,6 +15,7 @@ import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.character.re
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.character.rest.v2.CharacterFeignClientV2;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.dto.PilotDto;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.dto.ServerStatusDto;
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.industry.deserializer.ProcessedBlueprintResponse;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.industry.rest.v1.IndustryFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.market.rest.v1.MarketFeignClientV1;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.universe.rest.v1.UniverseFeignClientV1;
@@ -131,6 +132,12 @@ public class WhenTheRequestIsProcessed extends StepSupport {
 	public void the_get_pilot_data_request_with_pilot( final Integer pilotIdentifier ) throws IOException {
 		this.neocomWorld.setPilotId( pilotIdentifier );
 		this.processRequestByType( RequestType.GET_PILOT_DATA_ENDPOINT_NAME );
+	}
+
+	@When("the Get Pilot Industry Blueprints Cost Index request with pilot {int} is processed")
+	public void the_get_pilot_industry_blueprints_cost_index_request_with_pilot_is_processed( final Integer pilotIdentifier ) throws IOException {
+		this.neocomWorld.setPilotId( pilotIdentifier );
+		this.processRequestByType( RequestType.GET_PILOT_INDUSTRY_BLUEPRINTS_COST_INDEX );
 	}
 
 	@When("the Get Server Status request is processed")
@@ -280,6 +287,17 @@ public class WhenTheRequestIsProcessed extends StepSupport {
 				Assertions.assertNotNull( serverStatusResponseEntity );
 				this.neocomWorld.setServerStatusResponseEntity( serverStatusResponseEntity );
 				return serverStatusResponseEntity;
+			case GET_PILOT_INDUSTRY_BLUEPRINTS_COST_INDEX:
+				Assertions.assertNotNull( this.neocomWorld.getPilotId() );
+				final ResponseEntity<List<ProcessedBlueprintResponse>> pilotBlueprintsResponseEntity = this.industryFeignClientV1
+						.getBlueprints4PilotWithCostIndex(
+								this.neocomWorld.getCookies(),
+								this.neocomWorld.getJwtAuthorizationToken(),
+								this.neocomWorld.getPilotId()
+						);
+				Assertions.assertNotNull( pilotBlueprintsResponseEntity );
+				this.neocomWorld.setPilotBlueprintsResponseEntity( pilotBlueprintsResponseEntity );
+				return pilotBlueprintsResponseEntity;
 			default:
 				throw new NotImplementedException( "Request {} not implemented.", requestType.name() );
 		}

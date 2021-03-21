@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.dto.PilotDto;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.dto.ServerStatusDto;
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.industry.deserializer.ProcessedBlueprintResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthenticationStateResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.character.fitting.domain.FittingModel;
@@ -31,6 +32,7 @@ public class NewNeoComWorld extends CommonWorld {
 	private LoyaltyServiceConfiguration loyaltyServiceConfiguration;
 	private ResponseEntity<AuthenticationStateResponse> authenticationStateResponseEntity;
 	private Integer pilotId;
+	private ResponseEntity<List<ProcessedBlueprintResponse>> pilotBlueprintsResponseEntity;
 
 	// - G E T T E R S   &   S E T T E R S
 	public ResponseEntity<AuthenticationStateResponse> getAuthenticationStateResponseEntity() {
@@ -120,6 +122,15 @@ public class NewNeoComWorld extends CommonWorld {
 
 	public NewNeoComWorld setLoyaltyUpdateResponseEntity( final ResponseEntity<LoyaltyServiceConfiguration> loyaltyUpdateResponseEntity ) {
 		this.loyaltyUpdateResponseEntity = loyaltyUpdateResponseEntity;
+		return this;
+	}
+
+	public ResponseEntity<List<ProcessedBlueprintResponse>> getPilotBlueprintsResponseEntity() {
+		return this.pilotBlueprintsResponseEntity;
+	}
+
+	public NewNeoComWorld setPilotBlueprintsResponseEntity( final ResponseEntity<List<ProcessedBlueprintResponse>> pilotBlueprintsResponseEntity ) {
+		this.pilotBlueprintsResponseEntity = pilotBlueprintsResponseEntity;
 		return this;
 	}
 
