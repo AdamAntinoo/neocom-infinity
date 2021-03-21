@@ -23,6 +23,7 @@
 #### 5261 - [ACCEPTANCE] Backend ApiSimulator ESI Universe Data Server
 #### 5270 - [ACCEPTANCE] Backend ApiSimulator ESI Data Server
 #### 5281 - [ACCEPTANCE] Backend Postgres DB
+#### 5291 - [ACCEPTANCE] Backend Redis DB service
 
 #### 5202 - [DEVELOPMENT] Frontend Node server
 #### 5282 - [INTEGRATION] Backend Integration stand-alone Postgres DB

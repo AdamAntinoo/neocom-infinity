@@ -47,6 +47,7 @@ public class CommonFeignClient {
 			.readTimeout( 60, TimeUnit.SECONDS )
 			.writeTimeout( 60, TimeUnit.SECONDS )
 			.build();
+	protected static final String FAILURE_SIGNAL_SUFFIX = " Failed.";
 	protected final ITargetConfiguration acceptanceTargetConfig;
 
 	// - C O N S T R U C T O R S

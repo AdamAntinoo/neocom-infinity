@@ -36,6 +36,7 @@ services:
       - SPRING_PROFILES_ACTIVE=acceptance
       - JDBC_DATABASE_URL=jdbc:postgresql://neocom-backend-acceptance-postgres:5432/postgres
       - NEOCOM_DATABASE_URL=jdbc:postgresql://neocom-backend-acceptance-postgres:5432/postgres?user=neocom-user&password=neocom-password
+      - REDIS_URL=redis://host.docker.internal:6379
       - DB_USER=neocom-user
       - DB_PASSWORD=neocom-password
       - NEOCOM_BANNER_LOCATION=./app-banner.txt
@@ -73,3 +74,15 @@ services:
       # WARNING - Use full absolute paths to make this work.
       - /home/adam/Development/NeoCom0.20/NeoCom-Infinity/NeoCom-Infinity-Backend/src/test/resources/esidata-simulation:/esidata-simulation
     command: "bin/apisimulator start /esidata-simulation -p 6090"
+
+#  neocom-backend-acceptance-redis:
+#    container_name: neocom-backend-acceptance-redis
+#    image: redis:6.2.0
+#    ports:
+#      - "6379:6379"
+#    volumes:
+#      - ./docker-data/redis-data:/data
+#    environment:
+#      - CURRENT_UID=1000
+#      - REDIS_REPLICATION_MODE=master
+#    command: "redis-server"
