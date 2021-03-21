@@ -13,11 +13,11 @@ import org.dimensinfin.eveonline.neocom.database.repositories.CredentialReposito
 import org.dimensinfin.eveonline.neocom.database.repositories.PilotPreferencesRepository;
 import org.dimensinfin.eveonline.neocom.database.repositories.SDERepository;
 import org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendDependenciesModule;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBFileSystemAdapter;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.implementers.SBNeoComDBAdapter;
-import org.dimensinfin.eveonline.neocom.infinity.backend.sde.service.SBSDEDatabaseService;
 import org.dimensinfin.eveonline.neocom.infinity.service.RedisDataStoreImplementation;
 import org.dimensinfin.eveonline.neocom.infinity.service.SBConfigurationService;
+import org.dimensinfin.eveonline.neocom.infinity.service.SBFileSystemService;
+import org.dimensinfin.eveonline.neocom.infinity.service.SBNeoComDBService;
+import org.dimensinfin.eveonline.neocom.infinity.service.SBSDEDatabaseService;
 import org.dimensinfin.eveonline.neocom.loyalty.persistence.LoyaltyOffersRepository;
 import org.dimensinfin.eveonline.neocom.loyalty.service.LoyaltyService;
 import org.dimensinfin.eveonline.neocom.market.service.MarketService;
@@ -44,25 +44,8 @@ public class NeoComDependencyConfig {
 	{
 		LogWrapper.info( "Creating Injector for Guice dependencies..." );
 		this.injector = Guice.createInjector( new DMServicesDependenciesModule(), new NeoComInfinityBackendDependenciesModule() );
+		this.injector.getInstance( ESIDataService.class );
 	}
-
-	//	@Bean
-	//	public String dependencyApplicationDirectory() {
-	//		LogWrapper.enter();
-	//		return this.injector.getInstance( Key.get( String.class, Names.named( "ApplicationDirectory" ) ) );
-	//	}
-	//
-	//	@Bean
-	//	public String dependencyPropertiesDirectory() {
-	//		LogWrapper.enter();
-	//		return this.injector.getInstance( Key.get( String.class, Names.named( "PropertiesDirectory" ) ) );
-	//	}
-	//
-	//	@Bean
-	//	public String dependencySDEDatabasePath() {
-	//		LogWrapper.enter();
-	//		return this.injector.getInstance( Key.get( String.class, Names.named( "SDEDatabasePath" ) ) );
-	//	}
 
 	@Bean
 	public IConfigurationService dependency_01_IConfigurationService() {
@@ -73,7 +56,7 @@ public class NeoComDependencyConfig {
 	@Bean
 	public IFileSystem dependency_01_IFileSystem() {
 		LogWrapper.enter();
-		return this.injector.getInstance( SBFileSystemAdapter.class );
+		return this.injector.getInstance( SBFileSystemService.class );
 	}
 
 	@Bean
@@ -145,7 +128,7 @@ public class NeoComDependencyConfig {
 	@Bean
 	public NeoComDatabaseService dependency_21_NeoComDatabaseService() {
 		LogWrapper.enter();
-		return this.injector.getInstance( SBNeoComDBAdapter.class );
+		return this.injector.getInstance( SBNeoComDBService.class );
 	}
 
 	@Bean

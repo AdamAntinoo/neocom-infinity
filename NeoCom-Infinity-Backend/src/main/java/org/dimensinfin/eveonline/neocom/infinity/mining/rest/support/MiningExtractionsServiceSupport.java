@@ -2,39 +2,37 @@ package org.dimensinfin.eveonline.neocom.infinity.mining.rest.support;
 
 import java.sql.SQLException;
 
-import org.springframework.stereotype.Service;
-
 import org.dimensinfin.eveonline.neocom.database.entities.MiningExtractionEntity;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.support.SupportMiningRepository;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.support.SupportMiningRepositoryWrapper;
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComSBException;
+import org.dimensinfin.eveonline.neocom.database.repositories.MiningRepository;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetailsService;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
 import org.dimensinfin.eveonline.neocom.service.logger.NeoComLogger;
 
-@Service
+//@Service
 public class MiningExtractionsServiceSupport {
 	private final NeoComAuthenticationProvider neoComAuthenticationProvider;
 	private final CredentialDetailsService credentialDetailsService;
-	private final SupportMiningRepository miningRepository;
+	private final MiningRepository miningRepository;
 
+// - C O N S T R U C T O R S
 	public MiningExtractionsServiceSupport( final NeoComAuthenticationProvider neoComAuthenticationProvider,
 	                                        final CredentialDetailsService credentialDetailsService,
-	                                        final SupportMiningRepositoryWrapper supportMiningRepositoryWrapper ) {
-		this.miningRepository = supportMiningRepositoryWrapper.getSingleton();
+	                                        final MiningRepository miningRepository ) {
+		this.miningRepository = miningRepository;
 		this.credentialDetailsService = credentialDetailsService;
 		this.neoComAuthenticationProvider = neoComAuthenticationProvider;
 	}
 
 	public MiningExtractionCountResponse deleteAllMiningExtractions() {
-		try {
-			return new MiningExtractionCountResponse.Builder()
-					.withMiningExtractionCount( this.miningRepository.deleteAll() )
-					.build();
-		} catch (final SQLException sqle) {
-			NeoComLogger.error( sqle );
-			throw new NeoComSBException( "SQL exception while deleting all mining extractions." );
-		}
+		//		try {
+		//			return new MiningExtractionCountResponse.Builder()
+		//					.withMiningExtractionCount( this.miningRepository.deleteAll() )
+		//					.build();
+		//		} catch (final SQLException sqle) {
+		//			NeoComLogger.error( sqle );
+		//			throw new NeoComSBException( "SQL exception while deleting all mining extractions." );
+		//		}
+		return null;
 	}
 
 	public StoreMiningExtractionResponse storeMiningExtraction( final MiningExtractionEntity miningExtractionEntity ) {
