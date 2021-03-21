@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.adapter.implementers;
+package org.dimensinfin.eveonline.neocom.infinity.service;
 
 import java.sql.SQLException;
 import java.text.MessageFormat;
@@ -13,7 +13,6 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcPooledConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
-import org.springframework.stereotype.Component;
 
 import org.dimensinfin.eveonline.neocom.database.NeoComDatabaseService;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
@@ -40,8 +39,7 @@ import org.dimensinfin.logging.LogWrapper;
  *
  * @author Adam Antinoo
  */
-@Component
-public class SBNeoComDBAdapter implements NeoComDatabaseService {
+public class SBNeoComDBService implements NeoComDatabaseService {
 	private final String databaseConnectionDescriptor;
 	private boolean isOpen = false;
 	private JdbcPooledConnectionSource connectionSource;
@@ -56,7 +54,7 @@ public class SBNeoComDBAdapter implements NeoComDatabaseService {
 
 	// - C O N S T R U C T O R S
 	@Inject
-	public SBNeoComDBAdapter( @NotNull @Named("NeoComDatabaseUrl") final String connectionDescriptor ) {
+	public SBNeoComDBService( @NotNull @Named("NeoComDatabaseUrl") final String connectionDescriptor ) {
 		LogWrapper.info( connectionDescriptor );
 		this.databaseConnectionDescriptor = Objects.requireNonNull( connectionDescriptor );
 	}

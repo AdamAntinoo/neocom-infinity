@@ -8,20 +8,21 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import org.dimensinfin.eveonline.neocom.infinity.service.SBFileSystemService;
 import org.dimensinfin.eveonline.neocom.provider.IFileSystem;
 
-public class SBFileSystemAdapterTest {
+public class SBFileSystemServiceTest {
 	private static final String TEST_APPLICATION_DIRECTORY = "-TEST-APPLICATION-DIRECTORY-";
-	private SBFileSystemAdapter fileSystemAdapter4Test;
+	private SBFileSystemService fileSystemAdapter4Test;
 
 	@BeforeEach
 	public void beforeEach() {
-		this.fileSystemAdapter4Test = new SBFileSystemAdapter( TEST_APPLICATION_DIRECTORY );
+		this.fileSystemAdapter4Test = new SBFileSystemService( TEST_APPLICATION_DIRECTORY );
 	}
 
 	@Test
 	public void constructorContract() {
-		final SBFileSystemAdapter fileSystemAdapter = new SBFileSystemAdapter( TEST_APPLICATION_DIRECTORY );
+		final SBFileSystemService fileSystemAdapter = new SBFileSystemService( TEST_APPLICATION_DIRECTORY );
 		Assertions.assertNotNull( fileSystemAdapter );
 	}
 
@@ -37,7 +38,7 @@ public class SBFileSystemAdapterTest {
 
 	@Test
 	public void openResource4Output() throws IOException {
-		final IFileSystem fileSystem = new SBFileSystemAdapter( "./src/test" );
+		final IFileSystem fileSystem = new SBFileSystemService( "./src/test" );
 		final OutputStream file = fileSystem.openResource4Output( "FILE.test" );
 		Assertions.assertNotNull( file );
 	}
