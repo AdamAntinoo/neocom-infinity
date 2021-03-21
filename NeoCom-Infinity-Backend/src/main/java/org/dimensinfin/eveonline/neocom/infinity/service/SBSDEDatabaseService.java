@@ -1,7 +1,6 @@
-package org.dimensinfin.eveonline.neocom.infinity.backend.sde.service;
+package org.dimensinfin.eveonline.neocom.infinity.service;
 
 import java.io.File;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -10,10 +9,10 @@ import javax.validation.constraints.NotNull;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import org.springframework.core.io.ClassPathResource;
 
 import org.dimensinfin.eveonline.neocom.database.core.ISDEDatabaseService;
 import org.dimensinfin.eveonline.neocom.database.core.ISDEStatement;
+import org.dimensinfin.eveonline.neocom.infinity.service.domain.SBRawStatement;
 import org.dimensinfin.logging.LogWrapper;
 
 public class SBSDEDatabaseService implements ISDEDatabaseService {
@@ -70,12 +69,12 @@ public class SBSDEDatabaseService implements ISDEDatabaseService {
 		} catch (final ClassNotFoundException cnfe) {
 			throw new SQLException( MessageFormat.format( "Cannot create connection. {0}.", cnfe.getMessage() ) );
 		}
-//		try {
-			final String dbPath = new File( System.getProperty( "user.dir" ) + this.databasePath ).getAbsolutePath();
-			this.connectionSource = DriverManager.getConnection( "jdbc:sqlite:" + dbPath );
-			this.connectionSource.setAutoCommit( false );
-//		} catch (IOException e) {
-//			throw new SQLException( MessageFormat.format( "Cannot open resource file {0}.", this.databasePath ) );
-//		}
+		//		try {
+		final String dbPath = new File( System.getProperty( "user.dir" ) + this.databasePath ).getAbsolutePath();
+		this.connectionSource = DriverManager.getConnection( "jdbc:sqlite:" + dbPath );
+		this.connectionSource.setAutoCommit( false );
+		//		} catch (IOException e) {
+		//			throw new SQLException( MessageFormat.format( "Cannot open resource file {0}.", this.databasePath ) );
+		//		}
 	}
 }

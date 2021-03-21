@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.adapter.implementers;
+package org.dimensinfin.eveonline.neocom.infinity.service;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -30,7 +30,7 @@ import org.dimensinfin.logging.LogWrapper;
  *
  * @author Adam Antinoo
  */
-public class SBFileSystemAdapter implements IFileSystem {
+public class SBFileSystemService implements IFileSystem {
 	private static final String DIRECTORY_SEPARATOR = "/";
 	private static final String PRODUCTION_RESOURCES_PATH = DIRECTORY_SEPARATOR + "build" +
 			DIRECTORY_SEPARATOR + "resources" +
@@ -39,7 +39,7 @@ public class SBFileSystemAdapter implements IFileSystem {
 
 	// - C O N S T R U C T O R S
 	@Inject
-	public SBFileSystemAdapter( final @NotNull @Named("ApplicationDirectory") String applicationDirectory ) {
+	public SBFileSystemService( final @NotNull @Named("ApplicationDirectory") String applicationDirectory ) {
 		this.applicationDirectory = applicationDirectory;
 	}
 
