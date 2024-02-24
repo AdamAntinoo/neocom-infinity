@@ -1,0 +1,18 @@
+{
+  "mappings": [
+    {
+      "priority": 1,
+      "request": {
+        "method": "GET",
+        "url": "/esi/assets/character"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "response_1708706882005.json",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    }
+  ]
+}

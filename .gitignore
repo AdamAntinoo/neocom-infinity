@@ -10,3 +10,4 @@
 # Stage directories to be excluded
 stage/
 
+**/.DS_Store

@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  wiremock:
+    # description: WireMock server to simulate Esi responses.
+    image: wiremock/wiremock:3.3.1
+    ports:
+      - 8080:8080 # unsecure port to be used for testing
+      - 8445:8445 # TLS secure port to be used when certificates are active
+    volumes:
+      - ./wiremock:/home/wiremock
+    command: --verbose -https-port 8445 --global-response-templating
