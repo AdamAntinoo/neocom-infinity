@@ -9,10 +9,10 @@ Feature: Read and process the Esi Assets into the Nest backend server. Add addit
     Scenario: Go to the Asset provider with the mock character Perico Tuerto and get the initial list of assets. The asset count should match.
         When retrieve "Assets/character" for character "93813310"
         Then the response status code is "200"
-            And the number of assets should be "1000"
+            And the number of assets should be 1000
 
-    # @A01.02
-    # Scenario: Go to the Asset provider with the mock character Perico Tuerto and validate that a single Asset has the expected contents.
-    #     When Call to "/"
-    #     Then the response status code should be "200"
-    #         And the response should be "Hello World!"
+                # @A01.02
+                # Scenario: Go to the Asset provider with the mock character Perico Tuerto and validate that a single Asset has the expected contents.
+                #     When Call to "/"
+                #     Then the response status code should be "200"
+                #         And the response should be "Hello World!"
