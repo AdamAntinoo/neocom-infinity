@@ -1,44 +1,21 @@
-import { binding, then, when, before} from 'cucumber-tsflow';
-import { assert } from 'chai';
-import { Test, TestingModule } from '@nestjs/testing';
-import * as request from 'supertest';
-import { AppModule } from '../../../src/app.module';
+import { Before, Given, Then, When } from '@cucumber/cucumber';
+import expect from 'expect';
+import { NeoComWorld } from './NeoComWorld';
 
-class Context {
-  public app;
-  public response;
-}
+When('retrieve {string} for character {string}', async function (this: NeoComWorld, endpoint:string, characterId:string) {
+  // Write code here that turns the phrase above into concrete actions
+  return 'pending';
+});
 
-// tslint:disable-next-line:max-classes-per-file
-@binding([Context])
-export class HelloWorldSteps {
-  constructor(protected context: Context) {}
+Then('the response status code is {string}', function (this: NeoComWorld, statusCode: string) {
+  // Write code here that turns the phrase above into concrete actions
+  return 'pending';
+});
 
-  @before()
-  public async before(): Promise<void> {
-    const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule],
-    }).compile();
-
-    this.context.app = moduleFixture.createNestApplication();
-    await this.context.app.init();
-  }
-  
-  
-  @when(/retrieve "([^"]*)" for character "([^"]*)"/)
-  public async retrieveCharacterAssets (endpoint:string, characterId:string) {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  }
-
-  @then(/the response status code is "([^"]*)"/)
-  public statusResponse (status:string) {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  }
-
-  @then(/the number of assets should be ([^"]*)/)
-  public getAssetCount (assetCount:number) {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  }
+Then('the number of assets should be {int}', function (this: NeoComWorld, assetCount:string) {
+  // Write code here that turns the phrase above into concrete actions
+  return 'pending';
+});
+Before({ tags: '@foo' }, async function (this: NeoComWorld) {
+  // this.foo = true;
+});
