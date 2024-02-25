@@ -19,14 +19,15 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "test:acceptance": "cucumber-js -p default",
-    "cucumber": "node ./node_modules/@cucumber/cucumber/bin/cucumber-js features/**/*.feature --require env/set-environment-variables.ts --require world/custom-world.ts --require step-definitions/**/*.ts --require hooks/**/*.ts  --require-module ts-node/register --format-options \"{\\\"snippetInterface\\\": \\\"async-await\\\"}\"  --format html:reports/report.html --format summary --format @cucumber/pretty-formatter --format cucumber-console-formatter --publish-quiet",
+    "cucumber": "node ./node_modules/@cucumber/cucumber/bin/cucumber-js **/features/**/*.feature --require env/set-environment-variables.ts --require world/custom-world.ts --require step-definitions/**/*.ts --require hooks/**/*.ts  --require-module ts-node/register --format-options \"{\\\"snippetInterface\\\": \\\"async-await\\\"}\"  --format html:reports/report.html --format summary --format @cucumber/pretty-formatter --format cucumber-console-formatter --publish-quiet",
     "cucumber:only": "npm run cucumber -- --tags @only",
     "acceptance:prepare": "npm run wiremock:clean && npm run wiremock:start",
     "wiremock:clean": "docker-compose -f ./test/docker-compose-wiremock.yml down & ",
     "wiremock:start": "docker-compose -f ./test/docker-compose-wiremock.yml up & ",
     "wiremock:restart": "npm run wiremock:clean && npm run wiremock:start",
-    "test:acc": "npm run acceptance:prepare && npm run cucumber",
-    "test:acc-only": "npm run acceptance:prepare && npm run cucumber:only"
+    "test:acc": "npm run cucumber",
+    "test:acc-only": "npm run acceptance:prepare && npm run cucumber:only",
+    "cctest": "cucumber-js --config ./cucumber.yml --require-module ts-node/register"
   },
   "dependencies": {
     "@cucumber/cucumber": "^10.3.1",

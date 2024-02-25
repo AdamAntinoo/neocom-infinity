@@ -1,0 +1,19 @@
+default:
+  parallel: 1
+  format:
+    - "html:reports/report.html"
+    - "summary"
+    - "@cucumber/pretty-formatter"
+    - "cucumber-console-formatter"
+  format-options:
+    - "{\"snippetInterface\": \"async-await\"}"
+  # require-module:
+  #   - "ts-node/register"
+  # require:
+  #   - "env/set-environment-variables.ts"
+  #   - "world/custom-world.ts"
+  #   - "hooks/**/*.ts"
+  import:
+    - "**/step-definitions/**/*.ts"
+  paths:
+    - "test/acceptance/features/*.feature"
