@@ -18,7 +18,7 @@ import { AppStoreService } from '@app/services/appstore.service';
  * ROW 1 - The application header and the current server status.
  * ROW 2 - The current Pilot, along with the Corporation, the corproation CEO if applies and and corporation Alliance if exists
  * ROW 3 - The list of available functionalities for this pilot.
- * 
+ *
  * The component needs the current logged pilot identifier. This is obtained from the authentication credential on the session store. From this identifer we go to to backend to get the Pilot's public data. From it we can get the pilot's corporation and other data on the next fashion:
  * Current Pilot --> Corporation --> Corporation CEO
  *                               --> Alliance is exists
@@ -31,6 +31,7 @@ import { AppStoreService } from '@app/services/appstore.service';
 })
 export class DashboardHomePageComponent {
     public features: NeoComFeature[] = []
+    public exception : NeoComException
 
     constructor(
         protected isolationService: IsolationService,
