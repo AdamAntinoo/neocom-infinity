@@ -1,18 +1,12 @@
-# File extensions to be ignored on the repository
-*.diff
-*.db
-*.log
-*.db-journal
-*.ttf
-*.otf
-*.odt#
-
-# Stage directories to be excluded
-stage/
-
-# Mac special files to ignore
+# Mac operating system hidden databases
 .DS_Store
-**/.DS_Store
+# IntelliJ Framework
+.idea/
+**/.idea/
+
+NeoCom-Infinity-Frontend/package-lock.json
+
+NeoCom-Infinity-Frontend/support/public-simulation/apisimulator.log
 
 # Mac operating system hidden databases
 .DS_Store
