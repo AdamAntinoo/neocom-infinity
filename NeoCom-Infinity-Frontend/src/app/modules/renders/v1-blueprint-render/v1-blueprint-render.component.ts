@@ -49,4 +49,7 @@ export class V1BlueprintRenderComponent extends V2NodeContainerRenderComponent {
         if (this.node) return this.getNode().outputTypeIconURL
         else return NeoComConstants.DEFAULT_ICON_PLACEHOLDER
     }
+    public getTypeIconUrl(): string{
+      if (this.node) return 'defaukt-url'
+    }
 }

@@ -25,7 +25,7 @@
 #### 5281 - [ACCEPTANCE] Backend Postgres DB
 #### 5291 - [ACCEPTANCE] Backend Redis DB service
 
-#### 5202 - [DEVELOPMENT] Frontend Node server
+#### 5202 - [INTEGRATION] Frontend Node server
 #### 5282 - [INTEGRATION] Backend Integration stand-alone Postgres DB
 #### 5242 - [INTEGRATION] Backend SB application server
 
