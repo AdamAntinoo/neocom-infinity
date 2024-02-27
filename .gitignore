@@ -13,3 +13,13 @@ stage/
 # Mac special files to ignore
 .DS_Store
 **/.DS_Store
+
+# Mac operating system hidden databases
+.DS_Store
+# IntelliJ Framework
+.idea/
+**/.idea/
+
+NeoCom-Infinity-Frontend/package-lock.json
+
+NeoCom-Infinity-Frontend/support/public-simulation/apisimulator.log
