@@ -1,0 +1,9 @@
+# Mac operating system hidden databases
+.DS_Store
+# IntelliJ Framework
+.idea/
+**/.idea/
+
+NeoCom-Infinity-Frontend/package-lock.json
+
+NeoCom-Infinity-Frontend/support/public-simulation/apisimulator.log
