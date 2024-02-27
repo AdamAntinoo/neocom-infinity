@@ -25,7 +25,7 @@ services:
       - "5250:6090"
     volumes:
       # WARNING - Use full absolute paths to make this work.
-      - /home/adam/Development/NeoCom0.20/NeoCom-Infinity/NeoCom-Infinity-Backend/src/test/resources/esioauth-simulation:/esioauth-simulation
+      - ../../resources/esioauth-simulation:/esioauth-simulation
     command: "bin/apisimulator start /esioauth-simulation -p 6090"
 
   neocom-backend-development-apisimulator-esi-data:
@@ -35,5 +35,5 @@ services:
       - "5270:6090"
     volumes:
       # WARNING - Use full absolute paths to make this work.
-      - /home/adam/Development/NeoCom0.20/NeoCom-Infinity/NeoCom-Infinity-Backend/src/test/resources/esidata-simulation:/esidata-simulation
+      - ../../resources/esidata-simulation:/esidata-simulation
     command: "bin/apisimulator start /esidata-simulation -p 6090"

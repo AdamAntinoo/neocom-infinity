@@ -19,7 +19,7 @@ services:
       - "5210:6090"
     volumes:
       # WARNING - Use full absolute paths to make this work.
-      - /home/adam/Development/NeoCom0.20/NeoCom-Infinity/NeoCom-Infinity-Frontend/support/backend-simulation:/backend-simulation
+      - ../backend-simulation:/backend-simulation
     command: "bin/apisimulator start /backend-simulation -p 6090"
 
   neocom-frontend-development-public-apisimulator:
@@ -29,7 +29,7 @@ services:
       - "5290:6090"
     volumes:
       # WARNING - Use full absolute paths to make this work.
-      - /home/adam/Development/NeoCom0.20/NeoCom-Infinity/NeoCom-Infinity-Frontend/support/public-simulation:/public-simulation
+      - ../public-simulation:/public-simulation
     command: "bin/apisimulator start /public-simulation -p 6090"
 
   # neocom-frontend-development-backend-app:
