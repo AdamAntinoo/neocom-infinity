@@ -75,8 +75,5 @@ you'd like to join them, please [read more here](https://docs.nestjs.com/support
 Nest is [MIT licensed](LICENSE).
 
 # Additional configuration
-## Additional packages
-* @cucumber/cucumber
-* @cucumber/html-formatter
-* @cucumber/pretty-formatter
-* cucumber-console-formatter
+## Additional packages into dependencies
+* ***npm install --save @cucumber/cucumber @cucumber/html-formatter @cucumber/pretty-formatter cucumber-console-formatter***

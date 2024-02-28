@@ -13,12 +13,20 @@ Feature: Define the scenarios and use cases for the Delta Calculator.
 
     @NIN02.01
     Scenario: [NIN02.01] Describe the output when the delta calculator receives a type 01 configuration.
-        Given a base asset list of type 01
-        Given a new asset list of type 01
+        Given a base asset list of type "A"
+        Given a new asset list of type "A"
         When both list are entered to the Delta Calculator
         Then the output asset list has 3 assets
+            And the asset at position 1 has the next values
+                | id | quantity |
+                | 1  | 1000     |
             And the asset list returned has the next contents
                 | position | quantity |
                 | 1        | 0        |
                 | 2        | 0        |
                 | 3        | 0        |
+    @NIN02.01
+    Scenario: [NIN02.02] Describe the output when the delta calculator receives a type 01 configuration.
+        Given a base asset list of type "B"
+        Given a new asset list of type "B"
+        When both list are entered to the Delta Calculator
