@@ -3,17 +3,13 @@
 # IntelliJ Framework
 .idea/
 **/.idea/
+# Nest Project
+package-lock.json
+*.log
+coverage/
 
 NeoCom-Infinity-Frontend/package-lock.json
 
 NeoCom-Infinity-Frontend/support/public-simulation/apisimulator.log
 
-# Mac operating system hidden databases
-.DS_Store
-# IntelliJ Framework
-.idea/
-**/.idea/
-
-NeoCom-Infinity-Frontend/package-lock.json
-
-NeoCom-Infinity-Frontend/support/public-simulation/apisimulator.log
+neocom-infinity-nest/package-lock.json
