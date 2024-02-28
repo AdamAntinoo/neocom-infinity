@@ -5,5 +5,5 @@ describe('DTO AssetResponse [Module: Assets]', () => {
 		it('should be created', () => {
 			//expect(component).toBeDefined('service has not been created.')
 		})
-	}
-}
+	});
+});
