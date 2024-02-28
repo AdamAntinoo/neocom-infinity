@@ -1,5 +1,4 @@
-import { assert } from "console";
-import { AssetEsi } from "../../../test/acceptance/asset-esi";
+import { AssetEsi } from '../domain/asset-esi';
 
 export class DeltaCalculator {
   /**
@@ -12,27 +11,32 @@ export class DeltaCalculator {
    * @returns the delta asset list resulting from the difference.
    */
   apply(initialList: AssetEsi[], secondList: AssetEsi[]): AssetEsi[] {
-    let output: AssetEsi[] = [];
-    secondList.forEach(asset => {
-      let matches: AssetEsi[] = this.searchAssetId(asset.item_id, initialList);
-      if (this.isEmpty(matches)) // The assets if not of the original list so it is new.
-        output.push(this.getFirst(matches));
-      else { // The assets ids match. Calculate the delta.
+    const output: AssetEsi[] = [];
+    secondList.forEach((asset) => {
+      const matches: AssetEsi[] = this.searchAssetId(
+        asset.item_id,
+        initialList,
+      );
+      console.info("Matches:" + JSON.stringify(matches));
+      // if (this.isEmpty(matches)) {
+      if (matches.length == 0) {
+        // The assets if not on the original list so it is new.
+        output.push(asset);
+      } else {
+        // The assets ids match. Calculate the delta.
         output.push(this.calculateDelta(this.getFirst(matches), asset));
       }
     });
     return output;
   }
   private calculateDelta(start: AssetEsi, asset: AssetEsi): AssetEsi {
-    return new AssetEsi().from(start).setQuantity(start.quantity - asset.quantity);
+    let newAsset: AssetEsi = new AssetEsi(start);
+    return newAsset.setQuantity(asset.quantity - start.quantity);
   }
   private getFirst(source: AssetEsi[]): AssetEsi {
-    if (source.length == 0) return source[0];
-  }
-  private isEmpty(source: AssetEsi[]): boolean {
-    return (!Array.isArray(source) || source.length == 0);
+    if (source.length > 0) return source[0];
   }
   private searchAssetId(item_id: number, source: AssetEsi[]): AssetEsi[] {
-    return source.filter(asset => asset.type_id == item_id)
+    return source.filter((asset) => asset.item_id == item_id);
   }
 }
