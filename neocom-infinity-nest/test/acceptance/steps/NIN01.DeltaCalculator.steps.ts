@@ -1,6 +1,7 @@
 import { loadFeature, defineFeature } from 'jest-cucumber';
 import { AssetEsi } from '../../../src/application/domain/asset-esi';
 import { DeltaCalculator } from '../../../src/application/dmos/delta-calculator';
+import { ObjectTypeEnum } from 'jest-cucumber/dist/src/code-generation/generate-code-by-line-number';
 
 const feature = loadFeature(
   './test/acceptance/features/NIN02.DeltaCalculator.feature',
@@ -107,8 +108,16 @@ defineFeature(feature, (test) => {
       console.info('output:' + JSON.stringify(output));
     });
 
-    then(/^the output asset list has (\d+) assets$/, (arg0) => { });
-
-    and(/^the asset (\d+) quantity is (\d+)$/, (arg0, arg1) => { });
+    then(/^the output asset list has (\d+) assets$/, (size: string) => {
+      expect(output.length).toBe(parseInt(size));
+    });
+    and('the asset list returned has the next contents', (table) => {
+      for (let index = 0; index < table.length; index++) {
+        const element = table[index];
+        let asset: AssetEsi = output[parseInt(element.position)-1];
+        expect(asset).toBeDefined();
+        expect(asset.quantity).toBe(parseInt(element.quantity))
+      }
+    });
   });
 });

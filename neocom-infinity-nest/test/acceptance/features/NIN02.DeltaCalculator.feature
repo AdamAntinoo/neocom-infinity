@@ -17,6 +17,8 @@ Feature: Define the scenarios and use cases for the Delta Calculator.
         Given a new asset list of type 01
         When both list are entered to the Delta Calculator
         Then the output asset list has 3 assets
-            And the asset 1 quantity is 2000
-                # And the asset 2 quantity is 0
-                # And the asset 3 quantity is -1000
+            And the asset list returned has the next contents
+                | position | quantity |
+                | 1        | 0        |
+                | 2        | 0        |
+                | 3        | 0        |
