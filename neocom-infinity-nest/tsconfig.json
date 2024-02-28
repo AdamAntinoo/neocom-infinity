@@ -16,9 +16,6 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
-    "baseUrl": "src",
-    "paths": {
-      "@app/*": ["application/*"],
-    }
+    "baseUrl": "."
   }
 }
