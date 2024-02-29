@@ -20,6 +20,10 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "cucumber-7": "cucumber-js ./test/**/*.feature --no-strict --require-module ts-node/register --require test/acceptance/neocom-world.ts --require ./test/acceptance/steps/**/*.ts",
     "cucumber": "cucumber-js ./test/**/*.feature --no-strict --require-module ts-node/register --require ./test/acceptance/steps/**/*.ts",
+    "docker:wiremock:up": "docker-compose -f ./support/wiremock/docker-compose.yml up & ",
+    "docker:wiremock:down": "docker-compose -f ./support/wiremock/docker-compose.yml down & ",
+    "docker:start": "npm run docker:wiremock:up",
+    "docker:stop": "npm run docker:wiremock:down",
     "jest": "jest --verbose --coverage"
   },
   "dependencies": {

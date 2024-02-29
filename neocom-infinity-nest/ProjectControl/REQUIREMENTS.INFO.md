@@ -1,7 +1,7 @@
 # NEOCOM Nest Backend Requirements and Notes
 ## Mining Sessions
-Mining sessions are based on the detection of Ore assets change during time. During a mining operation the number of Ore items will be increased 
-and the system can detect ehant this increase has started and when has stopped to identify a mining operation.
+Mining sessions are based on the detection of Ore assets change during time. During a mining operation the number of Ore items will be increased
+            and the system can detect ehant this increase has started and when has stopped to identify a mining operation.
 This feature is based on a new service the is the DeltaCalculator.
 
 ### Delta Calculator
@@ -14,13 +14,22 @@ since the mining operation is about positive actions. Negative delta stacks mean
 some stacks into minerals and are not to be taken on account for delta calculations.
 
 ### Delta Calculator Limitations
-A key limitation that should be researched is the case that the user packs a set of resourcces innto a new unique resource with
-the sum of the quantities. This poses a problem on the assets calculations since negative elements are being removed from the 
+            A key limitation that should be researched is the case that the user packs a set of resourcces innto a new unique resource with
+the sum of the quantities. This poses a problem on the assets calculations since negative elements are being removed from the
 calculations. The destroyed stacks will not be accounted on the mining operation while the new merge stack will so the calculation
 will be wrong since part of the new stack was added before when created.
 
 ### Delta Calculator Alternatives
-Instead using delta calculations for the final result the delta are used for intermediate
+            Instead using delta calculations for the final result the delta are used for intermediate
 result during the operation. When the operation completed a full Ore asset compariso from the start set of assets to the last set of assets is done to do a real net comprison of the
-asset accounting. This solution only leaves the limitation of Ore asset destruction
+            asset accounting. This solution only leaves the limitation of Ore asset destruction
 by conversion to Minerals but solves the mergin and consolidation os stacks.
+
+### Assets Adapter
+The initial version will get the resources from the mocked service. Because thre is a timing load of resources to generate deltas we need that the
+mock service be able to respond with different response contents each time it is called in a closed sequence.
+The closed sequence should end with an exception to signal the termination of the source and probably to allow
+the server to restart the synchronization.
+
+This is a research task with wiremock or apisimulator.
+
