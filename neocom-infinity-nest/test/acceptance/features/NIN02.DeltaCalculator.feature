@@ -12,21 +12,38 @@ Feature: Define the scenarios and use cases for the Delta Calculator.
         - Type 03. There is an asset on the second that is not on the initial. The number of assets increases.
 
     @NIN02.01
-    Scenario: [NIN02.01] Describe the output when the delta calculator receives a type 01 configuration.
+    Scenario: [NIN02.01] Describe the output when the delta calculator receives the same asset list. This is a NOOP state that signals start/stop mining operation.
         Given a base asset list of type "A"
         Given a new asset list of type "A"
         When both list are entered to the Delta Calculator
         Then the output asset list has 3 assets
-            And the asset at position 1 has the next values
-                | id | quantity |
-                | 1  | 1000     |
             And the asset list returned has the next contents
-                | position | quantity |
-                | 1        | 0        |
-                | 2        | 0        |
-                | 3        | 0        |
-    @NIN02.01
-    Scenario: [NIN02.02] Describe the output when the delta calculator receives a type 01 configuration.
-        Given a base asset list of type "B"
+                | position | id     | quantity |
+                | 1        | 100001 | 0        |
+                | 2        | 100002 | 0        |
+                | 3        | 100004 | 0        |
+
+    @NIN02.02
+    Scenario: [NIN02.02] Describe the output when the delta calculator receives a list with more assets. The this mining operation ongoing. New stacks
+        Given a base asset list of type "A"
         Given a new asset list of type "B"
         When both list are entered to the Delta Calculator
+        Then the output asset list has 3 assets
+            And the asset list returned has the next contents
+                | position | id     | quantity |
+                | 1        | 100004 | 1000     |
+                | 2        | 100005 | 0        |
+                | 3        | 100006 | -1000    |
+
+    @NIN02.03
+    Scenario: [NIN02.03] Describe the output when the delta calculator receives a list with more assets. The this mining operation ongoing. Increased old stack
+        Given a base asset list of type "A"
+        Given a new asset list of type "C"
+        When both list are entered to the Delta Calculator
+        Then the output asset list has 3 assets
+            And the asset list returned has the next contents
+                | position | id     | quantity |
+                | 1        | 100001 | 1000     |
+                | 2        | 100002 | 0        |
+                | 3        | 100003 | -1000    |
+
