@@ -17,7 +17,6 @@ export class DeltaCalculator {
         asset.item_id,
         initialList,
       );
-      console.info("Matches:" + JSON.stringify(matches));
       // if (this.isEmpty(matches)) {
       if (matches.length == 0) {
         // The assets if not on the original list so it is new.
