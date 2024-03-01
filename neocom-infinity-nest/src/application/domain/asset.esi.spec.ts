@@ -1,4 +1,4 @@
-import { AssetEsi } from './asset-esi';
+import { AssetEsi } from './asset.esi';
 
 describe('DOMAIN AssetEsi [Module: -]', () => {
   describe('constructor contract', () => {

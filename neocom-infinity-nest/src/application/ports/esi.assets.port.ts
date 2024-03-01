@@ -1,5 +1,8 @@
+import { Observable } from "rxjs";
+import { AxiosResponse } from 'axios';
 import { AssetEsi } from "../domain/asset.esi";
+import { ResponseTransformer } from "src/infrastructure/adapter/outbound/core/ResponseTransformer";
 
 export interface AssetsPort {
-  getCharacterAssets(characterId: number): AssetEsi[];
+  apiEsiCharacterAssetsData(pilotId: number): Promise<AssetEsi[]>;
 }
