@@ -36,4 +36,15 @@ export class AssetsAdapter implements AssetsPort {
         return response
       }))
   }
+  public apiEsiUniverseTypesData(typeId: number): Observable<UniverseType> {
+    const request = this.ESIUNIVERSE + 'types/' + typeId + this.addEsiQueryParameters()
+    return this.httpService.wrapHttpGETCall(request)
+      .pipe(map((data: any) => {
+        const response = new UniverseType(data)
+        return response
+      }))
+  }
+  private addEsiQueryParameters(): string {
+    return '?datasource=tranquility&language=en-us'
+  }
 }
