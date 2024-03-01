@@ -2,16 +2,6 @@
   {
     "is_blueprint_copy": true,
     "is_singleton": true,
-    "item_id": 1012451140001,
-    "location_flag": "AutoFit",
-    "location_id": 1010848366291,
-    "location_type": "item",
-    "quantity": 100,
-    "type_id": 1403
-  },
-  {
-    "is_blueprint_copy": true,
-    "is_singleton": true,
     "item_id": 1012512980002,
     "location_flag": "AutoFit",
     "location_id": 1010848366291,
@@ -28,5 +18,15 @@
     "location_type": "item",
     "quantity": 2000,
     "type_id": 1404
+  },
+  {
+    "is_blueprint_copy": true,
+    "is_singleton": true,
+    "item_id": 1012451140001,
+    "location_flag": "AutoFit",
+    "location_id": 1010848366291,
+    "location_type": "item",
+    "quantity": 100,
+    "type_id": 1403
   }
 ]

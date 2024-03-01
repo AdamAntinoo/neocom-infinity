@@ -1,8 +1,8 @@
 import { Before, Given, Then, When } from '@cucumber/cucumber';
-import { NeoComWorld } from '../neocom-world';
-import { AssetEsi } from '../../../src/application/domain/asset-esi';
-import { DeltaCalculator } from '../../../src/application/dmos/delta-calculator';
 import { expect } from 'expect';
+import { NeoComWorld } from '../neocom-world';
+import { AssetEsi } from '../../../src/application/domain/asset.esi';
+import { DeltaCalculator } from '../../../src/application/dmos/delta-calculator';
 
 Given('a base asset list of type {string}', function (type: string) {
   console.info('type:' + type);
@@ -145,7 +145,7 @@ Given('a new asset list of type {string}', function (type: string) {
      }
 });
 
-When('both list are entered to the Delta Calculator', function (this: NeoComWorld,) {
+When('both list are entered to the Delta Calculator', function () {
   this.deltaCalculator=new DeltaCalculator();
   this.output = this.deltaCalculator.apply(this.initialList, this.secondList);
   console.info('output:' + JSON.stringify(this.output));

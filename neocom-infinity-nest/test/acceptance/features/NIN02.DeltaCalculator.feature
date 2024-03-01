@@ -7,10 +7,10 @@ Feature: Define the scenarios and use cases for the Delta Calculator.
     - If the asset id only appears on the second list then this is a new asst and goes to the output list as is.
 
     Scenario types:
-        - Type 01. The assets on the initial match the id with the assets on the second list. The result has the same input assets with the substraction of the asset contents.
-        - Type 02. There is an asset on the initial that is not on the second. The number of assets descends.
-        - Type 03. There is an asset on the second that is not on the initial. The number of assets increases.
-
+        - Type A. The assets on the initial match the id with the assets on the second list. The result has the same input assets with the substraction of the asset contents.
+        - Type B. There is an asset on the initial that is not on the second. The number of assets descends.
+        - Type C. There is an asset on the second that is not on the initial. The number of assets increases.
+# TODO - Review documentation and the contents of the different lists. .02 and .03 are identical.
     @NIN02.01
     Scenario: [NIN02.01] Describe the output when the delta calculator receives the same asset list. This is a NOOP state that signals start/stop mining operation.
         Given a base asset list of type "A"
