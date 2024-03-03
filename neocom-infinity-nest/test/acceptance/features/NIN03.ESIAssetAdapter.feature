@@ -7,10 +7,10 @@ Feature: Test the Asset Adapter to download and response with list os assets fro
     Downloaded assets will be sorted by the item_id.
 
     @NIN03.01
-    Scenario: [NIN03.01] Get the baseline of assets. This is the first request of the series and should report a checked list.
+    Scenario: [NIN03.01] Get the selected capsuleer complete list of assets.
         Given pilot information card with the next data
-            | pilotId | token |
-            | 10001   | 1     |
+            | pilotId |
+            | 10001   |
         When the AssetAdapter "character/assets" endpoint is called
         Then the number os assets downloaded is 3
             And the asset data downloaded is

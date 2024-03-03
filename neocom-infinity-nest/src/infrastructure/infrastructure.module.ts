@@ -2,14 +2,17 @@ import { Module } from '@nestjs/common';
 import { HttpModule } from '@nestjs/axios'
 import { HttpService, } from '@nestjs/axios';
 import { ESIAssetsDataAdapter } from './adapter/outbound/esi.assets.adapter';
-import { ESIHttpService } from './network/esi.httpservice';
-import { MockESIHttpService } from './network/mock.esi.httpservice';
+import { ESISecureDataServiceAdapter } from './network/esi.secure.dataservice.adapter';
+import { MockESIHttpSecureService } from './network/mock.esi.httpsecureservice';
+import { DomainModule } from '../domain/domain.module';
 
 @Module({
-  imports: [HttpModule.register({
+  imports: [
+    HttpModule.register({
     timeout: 5000,
     maxRedirects: 5
-  })],
-  providers: [ESIAssetsDataAdapter, ESIHttpService,HttpService,MockESIHttpService],
+  }),
+DomainModule],
+  providers: [ESIAssetsDataAdapter],
 })
 export class InfrastructureModule { }

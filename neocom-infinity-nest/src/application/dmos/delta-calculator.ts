@@ -1,4 +1,4 @@
-import { AssetEsi } from '../domain/asset.esi';
+import { AssetEsi } from "../../../src/domain/dto/ESIAsset.esi";
 
 export class DeltaCalculator {
   /**

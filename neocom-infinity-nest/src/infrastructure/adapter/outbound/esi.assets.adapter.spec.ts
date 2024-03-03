@@ -1,11 +1,11 @@
 import { Test, TestingModule } from "@nestjs/testing";
 import { ESIAssetsDataAdapter } from "./esi.assets.adapter";
-import { ESIHttpService } from "../../network/esi.httpservice";
-import { MockESIHttpService } from "../../network/mock.esi.httpservice";
-import { AssetEsi } from "./domain/ESIAsset.esi";
+import { ESISecureDataServiceAdapter } from "../../network/esi.secure.dataservice.adapter";
+import { MockESIHttpSecureService } from "../../network/mock.esi.httpsecureservice";
+import { AssetEsi } from "../../../domain/dto/ESIAsset.esi";
 
 describe('ADAPTER ESIAssetsDataAdapter [Module: Infrastructure]', () => {
-	let httpService: MockESIHttpService;
+	let httpService: MockESIHttpSecureService;
 	let esiAssetAdapter: ESIAssetsDataAdapter;
 	beforeEach(async () => {
 		// const moduleRef = await Test.createTestingModule({
@@ -14,7 +14,7 @@ describe('ADAPTER ESIAssetsDataAdapter [Module: Infrastructure]', () => {
 		// }).compile();
 		// httpService = moduleRef.get<MockESIHttpService>(MockESIHttpService);
 		// esiAssetAdapter = moduleRef.get<ESIAssetsDataAdapter>(ESIAssetsDataAdapter);
-		httpService = new MockESIHttpService();
+		httpService = new MockESIHttpSecureService();
 		esiAssetAdapter = new ESIAssetsDataAdapter(httpService);
 	});
 	describe('constructor contract', () => {
