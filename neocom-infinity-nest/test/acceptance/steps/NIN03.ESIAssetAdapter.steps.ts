@@ -27,7 +27,7 @@ When(
           this.assetAdapter.apiEsiCharacterAssetsData(1001);
         expect(sut).toBeDefined();
         this.characterAssetsResponse = sut;
-        }
+      }
     }
   },
 );
@@ -35,19 +35,26 @@ Then('the number os assets downloaded is {int}', function (assetCount: number) {
   expect(this.characterAssetsResponse).toBeDefined();
   this.characterAssetsResponse.then((assetlist) => {
     expect(assetlist).toBeDefined();
-    this.assetlist = assetlist
+    this.assetlist = assetlist;
     expect(assetlist.length).toBe(3);
   });
 });
 Then('the asset data downloaded is', function (dataTable) {
-  for (let index = 0; index < dataTable.length; index++) {
-    const element = dataTable[index];
-    const asset = this.assetlist[index]
-    expect(assetMatch(element, asset)).toBeTruthy()
+  console.log('dataTable->' + JSON.stringify(dataTable));
+  console.log('dataTable->' + JSON.stringify(dataTable.hashes()));
+  console.log('tableCount->' + dataTable.hashes().length);
+  for (let index = 0; index < dataTable.hashes().length; index++) {
+    const element = dataTable.hashes()[index];
+    const asset = this.assetlist[index];
+    console.log('expected->' + JSON.stringify(element));
+    console.log('asset->' + JSON.stringify(asset));
+    expect(assetMatch(element, asset)).toBeTruthy();
   }
 });
-function assetMatch(element: AssetEsi, asset: AssetEsi): any {
-  if ( element.item_id != asset.item_id)return false;
-  return true
+function assetMatch(element: any, asset: AssetEsi): any {
+  console.log('enter assetMatch->');
+  if (parseInt(element.id) != asset.item_id) return false;
+  if (parseInt(element.typeId) != asset.type_id) return false;
+  if (parseInt(element.quantity) != asset.quantity) return false;
+  return true;
 }
-

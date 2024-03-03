@@ -7,37 +7,37 @@ export class MockESIHttpSecureService implements HttpSecureServiceInterface {
   public wrapHttpGet<T>(request: string): Promise<T> {
     if (request)
       return new Promise<AssetEsi[]>((resolve, reject) => {
-        resolve(this.getCharacterAssets());
+        resolve(this.getCharacterAssets().sort((a,b)=>a.item_id-b.item_id));
       }) as Promise<T>
   }
   private getCharacterAssets(): AssetEsi[] {
     const assetlist = [
       new AssetEsi({
         is_singleton: false,
-        item_id: 100001,
+        item_id: 1012512980002,
         location_flag: 'AutoFit',
         location_id: 1035124094434,
         location_type: 'item',
         quantity: 1000,
-        type_id: 101,
+        type_id: 1404,
       }),
       new AssetEsi({
         is_singleton: false,
-        item_id: 100002,
+        item_id: 1012451140001,
         location_flag: 'AutoFit',
         location_id: 1035124094434,
         location_type: 'item',
         quantity: 2000,
-        type_id: 102,
+        type_id: 1403,
       }),
       new AssetEsi({
         is_singleton: false,
-        item_id: 100003,
+        item_id: 1012512980003,
         location_flag: 'AutoFit',
         location_id: 1035124094434,
         location_type: 'item',
         quantity: 3000,
-        type_id: 103,
+        type_id: 1404,
       }),
     ];
     return assetlist;
