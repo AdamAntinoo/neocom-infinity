@@ -1,11 +1,9 @@
 import { Injectable, Logger } from "@nestjs/common";
-import { HttpService, } from '@nestjs/axios';
-import { AxiosResponse, AxiosError } from 'axios';
-import { AssetEsi } from "../../application/domain/asset.esi";
-import { HttpServiceInterface } from "./http.service.interface";
+import { HttpSecureServiceInterface } from "./http.secure.service.interface";
+import { AssetEsi } from "../../../src/domain/dto/ESIAsset.esi";
 
 @Injectable()
-export class MockESIHttpService implements HttpServiceInterface {
+export class MockESIHttpSecureService implements HttpSecureServiceInterface {
   public wrapHttpGet<T>(request: string): Promise<T> {
     if (request)
       return new Promise<AssetEsi[]>((resolve, reject) => {

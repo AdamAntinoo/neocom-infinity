@@ -1,5 +1,5 @@
 import { Observable } from "rxjs";
 
-export interface HttpServiceInterface{
+export interface HttpSecureServiceInterface{
   wrapHttpGet<T>(request: string): Promise<T>;
 }

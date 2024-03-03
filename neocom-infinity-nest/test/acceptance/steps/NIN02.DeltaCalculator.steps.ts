@@ -1,8 +1,8 @@
 import { Before, Given, Then, When } from '@cucumber/cucumber';
 import { expect } from 'expect';
 import { NeoComWorld } from '../neocom-world';
-import { AssetEsi } from '../../../src/application/domain/asset.esi';
 import { DeltaCalculator } from '../../../src/application/dmos/delta-calculator';
+import { AssetEsi } from '../../../src/domain/dto/ESIAsset.esi';
 
 Given('a base asset list of type {string}', function (type: string) {
   console.info('type:' + type);
