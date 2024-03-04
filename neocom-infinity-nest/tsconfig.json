@@ -16,6 +16,21 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
-    "baseUrl": "."
+    "rootDirs": [
+      "src",
+      "test"
+    ],
+    "baseUrl": "src",
+    "paths": {
+      "@App/*": [
+        "application/*"
+      ],
+      "@Domain/*": [
+        "domain/*"
+      ],
+      "@Infra/*": [
+        "infrastructure/*"
+      ]
+    }
   }
 }
