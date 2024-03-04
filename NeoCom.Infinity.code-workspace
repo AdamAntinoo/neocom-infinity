@@ -1,9 +1,12 @@
 {
 	"folders": [
-        {
-            "path": "."
-        }
-    ],
+		{
+			"path": "."
+		},
+		{
+			"path": "../simple-blog-application-backend-challenge"
+		}
+	],
 	"settings": {
 		"html.format.wrapLineLength": 140,
 		"editor.wordWrap": "wordWrapColumn",

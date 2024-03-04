@@ -13,21 +13,21 @@
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "test": "jest",
     "test:watch": "jest --watch",
-    "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "cucumber-7": "cucumber-js ./test/**/*.feature --no-strict --require-module ts-node/register --require test/acceptance/neocom-world.ts --require ./test/acceptance/steps/**/*.ts",
-    "cucumber": "cucumber-js ./test/**/*.feature --no-strict --require-module ts-node/register --require ./test/acceptance/steps/**/*.ts",
     "docker:wiremock:up": "docker-compose -f ./support/docker-wiremock.yml up & ",
     "docker:wiremock:down": "docker-compose -f ./support/docker-wiremock.yml down & ",
     "docker:start": "npm run docker:wiremock:up",
     "docker:stop": "npm run docker:wiremock:down",
-    "jest": "jest --verbose --coverage"
+    "jest": "jest --verbose",
+    "coverage": "jest --verbose --coverage",
+    "cucumber": "./node_modules/@cucumber/cucumber/bin/cucumber-js ./test/**/*.feature --no-strict --require-module ts-node/register --require ./test/acceptance/steps/**/*.ts",
+    "test:full": "npm run jest && npm run cucumber",
+    "test": "jest --verbose",
+    "test:cov": "jest --verbose --coverage"
   },
   "dependencies": {
-    "@cucumber/cucumber": "^10.3.1",
     "@nestjs/axios": "^3.0.2",
     "@nestjs/common": "^10.0.0",
     "@nestjs/core": "^10.0.0",
@@ -36,6 +36,7 @@
     "rxjs": "^7.8.1"
   },
   "devDependencies": {
+    "@cucumber/cucumber": "^10.3.1",
     "@nestjs/cli": "^10.0.0",
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^10.0.0",
@@ -75,11 +76,22 @@
     "coverageDirectory": "../coverage",
     "testEnvironment": "node",
     "testMatch": [
-      "**/*.steps.ts",
       "**/*.spec.ts"
     ],
     "moduleNameMapper": {
-      "^@App/(.*)$": "./src/$1"
-    }
+      "^@Domain/(.*)$": "<rootDir>/src/domain/$1"
+    },
+    "coverageDirectory": "./coverage",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "!src/**/*.module.ts"
+    ],
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "text",
+      "clover"
+    ]
   }
 }
