@@ -21,27 +21,6 @@ export class ESIAssetsDataAdapter implements AssetsPort {
   }
 
   // - A S S E T S
-  // public apiEsiCharacterAssetsDataResponse(pilotId: number, transformer: ResponseTransformer): Observable<AxiosResponse<AssetEsi[]>> {
-  //   const request = this.ESIUNIVERSE + '/characters/' + pilotId + '/assets/' + this.addEsiQueryParameters();
-  //   return this.httpService.get(request)
-  //   // .pipe(map((data: any) => {
-  //   //   console.log(">[BackendService.apiGetPilotFittings_v1]> Transformation: " + transformer.description)
-  //   //   const response = transformer.transform(data) as AssetEsi[]
-  //   //   return response
-  //   // }));
-  // }
-  // async apiEsiCharacterAssetsDataPromise(pilotId: number): Promise<AssetEsi[]> {
-  //   const request = this.ESIUNIVERSE + '/characters/' + pilotId + '/assets/' + this.addEsiQueryParameters();
-  //   return await firstValueFrom(
-  //     this.httpService.get<AssetEsi[]>(request).pipe(
-  //       catchError((error: AxiosError) => {
-  //         this.logger.error(error.response.data);
-  //         throw 'An error happened!';
-  //       }),
-  //     ),
-  //   );
-  //   // return data;
-  // }
   public async apiEsiCharacterAssetsData(pilotId: number): Promise<AssetEsi[]> {
     const request =
       this.ESIUNIVERSE +
