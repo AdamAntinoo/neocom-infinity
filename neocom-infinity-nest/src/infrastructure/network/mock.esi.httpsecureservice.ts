@@ -1,16 +1,20 @@
-import { Injectable, Logger } from "@nestjs/common";
-import { HttpSecureServiceInterface } from "./http.secure.service.interface";
-import { AssetEsi } from "../../../src/domain/dto/ESIAsset.esi";
+import { Injectable, Logger } from '@nestjs/common';
+import { HttpSecureServiceInterface } from './http.secure.service.interface';
+import { AssetEsi } from '../../../src/domain/dto/ESIAsset.esi';
 
 @Injectable()
 export class MockESIHttpSecureService implements HttpSecureServiceInterface {
   public wrapHttpGet<T>(request: string): Promise<T> {
+    console.log('enter wrapHttpGet');
     if (request)
       return new Promise<AssetEsi[]>((resolve, reject) => {
-        resolve(this.getCharacterAssets().sort((a,b)=>a.item_id-b.item_id));
-      }) as Promise<T>
+        let sortedAssets = this.getCharacterAssets();
+        const newsort = sortedAssets.sort((a, b) => a.item_id - b.item_id);
+        resolve(sortedAssets.sort((a, b) => a.item_id - b.item_id));
+      }) as Promise<T>;
   }
   private getCharacterAssets(): AssetEsi[] {
+    console.log('enter getCharacterAssets');
     const assetlist = [
       new AssetEsi({
         is_singleton: false,

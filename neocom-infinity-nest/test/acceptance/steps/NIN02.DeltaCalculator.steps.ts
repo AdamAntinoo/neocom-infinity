@@ -148,22 +148,25 @@ Given('a new asset list of type {string}', function (type: string) {
 When('both list are entered to the Delta Calculator', function () {
   this.deltaCalculator=new DeltaCalculator();
   this.output = this.deltaCalculator.apply(this.initialList, this.secondList);
-  console.info('output:' + JSON.stringify(this.output));
+  expect(this.output).toBeDefined()
 });
 
 Then('the output asset list has {int} assets', function (size: number) {
-  console.info('output:' + JSON.stringify(this.output));
   expect(this.output.length).toBe(size);
 });
 
 Then('the asset list returned has the next contents', function (dataTable) {
-  for (let index = 0; index < dataTable.length; index++) {
-    const element = dataTable[index];
+  console.log("datatable->"+JSON.stringify(dataTable))
+  let testPassed = false
+  for (let index = 0; index < dataTable.hashes().length; index++) {
+    const element = dataTable.hashes()[index];
     let asset: AssetEsi = this.output[parseInt(element.position) - 1];
     expect(asset).toBeDefined();
     expect(asset.item_id).toBe(parseInt(element.id))
     expect(asset.quantity).toBe(parseInt(element.quantity))
+    testPassed =true
   }
+  expect(testPassed).toBeTruthy()
 });
 Then('the asset at position {int} has the next values', function (position: number, dataTable) {
   const element = dataTable[position - 1];

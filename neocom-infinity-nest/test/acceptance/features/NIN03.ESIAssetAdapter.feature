@@ -15,20 +15,20 @@ Feature: Test the Asset Adapter to download and response with list os assets fro
         Then the number os assets downloaded is 3
             And the asset data downloaded is
                 | id            | typeId | quantity |
-                | 1012451140001 | 1403   | 2000      |
+                | 1012451140001 | 1403   | 2000     |
                 | 1012512980002 | 1404   | 1000     |
                 | 1012512980003 | 1404   | 3000     |
 
-@NIN03.02
-Scenario: [NIN0302] Be sure that the assets are ordered by item_id.
-       Given pilot information card with the next data
+    @NIN03.02
+    Scenario: [NIN03.02] Be sure that the assets are ordered by item_id.
+        Given pilot information card with the next data
             | pilotId |
             | 10001   |
         When the AssetAdapter "character/assets" endpoint is called
         Then the number os assets downloaded is 3
             And the asset data downloaded is
                 | id            | typeId | quantity |
-                | 1012451140001 | 1403   | 2000      |
+                | 1012451140001 | 1403   | 2000     |
                 | 1012512980002 | 1404   | 1000     |
                 | 1012512980003 | 1404   | 3000     |
 
