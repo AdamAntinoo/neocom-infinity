@@ -8,5 +8,15 @@
     },
     "[json]": {
         "editor.defaultFormatter": "vscode.json-language-features"
-    }
+    },
+    "files.autoSave": "onWindowChange",
+    "files.autoSaveWhenNoErrors": true,
+    "files.autoSaveWorkspaceFilesOnly": true,
+    "formatOnSave": true,
+    "editor.wordWrapColumn": 150,
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "modifications"
 }
