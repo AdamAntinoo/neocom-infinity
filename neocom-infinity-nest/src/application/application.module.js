@@ -1,7 +1,7 @@
-import { Module } from '@nestjs/common';
-import { InfrastructureModule } from '../infrastructure/infrastructure.module';
+import { Module } from '@nestjs/common'
 
 @Module({
-  imports: [InfrastructureModule],
+  imports: [],
+  providers: [StartMiningOperation]
 })
-export class ApplicationMOdule {}
+export class ApplicationModule { }
