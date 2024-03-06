@@ -1,46 +1,74 @@
 {
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Debug Nest Framework",
-      "args": [
-        "${workspaceFolder}/src/main.ts"
-      ],
-      "runtimeArgs": [
-        "--nolazy",
-        "-r",
-        "ts-node/register",
-        "-r",
-        "tsconfig-paths/register"
-      ],
-      "sourceMaps": true,
-      "envFile": "${workspaceFolder}/.env",
-      "cwd": "${workspaceRoot}",
-      "console": "integratedTerminal",
-      "protocol": "inspector"
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Launch Program",
-      "preLaunchTask": build,
-      "program": "${workspaceFolder}/dist/code-generation-test.js"
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "TypeScript examples",
-      "program": "${workspaceRoot}/node_modules/jest/bin/jest.js",
-      "args": [
-        "-i"
-      ],
-      "preLaunchTask": build,
-      "internalConsoleOptions": "openOnSessionStart",
-      "outFiles": [
-        "${workspaceRoot}/examples/typescript/dist/**/*"
-      ]
-    }
-  ]
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "NPM Cukes",
+            "type": "node",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "program": "${workspaceRoot}/node_modules/@cucumber/cucumber/bin/cucumber-js   --require-module  --require-module  ",
+            "args": [
+                "./test/**/*.feature",
+                "--no-strict",
+                "--require-module",
+                "ts-node/register",
+                "--require-module",
+                "tsconfig-paths/register",
+                "--require",
+                "./test/acceptance/steps/**/*.ts",
+                "--tags",
+                "@NIN04.03"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug Nest Framework",
+            "args": [
+                "${workspaceFolder}/src/main.ts"
+            ],
+            "runtimeArgs": [
+                "--nolazy",
+                "-r",
+                "ts-node/register",
+                "-r",
+                "tsconfig-paths/register"
+            ],
+            "sourceMaps": true,
+            "envFile": "${workspaceFolder}/.env",
+            "cwd": "${workspaceRoot}",
+            "console": "integratedTerminal",
+            "protocol": "inspector"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Program",
+            "preLaunchTask": build,
+            "program": "${workspaceFolder}/dist/code-generation-test.js"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "TypeScript examples",
+            "program": "${workspaceRoot}/node_modules/jest/bin/jest.js",
+            "args": [
+                "-i"
+            ],
+            "preLaunchTask": build,
+            "internalConsoleOptions": "openOnSessionStart",
+            "outFiles": [
+                "${workspaceRoot}/examples/typescript/dist/**/*"
+            ]
+        },
+        {
+            "name": "cucumber",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceRoot}/node_modules/cucumber/bin/cucumber.js",
+            "outFiles": [
+                "${workspaceRoot}/test/acceptance/features/*.feature"
+            ]
+        }
+    ]
 }
