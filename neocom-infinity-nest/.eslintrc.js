@@ -1,4 +1,5 @@
 module.exports = {
+  code: 150,
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: 'tsconfig.json',
@@ -21,5 +22,14 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    "@typescript-eslint/no-namespace": "off"
   },
-};
+  overrides: [
+    {
+      files: ['*.ts'],
+      rules: {
+        semi: ['error', 'never'],
+      }
+    }
+  ]
+}

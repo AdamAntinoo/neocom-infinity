@@ -22,7 +22,7 @@
     "docker:stop": "npm run docker:wiremock:down",
     "jest": "jest --verbose",
     "coverage": "jest --verbose --coverage",
-    "cucumber": "./node_modules/@cucumber/cucumber/bin/cucumber-js ./test/**/*.feature --no-strict --require-module ts-node/register --require ./test/acceptance/steps/**/*.ts",
+    "cucumber": "./node_modules/@cucumber/cucumber/bin/cucumber-js ./test/**/*.feature --no-strict --require-module ts-node/register --require-module tsconfig-paths/register --require ./test/acceptance/steps/**/*.ts",
     "test:full": "npm run jest && npm run cucumber",
     "test": "jest --verbose",
     "test:cov": "jest --verbose --coverage"
@@ -32,6 +32,7 @@
     "@nestjs/common": "^10.0.0",
     "@nestjs/core": "^10.0.0",
     "@nestjs/platform-express": "^10.0.0",
+    "@nestjs/schedule": "^4.0.1",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1"
   },
@@ -47,6 +48,7 @@
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "axios": "^1.6.7",
+    "cron": "^3.1.6",
     "eslint": "^8.42.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.0.0",

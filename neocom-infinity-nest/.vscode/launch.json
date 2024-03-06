@@ -1,0 +1,24 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "NPM Cukes",
+      "type": "node",
+      "request": "launch",
+      "console": "integratedTerminal",
+      "program": "${workspaceRoot}/node_modules/@cucumber/cucumber/bin/cucumber-js",
+      "args": [
+        "./test/**/*.feature",
+        "--no-strict",
+        "--require-module",
+        "ts-node/register",
+        "--require-module",
+        "tsconfig-paths/register",
+        "--require",
+        "./test/acceptance/steps/**/*.ts",
+        "--tags",
+        "@NIN04.03"
+      ]
+    }
+  ]
+}
