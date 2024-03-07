@@ -2,7 +2,9 @@ import { Module } from '@nestjs/common';
 import { HttpModule } from '@nestjs/axios'
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ScheduleModule } from '@nestjs/schedule';
+import { ScheduleModule, SchedulerRegistry } from '@nestjs/schedule';
+import { StartMiningOperation } from '@App/use-cases/mining-operation/StartMiningOperation';
+import { MiningOperationRepositoryMemory } from '@Infra/adapter/persistence/MiningOperationRepositoryMemory';
 
 @Module({
   imports: [
@@ -13,6 +15,6 @@ import { ScheduleModule } from '@nestjs/schedule';
     ScheduleModule.forRoot()
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, SchedulerRegistry, MiningOperationRepositoryMemory, StartMiningOperation],
 })
 export class AppModule { }
