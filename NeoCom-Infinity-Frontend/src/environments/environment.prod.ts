@@ -1,7 +1,7 @@
 export const environment = {
     production: true,
     showexceptions: true,
-    copyright: '© 2019,2021 Dimensinfin Industries',
+    copyright: '© 2019,2024 Dimensinfin Industries',
     appTitle: 'NeoCom Infinity',
     appName: require('../../package.json').name,
     appVersion: require('../../package.json').version + " dev",
