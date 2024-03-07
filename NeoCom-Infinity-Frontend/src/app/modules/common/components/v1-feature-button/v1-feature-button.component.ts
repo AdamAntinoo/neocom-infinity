@@ -14,7 +14,7 @@ export class V1FeatureButtonComponent {
 
     constructor(protected router: Router) { }
 
-    public getUniqueId () : string {
+    public getUniqueId(): string {
         return this.feature.id
     }
     public getFeatureImage(): string {
@@ -28,8 +28,9 @@ export class V1FeatureButtonComponent {
     // - I N T E R A C T I O N S
     public onClick(): void {
         if (this.feature) {
-            if (this.feature.interaction == EInteraction.PAGEROUTE)
-                this.pageChange(this.feature.route)
+            if (this.feature.enabled)
+                if (this.feature.interaction == EInteraction.PAGEROUTE)
+                    this.pageChange(this.feature.route)
         }
     }
     private pageChange(route: string): void {
