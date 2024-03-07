@@ -1,4 +1,21 @@
-# Project notes
+# Neocom Infinity Description
+NeoCom Infinity is a new version with a reconfigured User Interface (UX) that aims to a much better user experience and also focusing on features not provided by other tools or that implemented in Infinity have a much better usability.
+
+Developments are mainly docused on Industry and on Market improvements and leaving Fittings and other areas to a later requirement refinement.
+
+## 1. Industry
+Industry is a key element on Eve Online and that is because is one of the most stable sources for ISK. It can be divided into two areas, Mining and Manufacturing. Recent changes on the Eve Online gameplay have added more mining functionalities that are worth to integrate on Infinity.
+
+## 1.1 Mining Operations
+Now Eve provides an endpoint to return the last ore mineral revocered by mining operations. This will make easy to see the progress on the mining schedule and budget.
+
+The **Mining Operations** activity is under the main dashboard on the **Industry** page under the Mining Operations activation button.
+
+The new Mining Operations Page will display one or two panels. If there are active mining operations during the current date they will be shown on the main panel. If there are no current operations then that panel is not visible.
+
+The second panel is always visible and shows historic mining operations by date. That information is removes after some days (keeps tha tlast **30** days) from the ESI data source so it has to be persisten on the Infinity backend for persistence. This mining progress data is updated in a window of no less than **600** seconds.
+
+
 ## Fitting build
 **Fitting Build Configuration** is a hierarchical render example. A Fitting is composed of different layers of data that are also composed of more data layers.
 

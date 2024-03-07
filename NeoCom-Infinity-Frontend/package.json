@@ -1,6 +1,6 @@
 {
     "name": "neocom-infinity",
-    "version": "0.20.0",
+    "version": "0.20.1-mining-sessions.1",
     "scripts": {
         "cucumber": "$(npm bin)/cucumber-js ./cypress/**/*.feature --no-strict --tags @NIF07.01",
         "docker:start": "docker-compose -f ./support/neocom-docker-frontend/docker-compose.yml up & ",
