@@ -7,15 +7,19 @@ import { StartMiningOperationInterface } from '@App/interfaces/StartMiningOperat
 import { MiningOperation } from '@Domain/entities/MiningOperation'
 import { MiningOperationState } from '@Domain/entities/MiningOperationState'
 import { MiningUpdateJob } from '@App/helpers/MiningUpdateJob'
-
+import { MiningOperationRepositoryMemory } from '@Infra/adapter/persistence/MiningOperationRepositoryMemory'
+/**
+ * RESPONSIBILITY:
+ * Interact with the UX to process the StartMiningOperation request. That request will create a new MiningOperation and start the asset processing to evaluate the assets collected during the time the operation is active.
+ * Will connect all the Helpers and Instances to be able to process the assets in a periodic way.
+ * Will persist the MiningOperation on the corresponding repository.
+ */
 @Injectable()
 export class StartMiningOperation implements StartMiningOperationInterface {
-  // @Inject()
-  private miningOperationRepository: MiningOperationRepository
-  // @Inject()
-  private schedulerRegistry: SchedulerRegistry
-
-  constructor( miningOperationRepository: MiningOperationRepository,  schedulerRegistry: SchedulerRegistry) {
+  constructor(
+    private miningOperationRepository: MiningOperationRepositoryMemory,
+    private schedulerRegistry: SchedulerRegistry,
+    private starter: MiningOperationStarter4) {
     this.miningOperationRepository = miningOperationRepository
     this.schedulerRegistry = schedulerRegistry
   }
