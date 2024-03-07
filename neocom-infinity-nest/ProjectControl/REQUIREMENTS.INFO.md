@@ -2,19 +2,33 @@
 ## 1. Mining Sessions
 Mining sessions are based on the detection of Ore assets change during time. During a mining operation the number of Ore items will be increased
 and the system can detect that this increase has started and when has stopped to identify a mining operation.
-This feature is based on a new service named DeltaCalculator.
+This feature is based on a new set of services.
+* MiningUpdateJob
+* MiningOperationStarter
+* MiningOperationCloser
+* DeltaCalculator
+* ESIAssetsAdapter
 
 ## 2. Mining Session Data Flow
-The flow start with a UX request to start detecting a mining session. The baclend service cannot be monitoring all characters all round 24h time for the assets since this is a quite expensive operation. It is most useful to start the signaling on the UX and from it the backend can tae care of periodically get updates of the asset stacks to get the mining accounting done
+The flow starts with a UX request to start detecting a mining session. The backend service cannot be monitoring all characters all round 24h time for the assets since this is a quite expensive operation. It is most useful to start the signaling on the UX and from it the backend can take care of periodically get updates of the asset stacks to get the mining accounting done
 
 The flow then depicts the next diagram.
 Figure 2.1
 * The action starts on the UX the the pilot opens the mining operation monitoring page.
-* That monitoring page calls a signaling endpoint that will start a **MiningOperation** Service Instance.
-* That MiningOperation will reach the **AssetsAdapter** to get the list of assets for the selected pilot.
-* This adapter will use the **ESISecuredDataServiceAdapter** to reach the ESI data provider and get the current capsuleer list of assets.
-* The list of assets will be filtered and ordered to be used for **DeltaCalculations**.
+* That monitoring page calls a signaling endpoint that will start a **StartMiningOperation** Use Case.
+* The use case will create a new **MiningOperation** than when initialized will have the initial set of ore assets found at the start time.
+* The use case will start a scheduled job to periodically get the new list of Ore assets. This job will reach the **ESIAssetsAdapter** to get the list of assets for the selected pilot. With the **MiningOperationStarter** will create the list that is injected into the MiningOperation to calculate the delta from the start set of assets.
+* The ESIAssetsAdapter will use the **ESISecuredDataServiceAdapter** to reach the ESI data provider and get the current capsuleer list of assets.
+* The list of assets will be filtered and ordered to be used by the **DeltaCalculator** to generate the difference of ore assets from the start mining point to this new asset extraction.
+* The MiningOperation will use this new delta as the contents of the operation to be shown on the UX.
 * The aggregated data will be available to the UX. There are two solutions to update that UX, or do a periodic get to refresh the **MininsSessionData** available on the frontend, or use push to push the new data to the frontend when available.
+
+### 2.1 Ore Asset filtering
+To filter out only ore assets we need additional data to the one provided by the asset list obtained from the ESI service. The ESI asset only has the *type_id* as a type selector. This type is a new structure on the ESI Universe that will provide all the additional type information like the **group_id** and the **name**.
+
+The group_id is a key element to identify ore types since it points to the **category_id** number 25 that represent all the elements that originate at Asteroids.
+
+Since we have not that information available beforehand and collecting it will require many ESI calls we can create a list by hand of all the types that fit on the category 25. This list usually will not change but in the event there are more ore assets we can upgrade it and this will solve the problem of filtering.
 
 ### 2.1 HttpSecureServiceAdapter
 This is the single element tied to the NestJs libraries dependencies. It will wrap calls with the required headers and elements to make call to the Esi provider using the Axis framework http library.
@@ -53,4 +67,3 @@ The closed sequence should end with an exception to signal the termination of th
 the server to restart the synchronization.
 
 This is a research task with wiremock or apisimulator.
-
