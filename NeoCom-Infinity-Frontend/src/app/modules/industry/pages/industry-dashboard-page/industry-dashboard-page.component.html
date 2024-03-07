@@ -4,13 +4,14 @@
     <div class="panel panel-white settings-panel">LOGOFF<br>BUTTON</div>
 </div>
 <div cy-section-name="industry-dashboard" class="section column">
-    <div class="row">
-        <v1-pilot-panel class="panel" [identifier]="getPilotId()"></v1-pilot-panel>
+    <div class="row" style="width: 50%">
+        <v1-pilot-panel class="panel" [identifier]="getPilotId()" style="width: 100%"></v1-pilot-panel>
     </div>
-    <div class="section-title">INDUSTRIA</div>
+    <div class="section-title">INDUSTRY</div>
     <div class="dock row">
         <div *ngFor="let feature of features">
             <v1-feature-button [feature]="feature"></v1-feature-button>
         </div>
     </div>
+    <div class="section-title"></div>
 </div>
