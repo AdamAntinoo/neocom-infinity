@@ -34,6 +34,14 @@ export class IndustryDashboardPageComponent {
             route: "/industry/manufacture/blueprints",
             imageRef: 'assets/media/blueprints-feature.jpeg'
         }))
+        this.features.push(new NeoComFeature({
+            id: 'mining-operations',
+            label: 'Mining Operations',
+            enabled: false,
+            interaction: 'PAGEROUTE',
+            route: '',
+            imageRef: 'assets/media/mining-operations.jpeg'
+        }))
     }
 
     // - I N T E R A C T I O N S
