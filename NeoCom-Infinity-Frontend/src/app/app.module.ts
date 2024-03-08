@@ -15,9 +15,6 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ToastrModule } from 'ngx-toastr';
 import { NgDragDropModule } from 'ng-drag-drop';
-import { RollbarModule } from 'angular-rollbar'
-import { RollbarService } from 'angular-rollbar'
-
 
 // - INTERCEPTORS
 import { AuthorizationInterceptor } from './security/authorization.interceptor';
@@ -76,9 +73,6 @@ registerLocaleData(localeEs);
         ToastrModule.forRoot(),
         MatDialogModule,
         NgDragDropModule.forRoot(),
-        RollbarModule.forRoot({
-            accessToken: '4b7515a4ac41496b931963f64ef666e2'
-        }),
         // - APPLICATION MODULES
         AppCommonModule,
         // SharedModule,
