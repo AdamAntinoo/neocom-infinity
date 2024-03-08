@@ -33,6 +33,9 @@
         "eslint.quiet": true,
         "[html]": {
             "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[json]": {
+            "editor.defaultFormatter": "vscode.json-language-features"
         }
     }
 }
