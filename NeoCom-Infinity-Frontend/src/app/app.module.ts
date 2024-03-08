@@ -46,18 +46,6 @@ import { UniverseService } from './services/universe.service';
 import { V1StartPageComponent } from './pages/v1-start-page/v1-start-page.component';
 registerLocaleData(localeEs);
 
-// // - ERROR INTERCEPTION
-// import * as Rollbar from 'rollbar';
-// import { rollbarConfig } from '@app/rollbar-errorhandler.service';
-// import { RollbarService } from '@app/rollbar-errorhandler.service';
-// import { ErrorHandler } from '@angular/core';
-// import { RollbarErrorHandler } from '@app/rollbar-errorhandler.service';
-// import { HttpErrorInterceptor } from './security/httpErrorProcessing.interceptor';
-
-// export function rollbarFactory() {
-//     return new Rollbar(rollbarConfig);
-// }
-
 @NgModule({
     imports: [
         // - BROWSER & ANIMATIONS
@@ -95,12 +83,6 @@ registerLocaleData(localeEs);
         { provide: UniverseService, useClass: UniverseService },
         { provide: BackendService, useClass: BackendService },
         { provide: AuthenticationService, useClass: AuthenticationService },
-        // - ERROR INTERCEPTION
-        // { provide: ErrorHandler, useClass: RollbarErrorHandler },
-        // { provide: RollbarService, useFactory: rollbarFactory },
-        // - HTTP INTERCEPTION
-        // { provide: HTTP_INTERCEPTORS, useClass: AuthorizationInterceptor, multi: true },
-        // { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }
     ],
     bootstrap: [AppComponent]
 })
