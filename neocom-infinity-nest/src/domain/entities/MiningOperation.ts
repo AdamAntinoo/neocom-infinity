@@ -2,16 +2,6 @@ import { UUID, randomUUID } from 'crypto';
 import { AssetEsi } from '@Domain/dto/ESIAsset.esi';
 import { MiningOperationState } from './MiningOperationState';
 
-// export type MiningOperationInterface = {
-//   id: UUID;
-//   characterId: number;
-//   state: MiningOperationState;
-//   startDate: Date;
-//   endDate: Date;
-//   baselineAssetList: AssetEsi[];
-//   deltaAssetList: AssetEsi[];
-// };
-
 export class MiningOperation {
   public readonly id: UUID;
   public readonly characterId: number;
