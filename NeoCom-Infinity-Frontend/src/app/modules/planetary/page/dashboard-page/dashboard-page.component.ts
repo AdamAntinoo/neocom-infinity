@@ -6,8 +6,6 @@ import { Input } from '@angular/core';
 import { Router } from '@angular/router';
 // - DOMAIN
 import { NeoComFeature } from '@domain/ui/NeoComFeature.domain';
-import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer';
-import { Feature } from 'cucumber';
 import { PlanetaryDataService } from '../../service/PlanetaryData.service';
 
 @Component({
@@ -15,9 +13,9 @@ import { PlanetaryDataService } from '../../service/PlanetaryData.service';
     templateUrl: './dashboard-page.component.html',
     styleUrls: ['./dashboard-page.component.scss']
 })
-export class DashboardPageComponent  {
-    public planetaryNewData:NeoComFeature
-    public planetaryDataAnalysis:NeoComFeature
+export class DashboardPageComponent {
+    public planetaryNewData: NeoComFeature
+    public planetaryDataAnalysis: NeoComFeature
 
     constructor(private planetaryService: PlanetaryDataService) {
         // Build the page features.
@@ -37,5 +35,5 @@ export class DashboardPageComponent  {
             route: "/planetary/planetary-research",
             imageRef: 'assets/media/planetary-analyze-data.jpeg'
         })
-     }
+    }
 }

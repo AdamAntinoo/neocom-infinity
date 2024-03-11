@@ -2,6 +2,9 @@
     "folders": [
         {
             "path": "."
+        },
+        {
+            "path": "../neocom-infinity-nest"
         }
     ],
     "settings": {
@@ -35,6 +38,12 @@
             "editor.defaultFormatter": "esbenp.prettier-vscode"
         },
         "[json]": {
+            "editor.defaultFormatter": "vscode.json-language-features"
+        },
+        "[feature]": {
+            "editor.defaultFormatter": "alexkrechik.cucumberautocomplete"
+        },
+        "[jsonc]": {
             "editor.defaultFormatter": "vscode.json-language-features"
         }
     }
