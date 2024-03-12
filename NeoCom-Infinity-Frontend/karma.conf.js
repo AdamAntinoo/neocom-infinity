@@ -19,23 +19,23 @@ module.exports = function (config) {
       dir: require('path').join(__dirname, './coverage/NeoComInfinityFrontend'),
       reports: ['html', 'lcovonly', 'text-summary'],
       fixWebpackSourcePaths: true,
-            thresholds: {
-                emitWarning: false,
-                global: {
-                    statements: 90,
-                    branches: 75,
-                    functions: 90,
-                    lines: 90
-                }
-            },
-            verbose: false
+      thresholds: {
+        emitWarning: false,
+        global: {
+          statements: 90,
+          branches: 75,
+          functions: 90,
+          lines: 90
+        }
+      },
+      verbose: false
     },
-        customLaunchers: {
-            ChromeHeadlessCI: {
-                base: 'ChromeHeadless',
-                flags: ['--no-sandbox']
-            }
-        },
+    customLaunchers: {
+      ChromeHeadlessCI: {
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox']
+      }
+    },
     reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
@@ -43,11 +43,11 @@ module.exports = function (config) {
     autoWatch: true,
     browsers: ['Chrome'],
     singleRun: false,
-        restartOnFileChange: true,
-        browserDisconnectTolerance: 2,
-        browserSocketTimeout: 90000,
-        browserDisconnectTimeout: 4000,
-        browserNoActivityTimeout: 60000,
-        captureTimeout: 90000
-  });
-};
+    restartOnFileChange: true,
+    browserDisconnectTolerance: 2,
+    browserSocketTimeout: 90000,
+    browserDisconnectTimeout: 4000,
+    browserNoActivityTimeout: 60000,
+    captureTimeout: 90000
+  })
+}
