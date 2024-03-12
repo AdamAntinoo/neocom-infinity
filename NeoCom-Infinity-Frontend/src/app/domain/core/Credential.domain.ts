@@ -1,6 +1,10 @@
 // - DOMAIN
+import { deprecate } from 'util';
 import { NeoCom } from '../NeoCom.domain';
 
+/**
+ * @deprecated The method should not be used
+ */
 export class NeocomCredential extends NeoCom {
     private uniqueId: string;
     private accountId: number;
@@ -35,6 +39,9 @@ export class NeocomCredential extends NeoCom {
         return this.corporationId;
     }
 }
+/**
+ * @deprecated The method should not be used
+ */
 export class Credential extends NeoCom {
     private uniqueId: string;
     private accountId: number;
