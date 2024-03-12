@@ -1,6 +1,7 @@
 {
   "mappings": [
     {
+      "priority": 5,
       "request": {
         "method": "GET",
         "urlPathTemplate": "/characters/{characterId}/miningoperation"
