@@ -12,6 +12,7 @@ export class HttpDataService {
     public httpCall<T>(request: TypedRequest): Observable<T> {
         switch (request.method) {
             case 'GET': {
+                console.log('GET->' + request.request)
                 return this.httpService.get<T>(request.request, request.options)
             }
         }
