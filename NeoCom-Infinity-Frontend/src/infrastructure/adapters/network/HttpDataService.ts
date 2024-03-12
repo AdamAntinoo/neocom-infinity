@@ -9,7 +9,7 @@ import { Injectable } from "@angular/core";
 export class HttpDataService {
     constructor(private httpService: HttpClient) { }
 
-    protected httpCall<T>(request: TypedRequest): Observable<T> {
+    public httpCall<T>(request: TypedRequest): Observable<T> {
         switch (request.method) {
             case 'GET': {
                 return this.httpService.get<T>(request.request, request.options)

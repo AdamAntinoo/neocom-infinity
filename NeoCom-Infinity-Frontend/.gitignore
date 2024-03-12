@@ -1,5 +1,6 @@
 # - Ignore Angular packages
 node_modules/
+.angular/
 
 # - Ignore compilation results
 .tmp/
