@@ -18,7 +18,8 @@
     "acceptance:cypress:NIF07": "cypress run --spec ./cypress/acceptance/NIF07-BlueprintCostIndex.feature",
     "acceptance:cypress:NIF09": "cypress run --spec ./cypress/acceptance/NIF09-IndustryDashboard.feature",
     "heroku-postbuild": "ng build --configuration=${NODE_ENV}",
-    "serve:integration": "export NODE_ENV=integration && export PORT=5202 && npm run build:dev && npm start"
+    "serve:integration": "export NODE_ENV=integration && export PORT=5202 && npm run build:dev && npm start",
+    "test:cuc": "ng test --include=src/../cucumber/**/*.step.ts"
   },
   "private": true,
   "engines": {
