@@ -1,6 +1,3 @@
-// - DOMAIN
-// import { NeoCom } from './NeoCom.domain';
-
 export class NeoComCredential {
     private uniqueId: string
     private accountId: number = -1
