@@ -5,6 +5,12 @@
         },
         {
             "path": "../neocom-infinity-nest"
+        },
+        {
+            "path": "../../../migrate/cucumber-service"
+        },
+        {
+            "path": "../../../migrate/set-cucumber-17"
         }
     ],
     "settings": {
