@@ -1,3 +1,11 @@
+# PROJECT RECIPES
+## Create a new Page
+````
+ng generate component --export --module modules/industry/mining/mining --selector v1-miningoperations-panel --style scss modules/industry/mining/panels/V1MiningoperationsPanel     
+````
+## Create a new Panel
+
+
 ## [READ ROUTE PARAMETERS]
 * To read the route parameters to extract the identifiers the route should be observed.
 
