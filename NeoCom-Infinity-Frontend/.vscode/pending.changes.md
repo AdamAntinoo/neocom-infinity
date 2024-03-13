@@ -13,7 +13,6 @@
     "config": "3.3.1",
    "express": "4.17.1",
     "express-http-proxy": "1.6.0",
-    "fs": "0.0.1-security",
     "npm": "10.2.4",
     "path": "0.12.7",
     "request": "2.88.2",
