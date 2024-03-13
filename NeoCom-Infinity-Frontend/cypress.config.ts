@@ -52,11 +52,11 @@ export default defineConfig({
             framework: "angular",
             bundler: "webpack",
         },
-        specPattern: "**/*.feature",
+        specPattern: "cypress/**/*.feature",
         setupNodeEvents
     },
     e2e: {
-        specPattern: "**/*.feature",
+        specPattern: "cypress/**/*.feature",
         setupNodeEvents
     }
 });
