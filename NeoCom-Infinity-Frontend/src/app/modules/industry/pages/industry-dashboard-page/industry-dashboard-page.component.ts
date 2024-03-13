@@ -28,7 +28,7 @@ export class IndustryDashboardPageComponent {
         // Build the page features.
         this.features.push(new NeoComFeature({
             id: "blueprint-analysis",
-            label: "Gestion de Blueprints",
+            label: "Blueprint Management",
             enabled: true,
             interaction: 'PAGEROUTE',
             route: "/industry/manufacture/blueprints",
@@ -37,9 +37,9 @@ export class IndustryDashboardPageComponent {
         this.features.push(new NeoComFeature({
             id: 'mining-operations',
             label: 'Mining Operations',
-            enabled: false,
+            enabled: true,
             interaction: 'PAGEROUTE',
-            route: '',
+            route: '/industry/mining/miningoperations',
             imageRef: 'assets/media/mining-operations.jpeg'
         }))
     }
