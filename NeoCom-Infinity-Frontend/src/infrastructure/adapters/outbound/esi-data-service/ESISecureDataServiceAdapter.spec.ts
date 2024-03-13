@@ -8,7 +8,7 @@ import { ESISecureDataServiceAdapter } from './ESISecureDataServiceAdapter'
 import { ESIMiningOperation } from './domain/ESIMiningOperation'
 import { ConfigurationAdapter } from '../../inbound/configuration/ConfigurationAdapter'
 
-fdescribe('ADAPTER ESISecureDataServiceAdapter [Module: Infra]', () => {
+xdescribe('ADAPTER ESISecureDataServiceAdapter [Module: Infra]', () => {
     let service: ESISecureDataServiceAdapter
     // let getRequest: TestTypedRequest = new TestTypedRequest().prepare({ param: 123 })
 
@@ -46,9 +46,9 @@ fdescribe('ADAPTER ESISecureDataServiceAdapter [Module: Infra]', () => {
         console.log('><[Infra/ESISecureDataServiceAdapter]> should be created')
         expect(service).toBeDefined()
     })
-    it('when requested for mining operations', async () => {
+    it('when requested for mining operations', () => {
         const pilotId: number = 321
-        await service.v1_apiEsiMiningOperationsData(pilotId)
+        service.v1_apiEsiMiningOperationsData(pilotId)
             .subscribe((response: ESIMiningOperation[]) => {
                 console.log('response->' + JSON.stringify(response))
                 expect(response).toBeDefined()

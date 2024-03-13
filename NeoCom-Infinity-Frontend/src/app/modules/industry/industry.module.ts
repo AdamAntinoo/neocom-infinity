@@ -22,6 +22,7 @@ const routes: Routes = [
     { path: 'dashboard', component: IndustryDashboardPageComponent , canActivate: [TokenAuthorizationGuard] },
     { path: 'fittings/buildConfiguration/:fittingId', component: V1IndustryFittingBuildConfigurationPageComponent },
     { path: 'manufacture', loadChildren: () => import('./manufacture/manufacture.module').then(m => m.ManufactureModule) },
+    { path: 'mining', loadChildren: () => import('./mining/mining.module').then(m => m.MiningModule) },
 ]
 
 @NgModule({

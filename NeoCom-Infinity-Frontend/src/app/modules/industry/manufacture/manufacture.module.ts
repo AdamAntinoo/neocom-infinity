@@ -34,7 +34,6 @@ const routes: Routes = [
     declarations: [
     V1BlueprintListPageComponent,
     V1ManufactureResearchPageComponent,
-    // V1TopBOMPanelComponent,
     V1AvailableBlueprintsPanelComponent,
     V1BlueprintBOMPanelComponent
 ],

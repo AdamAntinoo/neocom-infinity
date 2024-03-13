@@ -15,14 +15,15 @@ export class ESIMiningOperationsTypedRequest implements TypedRequest {
 
     constructor(private configuration: ConfigurationAdapter) {
         console.log('ESIMiningOperationsTypedRequest->' + JSON.stringify(configuration))
+        let newheaders = new HttpHeaders()
         this.options = {
             // headers: new HttpHeaders({
             //     'Accept': '*/*',
             //     'Content-Type': 'application/json',
             //     'Cache-Control':'no-cache'
             // }),
-            observe: 'response',
-            responseType: 'json'
+            // observe: 'response',
+            // responseType: 'json'
         }
     }
 
