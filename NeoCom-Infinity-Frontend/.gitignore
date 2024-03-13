@@ -20,6 +20,3 @@ support/backend-simulation/*.log
 *.mp4
 .nyc_output/
 cypress/cucumber-json/
-
-cypress-0.20/
-cypress/

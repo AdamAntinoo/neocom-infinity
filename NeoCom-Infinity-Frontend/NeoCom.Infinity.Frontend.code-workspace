@@ -8,6 +8,12 @@
         },
         {
             "path": "../../../migrate/set-cucumber-17"
+        },
+        {
+            "path": "../../../migrate/neocom-cypress-13"
+        },
+        {
+            "path": "../neocom-frontend-cypress"
         }
     ],
     "settings": {
