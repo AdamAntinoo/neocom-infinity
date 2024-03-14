@@ -44,10 +44,20 @@
       "@infra/*": [
         "src/infrastructure/*"
       ],
-    }
+    },
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true
-  }
+  },
+  // THis elements are required to isolate expect from test and cypress.
+  "include": [
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "cypress.config.ts",
+    "cypress"
+  ]
 }
