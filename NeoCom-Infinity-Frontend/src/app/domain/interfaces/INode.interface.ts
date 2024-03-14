@@ -1,3 +1,6 @@
-export interface INode{
-    getJsonClass(): string;
+export interface INode {
+    jsonClass: string
+    getJsonClass(): string
+    decode(): void
+    identify(): string
 }

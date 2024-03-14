@@ -11,7 +11,7 @@ export class V1MiningOperationsPanelComponent extends AppPanelComponent implemen
     @Input() container: V1MiningOperationsPageComponent
 
     constructor() {
-        super();
+        super()
     }
 
     ngOnInit(): void {

@@ -2,19 +2,23 @@
 // - DOMAIN
 import { HALResolver } from '@app/services/HALResolver.service'
 
-export class HALLink<T> {
+export interface HALReference {
+    readonly rel: string
+    readonly href: string
+}
+export class HALLink<T> implements HALReference {
     private downloaded: boolean = false
-    private rel: string
-    private href: string
+    public rel: string
+    public href: string
     private factory: any // This is the factory constructor for T instances
     public target: T // The Link when resolved. If undefined then the link is pending resolution
 
-    constructor(targetType: { new(values: Object): T }) {
+    constructor(targetType: { new(values: object): T }) {
         this.factory = targetType
     }
-    public setContents(contents: Object): HALLink<T> {
-        this.rel = contents['rel']
-        this.href = contents['href']
+     public setContents(contents: HALReference): HALLink<T> {
+        this.rel = contents.rel
+        this.href = contents.href
         return this
     }
     public typeCast(values: any): T {
