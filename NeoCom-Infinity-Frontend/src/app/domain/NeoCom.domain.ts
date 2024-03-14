@@ -5,7 +5,7 @@ import { ISelectable } from '../modules/innovative-core/domain/interfaces/ISelec
 import { ESeparator } from './interfaces/EPack.enumerated';
 import { ICollaboration } from '@innovative/domain/interfaces/ICollaboration.interface';
 
-export class NeoCom implements INode, ICollaboration, IExpandable, ISelectable {
+export  class NeoCom implements INode, ICollaboration, IExpandable, ISelectable {
     public jsonClass: string = 'NeoCom';
     protected expanded: boolean = false;
     protected selected: boolean = false;
@@ -14,10 +14,14 @@ export class NeoCom implements INode, ICollaboration, IExpandable, ISelectable {
     constructor(values: Object = {}) {
         Object.assign(this, values)
         this.jsonClass = 'NeoCom'
+        this.identify()
         this.decode()
     }
-    public decode(): void { 
-        console.log('[Decode]> '+this.jsonClass)
+    public  identify(): string{
+        return 'NeoCom'
+    }
+    public decode(): void {
+        console.log('[Decode]> ' + this.jsonClass)
     }
 
     protected isEmpty(target?: any): boolean {
