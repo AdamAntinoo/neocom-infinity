@@ -1,8 +1,4 @@
 # package.json
-    "acc:NIF10": "cypress run --spec ./cypress/acceptance/NIF10-MiningOperations.feature",
-   "serve:dev": "ng serve --proxy-config proxy.conf.json --port 5200 ",
-
-
 ## Removed packages
     "@ngx-translate/core": "^13.0.0",
     "wait-on": "5.0.0",
@@ -27,10 +23,8 @@
     "chai": "4.2.0",
     "chromedriver": "81.0.0",
     "codelyzer": "6.0.0",
-    "jasmine-spec-reporter": "4.2.1",
     "karma-coverage-istanbul-reporter": "2.1.0",
     "nyc": "15.0.1",
-    "protractor": "7.0.0",
     "tslint": "6.1.0",
 
 

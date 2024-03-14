@@ -15,5 +15,11 @@
     "src/**/*.spec.ts",
     "src/**/*.d.ts",
     "src/../cucumber/**/*.step.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "cypress.config.ts",
+    "cypress",
+    "support"
   ]
 }
