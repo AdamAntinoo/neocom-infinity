@@ -14,5 +14,7 @@ Feature: [NIF10.01]Show the list of all mining operations available for a capsul
   @NIF10.01
   Scenario: [NIF10.01]-Validate the structure and contents for the Mining Operations page. It has a single panel.
     Given the page "Mining Operations" is activated
-    Given the page "Industry Dashboard" is activated
-    Given the page "Mining Operations" is activated
+    Then the page "Mining Operations" has 3 panels
+    # - Check the panel contents visible on the page
+        Given the target is the panel of type "mining-operations"
+       Then field named "exceptionTitle" with label "TITLE" has contents "Rendering Dashboard Page. No Credential Found."

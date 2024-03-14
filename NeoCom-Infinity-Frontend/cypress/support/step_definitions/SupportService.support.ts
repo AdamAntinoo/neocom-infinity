@@ -1,4 +1,5 @@
-import { environment } from "./environment"
+// - CORE
+import { environment } from '../../../src/environments/environment';
 
 export class SupportService {
     private translationTable: any = {}
@@ -12,6 +13,7 @@ export class SupportService {
         this.translationTable['Planetary Dashboard Page'] = 'dashboard-page'
         this.translationTable['Loyalty Recommendations'] = 'v1-loyalty-recommendations-page'
         this.translationTable['Blueprint Manufacture CostIndex'] = 'v1-blueprint-list-page'
+        this.translationTable['Mining Operations'] = 'v1-mining-operations-page'
 
         this.translationTable['Fitting Build Configuration'] = 'v1-industry-fitting-build-configuration-page'
         this.translationTable['Planetary Enter Data Page'] = 'v1-enter-planet-data-page'
@@ -22,6 +24,7 @@ export class SupportService {
         this.translationTable['server-info'] = 'server-info-panel'
         this.translationTable['pilot-list'] = 'v1-pilot-panel'
         this.translationTable['available-blueprints'] = 'v1-available-blueprints-panel'
+        this.translationTable['mining-operations'] = 'v1-miningoperations-panel'
 
         this.translationTable['feature'] = 'v2-feature'
 
@@ -71,6 +74,7 @@ export class SupportService {
         this.routeTranslationTable['Resource Research Page'] = '/planetary/resource-research'
         this.routeTranslationTable['Industry Dashboard'] = '/industry/dashboard'
         this.routeTranslationTable['Blueprint Manufacture CostIndex'] = '/industry/manufacture/blueprints'
+        this.routeTranslationTable['Mining Operations'] = '/industry/mining/miningoperations'
     }
     /**
      * Replaces symbolic names by the application names so if there are version changes the acceptance scritps should not change.

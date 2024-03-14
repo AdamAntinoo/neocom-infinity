@@ -1,9 +1,8 @@
 // - CUCUMBER-PREPROCESSOR
-import { Given } from "cypress-cucumber-preprocessor/steps"
-import { When } from "cypress-cucumber-preprocessor/steps"
-import { Then } from "cypress-cucumber-preprocessor/steps"
+import { Given } from "@badeball/cypress-cucumber-preprocessor"
+import { When, Then } from "@badeball/cypress-cucumber-preprocessor";
 // - SERVICE
-import { SupportService } from '../../support/SupportService.support'
+import { SupportService } from './SupportService.support'
 import { PlatformConstants } from "../../../src/environments/PlatformConstants"
 import { NeoComCredential } from "../../../src/app/domain/NeoComCredential.domain"
 
