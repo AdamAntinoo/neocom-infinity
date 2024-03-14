@@ -3,7 +3,7 @@ import { Given } from "cypress-cucumber-preprocessor/steps";
 import { When } from "cypress-cucumber-preprocessor/steps";
 import { Then } from "cypress-cucumber-preprocessor/steps";
 // - SERVICES
-import { SupportService } from '../../support/SupportService.support';
+import { SupportService } from '../../support/step_definitions/SupportService.support';
 
 const supportService = new SupportService();
 
