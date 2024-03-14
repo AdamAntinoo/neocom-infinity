@@ -8,8 +8,4 @@ package-lock.json
 *.log
 coverage/
 
-NeoCom-Infinity-Frontend/package-lock.json
-
-NeoCom-Infinity-Frontend/support/public-simulation/apisimulator.log
-
-neocom-infinity-nest/package-lock.json
+neocom-frontend-cypress/
