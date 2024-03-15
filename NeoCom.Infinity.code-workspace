@@ -1,10 +1,10 @@
 {
     "folders": [
         {
-            "path": "."
+            "path": "neocom-infinity-nest"
         },
         {
-            "path": "../simple-blog-application-backend-challenge"
+            "path": "neocom-infinity-frontend"
         }
     ],
     "settings": {
