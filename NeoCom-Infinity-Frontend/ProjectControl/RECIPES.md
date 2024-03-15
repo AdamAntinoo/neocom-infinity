@@ -1,9 +1,14 @@
 # PROJECT RECIPES
+# Angular
 ## Create a new Page
 ````
 ng generate component --export --module modules/industry/mining/mining --selector v1-miningoperations-panel --style scss modules/industry/mining/panels/V1MiningoperationsPanel     
 ````
 ## Create a new Panel
+
+# NPM
+## Useful commands
+npm outdated  -- get the ,list of outdated packages
 
 
 ## [READ ROUTE PARAMETERS]

@@ -1,5 +1,44 @@
 # NEOCOM Nest Backend Requirements and Notes
-## 1. Mining Sessions
+## 1. Mining Operations
+At this date Esi provides a new endpoint for mining operations. That endpoint provides this data
+````
+"date": "2024-02-23",
+"quantity": 210,
+"solar_system_id": 30003541,
+"type_id": 17453
+````
+that is kept on the list for the next 30 days. So all the logic to calculate deltas and all asset management is not required.
+
+The new Mining service should do the next actions:
+* Allow the frontend to open a session for Server Side Events when it needs to see mining data.
+* Over that SSE session the server is going to send the mining operation from the Esi data service on a 10min schedule (600 seconds is the Esi wait time for this endpoint).
+* When the mining operation frontend page is closed then the SSE should also be closed to the backend will stop fetching mining data.
+
+The data from the Esi endpoint should be transformed to HAL data so the frontend can dinamically fetch the dependencies with no need to do all that management at the server side. For mining operations this is not so important since the number of locations and item types is fairly reduced even for miner characters.
+
+Data should be converted to NI Extended JSON Serialization format that includes the class identifier for easy reconstruction and the frontend side.
+### 1.1 Mining Operations endpoints
+I lack OpenApi definitions for the endpints since this is s PROJECT task that is not planned at this moment. The base definition is:
+
+**/nin/v1/character/{characterId}/miningoperations**
+
+It should return an array of MiningOperation entries in the format:
+````
+jsonClass: "miningoperation"
+id: "b433bdf3-2e0e-4f9a-a5fb-93b6a0d44752"
+date: "YYYY-MM-DD"
+quantity: 1234
+solarSystem: "<hal link>"
+typeId: "<hal link>"
+````
+HAL Links are provided by the server in the form accepted by the frontend. There are two possible solutions for this. Set it to a URL so the fornt end can generate the HAL instance from it and the jsonClass.
+Or a second implentation where the server generates a new NIE json with the frontend required field to instantiate a HAL link. This last options is still under desing and will need a new implementation of the frontend to be accepted.
+
+## 1.2 HAL Links
+A HAL link should have an URL and a class to allow the instance factory to access Esi Data Source directly (for solar systems or for items) and some information to know how to map that Esi data into a Typescrypt class on the frontend
+
+
+## X. Mining Sessions
 Mining sessions are based on the detection of Ore assets change during time. During a mining operation the number of Ore items will be increased
 and the system can detect that this increase has started and when has stopped to identify a mining operation.
 This feature is based on a new set of services.
@@ -8,6 +47,8 @@ This feature is based on a new set of services.
 * MiningOperationCloser
 * DeltaCalculator
 * ESIAssetsAdapter
+
+***This is obsolete right now since there is a new Esi endpoint that provides this information on a date/system/ore basis.***
 
 ## 2. Mining Session Data Flow
 The flow starts with a UX request to start detecting a mining session. The backend service cannot be monitoring all characters all round 24h time for the assets since this is a quite expensive operation. It is most useful to start the signaling on the UX and from it the backend can take care of periodically get updates of the asset stacks to get the mining accounting done
