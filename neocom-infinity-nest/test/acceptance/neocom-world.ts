@@ -59,4 +59,4 @@ export class NeoComWorld extends World {
     }
     public async close() { }
 }
-setWorldConstructor(NeoComWorld)
+// setWorldConstructor(NeoComWorld)

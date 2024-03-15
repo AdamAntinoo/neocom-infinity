@@ -4,19 +4,16 @@ import { AxiosError, AxiosResponse } from "axios";
 import { Observable, catchError, firstValueFrom, lastValueFrom } from "rxjs";
 import { EsiMining } from "./EsiMining";
 import { EsiMiningAdapter } from "@Infra/adapter/outbound/esi.mining.adapter";
+import { EsiDataServicesPort } from "@App/ports/EsiDataServices.port";
+import { V2MiningOperation } from "@Domain/entities/V2.MiningOperation";
 
 @Injectable()
 export class CapsuleerMiningOperationsUseCase {
-    private readonly logger = new Logger(CapsuleerMiningOperationsUseCase.name);
+    constructor(private readonly dataServices: EsiDataServicesPort) { }
 
-    constructor(private readonly miningAdapter: EsiMiningAdapter) { }
-
-    public async getMiningOperations(characterId: number): Promise<EsiMining[]> {
-        return this.miningAdapter.getMiningOperations(characterId)
-        // const request = 'http://localhost:5271/characters/' + characterId + '/mining/'
-        // console.log('request->' + request)
-        // const { data } = await firstValueFrom(this.httpService.get<EsiMining[]>(request))
-        // return data
-
+    public async getMiningOperations(characterId: number): Promise<V2MiningOperation[]> {
+        console.log('dataServices->',this.dataServices)
+        console.log('dataServices.miningOperations->',this.dataServices.miningOperations)
+        return this.dataServices.miningOperations.getMiningOperations(characterId)
     }
 }
