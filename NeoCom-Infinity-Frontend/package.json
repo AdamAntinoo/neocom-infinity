@@ -3,8 +3,8 @@
   "version": "0.20.1-mining-sessions.1",
   "scripts": {
     "cucumber": "./node_modules/@cucumber/cucumber/bin/cucumber-js ./cucumber/**/*.feature --no-strict --require-module ts-node/register --require-module tsconfig-paths/register --require ./cucumber/**/*.step.ts --tags @NIF05.01",
-    "docker:start": "docker-compose -f ./support/neocom-docker-frontend/docker-compose.yml up ",
-    "docker:stop": "docker-compose -f ./support/neocom-docker-frontend/docker-compose.yml down ",
+    "docker:start": "docker-compose -f ./support/docker-compose.yml up ",
+    "docker:stop": "docker-compose -f ./support/docker-compose.yml down ",
     "serve:dev": "ng serve --proxy-config proxy.conf.json --port 5200 ",
     "build:dev": "ng build ",
     "document:dev": "compodoc -p tsconfig.json src",
