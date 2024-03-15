@@ -8,13 +8,38 @@
 # /api/v1/universe - this calls inmutable endpoints so it can use a local backend implementation or the stage production implementation once it is deployed.
 # /api/v1/public - can be mocked to return predefined and repeteable responses.
 # /api - mocked to canned responses
+#
+# v2
+# Added WireMock as source of mocked responses. Easier to configure and more verbose on matches and failures.
+# Added a new service to startwiremock for a new backend mock that will be implemnted with NestJS
+# /characters
 
 ---
 version: "3.9"
 
 services:
-  neocom-backend-dev-nest-esi-wiremock:
-    container_name: neocom-infinity-fontend-dev-esi-secure
+  neocom-frontend-dev-backend-apisimulator:
+    container_name: NIF-dev-backend-apisimulator
+    image: apimastery/apisimulator:1.8
+    ports:
+      - "5210:6090"
+    volumes:
+      # WARNING - Use full absolute paths to make this work.
+      - ../backend-simulation:/backend-simulation
+    command: "bin/apisimulator start /backend-simulation -p 6090"
+
+  neocom-frontend-dev-public-apisimulator:
+    container_name: NIF-dev-public-apisimulator
+    image: apimastery/apisimulator:1.8
+    ports:
+      - "5290:6090"
+    volumes:
+      # WARNING - Use full absolute paths to make this work.
+      - ../public-simulation:/public-simulation
+    command: "bin/apisimulator start /public-simulation -p 6090"
+
+  neocom-frontend-dev-nest-esi-wiremock:
+    container_name: NIF-dev-nest-esi-wiremock
     image: wiremock/wiremock:3.3.1
     ports:
       - "5272:8080"

@@ -13,8 +13,8 @@
 version: "3.9"
 
 services:
-  neocom-backend-dev-nest-esi-wiremock:
-    container_name: neocom-backend-dev-nest-esi-wiremock
+  neocom-backend-dev-esi-secure:
+    container_name: NIN-dev-esi-secure
     image: wiremock/wiremock:3.3.1
     ports:
       - "5271:8080"
