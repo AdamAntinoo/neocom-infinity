@@ -37,6 +37,7 @@ export class ESISecureDataServiceAdapter implements ESISecureDataServicePort {
             })
         return this.httpService.get(this.esiMiningOperationsTypedRequest.request, this.esiMiningOperationsTypedRequest.options)
             .pipe(map((data: any) => {
+                console.log('get.pipe.map')
                 console.log(">[v1_apiEsiMiningOperationsData]> Transformation: " +
                     transformer.description)
                 const response = transformer.transform(data) as ESIMiningOperation[]

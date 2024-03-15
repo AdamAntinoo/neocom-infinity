@@ -5,7 +5,7 @@ import { AppService } from './app.service';
 import { ScheduleModule, SchedulerRegistry } from '@nestjs/schedule';
 import { StartMiningOperation } from '@App/use-cases/mining-operation/StartMiningOperation';
 import { MiningOperationRepositoryMemory } from '@Infra/adapter/persistence/MiningOperationRepositoryMemory';
-import { MincontrollerModule } from './infrastructure/infrastructure.module';
+import { InfrastructureModule } from './infrastructure/infrastructure.module';
 
 @Module({
     imports: [
@@ -14,7 +14,7 @@ import { MincontrollerModule } from './infrastructure/infrastructure.module';
             maxRedirects: 5
         }),
         ScheduleModule.forRoot(),
-        MincontrollerModule
+        InfrastructureModule
     ],
     controllers: [AppController],
     providers: [AppService, SchedulerRegistry, MiningOperationRepositoryMemory, StartMiningOperation],

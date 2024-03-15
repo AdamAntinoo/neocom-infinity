@@ -4,7 +4,7 @@ import { CronJob } from 'cron'
 
 import { MiningOperationRepository } from '@App/ports/MiningOperationRepository'
 import { StartMiningOperationInterface } from '@App/interfaces/StartMiningOperationInterface'
-import { MiningOperation } from '@Domain/entities/MiningOperation'
+import { MiningOperation } from '@Domain/entities/V1.MiningOperation'
 import { MiningOperationState } from '@Domain/entities/MiningOperationState'
 import { MiningUpdateJob } from '@App/helpers/MiningUpdateJob'
 import { MiningOperationRepositoryMemory } from '@Infra/adapter/persistence/MiningOperationRepositoryMemory'
@@ -18,8 +18,8 @@ import { MiningOperationRepositoryMemory } from '@Infra/adapter/persistence/Mini
 export class StartMiningOperation implements StartMiningOperationInterface {
   constructor(
     private miningOperationRepository: MiningOperationRepositoryMemory,
-    private schedulerRegistry: SchedulerRegistry,
-    private starter: MiningOperationStarter4) {
+    private schedulerRegistry: SchedulerRegistry/*,
+    private starter: MiningOperationStarter*/) {
     this.miningOperationRepository = miningOperationRepository
     this.schedulerRegistry = schedulerRegistry
   }

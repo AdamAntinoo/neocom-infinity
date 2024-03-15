@@ -6,6 +6,6 @@ import { ConfigurationPort } from "@app/ports/ConfigurationPort";
 })
 export class ConfigurationAdapter implements ConfigurationPort {
     getNestBackendHost(): string {
-        return 'http://localhost:5272'
+        return 'http://localhost:5210'
     }
 }
