@@ -6,6 +6,7 @@ import { ESISecureDataServiceAdapter } from '../esi-data-service/ESISecureDataSe
 import { HALLink } from '@domain/hal/HALLink.hal';
 import { LookupSolarSystem } from '@app/modules/planetary/domain/LookupSolarSystem.domain';
 import { EveItemDto } from '@domain/core/dto/EveItemDto.dto';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -16,21 +17,26 @@ export class V1MiningOperationsAdapterService {
 
     public downloadMiningOperationsForCharacter(characterId: number): Promise<V1MiningOperation[]> {
         return new Promise<V1MiningOperation[]>((resolve, reject) => {
-            this.esiSecureAdapter.v1_apiEsiMiningOperationsData(characterId)
-                .subscribe((miningOperationList: ESIMiningOperation[]) => {
-                    return new Promise<V1MiningOperation[]>((resolve, reject) => {
-                        const resolveData: V1MiningOperation[] = []
-                        miningOperationList.forEach((element: ESIMiningOperation) => {
-                            const workItem: V1MiningOperation = new V1MiningOperation({
-                                date: element.date,
-                                quantity: element.quantity,
-                                solarSystem: this.newHalLinkForSolarSystem(element.solar_system_id),
-                                type: this.newHalLinkForType(element.type_id)
-                            })
-                            resolveData.push(workItem)
+            console.log('point-01')
+            this.esiSecureAdapter.v1_apiEsiMiningOperationsData(characterId).toPromise()
+                // return ob
+                .then((miningOperationList: ESIMiningOperation[]) => {
+                    // return new Promise<V1MiningOperation[]>((resolve, reject) => {
+                    console.log('point-02')
+                    console.log('entering suscribe')
+                    const resolveData: V1MiningOperation[] = []
+                    miningOperationList.forEach((element: ESIMiningOperation) => {
+                        const workItem: V1MiningOperation = new V1MiningOperation({
+                            date: element.date,
+                            quantity: element.quantity,
+                            solarSystem: this.newHalLinkForSolarSystem(element.solar_system_id),
+                            type: this.newHalLinkForType(element.type_id)
                         })
-                        resolve(resolveData)
+                        console.log('workItem->' + JSON.stringify(workItem))
+                        resolveData.push(workItem)
                     })
+                    // resolve(resolveData)
+                    // })
                 })
         })
     }
