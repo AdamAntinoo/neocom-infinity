@@ -4,16 +4,7 @@
             "path": "."
         },
         {
-            "path": "../../../migrate/cucumber-service"
-        },
-        {
-            "path": "../../../migrate/set-cucumber-17"
-        },
-        {
-            "path": "../../../migrate/neocom-cypress-13"
-        },
-        {
-            "path": "../neocom-frontend-cypress"
+            "path": "../../../migrate/check-backend-01"
         }
     ],
     "settings": {
