@@ -13,7 +13,7 @@ export class TypedResponseTransformer<T extends ITransformable<T>> {
     }
     public transform(entrydata: any): T[] {
         let results: T[] = []
-        console.log('TypedResponseTransformer.entryData->' + JSON.stringify(entrydata))
+        // console.log('TypedResponseTransformer.entryData->' + JSON.stringify(entrydata))
         if (entrydata instanceof Array) {
             for (let key in entrydata)
                 results.push(this.converter.convert(entrydata[key]).transform())
