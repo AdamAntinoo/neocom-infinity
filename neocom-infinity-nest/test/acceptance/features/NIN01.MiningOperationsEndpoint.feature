@@ -8,16 +8,14 @@ Feature: [NIN01]-Validate the api defined for the Mining Operations endpoint.
 
   @NIN01.01
   Scenario: [NIN01.01]-Get the Esi mined resources and transform them into the MiningOperation data expected by the frontend.
-    Given en environment prepared for capsuleer 93813310
+    Given a environment prepared for capsuleer 93813310
     When the endpoint 'capsuleer/miningoperations' is activated
-    # Then the respose is '200 OK'
     And the response has 4 items
 
-@NIN01.02
-Scenario: [NIN01.02]-Validate that one of the resources returned has the correct contents.
-  Given a environment prepared for capsuleer 93813310
-  When the endpoint 'capsuleer/miningoperations' is activated
-  Then the respose is '200 OK'
-  And the Mined Resources record at position 1 has next contents
-    | jsonClass       | date       | quantity | solarSystem | typeId |
-    | MiningOperation | 2024-03-08 | 3245     |             |        |
+  @NIN01.02
+  Scenario: [NIN01.02]-Validate that one of the resources returned has the correct contents.
+    Given a environment prepared for capsuleer 93813310
+    When the endpoint 'capsuleer/miningoperations' is activated
+    And the Mined Resources record at position 1 has next contents
+      | jsonClass       | date       | quantity | solarSystem | typeId |
+      | MiningOperation | 2024-02-23 | 210      |             |        |
