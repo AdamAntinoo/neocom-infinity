@@ -9,6 +9,7 @@ import { EsiDataServicesPort } from '@App/ports/EsiDataServices.port';
 import { EsiMiningAdapter } from '@Infra/adapter/outbound/ESISecureDataServices/esi.mining.adapter';
 import { V1MiningOperationsController } from '@Infra/adapter/inbound/v1.miningoperations.controller';
 import { CapsuleerMiningOperationsUseCase } from '@App/use-cases/mining-operation/CapsuleerMiningOperationsUseCase';
+import { ESISecureDataServiceHALGeneratorAdapter } from '@Infra/adapter/outbound/ESISecureDataServices/esi.securedataservice.halgenerator.adapter';
 
 @Module({
     imports: [
@@ -22,7 +23,8 @@ import { CapsuleerMiningOperationsUseCase } from '@App/use-cases/mining-operatio
     providers: [
         AppService, SchedulerRegistry, MiningOperationRepositoryMemory, StartMiningOperation,
         { provide: EsiDataServicesPort, useClass: EsiMiningAdapter },
-        { provide: CapsuleerMiningOperationsUseCase, useClass: CapsuleerMiningOperationsUseCase }
+        { provide: CapsuleerMiningOperationsUseCase, useClass: CapsuleerMiningOperationsUseCase },
+        {provide: ESISecureDataServiceHALGeneratorAdapter, useClass:ESISecureDataServiceHALGeneratorAdapter}
     ],
 })
 export class AppModule { }

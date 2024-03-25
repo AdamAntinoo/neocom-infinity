@@ -84,7 +84,9 @@
       "**/*.spec.ts"
     ],
     "moduleNameMapper": {
+      "^@App/(.*)$": "<rootDir>/src/application/$1",
       "^@Domain/(.*)$": "<rootDir>/src/domain/$1",
+      "^@Infra/(.*)$": "<rootDir>/src/infrastructure/$1",
       "^@Inno/(.*)$": "<rootDir>/src/library/innovative/$1"
     },
     "collectCoverage": true,
