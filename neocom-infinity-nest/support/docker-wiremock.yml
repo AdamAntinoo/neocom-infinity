@@ -2,12 +2,9 @@
 # PROJECT CODE - 52
 #
 # Docker composer automatically creates a network. The container host matches the container name. To differentiate and create single networks use a directory name that should be unique. The recommended format is: <project>-docker-<environment>
-# The frontend requires some api simutators to mock most of the call but call to already implemented and inmutable endpotins should be routed directly to docker services just created for the front end environment.
 #
 # The routing references are:
-# /api/v1/universe - this calls inmutable endpoints so it can use a local backend implementation or the stage production implementation once it is deployed.
-# /api/v1/public - can be mocked to return predefined and repeteable responses.
-# /api - mocked to canned responses
+# /characters - calls to the ESI data provider service for character secured data.
 
 ---
 version: "3.9"

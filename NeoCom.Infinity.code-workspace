@@ -5,6 +5,9 @@
         },
         {
             "path": "neocom-infinity-frontend"
+        },
+        {
+            "path": "neocom-infinity-shared"
         }
     ],
     "settings": {
