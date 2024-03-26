@@ -1,5 +1,5 @@
 import { IConverter } from "@Inno/converter/IConverter.interface"
-import { ITransformable } from "@Domain/interfaces/ITransformable.interface"
+import { ITransformable } from "@Inno/core/ITransformable.interface"
 import { NoActionConverter } from "@Inno/converter/NoActionConverter"
 
 export class TypedResponseTransformer<T extends ITransformable<T>> {

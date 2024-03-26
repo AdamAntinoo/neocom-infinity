@@ -1,8 +1,6 @@
-import { EsiDataServicesPort } from "@App/ports/EsiDataServices.port"
-import { IEsiSecureService } from "@App/ports/IEsiSecureService.port"
+import { IEsiMiningSecureService } from "@App/ports/IEsiMiningSecureService.port"
 import { V2MiningOperation } from "@Domain/entities/V2.MiningOperation"
 import { HttpService } from "@nestjs/axios"
-import { Injectable, OnApplicationBootstrap } from "@nestjs/common"
 import { lastValueFrom, map } from "rxjs"
 import { MiningOperationConverter } from "./converter/MiningOperationConverter"
 import { IESIMiningOperation } from "./domain/IESIMiningOperation.interface"
@@ -10,19 +8,11 @@ import { TypedResponseTransformer } from "@Inno/transformer/TypedResponseTransfo
 import { ESISecureDataServiceHALGeneratorAdapter } from "./esi.securedataservice.halgenerator.adapter"
 import { AxiosResponse } from "axios"
 
-@Injectable()
-export class EsiMiningAdapter implements EsiDataServicesPort {
-    miningOperations: IEsiSecureService<V2MiningOperation>
-
-    constructor(private readonly httpService: HttpService,
-        private halGenerator: ESISecureDataServiceHALGeneratorAdapter) {
-        this.miningOperations = new EsiMiningSecureService(this.httpService, this.halGenerator)
-    }
-}
-
-class EsiMiningSecureService implements IEsiSecureService<V2MiningOperation>{
-    constructor(private readonly httpService: HttpService,
-        private halGenerator: ESISecureDataServiceHALGeneratorAdapter) { }
+export class ESIMiningSecureService implements IEsiMiningSecureService<V2MiningOperation>{
+    constructor(
+        private readonly httpService: HttpService,
+        private halGenerator: ESISecureDataServiceHALGeneratorAdapter
+        ) { }
 
     public async getMiningOperations(characterId: number): Promise<V2MiningOperation[]> {
         const request = 'http://localhost:5271' + '/characters/' + characterId + '/mining/'
