@@ -1,4 +1,4 @@
-import { EsiDataServicesPort } from "@App/ports/EsiDataServices.port"
+import { ESIDataServicesPort } from "@App/ports/ESIDataServices.port"
 import { CapsuleerMiningOperationsUseCase } from "./CapsuleerMiningOperationsUseCase"
 import { HttpService } from "@nestjs/axios"
 import { Observable } from "rxjs"
@@ -14,7 +14,7 @@ describe('USECASE CapsuleerMiningOperationsUseCase [Module: Application.UseCases
         const moduleRef = await Test.createTestingModule({
             providers: [
                 { provide: CapsuleerMiningOperationsUseCase, useClass: CapsuleerMiningOperationsUseCase },
-                { provide: EsiDataServicesPort, useClass: EsiMiningAdapter },
+                { provide: ESIDataServicesPort, useClass: EsiMiningAdapter },
                 { provide: ESISecureDataServiceHALGeneratorAdapter, useClass: ESISecureDataServiceHALGeneratorAdapter },
                 {
                     provide: HttpService, useValue: {

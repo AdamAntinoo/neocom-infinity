@@ -3,13 +3,11 @@ import { HttpModule } from '@nestjs/axios'
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ScheduleModule, SchedulerRegistry } from '@nestjs/schedule';
-import { StartMiningOperation } from '@App/use-cases/mining-operation/StartMiningOperation';
-import { MiningOperationRepositoryMemory } from '@Infra/adapter/persistence/MiningOperationRepositoryMemory';
-import { EsiDataServicesPort } from '@App/ports/EsiDataServices.port';
-import { EsiMiningAdapter } from '@Infra/adapter/outbound/ESISecureDataServices/esi.mining.adapter';
+import { ESIDataServicesPort } from '@App/ports/ESIDataServices.port';
 import { V1MiningOperationsController } from '@Infra/adapter/inbound/v1.miningoperations.controller';
 import { CapsuleerMiningOperationsUseCase } from '@App/use-cases/mining-operation/CapsuleerMiningOperationsUseCase';
 import { ESISecureDataServiceHALGeneratorAdapter } from '@Infra/adapter/outbound/ESISecureDataServices/esi.securedataservice.halgenerator.adapter';
+import { ESISecureDataServicesAdapter } from '@Infra/adapter/outbound/ESISecureDataServices/esi.securedataservices.adapter';
 
 @Module({
     imports: [
@@ -21,10 +19,10 @@ import { ESISecureDataServiceHALGeneratorAdapter } from '@Infra/adapter/outbound
     ],
     controllers: [AppController, V1MiningOperationsController],
     providers: [
-        AppService, SchedulerRegistry, MiningOperationRepositoryMemory, StartMiningOperation,
-        { provide: EsiDataServicesPort, useClass: EsiMiningAdapter },
+        AppService, SchedulerRegistry,
+        { provide: ESIDataServicesPort, useClass: ESISecureDataServicesAdapter },
         { provide: CapsuleerMiningOperationsUseCase, useClass: CapsuleerMiningOperationsUseCase },
-        {provide: ESISecureDataServiceHALGeneratorAdapter, useClass:ESISecureDataServiceHALGeneratorAdapter}
+        { provide: ESISecureDataServiceHALGeneratorAdapter, useClass: ESISecureDataServiceHALGeneratorAdapter }
     ],
 })
 export class AppModule { }

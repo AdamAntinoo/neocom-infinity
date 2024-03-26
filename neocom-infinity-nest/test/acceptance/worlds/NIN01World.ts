@@ -13,8 +13,7 @@ export class NIN01World extends World {
     constructor(options) {
         super(options)
         console.log('world constructor')
-        // this.init()
-    }
+     }
     /**
     * Create the dependencies that are required by the scenario
     */

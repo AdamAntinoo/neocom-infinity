@@ -1,4 +1,4 @@
-import { ITransformable } from "@Domain/interfaces/ITransformable.interface"
+import { ITransformable } from "@Inno/core/ITransformable.interface"
 import { UUID, randomUUID } from "crypto"
 
 export class V2MiningOperation implements ITransformable<V2MiningOperation>{
