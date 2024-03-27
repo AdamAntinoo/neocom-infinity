@@ -26,7 +26,8 @@
     "test:full": "npm run jest && npm run cucumber",
     "test": "jest --verbose",
     "test:cov": "jest --verbose --coverage",
-    "acc:NIN01": "./node_modules/@cucumber/cucumber/bin/cucumber-js ./test/**/*.feature --no-strict --require-module ts-node/register --require-module tsconfig-paths/register --require ./test/acceptance/steps/**/*.ts --tags @NIN01"
+    "acc:nin01": "./node_modules/@cucumber/cucumber/bin/cucumber-js ./test/**/*.feature --no-strict --require-module ts-node/register --require-module tsconfig-paths/register --require ./test/acceptance/steps/**/*.ts --tags @NIN01",
+    "acc:nin02": "./node_modules/@cucumber/cucumber/bin/cucumber-js ./test/**/*.feature --no-strict --require-module ts-node/register --require-module tsconfig-paths/register --require ./test/acceptance/steps/**/*.ts --tags @NIN02"
   },
   "dependencies": {
     "@nestjs/axios": "^3.0.2",
@@ -35,6 +36,7 @@
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/schedule": "^4.0.1",
+    "@sniptt/monads": "^0.5.10",
     "cookie-parser": "^1.4.6",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1"
