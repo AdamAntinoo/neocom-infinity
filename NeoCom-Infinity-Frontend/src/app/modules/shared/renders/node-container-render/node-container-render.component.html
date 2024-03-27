@@ -1,0 +1,29 @@
+<div *ngIf="node.jsonClass == 'Separator'">
+    <separator-render *ngIf="node.jsonClass == 'Separator'" [container]="container" [node]="node" [variant]="variant"></separator-render>
+</div>
+<div class="neocom-panel" *ngIf="node.jsonClass != 'Separator'" [ngClass]="getColorSchemePanelStyle()" (mouseenter)="mouseEnter(node)" (click)="toggleExpanded()">
+    <v1-group-container *ngIf="node.jsonClass == 'GroupContainer'" style="flex-grow: 95;" [container]="container" [node]="node" [variant]="variant">
+    </v1-group-container>
+    <v1-fitting *ngIf="node.jsonClass == 'Fitting'" style="flex-grow: 95;" [container]="container" [node]="node" [variant]="variant">
+    </v1-fitting>
+    <!-- <v1-fitting-item *ngIf="node.jsonClass == 'FittingItem'" [container]="container" [node]="node" [variant]="variant">
+    </v1-fitting-item> -->
+
+    <!-- RIGHT ARROW -->
+    <div *ngIf="node.isExpandable()" class="neocom-arrow-box">
+        <img class="neocom-arrow" [ngClass]="{'neocom-arrow-expanded': isExpanded()}" src="/assets/res-ui/drawable/arrowright.png">
+    </div>
+    <!-- SEPARATOR WHEN NO RIGHT ARROW -->
+    <td *ngIf="!node.isExpandable()" width="32px">
+        &nbsp;
+    </td>
+</div>
+<!-- <div *ngIf="hasMenu()" style="">
+            <img src="/assets/icons/menuicon.jpg" width="16px" height="16px" style="filter: invert(100%);">
+        </div> -->
+<!-- MENU BLOCK -->
+<!-- <td *ngIf="hasMenu()" width="5%" class="">
+            <div class="">
+                <img src="/assets/icons/menuicon.jpg" width="16px" height="16px" style="filter: invert(100%);">
+            </div>
+        </td> -->

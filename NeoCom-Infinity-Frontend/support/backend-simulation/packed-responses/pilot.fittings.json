@@ -1,0 +1,973 @@
+[{
+    "jsonClass": "Fitting",
+        "fittingId": 60320161,
+        "name": "VM Clearer A1",
+        "description": "",
+        "hullGroup": "frigate",
+        "shipHullInfo": {
+            "jsonClass": "NeoItem",
+            "typeId": 32880,
+            "name": "Venture",
+            "groupId": 25,
+            "groupName": "Frigate",
+            "categoryId": 6,
+            "categoryName": "Ship",
+            "tech": "Tech I",
+            "volume": 29500.0,
+            "price": 193941.12,
+            "isBlueprint": false,
+            "urlforItem": "https://image.eveonline.com/Type/32880_64.png"
+        },
+        "items": [{
+                "jsonClass": "FittingItem",
+                "typeId": 2048,
+                "name": "Damage Control II",
+                "location": "LoSlot0"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 5245,
+                "name": "Particle Bore Compact Mining Laser",
+                "location": "HiSlot0"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 5245,
+                "name": "Particle Bore Compact Mining Laser",
+                "location": "HiSlot1"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 8517,
+                "name": "Medium F-S9 Regolith Compact Shield Extender",
+                "location": "MedSlot1"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 8517,
+                "name": "Medium F-S9 Regolith Compact Shield Extender",
+                "location": "MedSlot2"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 10872,
+                "name": "Medium C5-L Compact Shield Booster",
+                "location": "MedSlot0"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 31358,
+                "name": "Small Ancillary Current Router I",
+                "location": "RigSlot0"
+            }
+        ]
+    },
+    {
+        "jsonClass": "Fitting",
+        "fittingId": 44745698,
+        "name": "MI Elef LS1.0",
+        "description": "",
+        "hullGroup": "industrial",
+        "shipHullInfo": {
+            "jsonClass": "NeoItem",
+            "typeId": 652,
+            "name": "Mammoth",
+            "groupId": 28,
+            "groupName": "Industrial",
+            "categoryId": 6,
+            "categoryName": "Ship",
+            "tech": "Tech I",
+            "volume": 255000.0,
+            "price": 1344256.53,
+            "isBlueprint": false,
+            "urlforItem": "https://image.eveonline.com/Type/652_64.png"
+        },
+        "items": [{
+                "jsonClass": "FittingItem",
+                "typeId": 1319,
+                "name": "Expanded Cargohold II",
+                "location": "LoSlot1"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 1319,
+                "name": "Expanded Cargohold II",
+                "location": "LoSlot2"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 1319,
+                "name": "Expanded Cargohold II",
+                "location": "LoSlot3"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 1319,
+                "name": "Expanded Cargohold II",
+                "location": "LoSlot4"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 5973,
+                "name": "5MN Y-T8 Compact Microwarpdrive",
+                "location": "MedSlot0"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 8433,
+                "name": "Medium Azeotropic Restrained Shield Extender",
+                "location": "MedSlot2"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 8433,
+                "name": "Medium Azeotropic Restrained Shield Extender",
+                "location": "MedSlot3"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 9622,
+                "name": "Limited 'Anointed' EM Ward Field",
+                "location": "MedSlot1"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 10998,
+                "name": "Warp Core Stabilizer I",
+                "location": "LoSlot0"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 31754,
+                "name": "Medium Anti-Thermal Screen Reinforcer I",
+                "location": "RigSlot0"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 31790,
+                "name": "Medium Core Defense Field Extender I",
+                "location": "RigSlot1"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 31790,
+                "name": "Medium Core Defense Field Extender I",
+                "location": "RigSlot2"
+            }
+        ]
+    },
+    {
+        "jsonClass": "Fitting",
+        "fittingId": 28101733,
+        "name": "Occator AntiGanking",
+        "description": "",
+        "hullGroup": "industrial",
+        "shipHullInfo": {
+            "jsonClass": "NeoItem",
+            "typeId": 12745,
+            "name": "Occator",
+            "groupId": 380,
+            "groupName": "Deep Space Transport",
+            "categoryId": 6,
+            "categoryName": "Ship",
+            "tech": "Tech I",
+            "volume": 390000.0,
+            "price": 1.0608320087E8,
+            "isBlueprint": false,
+            "urlforItem": "https://image.eveonline.com/Type/12745_64.png"
+        },
+        "items": [{
+                "jsonClass": "FittingItem",
+                "typeId": 2048,
+                "name": "Damage Control II",
+                "location": "LoSlot0"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 2281,
+                "name": "Adaptive Invulnerability Field II",
+                "location": "MedSlot1"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 2553,
+                "name": "EM Ward Amplifier II",
+                "location": "MedSlot2"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 3178,
+                "name": "Light Neutron Blaster II",
+                "location": "HiSlot0"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 3178,
+                "name": "Light Neutron Blaster II",
+                "location": "HiSlot1"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 3841,
+                "name": "Large Shield Extender II",
+                "location": "MedSlot0"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 5561,
+                "name": "Local Hull Conversion Nanofiber Structure I",
+                "location": "LoSlot3"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 5561,
+                "name": "Local Hull Conversion Nanofiber Structure I",
+                "location": "LoSlot4"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 11229,
+                "name": "Energized Explosive Membrane II",
+                "location": "LoSlot5"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 11269,
+                "name": "Energized Adaptive Nano Membrane II",
+                "location": "LoSlot1"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 11317,
+                "name": "800mm Rolled Tungsten Compact Plates",
+                "location": "LoSlot2"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 31059,
+                "name": "Medium Trimark Armor Pump II",
+                "location": "RigSlot0"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 31059,
+                "name": "Medium Trimark Armor Pump II",
+                "location": "RigSlot1"
+            }
+        ]
+    },
+    {
+        "jsonClass": "Fitting",
+        "fittingId": 28101737,
+        "name": "Nereus AntiGanking",
+        "description": "",
+        "hullGroup": "industrial",
+        "shipHullInfo": {
+            "jsonClass": "NeoItem",
+            "typeId": 650,
+            "name": "Nereus",
+            "groupId": 28,
+            "groupName": "Industrial",
+            "categoryId": 6,
+            "categoryName": "Ship",
+            "tech": "Tech I",
+            "volume": 240000.0,
+            "price": 402830.39,
+            "isBlueprint": false,
+            "urlforItem": "https://image.eveonline.com/Type/650_64.png"
+        },
+        "items": [{
+                "jsonClass": "FittingItem",
+                "typeId": 2048,
+                "name": "Damage Control II",
+                "location": "LoSlot0"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 2281,
+                "name": "Adaptive Invulnerability Field II",
+                "location": "MedSlot1"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 2456,
+                "name": "Hobgoblin II",
+                "location": "DroneBay"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 2539,
+                "name": "Thermal Dissipation Amplifier II",
+                "location": "MedSlot4"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 2553,
+                "name": "EM Ward Amplifier II",
+                "location": "MedSlot0"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 3178,
+                "name": "Light Neutron Blaster II",
+                "location": "HiSlot1"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 3831,
+                "name": "Medium Shield Extender II",
+                "location": "MedSlot2"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 3831,
+                "name": "Medium Shield Extender II",
+                "location": "MedSlot3"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 5561,
+                "name": "Local Hull Conversion Nanofiber Structure I",
+                "location": "LoSlot3"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 5561,
+                "name": "Local Hull Conversion Nanofiber Structure I",
+                "location": "LoSlot4"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 16311,
+                "name": "'Refuge' Adaptive Nano Plating I",
+                "location": "LoSlot1"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 16407,
+                "name": "Prototype Energized Explosive Membrane I",
+                "location": "LoSlot2"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 23527,
+                "name": "Drone Link Augmentor I",
+                "location": "HiSlot0"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 31119,
+                "name": "Medium Cargohold Optimization I",
+                "location": "RigSlot0"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 31119,
+                "name": "Medium Cargohold Optimization I",
+                "location": "RigSlot1"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 31119,
+                "name": "Medium Cargohold Optimization I",
+                "location": "RigSlot2"
+            }
+        ]
+    },
+    {
+        "jsonClass": "Fitting",
+        "fittingId": 35947306,
+        "name": "EI Oruga N2",
+        "description": "",
+        "hullGroup": "industrial",
+        "shipHullInfo": {
+            "jsonClass": "NeoItem",
+            "typeId": 655,
+            "name": "Epithal",
+            "groupId": 28,
+            "groupName": "Industrial",
+            "categoryId": 6,
+            "categoryName": "Ship",
+            "tech": "Tech I",
+            "volume": 250000.0,
+            "price": 1053898.49,
+            "isBlueprint": false,
+            "urlforItem": "https://image.eveonline.com/Type/655_64.png"
+        },
+        "items": [{
+                "jsonClass": "FittingItem",
+                "typeId": 2539,
+                "name": "Thermal Dissipation Amplifier II",
+                "location": "MedSlot3"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 2553,
+                "name": "EM Ward Amplifier II",
+                "location": "MedSlot2"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 2605,
+                "name": "Nanofiber Internal Structure II",
+                "location": "LoSlot2"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 2605,
+                "name": "Nanofiber Internal Structure II",
+                "location": "LoSlot3"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 3831,
+                "name": "Medium Shield Extender II",
+                "location": "MedSlot1"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 5975,
+                "name": "50MN Cold-Gas Enduring Microwarpdrive",
+                "location": "MedSlot0"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 10998,
+                "name": "Warp Core Stabilizer I",
+                "location": "LoSlot0"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 10998,
+                "name": "Warp Core Stabilizer I",
+                "location": "LoSlot1"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 11577,
+                "name": "Improved Cloaking Device II",
+                "location": "HiSlot0"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 31155,
+                "name": "Medium Low Friction Nozzle Joints I",
+                "location": "RigSlot2"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 31179,
+                "name": "Medium Polycarbon Engine Housing I",
+                "location": "RigSlot1"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 31360,
+                "name": "Medium Ancillary Current Router I",
+                "location": "RigSlot0"
+            }
+        ]
+    },
+    {
+        "jsonClass": "Fitting",
+        "fittingId": 35947314,
+        "name": "EI Oruga E2",
+        "description": "",
+        "hullGroup": "industrial",
+        "shipHullInfo": {
+            "jsonClass": "NeoItem",
+            "typeId": 655,
+            "name": "Epithal",
+            "groupId": 28,
+            "groupName": "Industrial",
+            "categoryId": 6,
+            "categoryName": "Ship",
+            "tech": "Tech I",
+            "volume": 250000.0,
+            "price": 1053898.49,
+            "isBlueprint": false,
+            "urlforItem": "https://image.eveonline.com/Type/655_64.png"
+        },
+        "items": [{
+                "jsonClass": "FittingItem",
+                "typeId": 1335,
+                "name": "Reinforced Bulkheads II",
+                "location": "LoSlot2"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 1335,
+                "name": "Reinforced Bulkheads II",
+                "location": "LoSlot3"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 2539,
+                "name": "Thermal Dissipation Amplifier II",
+                "location": "MedSlot3"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 2553,
+                "name": "EM Ward Amplifier II",
+                "location": "MedSlot2"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 3831,
+                "name": "Medium Shield Extender II",
+                "location": "MedSlot1"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 3841,
+                "name": "Large Shield Extender II",
+                "location": "MedSlot0"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 10998,
+                "name": "Warp Core Stabilizer I",
+                "location": "LoSlot0"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 10998,
+                "name": "Warp Core Stabilizer I",
+                "location": "LoSlot1"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 11370,
+                "name": "Prototype Cloaking Device I",
+                "location": "HiSlot0"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 31155,
+                "name": "Medium Low Friction Nozzle Joints I",
+                "location": "RigSlot2"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 31179,
+                "name": "Medium Polycarbon Engine Housing I",
+                "location": "RigSlot1"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 31360,
+                "name": "Medium Ancillary Current Router I",
+                "location": "RigSlot0"
+            }
+        ]
+    },
+    {
+        "jsonClass": "Fitting",
+        "fittingId": 44745364,
+        "name": "IIS Magno E1",
+        "description": "",
+        "hullGroup": "industrial",
+        "shipHullInfo": {
+            "jsonClass": "NeoItem",
+            "typeId": 657,
+            "name": "Iteron Mark V",
+            "groupId": 28,
+            "groupName": "Industrial",
+            "categoryId": 6,
+            "categoryName": "Ship",
+            "tech": "Tech I",
+            "volume": 275000.0,
+            "price": 1083185.73,
+            "isBlueprint": false,
+            "urlforItem": "https://image.eveonline.com/Type/657_64.png"
+        },
+        "items": [{
+                "jsonClass": "FittingItem",
+                "typeId": 1319,
+                "name": "Expanded Cargohold II",
+                "location": "LoSlot2"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 1319,
+                "name": "Expanded Cargohold II",
+                "location": "LoSlot3"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 1319,
+                "name": "Expanded Cargohold II",
+                "location": "LoSlot4"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 5839,
+                "name": "IFFA Compact Damage Control",
+                "location": "LoSlot0"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 8433,
+                "name": "Medium Azeotropic Restrained Shield Extender",
+                "location": "MedSlot1"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 8433,
+                "name": "Medium Azeotropic Restrained Shield Extender",
+                "location": "MedSlot2"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 9622,
+                "name": "Limited 'Anointed' EM Ward Field",
+                "location": "MedSlot3"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 10998,
+                "name": "Warp Core Stabilizer I",
+                "location": "LoSlot1"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 31790,
+                "name": "Medium Core Defense Field Extender I",
+                "location": "RigSlot0"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 31790,
+                "name": "Medium Core Defense Field Extender I",
+                "location": "RigSlot1"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 31790,
+                "name": "Medium Core Defense Field Extender I",
+                "location": "RigSlot2"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 35656,
+                "name": "10MN Y-S8 Compact Afterburner",
+                "location": "MedSlot0"
+            }
+        ]
+    },
+    {
+        "jsonClass": "Fitting",
+        "fittingId": 49342522,
+        "name": "ODST Odin B2",
+        "description": "",
+        "hullGroup": "industrial",
+        "shipHullInfo": {
+            "jsonClass": "NeoItem",
+            "typeId": 12745,
+            "name": "Occator",
+            "groupId": 380,
+            "groupName": "Deep Space Transport",
+            "categoryId": 6,
+            "categoryName": "Ship",
+            "tech": "Tech I",
+            "volume": 390000.0,
+            "price": 1.0608320087E8,
+            "isBlueprint": false,
+            "urlforItem": "https://image.eveonline.com/Type/12745_64.png"
+        },
+        "items": [{
+                "jsonClass": "FittingItem",
+                "typeId": 1335,
+                "name": "Reinforced Bulkheads II",
+                "location": "LoSlot1"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 1335,
+                "name": "Reinforced Bulkheads II",
+                "location": "LoSlot2"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 1335,
+                "name": "Reinforced Bulkheads II",
+                "location": "LoSlot3"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 1335,
+                "name": "Reinforced Bulkheads II",
+                "location": "LoSlot4"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 1335,
+                "name": "Reinforced Bulkheads II",
+                "location": "LoSlot5"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 2048,
+                "name": "Damage Control II",
+                "location": "LoSlot0"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 10872,
+                "name": "Medium C5-L Compact Shield Booster",
+                "location": "MedSlot2"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 11370,
+                "name": "Prototype Cloaking Device I",
+                "location": "HiSlot0"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 33894,
+                "name": "Medium Transverse Bulkhead I",
+                "location": "RigSlot0"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 33894,
+                "name": "Medium Transverse Bulkhead I",
+                "location": "RigSlot1"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 33915,
+                "name": "Medium Micro Jump Drive",
+                "location": "MedSlot1"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 35656,
+                "name": "10MN Y-S8 Compact Afterburner",
+                "location": "MedSlot0"
+            }
+        ]
+    },
+    {
+        "jsonClass": "Fitting",
+        "fittingId": 46753535,
+        "name": "LSC AAB Pierna 1.0",
+        "description": "",
+        "hullGroup": "cruiser",
+        "shipHullInfo": {
+            "jsonClass": "NeoItem",
+            "typeId": 29986,
+            "name": "Legion",
+            "groupId": 963,
+            "groupName": "Strategic Cruiser",
+            "categoryId": 6,
+            "categoryName": "Ship",
+            "tech": "Tech I",
+            "volume": 118000.0,
+            "price": 1.4609549878E8,
+            "isBlueprint": false,
+            "urlforItem": "https://image.eveonline.com/Type/29986_64.png"
+        },
+        "items": [{
+                "jsonClass": "FittingItem",
+                "typeId": 1978,
+                "name": "Tracking Computer II",
+                "location": "MedSlot2"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 1978,
+                "name": "Tracking Computer II",
+                "location": "MedSlot3"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 2364,
+                "name": "Heat Sink II",
+                "location": "LoSlot6"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 3025,
+                "name": "Heavy Beam Laser II",
+                "location": "HiSlot0"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 3025,
+                "name": "Heavy Beam Laser II",
+                "location": "HiSlot1"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 3025,
+                "name": "Heavy Beam Laser II",
+                "location": "HiSlot2"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 3025,
+                "name": "Heavy Beam Laser II",
+                "location": "HiSlot3"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 3025,
+                "name": "Heavy Beam Laser II",
+                "location": "HiSlot4"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 5302,
+                "name": "Phased Muon Scoped Sensor Dampener",
+                "location": "MedSlot1"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 11269,
+                "name": "Energized Adaptive Nano Membrane II",
+                "location": "LoSlot3"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 11648,
+                "name": "Armor Thermal Hardener II",
+                "location": "LoSlot0"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 11648,
+                "name": "Armor Thermal Hardener II",
+                "location": "LoSlot1"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 12058,
+                "name": "10MN Afterburner II",
+                "location": "MedSlot0"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 12822,
+                "name": "Aurora M",
+                "location": "Cargo"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 12826,
+                "name": "Gleam M",
+                "location": "Cargo"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 13970,
+                "name": "True Sansha Armor EM Hardener",
+                "location": "LoSlot4"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 13978,
+                "name": "True Sansha Armor Kinetic Hardener",
+                "location": "LoSlot5"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 20353,
+                "name": "1600mm Steel Plates II",
+                "location": "LoSlot2"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 23089,
+                "name": "Imperial Navy Multifrequency M",
+                "location": "Cargo"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 23095,
+                "name": "Imperial Navy Ultraviolet M",
+                "location": "Cargo"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 23097,
+                "name": "Imperial Navy Standard M",
+                "location": "Cargo"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 28999,
+                "name": "Optimal Range Script",
+                "location": "Cargo"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 29001,
+                "name": "Tracking Speed Script",
+                "location": "Cargo"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 29013,
+                "name": "Scan Resolution Dampening Script",
+                "location": "Cargo"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 29015,
+                "name": "Targeting Range Dampening Script",
+                "location": "Cargo"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 29966,
+                "name": "OLD Legion Defensive - Augmented Plating",
+                "location": "SubSystemSlot1"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 30040,
+                "name": "OLD Legion Electronics - Dissolution Sequencer",
+                "location": "SubSystemSlot0"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 30078,
+                "name": "OLD Legion Propulsion - Fuel Catalyst",
+                "location": "Invalid"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 30119,
+                "name": "OLD Legion Offensive - Liquid Crystal Magnifiers",
+                "location": "SubSystemSlot3"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 30173,
+                "name": "OLD Legion Engineering - Capacitor Regeneration Matrix",
+                "location": "SubSystemSlot2"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 31059,
+                "name": "Medium Trimark Armor Pump II",
+                "location": "RigSlot1"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 31059,
+                "name": "Medium Trimark Armor Pump II",
+                "location": "RigSlot2"
+            },
+            {
+                "jsonClass": "FittingItem",
+                "typeId": 31360,
+                "name": "Medium Ancillary Current Router I",
+                "location": "RigSlot0"
+            }
+        ]
+    }
+]

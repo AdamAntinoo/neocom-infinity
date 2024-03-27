@@ -1,0 +1,14 @@
+{
+    "/api/v2/universe/*": {
+        "target": "http://localhost:5211",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
+    },
+    "/api/*": {
+        "target": "http://localhost:5210",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
+    }
+}

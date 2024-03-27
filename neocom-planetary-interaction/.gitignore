@@ -1,0 +1,9 @@
+# - Ignore the code for the Api Simulator library
+support/apisimulator-http-1.6.1/
+
+# - Ignore generated outputs for production
+dist/
+coverage/
+
+# - Angular dependencies and packages
+node_modules/

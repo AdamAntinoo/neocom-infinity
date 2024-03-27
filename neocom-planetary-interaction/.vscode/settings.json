@@ -1,0 +1,5 @@
+{
+    "editor.lineHeight": 13,
+    "files.autoSaveDelay": 4000,
+    "files.autoSave": "afterDelay"
+}

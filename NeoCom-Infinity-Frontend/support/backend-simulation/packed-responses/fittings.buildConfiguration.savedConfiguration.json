@@ -1,0 +1,500 @@
+{
+    "fittingBuildId": "FB.93813310-60320161",
+    "fittingInfo": {
+        "fitting": {
+            "fittingItems": [{
+                    "typeId": 2048,
+                    "name": "Damage Control II",
+                    "location": "LOSLOT0",
+                    "item": {
+                        "rel": "item",
+                        "href": "http://localhost:5200/api/v2/universe/items/2048"
+                    }
+                },
+                {
+                    "typeId": 5245,
+                    "name": "Particle Bore Compact Mining Laser",
+                    "location": "HISLOT0",
+                    "item": {
+                        "rel": "item",
+                        "href": "http://localhost:5200/api/v2/universe/items/5245"
+                    }
+                },
+                {
+                    "typeId": 5245,
+                    "name": "Particle Bore Compact Mining Laser",
+                    "location": "HISLOT1",
+                    "item": {
+                        "rel": "item",
+                        "href": "http://localhost:5200/api/v2/universe/items/5245"
+                    }
+                },
+                {
+                    "typeId": 8517,
+                    "name": "Medium F-S9 Regolith Compact Shield Extender",
+                    "location": "MEDSLOT1",
+                    "item": {
+                        "rel": "item",
+                        "href": "http://localhost:5200/api/v2/universe/items/8517"
+                    }
+                },
+                {
+                    "typeId": 8517,
+                    "name": "Medium F-S9 Regolith Compact Shield Extender",
+                    "location": "MEDSLOT2",
+                    "item": {
+                        "rel": "item",
+                        "href": "http://localhost:5200/api/v2/universe/items/8517"
+                    }
+                },
+                {
+                    "typeId": 10872,
+                    "name": "Medium C5-L Compact Shield Booster",
+                    "location": "MEDSLOT0",
+                    "item": {
+                        "rel": "item",
+                        "href": "http://localhost:5200/api/v2/universe/items/10872"
+                    }
+                },
+                {
+                    "typeId": 31358,
+                    "name": "Small Ancillary Current Router I",
+                    "location": "RIGSLOT0",
+                    "item": {
+                        "rel": "item",
+                        "href": "http://localhost:5200/api/v2/universe/items/31358"
+                    }
+                }
+            ],
+            "shipHull": {
+                "industryGroup": "HULL",
+                "item": {
+                    "typeId": 32880,
+                    "name": "Venture",
+                    "description": "Recognizing the dire need for a ship capable of fast operation in unsafe territories, <a href=showinfo:30//500014>ORE</a> created the Venture. It was conceived as a vessel primed and ready for any capsuleer, no matter how new to the dangers of New Eden they might be, who wishes to engage in the respectable trade of mining.\r\n\r\nThe Venture has amazing abilities to quickly drill through to the ores and gases it's after, harvesting them at the speed necessary for mining in hostile space, and getting out relatively unscathed.",
+                    "groupId": 25,
+                    "marketGroupId": 1616,
+                    "capacity": 50.0,
+                    "mass": 1200000.0,
+                    "packagedVolume": 2500.0,
+                    "volume": 29500.0
+                },
+                "group": {
+                    "groupId": 25,
+                    "groupName": "Frigate",
+                    "groupCategoryId": 6
+                },
+                "category": {
+                    "categoryId": 6,
+                    "categoryName": "Ship"
+                },
+                "name": "Venture",
+                "typeId": 32880,
+                "categoryName": "Ship",
+                "urlforItem": "https://image.eveonline.com/Type/32880_64.png",
+                "hullGroup": "frigate",
+                "groupName": "Frigate"
+            },
+            "name": "VM Clearer A1",
+            "fittingId": 60320161,
+            "shipTypeId": 32880,
+            "urlforItem": "https://image.eveonline.com/Type/32880_64.png",
+            "hullGroup": "FRIGATE",
+            "groupName": "Frigate"
+        },
+        "hull": {
+            "industryGroup": "HULL",
+            "item": {
+                "typeId": 32880,
+                "name": "Venture",
+                "description": "Recognizing the dire need for a ship capable of fast operation in unsafe territories, <a href=showinfo:30//500014>ORE</a> created the Venture. It was conceived as a vessel primed and ready for any capsuleer, no matter how new to the dangers of New Eden they might be, who wishes to engage in the respectable trade of mining.\r\n\r\nThe Venture has amazing abilities to quickly drill through to the ores and gases it's after, harvesting them at the speed necessary for mining in hostile space, and getting out relatively unscathed.",
+                "groupId": 25,
+                "marketGroupId": 1616,
+                "capacity": 50.0,
+                "mass": 1200000.0,
+                "packagedVolume": 2500.0,
+                "volume": 29500.0
+            },
+            "group": {
+                "groupId": 25,
+                "groupName": "Frigate",
+                "groupCategoryId": 6
+            },
+            "category": {
+                "categoryId": 6,
+                "categoryName": "Ship"
+            },
+            "name": "Venture",
+            "typeId": 32880,
+            "categoryName": "Ship",
+            "urlforItem": "https://image.eveonline.com/Type/32880_64.png",
+            "hullGroup": "frigate",
+            "groupName": "Frigate"
+        },
+        "hullAction": {
+            "type": "org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.BuyBuildAction",
+            "actionType": "BUY",
+            "corporationHome": {
+                "jsonClass": "Station",
+                "locationId": 60006610,
+                "regionId": 10000020,
+                "regionName": "Tash-Murkon",
+                "constellationId": 20000257,
+                "constellationName": "Peges",
+                "systemId": 30001736,
+                "systemName": "Esa",
+                "stationId": 60006610,
+                "stationName": "Esa VIII - Moon 2 - Viziam Warehouse"
+            },
+            "marketOrder": {
+                "station": {
+                    "jsonClass": "Station",
+                    "locationId": 60006724,
+                    "regionId": 10000020,
+                    "regionName": "Tash-Murkon",
+                    "constellationId": 20000248,
+                    "constellationName": "Mimishia",
+                    "systemId": 30001677,
+                    "systemName": "Thashkarai",
+                    "stationId": 60006724,
+                    "stationName": "Thashkarai VI - Zoar and Sons Factory"
+                },
+                "orderId": 5834645178,
+                "volumeRemain": 10,
+                "typeId": 32880,
+                "price": 350000.0
+            },
+            "cost": 0.0
+        }
+    },
+    "contents": [{
+            "id": "a831461b-03f3-4122-af33-fdfd42dbbb21",
+            "fittingItem": {
+                "typeId": 2048,
+                "name": "Damage Control II",
+                "location": "LOSLOT0",
+                "item": {
+                    "rel": "item",
+                    "href": "http://localhost:5200/api/v2/universe/items/2048"
+                }
+            },
+            "action": {
+                "type": "org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.BuyBuildAction",
+                "actionType": "BUY",
+                "corporationHome": {
+                    "jsonClass": "Station",
+                    "locationId": 60006610,
+                    "regionId": 10000020,
+                    "regionName": "Tash-Murkon",
+                    "constellationId": 20000257,
+                    "constellationName": "Peges",
+                    "systemId": 30001736,
+                    "systemName": "Esa",
+                    "stationId": 60006610,
+                    "stationName": "Esa VIII - Moon 2 - Viziam Warehouse"
+                },
+                "marketOrder": {
+                    "station": {
+                        "jsonClass": "Station",
+                        "locationId": 60006223,
+                        "regionId": 10000020,
+                        "regionName": "Tash-Murkon",
+                        "constellationId": 20000247,
+                        "constellationName": "Arvachah",
+                        "systemId": 30001673,
+                        "systemName": "Shesha",
+                        "stationId": 60006223,
+                        "stationName": "Shesha III - Carthum Conglomerate Factory"
+                    },
+                    "orderId": 5842528403,
+                    "volumeRemain": 17,
+                    "typeId": 2048,
+                    "price": 425000.0
+                },
+                "cost": 0.0
+            }
+        },
+        {
+            "id": "49e07780-df54-48db-943c-501d3f346ac9",
+            "fittingItem": {
+                "typeId": 5245,
+                "name": "Particle Bore Compact Mining Laser",
+                "location": "HISLOT0",
+                "item": {
+                    "rel": "item",
+                    "href": "http://localhost:5200/api/v2/universe/items/5245"
+                }
+            },
+            "action": {
+                "type": "org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.BuyBuildAction",
+                "actionType": "BUY",
+                "corporationHome": {
+                    "jsonClass": "Station",
+                    "locationId": 60006610,
+                    "regionId": 10000020,
+                    "regionName": "Tash-Murkon",
+                    "constellationId": 20000257,
+                    "constellationName": "Peges",
+                    "systemId": 30001736,
+                    "systemName": "Esa",
+                    "stationId": 60006610,
+                    "stationName": "Esa VIII - Moon 2 - Viziam Warehouse"
+                },
+                "marketOrder": {
+                    "station": {
+                        "jsonClass": "Station",
+                        "locationId": 60006232,
+                        "regionId": 10000020,
+                        "regionName": "Tash-Murkon",
+                        "constellationId": 20000247,
+                        "constellationName": "Arvachah",
+                        "systemId": 30001669,
+                        "systemName": "Pimebeka",
+                        "stationId": 60006232,
+                        "stationName": "Pimebeka IV - Moon 1 - Carthum Conglomerate Warehouse"
+                    },
+                    "orderId": 5845006667,
+                    "volumeRemain": 6,
+                    "typeId": 5245,
+                    "price": 16000.0
+                },
+                "cost": 0.0
+            }
+        },
+        {
+            "id": "01ddbb5f-1d2f-4572-ba56-e03964039460",
+            "fittingItem": {
+                "typeId": 5245,
+                "name": "Particle Bore Compact Mining Laser",
+                "location": "HISLOT1",
+                "item": {
+                    "rel": "item",
+                    "href": "http://localhost:5200/api/v2/universe/items/5245"
+                }
+            },
+            "action": {
+                "type": "org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.BuyBuildAction",
+                "actionType": "BUY",
+                "corporationHome": {
+                    "jsonClass": "Station",
+                    "locationId": 60006610,
+                    "regionId": 10000020,
+                    "regionName": "Tash-Murkon",
+                    "constellationId": 20000257,
+                    "constellationName": "Peges",
+                    "systemId": 30001736,
+                    "systemName": "Esa",
+                    "stationId": 60006610,
+                    "stationName": "Esa VIII - Moon 2 - Viziam Warehouse"
+                },
+                "marketOrder": {
+                    "station": {
+                        "jsonClass": "Station",
+                        "locationId": 60006232,
+                        "regionId": 10000020,
+                        "regionName": "Tash-Murkon",
+                        "constellationId": 20000247,
+                        "constellationName": "Arvachah",
+                        "systemId": 30001669,
+                        "systemName": "Pimebeka",
+                        "stationId": 60006232,
+                        "stationName": "Pimebeka IV - Moon 1 - Carthum Conglomerate Warehouse"
+                    },
+                    "orderId": 5845006667,
+                    "volumeRemain": 6,
+                    "typeId": 5245,
+                    "price": 16000.0
+                },
+                "cost": 0.0
+            }
+        },
+        {
+            "id": "062b5b9e-928b-458a-8973-01a5307a183b",
+            "fittingItem": {
+                "typeId": 8517,
+                "name": "Medium F-S9 Regolith Compact Shield Extender",
+                "location": "MEDSLOT1",
+                "item": {
+                    "rel": "item",
+                    "href": "http://localhost:5200/api/v2/universe/items/8517"
+                }
+            },
+            "action": {
+                "type": "org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.BuyBuildAction",
+                "actionType": "BUY",
+                "corporationHome": {
+                    "jsonClass": "Station",
+                    "locationId": 60006610,
+                    "regionId": 10000020,
+                    "regionName": "Tash-Murkon",
+                    "constellationId": 20000257,
+                    "constellationName": "Peges",
+                    "systemId": 30001736,
+                    "systemName": "Esa",
+                    "stationId": 60006610,
+                    "stationName": "Esa VIII - Moon 2 - Viziam Warehouse"
+                },
+                "marketOrder": {
+                    "station": {
+                        "jsonClass": "Station",
+                        "locationId": 60007996,
+                        "regionId": 10000020,
+                        "regionName": "Tash-Murkon",
+                        "constellationId": 20000252,
+                        "constellationName": "Nasorin",
+                        "systemId": 30001703,
+                        "systemName": "Taru",
+                        "stationId": 60007996,
+                        "stationName": "Taru X - Moon 9 - Ministry of War Information Center"
+                    },
+                    "orderId": 5844658151,
+                    "volumeRemain": 1,
+                    "typeId": 8517,
+                    "price": 4302000.0
+                },
+                "cost": 0.0
+            }
+        },
+        {
+            "id": "919aaadb-22c5-473c-a7ad-9aae914ff8dd",
+            "fittingItem": {
+                "typeId": 8517,
+                "name": "Medium F-S9 Regolith Compact Shield Extender",
+                "location": "MEDSLOT2",
+                "item": {
+                    "rel": "item",
+                    "href": "http://localhost:5200/api/v2/universe/items/8517"
+                }
+            },
+            "action": {
+                "type": "org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.BuyBuildAction",
+                "actionType": "BUY",
+                "corporationHome": {
+                    "jsonClass": "Station",
+                    "locationId": 60006610,
+                    "regionId": 10000020,
+                    "regionName": "Tash-Murkon",
+                    "constellationId": 20000257,
+                    "constellationName": "Peges",
+                    "systemId": 30001736,
+                    "systemName": "Esa",
+                    "stationId": 60006610,
+                    "stationName": "Esa VIII - Moon 2 - Viziam Warehouse"
+                },
+                "marketOrder": {
+                    "station": {
+                        "jsonClass": "Station",
+                        "locationId": 60007996,
+                        "regionId": 10000020,
+                        "regionName": "Tash-Murkon",
+                        "constellationId": 20000252,
+                        "constellationName": "Nasorin",
+                        "systemId": 30001703,
+                        "systemName": "Taru",
+                        "stationId": 60007996,
+                        "stationName": "Taru X - Moon 9 - Ministry of War Information Center"
+                    },
+                    "orderId": 5844658151,
+                    "volumeRemain": 1,
+                    "typeId": 8517,
+                    "price": 4302000.0
+                },
+                "cost": 0.0
+            }
+        },
+        {
+            "id": "0070891c-9623-42d7-80ef-166581f92134",
+            "fittingItem": {
+                "typeId": 10872,
+                "name": "Medium C5-L Compact Shield Booster",
+                "location": "MEDSLOT0",
+                "item": {
+                    "rel": "item",
+                    "href": "http://localhost:5200/api/v2/universe/items/10872"
+                }
+            },
+            "action": {
+                "type": "org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.BuyBuildAction",
+                "actionType": "BUY",
+                "corporationHome": {
+                    "jsonClass": "Station",
+                    "locationId": 60006610,
+                    "regionId": 10000020,
+                    "regionName": "Tash-Murkon",
+                    "constellationId": 20000257,
+                    "constellationName": "Peges",
+                    "systemId": 30001736,
+                    "systemName": "Esa",
+                    "stationId": 60006610,
+                    "stationName": "Esa VIII - Moon 2 - Viziam Warehouse"
+                },
+                "marketOrder": {
+                    "station": {
+                        "jsonClass": "Station",
+                        "locationId": 60008761,
+                        "regionId": 10000020,
+                        "regionName": "Tash-Murkon",
+                        "constellationId": 20000247,
+                        "constellationName": "Arvachah",
+                        "systemId": 30001674,
+                        "systemName": "Hilaban",
+                        "stationId": 60008761,
+                        "stationName": "Hilaban II - Moon 7 - Tash-Murkon Family Academy"
+                    },
+                    "orderId": 5845513091,
+                    "volumeRemain": 31,
+                    "typeId": 10872,
+                    "price": 51810.0
+                },
+                "cost": 0.0
+            }
+        },
+        {
+            "id": "aff3df35-8e79-4398-af9a-71c2ad3c5b14",
+            "fittingItem": {
+                "typeId": 31358,
+                "name": "Small Ancillary Current Router I",
+                "location": "RIGSLOT0",
+                "item": {
+                    "rel": "item",
+                    "href": "http://localhost:5200/api/v2/universe/items/31358"
+                }
+            },
+            "action": {
+                "type": "org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.BuyBuildAction",
+                "actionType": "BUY",
+                "corporationHome": {
+                    "jsonClass": "Station",
+                    "locationId": 60006610,
+                    "regionId": 10000020,
+                    "regionName": "Tash-Murkon",
+                    "constellationId": 20000257,
+                    "constellationName": "Peges",
+                    "systemId": 30001736,
+                    "systemName": "Esa",
+                    "stationId": 60006610,
+                    "stationName": "Esa VIII - Moon 2 - Viziam Warehouse"
+                },
+                "marketOrder": {
+                    "station": {
+                        "jsonClass": "Station",
+                        "locationId": 60001096,
+                        "regionId": 10000020,
+                        "regionName": "Tash-Murkon",
+                        "constellationId": 20000247,
+                        "constellationName": "Arvachah",
+                        "systemId": 30001671,
+                        "systemName": "Tash-Murkon Prime",
+                        "stationId": 60001096,
+                        "stationName": "Tash-Murkon Prime II - Moon 1 - Kaalakiota Corporation Factory"
+                    },
+                    "orderId": 5839410494,
+                    "volumeRemain": 12,
+                    "typeId": 31358,
+                    "price": 728900.0
+                },
+                "cost": 0.0
+            }
+        }
+    ]
+}

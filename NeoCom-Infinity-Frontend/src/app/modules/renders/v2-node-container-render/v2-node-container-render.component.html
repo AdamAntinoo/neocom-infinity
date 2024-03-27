@@ -1,0 +1,11 @@
+<div (mouseenter)="mouseEnter(node)" style="position: relative;">
+    <div class="row node-panel body-box">
+        <!-- BODY -->
+        <div style="width: 100%;">
+            <v1-fitting-group *ngIf="node.jsonClass === 'FittingGroup'" [container]="container" [node]="node" [variant]="variant">
+            </v1-fitting-group>
+            <v1-fitting-build-content *ngIf="node.jsonClass === 'FittingBuildContentDao'" [container]="container" [node]="node" [variant]="variant">
+            </v1-fitting-build-content>
+        </div>
+    </div>
+</div>

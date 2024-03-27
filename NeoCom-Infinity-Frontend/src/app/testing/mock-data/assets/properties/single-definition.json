@@ -1,0 +1,6 @@
+{
+    "jsonClass": "TabDefinition",
+    "name": "Single",
+    "icon": "assets/res-sde/drawable/fittingmanagement.png",
+    "pageLink": "/app/fittings/pilot"
+}

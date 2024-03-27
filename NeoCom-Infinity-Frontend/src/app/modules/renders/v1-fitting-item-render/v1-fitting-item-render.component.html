@@ -1,0 +1,21 @@
+<div *ngIf="node">
+    <!-- <div class="neocom-panel panel-green row"> -->
+    <div id="{{getUniqueId()}}" class="row">
+        <img class="neocom-icon iconsize-36" src="{{getURLIcon()}}" alt="Eve Item Image">
+        <!-- </div> -->
+        <div class="column">
+            <div class="field">
+                <span cy-field-label="moduleName" class="label">NAME</span><br>
+                <span cy-field-value="moduleName" class="">{{getName()}}</span>
+            </div>
+            <div class="field">
+                <span cy-field-label="moduleTech" class="label">TECH</span><br>
+                <span cy-field-value="moduleTech" class="">{{getTech()}}</span>
+            </div>
+            <div class="field">
+                <span cy-field-label="moduleGroup" class="label">GROUP</span><br>
+                <span cy-field-value="moduleGroup" class="">{{getModuleGroup()}}</span>
+            </div>
+        </div>
+    </div>
+</div>

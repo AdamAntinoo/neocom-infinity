@@ -1,0 +1,11 @@
+<div class="neocom-panel panel-white">
+    <div class="neocom-panel-container" style="position: relative;">
+        <img class="spinner-animation" src="{{getSpinnerColor()}}" />
+        <div>
+            <span class="spinner-label">{{title}}</span>
+        </div>
+        <div>
+            <span class="spinner-label-2ndline">{{getWaitingTime() | date:'mm:ss'}}<span class="spinner-elapsed"> elapsed</span></span>
+        </div>
+    </div>
+</div>

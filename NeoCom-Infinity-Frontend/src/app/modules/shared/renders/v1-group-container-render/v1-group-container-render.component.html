@@ -1,0 +1,30 @@
+<!-- D E F A U L T   V A R I A N T -->
+<div *ngIf="getVariant() === '-DEFAULT-'">
+    <div style="display: flex; flex-direction: row; flex-wrap: nowrap;">
+        <div>
+            <img class="neocom-icon iconsize-36" src="{{getGroupIconReference()}}">
+        </div>
+        <div style="flex-grow: 85; padding-top: 10px;">
+            <span class="neocom-name glow neocom-ts20">{{getTitle()}}</span>
+        </div>
+        <div style="text-align: right;">
+            <div class="neocom-classname">SHIP GROUP</div>
+            <div class="stack-counter">{{getContentsCount()}}</div>
+        </div>
+    </div>
+</div>
+<!-- F I T T I N G - L I S T   V A R I A N T -->
+<div *ngIf="getVariant() === '-FITTING-LIST-'">
+    <div style="display: flex; flex-direction: row; flex-wrap: nowrap;">
+        <div>
+            <img class="neocom-icon iconsize-36" src="{{getGroupIconReference()}}">
+        </div>
+        <div style="flex-grow: 85; padding-top: 10px;">
+            <span class="neocom-name glow neocom-ts20">{{getTitle()}}</span>
+        </div>
+        <div style="text-align: right;">
+            <div class="neocom-classname">SHIP GROUP</div>
+            <div class="stack-counter">{{getContentsCount()}}</div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+<div *ngIf="resource">
+    <div class="row">
+        <div class="field" style="flex-grow: 2;">
+            <!-- <span cy-field-label="resourceName" class="label">RESOURCE NAME</span><br> -->
+            <span cy-field-value="resourceName" class="resource-name">{{resource.getName()}}</span>
+        </div>
+        <div class="field">
+            <!-- <span cy-field-label="resourceLevel" class="label">RESOURCE LEVEL</span><br> -->
+            <span cy-field-value="resourceLevel" class="resource-level">[{{resource.getLevel()}}]</span>
+        </div>
+    </div>
+</div>

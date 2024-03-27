@@ -1,0 +1,11 @@
+[{
+    "jsonClass": "TabDefinition",
+    "name": "Pilot",
+    "icon": "assets/res-sde/drawable/biography.png",
+    "pageLink": "/app/fittings/pilot"
+}, {
+    "jsonClass": "TabDefinition",
+    "name": "Corporation",
+    "icon": "assets/res-sde/drawable/corporation.png",
+    "pageLink": "/app/fittings/corporation"
+}]

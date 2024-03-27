@@ -1,8 +1,0 @@
-# - Compilation ignorable directories
-build/
-out/
-coverage/
-
-# - Remove the cache directory
-NeoCom.Infinity/
-NeoCom.Infinity.development/

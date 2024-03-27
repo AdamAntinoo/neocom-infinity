@@ -1,0 +1,10 @@
+{
+    "savedBuildData": {
+        "rel": "self",
+        "href": "http://localhost:5200/api/v1/neocom/industry/fittings/buildConfiguration/60320161/savedConfiguration"
+    },
+    "targetBuildData": {
+        "rel": "self",
+        "href": "http://localhost:5200/api/v1/neocom/industry/fittings/buildConfiguration/60320161/targetConfiguration"
+    }
+}

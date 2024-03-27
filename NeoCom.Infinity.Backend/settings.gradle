@@ -1,5 +1,0 @@
-rootProject.name = 'NeoCom.Infinity.Backend'
-
-include 'backend.App'
-include 'backend.AcceptanceTest'
-

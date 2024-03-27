@@ -1,0 +1,9 @@
+{
+  "apiPackage": "org.dimensinfin.neocom",
+  "modelPackage": "org.dimensinfin.neocom.model",
+  "invokerPackage": "org.dimensinfin.neocom.client",
+  "groupId": "org.dimensinfin.neocom",
+  "artifactId": "neocom",
+  "artifactVersion": "0.20.0",
+  "library": "retrofit2"
+}

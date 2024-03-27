@@ -1,0 +1,36 @@
+version: '3'
+services:
+  apisimulator-backend:
+    container_name: apisimulator-neocom-infinity-backend
+    image: apimastery/apisimulator:1.6
+    ports:
+      - "5210:6090"
+    volumes:
+      # WARNING - Use full absolute paths to make this work.
+      - /home/adam/Development/NeoCom0.20/NeoCom-Infinity/NeoCom-Infinity-Frontend/support/backend-simulation:/backend-simulation
+    command: "bin/apisimulator start /backend-simulation -p 6090"
+
+  postgres-frontend-development:
+    container_name: postgres-frontend-development
+    image: "postgres:11.2"
+    ports:
+      - "5231:5432"
+    environment:
+      - CURRENT_UID=1000
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=neocom-user
+      - POSTGRES_PASSWORD=neocom-password
+
+  esiitem-service:
+    container_name: esiitem-service-proxy
+    image: neocom/neocom-infinity.backend
+    ports:
+      - "5211:9500"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - NEOCOM_DATABASE_URL=jdbc:postgresql://postgres-frontend-development:5432/postgres?user=neocom-user&password=neocom-password
+      - JDBC_DATABASE_URL=jdbc:postgresql://postgres-frontend-development:5432/postgres
+      - DB_USER=neocom-user
+      - DB_PASSWORD=neocom-password
+      - DEFAULT_BACKEND_SERVER="http://localhost:"
+      - NEOCOM_BANNER_LOCATION=./app-banner.txt

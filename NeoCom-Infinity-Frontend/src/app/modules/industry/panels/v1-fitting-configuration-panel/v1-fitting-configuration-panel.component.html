@@ -1,0 +1,13 @@
+<div id="{{getUniqueId()}}">
+    <div class="panel-title">{{getTitle()}}</div>
+    <div *ngIf="fittingData">
+        <div class="section neocom-panel panel-blue">
+            <div class="section-title blue-hue" cy-section-name="Fitting Info">Fitting Info</div>
+            <v1-fitting-info [info]="getFittingInfo()"></v1-fitting-info>
+        </div>
+        <div class="section neocom-panel panel-orange">
+            <div class="section-title orange-hue" cy-section-name="Fitting Components">Fitting Components</div>
+            <v1-fitting-contents-panel [contents]="getFittingContents()"></v1-fitting-contents-panel>
+        </div>
+    </div>
+</div>
