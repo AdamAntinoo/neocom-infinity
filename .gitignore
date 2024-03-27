@@ -3,6 +3,8 @@
 # IntelliJ Framework
 .idea/
 **/.idea/
+# Node Framework
+node_modules/
 # Nest Project
 package-lock.json
 *.log
