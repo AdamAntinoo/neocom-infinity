@@ -3,12 +3,6 @@ import { expect } from 'expect';
 import { NIN01World } from '../worlds/NIN01World';
 import { V2MiningOperation } from '@Domain/entities/V2.MiningOperation';
 
-setWorldConstructor(NIN01World);
-
-Before(async function (scenario) {
-    await this.init(scenario);
-})
-
 Given('a environment prepared for capsuleer {int}', function (pilotId: number) {
     this.characterId = pilotId
 })
@@ -32,6 +26,8 @@ Then('the Mined Resources record at position {int} has next contents', function 
     expect(row).toBeDefined
     validateMiningOperation(row, this.miningActionsResponse[position - 1])
 })
+
+// ------------
 
 function validateMiningOperation(row: any, operation: V2MiningOperation) {
     expect(row['jsonClass']).toBe(operation.jsonClass)

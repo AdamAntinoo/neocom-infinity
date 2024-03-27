@@ -4,7 +4,12 @@
       "priority": 3,
       "request": {
         "method": "GET",
-        "urlPathTemplate": "/characters/{character_id}/mining/"
+        "urlPathTemplate": "/characters/{character_id}/mining/",
+        "headers": {
+          "Authorization": {
+            "contains": "Bearer"
+          }
+        }
       },
       "response": {
         "status": 200,
