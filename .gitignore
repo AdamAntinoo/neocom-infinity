@@ -1,0 +1,15 @@
+# File extensions to be ignored on the repository
+*.diff
+*.db
+*.log
+*.db-journal
+*.ttf
+*.otf
+*.odt#
+
+# Stage directories to be excluded
+stage/
+
+# Mac special files to ignore
+.DS_Store
+**/.DS_Store
