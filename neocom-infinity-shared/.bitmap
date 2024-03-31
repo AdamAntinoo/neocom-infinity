@@ -12,7 +12,7 @@
     "neocom-domain": {
         "name": "neocom-domain",
         "scope": "innovative.neocom",
-        "version": "0.0.1",
+        "version": "0.0.2",
         "mainFile": "index.ts",
         "rootDir": "neocom/neocom-domain"
     },
