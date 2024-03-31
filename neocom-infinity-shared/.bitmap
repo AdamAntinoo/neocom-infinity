@@ -11,17 +11,10 @@
 {
     "neocom-domain": {
         "name": "neocom-domain",
-        "scope": "",
-        "version": "",
-        "defaultScope": "neocom.neocom-infinity",
+        "scope": "innovative.neocom",
+        "version": "0.0.1",
         "mainFile": "index.ts",
-        "rootDir": "neocom-infinity/neocom-domain",
-        "config": {
-            "bitdev.node/node-env@1.0.26": {},
-            "teambit.envs/envs": {
-                "env": "bitdev.node/node-env"
-            }
-        }
+        "rootDir": "neocom/neocom-domain"
     },
     "$schema-version": "17.0.0"
 }
