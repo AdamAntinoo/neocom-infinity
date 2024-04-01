@@ -1,5 +1,5 @@
 # NEOCOM Nest Backend Requirements and Notes
-## 1. Mining Operations
+## 1. Mining Operations. SSE solution
 At this date Esi provides a new endpoint for mining operations. That endpoint provides this data
 ````
 "date": "2024-02-23",
@@ -7,7 +7,7 @@ At this date Esi provides a new endpoint for mining operations. That endpoint pr
 "solar_system_id": 30003541,
 "type_id": 17453
 ````
-that is kept on the list for the next 30 days. So all the logic to calculate deltas and all asset management is not required.
+that is kept on the list for the next 30 days. Then all the logic to calculate deltas and all asset management *is not required*.
 
 The new Mining service should do the next actions:
 * Allow the frontend to open a session for Server Side Events when it needs to see mining data.

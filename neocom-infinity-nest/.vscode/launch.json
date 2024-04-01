@@ -2,16 +2,26 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Attach",
-      "port": 9229,
-      "request": "attach",
-      "skipFiles": [
-        "<node_internals>/**"
-      ],
-      "type": "node"
+      "name": ">Acc>NIN01",
+      "type": "node",
+      "request": "launch",
+      "console": "integratedTerminal",
+      "program": "${workspaceRoot}/node_modules/@cucumber/cucumber/bin/cucumber-js",
+      "args": [
+        "./test/**/*.feature",
+        "--no-strict",
+        "--require-module",
+        "ts-node/register",
+        "--require-module",
+        "tsconfig-paths/register",
+        "--require",
+        "./test/acceptance/steps/**/*.ts",
+        "--tags",
+        "@NIN01.01"
+      ]
     },
     {
-      "name": "NPM Cukes",
+      "name": ">Acc>NIN02",
       "type": "node",
       "request": "launch",
       "console": "integratedTerminal",
