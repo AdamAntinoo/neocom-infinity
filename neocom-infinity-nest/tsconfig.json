@@ -30,9 +30,6 @@
       ],
       "@Infra/*": [
         "infrastructure/*"
-      ],
-      "@Inno/*": [
-        "library/innovative/*"
       ]
     }
   }

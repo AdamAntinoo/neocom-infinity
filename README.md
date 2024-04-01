@@ -77,6 +77,13 @@ cp src/integration/resources/sde.db ../<neocom.infinity.backend>/src/main/resour
 * Stop backend services with command ***./docker-service.sh stop development***.
 
 # Application Port Mapping - Project Code 52
+## Port Nomenclature
+The project will provide all ports on the range 5200 to 5299. Digits for port assignment follow next rules.
+- The first two digits are always 5 and 2.
+- The third digit is for the functionality group. Like frontend or backend or mock.
+- The fouth and last digit is for the functionality up to value 5 (**1-5**). Value **9** is for testig. Value **8** for Acceptance. Value **7** for Staging and valoe **0** is reserved for production.
+
+### Development
 #### 5234 - [DEVELOPMENT] Postgresql Common database
 
 #### 5200 - [DEVELOPMENT] Frontend Node server
@@ -91,6 +98,8 @@ cp src/integration/resources/sde.db ../<neocom.infinity.backend>/src/main/resour
 #### 5271 - [DEVELOPMENT] Backend Nest Wiremock ESI Data Server
 #### 5280 - [DEVELOPMENT] Backend Postgres DB
 
+## Acceptance
+
 #### 5241 - [ACCEPTANCE] Backend SB application server
 #### 5251 - [ACCEPTANCE] Backend ApiSimulator Eve Online authentication server
 #### 5261 - [ACCEPTANCE] Backend ApiSimulator ESI Universe Data Server
@@ -98,6 +107,11 @@ cp src/integration/resources/sde.db ../<neocom.infinity.backend>/src/main/resour
 #### 5281 - [ACCEPTANCE] Backend Postgres DB
 #### 5291 - [ACCEPTANCE] Backend Redis DB service
 
-#### 5202 - [INTEGRATION] Frontend Node server
+## Stage
+- **5257 - Backend Nest Server**
+
+- **5202 - Frontend Node server**
 #### 5282 - [INTEGRATION] Backend Integration stand-alone Postgres DB
 #### 5242 - [INTEGRATION] Backend SB application server
+
+## Production
