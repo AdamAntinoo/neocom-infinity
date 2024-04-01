@@ -18,7 +18,7 @@ export class NIN01World extends World {
     public miningActionsResponse: V2MiningOperation[]
     // NIN02
     public authenticationService: AuthenticationServicesAdapter
-    public token: string
+    public token: any
     public response: AxiosResponse
 
     constructor(options) {

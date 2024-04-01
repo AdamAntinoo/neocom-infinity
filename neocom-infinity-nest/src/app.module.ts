@@ -11,16 +11,18 @@ import { ESISecureDataServicesAdapter } from '@Infra/adapter/outbound/ESISecureD
 import { AuthenticationServicesPort } from '@App/ports/AuthenticationServices.port';
 import { AuthenticationServicesAdapter } from '@Infra/adapter/outbound/AuthenticationServices/authenticationservices.adapter';
 import { LoggerMiddleware } from '@Infra/config/LoggerInterceptor';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
     imports: [
         HttpModule.register({
-            timeout: 5000,
+            timeout: 90000, // Add time for debugging.
             maxRedirects: 5,
             headers: { 'X-Requested-With': 'XMLHttpRequest' },
             withCredentials: true
         }),
         ScheduleModule.forRoot(),
+        JwtModule.register({ secret: 'hard!to-guess_secret' }),
     ],
     controllers: [AppController, V1MiningOperationsController],
     providers: [
