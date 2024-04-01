@@ -1,7 +1,7 @@
-import { V2MiningOperation } from "@Domain/entities/V2.MiningOperation"
-import { IConverter } from "@Inno/converter/IConverter.interface"
+import { IConverter } from "neocom-domain/dist/converter/IConverter.interface"
 import { IESIMiningOperation } from "../domain/IESIMiningOperation.interface"
 import { ESISecureDataServiceHALGeneratorAdapter } from "../esi.securedataservice.halgenerator.adapter"
+import { V2MiningOperation } from "neocom-domain/dist/entities/V2.MiningOperation"
 
 export class MiningOperationConverter<S, D> implements IConverter<IESIMiningOperation, V2MiningOperation>{
     constructor(private halGenerator: ESISecureDataServiceHALGeneratorAdapter) { }

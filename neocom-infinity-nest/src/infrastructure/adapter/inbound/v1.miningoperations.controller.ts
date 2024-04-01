@@ -1,6 +1,6 @@
 import { AuthenticationServicesPort } from "@App/ports/AuthenticationServices.port";
 import { CapsuleerMiningOperationsUseCase } from "@App/use-cases/mining-operation/CapsuleerMiningOperationsUseCase";
-import { V2MiningOperation } from "@Domain/entities/V2.MiningOperation";
+import { V2MiningOperation } from 'neocom-domain'
 import { Cookies } from "@Infra/network/cookie.decorator";
 import { Controller, Get, Param } from "@nestjs/common";
 

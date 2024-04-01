@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { ESIDataServicesPort } from "@App/ports/ESIDataServices.port";
-import { V2MiningOperation } from "@Domain/entities/V2.MiningOperation";
+import { V2MiningOperation } from 'neocom-domain'
 
 @Injectable()
 export class CapsuleerMiningOperationsUseCase {
