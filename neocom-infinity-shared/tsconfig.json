@@ -1,10 +1,27 @@
-// bit-generated-typescript-config
 {
-  "extends": "./node_modules/.cache/tsconfig.bit.b8ee389772d784fbdffd4f9b3f69fdb9d623c6d7.json",
-  "compilerOptions": {
-    "typeRoots": [
-      "./node_modules/.cache/global-types",
-      "./node_modules/@types"
-    ]
-  }
+    "compilerOptions": {
+        "target": "es2015",
+        "module": "commonjs",
+        "declaration": true,
+        "outDir": "./dist",
+        "noEmit": false,
+        "strict": true,
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "strictFunctionTypes": true,
+        "strictBindCallApply": true,
+        "strictPropertyInitialization": true,
+        "noImplicitThis": true,
+        "alwaysStrict": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUncheckedIndexedAccess": true,
+        "noImplicitOverride": true,
+        "noPropertyAccessFromIndexSignature": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "skipLibCheck": true
+    }
 }
