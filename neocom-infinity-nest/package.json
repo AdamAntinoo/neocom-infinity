@@ -8,10 +8,6 @@
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "nest start",
-    "start:dev": "nest start --watch",
-    "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test:watch": "jest --watch",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
@@ -33,7 +29,12 @@
     "version:semver": "export SEMVER=`gitversion /showvariable MajorMinorPatch`",
     "version:metadata": "export VMETA=`gitversion /showvariable CommitsSinceVersionSource`",
     "version:check": "VMETA=`gitversion /showvariable CommitsSinceVersionSource` && export VMETA",
-    "version": "npm run version:semver & npm run version:metadata"
+    "version": "npm run version:semver & npm run version:metadata",
+    "start": "nom run start:dev",
+    "start:dev": "NODE_ENV=development nest start --watch",
+    "start:debug": "nest start --debug --watch",
+    "start:stage": "NODE_ENV=stage nest start",
+    "start:prod": "node dist/main"
   },
   "dependencies": {
     "@nestjs/axios": "^3.0.2",

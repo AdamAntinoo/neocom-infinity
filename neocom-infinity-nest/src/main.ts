@@ -13,10 +13,10 @@ async function bootstrap() {
     app.use(cookieParser())
     const configService = app.get(ConfigService)
     const port = configService.get<number>('PORT') || 3000
-    const backendproxy=configService.get<number>('BACKEND_HOST') || 'http://esi-data-tst:5271'
+    const backendproxy = configService.get<number>('BACKEND_HOST') || 'http://esi-data-tst:5271'
 
     await app.listen(port)
-    const filename = 'app-banner.txt'
+    const filename = '../.deploy/app-banner.txt'
     fs.readFile(filename, 'utf8', function (err, data) {
         if (err) throw err
         console.log("Nest JS Server version: vtobedef")
@@ -24,7 +24,7 @@ async function bootstrap() {
         // console.log("Current build: " + START_YELLOW + stdout.replace("\n", "") + END_BOLD)
         console.log("Listening on port: " + START_YELLOW + port + END_BOLD)
         console.log("Backend URL path: " + START_GREEN + backendproxy + END_BOLD)
-      
+
         console.log(data)
         console.log("Server Ready for Connections")
     })

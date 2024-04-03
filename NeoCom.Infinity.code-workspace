@@ -11,6 +11,15 @@
         },
         {
             "path": "neocom-generated"
+        },
+        {
+            "path": ".deploy"
+        },
+        {
+            "path": ".vscode"
+        },
+        {
+            "path": "ProjectControl"
         }
     ],
     "settings": {
