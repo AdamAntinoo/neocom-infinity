@@ -8,6 +8,7 @@ import * as jwt_decode from 'jwt-decode'
 import { LOCAL_STORAGE } from 'ngx-webstorage-service'
 import { SESSION_STORAGE } from 'ngx-webstorage-service'
 import { StorageService } from 'ngx-webstorage-service'
+import { NeoComException } from '@innovative/domain/NeoComException'
 
 /**
  * The responsibility for this service is to isolate the internal application api from the external implementation when using libraries that can change over time like the Toaster. It will also provide a simplification when accessing some common features like the environment, global functions or storage.
@@ -23,18 +24,26 @@ export class IsolationService {
     ) { }
 
     // - E X C E P T I O N S
-    public processException(error: HttpErrorResponse): void {
-        if (error.error.status == 404) {
-            this.errorNotification('Endpoint [' + error.error.path + '] not found on server.', '404 NOT FOUND')
-        } else {
-            const errorName: string = error.error.errorName
-            const httpStatus: string = error.error.httpStatus
-            const message: string = error.error.message
-            const cause: string = error.error.cause
-            if (null != cause)
-                this.errorNotification(message + '\nCausa: ' + cause, '[' + httpStatus + ']/' + errorName)
+    public processException(error: HttpErrorResponse | NeoComException): void {
+        if (error instanceof HttpErrorResponse) {
+            if (error.error.status == 404) {
+                this.errorNotification('Endpoint [' + error.error.path + '] not found on server.', '404 NOT FOUND')
+            } else {
+                const errorName: string = error.error.errorName
+                const httpStatus: string = error.error.httpStatus
+                const message: string = error.error.message
+                const cause: string = error.error.cause
+                if (null != cause)
+                    this.errorNotification(message + '\nCausa: ' + cause, '[' + httpStatus + ']/' + errorName)
+                else
+                    this.errorNotification(message, '[' + httpStatus + ']/' + errorName)
+            }
+        }
+        if (error instanceof NeoComException) {
+            if (null != error.cause)
+                this.errorNotification(error.message + '\nCausa: ' + error.cause)
             else
-                this.errorNotification(message, '[' + httpStatus + ']/' + errorName)
+                this.errorNotification(error.message)
         }
     }
 

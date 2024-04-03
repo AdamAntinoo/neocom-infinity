@@ -127,6 +127,9 @@ jobs:
           command: |
             npm run acceptance:ready
             npm run acceptance:cypress:NIF01
+            npm run acceptance:cypress:NIF02
+            npm run acceptance:cypress:NIF07
+            npm run acceptance:cypress:NIF09
 
   # - B A C K E N D
   cache-dependencies-backend:

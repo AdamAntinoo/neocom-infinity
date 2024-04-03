@@ -12,12 +12,13 @@ import { NeoComCredential } from '@domain/NeoComCredential.domain';
 import { NeoComFeature } from '@domain/ui/NeoComFeature.domain';
 import { NeoComException } from '@innovative/domain/NeoComException';
 import { PlatformConstants } from '@env/PlatformConstants';
+import { AppStoreService } from '@app/services/appstore.service';
 /**
  * This is the landing page for a login. The page has teh next structure:
  * ROW 1 - The application header and the current server status.
  * ROW 2 - The current Pilot, along with the Corporation, the corproation CEO if applies and and corporation Alliance if exists
  * ROW 3 - The list of available functionalities for this pilot.
- * 
+ *
  * The component needs the current logged pilot identifier. This is obtained from the authentication credential on the session store. From this identifer we go to to backend to get the Pilot's public data. From it we can get the pilot's corporation and other data on the next fashion:
  * Current Pilot --> Corporation --> Corporation CEO
  *                               --> Alliance is exists
@@ -28,13 +29,14 @@ import { PlatformConstants } from '@env/PlatformConstants';
     templateUrl: './dashboard-home-page.component.html',
     styleUrls: ['./dashboard-home-page.component.scss']
 })
-export class DashboardHomePageComponent extends BackgroundEnabledComponent implements OnInit {
+export class DashboardHomePageComponent {
     public features: NeoComFeature[] = []
-    private credential: NeoComCredential
+    public exception : NeoComException
 
-    constructor(protected isolationService: IsolationService) {
-        super()
-        // Build the page features.
+    constructor(
+        protected isolationService: IsolationService,
+        protected appStore:AppStoreService) {
+         // Build the page features.
         this.features.push(new NeoComFeature({
             id: "planetary-dashboard",
             label: "Interacciones Planetarias",
@@ -61,29 +63,13 @@ export class DashboardHomePageComponent extends BackgroundEnabledComponent imple
         }))
     }
 
-    public ngOnInit() {
-        try {
-            this.credential = this.getCredential()
-        } catch (exception) {
-            this.exception = exception
-        }
-    }
-
     // - I N T E R A C T I O N S
     public getPilotId(): number {
-        return this.getCredential().getAccountId()
-    }
-    private getCredential(): NeoComCredential {
-        const credentialJson = this.isolationService.getFromSession(PlatformConstants.CREDENTIAL_KEY)
-        console.log('Dashboard.getCredential>Credential at session: '+credentialJson)
-        if (null == credentialJson)
-            throw new NeoComException()
-                .withTitle('Rendering Dashboard Page. No Credential Found.')
-                .withMessage('Unable to display Pilot data. There is no credential available to access data.')
-                .withCause('Unexpected Exception. At this point then should exist a local session valid credential.')
-        else {
-            const credential = new NeoComCredential(JSON.parse(credentialJson))
-            return credential
+        try {
+            return this.appStore.getPilotId()
+        } catch (exception) {
+            this.isolationService.processException(exception)
+            return undefined
         }
     }
 }

@@ -1,18 +1,18 @@
 <div id="{{getUniqueId()}}" class="panel-blue" [ngClass]="{'panel-blue-selected' : node.isSelected()}" *ngIf="getVariant() === '-AVAILABLE-BLUEPRINTS-'">
     <div class="insets row">
-        <img class="neocom-icon iconsize-60" src="{{getTypeIconUrl()}}">
+        <img class="neocom-icon iconsize-60" src="{{getBlueprintIconUrl()}}">
         <div class="separator-4"></div>
         <div class="column complete">
             <div cy-name="blueprintName" class="field">
                 <span cy-field-label="blueprintName" class="label">BLUEPRINT</span><br>
-                <span cy-field-value="blueprintName" class="blueprint-name">{{getName()}}</span>
+                <span cy-field-value="blueprintName" class="blueprint-name">{{getBlueprintName()}}</span>
             </div>
             <div cy-field-label="manufactureCost" class="label">PRODUCTO</div>
             <div class="row">
                 <div class="column">
                     <div cy-name="moduleProduced" class="field">
                         <span cy-field-label="moduleProduced" class="label">OUTPUT</span>
-                        <span cy-field-value="moduleProduced" class="">{{getModuleName()}}</span>
+                        <span cy-field-value="moduleProduced" class="">{{getOutputName()}}</span>
                     </div>
                     <div cy-name="manufactureCost" class="field">
                         <span cy-field-label="manufactureCost" class="label">COSTE FABRICACION</span>
@@ -30,6 +30,16 @@
             <div cy-name="costIndex" class="field">
                 <span cy-field-label="costIndex" class="label">INDICE</span>
                 <span cy-field-value="costIndex" class="cost-index">{{getCostIndex() | number:'3.0-0'}}</span>
+            </div>
+            <div cy-name="moduleProduced" class="field row">
+                <span cy-field-label="moduleProduced" class="label">OUTPUT</span>
+                <span cy-field-value="moduleProduced" class="">{{getModuleName()}}</span>
+                <span cy-field-label="outputPrice" class="label">PRECIO VENTA</span>
+                <span cy-field-value="outputPrice" class="right">{{getOutputPrice() | iskscaled}}</span>
+            </div>
+            <div cy-name="costIndex" class="field">
+                <span cy-field-label="costIndex" class="label">INDICE</span>
+                <span cy-field-value="costIndex" class="right">{{getCostIndex() | number:'3.0-0'}}</span>
             </div>
         </div>
     </div>

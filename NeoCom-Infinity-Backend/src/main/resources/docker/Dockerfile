@@ -13,6 +13,7 @@ COPY ./properties/* /usr/app/properties/
 ENV PORT=9500
 ENV DB_USER=neocom-user
 ENV DB_PASSWORD=neocom-password
+#ENV DOCKER_HOST_IP=$(route -n | awk '/UG[ \t]/{print $2}')
 RUN ls -laR
 EXPOSE 9500
 ENTRYPOINT ["java", "-jar", "neocom-infinity-backend-container.jar"]

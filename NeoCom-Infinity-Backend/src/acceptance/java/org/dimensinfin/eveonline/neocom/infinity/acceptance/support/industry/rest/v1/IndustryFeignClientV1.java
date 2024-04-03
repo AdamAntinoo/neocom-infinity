@@ -1,12 +1,15 @@
 package org.dimensinfin.eveonline.neocom.infinity.acceptance.support.industry.rest.v1;
 
 import java.io.IOException;
+import java.util.List;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.ITargetConfiguration;
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.api.IndustryApiV1;
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.industry.deserializer.ProcessedBlueprintResponse;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingBuildConfiguration;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingConfigurations;
 import org.dimensinfin.eveonline.neocom.infinity.support.core.CommonFeignClient;
@@ -22,6 +25,24 @@ public class IndustryFeignClientV1 extends CommonFeignClient {
 		super( acceptanceTargetConfig );
 	}
 
+	public ResponseEntity<List<ProcessedBlueprintResponse>> getBlueprints4PilotWithCostIndex( final List<String> cookies,
+	                                                                                          final String authentication,
+	                                                                                          final Integer pilotId ) throws IOException {
+		final String ENDPOINT_MESSAGE = "Request the Blueprint list with Cost Index for a Pilot.";
+		final Response<List<ProcessedBlueprintResponse>> response = new Retrofit.Builder()
+				.baseUrl( this.acceptanceTargetConfig.getBackendServer() )
+				.addConverterFactory( GSON_CONVERTER_FACTORY )
+				.client( okHttpClient )
+				.build()
+				.create( IndustryApiV1.class )
+				.getBlueprints4PilotWithCostIndex( this.prepareCookies( cookies ), authentication, pilotId )
+				.execute();
+		if (response.isSuccessful()) {
+			LogWrapper.info( ENDPOINT_MESSAGE );
+			return new ResponseEntity<>( response.body(), HttpStatus.valueOf( response.code() ) );
+		} else throw new IOException( ENDPOINT_MESSAGE + FAILURE_SIGNAL_SUFFIX );
+	}
+
 	public ResponseEntity<FittingBuildConfiguration> getFittingBuildConfigurationSavedConfiguration( final String authentication, final Integer fittingId ) throws IOException {
 		final String ENDPOINT_MESSAGE = "Request the Build Configurations for a Fitting.";
 		final Response<FittingBuildConfiguration> response = new Retrofit.Builder()
@@ -35,7 +56,7 @@ public class IndustryFeignClientV1 extends CommonFeignClient {
 		if (response.isSuccessful()) {
 			LogWrapper.info( ENDPOINT_MESSAGE );
 			return new ResponseEntity<>( response.body(), HttpStatus.valueOf( response.code() ) );
-		} else throw new IOException( ENDPOINT_MESSAGE + " Failed." );
+		} else throw new IOException( ENDPOINT_MESSAGE + FAILURE_SIGNAL_SUFFIX );
 	}
 
 	public ResponseEntity<FittingConfigurations> getFittingConfigurations( final String authentication, final Integer fittingId ) throws IOException {
@@ -51,6 +72,6 @@ public class IndustryFeignClientV1 extends CommonFeignClient {
 		if (response.isSuccessful()) {
 			LogWrapper.info( ENDPOINT_MESSAGE );
 			return new ResponseEntity<>( response.body(), HttpStatus.valueOf( response.code() ) );
-		} else throw new IOException( ENDPOINT_MESSAGE + " Failed." );
+		} else throw new IOException( ENDPOINT_MESSAGE + FAILURE_SIGNAL_SUFFIX );
 	}
 }

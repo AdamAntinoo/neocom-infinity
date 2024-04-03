@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.database.entities.MiningExtractionEntity;
 import org.dimensinfin.eveonline.neocom.database.repositories.MiningRepository;
-import org.dimensinfin.eveonline.neocom.infinity.adapter.MiningRepositoryWrapper;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetails;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetailsService;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
@@ -32,9 +31,9 @@ public class MiningExtractionsService {
 	@Autowired
 	public MiningExtractionsService( final @NotNull NeoComAuthenticationProvider neoComAuthenticationProvider,
 	                                 final @NotNull CredentialDetailsService credentialDetailsService,
-	                                 final @NotNull MiningRepositoryWrapper miningRepositoryWrapper,
+	                                 final @NotNull MiningRepository miningRepository,
 	                                 final @NotNull ResourceFactory resourceFactory ) {
-		this.miningRepository = miningRepositoryWrapper.getSingleton();
+		this.miningRepository = miningRepository;
 		this.credentialDetailsService = credentialDetailsService;
 		this.neoComAuthenticationProvider = neoComAuthenticationProvider;
 		this.resourceFactory = resourceFactory;

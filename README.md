@@ -23,8 +23,80 @@
 #### 5261 - [ACCEPTANCE] Backend ApiSimulator ESI Universe Data Server
 #### 5270 - [ACCEPTANCE] Backend ApiSimulator ESI Data Server
 #### 5281 - [ACCEPTANCE] Backend Postgres DB
+#### 5291 - [ACCEPTANCE] Backend Redis DB service
 
-#### 5202 - [DEVELOPMENT] Frontend Node server
+#### 5202 - [INTEGRATION] Frontend Node server
 #### 5282 - [INTEGRATION] Backend Integration stand-alone Postgres DB
 #### 5242 - [INTEGRATION] Backend SB application server
 
+# Start the DEV set of applications
+## Prepare the environment
+* Set the java version to Java 11
+
+````
+> java_versions
+            Matching Java Virtual Machines (5):
+21.0.1 (x86_64) "Azul Systems, Inc." - "Zulu 21.30.15" /Users/adam/Library/Java/JavaVirtualMachines/azul-21.0.1/Contents/Home
+19.0.2 (x86_64) "Azul Systems, Inc." - "Zulu 19.32.13" /Users/adam/Library/Java/JavaVirtualMachines/azul-19.0.2/Contents/Home
+11.0.22 (x86_64) "Amazon.com Inc." - "Amazon Corretto 11" /Users/adam/Library/Java/JavaVirtualMachines/corretto-11.0.22/Contents/Home
+1.8.0_402 (x86_64) "Azul Systems, Inc." - "Zulu 8.76.0.17" /Users/adam/Library/Java/JavaVirtualMachines/azul-1.8.0_402/Contents/Home
+1.8.0_382 (x86_64) "Azul Systems, Inc." - "Zulu 8.72.0.17" /Users/adam/Library/Java/JavaVirtualMachines/azul-1.8.0_382/Contents/Home
+/Users/adam/Library/Java/JavaVirtualMachines/azul-21.0.1/Contents/Home
+
+> export JAVA_HOME=/Users/adam/Library/Java/JavaVirtualMachines/corretto-11.0.22/Contents/Home
+````
+* Set the npm version to neocom.infinity
+````
+> nvm list
+v6.17.1
+->     v10.16.3
+v21.6.2
+neocom.infinity -> 10.16.3 (-> v10.16.3)
+default -> node (-> v21.6.2)
+iojs -> N/A (default)
+unstable -> N/A (default)
+node -> stable (-> v21.6.2) (default)
+stable -> 21.6 (-> v21.6.2) (default)
+lts/* -> lts/iron (-> N/A)
+lts/argon -> v4.9.1 (-> N/A)
+lts/boron -> v6.17.1
+lts/carbon -> v8.17.0 (-> N/A)
+lts/dubnium -> v10.24.1 (-> N/A)
+lts/erbium -> v12.22.12 (-> N/A)
+lts/fermium -> v14.21.3 (-> N/A)
+lts/gallium -> v16.20.2 (-> N/A)
+lts/hydrogen -> v18.19.1 (-> N/A)
+lts/iron -> v20.11.1 (-> N/A)
+
+> nvm use neocom.infinity
+````
+## Generate the SDE database
+* Enter the **neocom-datamanagement** project.
+* Move to the directory **src/integration/sh**.
+* Create the **download** destination with ***mkdir downloads***.
+* Move back to the home for the project.
+* Create the SDE database with the gradle task ***./gradlew downloadSDEData generateSDEDatabase***.
+* Copy the resulting SDE database to the neocom-infinity
+````
+cp src/integration/resources/sde.db ../<neocom.infinity.backend>/src/main/resources
+````
+
+## Start the backend services
+* Move to the neocom-infinity application directory and enter the NeoCom-Infinity-Backend
+* Generate the docker image with the command ***./docker-service.sh generate***.
+* Satrt the backend DEV services with the command ***./docker-service.sh start development***.
+
+## Start the frontend services
+* Move to the NeoCom-Infinity-Frontend application.
+* Check that all node code is installed with the command ***npm install***.
+* Start the development services for the frontend with the command ***npm start docker:start***.
+* Start the UX in DEV mode with the command ***npm run serve:dev***
+
+## Start the UX
+* Go to the Chrome navigator and navigate to url **http://localhost:5200**.
+
+# Stop DEV services
+* Move to neocom-infinity/neocom-infinity-frontend
+* Stop docker services with command ***npm run docker:stop***.
+* Move to neocom-infinity/neocom-infinity-backend.
+* Stop backend services with command ***./docker-service.sh stop development***.
