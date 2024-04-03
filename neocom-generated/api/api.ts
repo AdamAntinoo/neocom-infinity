@@ -1,3 +1,3 @@
-export * from './esi.service';
-import { EsiService } from './esi.service';
-export const APIS = [EsiService];
+export * from './esiSecure.service';
+import { EsiSecureService } from './esiSecure.service';
+export const APIS = [EsiSecureService];

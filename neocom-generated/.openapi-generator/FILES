@@ -2,7 +2,7 @@
 README.md
 api.module.ts
 api/api.ts
-api/esi.service.ts
+api/esiSecure.service.ts
 configuration.ts
 git_push.sh
 index.ts

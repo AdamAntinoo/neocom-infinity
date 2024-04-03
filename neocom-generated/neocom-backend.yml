@@ -14,15 +14,15 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: 0.20.0
+  version: 0.21.0
 externalDocs:
   description: Documentation about the data flows.
   url: https://github.com/AdamAntinoo/neocom-infinity/tree/master/ProjectControl
 servers:
   - url: https://neocom-infinity.io:5257/status
 tags:
-  - name: esi
-    description: Esi Data Service adapter endpoints.
+  - name: esiSecure
+    description: Esi Secure Data Service adapter endpoints.
     externalDocs:
       description: Find out more
       url: https://github.com/AdamAntinoo/neocom-infinity/tree/master/neocom-infinity-nest/README.md
@@ -31,7 +31,7 @@ paths:
   /nin/v1/character/miningoperations:
     get:
       tags:
-        - esi
+        - esiSecure
       summary: Get the minings operations for current target.
       description: >
         Gets the list of Esi Mining Operations that are generated automatically during mining. The target to be used
@@ -45,7 +45,7 @@ paths:
       parameters:
         - name: token
           in: cookie
-          description: Authentication token generated at Esi servie and used for Esi data access endpoints.
+          description: Authentication token generated at Esi service and used for Esi data access endpoints.
           required: true
           explode: false
           schema:
@@ -62,14 +62,14 @@ paths:
                 items:
                   $ref: '#/components/schemas/MiningOperation'          
         '401':
-          $ref: "#/components/responses/UnauthorizedError"
+          $ref: "#/components/responses/ApplicationError"
           description: The authentication token is not present or invalid so the request is not authorized.
 security:
   - neocom_esi_auth: []
 
 components:
   responses:
-    UnauthorizedError:
+    ApplicationError:
       description: >
         This request has missing the required authentication token or if the token is present
         it is not valid or incomplete.

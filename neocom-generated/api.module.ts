@@ -2,16 +2,16 @@ import { DynamicModule, Module, Global, Provider } from '@nestjs/common';
 import { HttpModule, HttpService } from '@nestjs/axios';
 import { AsyncConfiguration, Configuration, ConfigurationFactory } from './configuration';
 
-import { EsiService } from './api/esi.service';
+import { EsiSecureService } from './api/esiSecure.service';
 
 @Global()
 @Module({
   imports:      [ HttpModule ],
   exports:      [
-    EsiService
+    EsiSecureService
   ],
   providers: [
-    EsiService
+    EsiSecureService
   ]
 })
 export class ApiModule {
