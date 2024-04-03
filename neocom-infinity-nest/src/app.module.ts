@@ -3,15 +3,18 @@ import { HttpModule } from '@nestjs/axios'
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ScheduleModule, SchedulerRegistry } from '@nestjs/schedule';
-import { ESIDataServicesPort } from '@App/ports/ESIDataServices.port';
-import { V1MiningOperationsController } from '@Infra/adapter/inbound/v1.miningoperations.controller';
-import { CapsuleerMiningOperationsUseCase } from '@App/use-cases/mining-operation/CapsuleerMiningOperationsUseCase';
+import { V1MiningOperationsController } from '@Infra/adapter/inbound/esisecureapi/v1.miningoperations.controller';
 import { ESISecureDataServiceHALGeneratorAdapter } from '@Infra/adapter/outbound/ESISecureDataServices/esi.securedataservice.halgenerator.adapter';
 import { ESISecureDataServicesAdapter } from '@Infra/adapter/outbound/ESISecureDataServices/esi.securedataservices.adapter';
-import { AuthenticationServicesPort } from '@App/ports/AuthenticationServices.port';
 import { AuthenticationServicesAdapter } from '@Infra/adapter/outbound/AuthenticationServices/authenticationservices.adapter';
 import { LoggerMiddleware } from '@Infra/config/LoggerInterceptor';
 import { JwtModule } from '@nestjs/jwt';
+import { AuthenticationServicesPort } from 'application/ports/AuthenticationServices.port';
+import { ESIDataServicesPort } from 'application/ports/EsiDataServices.port';
+import { CapsuleerMiningOperationsUseCase } from 'application/use-cases/mining-operation/CapsuleerMiningOperationsUseCase';
+import { ConfigModule } from '@nestjs/config';
+
+const ENV = process.env.NODE_ENV
 
 @Module({
     imports: [
@@ -23,6 +26,10 @@ import { JwtModule } from '@nestjs/jwt';
         }),
         ScheduleModule.forRoot(),
         JwtModule.register({ secret: 'hard!to-guess_secret' }),
+        ConfigModule.forRoot({
+            isGlobal: true,
+            envFilePath: !ENV ? '.env' : `.env.${ENV}`
+        })
     ],
     controllers: [AppController, V1MiningOperationsController],
     providers: [

@@ -1,8 +1,8 @@
-import { AuthenticationServicesPort } from "@App/ports/AuthenticationServices.port"
-import { ITokenAuthentication } from "@App/ports/ITokenAuthentication.port"
 import { Injectable } from "@nestjs/common"
 import { JwtService } from "@nestjs/jwt"
 import { Option, Some, None } from '@sniptt/monads'
+import { AuthenticationServicesPort } from "application/ports/AuthenticationServices.port"
+import { ITokenAuthentication } from "application/ports/ITokenAuthentication.port"
 
 @Injectable()
 export class AuthenticationServicesAdapter implements AuthenticationServicesPort {
