@@ -40,9 +40,9 @@
       ]
     },
     {
+      "name": ">Debug>Development",
       "type": "node",
       "request": "launch",
-      "name": "Debug Nest Framework",
       "args": [
         "${workspaceFolder}/src/main.ts"
       ],
@@ -54,7 +54,7 @@
         "tsconfig-paths/register"
       ],
       "sourceMaps": true,
-      "envFile": "${workspaceFolder}/.env",
+      "envFile": "${workspaceFolder}/.env.development",
       "cwd": "${workspaceRoot}",
       "console": "integratedTerminal",
       "protocol": "inspector"

@@ -1,6 +1,6 @@
 import { AuthenticationServicesPort } from "@App/ports/AuthenticationServices.port"
 import { V2MiningOperation } from "@Domain/entities/V2.MiningOperation"
-import { V1MiningOperationsController } from "@Infra/adapter/inbound/v1.miningoperations.controller"
+import { V1MiningOperationsController } from "@Infra/adapter/inbound/esisecureapi/v1.miningoperations.controller"
 import { AuthenticationServicesAdapter } from "@Infra/adapter/outbound/AuthenticationServices/authenticationservices.adapter"
 import { World, setWorldConstructor } from "@cucumber/cucumber"
 import { HttpService } from "@nestjs/axios"

@@ -28,11 +28,17 @@
     "test:cov": "jest --verbose --coverage",
     "acc:nin01": "./node_modules/@cucumber/cucumber/bin/cucumber-js ./test/**/*.feature --no-strict --require-module ts-node/register --require-module tsconfig-paths/register --require ./test/acceptance/steps/**/*.ts --tags @NIN01",
     "acc:nin02": "./node_modules/@cucumber/cucumber/bin/cucumber-js ./test/**/*.feature --no-strict --require-module ts-node/register --require-module tsconfig-paths/register --require ./test/acceptance/steps/**/*.ts --tags @NIN02",
-    "package": "npm run build"
+    "package": "npm run build",
+    "tag": "figlet NeoCom `gitversion /showvariable MajorMinorPatch`-`gitversion /showvariable CommitsSinceVersionSource` > app-banner.txt",
+    "version:semver": "export SEMVER=`gitversion /showvariable MajorMinorPatch`",
+    "version:metadata": "export VMETA=`gitversion /showvariable CommitsSinceVersionSource`",
+    "version:check": "VMETA=`gitversion /showvariable CommitsSinceVersionSource` && export VMETA",
+    "version": "npm run version:semver & npm run version:metadata"
   },
   "dependencies": {
     "@nestjs/axios": "^3.0.2",
     "@nestjs/common": "^10.0.0",
+    "@nestjs/config": "^3.2.1",
     "@nestjs/core": "^10.0.0",
     "@nestjs/jwt": "^10.2.0",
     "@nestjs/mapped-types": "*",
