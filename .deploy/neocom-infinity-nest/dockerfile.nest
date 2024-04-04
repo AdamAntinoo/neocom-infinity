@@ -18,7 +18,7 @@ RUN ls -la
 RUN npm run build
 
 FROM node:20-alpine AS RUNNER
-ENV NODE_ENV=stage
+ENV NODE_ENV=$ENV
 
 COPY --from=BASEIMAGE /app/node_modules /app
 COPY --from=BASEIMAGE /app/dist /app
@@ -28,6 +28,6 @@ COPY --from=BASEIMAGE /app/.env* /app
 
 WORKDIR /app
 # Expose the port on which the app will run
-EXPOSE 3000
+EXPOSE $PORT
 # Start the server using the production build
 CMD ["node", "dist/main"]

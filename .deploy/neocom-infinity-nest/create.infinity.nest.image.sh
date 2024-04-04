@@ -27,7 +27,8 @@ cp app-banner.txt $BANNER_LOCATION
 
 # - build the image
 echo '>>> Creating image'
-docker build --build-arg="$ENV" --build-arg=$PORT -f ./Dockerfile -t $IMAGE_NAME $WORKING_DIR
+cat dockerfile.nest | envsubst > Dockerfile
+docker build --build-arg="$ENV" --build-arg="$PORT" -f ./Dockerfile -t $IMAGE_NAME $WORKING_DIR
 
 # - tag the image
 echo ">>> Tagging image->adamantinoo/$IMAGE_NAME:$VERSION"
