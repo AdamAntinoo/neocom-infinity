@@ -16,16 +16,18 @@ RUN ls -la
 RUN npm run build
 
 FROM node:lts-alpine AS RUNNER
+ARG ENV=development
+ARG PORT=3000
 ENV NODE_ENV=$ENV
 
-COPY --from=BASEIMAGE /app/node_modules /app/node_modules
-COPY --from=BASEIMAGE /app/dist /app/dist
+COPY --from=BASEIMAGE /app/node_modules /app
+COPY --from=BASEIMAGE /app/dist /app
 COPY --from=BASEIMAGE /app/package.json /app
 COPY --from=BASEIMAGE /app/app-banner.txt /app
 COPY --from=BASEIMAGE /app/.env* /app
 
 WORKDIR /app
 # Expose the port on which the app will run
-EXPOSE 3000
+EXPOSE $PORT
 # Start the server using the production build
 CMD ["node", "dist/main"]
