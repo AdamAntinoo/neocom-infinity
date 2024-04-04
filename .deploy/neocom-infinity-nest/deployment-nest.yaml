@@ -5,48 +5,42 @@ metadata:
   namespace: neocom
 spec:
   selector:
-    app: nin-tst
+    app: nin-stage
   ports:
     - protocol: TCP
       port: 8000
       targetPort: 3000
-
-
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: esi-data-tst
-  namespace: neocom
-spec:
-  type: ExternalName
-  externalName: host.minikube.internal
 
 ---
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nin-tst
+  name: nin-stage
   namespace: neocom
   labels:
-    app: nin-tst
+    app: nin-stage
+    version: 0.20.0-425
+    module: neocom-infinity-nest
+    build: 0.20.0-425
 spec:
   selector:
     matchLabels:
-      app: nin-tst
+      app: nin-stage
   template:
     metadata:
       labels:
-        app: nin-tst
+        app: nin-stage
+        version: 0.20.0-425
+        module: neocom-infinity-nest
+        build: 0.20.0-425
     spec:
       containers:
-      - name: nin-tst
-        image: adamantinoo/neocom-infinity-nest:0.21.0
+      - name: nin-stage
+        image: adamantinoo/neocom-infinity-nest:0.20.0
         env:
         - name: NODE_ENV
-          value: "production"
+          value: "stage"
         ports:
         - containerPort: 3000
         imagePullPolicy: Always

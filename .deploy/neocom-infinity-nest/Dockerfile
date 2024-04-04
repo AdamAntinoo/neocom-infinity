@@ -1,28 +1,30 @@
 # Base image
-FROM node:lts-alpine AS BASEIMAGE
+FROM node:20-alpine AS BASEIMAGE
 # Create app directory
 WORKDIR /app
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 COPY package*.json ./
 COPY tsconfig.json ./
 COPY tsconfig.build.json ./
-COPY nest-cli.json ./
+
 # Install app dependencies
 RUN npm install
 # Bundle app source
 COPY . .
+RUN ls -la
 # Creates a "dist" folder with the production build
 RUN npm run build
 
 FROM node:lts-alpine AS RUNNER
-ENV NODE_ENV=production
+ENV NODE_ENV=$ENV
 
 COPY --from=BASEIMAGE /app/node_modules /app/node_modules
 COPY --from=BASEIMAGE /app/dist /app/dist
 COPY --from=BASEIMAGE /app/package.json /app
+COPY --from=BASEIMAGE /app/app-banner.txt /app
 
 WORKDIR /app
 # Expose the port on which the app will run
-EXPOSE 3001
+EXPOSE 3000
 # Start the server using the production build
-CMD ["npm", "run", "start:prod"]
+CMD ["node", "dist/main"]
