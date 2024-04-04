@@ -21,7 +21,6 @@ async function bootstrap() {
         if (err) throw err
         console.log("Nest JS Server version: vtobedef")
         console.log("Running environment: " + START_YELLOW + process.env.NODE_ENV + END_BOLD)
-        // console.log("Current build: " + START_YELLOW + stdout.replace("\n", "") + END_BOLD)
         console.log("Listening on port: " + START_YELLOW + port + END_BOLD)
         console.log("Backend URL path: " + START_GREEN + backendproxy + END_BOLD)
 
