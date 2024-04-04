@@ -6,10 +6,12 @@ metadata:
 spec:
   selector:
     app: nin-$ENV
+  type: NodePort
   ports:
     - protocol: TCP
       port: 8000
       targetPort: $PORT
+      nodePort: 30000
 
 ---
 
