@@ -1,0 +1,24 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="neocom-backend.stage" type="Application" factoryName="Application">
+    <option name="ALTERNATIVE_JRE_PATH" value="11" />
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <envs>
+      <env name="JDBC_DATABASE_URL" value="jdbc:postgresql://0.0.0.0:5432/postgres" />
+      <env name="DB_USER" value="adamantinoo" />
+      <env name="DB_PASSWORD" value="z.iliada.2020" />
+      <env name="NEOCOM_DATABASE_URL" value="jdbc:postgresql://localhost:5432/postgres?user=adamantinoo&amp;password=z.iliada.2020" />
+      <env name="NEOCOM_BANNER_LOCATION" value="./build/resources/main/app-banner.txt" />
+      <env name="PROPERTIES_DIRECTORY" value="/build/resources/main/properties-dev" />
+      <env name="APPLICATION_DIRECTORY" value="/build/NeoCom.Infinity.Development" />
+      <env name="SDE_DATABASE_PATH" value="/build/resources/main/sde.db" />
+      <env name="PROFILE" value="stage" />
+      <env name="REDIS_URL" value="redis://localhost:6379" />
+    </envs>
+    <option name="MAIN_CLASS_NAME" value="org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendApplication" />
+    <module name="NeoCom.Infinity.Backend.main" />
+    <option name="PROGRAM_PARAMETERS" value="--spring.profiles.active=prod --server.port=5233" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

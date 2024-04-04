@@ -27,7 +27,7 @@ generateContainer() {
   # Copy all properties sets into the container. Configuration will select the right set.
   cp -r ./src/main/resources/properties* "${DOCKER_DIRECTORY}"
   cd "$DOCKER_DIRECTORY" || exit 1
-  mv -v NeoCom.Infinity.Backend*.jar ${APPLICATION_JAR_NAME}".jar"
+  mv -v neocom-infinity-backend*.jar ${APPLICATION_JAR_NAME}".jar"
   echo "${DOCKER_DIRECTORY}/Dockerfile"
   docker build -t neocom/neocom-infinity.backend .
 }
