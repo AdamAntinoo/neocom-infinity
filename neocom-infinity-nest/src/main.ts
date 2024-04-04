@@ -16,7 +16,7 @@ async function bootstrap() {
     const backendproxy = configService.get<number>('BACKEND_HOST') || 'http://esi-data-tst:5271'
 
     await app.listen(port)
-    const filename = '../.deploy/app-banner.txt'
+    const filename = process.env.BANNER
     fs.readFile(filename, 'utf8', function (err, data) {
         if (err) throw err
         console.log("Nest JS Server version: vtobedef")

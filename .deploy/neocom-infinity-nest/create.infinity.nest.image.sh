@@ -24,7 +24,7 @@ echo "Version->$VERSION"
 echo '>>> Creating banner'
 figlet NeoNest `gitversion /showvariable MajorMinorPatch`-`gitversion /showvariable CommitsSinceVersionSource` > app-banner.txt
 cp app-banner.txt $BANNER_LOCATION
-echo `cat app-banner.txt`
+cat app-banner.txt
 
 # - build the image
 echo '>>> Creating image'
