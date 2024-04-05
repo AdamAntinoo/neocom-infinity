@@ -3,7 +3,7 @@
 The project will provide all ports on the range 5200 to 5299. Digits for port assignment follow next rules.
 - The first two digits are always 5 and 2.
 - The third digit is for the functionality group. Like server, mocks and other services. Goes from 0 (main service) to 9.
-- The fouth and last digit is for the environment.
+- The fourth and last digit is for the environment.
     * Value **0** is for *PRODUCTION* environment
     * Value **1** is for development and local runs not deployed. 
     * Value **2** for Acceptance testing.
@@ -34,9 +34,9 @@ The project will provide all ports on the range 5200 to 5299. Digits for port as
 #### 5291 - [ACCEPTANCE] Backend Redis DB service
 
 ## Stage
+- **5203 - Frontend Angular Server**
 - **5213 - Backend Nest Server**
 
-- **5202 - Frontend Node server**
 #### 5282 - [INTEGRATION] Backend Integration stand-alone Postgres DB
 #### 5242 - [INTEGRATION] Backend SB application server
 
