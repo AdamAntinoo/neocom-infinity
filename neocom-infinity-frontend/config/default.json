@@ -1,6 +1,6 @@
 {
   "settings": {
-    "port": 8080,
+    "port": 5200,
     "appname": "NeoCom.Infinity",
     "applicationhome": "/dist/NeoComInfinityFrontend",
     "apppath": "/app",

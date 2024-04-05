@@ -20,3 +20,6 @@ support/backend-simulation/*.log
 *.mp4
 .nyc_output/
 cypress/cucumber-json/
+
+# Project files not required to be stored
+app-banner.txt

@@ -32,7 +32,7 @@ cat app-banner.txt
 # - build the image
 echo '>>> Creating image'
 cat dockerfile.frontend.template | envsubst > Dockerfile
-docker build --build-arg="$ENV" --build-arg="$PORT" -f ./Dockerfile -t $IMAGE_NAME $WORKING_DIR
+docker build -f ./Dockerfile -t $IMAGE_NAME $WORKING_DIR
 
 # - tag the image
 echo ">>> Tagging image->adamantinoo/$IMAGE_NAME:$VERSION"
