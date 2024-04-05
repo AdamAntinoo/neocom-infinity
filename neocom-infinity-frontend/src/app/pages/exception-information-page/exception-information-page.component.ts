@@ -1,13 +1,10 @@
 // - CORE
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
 // - SERVICES
 import { AppStoreService } from '@app/services/appstore.service';
 // - DOMAIN
-import { BackendService } from '@app/services/backend.service';
 import { environment } from '@env/environment';
-import { ServerStatus } from '@domain/esi/ServerStatus.domain';
 import { NeoComException } from '@innovative/domain/NeoComException';
 
 @Component({
@@ -31,8 +28,22 @@ export class ExceptionInformationPageComponent implements OnInit {
         if (null != this.exception) return this.exception.getUserMessage();
         else return '-';
     }
-    public getLoginRequest(): string {
-        return environment.LoginRequest;
+    public getLoginLink(): string {
+        console.log('loginLinkData->' + environment.loginLinkData)
+        return this.composeLoginLink()
+    }
+    public composeLoginLink(): string {
+        let link: string = environment.loginLinkData.esi_host
+        // - parameters
+        link+='response_type='+environment.loginLinkData.parameters.response_type+'&'
+        link+='client_id='+environment.loginLinkData.parameters.client_id+'&'
+        link+='state='+environment.loginLinkData.parameters.state+'&'
+        // - redirect
+        link+='redirect_uri='+     encodeURIComponent  (environment.loginLinkData.callback_url)+'&'
+        // - scope
+        link+='scope='+     encodeURIComponent  (environment.loginLinkData.scope)
+
+        return link
     }
     public retryable(): boolean {
         return true;

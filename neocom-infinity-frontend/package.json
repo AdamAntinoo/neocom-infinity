@@ -21,10 +21,11 @@
     "docker:start": "docker-compose -f ./support/docker-compose.yml up ",
     "docker:stop": "docker-compose -f ./support/docker-compose.yml down ",
     "version": "echo `gitversion /showvariable MajorMinorPatch`-`gitversion /showvariable CommitsSinceVersionSource`",
+    "tag": "figlet NeoFront `npm run version | tail -1` > app-banner.txt ",
     "build": "ng build ",
-    "build:stage": "ng build --aot --configuration=production",
+    "build:staging": "ng build --configuration=staging",
     "start:dev": "ng serve --proxy-config proxy.conf.json --port 5200 ",
-    "start:stage": "export NODE_ENV=stage && export PORT=5202 && npm run build && node server.js "
+    "start:staging": "export NODE_ENV=staging && npm run tag && npm run build:staging && node server.js "
   },
   "private": true,
   "engines": {

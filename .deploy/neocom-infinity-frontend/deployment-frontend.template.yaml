@@ -16,6 +16,18 @@ spec:
 
 ---
 
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: neocom-frontend-environment
+  namespace: neocom
+data:
+  LOGIN_LINK: "$LOGIN_LINK"
+  SEMVER: "$SEMVER"
+  TAGVERSION: "$TAGVERSION"
+
+---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -42,6 +54,22 @@ spec:
         env:
         - name: NODE_ENV
           value: "$ENV"
+        - name: LOGIN_LINK # Notice that the case is different here
+                                     # from the key name in the ConfigMap.
+          valueFrom:
+            configMapKeyRef:
+              name: neocom-frontend-environment           # The ConfigMap this value comes from.
+              key: LOGIN_LINK # The key to fetch.
+        - name: SEMVER 
+          valueFrom:
+            configMapKeyRef:
+              name: neocom-frontend-environment
+              key: SEMVER
+        - name: SEMVER 
+          valueFrom:
+            configMapKeyRef:
+              name: neocom-frontend-environment
+              key: SEMVER
         ports:
         - containerPort: $PORT
         imagePullPolicy: Always

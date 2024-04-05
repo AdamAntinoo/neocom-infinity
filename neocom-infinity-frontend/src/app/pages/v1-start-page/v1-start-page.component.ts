@@ -51,7 +51,7 @@ export class V1StartPageComponent extends BackgroundEnabledComponent implements 
             }))
     }
     public getLoginLink(): string {
-        console.log('loginlink->' + environment.loginLink)
+        console.log('loginLinkData->' + environment.loginLinkData)
         return this.composeLoginLink()
     }
     public composeLoginLink(): string {
