@@ -4,9 +4,6 @@ import { NgZone } from '@angular/core'
 import { Router } from '@angular/router';
 import { Location } from "@angular/common"
 // - TESTING
-import { async } from '@angular/core/testing';
-import { fakeAsync } from '@angular/core/testing';
-import { tick } from '@angular/core/testing';
 import { ComponentFixture } from '@angular/core/testing';
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -16,7 +13,6 @@ import { RouteMockUpComponent } from '@app/testing/RouteMockUp.component';
 import { IsolationService } from '@innovative/services/isolation.service';
 // - PROVIDERS
 import { SupportIsolationService } from '@app/testing/SupportIsolation.service'
-import { NeoCom } from '@domain/NeoCom.domain'
 // - DOMAIN
 import { V1StartPageComponent } from './v1-start-page.component'
 import { BackendService } from '@app/services/backend.service';
@@ -62,7 +58,7 @@ describe('PANEL V1StartPageComponent [Module: APP]', () => {
             expect(component.validating).toBeTruthy()
         })
     })
-    
+
     // - O N I N I A T I Z A T I O N   P H A S E
     describe('On Initialization Phase', async () => {
         it('ngOnInit.success: validate the application session existence and validity', async () => {
@@ -77,4 +73,11 @@ describe('PANEL V1StartPageComponent [Module: APP]', () => {
             jasmine.clock().uninstall()
         })
     })
-})    
+    describe('Functionality Phase', async () => {
+        it('when accessing the login link there should be a va,lid and encoded link', () => {
+            const sut = component.getLoginLink()
+            expect(sut).toBeDefined
+            console.log('loginLink->' + sut)
+        })
+    })
+})

@@ -4,21 +4,21 @@ export const environment = {
     copyright: '© 2019,2024 Dimensinfin Industries',
     appTitle: 'NeoCom Infinity',
     appName: require('../../package.json').name,
-    appVersion: require('../../package.json').version + " dev",
-    serverName: '',
+    environment: 'stage',
+    appVersion: require('../../package.json').version + ' stage',
     loginLink: "https://login.eveonline.com/v2/oauth/authorize/?response_type=code&client_id=98eb8d31c5d24649ba4f7eb015596fbd&state=LU5FT0NPTS5JTkZJTklUWS1QUk9EVUNUSU9OLVZBTElEIFNUQVRFIFNUUklORy0=&redirect_uri=https%3A%2F%2Fhttp://localhost:32000/%2Fapp%2FloginValidation&scope=publicData%20esi-location.read_location.v1%20esi-location.read_ship_type.v1%20esi-skills.read_skills.v1%20esi-skills.read_skillqueue.v1%20esi-wallet.read_character_wallet.v1%20esi-search.search_structures.v1%20esi-universe.read_structures.v1%20esi-location.read_online.v1",
     loginLinkData: {
-        host: "https://login.eveonline.com/v2/oauth/authorize/",
-        parameters: "?response_type=code&client_id=98eb8d31c5d24649ba4f7eb015596fbd&state=LU5FT0NPTS5JTkZJTklUWS1QUk9EVUNUSU9OLVZBTElEIFNUQVRFIFNUUklORy0=",
-        redirect_uri: {
-            callback_host: "neocom-frontend-dev.herokuapp.com",
-            callback_location: "%2Fapp%2FloginValidation"
+        esi_host: "https://login.eveonline.com/v2/oauth/authorize/?",
+        parameters: {
+            response_type: "code",
+            client_id: "98eb8d31c5d24649ba4f7eb015596fbd",
+            state: "LU5FT0NPTS5JTkZJTklUWS1QUk9EVUNUSU9OLVZBTElEIFNUQVRFIFNUUklORy0="
         },
-        scope: "publicData%20esi-location.read_location.v1%20esi-location.read_ship_type.v1%20esi-skills.read_skills.v1%20esi-skills.read_skillqueue.v1%20esi-wallet.read_character_wallet.v1%20esi-search.search_structures.v1%20esi-universe.read_structures.v1%20esi-location.read_online.v1"
+        callback_url: "http://localhost:52000/app/loginValidation",
+        scope: "publicData esi-location.read_ship_type.v1 esi-wallet.read_character_wallet.v1 esi-search.search_structures.v1 esi-universe.read_structures.v1 esi-assets.read_assets.v1 esi-planets.manage_planets.v1 esi-fittings.read_fittings.v1 esi-fittings.write_fittings.v1 esi-industry.read_character_jobs.v1 esi-markets.read_character_orders.v1 esi-characters.read_blueprints.v1 esi-contracts.read_character_contracts.v1 esi-corporations.read_blueprints.v1 esi-industry.read_character_mining.v1 esi-characterstats.read.v1"
     },
-    platform: 'Angular 8.2.3 - RxJs 6.4.0 - Rollbar 2.13',
-    appSignature: "S0000.0020.0000",
+    platform: 'Angular 13.4.0 - RxJs 7.5.0',
+    appSignature: "S0000.0020.0001",
 
     esiData: 'https://esi.evetech.net/latest/',
-    LoginRequest: 'https://login.eveonline.com/v2/oauth/authorize/?response_type=code&client_id=eacaa9cd36594189877544d851753734&state=LU5FT0NPTS5JTkZJTklUWS1ERVZFTE9QTUVOVC1WQUxJRCBTVEFURSBTVFJJTkct&redirect_uri=http%3A%2F%2Flocalhost:32000%2Fapp%2FloginValidation'
-};
+}

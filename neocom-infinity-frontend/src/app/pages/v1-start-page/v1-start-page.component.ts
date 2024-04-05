@@ -10,7 +10,6 @@ import { PlatformConstants } from '@env/PlatformConstants';
 // - INNOVATIVE
 import { BackgroundEnabledComponent } from '@innovative/components/background-enabled/background-enabled.component';
 import { IsolationService } from '@innovative/services/isolation.service';
-import { env } from 'process';
 
 @Component({
     selector: 'v1-start-page',
@@ -53,11 +52,21 @@ export class V1StartPageComponent extends BackgroundEnabledComponent implements 
     }
     public getLoginLink(): string {
         console.log('loginlink->' + environment.loginLink)
-        return environment.loginLink
+        return this.composeLoginLink()
     }
-    // public v2getLoginLink(): string {
-    //     const link: string = environment.loginLinkData
-    // }
+    public composeLoginLink(): string {
+        let link: string = environment.loginLinkData.esi_host
+        // - parameters
+        link+='response_type='+environment.loginLinkData.parameters.response_type+'&'
+        link+='client_id='+environment.loginLinkData.parameters.client_id+'&'
+        link+='state='+environment.loginLinkData.parameters.state+'&'
+        // - redirect
+        link+='redirect_uri='+     encodeURIComponent  (environment.loginLinkData.callback_url)+'&'
+        // - scope
+        link+='scope='+     encodeURIComponent  (environment.loginLinkData.scope)
+
+        return link
+    }
     private pageChange(route: string): void {
         console.log('><[ngOnInit.pageChange]> Route: ' + route);
         this.router.navigate([route]);
