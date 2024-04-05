@@ -118,6 +118,7 @@ app.listen(process.env.PORT || app.locals.port || 3000, function () {
     console.log('>>> Additional properties:')
     console.log('>Env>Login Link: ' + process.env.LOGIN_LINK)
     console.log('>Env>Port: ' + process.env.PORT)
+    console.log('>Env>Image Name: ' + process.env.IMAGE_NAME)
     console.log('>Env>Semantic Version: ' + process.env.SEMVER)
     console.log('>Env>Tag Version: ' + process.env.TAGVERSION)
 

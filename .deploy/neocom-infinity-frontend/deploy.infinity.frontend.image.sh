@@ -15,6 +15,7 @@ WORKING_DIR=$PROJECT_ROOT/$PROJECT_NAME
 export SEMVER=`gitversion /showvariable MajorMinorPatch`
 VMETA=`gitversion /showvariable CommitsSinceVersionSource`
 export VERSION=$SEMVER-$VMETA
+export TAGVERSION=$SEMVER-$VMETA
 BANNER_LOCATION=$WORKING_DIR/app-banner.txt
 echo 'BANNER_LOCATION->'$BANNER_LOCATION
 

@@ -70,6 +70,11 @@ spec:
             configMapKeyRef:
               name: neocom-frontend-environment
               key: SEMVER
+        - name: IMAGE_NAME 
+          valueFrom:
+            configMapKeyRef:
+              name: neocom-frontend-environment
+              key: IMAGE_NAME
         ports:
         - containerPort: $PORT
         imagePullPolicy: Always
