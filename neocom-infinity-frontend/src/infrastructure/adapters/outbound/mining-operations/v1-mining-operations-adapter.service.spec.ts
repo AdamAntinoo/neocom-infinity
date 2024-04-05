@@ -7,7 +7,7 @@ import { ESISecureDataServiceAdapter } from '../esi-data-service/ESISecureDataSe
 import { V1MiningOperation } from '@domain/industry/V1.MiningOperation.domain';
 import { data } from 'cypress/types/jquery';
 
-fdescribe('ADAPTER V1MiningOperationsAdapterService [Module: Infrastructure]', () => {
+describe('ADAPTER V1MiningOperationsAdapterService [Module: Infrastructure]', () => {
     let service: V1MiningOperationsAdapterService;
 
     beforeEach(() => {

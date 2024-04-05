@@ -8,7 +8,7 @@ import { ESISecureDataServiceAdapter } from "@infra/adapters/outbound/esi-data-s
 import { ESIMiningOperation } from "@infra/adapters/outbound/esi-data-service/domain/ESIMiningOperation";
 import { NeoComCredential } from "@domain/NeoComCredential.domain";
 
-fdescribe('Feature: [NIF05]-Fetch mining data along the time.', () => {
+describe('Feature: [NIF05]-Fetch mining data along the time.', () => {
     let esiAdapter: ESISecureDataServiceAdapter
     let configuration: ConfigurationAdapter
     let credential: NeoComCredential

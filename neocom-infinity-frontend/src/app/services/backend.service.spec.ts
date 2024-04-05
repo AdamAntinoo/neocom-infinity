@@ -127,7 +127,7 @@ describe('SERVICE BackendService [Module: APP]', () => {
                 })
         })
     })
-    fdescribe('Code Coverage Phase [apiGetPilotFittings_v1]', () => {
+    describe('Code Coverage Phase [apiGetPilotFittings_v1]', () => {
         it('apiGetPilotFittings_v1.success: get the list of the pilot fittings', () => {
             service.apiGetPilotFittings_v1(123,
                 new ResponseTransformer().setDescription('Do response transformation to "Fitting List".')
