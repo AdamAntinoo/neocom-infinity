@@ -1,14 +1,9 @@
 {
   "name": "neocom-infinity",
-  "version": "0.20.1-mining-sessions.1",
+  "version": "0.20.0-435",
   "scripts": {
     "cucumber": "./node_modules/@cucumber/cucumber/bin/cucumber-js ./cucumber/**/*.feature --no-strict --require-module ts-node/register --require-module tsconfig-paths/register --require ./cucumber/**/*.step.ts --tags @NIF05.01",
-    "docker:start": "docker-compose -f ./support/docker-compose.yml up ",
-    "docker:stop": "docker-compose -f ./support/docker-compose.yml down ",
-    "serve:dev": "ng serve --proxy-config proxy.conf.json --port 5200 ",
-    "build:dev": "ng build ",
     "document:dev": "compodoc -p tsconfig.json src",
-    "build:stage": "ng build --aot --configuration=stage",
     "build:prod": "ng build --aot --configuration=production",
     "test:dev": "ng test --watch --progress ",
     "test:prod": "ng test --watch=false --no-progress --browsers=ChromeHeadlessCI",
@@ -22,12 +17,19 @@
     "serve:integration": "export NODE_ENV=integration && export PORT=5202 && npm run build:dev && npm start",
     "test:cuc": "ng test --include=src/../cucumber/**/*.step.ts",
     "test:prepare": "npm run docker:start &",
-    "test:stop": "npm run docker:stop &"
+    "test:stop": "npm run docker:stop &",
+    "docker:start": "docker-compose -f ./support/docker-compose.yml up ",
+    "docker:stop": "docker-compose -f ./support/docker-compose.yml down ",
+    "version": "echo `gitversion /showvariable MajorMinorPatch`-`gitversion /showvariable CommitsSinceVersionSource`",
+    "build": "ng build ",
+    "build:stage": "ng build --aot --configuration=production",
+    "start:dev": "ng serve --proxy-config proxy.conf.json --port 5200 ",
+    "start:stage": "export NODE_ENV=stage && export PORT=5202 && npm run build && node server.js "
   },
   "private": true,
   "engines": {
-    "node": "v18.19.1",
-    "npm": "10.2.4"
+    "node": "v20.12.1",
+    "npm": "10.5.0"
   },
   "cypress-cucumber-preprocessor": {
     "json": {
@@ -53,6 +55,11 @@
     "@angular/platform-browser-dynamic": "13.4.0",
     "@angular/router": "13.4.0",
     "@swimlane/ngx-charts": "20.0.0",
+    "config": "3.3.1",
+    "express": "4.17.1",
+    "express-http-proxy": "1.6.0",
+    "fs": "0.0.1-security",
+    "path": "0.12.7",
     "date-fns": "^2.16.1",
     "fs": "^0.0.1-security",
     "jwt-decode": "2.2.0",

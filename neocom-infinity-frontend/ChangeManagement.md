@@ -1,6 +1,6 @@
 # Change Management
 ## Version v0.20.0
-* Updated the project configuration to a mosre recent Angular version.
+* Updated the project configuration to a most recent Angular version.
 * Changed the java shell script to start the mock server by a docker container with the Api Simulator instance.
 * The Pilot should belong to a Corporation. There are two types os corporations, the NPC game corporations that do not belong to
 any Alliance and use created Corporations. I have to check that both have CEO. A Corporation may also belong to an Alliance. This

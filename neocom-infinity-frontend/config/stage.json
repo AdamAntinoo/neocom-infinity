@@ -1,0 +1,10 @@
+{
+  "settings": {
+    "port": 5203,
+    "backendproxy": "http://host.minikube.internal:5233/"
+  },
+  "pages": {
+    "staticpublic": "./public",
+    "homepage": "/home-development.html"
+  }
+}

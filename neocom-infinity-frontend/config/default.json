@@ -1,9 +1,9 @@
 {
-    "settings": {
-        "port": 8080,
-        "applicationhome": "/dist/NeoComInfinityFrontend",
-        "backendproxy": "http://localhost:5210",
-        "apppath": "/app",
-        "apipath": "/api"
-    }
+  "settings": {
+    "port": 8080,
+    "appname": "NeoCom.Infinity",
+    "applicationhome": "/dist/NeoComInfinityFrontend",
+    "apppath": "/app",
+    "apipath": "/api"
+  }
 }
