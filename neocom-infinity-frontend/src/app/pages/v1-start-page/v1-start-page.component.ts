@@ -4,8 +4,9 @@ import { OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 // - SERVICES
 import { BackendService } from '@app/services/backend.service';
-import { SessionStateResponse } from '@domain/dto/SessionStateResponse.dto';
-import { platformConstants } from '@env/platform-constants';
+import { AuthenticationStateResponse } from '@domain/dto/AuthenticationStateResponse.dto';
+import { environment } from '@env/environment';
+import { PlatformConstants } from '@env/PlatformConstants';
 // - INNOVATIVE
 import { BackgroundEnabledComponent } from '@innovative/components/background-enabled/background-enabled.component';
 import { IsolationService } from '@innovative/services/isolation.service';
@@ -31,10 +32,19 @@ export class V1StartPageComponent extends BackgroundEnabledComponent implements 
      * If the session is not vald then we change the page to display the login button.
      */
     public ngOnInit(): void {
-        this.backendConnections.push(this.backendService.apiv1_ValidateAuthenticatedSession()
-            .subscribe((response: SessionStateResponse) => {
-                if (response.state == platformConstants.VALID_SESSION_STATE) this.pageChange('/dashboard')
-                else this.validating = false
+        this.backendConnections.push(this.backendService.apiv1_ValidateAuthtenticationState()
+            .subscribe((response: AuthenticationStateResponse) => {
+                if (response.state == PlatformConstants.VALID_SESSION_STATE) {
+                    console.log('-[V1StartPageComponent.ngOnInit]>Valid session')
+                    // Store the new tocken and credential
+                    this.isolationService.setToSession(PlatformConstants.JWTTOKEN_KEY, response.getJwtToken())
+                    this.isolationService.setToSession(PlatformConstants.CREDENTIAL_KEY, JSON.stringify(response.getCredential()))
+                    this.validating = false
+                    this.pageChange('/dashboard')
+                } else {
+                    console.log('-[V1StartPageComponent.ngOnInit]>Not Valid session')
+                    this.validating = false
+                }
             }, (error) => {
                 console.log('-[V1StartPageComponent.ngOnInit.exception]> Error message: ' + JSON.stringify(error.error))
                 setTimeout(() => this.validating = false, 1000)
