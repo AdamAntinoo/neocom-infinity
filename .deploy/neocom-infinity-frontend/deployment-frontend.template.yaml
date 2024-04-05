@@ -12,7 +12,7 @@ spec:
     - protocol: TCP
       port: 8000
       targetPort: $PORT
-      nodePort: 30000
+      nodePort: 32000
 
 ---
 
