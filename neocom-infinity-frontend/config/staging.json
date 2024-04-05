@@ -1,7 +1,6 @@
 {
   "settings": {
-    "port": 5203,
-    "backendproxy": "http://host.minikube.internal:5233/"
+    "backendproxy": "http://host.docker.internal:5233/"
   },
   "pages": {
     "staticpublic": "./public",

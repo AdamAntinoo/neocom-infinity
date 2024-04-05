@@ -4,8 +4,8 @@ The services are complex because the localhost usually will be pointing to the d
 
 ```mermaid
   graph TD;
-      FRONTEND:49998-->KUBE/neocom/nif-svc:8000;
-      KUBE/neocom/nif-svc:8000-->neocom/nif-stage:5203;
-      neocom/nif-stage:5203-->host.minikube.internal:5233;
-      host.minikube.internal:5233-->BACKEND:5233;
+      FRONTEND:32000-->KUBE/neocom/nif-svc:32000;
+      KUBE/neocom/nif-svc:32000-->neocom/nif-stage:5200;
+      neocom/nif-stage:5200-->host.docker.internal:5233;
+      host.docker.internal:5233-->BACKEND:5233;
 ```

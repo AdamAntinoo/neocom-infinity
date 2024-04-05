@@ -61,7 +61,6 @@
     "fs": "0.0.1-security",
     "path": "0.12.7",
     "date-fns": "^2.16.1",
-    "fs": "^0.0.1-security",
     "jwt-decode": "2.2.0",
     "ng-drag-drop": "5.0.0",
     "ngx-toastr": "14.3.0",

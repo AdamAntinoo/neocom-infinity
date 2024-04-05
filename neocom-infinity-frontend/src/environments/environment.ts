@@ -23,6 +23,7 @@ export const environment = {
     appSignature: "S0000.0020.0001",
 
     esiData : 'https://esi.evetech.net/latest/',
+    serverName: '',
 
     mockStatus: true,
 }
