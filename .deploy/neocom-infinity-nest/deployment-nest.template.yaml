@@ -11,7 +11,7 @@ spec:
     - protocol: TCP
       port: 8000
       targetPort: $PORT
-      nodePort: 30000
+      nodePort: 30010
 
 ---
 
@@ -23,6 +23,7 @@ metadata:
   labels:
     app: nin-$ENV
     version: $VERSION
+    port: $PORT
     module: neocom-infinity-nest
     build: $VERSION
 spec:
@@ -30,12 +31,6 @@ spec:
     matchLabels:
       app: nin-$ENV
   template:
-    metadata:
-      labels:
-        app: nin-$ENV
-        version: $VERSION
-        module: neocom-infinity-nest
-        build: $VERSION
     spec:
       containers:
       - name: nin-$ENV
