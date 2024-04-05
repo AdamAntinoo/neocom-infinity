@@ -1,5 +1,10 @@
 {
-    "settings": {
-        "backendproxy": "https://neocom-backend-stage.herokuapp.com/"
-    }
+  "settings": {
+    "port": 5200,
+    "backendproxy": "http://host.minikube.internal:5233/"
+  },
+  "pages": {
+    "staticpublic": "./public",
+    "homepage": "/home-development.html"
+  }
 }
