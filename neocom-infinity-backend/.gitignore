@@ -10,6 +10,7 @@
 build/
 target/
 out/
+.db/
 
 # Ignore application cache directories from runs
 backend.App/NeoCom.Infinity/
