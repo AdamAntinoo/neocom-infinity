@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AppPanelComponent } from '@innovative/components/app-panel/app-panel.component';
-import { V1MiningOperationsPageComponent } from '../../pages/V1MiningOperationsPage';
+import { V1MiningOperationsPageComponent } from '../../pages/v1-mining-operations-page/V1MiningOperationsPage';
 
 @Component({
     selector: 'v1-miningoperations-panel',

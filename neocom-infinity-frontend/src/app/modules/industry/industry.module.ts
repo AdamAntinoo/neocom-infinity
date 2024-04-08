@@ -17,12 +17,13 @@ import { AppCommonModule } from '@common/common.module'
 import { HeaderModule } from '../header/header.module';
 import { IndustryDashboardPageComponent } from './pages/industry-dashboard-page/industry-dashboard-page.component';
 import { TokenAuthorizationGuard } from '@app/security/token-authorization.guard'
+import { V1MiningOperationsPageComponent } from '@app/industry/pages/v1-mining-operations-page/V1MiningOperationsPage'
 
 const routes: Routes = [
     { path: 'dashboard', component: IndustryDashboardPageComponent , canActivate: [TokenAuthorizationGuard] },
     { path: 'fittings/buildConfiguration/:fittingId', component: V1IndustryFittingBuildConfigurationPageComponent },
     { path: 'manufacture', loadChildren: () => import('./manufacture/manufacture.module').then(m => m.ManufactureModule) },
-    { path: 'mining', loadChildren: () => import('./mining/mining.module').then(m => m.MiningModule) },
+    { path: 'mining/miningoperations', component: V1MiningOperationsPageComponent , canActivate: [TokenAuthorizationGuard] },
 ]
 
 @NgModule({

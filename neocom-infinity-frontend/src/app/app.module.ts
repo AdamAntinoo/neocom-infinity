@@ -44,6 +44,9 @@ import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
 import { UniverseService } from './services/universe.service';
 import { V1StartPageComponent } from './pages/v1-start-page/v1-start-page.component';
+import { V1MiningOperationsPageComponent } from './industry/pages/v1-mining-operations-page/V1MiningOperationsPage';
+import { V1MiningOperationsPanelComponent } from './industry/panels/v1-miningoperations-panel/v1-miningoperations-panel.component';
+import { RendersModule } from './modules/renders/renders.module';
 registerLocaleData(localeEs);
 
 @NgModule({
@@ -66,6 +69,7 @@ registerLocaleData(localeEs);
         // SharedModule,
         HeaderModule,
         // FittingsModule
+        RendersModule
     ],
     declarations: [
         AppComponent,
@@ -75,7 +79,10 @@ registerLocaleData(localeEs);
         LoginValidationExceptionComponent,
         DashboardHomePageComponent,
         ExceptionInformationPageComponent,
-        V1StartPageComponent
+        V1StartPageComponent,
+        // - ELEMENTS ON THE FLY
+        V1MiningOperationsPageComponent,
+        V1MiningOperationsPanelComponent
     ],
     providers: [
         // - SERVICES
