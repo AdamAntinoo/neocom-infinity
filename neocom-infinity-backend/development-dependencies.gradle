@@ -1,5 +1,5 @@
 // - D E V E L O P M E N T
 dependencies {
     // N E O C O M
-    implementation "org.dimensinfin.neocom:neocom-datamanagement:0.20.6"
+    implementation "com.github.AdamAntinoo:neocom-datamanagement:$dataManagementVersion"
 }
