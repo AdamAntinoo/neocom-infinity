@@ -461,6 +461,13 @@ request:
 response:
   from: template
   status: 200
+  headers":
+    - "Content-Type=application/json"
+    - "Allow=OPTIONS, GET"
+    - "Access-Control-Allow-Origin=*"
+    - "Access-Control-Allow-Headers=X-Requested-With, Content-Type, Origin, Authorization, Accept, Accept-Encoding, X-Auth-Token, x-app-signature, xapp-authentication-check, xapp-name, xapp-platform, xapp-signature, xapp-version"
+    - "Access-Control-Allow-Methods=POST, GET, OPTIONS, DELETE, PUT, PATCH"
+    - "cache-control=public"
 
 ---
 
