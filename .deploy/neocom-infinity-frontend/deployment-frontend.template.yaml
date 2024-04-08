@@ -25,6 +25,7 @@ data:
   LOGIN_LINK: "$LOGIN_LINK"
   SEMVER: "$SEMVER"
   TAGVERSION: "$TAGVERSION"
+  PORT: $PORT
   IMAGE_NAME: "$IMAGE_NAME"
 
 ---
@@ -76,6 +77,11 @@ spec:
             configMapKeyRef:
               name: neocom-frontend-environment
               key: IMAGE_NAME
+        - name: PORT 
+          valueFrom:
+            configMapKeyRef:
+              name: neocom-frontend-environment
+              key: PORT
         ports:
         - containerPort: $PORT
         imagePullPolicy: Always

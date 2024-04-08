@@ -16,6 +16,7 @@ export SEMVER=`gitversion /showvariable MajorMinorPatch`
 VMETA=`gitversion /showvariable CommitsSinceVersionSource`
 export VERSION=$SEMVER-$VMETA
 export TAGVERSION=$SEMVER-$VMETA
+export LOGIN_LINK="http://localhost:32000/app/loginValidation
 BANNER_LOCATION=$WORKING_DIR/app-banner.txt
 echo 'BANNER_LOCATION->'$BANNER_LOCATION
 

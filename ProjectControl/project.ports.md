@@ -10,6 +10,7 @@ The project will provide all ports on the range 5200 to 5299. Digits for port as
     * Value **3** for Staging and local deployments.
 
 ## Development
+* **5201** - Development Angular Frontend application. Uses mocks but no access to Internet.
 #### 5234 - [DEVELOPMENT] Postgresql Common database
 
 #### 5200 - [DEVELOPMENT] Frontend Node server

@@ -1,5 +1,5 @@
 # PROJECT STRUCTURE
-The general project srtructure should follow the Angular and the other tools (Cucumber, Cypress) guidelines. This means that the structure proposed should fit into an already structure.
+The general project structure should follow the Angular and the other tools (Cucumber, Cypress) guidelines. This means that the structure proposed should fit into an already structure.
 
 The new design will use clean architecture guidelines. This starts by defining three main areas where to compose the code:
 * **app** - The use cases and UX definitions. Most of the code goes into this area where all the UX components should be declared. Core logic and transformations alos go on this area. Communications to any non business element should be done though ports that are declared on this area but implemented on the *infrastructure* area.
@@ -9,7 +9,7 @@ The new design will use clean architecture guidelines. This starts by defining t
 Cypress goes into is own directory at the top level. The **support/step_definitions** directory is mandatory to store the steps until the configuration allows to use other directories for the code.
 
 ## 2 Application
-The application is composed of pages, panels and business logic.
+The application is composed of **pages**, **panels** and business logic. Renders are collected into a single global module called **RendersMOdule**.
 
 Business locig usually is related to navigation and UX interactions, but will also include transformations and theis data management like the lazy evaluation of objects by access request.
 
@@ -18,6 +18,15 @@ Modules should not be defined inside the **modules** directory that is now depre
 * **shared** - Mostly panels that are used outside their module and thus are commonplace.
 
 Thre is no provision for core code that is used by other elements and that inherits functionality. Herence is deprecated and should be aboided if possible to reduce component complexity and hidden dependencies. Delegation is better suited if there are no injectable dependencies.
+
+### 2.1 Page Structure
+#### 2.1.1 Mining Operations Page
+**INDUSTRY**
+
+**v1-minings-operations-page** -> Describes the mining operations for the selected pilot. Will include the previous mining actions by date and if there is a current ongoing mining operation it should be displyed inside a separate panel.
+* ***HEADER*** - The common header application. Usually displys the server status and the current pilot information. Should also have some navigation features.
+* ***MINING-OPERATIONS*** - Contains the panels for the current and previous mining operations.
+
 
 ## 3 Domain
 Domain classes should be classified for easy management. This kind of classes should be versioned to simplify project evolution. There are two main types of domain classes; DTO related to the transfer of data from the adapters that is now depecated since this should be managed internally by the adapters, and domain that really represent the business data structure. The name nomenclature proposed is:
