@@ -24,7 +24,7 @@
     "tag": "figlet NeoFront `npm run version | tail -1` > app-banner.txt ",
     "build": "ng build ",
     "build:staging": "ng build --configuration=staging",
-    "start:dev": "ng serve --proxy-config proxy.conf.json --port 5200 ",
+    "start:dev": "NODE_ENV=development ng serve --proxy-config proxy.conf.json --port 5201 ",
     "start:staging": "export NODE_ENV=staging && npm run tag && npm run build:staging && node server.js "
   },
   "private": true,

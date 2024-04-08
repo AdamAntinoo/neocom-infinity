@@ -1,7 +1,7 @@
 {
   "settings": {
-    "port": 5200,
-    "backendproxy": "http://host.docker.internal:5233/"
+    "port": 5201,
+    "backendproxy": "http://localhost:5210/"
   },
   "pages": {
     "staticpublic": "./public",
