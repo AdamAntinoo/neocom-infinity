@@ -154,8 +154,6 @@ Then('field named {string} with label {string} has contents {string}',
             cy.get('.label').contains(fieldLabel, { matchCase: false }).parent()
                 .find('[cy-field-value="' + fieldName + '"]')
                 .contains(fieldValue, { matchCase: false })
-            // .contains(new RegExp(fieldValue, "g"))
-            // .should("contain.text", fieldValue) // This is an exact match of the field contents.
         })
     })
 Then('field named {string} has contents {string}',

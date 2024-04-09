@@ -5,9 +5,14 @@ export class V3MiningOperation extends NeoCom implements ITransformable<V3Mining
     public jsonClass: string = 'MiningOperation'
     public id?: string
     public date?: string
-    public quantity?: number = 0
+    public quantity?: number
     public solarSystem?: string
     public typeId?: string
+
+    constructor(values: Object = {}) {
+        super(values)
+        this.jsonClass = this.identify()
+    }
 
     public transform(): V3MiningOperation {
         console.log('transform->no need transformation')

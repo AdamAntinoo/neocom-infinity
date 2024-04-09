@@ -22,7 +22,7 @@ async function setupNodeEvents(
 
 export default defineConfig({
     e2e: {
-        baseUrl: "http://localhost:5200",
+        baseUrl: "http://localhost:5201",
         specPattern: [
             "**/*.feature",
             "cypress/**/*.step.ts"

@@ -47,9 +47,9 @@ export class SupportService {
         this.translationTable['exception'] = 'div'
         this.translationTable['pilot'] = 'v2-pilot'
         this.translationTable['processed-blueprint'] = 'v1-blueprint'
-
         this.translationTable['feature-button'] = 'v1-feature-button'
         this.translationTable['planetary-system'] = 'v1-planetary-system'
+        this.translationTable['mining-operation'] = 'v1-mining-operation'
         // this.translationTable['request'] = 'v1-request'
         // this.translationTable['coil'] = 'v1-coil'
         // this.translationTable['build-countdown-timer'] = 'v1-build-countdown-timer'

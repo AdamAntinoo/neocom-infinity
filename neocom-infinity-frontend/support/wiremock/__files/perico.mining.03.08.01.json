@@ -1,26 +1,34 @@
 [
   {
-    "date": "2024-02-23",
+    "jsonClass": "MiningOperation",
     "quantity": 210,
-    "solar_system_id": 30003541,
-    "type_id": 17453
+    "id": "2024-02-23-30003541-17453",
+    "date": "2024-02-23",
+    "solarSystem": "https://esi.evetech.net/latest/universe/systems/30003541/?datasource=tranquility&language=en",
+    "typeId": "https://esi.evetech.net/latest/universe/types/17453/?datasource=tranquility&language=en"
   },
   {
-    "date": "2024-02-23",
+    "jsonClass": "MiningOperation",
     "quantity": 34243,
-    "solar_system_id": 30003538,
-    "type_id": 17464
+    "id": "2024-02-23-30003538-17464",
+    "date": "2024-02-23",
+    "solarSystem": "https://esi.evetech.net/latest/universe/systems/30003538/?datasource=tranquility&language=en",
+    "typeId": "https://esi.evetech.net/latest/universe/types/17464/?datasource=tranquility&language=en"
   },
   {
-    "date": "2024-02-23",
+    "jsonClass": "MiningOperation",
     "quantity": 3073,
-    "solar_system_id": 30003538,
-    "type_id": 1224
+    "id": "2024-02-23-30003538-1224",
+    "date": "2024-02-23",
+    "solarSystem": "https://esi.evetech.net/latest/universe/systems/30003538/?datasource=tranquility&language=en",
+    "typeId": "https://esi.evetech.net/latest/universe/types/1224/?datasource=tranquility&language=en"
   },
   {
-    "date": "2024-02-23",
+    "jsonClass": "MiningOperation",
     "quantity": 10288,
-    "solar_system_id": 30003538,
-    "type_id": 17459
+    "id": "2024-02-23-30003538-17459",
+    "date": "2024-02-23",
+    "solarSystem": "https://esi.evetech.net/latest/universe/systems/30003538/?datasource=tranquility&language=en",
+    "typeId": "https://esi.evetech.net/latest/universe/types/17459/?datasource=tranquility&language=en"
   }
 ]

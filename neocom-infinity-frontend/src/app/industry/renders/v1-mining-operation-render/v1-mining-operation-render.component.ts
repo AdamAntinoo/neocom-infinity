@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { V2NodeContainerRenderComponent } from '@app/modules/renders/v2-node-container-render/v2-node-container-render.component'
 import { V1MiningOperation } from '@domain/industry/V1.MiningOperation.domain'
+import { V3MiningOperation } from '@domain/industry/V3.MiningOperation.domain'
 
 @Component({
     selector: 'v1-mining-operation',
@@ -9,8 +10,8 @@ import { V1MiningOperation } from '@domain/industry/V1.MiningOperation.domain'
 })
 export class V1MiningOperationRenderComponent extends V2NodeContainerRenderComponent {
 
-    public getNode(): V1MiningOperation {
-        return this.node as V1MiningOperation
+    public getNode(): V3MiningOperation {
+        return this.node as V3MiningOperation
     }
     public getUniqueId(): string {
         // TODO - Use the common method to get the unique identifier
@@ -18,6 +19,7 @@ export class V1MiningOperationRenderComponent extends V2NodeContainerRenderCompo
         return '-'
     }
     public getQuantity() {
-        return 5
+        if (this.node) return this.getNode().getQuantity()
+        return '-'
     }
 }
