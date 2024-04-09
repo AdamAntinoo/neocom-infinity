@@ -17,5 +17,7 @@ export class V1MiningOperationRenderComponent extends V2NodeContainerRenderCompo
         if (this.node) return this.getNode().getIdentifier()
         return '-'
     }
-
+    public getQuantity() {
+        return 5
+    }
 }

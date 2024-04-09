@@ -29,6 +29,8 @@ import { V1LoyaltyCorporationRenderComponent } from './v1-loyalty-corporation-re
 import { V1LoyaltyOfferRenderComponent } from './v1-loyalty-offer-render/v1-loyalty-offer-render.component';
 import { IskScaledPipe } from './pipes/iskscaled.pipe';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { V1MiningOperationRenderComponent } from '@app/industry/renders/v1-mining-operation-render/v1-mining-operation-render.component';
+
 
 @NgModule({
     imports: [
@@ -61,6 +63,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
         V1SolarSystemRenderComponent,
         V1LoyaltyCorporationRenderComponent,
         V1LoyaltyOfferRenderComponent,
+        V1MiningOperationRenderComponent,
         // - PIPES
         IskScaledPipe
 
@@ -89,6 +92,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
         V1SolarSystemRenderComponent,
         V1LoyaltyCorporationRenderComponent,
         V1LoyaltyOfferRenderComponent,
+        V1MiningOperationRenderComponent,
         // - PIPES
         IskScaledPipe
     ]

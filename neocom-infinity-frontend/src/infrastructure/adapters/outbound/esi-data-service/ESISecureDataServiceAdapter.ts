@@ -16,9 +16,7 @@ import { ResponseTransformer } from '@innovative/services/support/ResponseTransf
 export class ESISecureDataServiceAdapter implements ESISecureDataServicePort {
     private esiMiningOperationsTypedRequest: ESIMiningOperationsTypedRequest
 
-    constructor(private configuration: ConfigurationAdapter, private httpService: HttpClient) {
-        // super(httpService)
-    }
+    constructor(private configuration: ConfigurationAdapter, private httpService: HttpClient) { }
 
     // - M I N I N G    O P E R A T I O N S
     public v1_apiEsiMiningOperationsData(pilotId: number): Observable<ESIMiningOperation[]> {
@@ -37,7 +35,6 @@ export class ESISecureDataServiceAdapter implements ESISecureDataServicePort {
             })
         return this.httpService.get(this.esiMiningOperationsTypedRequest.request, this.esiMiningOperationsTypedRequest.options)
             .pipe(map((data: any) => {
-                console.log('get.pipe.map')
                 console.log(">[v1_apiEsiMiningOperationsData]> Transformation: " +
                     transformer.description)
                 const response = transformer.transform(data) as ESIMiningOperation[]

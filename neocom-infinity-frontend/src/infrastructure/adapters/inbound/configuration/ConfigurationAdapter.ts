@@ -6,6 +6,6 @@ import { ConfigurationPort } from "@app/ports/ConfigurationPort";
 })
 export class ConfigurationAdapter implements ConfigurationPort {
     getNestBackendHost(): string {
-        return 'http://localhost:5210'
+        return 'http://localhost:5272/api/v3/neocom'
     }
 }

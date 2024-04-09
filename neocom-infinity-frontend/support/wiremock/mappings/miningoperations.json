@@ -4,28 +4,7 @@
       "priority": 5,
       "request": {
         "method": "GET",
-        "urlPathTemplate": "/characters/{characterId}/miningoperation"
-      },
-      "response": {
-        "status": 200,
-        "bodyFileName": "perico.mining.03.08.01.json",
-        "headers": {
-          "Content-Type": "application/json",
-          "Allow": "OPTIONS, GET",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Origin, Authorization, Accept, Accept-Encoding, X-Auth-Token, content-type",
-          "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
-          "cache-control": "public",
-          "Scenario": "NIF05.01",
-          "Stage": "Started"
-        }
-      }
-    },
-    {
-      "priority": 5,
-      "request": {
-        "method": "GET",
-        "urlPathTemplate": "/characters/{characterId}/miningoperation"
+        "urlPathTemplate": "/api/v3/neocom/characters/{characterId}/miningoperation"
       },
       "response": {
         "status": 200,

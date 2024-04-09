@@ -1,8 +1,13 @@
-<!-- <div
-  id="{{ getUniqueId() }}"
-  class="panel-blue"
-  [ngClass]="{ 'panel-blue-selected': node.isSelected() }"
-  *ngIf="getVariant() === '-AVAILABLE-BLUEPRINTS-'"
-> -->
-  <p>v1-mining-operation-render works!</p>
-<!-- </div> -->
+<!-- M I N I N G   O P E R A T I O N -->
+<div id="{{getUniqueId()}}" class="panel-yellow">
+  <div class="insets row">
+      <img class="neocom-icon iconsize-40" src="assets/res-sde/drawable/systems.png">
+      <div class="separator-4"></div>
+      <div class="column">
+          <div class="field">
+              <span cy-field-label="regionName" class="label">QUANTITY</span><br>
+              <span cy-field-value="regionName" class="planet-name">{{getQuantity()}}</span>
+          </div>
+       </div>
+  </div>
+</div>
