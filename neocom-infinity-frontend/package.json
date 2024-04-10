@@ -22,7 +22,7 @@
     "version": "echo `gitversion /showvariable MajorMinorPatch`-`gitversion /showvariable CommitsSinceVersionSource`",
     "tag": "figlet NeoFront `npm run version | tail -1` > app-banner.txt ",
     "build": "ng build ",
-    "build:dev": "ng build --watch ",
+    "build:dev": "ng build --configuration=development --watch ",
     "build:staging": "ng build --configuration=staging",
     "start:dev": "NODE_ENV=development ng serve --proxy-config proxy.conf.json --port 5201 ",
     "test:dev": "ng test --watch --progress ",
