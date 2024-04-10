@@ -5,7 +5,6 @@
     "cucumber": "./node_modules/@cucumber/cucumber/bin/cucumber-js ./cucumber/**/*.feature --no-strict --require-module ts-node/register --require-module tsconfig-paths/register --require ./cucumber/**/*.step.ts --tags @NIF05.01",
     "document:dev": "compodoc -p tsconfig.json src",
     "build:prod": "ng build --aot --configuration=production",
-    "test:dev": "ng test --watch --progress ",
     "test:prod": "ng test --watch=false --no-progress --browsers=ChromeHeadlessCI",
     "cypress:run": "cypress run ",
     "acceptance:ready": "export NODE_ENV=integration && export PORT=5200 && npm start &",
@@ -23,8 +22,10 @@
     "version": "echo `gitversion /showvariable MajorMinorPatch`-`gitversion /showvariable CommitsSinceVersionSource`",
     "tag": "figlet NeoFront `npm run version | tail -1` > app-banner.txt ",
     "build": "ng build ",
+    "build:dev": "ng build --watch ",
     "build:staging": "ng build --configuration=staging",
     "start:dev": "NODE_ENV=development ng serve --proxy-config proxy.conf.json --port 5201 ",
+    "test:dev": "ng test --watch --progress ",
     "start:staging": "export NODE_ENV=staging && npm run tag && npm run build:staging && node server.js "
   },
   "private": true,
