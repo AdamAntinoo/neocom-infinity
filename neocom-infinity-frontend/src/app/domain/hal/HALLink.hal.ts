@@ -16,7 +16,8 @@ export class HALLink<T> implements HALReference {
     constructor(targetType: { new(values: object): T }) {
         this.factory = targetType
     }
-     public setContents(contents: HALReference): HALLink<T> {
+    
+    public setContents(contents: HALReference): HALLink<T> {
         this.rel = contents.rel
         this.href = contents.href
         return this

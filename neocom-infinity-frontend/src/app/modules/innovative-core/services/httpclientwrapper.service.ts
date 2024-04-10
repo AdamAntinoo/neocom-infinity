@@ -28,6 +28,11 @@ export class HttpClientWrapperService {
         let newheaders = this.wrapHttpSecureHeaders(requestHeaders);
         return this.http.get(request, { headers: newheaders });
     }
+    public wrapHttpGETCallNoHeaders(request: string, requestHeaders?: HttpHeaders): Observable<any> {
+        console.log("><[HttpClientWrapperService.wrapHttpGETCall]> request: " + request);
+        let newheaders = new HttpHeaders()
+        return this.http.get(request, { headers: newheaders });
+    }
     public wrapHttpPUTCall(request: string, requestHeaders?: HttpHeaders): Observable<any> {
         console.log("><[HttpClientWrapperService.wrapHttpPUTCall]> request: " + request);
         let newheaders = this.wrapHttpSecureHeaders(requestHeaders);
