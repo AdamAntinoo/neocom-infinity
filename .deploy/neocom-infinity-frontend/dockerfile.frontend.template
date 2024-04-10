@@ -11,6 +11,8 @@ COPY tsconfig.app.json ./
 RUN npm install
 # Bundle app source
 COPY . .
+# Fix the environment to the selected level
+COPY ./src/environments/environment.$ENV.ts ./src/environments/environment.ts 
 # Creates a "dist" folder with the production build
 RUN npm run build:$ENV
 
