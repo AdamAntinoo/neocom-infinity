@@ -1,0 +1,23 @@
+// - ADDITIONAL MODULES STYLES
+// @import "~bootstrap/dist/css/bootstrap.css"; // bootstrap styles
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
+@import './styles/toaster.css'; // angular5-toaster module additional styles
+// - APPLICATION STYLES VARIABLES
+@import "styles/_scss_variables.scss";
+// - APPLICATION STYLE PACKS
+// @import "./styles/open-sans.css";
+// @import "./styles/new-font-styles.css";
+@import "./styles/global-styles.scss";
+@import "./styles/panel-styles.scss";
+@import "./styles/neocom-styles.scss";
+@import "./styles/render-styles.scss";
+body {
+    font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 14px;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.0;
+    color: white;
+    background-color: black;
+}

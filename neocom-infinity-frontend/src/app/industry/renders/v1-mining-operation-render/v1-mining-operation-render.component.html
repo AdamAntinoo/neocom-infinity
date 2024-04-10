@@ -1,0 +1,24 @@
+<!-- M I N I N G   O P E R A T I O N -->
+<div id="{{ getUniqueId() }}" class="panel-yellow">
+  <div class="insets row">
+    <img
+      class="neocom-icon iconsize-40"
+      src="assets/res-sde/drawable/systems.png"
+    />
+    <div class="separator-4"></div>
+    <div class="column">
+      <div class="field">
+        <span cy-field-label="resource" class="label">RESOURCE NAME</span><br />
+        <span cy-field-value="resource" class="typename">{{
+          getTypeName()
+        }}</span>
+      </div>
+      <div class="field">
+        <span cy-field-label="quantity" class="label">QUANTITY</span><br />
+        <span cy-field-value="quantity" class="quantity">{{
+          getQuantity()
+        }}</span>
+      </div>
+    </div>
+  </div>
+</div>

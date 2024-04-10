@@ -1,0 +1,22 @@
+# IntelliJ Idea ignorable files and directories
+*.iml
+.idea/workspace.xml
+.idea/sonarlint/
+.idea/caches/
+.idea/libraries/
+
+# Compilation ignorable directories
+.gradle/
+build/
+target/
+out/
+.db/
+
+# Ignore application cache directories from runs
+backend.App/NeoCom.Infinity/
+backend.App/NeoCom.Infinity.development/
+backend.App/NeoCom.Infinity.unittesting/
+NeoCom.Infinity.unittesting/
+
+# - Ignore generated files
+coverage/

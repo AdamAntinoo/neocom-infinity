@@ -1,0 +1,9 @@
+{
+  "settings": {
+    "backendproxy": "http://host.docker.internal:5233/"
+  },
+  "pages": {
+    "staticpublic": "./public",
+    "homepage": "/home-development.html"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "settings": {
+    "port": 5200,
+    "appTitle": "NeoCom Infinity",
+    "appname": "neocom-infinity",
+    "applicationhome": "/dist/NeoComInfinityFrontend",
+    "apppath": "/app",
+    "apipath": "/api"
+  }
+}

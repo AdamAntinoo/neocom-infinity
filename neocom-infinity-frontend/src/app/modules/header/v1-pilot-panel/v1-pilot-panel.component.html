@@ -1,0 +1,11 @@
+<div id="{{getUniqueId()}}">
+    <div class="section-title">PILOT</div>
+    <div class="neocom-panel panel-blue panel-inset">
+        <div *ngIf="pilot; else loading" class="column">
+            <v2-pilot [node]="pilot" [variant]="'-HEADER-'"></v2-pilot>
+        </div>
+        <ng-template #loading>
+            <div class="preparing-message">DESCARGANDO...</div>
+        </ng-template>
+    </div>
+</div>

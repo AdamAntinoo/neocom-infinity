@@ -1,0 +1,10 @@
+{
+  "settings": {
+    "port": 5201,
+    "backendproxy": "http://localhost:5210/"
+  },
+  "pages": {
+    "staticpublic": "./public",
+    "homepage": "/home-development.html"
+  }
+}

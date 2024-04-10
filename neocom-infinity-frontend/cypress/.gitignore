@@ -1,0 +1,6 @@
+# - build files to ignore on the repository.
+cucumber-json/
+videos/
+screenshots/
+fixtures/example.json
+downloads/

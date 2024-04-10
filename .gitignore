@@ -1,25 +1,17 @@
-# File extensions to be ignored on the repository
-*.diff
-*.db
-*.log
-*.db-journal
-*.ttf
-*.otf
-*.odt#
-
-# Stage directories to be excluded
-stage/
-
-# Mac special files to ignore
-.DS_Store
-**/.DS_Store
-
 # Mac operating system hidden databases
 .DS_Store
 # IntelliJ Framework
 .idea/
 **/.idea/
+# Node Framework
+node_modules/
+# Nest Project
+package-lock.json
+*.log
+coverage/
 
-NeoCom-Infinity-Frontend/package-lock.json
+neocom-frontend-cypress/
 
-NeoCom-Infinity-Frontend/support/public-simulation/apisimulator.log
+neocom-infinity-shared/pnpm-lock.yaml
+
+neocom-infinity-shared/.eslintrc.json
