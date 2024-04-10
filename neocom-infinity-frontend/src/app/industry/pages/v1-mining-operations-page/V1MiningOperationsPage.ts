@@ -15,4 +15,14 @@ export class V1MiningOperationsPageComponent {
         protected appStore: AppStoreService) {
         this.self = this
     }
+
+    // - Page action methods
+    public getPilotId(): number {
+        try {
+            return this.appStore.getPilotId()
+        } catch (exception) {
+            this.isolationService.processException(exception)
+            return undefined
+        }
+    }
 }

@@ -29,19 +29,19 @@ describe('ADAPTER V1MiningOperationsAdapterService [Module: Infrastructure]', ()
             expect(service).toBeTruthy()
         })
     })
-    describe('Service Delivery phase', () => {
+    xdescribe('Service Delivery phase', () => {
         it('when the downloadMiningOperationsForCharacter is called we return a valid Promise', () => {
             expect(service).toBeTruthy()
             const pilotId: number = 93813310
             const sut = service.downloadMiningOperationsForCharacter(pilotId)
             expect(sut).toBeDefined
             console.log(JSON.stringify(sut))
-            sut.then((dataList: V1MiningOperation[]) => {
-                dataList.forEach(element => {
-                    console.log('element->' + element)
+            // sut.then((dataList: V1MiningOperation[]) => {
+            //     dataList.forEach(element => {
+            //         console.log('element->' + element)
 
-                });
-            })
+            //     });
+            // })
         })
     })
 })

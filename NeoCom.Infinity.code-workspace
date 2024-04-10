@@ -49,6 +49,9 @@
         "workbench.colorTheme": "Atom One Dark",
         "eslint.ignoreUntitled": true,
         "eslint.quiet": true,
-        "workbench.preferredDarkColorTheme": "Atom One Dark"
+        "workbench.preferredDarkColorTheme": "Atom One Dark",
+        "[html]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode"
+        }
     }
 }

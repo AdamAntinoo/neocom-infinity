@@ -21,7 +21,8 @@ Feature: [NIF10.01]Show the list of all mining operations available for a capsul
     Then the target has 4 "mining-operation"
 
   @NIF10.02
-  Scenario: [NIF10.02]-Check the contents of a single mining operation
+  Scenario: [NIF10.02]-Check the contents of a single mining operation.
     Given the page "Mining Operations" is activated
     Given the target the "mining-operation" with id "2024-02-23-30003541-17453"
+    Then field named "resource" with label "RESOURCE NAME" has contents "Fiery Kernite"
     Then field named "quantity" with label "QUANTITY" has contents "210"
