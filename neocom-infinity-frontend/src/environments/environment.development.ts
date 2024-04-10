@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-    enrironmentName: 'development',
+    environment: 'development',
     production: false,
     showexceptions: true,
     copyright: '© 2019,2024 Dimensinfin Industries',

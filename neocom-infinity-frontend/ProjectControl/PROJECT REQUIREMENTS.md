@@ -13,8 +13,38 @@ The **Mining Operations** activity is under the main dashboard on the **Industry
 
 The new Mining Operations Page will display one or two panels. If there are active mining operations during the current date they will be shown on the main panel. If there are no current operations then that panel is not visible.
 
-The second panel is always visible and shows historic mining operations by date. That information is removes after some days (keeps tha tlast **30** days) from the ESI data source so it has to be persisten on the Infinity backend for persistence. This mining progress data is updated in a window of no less than **600** seconds.
+The second panel is always visible and shows historic mining operations by date. That information is removed after some days (keeps tha tlast **30** days) from the ESI data source so it has to be persisted on the Infinity backend. This mining progress data is updated in a window of no less than **600** seconds.
 
+The presentation selected for the mining operations is a panel for each date and systems. Minig source data comes with the classification ore->system->date. We can aggregate by date and then by system so the panel setup will be:
+```mermaid
+graph TB
+
+  subgraph "Mining Operations Panels"
+    subgraph "By Date 1"
+      subgraph "By System"
+        Node1[Ore Type 1] 
+        Node2[Ore Type 2]
+      end
+    end
+    subgraph "By Date 2"
+      subgraph "By System"
+        Node3[Ore Type 1] 
+        Node4[Ore Type 2]
+      end
+    end
+end
+```
+
+The aggregation then will show the list of resources mined on that date and system. Ore data is already aggregated. The panel should also show some economic information about the expected value and volume of the panel aggregation. Check if the economic data is undertandable as a whole aggregate or if there should be also some calculation at the ore level.
+
+**[EPIC]-Add Mining Operations page and functionality to see what is the input form mining.**
+* [STORY-NIN] The backend should get the ESI data and aggregate it by system and date. For echa system-date pair we generate a single Mining Operation that will contain the list of resources mined for that combination.
+* [STORY-NIN] The backend should aggregate economic information to each of the ores on the mining operation. The economic data is the estimated value for the ore at the Amarr hub that is the predefined trading hub.
+* [STORY-NIF] Volumetrics can be calculated at the frontend. For each ore the type information provides volume information that can be aggregated by ore and by system-date pair.
+* [STORY-NIF] Date is on the format YYYY-MM-DD.
+* [STORY-NIF] System information should provide the Region->Constellation->System. The hover over each of the localtion path names should provide the location unique identifier.
+* [STORY-NIF] Ore box contents are still under definition. The expected content is the small icon for the ore, the ore name, the stack quantity the estimated economic value and the volume it occupies.
+* [STORY-NIF] system-date panel should report information for the date, the system location path and the selected trade hub where the economic data estimation is calculated. It should also show the global volume and the global economic estimated value.
 
 ## Fitting build
 **Fitting Build Configuration** is a hierarchical render example. A Fitting is composed of different layers of data that are also composed of more data layers.

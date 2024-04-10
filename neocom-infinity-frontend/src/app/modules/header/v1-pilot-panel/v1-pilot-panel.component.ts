@@ -4,7 +4,7 @@ import { OnInit } from '@angular/core';
 import { OnDestroy } from '@angular/core';
 import { Input } from '@angular/core';
 import { environment } from '@env/environment';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription, of } from 'rxjs';
 // - SERVICES
 import { BackendService } from '@app/services/backend.service';
 import { AppStoreService } from '@app/services/appstore.service';
@@ -19,6 +19,8 @@ import { ErrorToNeoComExceptionConverter } from '@innovative/domain/converters/E
 import { IsolationService } from '@innovative/services/isolation.service';
 import { IRefreshable } from '@innovative/domain/interfaces/IRefreshable.interface';
 import { PublicPilotV1 } from '@domain/character/PublicPilotV1.domain';
+import { PilotV2 } from '@domain/character/PilotV2.domain';
+import { PlatformConstants } from '@env/PlatformConstants';
 
 @Component({
     selector: 'v1-pilot-panel',
@@ -28,6 +30,7 @@ import { PublicPilotV1 } from '@domain/character/PublicPilotV1.domain';
 export class V1PilotPanelComponent extends BackgroundEnabledComponent implements OnInit, IRefreshable {
     @Input() identifier: number
     public pilot: PublicPilotV1
+    private APIV1: string = environment.serverName + PlatformConstants.NEOCOM_V1
 
     constructor(
         protected isolationService: IsolationService,
@@ -59,12 +62,15 @@ export class V1PilotPanelComponent extends BackgroundEnabledComponent implements
             this.exception = exception
         }
     }
+    /*
+    Disable temporaily the access to the backend Pilot data until this feature is reviewed.
+    */
     // - B A C K E N D
     private downloadPilotData(): void {
         console.log(">[V1PilotPanelComponent.downloadPilotData]")
         if (this.identifier)
             this.backendConnections.push(
-                this.backendService.apiv1_GetPilotData(this.identifier)
+                this.apiv1_GetPilotData(this.identifier)
                     .subscribe((response: PublicPilotV1) => {
                         this.pilot = response
                     }, (error) => {
@@ -78,4 +84,19 @@ export class V1PilotPanelComponent extends BackgroundEnabledComponent implements
             )
         console.log("<[V1PilotPanelComponent.downloadPilotData]");
     }
+
+    public apiv1_GetPilotData(pilotId: number): Observable<PilotV2> {
+        return of(
+            new PilotV2({
+                pilotId: pilotId,
+                name: 'Perico Tuerto Mock',
+                totalSkillpoints: -1,
+                walletBalance: -100,
+                raceData: { name: "Race" },
+                ancestryData: { name: "Ancestry" },
+                bloodlineData: { name: 'Line' }
+            })
+        )
+    }
+
 }
