@@ -1,0 +1,51 @@
+[{
+    "systemId": 60006610,
+    "systemName": "Esa",
+    "constellationId": 20000257,
+    "constellationName": "Peges",
+    "regionId": 10000020,
+    "regionName": "Tash-Murkon",
+    "securityLevel": 0.8,
+    "securityClass": "B1",
+    "planetCount": 3
+}, {
+    "systemId": 30002059,
+    "systemName": "Auner",
+    "constellationId": 20000303,
+    "constellationName": "Tiat",
+    "regionId": 10000042,
+    "regionName": "Metropolis",
+    "securityLevel": 0.4,
+    "securityClass": "E",
+    "planetCount": 9
+}, {
+    "systemId": 30003283,
+    "systemName": "PVH8-0",
+    "constellationId": 20000303,
+    "constellationName": "Tiat",
+    "regionId": 10000042,
+    "regionName": "Metropolis",
+    "securityLevel": 0.4,
+    "securityClass": "E",
+    "planetCount": 10
+}, {
+    "systemId": 30003280,
+    "systemName": "6-CZ49",
+    "constellationId": 20000303,
+    "constellationName": "Tiat",
+    "regionId": 10000042,
+    "regionName": "Metropolis",
+    "securityLevel": 0.4,
+    "securityClass": "E",
+    "planetCount": 7
+}, {
+    "systemId": 30003543,
+    "systemName": "Zanka",
+    "constellationId": 20000516,
+    "constellationName": "Mofa",
+    "regionId": 10000042,
+    "regionName": "Domain",
+    "securityLevel": 0.3798784017562866,
+    "securityClass": "B2",
+    "planetCount": 8
+}]

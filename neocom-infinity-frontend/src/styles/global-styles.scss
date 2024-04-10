@@ -1,0 +1,124 @@
+hr.separator-line {
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    -webkit-filter: blur(1px);
+    filter: blur(1px);
+}
+
+$page-path-color: white;
+.page-path {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Electrolize', sans-serif;
+    margin-top: 10px;
+    text-transform: uppercase;
+    text-shadow: 0px 0px 2px $page-path-color, 0px 0px 1px $page-path-color;
+    color: $page-path-color;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.dock {
+    justify-content: space-evenly;
+}
+
+.notifier-box {
+    position: relative;
+    overflow: hidden;
+    margin: 0 0 6px;
+    padding: 15px 15px 15px 50px;
+    width: 380px;
+    border-radius: 3px 3px 3px 3px;
+    background-position: 15px center;
+    background-repeat: no-repeat;
+    background-size: 24px;
+    box-shadow: 0 0 12px #999999;
+    color: #FFFFFF;
+}
+
+.notifier-title {
+    font-family: 'Electrolize';
+    margin-bottom: 6px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.notifier-message {
+    font-family: 'Electrolize';
+    font-size: 17px;
+}
+
+.page-title {
+    font-size: 20px;
+    color: gray;
+    font-weight: 600;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 100;
+    margin-top: 4px;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+    border-bottom: 1px solid orangered;
+}
+
+.panel-title {
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-shadow: 0px 0px 2px white, 0px 0px 1px white;
+}
+
+.header-title {
+    font-size: 18px;
+    font-weight: bold;
+    font-family: "Electrolize", sans-serif;
+    text-transform: uppercase;
+    text-shadow: 0px 0px 2px white, 0px 0px 1px white;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    background-color: black;
+    padding-left: 10px;
+    flex-grow: 3;
+}
+
+.left {
+    margin-left: auto;
+}
+
+.right {
+    margin-left: auto;
+    float: right;
+}
+
+.complete {
+    width: 100%;
+}
+
+.separator-4 {
+    width: 4px;
+}
+
+.separator-8 {
+    width: 8px;
+}
+
+.app-info-panel {
+    flex-grow: 4;
+    margin-right: 2px;
+}
+
+.server-info-panel {
+    flex-grow: 1;
+}

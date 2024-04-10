@@ -1,0 +1,23 @@
+$panel-blue: #0066CC;
+$panel-blue-90: #CCE6FF;
+$panel-blue-30:#0059b3;
+$panel-blue-20: #003366;
+$panel-blue-10: #001A33;
+$panel-hover-opacity: 1.0;
+.selected {
+    // border-left: 3px solid $panel-blue;
+    background-color: $panel-blue-30;
+    opacity: $panel-hover-opacity;
+}
+
+.blueprint-name {
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.cost-index {
+    margin-left: 8px;
+    color: greenyellow;
+    font-size: 16px;
+    font-weight: 700;
+}

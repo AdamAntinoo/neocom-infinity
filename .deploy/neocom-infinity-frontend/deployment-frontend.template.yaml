@@ -1,0 +1,88 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: $PROJECT_CODE-svc
+  namespace: neocom
+spec:
+  selector:
+    app: $PROJECT_CODE-$ENV
+    version: $VERSION
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: $PORT
+      nodePort: 32000
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: neocom-frontend-environment
+  namespace: neocom
+data:
+  LOGIN_LINK: "$LOGIN_LINK"
+  SEMVER: "$SEMVER"
+  TAGVERSION: "$TAGVERSION"
+  PORT: "$PORT"
+  IMAGE_NAME: "$IMAGE_NAME"
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: $PROJECT_CODE-$ENV
+  namespace: neocom
+  labels:
+    app: $PROJECT_CODE-$ENV
+    version: $VERSION
+    module: neocom-infinity-frontend
+spec:
+  selector:
+    matchLabels:
+      app: $PROJECT_CODE-$ENV
+  template:
+    metadata:
+      labels:
+        app: $PROJECT_CODE-$ENV
+        version: $VERSION
+        module: neocom-infinity-frontend
+    spec:
+      containers:
+      - name: $PROJECT_CODE-$ENV
+        image: adamantinoo/$IMAGE_NAME:$VERSION
+        env:
+        - name: NODE_ENV
+          value: "$ENV"
+        - name: LOGIN_LINK # Notice that the case is different here
+                                     # from the key name in the ConfigMap.
+          valueFrom:
+            configMapKeyRef:
+              name: neocom-frontend-environment           # The ConfigMap this value comes from.
+              key: LOGIN_LINK # The key to fetch.
+        - name: SEMVER 
+          valueFrom:
+            configMapKeyRef:
+              name: neocom-frontend-environment
+              key: SEMVER
+        - name: SEMVER 
+          valueFrom:
+            configMapKeyRef:
+              name: neocom-frontend-environment
+              key: SEMVER
+        - name: IMAGE_NAME 
+          valueFrom:
+            configMapKeyRef:
+              name: neocom-frontend-environment
+              key: IMAGE_NAME
+        - name: PORT 
+          valueFrom:
+            configMapKeyRef:
+              name: neocom-frontend-environment
+              key: PORT
+        ports:
+        - containerPort: $PORT
+        imagePullPolicy: Always
+      serviceAccountName: default

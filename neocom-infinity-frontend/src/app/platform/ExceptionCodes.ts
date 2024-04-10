@@ -1,0 +1,3 @@
+export const ExceptionCodes ={
+    AUTHENTICATION_EXCEPTION : 'AUTHENTICATION_EXCEPTION'
+}

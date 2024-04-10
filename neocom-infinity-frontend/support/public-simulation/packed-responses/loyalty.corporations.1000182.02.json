@@ -1,0 +1,105 @@
+[{
+        "jsonClass": "LoyaltyOfferEntity",
+        "offerId": 4256,
+        "typeId": 27127,
+        "type": {
+            "rel": "type",
+            "href": "http://localhost:5220/api/v1/universe/types/27127"
+        },
+        "typeName": "Inherent Implants 'Squire' Power Grid Management EG-601",
+        "corporationId": 1000182,
+        "corporationName": "Tribal Liberation Force",
+        "lpValue": 1373,
+        "iskCost": 375000,
+        "lpCost": 375,
+        "quantity": 1,
+        "marketRegionId": 10000043,
+        "price": 889900.0,
+        "marketData": {
+            "rel": "marketData",
+            "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/27127"
+        },
+        "marketHistory": {
+            "rel": "marketHistory",
+            "href": "https://esi.evetech.net/latest/markets/10000043/history/?datasource=tranquility&type_id=27127"
+        }
+    },
+    {
+        "jsonClass": "LoyaltyOfferEntity",
+        "offerId": 4270,
+        "typeId": 27143,
+        "type": {
+            "rel": "type",
+            "href": "http://localhost:5220/api/v1/universe/types/27143"
+        },
+        "typeName": "Zainou 'Gypsy' CPU Management EE-601",
+        "corporationId": 1000182,
+        "corporationName": "Tribal Liberation Force",
+        "lpValue": 1373,
+        "iskCost": 375000,
+        "lpCost": 375,
+        "quantity": 1,
+        "marketRegionId": 10000043,
+        "price": 890000.0,
+        "marketData": {
+            "rel": "marketData",
+            "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/27143"
+        },
+        "marketHistory": {
+            "rel": "marketHistory",
+            "href": "https://esi.evetech.net/latest/markets/10000043/history/?datasource=tranquility&type_id=27143"
+        }
+    },
+    {
+        "jsonClass": "LoyaltyOfferEntity",
+        "offerId": 3420,
+        "typeId": 14297,
+        "type": {
+            "rel": "type",
+            "href": "http://localhost:5220/api/v1/universe/types/14297"
+        },
+        "typeName": "Limited Memory Augmentation - Beta",
+        "corporationId": 1000182,
+        "corporationName": "Tribal Liberation Force",
+        "lpValue": 1272,
+        "iskCost": 2500000,
+        "lpCost": 2500,
+        "quantity": 1,
+        "marketRegionId": 10000043,
+        "price": 5681000.0,
+        "marketData": {
+            "rel": "marketData",
+            "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/14297"
+        },
+        "marketHistory": {
+            "rel": "marketHistory",
+            "href": "https://esi.evetech.net/latest/markets/10000043/history/?datasource=tranquility&type_id=14297"
+        }
+    },
+    {
+        "jsonClass": "LoyaltyOfferEntity",
+        "offerId": 15757,
+        "typeId": 20415,
+        "type": {
+            "rel": "type",
+            "href": "http://localhost:5220/api/v1/universe/types/20415"
+        },
+        "typeName": "Datacore - Molecular Engineering",
+        "corporationId": 1000182,
+        "corporationName": "Tribal Liberation Force",
+        "lpValue": 1254,
+        "iskCost": 250000,
+        "lpCost": 250,
+        "quantity": 5,
+        "marketRegionId": 10000043,
+        "price": 112700.0,
+        "marketData": {
+            "rel": "marketData",
+            "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/20415"
+        },
+        "marketHistory": {
+            "rel": "marketHistory",
+            "href": "https://esi.evetech.net/latest/markets/10000043/history/?datasource=tranquility&type_id=20415"
+        }
+    }
+]

@@ -1,0 +1,22 @@
+<div cy-section-name="header" class="row section">
+  <app-info-panel
+    id="appinfo-panel"
+    class="panel neocom-panel app-info-panel"
+  ></app-info-panel>
+  <server-info-panel
+    id="server-info-panel"
+    class="panel neocom-panel server-info-panel"
+  ></server-info-panel>
+</div>
+<div cy-section-name="mining-operations" class="section column">
+  <div class="row">
+      <v1-pilot-panel class="panel" [identifier]="getPilotId()"></v1-pilot-panel>
+  </div>
+  <div class="section-title">MINING - MINING OPERATIONS</div>
+  <div class="row">
+    <v1-miningoperations-panel
+      class="panel"
+      [container]="self"
+    ></v1-miningoperations-panel>
+  </div>
+</div>

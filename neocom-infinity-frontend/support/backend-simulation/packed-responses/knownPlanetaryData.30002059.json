@@ -1,0 +1,118 @@
+[{
+        "name": "AUNER",
+        "planetSuffix": "I",
+        "planetType": "barren",
+        "planetTax": 1.0,
+        "planetResourceLevels": [
+            15,
+            33,
+            38,
+            40,
+            15
+        ]
+    },
+    {
+        "name": "AUNER",
+        "planetSuffix": "II",
+        "planetType": "barren",
+        "planetTax": 1.0,
+        "planetResourceLevels": [
+            15,
+            33,
+            38,
+            40,
+            15
+        ]
+    },
+    {
+        "name": "AUNER",
+        "planetSuffix": "III",
+        "planetType": "barren",
+        "planetTax": 1.0,
+        "planetResourceLevels": [
+            20,
+            31,
+            33,
+            40,
+            1
+        ]
+    },
+    {
+        "name": "AUNER",
+        "planetSuffix": "IV",
+        "planetType": "plasma",
+        "planetTax": 10.0,
+        "planetResourceLevels": [
+            12,
+            21,
+            25,
+            13,
+            21
+        ]
+    },
+    {
+        "name": "AUNER",
+        "planetSuffix": "V",
+        "planetType": "temperate",
+        "planetTax": 10.0,
+        "planetResourceLevels": [
+            58,
+            10,
+            2,
+            7,
+            18
+        ]
+    },
+    {
+        "name": "AUNER",
+        "planetSuffix": "VI",
+        "planetType": "gas",
+        "planetTax": 10.0,
+        "planetResourceLevels": [
+            28,
+            2,
+            21,
+            8,
+            3
+        ]
+    },
+    {
+        "name": "AUNER",
+        "planetSuffix": "VII",
+        "planetType": "gas",
+        "planetTax": 10.0,
+        "planetResourceLevels": [
+            30,
+            30,
+            20,
+            32,
+            9
+        ]
+    },
+    {
+        "name": "AUNER",
+        "planetSuffix": "VIII",
+        "planetType": "gas",
+        "planetTax": 10.0,
+        "planetResourceLevels": [
+            30,
+            30,
+            20,
+            35,
+            9
+        ]
+    },
+    {
+        "name": "AUNER",
+        "planetSuffix": "IX",
+        "planetType": "ice",
+        "planetTax": 10.0,
+        "planetResourceLevels": [
+            54,
+            55,
+            28,
+            20,
+            15
+        ]
+    }
+]

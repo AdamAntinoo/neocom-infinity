@@ -1,0 +1,11 @@
+<div class="panel-title"><span class="planet-name">{{getSystemName()}}</span> PLANETS</div>
+<div *ngIf="planetList.length > 0; else planetListEmpty">
+    <div *ngFor="let planet of getPlanetList()">
+        <div class="row">
+            <v1-planet-data class="planet-data-panel" [node]="planet" [variant]="'-KNOWN-PLANETS-'"></v1-planet-data>
+        </div>
+    </div>
+</div>
+<ng-template #planetListEmpty>
+    <div class="loading-label">- KNOWN PLANET LIST EMPTY -</div>
+</ng-template>

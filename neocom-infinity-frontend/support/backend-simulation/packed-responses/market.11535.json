@@ -1,0 +1,79 @@
+{
+    "bestSellOrder": {
+        "station": {
+            "jsonClass": "Station",
+            "locationId": 60008494,
+            "regionId": 10000043,
+            "regionName": "Domain",
+            "constellationId": 20000322,
+            "constellationName": "Throne Worlds",
+            "systemId": 30002187,
+            "systemName": "Amarr",
+            "stationId": 60008494,
+            "stationName": "Amarr VIII (Oris) - Emperor Family Academy"
+        },
+        "typeId": 11535,
+        "price": 39000.0,
+        "orderId": 5875551341,
+        "volumeRemain": 7061
+    },
+    "sellOrders": [{
+            "duration": 90,
+            "isBuyOrder": false,
+            "issued": "2020-12-18T20:50:35.000Z",
+            "locationId": 60008494,
+            "minVolume": 1,
+            "orderId": 5875551341,
+            "price": 39000.0,
+            "range": "REGION",
+            "systemId": 30002187,
+            "typeId": 11535,
+            "volumeRemain": 7061,
+            "volumeTotal": 10000
+        },
+        {
+            "duration": 90,
+            "isBuyOrder": false,
+            "issued": "2020-12-20T21:11:51.000Z",
+            "locationId": 60008494,
+            "minVolume": 1,
+            "orderId": 5877417231,
+            "price": 39000.0,
+            "range": "REGION",
+            "systemId": 30002187,
+            "typeId": 11535,
+            "volumeRemain": 4000,
+            "volumeTotal": 4000
+        },
+        {
+            "duration": 90,
+            "isBuyOrder": false,
+            "issued": "2020-11-21T09:41:47.000Z",
+            "locationId": 60008494,
+            "minVolume": 1,
+            "orderId": 5826537765,
+            "price": 40000.0,
+            "range": "REGION",
+            "systemId": 30002187,
+            "typeId": 11535,
+            "volumeRemain": 951,
+            "volumeTotal": 4000
+        },
+        {
+            "duration": 90,
+            "isBuyOrder": false,
+            "issued": "2020-11-19T18:11:01.000Z",
+            "locationId": 60008494,
+            "minVolume": 1,
+            "orderId": 5851094802,
+            "price": 40940.0,
+            "range": "REGION",
+            "systemId": 30002187,
+            "typeId": 11535,
+            "volumeRemain": 85,
+            "volumeTotal": 1639
+        }
+    ],
+    "sellDeep": 12097,
+    "sellAverage": 39735.0
+}

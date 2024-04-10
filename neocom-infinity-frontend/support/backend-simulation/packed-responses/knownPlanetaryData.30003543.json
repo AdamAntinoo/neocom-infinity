@@ -1,0 +1,73 @@
+[{
+        "name": "Zanka",
+        "planetSuffix": "I",
+        "planetType": "lava",
+        "planetTax": 3.0,
+        "planetResourceLevels": [
+            16, 9, 47, 20, 20
+        ]
+    },
+    {
+        "name": "ZANKA",
+        "planetSuffix": "II",
+        "planetType": "storm",
+        "planetTax": 3.0,
+        "planetResourceLevels": [
+            30, 27, 20, 41, 20
+        ]
+    },
+    {
+        "name": "ZANKA",
+        "planetSuffix": "III",
+        "planetType": "gas",
+        "planetTax": 3.0,
+        "planetResourceLevels": [
+            32, 33, 18, 34, 9
+        ]
+    },
+    {
+        "name": "ZANKA",
+        "planetSuffix": "IV",
+        "planetType": "gas",
+        "planetTax": 3.0,
+        "planetResourceLevels": [
+            32, 30, 19, 37, 4
+        ]
+    },
+    {
+        "name": "ZANKA",
+        "planetSuffix": "V",
+        "planetType": "gas",
+        "planetTax": 3.0,
+        "planetResourceLevels": [
+            32, 33, 19, 36, 4
+        ]
+    },
+    {
+        "name": "ZANKA",
+        "planetSuffix": "VI",
+        "planetType": "gas",
+        "planetTax": 3.0,
+        "planetResourceLevels": [
+            31, 33, 19, 35, 7
+        ]
+    },
+    {
+        "name": "ZANKA",
+        "planetSuffix": "VII",
+        "planetType": "ice",
+        "planetTax": 3.0,
+        "planetResourceLevels": [
+            65, 55, 27, 20, 16
+        ]
+    },
+    {
+        "name": "ZANKA",
+        "planetSuffix": "VIII",
+        "planetType": "barren",
+        "planetTax": 3.0,
+        "planetResourceLevels": [
+            20, 33, 39, 34, 18
+        ]
+    }
+]

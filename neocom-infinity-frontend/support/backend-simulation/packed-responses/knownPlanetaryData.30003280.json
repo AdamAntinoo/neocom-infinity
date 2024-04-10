@@ -1,0 +1,92 @@
+[{
+        "name": "6-CZ49",
+        "planetSuffix": "I",
+        "planetType": "barren",
+        "planetTax": 10.0,
+        "planetResourceLevels": [
+            32,
+            57,
+            67,
+            66,
+            50
+        ]
+    },
+    {
+        "name": "6-CZ49",
+        "planetSuffix": "II",
+        "planetType": "barren",
+        "planetTax": 10.0,
+        "planetResourceLevels": [
+            28,
+            60,
+            65,
+            65,
+            50
+        ]
+    },
+    {
+        "name": "6-CZ49",
+        "planetSuffix": "III",
+        "planetType": "gas",
+        "planetTax": 10.0,
+        "planetResourceLevels": [
+            47,
+            53,
+            55,
+            61,
+            35
+        ]
+    },
+    {
+        "name": "6-CZ49",
+        "planetSuffix": "IV",
+        "planetType": "plasma",
+        "planetTax": 10.0,
+        "planetResourceLevels": [
+            30,
+            43,
+            73,
+            43,
+            37
+        ]
+    },
+    {
+        "name": "6-CZ49",
+        "planetSuffix": "V",
+        "planetType": "gas",
+        "planetTax": 10.0,
+        "planetResourceLevels": [
+            45,
+            52,
+            51,
+            58,
+            30
+        ]
+    },
+    {
+        "name": "6-CZ49",
+        "planetSuffix": "VI",
+        "planetType": "gas",
+        "planetTax": 10.0,
+        "planetResourceLevels": [
+            46,
+            56,
+            50,
+            48,
+            18
+        ]
+    },
+    {
+        "name": "6-CZ49",
+        "planetSuffix": "VII",
+        "planetType": "ice",
+        "planetTax": 10.0,
+        "planetResourceLevels": [
+            91,
+            94,
+            52,
+            31,
+            47
+        ]
+    }
+]

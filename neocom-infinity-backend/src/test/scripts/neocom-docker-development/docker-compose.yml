@@ -1,0 +1,39 @@
+# DEVELOPMENT - Docker Composer components
+# PROJECT CODE - 52
+#
+# Docker composer automatically creates a network. The container host matches the container name. To differentiate and create single
+#   networks use a directory name that should be unique. The recommended format is: <project>-docker-<environment>
+#
+# Then configure the postgres database to start on that network.
+# The database will be then on location:
+#   jdbc:postgresql://0.0.0.0:5432/postgres
+# To access the database from DBeaver we use the URL - It is the generic global database
+#
+# The application to be accessed from Postman is at location and should be started from the IntelliJ framework.
+#   http://0.0.0.0:5240/actuator/health
+#
+# The list of project ports is on the document:
+#   {REPOSITORY}/README.md
+
+version: '3.8'
+
+services:
+  neocom-backend-development-apisimulator-esi-oauth:
+    container_name: neocom-backend-development-apisimulator-esi-oauth
+    image: apimastery/apisimulator:1.8
+    ports:
+      - "5250:6090"
+    volumes:
+      # WARNING - Use full absolute paths to make this work.
+      - ../../resources/esioauth-simulation:/esioauth-simulation
+    command: "bin/apisimulator start /esioauth-simulation -p 6090"
+
+  neocom-backend-development-apisimulator-esi-data:
+    container_name: neocom-backend-development-apisimulator-esi-data
+    image: apimastery/apisimulator:1.8
+    ports:
+      - "5270:6090"
+    volumes:
+      # WARNING - Use full absolute paths to make this work.
+      - ../../resources/esidata-simulation:/esidata-simulation
+    command: "bin/apisimulator start /esidata-simulation -p 6090"

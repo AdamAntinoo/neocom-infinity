@@ -1,0 +1,63 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": ">Acc>NIN01",
+      "type": "node",
+      "request": "launch",
+      "console": "integratedTerminal",
+      "program": "${workspaceRoot}/node_modules/@cucumber/cucumber/bin/cucumber-js",
+      "args": [
+        "./test/**/*.feature",
+        "--no-strict",
+        "--require-module",
+        "ts-node/register",
+        "--require-module",
+        "tsconfig-paths/register",
+        "--require",
+        "./test/acceptance/steps/**/*.ts",
+        "--tags",
+        "@NIN01.01"
+      ]
+    },
+    {
+      "name": ">Acc>NIN02",
+      "type": "node",
+      "request": "launch",
+      "console": "integratedTerminal",
+      "program": "${workspaceRoot}/node_modules/@cucumber/cucumber/bin/cucumber-js",
+      "args": [
+        "./test/**/*.feature",
+        "--no-strict",
+        "--require-module",
+        "ts-node/register",
+        "--require-module",
+        "tsconfig-paths/register",
+        "--require",
+        "./test/acceptance/steps/**/*.ts",
+        "--tags",
+        "@NIN02.01"
+      ]
+    },
+    {
+      "name": ">Debug>Development",
+      "type": "node",
+      "request": "launch",
+      "args": [
+        "${workspaceFolder}/src/main.ts"
+      ],
+      "runtimeArgs": [
+        "--nolazy",
+        "-r",
+        "ts-node/register",
+        "-r",
+        "tsconfig-paths/register"
+      ],
+      "sourceMaps": true,
+      "envFile": "${workspaceFolder}/.env.development",
+      "cwd": "${workspaceRoot}",
+      "console": "integratedTerminal",
+      "protocol": "inspector"
+    }
+  ]
+}

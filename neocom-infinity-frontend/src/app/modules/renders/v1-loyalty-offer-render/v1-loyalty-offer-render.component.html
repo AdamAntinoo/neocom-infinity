@@ -1,0 +1,54 @@
+<!-- L O Y A L T Y -->
+<div id="{{getUniqueId()}}" class="row panel-white" *ngIf="getVariant() === '-LOYALTY-'">
+    <div *ngIf="isReady(); else downloading" class="row">
+        <img class="neocom-icon iconsize-36" src="{{getURLIcon()}}" alt="Eve Item Image">
+        <div class="column">
+            <div class="field">
+                <span cy-field-label="typeName" class="label">NOMBRE</span><br>
+                <span cy-field-value="typeName" class="type-name">{{getName()}}</span>
+            </div>
+            <div class="field">
+                <span cy-field-label="costLp" class="label">COSTE LP</span>
+                <span>&nbsp;</span>
+                <span cy-field-value="costLp" class="cost">{{getLpCost() | iskscaled}}</span>
+                <span>&nbsp;</span>
+                <span cy-field-label="costIsk" class="label">COSTE ISK</span>
+                <span>&nbsp;</span>
+                <span cy-field-value="costIsk" class="cost">{{getIskCost() | iskscaled}}</span>
+                <span>&nbsp;</span>
+                <span>&nbsp;</span>
+                <span cy-field-label="lpValue" class="label">VALORACION LP</span>
+                <span>&nbsp;</span>
+                <span cy-field-value="lpValue" class="cost lp-value">{{getLpCalculatedValue() | iskscaled}}</span>
+            </div>
+            <div class="row">
+                <div class="field">
+                    <span cy-field-label="profit" class="label">BENEFICIO ESTIMADO</span><br>
+                    <span cy-field-value="profit" class="cost">{{getExpectedProfit() | iskscaled}}</span>
+                </div>
+                <div class="separator-8"></div>
+                <div class="separator-8"></div>
+                <div class="field">
+                    <span cy-field-label="profitPercentage" class="label">BENEFICIO EN PORCENTAJE</span><br>
+                    <span cy-field-value="profitPercentage" class="cost">{{getExpectedProfitPercentage() | percent}}</span>
+                </div>
+            </div>
+            <span cy-field-label="costLp" class="label">HISTORICO DE VOLUMEN</span>
+            <div *ngIf="hasData(); else noChartData">
+                <ngx-charts-bar-vertical class="bar-graph" [view]="[400,80]" [results]="marketHistoryData" [yAxis]="true" [yAxisLabel]="'Volumen'" [showYAxisLabel]="false" [showGridLines]="true" [yScaleMax]="yscale" [yAxisTicks]="yaxisTicks" [scheme]="colorScheme">
+                </ngx-charts-bar-vertical>
+            </div>
+            <ng-template #noChartData>
+                <div cy-name="sign" class="no-chart-data">SIN DATOS</div>
+            </ng-template>
+            <div class="field">
+                <v1-market-data [marketData]="getMarketData()" [variant]="'-LOYALTY-'"></v1-market-data>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #downloading class="download-spinner">
+    <div class="preparing-message">
+        DESCARGANDO...
+    </div>
+</ng-template>

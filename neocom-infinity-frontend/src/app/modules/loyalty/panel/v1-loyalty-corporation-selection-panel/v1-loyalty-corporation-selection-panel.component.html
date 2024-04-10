@@ -1,0 +1,6 @@
+<div class="panel-title">CORPORACIONES CON LOYALTY</div>
+<div *ngFor="let corporation of loyaltyCorporations">
+    <v2-node-container [container]="self" [node]="corporation" [variant]="variant" [selectOnHover]="false">
+    </v2-node-container>
+    <div style="height: 2px">&nbsp;</div>
+</div>

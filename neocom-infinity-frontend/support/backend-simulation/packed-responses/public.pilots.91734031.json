@@ -1,0 +1,41 @@
+{
+    "jsonClass": "PilotPublicDataV1",
+    "pilotId": 91734031,
+    "name": "Zach Zender",
+    "description": "",
+    "corporation": {
+        "rel": "corporation",
+        "href": "http://localhost:5220/api/v1/public/corporations/98384726"
+    },
+    "birthday": "2012-02-29T19:51:55.000Z",
+    "gender": "male",
+    "securityStatus": 3.1951826,
+    "url4Icon": "http://image.eveonline.com/Corporation/98384726_64.png",
+    "raceData": {
+        "allianceId": 500004,
+        "description": "Champions of liberty and defenders of the downtrodden, the Gallente play host to the only true democracy in New Eden. Some of the most progressive leaders, scientists, and businessmen of the era have emerged from its diverse peoples. A pioneer of artificial intelligence, the Federation relies heavily on drones and other automated systems. This is not to detract from the skill of their pilots, though: the Gallente Federation is known for producing some of the best and bravest the universe has to offer.",
+        "name": "Gallente",
+        "raceId": 8
+    },
+    "ancestryData": {
+        "bloodlineId": 7,
+        "description": "The Gallente prize political activism more so than other Empires. Many devote their efforts towards one or more causes that suit their ambitions. Activists understand that things will never change for the better unless someone has the courage to fight the good fight.",
+        "iconId": 1653,
+        "id": 13,
+        "name": "Activists",
+        "shortDescription": "Making the universe a better place, one fight at a time."
+    },
+    "bloodlineData": {
+        "bloodlineId": 7,
+        "charisma": 8,
+        "corporationId": 1000107,
+        "description": "The Gallente value freedom and individual liberty above all else. Founders of the only true democracy of New Eden, they have created an ethnically diverse, culturally rich, progressive society that encourages enterprise and initiative in its citizens. While slow to anger and occasionally indecisive, they are also capable of harnessing enormous military and economic resolve when truly tested.",
+        "intelligence": 6,
+        "memory": 4,
+        "name": "Gallente",
+        "perception": 8,
+        "raceId": 8,
+        "shipTypeId": 606,
+        "willpower": 4
+    }
+}

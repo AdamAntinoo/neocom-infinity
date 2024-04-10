@@ -1,0 +1,1573 @@
+{
+	"info": {
+		"_postman_id": "57da3b9e-a6db-4c58-a7db-3e908bb07627",
+		"name": "Neocom-Infinity",
+		"description": "# Introduction\nAccess ESI data repository using the adquired oauth authentication and process data values for later rendering on other platforms.\n\n# Overview\nThings that the developers should know about\n\n# Authentication\nWhat is the preferred way of using the API?\n\n# Error Codes\n500 - Undefind or unepected error\n403 - Forbidden access or invalid credentials\n\n# Rate limit\nOnly platform rate limit.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ESIOAuthMock",
+			"item": [
+				{
+					"name": "OAuth v0 Authorization Token",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Basic ZWFjYWE5Y2QzNjU5NDE4OTg3NzU0NGQ4NTE3NTM3MzQ6RjVTR04xc1VobHBnb053bmlKeGlTaHpIRUM1M0dERUJhUXNIRzBqRw=="
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"auth-token\": \"CONTENT-FOR-AUTH-TOKEN\"\n}"
+						},
+						"url": {
+							"raw": "{{esiAuthServer}}/oauth/token",
+							"host": [
+								"{{esiAuthServer}}"
+							],
+							"path": [
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OAuth v2 Authorization Token",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"connection": true,
+							"accept-encoding": true,
+							"accept": true
+						},
+						"strictSSL": false
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Basic ZWFjYWE5Y2QzNjU5NDE4OTg3NzU0NGQ4NTE3NTM3MzQ6RjVTR04xc1VobHBnb053bmlKeGlTaHpIRUM1M0dERUJhUXNIRzBqRw=="
+							},
+							{
+								"key": "Host",
+								"value": "https://login.eveonline.com/",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "{{code}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{esiAuthServer}}/v2/oauth/token",
+							"host": [
+								"{{esiAuthServer}}"
+							],
+							"path": [
+								"v2",
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OAuth Verify Token",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{esiAuthServer}}/oauth/verify",
+							"host": [
+								"{{esiAuthServer}}"
+							],
+							"path": [
+								"oauth",
+								"verify"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "BackendApiSimulator",
+			"item": [
+				{
+					"name": "Store Credential - ApiSimulator",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"credential\": \"record\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{backendApiSimulator}}/api/v1/neocom/credentials/2113197470",
+							"host": [
+								"{{backendApiSimulator}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"neocom",
+								"credentials",
+								"2113197470"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Today Pilot Mining Extractions - ApiSimulator",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"credential\": \"record\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{backendApiSimulator}}/api/v1/neocom/miningextractions/pilot/{{pilotIdentifier}}/today",
+							"host": [
+								"{{backendApiSimulator}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"neocom",
+								"miningextractions",
+								"pilot",
+								"{{pilotIdentifier}}",
+								"today"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ESIDataServiceApiSImulator",
+			"item": [
+				{
+					"name": "GetCharacterAssets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{esiServiceMock}}/characters/{{characterId}}/assets/?datasource=tranquility&page=1",
+							"host": [
+								"{{esiServiceMock}}"
+							],
+							"path": [
+								"characters",
+								"{{characterId}}",
+								"assets",
+								""
+							],
+							"query": [
+								{
+									"key": "datasource",
+									"value": "tranquility"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCorporationAssets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{esiServiceMock}}/corporations/{{corporationId}}/assets/?datasource=tranquility&page=1",
+							"host": [
+								"{{esiServiceMock}}"
+							],
+							"path": [
+								"corporations",
+								"{{corporationId}}",
+								"assets",
+								""
+							],
+							"query": [
+								{
+									"key": "datasource",
+									"value": "tranquility"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCharacterWallet",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{esiServiceMock}}/characters/{{characterId}}/wallet/?datasource=tranquility}",
+							"host": [
+								"{{esiServiceMock}}"
+							],
+							"path": [
+								"characters",
+								"{{characterId}}",
+								"wallet",
+								""
+							],
+							"query": [
+								{
+									"key": "datasource",
+									"value": "tranquility}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetTodayPilotMiningExtractions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{esiServiceMock}}/characters/{{characterId}}/mining/?page=1",
+							"host": [
+								"{{esiServiceMock}}"
+							],
+							"path": [
+								"characters",
+								"{{characterId}}",
+								"mining",
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "NeoCom.Support",
+			"item": [
+				{
+					"name": "Find Credential By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Default format for all requests to backends.",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{apiv1}}/neocom/support/credentials/{{credentialId}}",
+							"host": [
+								"{{backendServer}}{{apiv1}}"
+							],
+							"path": [
+								"neocom",
+								"support",
+								"credentials",
+								"{{credentialId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Credentials Count",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Default format for all requests to backends.",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{apiv1}}/neocom/support/credentials/count",
+							"host": [
+								"{{backendServer}}{{apiv1}}"
+							],
+							"path": [
+								"neocom",
+								"support",
+								"credentials",
+								"count"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Scheduler Jobs Count",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Default format for all requests to backends.",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{apiv1}}/neocom/support/scheduler/jobs/count",
+							"host": [
+								"{{backendServer}}{{apiv1}}"
+							],
+							"path": [
+								"neocom",
+								"support",
+								"scheduler",
+								"jobs",
+								"count"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete All Credentials",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Default format for all requests to backends.",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{apiv1}}/neocom/support/credentials/deleteall",
+							"host": [
+								"{{backendServer}}{{apiv1}}"
+							],
+							"path": [
+								"neocom",
+								"support",
+								"credentials",
+								"deleteall"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Scheduler Jobs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Default format for all requests to backends.",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{apiv1}}/neocom/support/scheduler/jobs",
+							"host": [
+								"{{backendServer}}{{apiv1}}"
+							],
+							"path": [
+								"neocom",
+								"support",
+								"scheduler",
+								"jobs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restart Scheduler",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Default format for all requests to backends.",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{apiv1}}/neocom/support/scheduler/restart",
+							"host": [
+								"{{backendServer}}{{apiv1}}"
+							],
+							"path": [
+								"neocom",
+								"support",
+								"scheduler",
+								"restart"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "NeoCom backend support call to be used on acceptance tests."
+		},
+		{
+			"name": "NeoCom.Service",
+			"item": [
+				{
+					"name": "Validate State",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{apiv1}}/neocom/validateAuthenticationState",
+							"host": [
+								"{{backendServer}}{{apiv1}}"
+							],
+							"path": [
+								"neocom",
+								"validateAuthenticationState"
+							]
+						},
+						"description": "Checks if the client still has a valid session. If so the client will receive a new JWT and can continue entering the app.\nIf not valid then it will be prompted to login again through the EVE SSO Login service."
+					},
+					"response": []
+				},
+				{
+					"name": "Validate Authorization Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//var jsonData = JSON.parse(responseBody);",
+									"//pm.environment.set(\"jwtToken\", jsonData.jwtToken);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{apiv1}}/neocom/validateAuthorizationToken?code={{code}}&state={{state}}&datasource=tranquility",
+							"host": [
+								"{{backendServer}}{{apiv1}}"
+							],
+							"path": [
+								"neocom",
+								"validateAuthorizationToken"
+							],
+							"query": [
+								{
+									"key": "code",
+									"value": "{{code}}"
+								},
+								{
+									"key": "state",
+									"value": "{{state}}"
+								},
+								{
+									"key": "datasource",
+									"value": "tranquility"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store Credential",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"jsonClass\": \"Credential\",\n    \"className\": \"org.dimensinfin.eveonline.neocom.infinity.authorization.rest.CredentialTransport\",\n    \"accountId\": 93813310,\n    \"accountName\": \"Adam Antinoo\",\n    \"corporationId\": 7654321,\n    \"assetsCount\": 3000\n}"
+						},
+						"url": {
+							"raw": "{{backendServer}}{{apiv1}}/neocom/credentials/93813310",
+							"host": [
+								"{{backendServer}}{{apiv1}}"
+							],
+							"path": [
+								"neocom",
+								"credentials",
+								"93813310"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Pilot Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "xApp-Name",
+								"value": "Postman API Development",
+								"type": "text"
+							},
+							{
+								"key": "xApp-Version",
+								"value": "{{appVersion}}",
+								"type": "text"
+							},
+							{
+								"key": "xApp-Platform",
+								"value": "{{appStagePlatform}}",
+								"type": "text"
+							},
+							{
+								"key": "xApp-Signature",
+								"value": "S0000.0020.0000",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{neocomv1}}/pilots/{{pilotId}}",
+							"host": [
+								"{{backendServer}}{{neocomv1}}"
+							],
+							"path": [
+								"pilots",
+								"{{pilotId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Corporation Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{apiv1}}/neocom/corporations/98384726",
+							"host": [
+								"{{backendServer}}{{apiv1}}"
+							],
+							"path": [
+								"neocom",
+								"corporations",
+								"98384726"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Corporation Data - Failure",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{backendPort}}{{apiv1}}/corporation/93813311",
+							"host": [
+								"{{backendServer}}{{backendPort}}{{apiv1}}"
+							],
+							"path": [
+								"corporation",
+								"93813311"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Pilot Data V2",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/hal+json",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{apiv2}}/neocom/pilots/93813310",
+							"host": [
+								"{{backendServer}}{{apiv2}}"
+							],
+							"path": [
+								"neocom",
+								"pilots",
+								"93813310"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Pilot Data - Unauthorized",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{backendPort}}{{apiv1}}/pilots/92223647",
+							"host": [
+								"{{backendServer}}{{backendPort}}{{apiv1}}"
+							],
+							"path": [
+								"pilots",
+								"92223647"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Space Location",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{apiv1}}/neocom/spacelocations/60006610",
+							"host": [
+								"{{backendServer}}{{apiv1}}"
+							],
+							"path": [
+								"neocom",
+								"spacelocations",
+								"60006610"
+							]
+						},
+						"description": "Get a space location by its identifier."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Pilot Fittings",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{apiv1}}/fittings/pilot/{{pilotIdentifier}}",
+							"host": [
+								"{{backendServer}}{{apiv1}}"
+							],
+							"path": [
+								"fittings",
+								"pilot",
+								"{{pilotIdentifier}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Corporation Ship Yards",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Default format for all requests to backends.",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{apiv1}}/neocom/corporations/{{corporationId}}/shippingyards",
+							"host": [
+								"{{backendServer}}{{apiv1}}"
+							],
+							"path": [
+								"neocom",
+								"corporations",
+								"{{corporationId}}",
+								"shippingyards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Corporation Assets By Location",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Default format for all requests to backends.",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{apiv1}}/neocom/corporations/{{corporationId}}/assetsbylocation",
+							"host": [
+								"{{backendServer}}{{apiv1}}"
+							],
+							"path": [
+								"neocom",
+								"corporations",
+								"{{corporationId}}",
+								"assetsbylocation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Today Pilot Mining Extractions",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{backendServer}}{{apiv1}}/neocom/miningextractions/pilot/{{pilotIdentifier}}/today",
+							"host": [
+								"{{backendServer}}{{apiv1}}"
+							],
+							"path": [
+								"neocom",
+								"miningextractions",
+								"pilot",
+								"{{pilotIdentifier}}",
+								"today"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refine Ore",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Default format for all requests to backends.",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{apiv1}}/neocom/industry/refine/{{oreTypeId}}/quantity/100",
+							"host": [
+								"{{backendServer}}{{apiv1}}"
+							],
+							"path": [
+								"neocom",
+								"industry",
+								"refine",
+								"{{oreTypeId}}",
+								"quantity",
+								"100"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Wallet",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{apiv1}}/neocom/pilots/{{pilotIdentifier}}/wallet/balance",
+							"host": [
+								"{{backendServer}}{{apiv1}}"
+							],
+							"path": [
+								"neocom",
+								"pilots",
+								"{{pilotIdentifier}}",
+								"wallet",
+								"balance"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Pilot Fittings V2",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{apiv2}}/neocom/pilots/{{pilotIdentifier}}/fittings",
+							"host": [
+								"{{backendServer}}{{apiv2}}"
+							],
+							"path": [
+								"neocom",
+								"pilots",
+								"{{pilotIdentifier}}",
+								"fittings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Fitting Build Configurations",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{apiv1}}/neocom/industry/fittings/buildConfiguration/{{fittingId}}",
+							"host": [
+								"{{backendServer}}{{apiv1}}"
+							],
+							"path": [
+								"neocom",
+								"industry",
+								"fittings",
+								"buildConfiguration",
+								"{{fittingId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Fitting Build Saved Configuration",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{apiv1}}/neocom/industry/fittings/buildConfiguration/{{fittingId}}/savedConfiguration",
+							"host": [
+								"{{backendServer}}{{apiv1}}"
+							],
+							"path": [
+								"neocom",
+								"industry",
+								"fittings",
+								"buildConfiguration",
+								"{{fittingId}}",
+								"savedConfiguration"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Blueprints CostIndex",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "xApp-Signature",
+								"value": "S0000.0020.0000",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{industryv1}}/pilots/{{pilotId}}/manufacture/blueprints",
+							"host": [
+								"{{backendServer}}{{industryv1}}"
+							],
+							"path": [
+								"pilots",
+								"{{pilotId}}",
+								"manufacture",
+								"blueprints"
+							]
+						},
+						"description": "Gets the list of blueprints that can be used by the request Pilot. The blueprints has the BOM for the construction of the item and some additional market data references to calculate the manufacture costs."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Processed Blueprint By UID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "xApp-Name",
+								"value": "Postman API Development",
+								"type": "text"
+							},
+							{
+								"key": "xApp-Version",
+								"value": "{{appVersion}}",
+								"type": "text"
+							},
+							{
+								"key": "xApp-Platform",
+								"value": "{{appStagePlatform}}",
+								"type": "text"
+							},
+							{
+								"key": "xApp-Signature",
+								"value": "S0000.0020.0000",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{industryv1}}/pilots/{{pilotId}}/manufacture/blueprints/BCI:93813310:31717",
+							"host": [
+								"{{backendServer}}{{industryv1}}"
+							],
+							"path": [
+								"pilots",
+								"{{pilotId}}",
+								"manufacture",
+								"blueprints",
+								"BCI:93813310:31717"
+							]
+						},
+						"description": "Get a specific blueprint detailed data from the pilot set of blueprints."
+					},
+					"response": []
+				}
+			],
+			"description": "Has the endpoints declared at the NeoCom service."
+		},
+		{
+			"name": "NeoCom.Universe",
+			"item": [
+				{
+					"name": "Get NeoItem V1",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{neoItemServer}}{{apiv1}}/universe/items/28429",
+							"host": [
+								"{{neoItemServer}}{{apiv1}}"
+							],
+							"path": [
+								"universe",
+								"items",
+								"28429"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get EsiItem V2",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{neoItemServer}}{{apiv2}}/universe/items/28429",
+							"host": [
+								"{{neoItemServer}}{{apiv2}}"
+							],
+							"path": [
+								"universe",
+								"items",
+								"28429"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Universe MarketByRegion Type",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{apiv1}}/universe/market/consolidated/byregion/{{regionId}}/{{typeId}}",
+							"host": [
+								"{{backendServer}}{{apiv1}}"
+							],
+							"path": [
+								"universe",
+								"market",
+								"consolidated",
+								"byregion",
+								"{{regionId}}",
+								"{{typeId}}"
+							]
+						},
+						"description": "Get the consolidated Market Data record for the selected type id on the selected region."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Universe Type",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{apiv1}}/universe/types/{{typeId}}",
+							"host": [
+								"{{backendServer}}{{apiv1}}"
+							],
+							"path": [
+								"universe",
+								"types",
+								"{{typeId}}"
+							]
+						},
+						"description": "Get the data for a Eve Online game type."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "NeoCom.Public",
+			"item": [
+				{
+					"name": "Get Pilot Public Data",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{publicv1}}/pilots/{{pilotId}}",
+							"host": [
+								"{{backendServer}}{{publicv1}}"
+							],
+							"path": [
+								"pilots",
+								"{{pilotId}}"
+							]
+						},
+						"description": "Gets the NeoCom adaptation for a Character public data that is accessible from the ESI server without authentication."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Corporation Public Data",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{publicv1}}/corporations/98661092",
+							"host": [
+								"{{backendServer}}{{publicv1}}"
+							],
+							"path": [
+								"corporations",
+								"98661092"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Server Status",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{publicv1}}/server/status",
+							"host": [
+								"{{backendServer}}{{publicv1}}"
+							],
+							"path": [
+								"server",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Loyalty Offers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{backendServer}}{{publicv1}}/loyalty/corporations/1000182",
+							"host": [
+								"{{backendServer}}{{publicv1}}"
+							],
+							"path": [
+								"loyalty",
+								"corporations",
+								"1000182"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Loyalty Service Configuration",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"marketRegionId\": 10000002\n}"
+						},
+						"url": {
+							"raw": "{{backendServer}}{{publicv1}}/loyalty/configuration",
+							"host": [
+								"{{backendServer}}{{publicv1}}"
+							],
+							"path": [
+								"loyalty",
+								"configuration"
+							]
+						},
+						"description": "Changes the allowed fields for the Loyalty Service. This will allow to select another market hub for proce referral."
+					},
+					"response": []
+				}
+			],
+			"description": "The collection of endpoints that do not require authentication on the ESI server."
+		}
+	]
+}

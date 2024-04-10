@@ -1,0 +1,64 @@
+<div class="insets block panel-orange" *ngIf="getVariant() === '-OUTPUT-RESOURCES-'">
+    <div class="column" *ngIf="!isSelected()" draggable [dragData]="node" [dragScope]="'RESOURCE'" [dragClass]="'resource-selected'" [ngClass]="{
+            'positive' : getLevelValue() >= 80,
+            'rejected' : getLevelValue() < 80}">
+        <div class="row">
+            <img class="neocom-icon iconsize-16" src="{{getResourceIcon()}}">
+            <div class="field resource-name">
+                <span cy-field-value="resourceName" class="resource-name">{{getName()}}</span>
+            </div>
+            <div class="field resource-level right">
+                <span cy-field-value="resourceLevel" class="resource-level">[{{getLevel()}}]</span>
+            </div>
+        </div>
+        <div class="row">
+            <img class="neocom-icon iconsize-16" src="{{getPlanetIcon()}}">
+            <div class="field planet-name">
+                <span cy-field-value="planetName">{{getPlanetName()}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="row duplicated column" *ngIf="isSelected()">
+        <div class="row">
+            <img class="neocom-icon iconsize-16" src="{{getResourceIcon()}}">
+            <div class="field resource-name">
+                <span cy-field-value="resourceName" class="resource-name">{{getName()}}</span>
+            </div>
+            <div class="field resource-level right">
+                <span cy-field-value="resourceLevel" class="resource-level">[{{getLevel()}}]</span>
+            </div>
+        </div>
+        <div class="row">
+            <img class="neocom-icon iconsize-16" src="{{getPlanetIcon()}}">
+            <div class="field planet-name">
+                <span cy-field-value="planetName">{{getPlanetName()}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="insets panel-white" *ngIf="getVariant() === '-SELECTED-RESOURCES-'">
+    <div class="row">
+        <img class="neocom-icon iconsize-40" src="{{getPlanetIcon()}}">
+        <div class="separator-4"></div>
+        <div class="column complete">
+            <div class="row field">
+                <img class="neocom-icon iconsize-16" src="{{getResourceIcon()}}">
+                <div class="field resource-name">
+                    <span cy-field-value="resourceName" class="resource-name">{{getName()}}</span>
+                </div>
+                <div class="field resource-level right">
+                    <span cy-field-value="resourceLevel right" class="resource-level">[{{getLevel()}}]</span>
+                </div>
+            </div>
+            <div class="field">
+                <span cy-field-label="planetName" class="label">NAME</span>
+                <span cy-field-value="planetName" class="planet-name">{{getPlanetName()}}</span>
+            </div>
+            <div class="field">
+                <span cy-field-label="planetClass" class="label">CLASS</span>
+                <span cy-field-value="planetClass" class="planet-class">[{{getPlanetClass()}}]</span>
+            </div>
+        </div>
+
+    </div>
+</div>

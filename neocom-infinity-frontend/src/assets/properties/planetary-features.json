@@ -1,0 +1,15 @@
+[{
+        "label": "Enter Planet Data",
+        "enabled": true,
+        "active": false,
+        "interaction": "PAGEROUTE",
+        "route": "/planetary/planet-data"
+    },
+    {
+        "label": "Resource Search",
+        "enabled": true,
+        "active": false,
+        "interaction": "PAGEROUTE",
+        "route": "/planetary/resource-research"
+    }
+]

@@ -1,0 +1,43 @@
+# - S E R V E R
+server:
+  port: ${PORT}
+
+#  - D A T A B A S E
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    driver-class-name: org.postgresql.Driver
+    platform: postgres
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+  liquibase:
+    liquibase-schema: public
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
+  hateoas:
+    use-hal-as-default-json-media-type: false
+  jackson:
+    default-property-inclusion: NON_ABSENT
+    serialization.indent_output: true
+  devtools:
+    add-properties: false
+
+P:
+  runtime:
+    #    configuration:
+    #      properties:
+    #        path: "/build/resources/main/properties"
+    filesystem:
+      application:
+        directory: ./NeoCom.Infinity
+    logging:
+      request: false
+      response: false
+      timing: true
+      metrics: true
+
+logging.logstash:
+  enabled: true
+
+scheduler:
+  allowedToRun: true
+  allowedMiningExtractions: true

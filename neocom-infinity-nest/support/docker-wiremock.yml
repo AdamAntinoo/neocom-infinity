@@ -1,0 +1,21 @@
+# FRONTEND - Docker Composer components
+# PROJECT CODE - 52
+#
+# Docker composer automatically creates a network. The container host matches the container name. To differentiate and create single networks use a directory name that should be unique. The recommended format is: <project>-docker-<environment>
+#
+# The routing references are:
+# /characters - calls to the ESI data provider service for character secured data.
+
+---
+version: "3.9"
+
+services:
+  esi-secure-dev:
+    container_name: NIN-esi-secure-dev
+    image: wiremock/wiremock:3.3.1
+    ports:
+      - "5271:8080"
+    volumes:
+      - ./wiremock:/home/wiremock
+    command: --verbose --global-response-templating
+    

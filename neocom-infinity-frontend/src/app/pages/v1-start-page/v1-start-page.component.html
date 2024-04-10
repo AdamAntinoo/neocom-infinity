@@ -1,0 +1,15 @@
+<div class="panel">
+    <div class="field">
+        <div cy-field-value="title-message" class="login-message">NeoCom&nbsp;/&nbsp;SSO EVE Online</div>
+    </div>
+    <div class="row field">
+        <div cy-field-value="validation-message" class="validation-message" *ngIf="validating; else login">VALIDANDO AUTENTICACION DEL PILOTO...</div>
+    </div>
+    <ng-template #login>
+        <a cy-name="EVE-login-button" class="eve-login-request" href="{{getLoginLink()}}">
+            <img src="assets/media/eve-sso-login-white-large.png">
+        </a>
+    </ng-template>
+
+</div>
+<footer class="footer">© 2019,2020 Dimensinfin Industries</footer>

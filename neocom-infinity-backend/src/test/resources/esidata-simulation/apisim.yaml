@@ -1,0 +1,1729 @@
+simulation: esidata-simulation
+proxy:
+  https: "esi.evetech.net:443"
+
+---
+
+simlet: market-prices
+
+request:
+  - method: GET
+  - uriPath: /markets/prices/
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body:
+    type: text
+    file: "${sim.path}/esiresponses/markets.prices.json"
+
+---
+
+simlet: universe-races
+
+request:
+  - method: GET
+  - uriPath: /universe/races/
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body:
+    type: text
+    file: "${sim.path}/esiresponses/universe.races.json"
+
+---
+
+simlet: universe-ancestries
+
+request:
+  - method: GET
+  - uriPath: /universe/ancestries/
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body:
+    type: text
+    file: "${sim.path}/esiresponses/universe.ancestries.json"
+
+---
+
+simlet: universe-bloodlines
+
+request:
+  - method: GET
+  - uriPath: /universe/bloodlines/
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body:
+    type: text
+    file: "${sim.path}/esiresponses/universe.bloodlines.json"
+
+---
+
+simlet: universe-schematics
+
+request:
+  - method: GET
+  - uriPathPattern: "/universe/schematics/{schematic_id}/"
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body: |+
+    {
+      "cycle_time": 1800,
+      "schematic_name": "Precious Metals"
+    }
+
+---
+
+simlet: universe-structure
+
+request:
+  - method: GET
+  - uriPathPattern: "/universe/structures/{structure_id}/"
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body:
+    type: text
+    file: "${sim.path}/esiresponses/universe.structure.json"
+
+---
+
+simlet: status
+
+request:
+  - method: GET
+  - uriPath: /status/
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body: |+
+    {
+      "players": 26172,
+      "server_version": "1589237",
+      "start_time": "2021-02-23T11:04:11.000Z"
+    }
+
+---
+
+simlet: character-publicdata
+
+request:
+  - method: GET
+  - uriPathPattern: "/characters/{character_id}/"
+
+response:
+  from: stub
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body: |+
+    {
+      "ancestry_id": 22,
+      "birthday": "2012-07-05T21:53:15Z",
+      "bloodline_id": 4,
+      "corporation_id": 98384726,
+      "description": "",
+      "gender": "female",
+      "name": "Beth Ripley",
+      "race_id": 2,
+      "security_status": 0
+    }
+
+---
+
+simlet: character-assets-page1
+
+request:
+  - method: GET
+  - uriPathPattern: "/characters/{characterId}/assets/"
+  - where: uriQueryParameter
+    named: "page"
+    equals: 1
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body:
+    type: text
+    file: "${sim.path}/esiresponses/characters.assets.page1.json"
+
+---
+
+simlet: character-assets-page2
+
+request:
+  - method: GET
+  - uriPathPattern: "/characters/{characterId}/assets/"
+  - where: uriQueryParameter
+    named: "page"
+    equals: 2
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body: |+
+    []
+
+---
+
+simlet: character-blueprints-page1
+
+request:
+  - method: GET
+  - uriPathPattern: "/characters/{characterId}/blueprints/"
+  - where: uriQueryParameter
+    named: "page"
+    equals: 1
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body:
+    type: text
+    file: "${sim.path}/esiresponses/characters.blueprints.page1.json"
+
+---
+
+simlet: character-blueprints-page2
+
+request:
+  - method: GET
+  - uriPathPattern: "/characters/{characterId}/blueprints/"
+  - where: uriQueryParameter
+    named: "page"
+    equals: 2
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body: |+
+    []
+
+---
+
+simlet: character-mining-extractions-page1
+
+request:
+  - method: GET
+  - uriPathPattern: "/characters/92223647/mining/"
+  - where: uriQueryParameter
+    named: "page"
+    equals: 1
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body:
+    type: text
+    file: "${sim.path}/esiresponses/characters.miningextractions.page1.json"
+
+---
+
+simlet: character-planets
+
+request:
+  - method: GET
+  - uriPathPattern: "/characters/{characterId}/planets/"
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body:
+    type: text
+    file: "${sim.path}/esiresponses/characters.planets.json"
+
+---
+
+simlet: character-fittings
+
+request:
+  - method: GET
+  - uriPathPattern: "/characters/{characterId}/fittings/"
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body:
+    type: text
+    file: "${sim.path}/esiresponses/characters.fittings.json"
+
+---
+simlet: character-fittings
+
+request:
+  - method: GET
+  - uriPathPattern: "/api/v2/neocom/pilots/93813310/fittings"
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body:
+    type: text
+    file: "${sim.path}/esiresponses/characters.fittings.json"
+
+---
+
+simlet: alliances-silent-infinity
+
+request:
+  - method: GET
+  - uriPathPattern: "/alliances/{alliance_id}/"
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body:
+    type: text
+    file: "${sim.path}/esiresponses/alliances.json"
+
+---
+
+simlet: character-planet-data
+
+request:
+  - method: GET
+  - uriPathPattern: "/characters/{character_id}/planets/{planet_id}/"
+
+response:
+  from: stub
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body:
+    type: text
+    file: "${sim.path}/esiresponses/character.planet.data.json"
+
+---
+
+simlet: corporation-asset-names
+
+request:
+  - method: POST
+  - uriPathPattern: "/corporations/{corporation_id}/assets/names/"
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body:
+    type: text
+    file: "${sim.path}/esiresponses/corporation.assets.names.json"
+
+---
+
+simlet: corporation-divisions
+
+request:
+  - method: GET
+  - uriPathPattern: "/corporations/{corporation_id}/divisions/"
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body:
+    type: text
+    file: "${sim.path}/esiresponses/corporation.divisions.json"
+
+---
+
+simlet: corporation-assets-page1-98384726
+
+request:
+  - method: GET
+  - uriPathPattern: /corporations/98384726/assets/
+  - where: uriQueryParameter
+    named: "page"
+    equals: 1
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body:
+    type: text
+    file: "${sim.path}/esiresponses/corporation.assets.page1.json"
+
+---
+
+simlet: corporation-assets-page1-98300000
+
+request:
+  - method: GET
+  - uriPathPattern: /corporations/98300000/assets/
+  - where: uriQueryParameter
+    named: "page"
+    equals: 1
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body:
+    type: text
+    file: "${sim.path}/esiresponses/corporation.assets.minimal.page1.json"
+
+---
+
+simlet: corporation-assets-page1-98310000
+
+request:
+  - method: GET
+  - uriPathPattern: /corporations/98310000/assets/
+  - where: uriQueryParameter
+    named: "page"
+    equals: 1
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body:
+    type: text
+    file: "${sim.path}/esiresponses/corporation.assets.deep.page1.json"
+
+---
+
+simlet: corporation-assets-page2
+
+request:
+  - method: GET
+  - uriPathPattern: "/corporations/{corporationId}/assets/"
+  - where: uriQueryParameter
+    named: "page"
+    equals: 2
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body: |+
+    []
+
+---
+
+simlet: character-ripley
+
+request:
+  - method: GET
+  - uriPathPattern: "/characters/{character_id}/"
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body:
+    type: text
+    file: "${sim.path}/esiresponses/characters.ripley.json"
+
+---
+
+simlet: character-mining-extractions-today-page1
+
+request:
+  - method: GET
+  - uriPathPattern: "/characters/93813310/mining/"
+  - where: uriQueryParameter
+    named: "page"
+    equals: 1
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body:
+    type: text
+    file: "${sim.path}/esiresponses/characters.miningextractions.today.page1.json"
+
+---
+
+simlet: character-mining-extractions-any-page1
+
+request:
+  - method: GET
+  - uriPathPattern: "/characters/{ownerId}/mining/"
+  - where: uriQueryParameter
+    named: "page"
+    equals: 1
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body:
+    type: text
+    file: "${sim.path}/esiresponses/characters.miningextractions.today.page1.json"
+
+---
+
+simlet: character-mining-extractions-page2
+
+request:
+  - method: GET
+  - uriPathPattern: "/characters/{characterId}/mining/"
+  - where: uriQueryParameter
+    named: "page"
+    equals: 2
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body: |+
+    []
+
+---
+
+simlet: market-domain-11535-page1
+
+request:
+  - method: GET
+  - uriPathPattern: "/markets/10000043/orders/"
+  - where: uriQueryParameter
+    named: "page"
+    equals: 1
+  - where: uriQueryParameter
+    named: "type_id"
+    equals: 11535
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "access-control-allow-credentials: true
+        access-control-allow-headers: Content-Type,Authorization,If-None-Match,X-User-Agent
+        access-control-allow-methods: GET,HEAD,OPTIONS
+        access-control-allow-origin: *
+        access-control-expose-headers: Content-Type,Warning,ETag,X-Pages,X-ESI-Error-Limit-Remain,X-ESI-Error-Limit-Reset
+        access-control-max-age: 600
+        allow: GET,HEAD,OPTIONS
+        cache-control: public
+        content-encoding: gzip
+        content-length: 736
+        content-type: application/json; charset=UTF-8
+        date: Tue, 22 Dec 2020 13:12:35 GMT
+        etag: \"51f30fc34ba95c0477b5d9ef01afe9eff477ef7636ae077ee9462ca7\"
+        expires: Tue, 22 Dec 2020 13:17:35 GMT
+        last-modified: Tue, 22 Dec 2020 13:12:35 GMT
+        strict-transport-security: max-age=31536000
+        vary: Accept-Encoding
+        x-esi-error-limit-remain: 100
+        x-esi-error-limit-reset: 25
+        x-esi-request-id: 7c2098f2-3b19-46ae-b0eb-7cfd520e1099
+        x-pages: 1 "
+  body:
+    type: text
+    file: "${sim.path}/esiresponses/market.domain.11535.json"
+
+---
+
+simlet: market-domain-11535-page2
+
+request:
+  - method: GET
+  - uriPathPattern: "/markets/10000043/orders/"
+  - where: uriQueryParameter
+    named: "page"
+    equals: 2
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body: |+
+    []
+
+---
+
+simlet: character-wallet
+
+request:
+  - method: GET
+  - uriPathPattern: "/characters/{character_id}/wallet/"
+
+response:
+  from: stub
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body: "2765866375.96"
+
+---
+
+simlet: character-skills
+
+request:
+  - method: GET
+  - uriPathPattern: "/characters/{characterId}/skills/"
+
+response:
+  from: stub
+  status: 200
+  headers:
+    - "access-control-allow-credentials: true
+       access-control-allow-headers: Content-Type,Authorization,If-None-Match,X-User-Agent
+       access-control-allow-methods: GET,HEAD,OPTIONS
+       access-control-allow-origin: *
+       access-control-expose-headers: Content-Type,Warning,ETag,X-Pages,X-ESI-Error-Limit-Remain,X-ESI-Error-Limit-Reset
+       access-control-max-age: 600
+       allow: GET,HEAD,OPTIONS
+       cache-control: public
+       content-encoding: gzip
+       content-language: en-us
+       content-length: 677
+       content-type: application/json; charset=UTF-8
+       date: Thu, 21 Jan 2021 21:30:45 GMT
+        expires: Fri, 22 Jan 2021 11:05:00 GMT
+        last-modified: Thu, 21 Jan 2021 11:13:26 GMT
+        strict-transport-security: max-age=31536000
+        vary: Accept-Encoding,Accept-Language
+        x-esi-error-limit-remain: 100
+        x-esi-error-limit-reset: 15
+        x-esi-request-id: 25c1a0e3-7031-459b-b909-f671f4b91e82"
+  body:
+    type: text
+    file: "${sim.path}/esiresponses/characters.skills.json"
+
+---
+
+simlet: character-location
+
+request:
+  - method: GET
+  - uriPathPattern: "/characters/{characterId}/location/"
+
+response:
+  from: stub
+  status: 200
+  headers:
+    - "access-control-allow-credentials: true
+       access-control-allow-headers: Content-Type,Authorization,If-None-Match,X-User-Agent
+       access-control-allow-methods: GET,HEAD,OPTIONS
+       access-control-allow-origin: *
+       access-control-expose-headers: Content-Type,Warning,ETag,X-Pages,X-ESI-Error-Limit-Remain,X-ESI-Error-Limit-Reset
+       access-control-max-age: 600
+       allow: GET,HEAD,OPTIONS
+       cache-control: public
+       content-encoding: gzip
+       content-language: en-us
+       content-length: 677
+       content-type: application/json; charset=UTF-8
+       date: Thu, 21 Jan 2021 21:30:45 GMT
+        expires: Fri, 22 Jan 2021 11:05:00 GMT
+        last-modified: Thu, 21 Jan 2021 11:13:26 GMT
+        strict-transport-security: max-age=31536000
+        vary: Accept-Encoding,Accept-Language
+        x-esi-error-limit-remain: 100
+        x-esi-error-limit-reset: 15
+        x-esi-request-id: 25c1a0e3-7031-459b-b909-f671f4b91e82"
+  body:
+    type: text
+    file: "${sim.path}/esiresponses/characters.location.json"
+
+---
+
+simlet: character-ship
+
+request:
+  - method: GET
+  - uriPathPattern: "/characters/{characterId}/ship/"
+
+response:
+  from: stub
+  status: 200
+  headers:
+    - "access-control-allow-credentials: true
+       access-control-allow-headers: Content-Type,Authorization,If-None-Match,X-User-Agent
+       access-control-allow-methods: GET,HEAD,OPTIONS
+       access-control-allow-origin: *
+       access-control-expose-headers: Content-Type,Warning,ETag,X-Pages,X-ESI-Error-Limit-Remain,X-ESI-Error-Limit-Reset
+       access-control-max-age: 600
+       allow: GET,HEAD,OPTIONS
+       cache-control: public
+       content-encoding: gzip
+       content-language: en-us
+       content-length: 677
+       content-type: application/json; charset=UTF-8
+       date: Thu, 21 Jan 2021 21:30:45 GMT
+        expires: Fri, 22 Jan 2021 11:05:00 GMT
+        last-modified: Thu, 21 Jan 2021 11:13:26 GMT
+        strict-transport-security: max-age=31536000
+        vary: Accept-Encoding,Accept-Language
+        x-esi-error-limit-remain: 100
+        x-esi-error-limit-reset: 15
+        x-esi-request-id: 25c1a0e3-7031-459b-b909-f671f4b91e82"
+  body:
+    type: text
+    file: "${sim.path}/esiresponses/characters.ship.json"
+
+---
+
+simlet: loyalty-stores-1000179
+
+request:
+  - method: GET
+  - uriPathPattern: "/loyalty/stores/1000179/offers/"
+
+response:
+  from: stub
+  status: 200
+  headers:
+    - "access-control-allow-credentials: true
+       access-control-allow-headers: Content-Type,Authorization,If-None-Match,X-User-Agent
+       access-control-allow-methods: GET,HEAD,OPTIONS
+       access-control-allow-origin: *
+       access-control-expose-headers: Content-Type,Warning,ETag,X-Pages,X-ESI-Error-Limit-Remain,X-ESI-Error-Limit-Reset
+       access-control-max-age: 600
+       allow: GET,HEAD,OPTIONS
+       cache-control: public
+       content-encoding: gzip
+       content-language: en-us
+       content-length: 677
+       content-type: application/json; charset=UTF-8
+       date: Thu, 21 Jan 2021 21:30:45 GMT
+        expires: Fri, 22 Jan 2021 11:05:00 GMT
+        last-modified: Thu, 21 Jan 2021 11:13:26 GMT
+        strict-transport-security: max-age=31536000
+        vary: Accept-Encoding,Accept-Language
+        x-esi-error-limit-remain: 100
+        x-esi-error-limit-reset: 15
+        x-esi-request-id: 25c1a0e3-7031-459b-b909-f671f4b91e82"
+  body:
+    type: text
+    file: "${sim.path}/esiresponses/loyalty.corporations.1000179.json"
+
+---
+
+simlet: markets-history-13249
+
+request:
+  - method: GET
+  - uriPathPattern: "/markets/10000043/history/"
+  - where: uriQueryParameter
+    named: "type_id"
+    equals: 13249
+
+response:
+  from: stub
+  status: 200
+  headers:
+    - "access-control-allow-credentials: true
+       access-control-allow-headers: Content-Type,Authorization,If-None-Match,X-User-Agent
+       access-control-allow-methods: GET,HEAD,OPTIONS
+       access-control-allow-origin: *
+       access-control-expose-headers: Content-Type,Warning,ETag,X-Pages,X-ESI-Error-Limit-Remain,X-ESI-Error-Limit-Reset
+       access-control-max-age: 600
+       allow: GET,HEAD,OPTIONS
+       cache-control: public
+       content-encoding: gzip
+       content-language: en-us
+       content-length: 677
+       content-type: application/json; charset=UTF-8
+       date: Thu, 21 Jan 2021 21:30:45 GMT
+        expires: Fri, 22 Jan 2021 11:05:00 GMT
+        last-modified: Thu, 21 Jan 2021 11:13:26 GMT
+        strict-transport-security: max-age=31536000
+        vary: Accept-Encoding,Accept-Language
+        x-esi-error-limit-remain: 100
+        x-esi-error-limit-reset: 15
+        x-esi-request-id: 25c1a0e3-7031-459b-b909-f671f4b91e82"
+  body:
+    type: text
+    file: "${sim.path}/esiresponses/markets.history.13249.json"
+
+---
+
+simlet: markets-history-27127
+
+request:
+  - method: GET
+  - uriPathPattern: "/markets/10000043/history/"
+  - where: uriQueryParameter
+    named: "type_id"
+    equals: 27127
+
+response:
+  from: stub
+  status: 200
+  headers:
+    - "access-control-allow-credentials: true
+       access-control-allow-headers: Content-Type,Authorization,If-None-Match,X-User-Agent
+       access-control-allow-methods: GET,HEAD,OPTIONS
+       access-control-allow-origin: *
+       access-control-expose-headers: Content-Type,Warning,ETag,X-Pages,X-ESI-Error-Limit-Remain,X-ESI-Error-Limit-Reset
+       access-control-max-age: 600
+       allow: GET,HEAD,OPTIONS
+       cache-control: public
+       content-encoding: gzip
+       content-language: en-us
+       content-length: 677
+       content-type: application/json; charset=UTF-8
+       date: Thu, 21 Jan 2021 21:30:45 GMT
+        expires: Fri, 22 Jan 2021 11:05:00 GMT
+        last-modified: Thu, 21 Jan 2021 11:13:26 GMT
+        strict-transport-security: max-age=31536000
+        vary: Accept-Encoding,Accept-Language
+        x-esi-error-limit-remain: 100
+        x-esi-error-limit-reset: 15
+        x-esi-request-id: 25c1a0e3-7031-459b-b909-f671f4b91e82"
+  body:
+    type: text
+    file: "${sim.path}/esiresponses/markets.history.27127.json"
+
+---
+
+simlet: markets-history-27143
+
+request:
+  - method: GET
+  - uriPathPattern: "/markets/10000043/history/"
+  - where: uriQueryParameter
+    named: "type_id"
+    equals: 27143
+
+response:
+  from: stub
+  status: 200
+  headers:
+    - "access-control-allow-credentials: true
+       access-control-allow-headers: Content-Type,Authorization,If-None-Match,X-User-Agent
+       access-control-allow-methods: GET,HEAD,OPTIONS
+       access-control-allow-origin: *
+       access-control-expose-headers: Content-Type,Warning,ETag,X-Pages,X-ESI-Error-Limit-Remain,X-ESI-Error-Limit-Reset
+       access-control-max-age: 600
+       allow: GET,HEAD,OPTIONS
+       cache-control: public
+       content-encoding: gzip
+       content-language: en-us
+       content-length: 677
+       content-type: application/json; charset=UTF-8
+       date: Thu, 21 Jan 2021 21:30:45 GMT
+        expires: Fri, 22 Jan 2021 11:05:00 GMT
+        last-modified: Thu, 21 Jan 2021 11:13:26 GMT
+        strict-transport-security: max-age=31536000
+        vary: Accept-Encoding,Accept-Language
+        x-esi-error-limit-remain: 100
+        x-esi-error-limit-reset: 15
+        x-esi-request-id: 25c1a0e3-7031-459b-b909-f671f4b91e82"
+  body:
+    type: text
+    file: "${sim.path}/esiresponses/markets.history.27143.json"
+
+---
+
+simlet: markets-history-27143
+
+request:
+  - method: GET
+  - uriPathPattern: "/markets/10000043/history/"
+
+response:
+  from: stub
+  status: 200
+  headers:
+    - "access-control-allow-credentials: true
+       access-control-allow-headers: Content-Type,Authorization,If-None-Match,X-User-Agent
+       access-control-allow-methods: GET,HEAD,OPTIONS
+       access-control-allow-origin: *
+       access-control-expose-headers: Content-Type,Warning,ETag,X-Pages,X-ESI-Error-Limit-Remain,X-ESI-Error-Limit-Reset
+       access-control-max-age: 600
+       allow: GET,HEAD,OPTIONS
+       cache-control: public
+       content-encoding: gzip
+       content-language: en-us
+       content-length: 677
+       content-type: application/json; charset=UTF-8
+       date: Thu, 21 Jan 2021 21:30:45 GMT
+        expires: Fri, 22 Jan 2021 11:05:00 GMT
+        last-modified: Thu, 21 Jan 2021 11:13:26 GMT
+        strict-transport-security: max-age=31536000
+        vary: Accept-Encoding,Accept-Language
+        x-esi-error-limit-remain: 100
+        x-esi-error-limit-reset: 15
+        x-esi-request-id: 25c1a0e3-7031-459b-b909-f671f4b91e82"
+  body: |+
+    []
+
+---
+
+simlet: universe-types-34
+
+request:
+  - method: GET
+  - uriPath: /universe/types/34/
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body: |+
+    {
+      "capacity": 0,
+      "description": "The main building block in space structures. A very hard, yet bendable metal. Cannot be used in human habitats due to its instability at atmospheric temperatures. Very common throughout the universe.\r\n\r\nMay be obtained by reprocessing the following ores:\r\n\r\n<color='0xFFFF0000'>0.0</color> security status solar system or lower:\r\n<a href=showinfo:22>Arkonor</a>, <a href=showinfo:17425>Crimson Arkonor</a>, <a href=showinfo:17426>Prime Arkonor</a>\r\n<a href=showinfo:1225>Crokite</a>, <a href=showinfo:17432>Sharp Crokite</a>, <a href=showinfo:17433>Crystalline Crokite</a>\r\n<a href=showinfo:1232>Dark Ochre</a>, <a href=showinfo:17436>Onyx Ochre</a>, <a href=showinfo:17437>Obsidian Ochre</a>\r\n<a href=showinfo:19>Spodumain</a>, <a href=showinfo:17466>Bright Spodumain</a>, <a href=showinfo:17467>Gleaming Spodumain</a>\r\n\r\n<color='0xFFFF4D00'>0.2</color> security status solar system or lower:\r\n<a href=showinfo:1231>Hemorphite</a>, <a href=showinfo:17444>Vivid Hemorphite</a>, <a href=showinfo:17445>Radiant Hemorphite</a>\r\n\r\n<color='0xFF00FF00'>0.7</color> security status solar system or lower:\r\n<a href=showinfo:20>Kernite</a>, <a href=showinfo:17452>Luminous Kernite</a>, <a href=showinfo:17453>Fiery Kernite</a>\r\n<a href=showinfo:1227>Omber</a>, <a href=showinfo:17867>Silvery Omber</a>, <a href=showinfo:17868>Golden Omber</a>\r\n\r\n<color='0xFF4DFFCC'>0.9</color> security status solar system or lower:\r\n<a href=showinfo:18>Plagioclase</a>, <a href=showinfo:17455>Azure Plagioclase</a>, <a href=showinfo:17456>Rich Plagioclase</a>\r\n<a href=showinfo:1224>Pyroxeres</a>, <a href=showinfo:17459>Solid Pyroxeres</a>, <a href=showinfo:17460>Viscous Pyroxeres</a>\r\n\r\n<color='0xFF33FFFF'>1.0</color> security status solar system or lower:\r\n<a href=showinfo:1228>Scordite</a>, <a href=showinfo:17463>Condensed Scordite</a>, <a href=showinfo:17464>Massive Scordite</a>\r\n<a href=showinfo:1230>Veldspar</a>, <a href=showinfo:17470>Concentrated Veldspar</a>, <a href=showinfo:17471>Dense Veldspar</a>",
+      "group_id": 18,
+      "icon_id": 22,
+      "market_group_id": 1857,
+      "mass": 0,
+      "name": "Tritanium",
+      "packaged_volume": 0.01,
+      "portion_size": 1,
+      "published": true,
+      "radius": 1,
+      "type_id": 34,
+      "volume": 0.01
+    }
+
+---
+
+simlet: universe-types-13249
+
+request:
+  - method: GET
+  - uriPath: /universe/types/13249/
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body: |+
+    {
+      "capacity": 0,
+      "description": "A Zainou missile hardwiring designed to enhance skill with missiles.\r\n\r\n3% bonus to all missile launcher rate of fire.",
+      "group_id": 746,
+      "icon_id": 2224,
+      "market_group_id": 1497,
+      "mass": 0,
+      "name": "Zainou 'Deadeye' Rapid Launch RL-1003",
+      "packaged_volume": 1,
+      "portion_size": 1,
+      "published": true,
+      "radius": 1,
+      "type_id": 13249,
+      "volume": 1
+    }
+
+---
+
+simlet: universe-types-27143
+
+request:
+  - method: GET
+  - uriPath: /universe/types/27143/
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body: |+
+    {
+      "capacity": 0,
+      "description": "A neural interface upgrade that boosts the pilot's skill at electronics.\r\n\r\n1% bonus to CPU output.",
+      "group_id": 741,
+      "icon_id": 2224,
+      "market_group_id": 1507,
+      "mass": 0,
+      "name": "Zainou 'Gypsy' CPU Management EE-601",
+      "packaged_volume": 1,
+      "portion_size": 1,
+      "published": true,
+      "radius": 1,
+      "type_id": 27143,
+      "volume": 1
+    }
+
+---
+
+simlet: universe-types-27127
+
+request:
+  - method: GET
+  - uriPath: /universe/types/27127/
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body: |+
+    {
+      "capacity": 0,
+      "description": "A neural interface upgrade that boosts the pilot's skill at engineering.\r\n\r\n1% bonus to the power grid output of your ship.",
+      "group_id": 741,
+      "icon_id": 2224,
+      "market_group_id": 1507,
+      "mass": 0,
+      "name": "Inherent Implants 'Squire' Power Grid Management EG-601",
+      "packaged_volume": 1,
+      "portion_size": 1,
+      "published": true,
+      "radius": 1,
+      "type_id": 27127,
+      "volume": 1
+    }
+
+---
+
+simlet: universe-groups-10
+
+request:
+  - method: GET
+  - uriPath: /universe/groups/10/
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body: |+
+    {
+      "category_id": 2,
+      "group_id": 10,
+      "name": "Stargate",
+      "published": false,
+      "types": [
+        16,
+        17,
+        3873,
+        3874,
+        3875,
+        3876,
+        3877,
+        12292,
+        29624,
+        29625,
+        29626,
+        29627,
+        29628,
+        29629,
+        29630,
+        29631,
+        29632,
+        29633,
+        29634,
+        29635
+      ]
+    }
+
+---
+
+simlet: universe-groups-746
+
+request:
+  - method: GET
+  - uriPath: /universe/groups/746/
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body: |+
+    {
+      "category_id": 20,
+      "group_id": 746,
+      "name": "Cyber Missile",
+      "published": true,
+      "types": [
+        3125,
+        3126,
+        3127,
+        3128,
+        3129,
+        3132,
+        3133,
+        3134,
+        3135,
+        3136,
+        3137,
+        3140,
+        3141,
+        3142,
+        3143,
+        3144,
+        3145,
+        3148,
+        3149,
+        3150,
+        3151,
+        3152,
+        3153,
+        3156,
+        3157,
+        3158,
+        3159,
+        3160,
+        3161,
+        3164,
+        3165,
+        3166,
+        3167,
+        3168,
+        3169,
+        3172,
+        3173,
+        3174,
+        3175,
+        3176,
+        3177,
+        3180,
+        3181,
+        3182,
+        3183,
+        13226,
+        13227,
+        13228,
+        13229,
+        13230,
+        13231,
+        13247,
+        13248,
+        13249,
+        13250,
+        20371,
+        24632,
+        24636,
+        24637,
+        24638,
+        24639,
+        24640,
+        24641,
+        24642,
+        27091,
+        27092,
+        27093,
+        27094,
+        27095,
+        27096,
+        27108,
+        27109,
+        27204,
+        27205,
+        27206,
+        27243,
+        27244,
+        27245,
+        27246,
+        27247,
+        27249,
+        27250,
+        27251,
+        27252,
+        27253,
+        27254,
+        27255,
+        27256,
+        27257,
+        27258,
+        27259
+      ]
+    }
+
+---
+
+simlet: universe-groups-741
+
+request:
+  - method: GET
+  - uriPath: /universe/groups/741/
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body: |+
+    {
+      "category_id": 20,
+      "group_id": 741,
+      "name": "Cyber Engineering",
+      "published": true,
+      "types": [
+        3237,
+        3238,
+        3239,
+        3240,
+        3241,
+        3246,
+        3247,
+        3248,
+        3249,
+        3250,
+        3251,
+        3252,
+        3253,
+        3254,
+        3255,
+        3256,
+        3257,
+        3258,
+        3262,
+        3263,
+        3264,
+        3265,
+        3266,
+        3267,
+        13216,
+        13251,
+        13254,
+        13255,
+        13259,
+        13260,
+        13261,
+        13265,
+        27116,
+        27117,
+        27118,
+        27119,
+        27120,
+        27121,
+        27122,
+        27123,
+        27124,
+        27125,
+        27126,
+        27127,
+        27128,
+        27129,
+        27142,
+        27143,
+        27223
+      ]
+    }
+
+---
+
+simlet: universe-groups-18
+
+request:
+  - method: GET
+  - uriPath: /universe/groups/18/
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body: |+
+    {
+      "category_id": 4,
+      "group_id": 18,
+      "name": "Mineral",
+      "published": true,
+      "types": [
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        11399,
+        27029,
+        48927
+      ]
+    }
+
+---
+
+simlet: universe-categories-4
+
+request:
+  - method: GET
+  - uriPath: /universe/categories/4/
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body: |+
+    {
+      "category_id": 4,
+      "groups": [
+        17,
+        18,
+        20,
+        422,
+        423,
+        427,
+        428,
+        429,
+        712,
+        754,
+        886,
+        966,
+        967,
+        974,
+        1136,
+        1676,
+        1996
+      ],
+      "name": "Material",
+      "published": true
+    }
+
+---
+
+simlet: universe-categories-20
+
+request:
+  - method: GET
+  - uriPath: /universe/categories/20/
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body: |+
+    {
+      "category_id": 20,
+      "groups": [
+        300,
+        303,
+        304,
+        721,
+        738,
+        739,
+        740,
+        741,
+        742,
+        743,
+        744,
+        745,
+        746,
+        747,
+        748,
+        749,
+        750,
+        751,
+        783,
+        1228,
+        1229,
+        1230,
+        1231,
+        1730
+      ],
+      "name": "Implant",
+      "published": true
+    }
+
+---
+
+simlet: corporations-24thimperial
+
+request:
+  - method: GET
+  - uriPathPattern: "/corporations/1000179/"
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body:
+    type: text
+    file: "${sim.path}/esiresponses/corporations.1000179.json"
+
+---
+
+simlet: corporations-machaque
+
+request:
+  - method: GET
+  - uriPathPattern: "/corporations/{corporation_id}/"
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body:
+    type: text
+    file: "${sim.path}/esiresponses/corporations.machaque.json"
+
+---
+
+simlet: universe-stations-60010408
+
+request:
+  - method: GET
+  - uriPathPattern: "/universe/stations/60010408/"
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body: |+
+    {
+      "max_dockable_ship_volume": 50000000,
+      "name": "Lulm V - Moon 10 - Poteque Pharmaceuticals Biotech Production",
+      "office_rental_cost": 10000,
+      "owner": 1000104,
+      "position": {
+        "x": -873875988480,
+        "y": 144637992960,
+        "z": 1673701908480
+      },
+      "race_id": 8,
+      "reprocessing_efficiency": 0.5,
+      "reprocessing_stations_take": 0.05,
+      "services": [
+          "bounty-missions",
+          "courier-missions",
+          "reprocessing-plant",
+          "market",
+          "cloning",
+          "surgery",
+          "dna-therapy",
+          "factory",
+          "fitting",
+          "news",
+          "insurance",
+          "docking",
+          "office-rental",
+          "loyalty-point-store",
+          "navy-offices"
+      ],
+      "station_id": 60010408,
+      "system_id": 30002516,
+      "type_id": 3867
+    }
+
+---
+
+simlet: universe-systems-30002516
+
+request:
+  - method: GET
+  - uriPathPattern: "/universe/systems/30002516/"
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body: |+
+    {
+      "constellation_id": 20000368,
+      "name": "Lulm",
+      "planets": [
+        {
+          "planet_id": 40160105
+        },
+        {
+          "asteroid_belts": [
+              40160107
+          ],
+          "planet_id": 40160106
+        },
+        {
+          "moons": [
+              40160109,
+              40160110
+          ],
+          "planet_id": 40160108
+        },
+        {
+          "moons": [
+              40160112,
+              40160113,
+              40160114
+          ],
+          "planet_id": 40160111
+        },
+        {
+          "asteroid_belts": [
+              40160116,
+              40160117,
+              40160120,
+              40160122,
+              40160138
+          ],
+          "moons": [
+              40160118,
+              40160119,
+              40160121,
+              40160123,
+              40160124,
+              40160125,
+              40160126,
+              40160127,
+              40160128,
+              40160129,
+              40160130,
+              40160131,
+              40160132,
+              40160133,
+              40160134,
+              40160135,
+              40160136,
+              40160137
+          ],
+          "planet_id": 40160115
+        }
+      ],
+      "position": {
+        "x": -120046221138604640,
+        "y": 67340639034898480,
+        "z": 2421282662015471
+      },
+      "security_class": "E",
+      "security_status": 0.343973845243454,
+      "star_id": 40160104,
+      "stargates": [
+          50003582,
+          50003583
+      ],
+      "stations": [
+          60010075,
+          60010408,
+          60015094
+      ],
+      "system_id": 30002516
+    }
+
+---
+
+simlet: universe-constellations-20000368
+
+request:
+  - method: GET
+  - uriPathPattern: "/universe/constellations/20000368/"
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body: |+
+    {
+      "constellation_id": 20000368,
+      "name": "Huvilma",
+      "position": {
+        "x": -120644441659824900,
+        "y": 59131074017490330,
+        "z": 1341995667252953
+      },
+      "region_id": 10000030,
+      "systems": [
+          30002512,
+          30002513,
+          30002514,
+          30002515,
+          30002516,
+          30002517
+      ]
+    }
+
+---
+
+simlet: universe-regions-10000030
+
+request:
+  - method: GET
+  - uriPathPattern: "/universe/regions/10000030/"
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body: |+
+    {
+      "constellations": [
+          20000367,
+          20000368,
+          20000369,
+          20000370,
+          20000371,
+          20000372,
+          20000373,
+          20000374,
+          20000375,
+          20000376,
+          20000377,
+          20000378
+      ],
+      "description": "\"Never Again\"",
+      "name": "Heimatar",
+      "region_id": 10000030
+    }
+
+---
+
+simlet: universe-types-606
+
+request:
+  - method: GET
+  - uriPathPattern: "/universe/types/606/"
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body:
+    type: text
+    file: "${sim.path}/esiresponses/types.606.json"
+
+---
+
+simlet: universe-groups-237
+
+request:
+  - method: GET
+  - uriPathPattern: "/universe/groups/237/"
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body: |+
+    {
+      "category_id": 6,
+      "group_id": 237,
+      "name": "Corvette",
+      "published": true,
+      "types": [
+          588,
+          596,
+          601,
+          606,
+          615,
+          617,
+          1233,
+          9854,
+          9858,
+          9860,
+          9862,
+          33079,
+          33081,
+          33083
+      ]
+    }
+
+---
+
+simlet: universe-categories-6
+
+request:
+  - method: GET
+  - uriPathPattern: "/universe/categories/6/"
+
+response:
+  from: template
+  status: 200
+  headers:
+    - "Content-Type: application/json"
+  body: |+
+    {
+      "category_id": 6,
+      "groups": [
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          237,
+          324,
+          358,
+          380,
+          381,
+          419,
+          420,
+          463,
+          485,
+          513,
+          540,
+          541,
+          543,
+          547,
+          659,
+          830,
+          831,
+          832,
+          833,
+          834,
+          883,
+          893,
+          894,
+          898,
+          900,
+          902,
+          906,
+          941,
+          963,
+          1022,
+          1201,
+          1202,
+          1283,
+          1305,
+          1527,
+          1534,
+          1538,
+          1972,
+          2001
+      ],
+      "name": "Ship",
+      "published": true
+    }

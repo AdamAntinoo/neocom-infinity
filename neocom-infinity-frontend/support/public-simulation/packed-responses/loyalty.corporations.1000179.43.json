@@ -1,0 +1,26 @@
+[{
+    "jsonClass": "LoyaltyOfferEntity",
+    "offerId": 3433,
+    "typeId": 9899,
+    "type": {
+        "rel": "type",
+        "href": "http://localhost:5220/api/v1/universe/types/9899"
+    },
+    "typeName": "Ocular Filter - Basic",
+    "corporationId": 1000179,
+    "corporationName": "24th Imperial Crusade",
+    "lpValue": 1244,
+    "iskCost": 5250000,
+    "lpCost": 5250,
+    "quantity": 1,
+    "marketRegionId": 10000043,
+    "price": 1.178E7,
+    "marketData": {
+        "rel": "marketData",
+        "href": "http://localhost:5220/api/v1/universe/market/consolidated/byregion/10000043/9899"
+    },
+    "marketHistory": {
+        "rel": "marketHistory",
+        "href": "https://esi.evetech.net/latest/markets/10000043/history/?datasource=tranquility&type_id=9899"
+    }
+}]

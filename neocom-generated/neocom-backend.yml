@@ -1,0 +1,158 @@
+openapi: 3.0.3
+info:
+  title: NeoCom Infinity - NestJS Backend Api v.0.20.0
+  description: |-
+    This is the Rest Api definition for the NeoCom Infinity Backend services. This new set of services are being developed
+    with NestJs that is a Typescript backend framework code compatible with the Angular Frontend.
+    
+    The new backend starts at version 0.20.0 for the new Infinity feature set. The server will export the Api endpoints to Access
+    some of the Esi Data Source CCP published endpoints and on some cases it will expand Esi features and enrich data.
+
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: adamantinoo.git@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 0.21.0
+externalDocs:
+  description: Documentation about the data flows.
+  url: https://github.com/AdamAntinoo/neocom-infinity/tree/master/ProjectControl
+servers:
+  - url: https://neocom-infinity.io:5257/status
+tags:
+  - name: esiSecure
+    description: Esi Secure Data Service adapter endpoints.
+    externalDocs:
+      description: Find out more
+      url: https://github.com/AdamAntinoo/neocom-infinity/tree/master/neocom-infinity-nest/README.md
+
+paths:
+  /nin/v1/character/miningoperations:
+    get:
+      tags:
+        - esiSecure
+      summary: Get the minings operations for current target.
+      description: >
+        Gets the list of Esi Mining Operations that are generated automatically during mining. The target to be used
+        is the capsuleer identifier or corporation identifier that is found on the authentication token.
+        <br>
+        The list  of operations is transformed to a hyperlink suitable frontend interpretation and operation items
+        are given a unique key for easy identification of changes.
+        <br>
+        There is no persistence for this kind of data.
+      operationId: getMiningOperations
+      parameters:
+        - name: token
+          in: cookie
+          description: Authentication token generated at Esi service and used for Esi data access endpoints.
+          required: true
+          explode: false
+          schema:
+            type: string
+            example: authorization=Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IkpXVC1TaWduYXR1cmUtS2V5IiwidHlwIjoiSldUIn0.eyJzY3AiOlsiZXNpLWFzc2V0cy5yZWFkX2Fzc2V0cy52MSIsImVzaS1pbmR1c3RyeS5yZWFkX2NoYXJhY3Rlcl9taW5pbmcudjEiXSwianRpIjoiY2NhZWFmNjctNjM2ZS00ZDhhLThiNDQtZThlNzViM2ExMjE2Iiwia2lkIjoiSldULVNpZ25hdHVyZS1LZXkiLCJzdWIiOiJDSEFSQUNURVI6RVZFOjkzODEzMzEwIiwiYXpwIjoiNjgzMDg0YWI1Zjg4NDhkNGIxODc0NjJhYzNiOTc2NzciLCJ0ZW5hbnQiOiJ0cmFucXVpbGl0eSIsInRpZXIiOiJsaXZlIiwicmVnaW9uIjoid29ybGQiLCJhdWQiOlsiNjgzMDg0YWI1Zjg4NDhkNGIxODc0NjJhYzNiOTc2NzciLCJFVkUgT25saW5lIl0sIm5hbWUiOiJQZXJpY2
+            
+      responses:
+        '200':
+          description: Success retrieving the list of Mining Operations.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MiningOperation'          
+        '401':
+          $ref: "#/components/responses/ApplicationError"
+          description: The authentication token is not present or invalid so the request is not authorized.
+security:
+  - neocom_esi_auth: []
+
+components:
+  responses:
+    ApplicationError:
+      description: >
+        This request has missing the required authentication token or if the token is present
+        it is not valid or incomplete.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    MiningOperation:
+      type: object
+      properties:
+        jsonClass:
+          type: string
+          description: The class of the Json object that is being described.
+          example: MiningOperation
+        id:
+          type: string
+          format: uuid
+          description: >
+            The unique identifier for a mining operation. Is composed of the date, the eve system 
+            identifier and the type of the ore that is being represented on the mining operation.
+          example: '2024-02-23-30003541-17453'
+        date:
+          type: string
+          format: date
+          description: The extraction date for this ore. Each extraction is aggegated by date and ore type.
+          example: '2024-02-23'
+        quantity:
+          type: integer
+          format: int32
+          description: The ore stack size or the ore quentity extracted.
+          example: 854
+        solarSystem:
+          type: integer
+          format: int32
+          description: The Eve system unique identifier where the ore was extracted.
+          example: 30003541
+        type:
+          type: integer
+          format: int32
+          description: The Eve unique identifier for the extracted ore type.
+          example: 17453
+      required:
+        - jsonClass
+        - id
+        - date
+        - quantity
+        - solarSystem
+        - type
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: string
+          example: 'AUTHENTICATION-MISSING'
+        message:
+          type: string
+          example: 'Authentication token is missing.'
+      required:
+        - code
+        - message
+  # requestBodies:
+  #   Pet:
+  #     description: Pet object that needs to be added to the store
+  #     content:
+  #       application/json:
+  #         schema:
+  #           $ref: '#/components/schemas/MiningOperation'
+  #       application/xml:
+  #         schema:
+  #           $ref: '#/components/schemas/MiningOperation'
+  #   UserArray:
+  #     description: List of user object
+  #     content:
+  #       application/json:
+  #         schema:
+  #           type: array
+  #           items:
+  #             $ref: '#/components/schemas/MiningOperation'
+
+  securitySchemes:
+    neocom_esi_auth:
+      type: apiKey
+      in: cookie
+      name: authentication
+ 

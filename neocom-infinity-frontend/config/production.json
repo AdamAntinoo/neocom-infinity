@@ -1,0 +1,5 @@
+{
+    "settings": {
+        "backendproxy": "https://neocom-backend.herokuapp.com/"
+    }
+}

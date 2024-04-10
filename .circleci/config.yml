@@ -24,13 +24,35 @@ jobs:
   start-job:
     docker:
       - image: circleci/node:12.16.3-browsers
+      - image: circleci/openjdk:11-jdk
+    steps:
+      - checkout
+
+  # - F R O N T E N D
+  framework-frontend-job:
+    docker:
+      - image: circleci/node:12.16.3-browsers
+    environment:
+      BIT_TOKEN: d47a8f17-636f-4bda-aad9-ac9fa27fe26d
     steps:
       - checkout
       - run:
-          name: CHECK - Install the framework
+          name: NEOCOM-FRONTEND - Configure BIT as a source for npm
+          working_directory: NeoCom-Infinity-Frontend
           command: |
             node -v
-
+            npm config set @bit:registry https://node.bitsrc.io
+      - run:
+          name: NEOCOM-FRONTEND - Install the framework
+          working_directory: NeoCom-Infinity-Frontend
+          command: |
+            cp package.json package.json.checksum
+            npm install
+            npm run test:prod
+      - save_cache:
+          paths:
+            - ~/project/NeoCom-Infinity-Frontend/node_modules
+          key: frontend-dependencies-{{ checksum "~/project/NeoCom-Infinity-Frontend/package.json.checksum" }}
   compile-frontend-job:
     docker:
       - image: circleci/node:12.16.3-browsers
@@ -38,90 +60,280 @@ jobs:
       BIT_TOKEN: d47a8f17-636f-4bda-aad9-ac9fa27fe26d
     steps:
       - checkout
+      - restore_cache:
+          keys:
+          - frontend-dependencies-{{ checksum "~/project/NeoCom-Infinity-Frontend/package.json" }}
       - run:
-          name: FRONTEND - Configure BIT as a source for npm
+          name: NEOCOM-FRONTEND - Configure BIT as a source for npm
           working_directory: NeoCom-Infinity-Frontend
           command: |
             node -v
             npm config set @bit:registry https://node.bitsrc.io
       - run:
-          name: FRONTEND - Install the framework
+          name: NEOCOM-FRONTEND - Install the framework
           working_directory: NeoCom-Infinity-Frontend
           command: |
             npm install
       - run:
-          name: FRONTEND - Compile Angular code
+          name: NEOCOM-FRONTEND - Compile Angular code
           working_directory: NeoCom-Infinity-Frontend
           command: |
             npm run build:prod
+  unittest-frontend-job:
+    docker:
+      - image: circleci/node:12.16.3-browsers
+    environment:
+      PORT: 5200
+      CYPRESS_KEY: 9eebb605-a163-4da0-bb36-6af73faddf1b
+      BIT_TOKEN: d47a8f17-636f-4bda-aad9-ac9fa27fe26d
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - frontend-dependencies-{{ checksum "~/project/NeoCom-Infinity-Frontend/package.json" }}
+      - run:
+          name: NEOCOM-FRONTEND - Run unit tests and code coverage
+          working_directory: NeoCom-Infinity-Frontend
+          command: |
+            npm run test:prod
+      - store_test_results:
+          path: ~/project/NeoCom-Infinity-Frontend/coverage
+  acceptance-test-frontend-job:
+    machine:
+      image: ubuntu-2004:202010-01
+    steps:
+      - checkout
+      - run:
+          name: NEOCOM-FRONTEND - Validate the CI machine configuration
+          working_directory: NeoCom-Infinity-Frontend
+          environment:
+            DOCKERIZE_VERSION: v0.3.0
+          command: |
+            node -v
+            sudo snap install figlet
+            wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+            npm install
+      - run:
+          name: NEOCOM-FRONTEND - Start frontend mock processes
+          working_directory: NeoCom-Infinity-Frontend
+          command: |
+            npm run docker:start
+            docker ps
+            dockerize -wait tcp://localhost:5290 -timeout 1m
+            docker ps
+      - run:
+          name: NEOCOM-FRONTEND - Run the list of approved acceptance tests
+          working_directory: NeoCom-Infinity-Frontend
+          command: |
+            npm run acceptance:ready
+            npm run acceptance:cypress:NIF01
+            npm run acceptance:cypress:NIF02
+            npm run acceptance:cypress:NIF07
+            npm run acceptance:cypress:NIF09
+
+  # - B A C K E N D
+  cache-dependencies-backend:
+    docker:
+      - image: circleci/openjdk:11-jdk
+    steps:
+      - checkout
+      - run: 
+          name: NEOCOM-BACKEND - Get and cache the backend compilation dependencies
+          working_directory: NeoCom-Infinity-Backend
+          environment:
+            PROFILE: "production"
+          command: |
+            ./gradlew dependencies --refresh-dependencies
+      - save_cache:
+          paths:
+            - ~/NeoCom-Infinity-Backend/gradle
+            - ~/NeoCom-Infinity-Backend/.gradle
+          key: backend-dependencies-{{ checksum "~/project/NeoCom-Infinity-Backend/dependencies.gradle" }}
   compile-backend-job:
     docker:
       - image: circleci/openjdk:11-jdk
     steps:
       - checkout
+      - restore_cache:
+          keys:
+          - backend-dependencies-{{ checksum "~/project/NeoCom-Infinity-Backend/dependencies.gradle" }}
       - run:
-          name: BACKEND - Compile SpringBoot code
+          name: NEOCOM-BACKEND - Compile SpringBoot code
           working_directory: NeoCom-Infinity-Backend
+          environment:
+            PROFILE: "production"
           command: |
-            ./gradlew clean bootJar
-
-  test-frontend-job:
-    docker:
-      - image: circleci/node:12.16.3-browsers
-    environment:
-      PORT: 5100
-      CYPRESS_KEY: 9eebb605-a163-4da0-bb36-6af73faddf1b
-      BIT_TOKEN: d47a8f17-636f-4bda-aad9-ac9fa27fe26d
-    steps:
-      - checkout
-      - run:
-          name: FRONTEND - Install the framework
-          command: |
-            node -v
-            npm install
-      - run:
-          name: FRONTEND - Build optimized Production dist
-          command: |
-            npm run build:dev
-      - run:
-          name: FRONTEND - Start backend simulator & Run acceptance D01 & D04
-          command: |
-            npm run acceptance:simulator
-            npm run acceptance:ready
-            npm run cypress:run
-      - store_test_results:
-          path: ~/project/Printer3D-frontend/cypress/cucumber-json
-  quality-sonarcloud:
+            ./gradlew clean dependencies bootJar
+  unittest-backend-job:
     docker:
       - image: circleci/openjdk:11-jdk
     steps:
       - checkout
+      - restore_cache:
+          keys:
+          - backend-dependencies-{{ checksum "~/project/NeoCom-Infinity-Backend/dependencies.gradle" }}
       - run:
-          name: BACKEND - Update SonarQube statistics
+          name: NEOCOM-BACKEND - Unit Testing application
+          working_directory: NeoCom-Infinity-Backend
           environment:
-            SONAR_TOKEN: 9dfe678ad49842371e44396a40c663586d497c31
+            PORT: 5240
+            JDBC_DATABASE_URL: "jdbc:postgresql://0.0.0.0:5432/postgres"
+            DB_USER: inno-user
+            DB_PASSWORD: inno-password
+            SPRING_PROFILES_ACTIVE: test
+            PROFILE: "production"
+            REDIS_URL: "redis://localhost:6379"
           command: |
-              sonar-scanner \
-                -Dsonar.organization=evedimensinfin \
-                -Dsonar.projectKey=evedimensinfin_neocom-infinity-frontend \
-                -Dsonar.sources=. \
-                -Dsonar.host.url=https://sonarcloud.io
+            ./gradlew test
+      - store_test_results:
+          path: ~/project/NeoCom-Infinity-Backend/build/test-results
+      - store_artifacts:  
+          path: ~/project/NeoCom-Infinity-Backend/build/libs
+      - save_cache:
+          paths:
+            - ~/project/NeoCom-Infinity-Backend/.gradle
+            - ~/project/NeoCom-Infinity-Backend/build
+            - ~/project/NeoCom-Infinity-Backend/coverage
+          key: backend-build-{{ checksum "~/project/NeoCom-Infinity-Backend/build.gradle" }}
+  acceptance-test-backend-job:
+    machine:
+      image: ubuntu-2004:202010-01
+    steps:
+      - checkout
+      - run:
+          name: NEOCOM-BACKEND - Validate the CI machine configuration
+          working_directory: NeoCom-Infinity-Backend
+          environment:
+            DOCKERIZE_VERSION: v0.3.0
+          command: |
+            ./gradlew --version
+            sudo snap install figlet
+            wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+      - run:
+          name: NEOCOM-BACKEND - Prepare the installation of the SDE database
+          working_directory: NeoCom-Infinity-Backend/src/main/sh
+          command: |
+            ./update-sde.sh
+            ./install-sde.sh
+      - run:
+          name: NEOCOM-BACKEND - Generate the docker file to be used for application acceptance tests
+          working_directory: NeoCom-Infinity-Backend
+          environment:
+            PROFILE: "production"
+          command: |
+            ./docker-service.sh generate
+      - run:
+          name: NEOCOM-BACKEND - Start the mock services and run tests
+          working_directory: NeoCom-Infinity-Backend
+          environment:
+            PROFILE: "production"
+            DEFAULT_BACKEND_SERVER: 'http://localhost'
+            DEFAULT_BACKEND_PORT: '5241'
+          command: |
+            ./docker-service.sh start acceptance
+            docker ps
+            dockerize -wait tcp://localhost:5241 -timeout 3m
+            dockerize -wait tcp://localhost:5251 -timeout 3m
+            dockerize -wait tcp://localhost:5271 -timeout 3m
+            docker ps
+            ./gradlew clean test
+            ./gradlew clean acceptanceTest -Dcucumber.filter.tags="@NIB01" --info
+            ./gradlew acceptanceTest -Dcucumber.filter.tags="@NIB03"
 
-  stage-to-heroku:
+  quality-sonarcloud-backend:
+    docker:
+      - image: circleci/openjdk:11-jdk
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - backend-build-{{ checksum "~/project/NeoCom-Infinity-Backend/build.gradle" }}
+      - run:
+          name: NEOCOM-BACKEND - Update SonarQube statistics
+          working_directory: NeoCom-Infinity-Backend
+          environment:
+            PROFILE: "production"
+            sonar.login: "852b9705880c9090a25e0d76440c1585c5d03fe4"
+          command: |
+            ./gradlew test jacocoTestReport sonarqube
+
+  integration-test-backend-job:
+    docker:
+      - image: circleci/openjdk:11-jdk
+        environment:
+          _JAVA_OPTIONS: "-Xmx3g"
+          GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2"
+    steps:
+      - checkout
+
+  stage-backend-to-heroku:
+    machine:
+      image: ubuntu-2004:202010-01
+    steps:
+      - checkout
+      - run:
+          name: NEOCOM-BACKEND - Validate the CI machine configuration
+          working_directory: NeoCom-Infinity-Backend
+          environment:
+            DOCKERIZE_VERSION: v0.3.0
+          command: |
+            ./gradlew --version
+            sudo snap install figlet
+            wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+      - run:
+          name: NEOCOM-BACKEND - Prepare the installation of the SDE database
+          working_directory: NeoCom-Infinity-Backend/src/main/sh
+          command: |
+            ./update-sde.sh
+            ./install-sde.sh
+      - run:
+          name: BACKEND - Generate resources and compile application
+          working_directory: NeoCom-Infinity-Backend
+          environment:
+            PROFILE: "production"
+          command: |
+            ./gradlew dependencies bootJar
+      - run:
+          name: BACKEND - Create the repository contents to move to Heroku for deployment
+          working_directory: NeoCom-Infinity-Backend
+          command: |
+            rm -rf .gitignore
+            git config --global user.email "adamantinoo.git@gmail.com"
+            git config --global user.name "Adam antinoo"
+            git init
+            git add app.json
+            git add *.gradle
+            git add *.properties
+            git add gradle
+            git add gradlew
+            git add gradlew.bat
+            git add src
+            git commit -m "-[HEROKU] Commiting code for deployment"
+      - run:
+          name: BACKEND - Deploy Master to Heroku
+          working_directory: NeoCom-Infinity-Backend
+          environment:
+            HEROKU_BACKEND_APP_NAME: neocom-backend-stage
+            HEROKU_BACKEND_API_KEY: 95200331-6841-4afc-87c5-cae0a859d08f
+          command: |
+            git push https://heroku:$HEROKU_BACKEND_API_KEY@git.heroku.com/$HEROKU_BACKEND_APP_NAME.git master --force
+
+  stage-frontend-to-heroku:
     docker:
       - image: circleci/node:12.16.3-browsers
     steps:
       - checkout
       - run:
-          name: FRONTEND - Generate deploy code for Stage
-          working_directory: Printer3D-frontend
+          name: FRONTEND - Generate deploy code for Development
+          working_directory: NeoCom-Infinity-Frontend
           command: |
             node -v
             sed -i '/bahmutov.add/d' package.json
-            # npm install
+            sed -i '/@cypress/d' package.json
+            sed -i '/"cypress"/d' package.json
       - run:
           name: FRONTEND - Clone Heroku repository
-          working_directory: Printer3D-frontend
+          working_directory: NeoCom-Infinity-Frontend
           command: |
             git config --global user.email "adamantinoo.git@gmail.com"
             git config --global user.name "Adam antinoo"
@@ -130,16 +342,16 @@ jobs:
             git add *.*
             git add config
             git add src
-            git commit -m "-[HEROKU] Commiting code for deployment"
+            git commit -m "-[HEROKU] Commiting code for deployment at neocom-infinity-frontend Development"
       - run:
           name: FRONTEND - Deploy Master to Heroku
           environment:
-            HEROKU_FRONTEND_APP_NAME: printer3d-frontend-stage
-            HEROKU_FRONTEND_API_KEY: 0898c4c7-7389-4023-940b-ba5d7d799f73
-          working_directory: Printer3D-frontend
+            HEROKU_FRONTEND_APP_NAME: neocom-frontend-dev
+            HEROKU_FRONTEND_API_KEY: 95200331-6841-4afc-87c5-cae0a859d08f
+          working_directory: NeoCom-Infinity-Frontend
           command: |
             git push https://heroku:$HEROKU_FRONTEND_API_KEY@git.heroku.com/$HEROKU_FRONTEND_APP_NAME.git master --force
- 
+
 workflows:
   version: 2
   neocom-infinity-stage:
@@ -148,49 +360,166 @@ workflows:
           filters:
             branches:
               only:
+                - planetary
+                - industry
+                - experimental
+                - development
+                - test
+                - hotfix
+                - deploy
+                - master
+      # - BACKEND
+      - cache-dependencies-backend:
+          filters:
+            branches:
+              only:
                 - experimental
                 - development
                 - test
                 - hotfix
                 - master
-
       - compile-backend-job:
           requires:
             - start-job
+            - cache-dependencies-backend
           filters:
             branches:
               only:
                 - experimental
                 - development
-      - compile-frontend-job:
+                - test
+      - unittest-backend-job:
           requires:
             - start-job
+            - compile-backend-job
+          filters:
+            branches:
+              only:
+                - test
+                - hotfix
+      - acceptance-test-backend-job:
+          requires:
+            - start-job
+            - compile-backend-job
+            - unittest-backend-job
+          filters:
+            branches:
+              only:
+                - hotfix
+      - quality-sonarcloud-backend:
+          requires:
+            - unittest-backend-job
+            - acceptance-test-backend-job
+          filters:
+            branches:
+              only:
+                - test
+      - stage-backend-to-heroku:
+          requires:
+            - start-job
+            - quality-sonarcloud-backend
+          filters:
+            branches:
+              only:
+                - test
+                - deploy
+
+      # - FRONTEND
+      - framework-frontend-job:
           filters:
             branches:
               only:
                 - experimental
+                - development
+                - test
+      - compile-frontend-job:
+          requires:
+            - start-job
+            - framework-frontend-job
+          filters:
+            branches:
+              only:
+                - experimental
+                - development
+                - test
+      - unittest-frontend-job:
+          requires:
+            - start-job
+            - framework-frontend-job
+            - compile-frontend-job
+          filters:
+            branches:
+              only:
+                - test
+                - hotfix
+      - acceptance-test-frontend-job:
+          requires:
+            - framework-frontend-job
+            - unittest-frontend-job
+          filters:
+            branches:
+              only:
+                - test
+                - hotfix
+      - stage-frontend-to-heroku:
+          requires:
+            - start-job
+            - stage-backend-to-heroku
+          filters:
+            branches:
+              only:
+                - test
+                - deploy
 
   neocom-infinity-deploy:
     jobs:
-      - test-frontend-job:
+      - start-job:
           filters:
             tags:
               only: /0.*/
             branches:
               ignore: /.*/
-      - quality-sonarcloud:
-          context: SonarCloud
-          requires:
-            - test-frontend-job
+      # - FRONTEND
+      - compile-frontend-job:
+          filters:
+            branches:
+              only:
+                - planetary
+      - unittest-frontend-job:
           filters:
             tags:
               only: /0.*/
             branches:
               ignore: /.*/
-      - stage-to-heroku:
+      - stage-frontend-to-heroku:
           requires:
-            - test-frontend-job
-            - quality-sonarcloud
+            - compile-frontend-job
+          filters:
+            branches:
+              only:
+                - planetary
+
+      # - BACKEND
+      - cache-dependencies-backend:
+          requires:
+            - start-job
+          filters:
+            tags:
+              only: /0.*/
+            branches:
+              ignore: /.*/
+      - quality-sonarcloud-backend:
+          requires:
+            - start-job
+          filters:
+            tags:
+              only: /0.*/
+            branches:
+              ignore: /.*/
+      - stage-backend-to-heroku:
+          requires:
+            - unittest-frontend-job
+            - quality-sonarcloud-backend
           filters:
             tags:
               only: /0.*/

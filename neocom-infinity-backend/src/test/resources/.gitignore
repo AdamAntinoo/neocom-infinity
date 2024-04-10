@@ -1,0 +1,9 @@
+# Simulator source and binary code
+*.log
+apisimulator-http-1.4/
+apisimulator-http-1.6.1/
+apisimulator-http-1.7/
+apisimulator-http-1.8/
+
+# Data for endpoint testing
+test-simulation/

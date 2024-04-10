@@ -1,0 +1,40 @@
+{
+    "pilotId": 92002067,
+    "name": "Adam Antinoo",
+    "description": "<font size=\"13\" color=\"#b3ffffff\"></font><font size=\"14\" color=\"#bfffffff\">Kinetic</font><font size=\"12\" color=\"#bfffffff\"> - Titanium Sabot+Carbonized / Scourge / Hornet-Vespa<br></font><font size=\"14\" color=\"#bfffffff\">Thermal</font><font size=\"12\" color=\"#bfffffff\"> - Phased Plasma / Inferno / Hobgoblin<br></font><font size=\"14\" color=\"#bfffffff\">Explosive</font><font size=\"12\" color=\"#bfffffff\"> - Fusion+Nuclear / Nova / Warrior<br></font><font size=\"14\" color=\"#bfffffff\">EM</font><font size=\"12\" color=\"#bfffffff\"> - EMP+Proton / Mjolnir / Acolyte</font>",
+    "corporation": {
+        "rel": "corporation",
+        "href": "http://localhost:5220/api/v1/public/corporations/98634987"
+    },
+    "birthday": "2012-05-09T19:45:27.000Z",
+    "gender": "male",
+    "securityStatus": 4.554821,
+    "url4Icon": "https://image.eveonline.com/Character/92002067_256.jpg",
+    "raceData": {
+        "allianceId": 500002,
+        "description": "Once a thriving tribal civilization, the Minmatar were enslaved by the Amarr Empire for more than 700 years until a massive rebellion freed most, but not all, of those held in servitude. The Minmatar people today are resilient, ingenious, and hard-working. Many of them believe that democracy, though it has served them well for a long time, can never restore what was taken from them so long ago. For this reason they have formed a government truly reflective of their tribal roots. They will forever resent the Amarrians, and yearn for the days before the Empire's accursed ships ever reached their home skies.",
+        "name": "Minmatar",
+        "raceId": 2
+    },
+    "ancestryData": {
+        "bloodlineId": 3,
+        "description": "Many Sebiestor traders live as nomads and travel the cluster in search of quick profit. They rarely settle down to exploit a prosperous trade route, and instead prefer to keep moving in search of the big payoff—the one that will instantly make them rich beyond their wildest dreams.",
+        "iconId": 1660,
+        "id": 20,
+        "name": "Traders",
+        "shortDescription": "Nomadic merchants looking to strike it rich."
+    },
+    "bloodlineData": {
+        "bloodlineId": 3,
+        "charisma": 6,
+        "corporationId": 1000046,
+        "description": "Widely respected as some of the cluster's most innovative thinkers, the Sebiestor are an ingenious people with a natural fondness for engineering. For the last millennium they have pioneered advances in applied sciences, despite laboring under chronic material shortages. Masters of deriving solutions from impossible circumstances, Sebiestor engineers believe they can build anything, with anything, out of anything.",
+        "intelligence": 7,
+        "memory": 6,
+        "name": "Sebiestor",
+        "perception": 5,
+        "raceId": 2,
+        "shipTypeId": 588,
+        "willpower": 6
+    }
+}

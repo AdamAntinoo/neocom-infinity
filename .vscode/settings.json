@@ -1,0 +1,39 @@
+{
+    "files.autoSaveWhenNoErrors": true,
+    "files.autoSaveWorkspaceFilesOnly": true,
+    "workbench.colorTheme": "Atom One Dark",
+    "editor.defaultFormatter": "vscode.typescript-language-features",
+    "editor.detectIndentation": false,
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[feature]": {
+        "editor.wordWrap": "on",
+        "editor.defaultFormatter": "alexkrechik.cucumberautocomplete"
+    },
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "explorer.confirmDelete": false,
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features",
+        "editor.tabSize": 4,
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "files.autoSave": "afterDelay",
+    "[yaml]": {
+        "editor.tabSize": 2
+    },
+    "eslint.validate": [
+        "typescript",
+        "typescriptreact"
+    ],
+    "editor.lineHeight": 12,
+    "editor.fontSize": 12,
+    "files.autoSaveDelay": 4000,
+    "editor.wordWrapColumn": 150,
+    "editor.formatOnSave": true,
+    "prettier.semi": false,
+    "javascript.format.semicolons": "remove"
+}

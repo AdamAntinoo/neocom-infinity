@@ -1,0 +1,166 @@
+// - P L U G I N S
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath 'org.springframework.cloud:spring-cloud-contract-gradle-plugin:2.2.2.RELEASE'
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.2.1.RELEASE")
+    }
+    dependencies {
+        classpath "com.github.sedovalx.gradle:gradle-aspectj-binary:1.0.45"
+    }
+}
+plugins {
+    id 'org.springframework.boot' version '2.3.4.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
+    id 'maven-publish'
+    id 'project-report'
+    id 'idea'
+    id "org.sonarqube" version "3.0"
+    id "org.hidetake.swagger.generator" version "2.18.2"
+}
+//apply plugin: 'com.github.sedovalx.gradle-aspectj-binary'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    jcenter()
+    maven { url 'https://jitpack.io' }
+}
+
+// - P R O J E C T   D E F I N I T I O N
+group = 'org.dimensinfin.eveonline.neocom'
+version = '0.20.0'
+archivesBaseName = 'neocom-infinity-backend'
+sourceCompatibility = '11'
+targetCompatibility = '11'
+
+// - S O U R C E S
+sourceSets {
+    main.java {
+        srcDirs += 'src/main/java-implementers'
+        srcDirs += 'src/main/java-client'
+        srcDirs += 'src/main/java-optional'
+    }
+    integration {
+        java {
+            compileClasspath += main.output + test.output
+            runtimeClasspath += main.output + test.output
+            srcDirs += 'src/integration/java'
+        }
+    }
+    integration {
+        resources {
+            srcDirs += 'src/integration/resources'
+        }
+    }
+    acceptance {
+        java {
+            compileClasspath += main.output + test.output + integration.output
+            runtimeClasspath += main.output + test.output + integration.output
+            srcDirs += 'src/acceptance/java'
+        }
+    }
+    acceptance {
+        resources {
+            srcDirs += 'src/acceptance/resources'
+        }
+    }
+}
+
+// - C O N F I G U R A T I O N S
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+    integrationImplementation.extendsFrom testImplementation
+    integrationRuntime.extendsFrom testRuntime
+    acceptanceImplementation.extendsFrom testImplementation
+    acceptanceRuntime.extendsFrom testRuntime
+}
+
+springBoot {
+    buildInfo()
+}
+processResources {
+    filesMatching('application.properties') {
+        expand(project.properties)
+    }
+}
+
+// - D E P E N D E N C I E S
+apply from: './dependencies.gradle'
+// - C O V E R A G E
+apply from: './jacoco.gradle'
+// - S D E   D A T A B A S E
+apply from: './sde-database.gradle'
+// - I N T E G R A T I O N
+apply from: './integration.gradle'
+// - A C C E P T A N C E
+apply from: './acceptance.gradle'
+
+// - S W A G G E R   C L I E N T
+def swaggerGenerated = "$buildDir/generated/"
+task swaggerGenerate(type: GenerateSwaggerCode) {
+    group = 'openapi'
+    language = 'java'
+
+    inputFile = file(new File(projectDir, 'src/spec/openapi.yml'))
+    outputDir = file(swaggerGenerated)
+    configFile = file('src/spec/openapi-config.json')
+}
+task swaggerBuild(type: Delete, dependsOn: swaggerGenerate) {
+    delete "$swaggerGenerated/docs"
+    delete "$swaggerGenerated/gradle"
+    delete "$swaggerGenerated/src/test/"
+    delete "$swaggerGenerated/src/main/AndroidManifest.xml"
+    delete fileTree("$swaggerGenerated").include('*')
+}
+task swaggerDelete(type: Delete) {
+    group = 'openapi'
+    delete "$swaggerGenerated"
+}
+clean.doFirst {
+    delete "$swaggerGenerated"
+}
+dependencies {
+    swaggerCodegen 'org.openapitools:openapi-generator-cli:3.0.0'     // or OpenAPI Generator.
+    compileOnly 'io.swagger:swagger-annotations:1.5.17'
+    compileOnly 'com.squareup.retrofit2:retrofit:2.3.0'
+    compileOnly 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compileOnly 'com.squareup.retrofit2:converter-scalars:2.3.0'
+    compileOnly 'org.apache.oltu.oauth2:org.apache.oltu.oauth2.client:1.0.1'
+    compileOnly 'org.apache.httpcomponents:httpclient:4.5.4'
+    compileOnly 'org.threeten:threetenbp:1.4.4'
+}
+
+// - S O N A R C L O U D
+sonarqube {
+    properties {
+        property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.organization", "evedimensinfin"
+        property "sonar.projectKey", "evedimensinfin_neocom-infinity-backend"
+        property "sonar.projectName", "NeoCom-Infinity-Backend"
+        property "sonar.projectVersion", project.version
+        property "sonar.projectDescription", "Back end Spring Boot server to service NeoCom Infinity data."
+        property "sonar.sourceEncoding", "UTF-8"
+        property "sonar.login", "fd5ec42949cc79a93ef45dc873f14f95cf63c224"
+    }
+}
+
+// - A S P E C T J
+//aspectjBinary {
+//    applyJavaPlugin = true
+//    weaveClasses {
+//        source = '1.8'
+//        target = '1.8'
+//        writeToLog = true
+//    }
+//}
