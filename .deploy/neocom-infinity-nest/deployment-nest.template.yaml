@@ -6,6 +6,7 @@ metadata:
 spec:
   selector:
     app: nin-$ENV
+    version: $VERSION
   type: NodePort
   ports:
     - protocol: TCP
@@ -22,15 +23,19 @@ metadata:
   namespace: neocom
   labels:
     app: nin-$ENV
-    version: $VERSION
-    port: $PORT
+    version: "$VERSION"
+    port: "$PORT"
     module: neocom-infinity-nest
-    build: $VERSION
 spec:
   selector:
     matchLabels:
       app: nin-$ENV
   template:
+    metadata:
+      labels:
+        app: nin-$ENV
+        version: $VERSION
+        module: neocom-infinity-frontend
     spec:
       containers:
       - name: nin-$ENV
