@@ -164,3 +164,10 @@ sonarqube {
 //        writeToLog = true
 //    }
 //}
+
+// - B O O T B U I L D I M A G E
+tasks.named("bootBuildImage") {
+    imageName = "neocom/backend"
+    publishImage = true
+    tags = "generated"
+}

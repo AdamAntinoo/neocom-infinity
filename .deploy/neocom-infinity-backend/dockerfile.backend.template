@@ -1,6 +1,8 @@
+# Get the base image from JDK 11
 FROM adoptopenjdk/openjdk11
-COPY ./*.jar /usr/app/
-COPY ./app-banner.txt /usr/app/
+# Copy the generated jar to the application
+COPY ./*.jar /app/
+COPY ./app-banner.txt /app/
 WORKDIR /usr/app
 #RUN mkdir --parents build/main/resources
 # Copy SDE database

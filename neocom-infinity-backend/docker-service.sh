@@ -19,6 +19,7 @@ generateContainer() {
   # Cleanup
   rm -vrf "${DOCKER_DIRECTORY}"/*.jar
   rm -vrf "${DOCKER_DIRECTORY}"/properties*
+  # Build
   ./gradlew bootJar || exit 1
   cp ./build/libs/*.jar "$DOCKER_DIRECTORY"
   cp ./build/resources/main/app-banner.txt "$DOCKER_DIRECTORY"

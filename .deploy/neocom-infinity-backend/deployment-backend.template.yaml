@@ -1,48 +1,44 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: nin-svc
+  name: $PROJECT_CODE-svc
   namespace: neocom
 spec:
   selector:
-    app: nin-$ENV
+    app: $PROJECT_CODE-$ENV
+    version: $VERSION
   type: NodePort
   ports:
     - protocol: TCP
       port: 8000
       targetPort: $PORT
-      nodePort: 30000
+      nodePort: 33000
 
 ---
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nin-$ENV
+  name: $PROJECT_CODE-$ENV
   namespace: neocom
   labels:
-    app: nin-$ENV
+    app: $PROJECT_CODE-$ENV
     version: $VERSION
-    module: neocom-infinity-nest
-    build: $VERSION
+    module: neocom-infinity-backend
 spec:
   selector:
     matchLabels:
-      app: nin-$ENV
+      app: $PROJECT_CODE-$ENV
   template:
     metadata:
       labels:
-        app: nin-$ENV
+        app: $PROJECT_CODE-$ENV
         version: $VERSION
-        module: neocom-infinity-nest
-        build: $VERSION
+        module: neocom-infinity-backend
     spec:
       containers:
-      - name: nin-$ENV
+      - name: $PROJECT_CODE-$ENV
         image: adamantinoo/$IMAGE_NAME:$VERSION
-        env:
-        - name: NODE_ENV
-          value: "$ENV"
         ports:
         - containerPort: $PORT
         imagePullPolicy: Always
