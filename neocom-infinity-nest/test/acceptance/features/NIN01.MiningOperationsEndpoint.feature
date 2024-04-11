@@ -10,18 +10,27 @@ Feature: [NIN01] Validate the api defined for the Mining Operations endpoint.
     Given a environment prepared with predefined token
 
   @NIN01  @NIN01.01
-  Scenario: [NIN01.01] Call the ESI service and validate we get a valid response with some items
+  Scenario: [NIN01.01] Call the ESI service and validate we get a valid response with some items.
     When the endpoint 'esi/miningoperations' is activated
     Then the esi response has 6 items
 
   @NIN01 @NIN01.02
-  Scenario: [NIN01.02] Aggregate the records obtained from ESI by system and then by date
-    When the endpoint 'esi/miningoperations' is activated
-    And the list of items is processed we get 3 miningoperations
+  Scenario: [NIN01.02] Aggregate the records obtained from ESI by system and then by date.
+    When the endpoint 'capsuleer/miningoperations' is activated
+    And the list of items is processed we get 3 MiningOperations
 
   @NIN01 @NIN01.03
   Scenario: [NIN01.03] Validate that one of the resources returned has the correct contents.
     When the endpoint 'capsuleer/miningoperations' is activated
-    And the Mining Operation record at position 1 has next contents
-      | jsonClass       | date       | quantity | solarSystem | typeId |
-      | MiningOperation | 2024-02-23 | 210      |             |        |
+    And the MiningOperation record at position 1 has next contents
+      | jsonClass          | id                  | date       | solarSystemId | resourceCount |
+      | MiningOperationDto | 2024-02-25/30003538 | 2024-02-25 | 30003538      | 2             |
+
+  @NIN01 @NIN01.04
+  Scenario: [NIN01.04] Chack that the Mining Resources are properly generated
+    When the endpoint 'capsuleer/miningoperations' is activated
+    Then the MiningOperation record at position 1 is the target
+    Then the MiningOperation has 2 resources
+    And the MiningResource at position 1 has next contents
+      | jsonClass         | id                     | date       | quantity | solarSystemId | typeId |
+      | MiningResourceDto | 2024-02-25/30003538-ff | 2024-02-25 | 300      | 30003538      | 2      |

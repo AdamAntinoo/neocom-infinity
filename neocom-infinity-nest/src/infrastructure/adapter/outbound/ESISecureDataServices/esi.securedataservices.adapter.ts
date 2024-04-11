@@ -6,10 +6,11 @@ import { V2MiningOperation } from "neocom-domain"
 import { ESIDataServicesPort } from "application/ports/EsiDataServices.port"
 import { IEsiMiningSecureService } from "application/ports/IEsiMiningSecureService.port"
 import { ConfigService } from "@nestjs/config"
+import { GetCharactersCharacterIdMining200Ok } from "application/domain/esi-model/models"
 
 @Injectable()
 export class ESISecureDataServicesAdapter implements ESIDataServicesPort {
-    miningOperations: IEsiMiningSecureService<V2MiningOperation>
+    miningOperations: IEsiMiningSecureService<GetCharactersCharacterIdMining200Ok>
 
     constructor(
         private readonly httpService: HttpService,

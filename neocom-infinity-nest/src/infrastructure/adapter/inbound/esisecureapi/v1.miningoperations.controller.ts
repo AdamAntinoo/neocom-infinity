@@ -6,6 +6,7 @@ import { CapsuleerMiningOperationsUseCase } from 'application/use-cases/mining-o
 import { EsiSecureApi } from '@Infra/api/esiSecure.api';
 import { AuthenticationTokenValidator } from "../validator/AuthenticationTokenValidator";
 import { MiningOperationsUseCaseInputConstructor } from "../MiningOperationsUseCaseInputConstructor";
+import { V1MiningOperationDto } from "neocom-domain/dto/V1MiningOperationDto.dto";
 
 @Controller('/nin/v1/character/')
 export class V1MiningOperationsController implements EsiSecureApi {
@@ -15,7 +16,7 @@ export class V1MiningOperationsController implements EsiSecureApi {
     ) { }
 
     @Get('miningoperations')
-    public async getMiningOperations(@Cookies('Authentication') token: string): Promise<V2MiningOperation[]> {
+    public async getMiningOperations(@Cookies('Authentication') token: string): Promise<V1MiningOperationDto[]> {
         console.log('token->' + token)
         return this.getCapsuleerMiningOperationsUseCase.getMiningOperations(
             new MiningOperationsUseCaseInputConstructor().construct(token,

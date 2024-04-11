@@ -14,24 +14,24 @@
     "jest": "jest --verbose",
     "coverage": "jest --verbose --coverage",
     "test:full": "npm run jest && npm run cucumber",
-    "test": "jest --verbose",
     "test:cov": "jest --verbose --coverage",
     "package": "npm run build",
+    "start:debug": "nest start --debug --watch",
+    "start:stage": "NODE_ENV=stage nest start",
+    "start:prod": "node dist/main",
     "tag": "figlet NeoNest `gitversion /showvariable MajorMinorPatch`-`gitversion /showvariable CommitsSinceVersionSource` > app-banner.txt",
     "version": "gitversion > .version.json",
     "build": "nest build",
     "start": "npm run start:dev",
     "start:dev": "npm run version && npm run tag && NODE_ENV=development nest start --watch",
-    "start:debug": "nest start --debug --watch",
-    "start:stage": "NODE_ENV=stage nest start",
-    "start:prod": "node dist/main",
     "docker:wiremock:up": "docker-compose -f ./support/docker-wiremock.yml up & ",
     "docker:wiremock:down": "docker-compose -f ./support/docker-wiremock.yml down & ",
     "docker:start": "npm run docker:wiremock:up",
     "docker:stop": "npm run docker:wiremock:down",
     "cucumber": "./node_modules/@cucumber/cucumber/bin/cucumber-js ./test/**/*.feature --no-strict --require-module ts-node/register --require-module tsconfig-paths/register --require ./test/acceptance/steps/**/*.ts",
     "acc:nin01": "./node_modules/@cucumber/cucumber/bin/cucumber-js ./test/**/*.feature --no-strict --require-module ts-node/register --require-module tsconfig-paths/register --require ./test/acceptance/steps/**/*.ts --tags @NIN01",
-    "acc:nin02": "./node_modules/@cucumber/cucumber/bin/cucumber-js ./test/**/*.feature --no-strict --require-module ts-node/register --require-module tsconfig-paths/register --require ./test/acceptance/steps/**/*.ts --tags @NIN02"
+    "acc:nin02": "./node_modules/@cucumber/cucumber/bin/cucumber-js ./test/**/*.feature --no-strict --require-module ts-node/register --require-module tsconfig-paths/register --require ./test/acceptance/steps/**/*.ts --tags @NIN02",
+    "test": "jest --verbose"
   },
   "dependencies": {
     "@nestjs/axios": "^3.0.2",
@@ -46,7 +46,8 @@
     "cookie-parser": "^1.4.6",
     "neocom-domain": "0.2.4",
     "reflect-metadata": "^0.2.0",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "typescript-optional": "^3.0.0-alpha.3"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^10.3.1",
@@ -97,10 +98,9 @@
     "moduleNameMapper": {
       "^@App/(.*)$": "<rootDir>/src/application/$1",
       "^@Domain/(.*)$": "<rootDir>/src/domain/$1",
-      "^@Infra/(.*)$": "<rootDir>/src/infrastructure/$1",
-      "^@Inno/(.*)$": "<rootDir>/src/library/innovative/$1"
+      "^@Infra/(.*)$": "<rootDir>/src/infrastructure/$1"
     },
-    "collectCoverage": true,
+    "collectCoverage": false,
     "coverageReporters": [
       "json",
       "lcov",

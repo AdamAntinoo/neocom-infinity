@@ -8,14 +8,7 @@ export class NeoComErrorDefinition {
         Object.assign(this, values)
     }
 }
-export const NeoComErrorCatalog: NeoComErrorDefinition[] = [
-    new NeoComErrorDefinition({
-        id: "TOKEN-NOT-PRESENT",
-        httpCode: 401,
-        code: "TOKEN-NOT-PRESENT",
-        messagePattern: "The authentication token is not present or invalid so the request is not authorized."
-    })
-]
+
 export const TOKEN_NOT_PRESENT:NeoComErrorDefinition=new NeoComErrorDefinition({
     httpCode: 401,
     code: "TOKEN-NOT-PRESENT",
@@ -25,4 +18,9 @@ export const TOKEN_INVALID:NeoComErrorDefinition=new NeoComErrorDefinition({
     httpCode: 401,
     code: "TOKEN-INVALID",
     messagePattern: "The authentication token is not valid because does not declare a correct subject."
+})
+export const MANDATORY_FIELD_MISSING:NeoComErrorDefinition=new NeoComErrorDefinition({
+    httpCode: 500,
+    code: "MANDATORY-FIELD-MISSING",
+    messagePattern: "The mandatory field on a Builder is missing."
 })
