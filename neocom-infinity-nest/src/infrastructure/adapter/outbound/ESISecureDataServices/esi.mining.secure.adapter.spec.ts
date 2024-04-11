@@ -1,7 +1,7 @@
 import { HttpService } from '@nestjs/axios';
 import { Test, TestingModule } from '@nestjs/testing'
 import { Observable } from 'rxjs';
-import { EsiMiningAdapter } from './esi.mining.adapter';
+import { EsiMiningAdapter } from './esi.mining.secure.adapter';
 import { V2MiningOperation } from '@Domain/entities/V2.MiningOperation';
 import { ESISecureDataServiceHALGeneratorAdapter } from './esi.securedataservice.halgenerator.adapter';
 
@@ -19,14 +19,16 @@ describe('SERVICE EsiMiningAdapter [Module: Infrastructure.service]', () => {
                             console.log('method->' + 'GET')
                             console.log('request->' + request)
                             return new Observable((observer) => {
-                                observer.next({data:[
-                                    {
-                                        "date": "2024-02-23",
-                                        "quantity": 210,
-                                        "solar_system_id": 30003541,
-                                        "type_id": 17453
-                                    }
-                                ]})
+                                observer.next({
+                                    data: [
+                                        {
+                                            "date": "2024-02-23",
+                                            "quantity": 210,
+                                            "solar_system_id": 30003541,
+                                            "type_id": 17453
+                                        }
+                                    ]
+                                })
                             })
                         }
                     }
