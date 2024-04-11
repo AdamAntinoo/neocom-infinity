@@ -13,7 +13,7 @@ import { EsiToken } from "@Infra/adapter/inbound/EsiToken.interface"
 export class ESIMiningSecureService implements IEsiMiningSecureService<V2MiningOperation>{
     constructor(
         private readonly httpService: HttpService,
-        private halGenerator: ESISecureDataServiceHALGeneratorAdapter,
+        private readonly halGenerator: ESISecureDataServiceHALGeneratorAdapter,
         private readonly configuration: ConfigService
     ) { }
 

@@ -3,7 +3,7 @@ import { CapsuleerMiningOperationsUseCase } from "./CapsuleerMiningOperationsUse
 import { HttpService } from "@nestjs/axios"
 import { Observable } from "rxjs"
 import { Test } from "@nestjs/testing"
-import { EsiMiningAdapter } from "@Infra/adapter/outbound/ESISecureDataServices/esi.mining.adapter"
+import { EsiMiningAdapter } from "@Infra/adapter/outbound/ESISecureDataServices/esi.mining.secure.adapter"
 import { ESISecureDataServiceHALGeneratorAdapter } from "@Infra/adapter/outbound/ESISecureDataServices/esi.securedataservice.halgenerator.adapter"
 import { V2MiningOperation } from "@Domain/entities/V2.MiningOperation"
 

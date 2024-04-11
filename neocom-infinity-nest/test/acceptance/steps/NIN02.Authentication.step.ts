@@ -1,10 +1,10 @@
 import { expect } from 'expect';
 import { Before, Then, When, setWorldConstructor } from "@cucumber/cucumber";
 import { Option } from "@sniptt/monads";
-import { V2MiningOperation } from "@Domain/entities/V2.MiningOperation";
 import { lastValueFrom, map } from "rxjs";
 import { AxiosHeaders, AxiosRequestConfig, AxiosResponse } from "axios";
 import { NIN01World } from "../worlds/NIN01World";
+import { V2MiningOperation } from 'neocom-domain';
 
 // setWorldConstructor(NIN01World)
 
