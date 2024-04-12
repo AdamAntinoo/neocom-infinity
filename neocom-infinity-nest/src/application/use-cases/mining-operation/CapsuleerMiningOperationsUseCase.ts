@@ -20,8 +20,7 @@ declare namespace CapsuleerMiningOperationsUseCase {
 
 @Injectable()
 export class CapsuleerMiningOperationsUseCase {
-    constructor(private readonly dataServices: ESIDataServicesPort,
-        private readonly halGenerator: ESISecureDataServiceHALGeneratorAdapter) { }
+    constructor(private readonly dataServices: ESIDataServicesPort) { }
 
     public async getMiningOperations(input: MiningOperationsUseCaseInput): Promise<V1MiningOperationDto[]> {
         const esiMiningOperations: GetCharactersCharacterIdMining200Ok[] = await this.dataServices.miningOperations.getMiningOperations(
@@ -34,17 +33,14 @@ export class CapsuleerMiningOperationsUseCase {
             const transformedOperations: V1MiningOperationDto[] = []
             esiMiningOperations.forEach((miningAction: GetCharactersCharacterIdMining200Ok) => {
                 // - find the operation where to store the mining action.
-                console.log('transformed size->' + transformedOperations.length)
                 const operationOptional: Optional<V1MiningOperationDto> = this.findOperation(miningAction, transformedOperations)
                 if (operationOptional.isPresent()) {
-                    console.log('operation found')
                     operationOptional.get().addMiningResource(new MiningOperationConverter<GetCharactersCharacterIdMining200Ok, V1MiningResourceDto>()
                         .convert(miningAction)
                     )
                 }
                 else {
                     // - add new Mining Operation
-                    console.log('not found>adding->' + this.generateIdentifierForMiningAction(miningAction))
                     const addition: V1MiningOperationDto = new V1MiningOperationDto.Builder()
                         .withId(this.generateIdentifierForMiningAction(miningAction))
                         .withDate(miningAction.date)
@@ -62,7 +58,6 @@ export class CapsuleerMiningOperationsUseCase {
     }
     private findOperation(miningAction: GetCharactersCharacterIdMining200Ok, operationsList: V1MiningOperationDto[]): Optional<V1MiningOperationDto> {
         for (var operation of operationsList) {
-            // operationsList.forEach((operation: V1MiningOperationDto) => {
             const newIdentifier: string = this.generateIdentifierForMiningAction(miningAction)
             if (newIdentifier === operation.id)
                 return Optional.of(operation)

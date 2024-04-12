@@ -1,6 +1,5 @@
 import { Controller, Get, Param } from "@nestjs/common";
 import { JwtService } from '@nestjs/jwt';
-import { V2MiningOperation } from 'neocom-domain'
 import { Cookies } from "@Infra/network/cookie.decorator";
 import { CapsuleerMiningOperationsUseCase } from 'application/use-cases/mining-operation/CapsuleerMiningOperationsUseCase';
 import { EsiSecureApi } from '@Infra/api/esiSecure.api';
@@ -17,7 +16,6 @@ export class V1MiningOperationsController implements EsiSecureApi {
 
     @Get('miningoperations')
     public async getMiningOperations(@Cookies('Authentication') token: string): Promise<V1MiningOperationDto[]> {
-        console.log('token->' + token)
         return this.getCapsuleerMiningOperationsUseCase.getMiningOperations(
             new MiningOperationsUseCaseInputConstructor().construct(token,
                 new AuthenticationTokenValidator(this.jwtService).validate(token)

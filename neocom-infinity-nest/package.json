@@ -11,10 +11,9 @@
     "test:watch": "jest --watch",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "jest": "jest --verbose",
+    "jest": "jest",
     "coverage": "jest --verbose --coverage",
     "test:full": "npm run jest && npm run cucumber",
-    "test:cov": "jest --verbose --coverage",
     "package": "npm run build",
     "start:debug": "nest start --debug --watch",
     "start:stage": "NODE_ENV=stage nest start",
@@ -31,7 +30,8 @@
     "cucumber": "./node_modules/@cucumber/cucumber/bin/cucumber-js ./test/**/*.feature --no-strict --require-module ts-node/register --require-module tsconfig-paths/register --require ./test/acceptance/steps/**/*.ts",
     "acc:nin01": "./node_modules/@cucumber/cucumber/bin/cucumber-js ./test/**/*.feature --no-strict --require-module ts-node/register --require-module tsconfig-paths/register --require ./test/acceptance/steps/**/*.ts --tags @NIN01",
     "acc:nin02": "./node_modules/@cucumber/cucumber/bin/cucumber-js ./test/**/*.feature --no-strict --require-module ts-node/register --require-module tsconfig-paths/register --require ./test/acceptance/steps/**/*.ts --tags @NIN02",
-    "test": "jest --verbose"
+    "test": "jest --verbose",
+    "test:cov": "jest --verbose --coverage"
   },
   "dependencies": {
     "@nestjs/axios": "^3.0.2",
@@ -82,7 +82,7 @@
       "json",
       "ts"
     ],
-    "rootDir": ".",
+    "rootDir": "src",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
     },
@@ -96,11 +96,15 @@
       "**/*.spec.ts"
     ],
     "moduleNameMapper": {
-      "^@App/(.*)$": "<rootDir>/src/application/$1",
-      "^@Domain/(.*)$": "<rootDir>/src/domain/$1",
-      "^@Infra/(.*)$": "<rootDir>/src/infrastructure/$1"
+      "^@App/(.*)$": "<rootDir>/application/$1",
+      "^@Domain/(.*)$": "<rootDir>/domain/$1",
+      "^@Infra/(.*)$": "<rootDir>/infrastructure/$1"
     },
-    "collectCoverage": false,
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
+    "collectCoverage": true,
     "coverageReporters": [
       "json",
       "lcov",

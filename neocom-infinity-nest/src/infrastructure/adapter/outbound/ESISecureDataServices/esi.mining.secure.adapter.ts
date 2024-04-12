@@ -2,19 +2,13 @@ import { ConfigService } from "@nestjs/config"
 import { HttpService } from "@nestjs/axios"
 import { AxiosHeaders, AxiosRequestConfig, AxiosResponse } from "axios"
 import { lastValueFrom, map } from "rxjs"
-import { MiningOperationConverter } from "./converter/MiningOperationConverter"
-import { IESIMiningOperation } from "./domain/IESIMiningOperation.interface"
-import { ESISecureDataServiceHALGeneratorAdapter } from "./esi.securedataservice.halgenerator.adapter"
-import { TypedResponseTransformer, V2MiningOperation } from "neocom-domain"
 import { IEsiMiningSecureService } from "application/ports/IEsiMiningSecureService.port"
-import { EsiMining } from "application/use-cases/mining-operation/EsiMining"
-import { EsiToken } from "@Infra/adapter/inbound/EsiToken.interface"
 import { GetCharactersCharacterIdMining200Ok } from "application/domain/esi-model/models"
+import { V1MiningOperationDto } from "neocom-domain/dto/V1MiningOperationDto.dto"
 
 export class ESIMiningSecureService implements IEsiMiningSecureService<GetCharactersCharacterIdMining200Ok>{
     constructor(
         private readonly httpService: HttpService,
-        private readonly halGenerator: ESISecureDataServiceHALGeneratorAdapter,
         private readonly configuration: ConfigService
     ) { }
 
@@ -30,13 +24,10 @@ export class ESIMiningSecureService implements IEsiMiningSecureService<GetCharac
             headers: headers
         }
 
-        return await lastValueFrom(this.httpService.get<V2MiningOperation[]>(request, config)
+        return await lastValueFrom(this.httpService.get<V1MiningOperationDto[]>(request, config)
             .pipe(map((axiosResponse: AxiosResponse) => {
                 return axiosResponse.data as GetCharactersCharacterIdMining200Ok[]
             }))
         )
-    }
-    private generateAuthorization(token: EsiToken): string {
-        return 'Bearer ' + token
     }
 }

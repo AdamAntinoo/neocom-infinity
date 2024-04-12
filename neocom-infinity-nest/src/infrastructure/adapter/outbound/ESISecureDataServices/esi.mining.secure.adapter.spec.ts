@@ -1,18 +1,21 @@
 import { HttpService } from '@nestjs/axios';
-import { Test, TestingModule } from '@nestjs/testing'
+import { Test } from '@nestjs/testing'
 import { Observable } from 'rxjs';
-import { EsiMiningAdapter } from './esi.mining.secure.adapter';
-import { V2MiningOperation } from '@Domain/entities/V2.MiningOperation';
-import { ESISecureDataServiceHALGeneratorAdapter } from './esi.securedataservice.halgenerator.adapter';
+import { ESIMiningSecureService } from './esi.mining.secure.adapter';
+import { GetCharactersCharacterIdMining200Ok } from 'application/domain/esi-model/getCharactersCharacterIdMining200Ok';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { IEsiMiningSecureService } from 'application/ports/IEsiMiningSecureService.port';
 
-describe('SERVICE EsiMiningAdapter [Module: Infrastructure.service]', () => {
-    let esiAdapter: EsiMiningAdapter
+describe('SERVICE ESIMiningSecureService [Module: Infrastructure.service]', () => {
+    let httpService: HttpService
+    let configure: ConfigService
+    let esiSecureService: ESIMiningSecureService
 
     beforeEach(async () => {
         const moduleRef = await Test.createTestingModule({
             providers: [
-                { provide: EsiMiningAdapter, useClass: EsiMiningAdapter },
-                { provide: ESISecureDataServiceHALGeneratorAdapter, useClass: ESISecureDataServiceHALGeneratorAdapter },
+                ConfigService,
+                { provide: IEsiMiningSecureService, useClass: ESIMiningSecureService },
                 {
                     provide: HttpService, useValue: {
                         get: (request: string) => {
@@ -36,30 +39,30 @@ describe('SERVICE EsiMiningAdapter [Module: Infrastructure.service]', () => {
             ],
         }).compile()
 
-        esiAdapter = await moduleRef.resolve(EsiMiningAdapter);
+        httpService = moduleRef.get<HttpService>(HttpService)
+        configure = moduleRef.get<ConfigService>(ConfigService)
+        esiSecureService = new ESIMiningSecureService(httpService, configure)
     })
 
-    describe('constructor contract', () => {
+    describe('constructor contract phase', () => {
         test('should be created', () => {
-            expect(esiAdapter).toBeDefined()
+            expect(esiSecureService).toBeDefined()
         })
     })
-    describe('functionality', () => {
-        test('when the endpoint is called then we get a mining operation', () => {
+    describe('functionality phase ', () => {
+        test('when the endpoint is called then we get a list of mining actions', () => {
             const pilotId: number = 321
-            const sut: Promise<V2MiningOperation[]> = esiAdapter.miningOperations.getMiningOperations(pilotId)
+            const token: string = ''
+            const sut: Promise<GetCharactersCharacterIdMining200Ok[]> = esiSecureService.getMiningOperations(pilotId, token)
             expect(sut).toBeDefined()
             sut.then(data => {
                 expect(data.length).toBe(1)
-                expect(data[0] instanceof V2MiningOperation)
                 const operation = data[0]
                 console.log('operation->' + JSON.stringify(operation))
-                expect(operation.jsonClass).toBe('MiningOperation')
-                expect(operation.id).toBe('2024-02-23-30003541-17453')
                 expect(operation.date).toBe('2024-02-23')
                 expect(operation.quantity).toBe(210)
-                expect(operation.solarSystem).toBe('https://esi.evetech.net/latest/universe/systems/' + '30003541' + '/?datasource=tranquility&language=en')
-                expect(operation.typeId).toBe('https://esi.evetech.net/latest/universe/types/' + '17453' + '/?datasource=tranquility&language=en')
+                expect(operation.solar_system_id).toEqual(30003541)
+                expect(operation.type_id).toEqual(17453)
             })
         })
     })

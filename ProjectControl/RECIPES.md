@@ -10,3 +10,4 @@ docker run --name teamcity-server-instance  \
 minikube service -n neocom nif-svc --url
 
 # Generate Node sources from OpenApi specification
+openapi-generator-cli generate -g typescript-nestjs -i esi.openapi.json

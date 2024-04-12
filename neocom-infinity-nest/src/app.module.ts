@@ -40,7 +40,6 @@ const ENV = process.env.NODE_ENV
         ConfigService,
         { provide: ESIDataServicesPort, useClass: ESISecureDataServicesAdapter },
         { provide: IEsiMiningSecureService, useClass: ESIMiningSecureService },
-        // { provide: AuthenticationServicesPort, useClass: AuthenticationServicesAdapter },
         { provide: CapsuleerMiningOperationsUseCase, useClass: CapsuleerMiningOperationsUseCase },
         { provide: ESISecureDataServiceHALGeneratorAdapter, useClass: ESISecureDataServiceHALGeneratorAdapter }
     ],

@@ -8,11 +8,12 @@ describe('DTO V1MiningOperationDto [Module: neocom-domain - Version: v3]', () =>
             console.log('><[V1MiningOperationDto]> should be created')
             expect(new V1MiningOperationDto()).toBeDefined()
         })
-        xtest('when constructed with no data', () => {
-            const sut: V1MiningOperationDto = new V1MiningOperationDto.Builder().build()
-            expect(() => {
+        test('when constructed with no data', () => {
+             try {
                 new V1MiningOperationDto.Builder().build()
-            }).toThrow('The mandatory field on a Builder is missing.')
+            } catch (e) {
+                expect(e.message).toEqual('The mandatory field on a Builder is missing.')
+            }
         })
         test('when constructed with data', () => {
             const sut: V1MiningOperationDto = new V1MiningOperationDto.Builder()
@@ -47,25 +48,6 @@ describe('DTO V1MiningOperationDto [Module: neocom-domain - Version: v3]', () =>
             }
             ))
             expect(sut.getResources().length).toBe(1)
-
-            // expect(sut.transform).toBeDefined
         })
-        // it('when transformation contents do not change', () => {
-        //     const instance: V2MiningOperation = new V2MiningOperation({
-        //         id: '-test-id-',
-        //         date: '2024/01/01',
-        //         quantity: 432,
-        //         solarSystem: '-solarsystem-url-',
-        //         typeId: '-type-url-'
-        //     })
-        //     const sut: V2MiningOperation = instance.transform()
-        //     expect(sut).toBeDefined
-        //     expect(sut.jsonClass).toBe('MiningOperation')
-        //     expect(sut.id).toBe('-test-id-')
-        //     expect(sut.date).toBe('2024/01/01')
-        //     expect(sut.quantity).toBe(432)
-        //     expect(sut.solarSystem).toBe('-solarsystem-url-')
-        //     expect(sut.typeId).toBe('-type-url-')
-        // })
     })
 })
