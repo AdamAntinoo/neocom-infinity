@@ -23,7 +23,8 @@ export class CapsuleerMiningOperationsUseCase {
     constructor(private readonly dataServices: ESIDataServicesPort) { }
 
     public async getMiningOperations(input: MiningOperationsUseCaseInput): Promise<V1MiningOperationDto[]> {
-        const esiMiningOperations: GetCharactersCharacterIdMining200Ok[] = await this.dataServices.miningOperations.getMiningOperations(
+        const esiMiningOperations: GetCharactersCharacterIdMining200Ok[] = await this.
+        dataServices.miningOperations.getMiningOperations(
             input.capsuleerId, input.jwt
         )
         return this.aggregateMiningOperations(esiMiningOperations)

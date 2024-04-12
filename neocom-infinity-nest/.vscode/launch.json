@@ -17,7 +17,7 @@
         "--require",
         "./test/acceptance/steps/**/*.ts",
         "--tags",
-        "@NIN01.02"
+        "@NIN01.04"
       ]
     },
     {

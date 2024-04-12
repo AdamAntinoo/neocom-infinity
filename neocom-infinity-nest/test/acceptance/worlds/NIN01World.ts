@@ -24,8 +24,9 @@ export class NIN01World extends World {
     public characterId: number
     public controller: V1MiningOperationsController
     public miningActionsResponse: GetCharactersCharacterIdMining200Ok[]
-    public miningOperationsResponse : V1MiningOperationDto[]
+    public miningOperationsResponse: V1MiningOperationDto[]
     public esiMiningSecureService: ESIMiningSecureService
+    public targetMiningOperation: V1MiningOperationDto
     // NIN02
     public authenticationService: AuthenticationServicesAdapter
     public token: any
@@ -47,6 +48,6 @@ export class NIN01World extends World {
         this.configuration = this.appModule.get(ConfigService)
 
         this.controller = this.appModule.get(V1MiningOperationsController)
-        this.esiMiningSecureService = new ESIMiningSecureService(this.httpService, this.halGenerator, this.configuration)
+        this.esiMiningSecureService = new ESIMiningSecureService(this.httpService, this.configuration)
     }
 }

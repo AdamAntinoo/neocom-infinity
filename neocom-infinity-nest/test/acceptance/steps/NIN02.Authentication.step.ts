@@ -6,12 +6,6 @@ import { AxiosHeaders, AxiosRequestConfig, AxiosResponse } from "axios";
 import { NIN01World } from "../worlds/NIN01World";
 import { V2MiningOperation } from 'neocom-domain';
 
-// setWorldConstructor(NIN01World)
-
-// Before(async function (scenario) {
-//     await this.init(scenario)
-// })
-
 When('the endpoint {string} is activated from request', async function (this: NIN01World, endpoint: string) {
     expect(this.httpService).toBeDefined
     expect(this.characterId).toBeDefined
@@ -33,7 +27,6 @@ When('the endpoint {string} is activated from request', async function (this: NI
         }))
     )
     expect(sut).toBeDefined
-    // console.log(sut)
     console.log('step.03')
     return sut.then(data => {
         console.log('step.04')

@@ -16,8 +16,8 @@ export class MiningOperationConverter<S, D> implements IConverter<GetCharactersC
             id: this.miningResourceUniqueIdGenerator(source),
             date: source.date,
             quantity: source.quantity,
-            solarSystem: solarSystem,
-            typeId: type
+            solarSystemLink: solarSystem,
+            typeLink: type
         })
     }
     public getSystemLink(systemId: number): string {

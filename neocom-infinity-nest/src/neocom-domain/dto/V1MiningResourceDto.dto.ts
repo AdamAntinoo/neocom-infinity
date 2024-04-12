@@ -5,6 +5,6 @@ export class V1MiningResourceDto extends Record {
     id: string
     date: string
     quantity: number
-    solarSystem: string
-    typeId: string
+    solarSystemLink: string
+    typeLink: number
 }

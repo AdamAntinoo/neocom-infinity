@@ -3,6 +3,7 @@ import { expect } from 'expect';
 import { NIN01World } from '../worlds/NIN01World';
 import { GetCharactersCharacterIdMining200Ok } from 'application/domain/esi-model/getCharactersCharacterIdMining200Ok';
 import { V1MiningOperationDto } from 'neocom-domain/dto/V1MiningOperationDto.dto';
+import { V1MiningResourceDto } from 'neocom-domain/dto/V1MiningResourceDto.dto';
 
 Then('the esi response has {int} items', function (this: NIN01World, size: number) {
     expect(this.miningActionsResponse).toBeDefined()
@@ -31,7 +32,25 @@ Then('the Mined Resources record at position {int} has next contents', function 
     expect(row).toBeDefined
     validateEsiMiningOperation(row, this.miningActionsResponse[position - 1])
 })
-
+Then('the MiningOperation record at position {int} is the target', function (this: NIN01World, position: number) {
+    const target: V1MiningOperationDto = this.miningOperationsResponse[position - 1]
+    expect(target).toBeDefined()
+    this.targetMiningOperation = target
+})
+Then('the MiningOperation has {int} resources', function (this: NIN01World, resourceCount: number) {
+    expect(this.targetMiningOperation).toBeDefined()
+    expect(this.targetMiningOperation.getResources()).toBeDefined()
+    expect(this.targetMiningOperation.getResources().length).toBe(resourceCount)
+})
+Then('the MiningResource at position {int} has next contents', function (this: NIN01World, position: number, dataTable) {
+    const row = dataTable.hashes()[position - 1]
+    expect(row).toBeDefined
+    expect(this.targetMiningOperation).toBeDefined()
+    expect(this.targetMiningOperation.getResources()).toBeDefined()
+    const resource: V1MiningResourceDto = this.targetMiningOperation.getResources()[position - 1]
+    expect(resource).toBeDefined()
+    expect(validateMiningResource(row, resource)).toBeTruthy()
+})
 // ------------
 
 function validateMiningOperation(row: any, operation: V1MiningOperationDto): boolean {
@@ -43,10 +62,17 @@ function validateMiningOperation(row: any, operation: V1MiningOperationDto): boo
     return true
 }
 function validateEsiMiningOperation(row: any, operation: GetCharactersCharacterIdMining200Ok): boolean {
-    // expect(row['jsonClass']).toBe(operation.jsonClass)
     expect(row['date']).toBe(operation.date)
     expect(row['quantity']).toBe(operation.quantity)
     expect(row['solarSystem']).toBe(operation.solar_system_id)
     expect(row['typeId']).toBe(operation.type_id)
+    return true
+}
+function validateMiningResource(row: any, resource: V1MiningResourceDto): boolean {
+    expect(row['id']).toBe(resource.id)
+    expect(row['date']).toBe(resource.date)
+    expect(Number(row['quantity'])).toBe(resource.quantity)
+    expect(row['solarSystemId']).toBe(resource.solarSystemLink)
+    expect(row['typeId']).toBe(resource.typeLink)
     return true
 }
