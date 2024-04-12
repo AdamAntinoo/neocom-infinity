@@ -5,6 +5,9 @@ docker run --name teamcity-server-instance  \
     -p 8111:8111 \
     jetbrains/teamcity-server
 
-# Docker / Kebernetes / Minikube
+# Docker / Kubernetes / Minikube
 ## Get the URL where to access a service
 minikube service -n neocom nif-svc --url
+
+# Generate Node sources from OpenApi specification
+openapi-generator-cli generate -g typescript-nestjs -i esi.openapi.json

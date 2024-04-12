@@ -19,8 +19,9 @@ async function bootstrap() {
     const filename = process.env.BANNER
     fs.readFile(filename, 'utf8', function (err, data) {
         if (err) throw err
-        console.log("Nest JS Server version: vtobedef")
+        console.log("Nest JS Server version: " + START_GREEN + "10.3.2" + END_BOLD)
         console.log("Running environment: " + START_YELLOW + process.env.NODE_ENV + END_BOLD)
+        console.log("Version: " + START_YELLOW + process.env.VERSION + END_BOLD)
         console.log("Listening on port: " + START_YELLOW + port + END_BOLD)
         console.log("Backend URL path: " + START_GREEN + backendproxy + END_BOLD)
 

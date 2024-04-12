@@ -12,7 +12,9 @@ import { JwtModule } from '@nestjs/jwt';
 import { AuthenticationServicesPort } from 'application/ports/AuthenticationServices.port';
 import { ESIDataServicesPort } from 'application/ports/EsiDataServices.port';
 import { CapsuleerMiningOperationsUseCase } from 'application/use-cases/mining-operation/CapsuleerMiningOperationsUseCase';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ESIMiningSecureService } from '@Infra/adapter/outbound/ESISecureDataServices/esi.mining.secure.adapter';
+import { IEsiMiningSecureService } from 'application/ports/IEsiMiningSecureService.port';
 
 const ENV = process.env.NODE_ENV
 
@@ -35,8 +37,9 @@ const ENV = process.env.NODE_ENV
     providers: [
         AppService, SchedulerRegistry,
         LoggerMiddleware,
+        ConfigService,
         { provide: ESIDataServicesPort, useClass: ESISecureDataServicesAdapter },
-        { provide: AuthenticationServicesPort, useClass: AuthenticationServicesAdapter },
+        { provide: IEsiMiningSecureService, useClass: ESIMiningSecureService },
         { provide: CapsuleerMiningOperationsUseCase, useClass: CapsuleerMiningOperationsUseCase },
         { provide: ESISecureDataServiceHALGeneratorAdapter, useClass: ESISecureDataServiceHALGeneratorAdapter }
     ],
