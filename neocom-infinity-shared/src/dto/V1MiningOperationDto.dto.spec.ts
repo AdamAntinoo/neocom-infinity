@@ -9,9 +9,9 @@ describe('DTO V1MiningOperationDto [Module: neocom-domain - Version: v3]', () =>
             expect(new V1MiningOperationDto()).toBeDefined()
         })
         test('when constructed with no data', () => {
-             try {
+            try {
                 new V1MiningOperationDto.Builder().build()
-            } catch (e) {
+            } catch (e: any) {
                 expect(e.message).toEqual('The mandatory field on a Builder is missing.')
             }
         })

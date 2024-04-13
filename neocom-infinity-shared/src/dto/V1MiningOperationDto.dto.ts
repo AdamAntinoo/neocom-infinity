@@ -1,12 +1,12 @@
-import { MANDATORY_FIELD_MISSING } from "../../application/domain/NeoComErrorCatalog"
-import { NeoComError } from "../../application/domain/NeocomError"
+import { MANDATORY_FIELD_MISSING } from "../exceptions/NeoComSharedErrorCatalog"
+import { NeoComError } from "../exceptions/NeoComError"
 import { V1MiningResourceDto } from "./V1MiningResourceDto.dto"
 
 export class V1MiningOperationDto {
     public jsonClass: string = 'MiningOperationDto'
-    public id: string
-    public date: string
-    public solarSystemId: number
+    public id?: string
+    public date?: string
+    public solarSystemId?: number
     private resources: V1MiningResourceDto[] = []
 
     constructor(fields: object = {}) {
@@ -17,7 +17,7 @@ export class V1MiningOperationDto {
         console.log('transform->no need transformation')
         return this
     }
-    public getResources ():V1MiningResourceDto[]{
+    public getResources(): V1MiningResourceDto[] {
         return this.resources
     }
     public addMiningResource(miningResource: V1MiningResourceDto): V1MiningOperationDto {
