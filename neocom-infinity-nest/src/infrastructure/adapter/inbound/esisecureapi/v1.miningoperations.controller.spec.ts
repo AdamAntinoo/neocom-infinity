@@ -1,17 +1,17 @@
-import { Test, TestingModule } from '@nestjs/testing';
+import { Test } from '@nestjs/testing';
 import { V1MiningOperationsController } from './v1.miningoperations.controller';
 import { CapsuleerMiningOperationsUseCase, MiningOperationsUseCaseInput } from 'application/use-cases/mining-operation/CapsuleerMiningOperationsUseCase';
 import { JwtService } from '@nestjs/jwt';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from 'app.module';
-import { V1MiningOperationDto } from 'neocom-domain/dto/V1MiningOperationDto.dto';
+import { V1MiningOperationDto } from 'neocom-domain/';
 import { ESIDataServicesPort } from 'application/ports/EsiDataServices.port';
 import { ESISecureDataServicesAdapter } from '@Infra/adapter/outbound/ESISecureDataServices/esi.securedataservices.adapter';
 import { ESISecureDataServiceHALGeneratorAdapter } from '@Infra/adapter/outbound/ESISecureDataServices/esi.securedataservice.halgenerator.adapter';
 import { ConfigService } from '@nestjs/config';
 import { IEsiMiningSecureService } from 'application/ports/IEsiMiningSecureService.port';
 import { ESIMiningSecureService } from '@Infra/adapter/outbound/ESISecureDataServices/esi.mining.secure.adapter';
-import { HttpModule, HttpService } from '@nestjs/axios';
+import { HttpModule } from '@nestjs/axios';
 
 describe('CONTROLLER V1MiningOperationsController [Module: Infrastructure.Adapters]', () => {
     let appModule: any

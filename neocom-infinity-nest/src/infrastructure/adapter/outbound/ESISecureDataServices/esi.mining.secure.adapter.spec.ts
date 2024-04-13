@@ -3,7 +3,7 @@ import { Test } from '@nestjs/testing'
 import { Observable } from 'rxjs';
 import { ESIMiningSecureService } from './esi.mining.secure.adapter';
 import { GetCharactersCharacterIdMining200Ok } from 'application/domain/esi-model/getCharactersCharacterIdMining200Ok';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import {  ConfigService } from '@nestjs/config';
 import { IEsiMiningSecureService } from 'application/ports/IEsiMiningSecureService.port';
 
 describe('SERVICE ESIMiningSecureService [Module: Infrastructure.service]', () => {

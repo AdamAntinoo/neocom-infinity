@@ -29,9 +29,9 @@ const ENV = process.env.NODE_ENV
             envFilePath: !ENV ? '.env' : `.env.${ENV}`
         })
     ],
-    controllers: [ V1MiningOperationsController],
+    controllers: [V1MiningOperationsController],
     providers: [
-        , SchedulerRegistry,
+        SchedulerRegistry,
         LoggerMiddleware,
         ConfigService,
         { provide: ESIDataServicesPort, useClass: ESISecureDataServicesAdapter },

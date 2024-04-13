@@ -2,8 +2,8 @@ import { Before, Given, Then, When, setWorldConstructor } from '@cucumber/cucumb
 import { expect } from 'expect';
 import { NIN01World } from '../worlds/NIN01World';
 import { GetCharactersCharacterIdMining200Ok } from 'application/domain/esi-model/getCharactersCharacterIdMining200Ok';
-import { V1MiningOperationDto } from 'neocom-domain/dto/V1MiningOperationDto.dto';
-import { V1MiningResourceDto } from 'neocom-domain/dto/V1MiningResourceDto.dto';
+import { V1MiningOperationDto } from 'neocom-domain';
+import { V1MiningResourceDto } from 'neocom-domain';
 
 Then('the esi response has {int} items', function (this: NIN01World, size: number) {
     expect(this.miningActionsResponse).toBeDefined()
