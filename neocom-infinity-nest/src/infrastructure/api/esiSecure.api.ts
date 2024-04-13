@@ -1,5 +1,5 @@
-import { V2MiningOperation } from "neocom-domain"
+import { V1MiningOperationDto } from "neocom-domain"
 
 export interface EsiSecureApi {
-    getMiningOperations(token: string): Promise<V2MiningOperation[]>
+    getMiningOperations(token: string): Promise<V1MiningOperationDto[]>
 }

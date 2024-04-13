@@ -1,6 +1,6 @@
 import { JwtService } from "@nestjs/jwt"
-import { TOKEN_INVALID, TOKEN_NOT_PRESENT } from "application/domain/NeoComErrorCatalog"
-import { NeoComError } from "application/domain/NeocomError"
+import { TOKEN_INVALID, TOKEN_NOT_PRESENT } from "neocom-domain"
+import { NeoComError } from "neocom-domain"
 import { EsiToken } from "../EsiToken.interface"
 
 export class AuthenticationTokenValidator {

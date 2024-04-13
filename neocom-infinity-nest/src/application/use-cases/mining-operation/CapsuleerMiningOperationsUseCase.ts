@@ -1,13 +1,11 @@
 import { EsiToken } from "@Infra/adapter/inbound/EsiToken.interface";
-import { ESISecureDataServiceHALGeneratorAdapter } from "@Infra/adapter/outbound/ESISecureDataServices/esi.securedataservice.halgenerator.adapter";
 import { Injectable } from "@nestjs/common";
-import { V1MiningOperationDto } from "neocom-domain/dto/V1MiningOperationDto.dto";
+import { V1MiningOperationDto } from "neocom-domain";
 import { GetCharactersCharacterIdMining200Ok } from "application/domain/esi-model/models";
 import { ESIDataServicesPort } from "application/ports/EsiDataServices.port";
 import { Optional } from "typescript-optional";
-import { V1MiningResourceDto } from "neocom-domain/dto/V1MiningResourceDto.dto";
+import { V1MiningResourceDto } from "neocom-domain";
 import { MiningOperationConverter } from "@Infra/adapter/outbound/ESISecureDataServices/converter/MiningOperationConverter";
-import { transformSync } from "@babel/core";
 
 export interface MiningOperationsUseCaseInput {
     jwt: string // Original encoded token to be passed to ESI

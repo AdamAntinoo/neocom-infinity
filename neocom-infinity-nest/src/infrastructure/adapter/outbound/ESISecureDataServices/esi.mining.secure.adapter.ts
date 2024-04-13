@@ -4,7 +4,7 @@ import { AxiosHeaders, AxiosRequestConfig, AxiosResponse } from "axios"
 import { lastValueFrom, map } from "rxjs"
 import { IEsiMiningSecureService } from "application/ports/IEsiMiningSecureService.port"
 import { GetCharactersCharacterIdMining200Ok } from "application/domain/esi-model/models"
-import { V1MiningOperationDto } from "neocom-domain/dto/V1MiningOperationDto.dto"
+import { V1MiningOperationDto } from "neocom-domain"
 
 export class ESIMiningSecureService implements IEsiMiningSecureService<GetCharactersCharacterIdMining200Ok>{
     constructor(

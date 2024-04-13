@@ -1,6 +1,6 @@
 import { IConverter } from "neocom-domain/dist/converter/IConverter.interface"
 import { GetCharactersCharacterIdMining200Ok } from "application/domain/esi-model/models"
-import { V1MiningResourceDto } from "neocom-domain/dto/V1MiningResourceDto.dto"
+import { V1MiningResourceDto } from "neocom-domain"
 
 export class MiningOperationConverter<S, D> implements IConverter<GetCharactersCharacterIdMining200Ok, V1MiningResourceDto>{
     public convert(source: GetCharactersCharacterIdMining200Ok): V1MiningResourceDto {
