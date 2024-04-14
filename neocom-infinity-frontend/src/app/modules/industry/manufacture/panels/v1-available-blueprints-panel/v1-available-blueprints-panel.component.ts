@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs'
 // - DOMAIN
 import { AppPanelComponent } from '@innovative/components/app-panel/app-panel.component'
 import { IRefreshable } from '@innovative/domain/interfaces/IRefreshable.interface'
-import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer'
+import { ResponseTransformer } from 'neocom-domain/ResponseTransformer'
 import { NCVariant } from '@env/NeoComVariants'
 import { IsolationService } from '@innovative/services/isolation.service'
 import { IndustryService } from '@app/modules/industry/service/IndustryService.service'

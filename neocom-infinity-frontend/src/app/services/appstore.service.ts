@@ -21,7 +21,7 @@ import { Pilot } from '@app/domain/Pilot.domain';
 import { Fitting } from '@app/domain/Fitting.domain';
 import { AppCoreStoreService } from '@innovative/services/AppCoreStoreService.service';
 import { BackendHttpWrapper } from './backend.httpwrapper';
-import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer';
+import { ResponseTransformer } from 'neocom-domain/ResponseTransformer';
 import { PlatformConstants } from '@env/PlatformConstants';
 import { ExceptionCodes } from '@app/platform/ExceptionCodes';
 import { NeoComCredential } from '@domain/NeoComCredential.domain';

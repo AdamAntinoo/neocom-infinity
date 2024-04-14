@@ -1,5 +1,5 @@
 import { Observable } from "rxjs";
-import { TypedRequest } from "./TypedRequest";
+import { TypedRequest } from "../../../neocom-domain/TypedRequest";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 

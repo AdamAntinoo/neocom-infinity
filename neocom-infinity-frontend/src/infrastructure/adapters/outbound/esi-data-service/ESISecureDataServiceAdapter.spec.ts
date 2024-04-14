@@ -6,7 +6,7 @@ import { TestBed } from "@angular/core/testing"
 
 import { ESISecureDataServiceAdapter } from './ESISecureDataServiceAdapter'
 import { ESIMiningOperation } from './domain/ESIMiningOperation'
-import { ConfigurationAdapter } from '../../inbound/configuration/ConfigurationAdapter'
+import { ConfigurationAdapter } from '../configuration/ConfigurationAdapter'
 
 xdescribe('ADAPTER ESISecureDataServiceAdapter [Module: Infra]', () => {
     let service: ESISecureDataServiceAdapter

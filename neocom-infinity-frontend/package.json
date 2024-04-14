@@ -57,7 +57,7 @@
     "@angular/platform-browser-dynamic": "13.4.0",
     "@angular/router": "13.4.0",
     "@swimlane/ngx-charts": "20.0.0",
-    "neocom-domain": "0.2.4",
+    "neocom-domain": "0.2.5",
     "config": "3.3.1",
     "express": "4.17.1",
     "express-http-proxy": "1.6.0",

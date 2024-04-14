@@ -9,7 +9,7 @@ import { AppPanelComponent } from '@innovative/components/app-panel/app-panel.co
 import { IRefreshable } from '@innovative/domain/interfaces/IRefreshable.interface';
 import { PlatformConstants } from '@env/PlatformConstants';
 import { PlanetaryDataService } from '../../service/PlanetaryData.service';
-import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer';
+import { ResponseTransformer } from 'neocom-domain/ResponseTransformer';
 import { KnownSystem } from '@domain/planetary/KnownSystem.domain';
 import { environment } from '@env/environment';
 import { HttpErrorResponse } from '@angular/common/http';

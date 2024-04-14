@@ -19,7 +19,7 @@ import { Credential } from '@domain/core/Credential.domain';
 import { Corporation } from '@app/domain/Corporation.domain';
 import { Pilot } from '@app/domain/Pilot.domain';
 import { CorporationDataResponse } from '@app/domain/dto/CorporationDataResponse.dto';
-import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer';
+import { ResponseTransformer } from 'neocom-domain/ResponseTransformer';
 import { Fitting } from '@domain/Fitting.domain';
 import { IsolationService } from '@innovative/services/isolation.service';
 import { NeoComCredential } from '@domain/NeoComCredential.domain';
@@ -31,7 +31,7 @@ import { ExceptionCodes } from '@app/platform/ExceptionCodes';
     providedIn: 'root'
 })
 export class SupportAppStoreService {
-    private currentPilotId:number
+    private currentPilotId: number
     private credential: Credential;
     private corporationActiveCache: Subject<Corporation | Corporation[]> = new Subject();
     private pilotActiveCache: Subject<Pilot | Pilot[]> = new Subject();
@@ -55,7 +55,7 @@ export class SupportAppStoreService {
     public getPilotId(): number {
         return this.currentPilotId
     }
-    public setPilotId( newId:number) : void{
+    public setPilotId(newId: number): void {
         this.currentPilotId = newId
     }
     private getCredential(): NeoComCredential {

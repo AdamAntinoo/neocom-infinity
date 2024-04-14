@@ -10,7 +10,7 @@ import { BackendHttpWrapper } from '@app/services/backend.httpwrapper'
 import { GeneratedResource } from '@domain/planetary/generated-resource'
 import { PlanetaryDataRecord } from '@domain/planetary/planetary-data-record'
 import { PlanetaryResource } from '@domain/planetary/planetary-resource'
-import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer'
+import { ResponseTransformer } from 'neocom-domain/ResponseTransformer'
 import { constants } from 'fs'
 import { NeoComFeature } from '@domain/ui/NeoComFeature.domain'
 import { KnownSystem } from '@domain/planetary/KnownSystem.domain'
@@ -491,7 +491,7 @@ export class PlanetaryDataService extends BackendService {
         for (const system of systems) {
             let regionHit: LookupRegion = regionsClassification.get(system.getRegion())
             if (null == regionHit) {
-                regionHit = new LookupRegion({name: system.getRegion()})
+                regionHit = new LookupRegion({ name: system.getRegion() })
                 regionsClassification.set(system.getRegion(), regionHit)
             }
             regionHit.addSystem(system)
@@ -568,7 +568,7 @@ export class PlanetaryDataService extends BackendService {
             }))
     }
 
-    // - D A T A   A C C E S S 
+    // - D A T A   A C C E S S
     // public accessLookupRegions(): Observable<LookupRegion[]> {
     //     if (!this.lookupDownloaded) this.readSolarSystemCatalog()
     //     return this.lookupRegions

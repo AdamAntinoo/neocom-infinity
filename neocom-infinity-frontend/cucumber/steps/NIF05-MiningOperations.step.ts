@@ -3,7 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { HttpClient, HttpClientModule, HttpErrorResponse } from '@angular/common/http'
 import { Observable } from "rxjs";
 
-import { ConfigurationAdapter } from "@infra/adapters/inbound/configuration/ConfigurationAdapter";
+import { ConfigurationAdapter } from "@infra/adapters/outbound/configuration/ConfigurationAdapter";
 import { ESISecureDataServiceAdapter } from "@infra/adapters/outbound/esi-data-service/ESISecureDataServiceAdapter";
 import { ESIMiningOperation } from "@infra/adapters/outbound/esi-data-service/domain/ESIMiningOperation";
 import { NeoComCredential } from "@domain/NeoComCredential.domain";
