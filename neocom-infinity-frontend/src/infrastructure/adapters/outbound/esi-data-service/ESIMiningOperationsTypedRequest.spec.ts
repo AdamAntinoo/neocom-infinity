@@ -1,6 +1,6 @@
 import { TestBed } from "@angular/core/testing"
 import { ESIMiningOperationsTypedRequest } from "./ESIMiningOperationsTypedRequest"
-import { ConfigurationAdapter } from "../../inbound/configuration/ConfigurationAdapter"
+import { ConfigurationAdapter } from "../configuration/ConfigurationAdapter"
 
 describe('DTO ESIMiningOperationsTypedRequest [Module: Network]', () => {
     let configuration: ConfigurationAdapter

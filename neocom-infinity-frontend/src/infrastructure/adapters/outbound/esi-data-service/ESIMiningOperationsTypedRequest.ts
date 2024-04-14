@@ -1,6 +1,5 @@
-import { ConfigurationPort } from "@app/ports/ConfigurationPort"
-import { TypedRequest } from "../../network/TypedRequest"
-import { ConfigurationAdapter } from "../../inbound/configuration/ConfigurationAdapter"
+import { TypedRequest } from "neocom-domain/TypedRequest"
+import { ConfigurationAdapter } from "../configuration/ConfigurationAdapter"
 import { HttpHeaders } from "@angular/common/http"
 
 
@@ -15,21 +14,14 @@ export class ESIMiningOperationsTypedRequest implements TypedRequest {
 
     constructor(private configuration: ConfigurationAdapter) {
         console.log('ESIMiningOperationsTypedRequest->' + JSON.stringify(configuration))
-        let newheaders = new HttpHeaders()
         this.options = {
-            // headers: new HttpHeaders({
-            //     'Accept': '*/*',
-            //     'Content-Type': 'application/json',
-            //     'Cache-Control':'no-cache'
-            // }),
-            // observe: 'response',
-            // responseType: 'json'
+            headers: new HttpHeaders()
         }
     }
 
-    public prepare(parameters: ESIMiningOperationsTypedRequest.Request) {
-        console.log('prepare->parameters->' + parameters)
-        this.request = this.configuration.getNestBackendHost() + '/characters/' + parameters + '/miningoperation'
+    public prepare(requestInput: ESIMiningOperationsTypedRequest.Request) {
+        console.log('prepare->parameters->' + requestInput)
+        this.request = this.configuration.getNestBackendHost() + '/characters/' + requestInput + '/miningoperation'
         return this
     }
 

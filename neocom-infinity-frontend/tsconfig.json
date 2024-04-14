@@ -44,6 +44,9 @@
       "@infra/*": [
         "src/infrastructure/*"
       ],
+      "neocom-domain/*": [
+        "src/neocom-domain/*"
+      ],
     },
   },
   "angularCompilerOptions": {
