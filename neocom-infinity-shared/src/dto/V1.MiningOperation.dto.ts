@@ -19,7 +19,6 @@ export class V1MiningOperationDto extends Record {
 
         constructor(fields: object = {}) {
             this.operation = new V1MiningOperationDto(fields)
-            if (undefined != this.operation.resources) this.operation.resources = []
         }
         public withId(id: string): Builder {
             if (undefined == id) throw new NeoComError.Builder(MANDATORY_FIELD_MISSING).build()
