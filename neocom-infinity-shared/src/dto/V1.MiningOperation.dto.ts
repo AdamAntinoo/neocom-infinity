@@ -1,7 +1,7 @@
 import { MANDATORY_FIELD_MISSING } from "../exceptions/NeoComSharedErrorCatalog"
 import { NeoComError } from "../exceptions/NeoComError"
 import { V1MiningResourceDto } from "./V1.MiningResource.dto"
-import { Record } from "../public-api"
+import { Record } from "../interfaces/Record.interface"
 
 export class V1MiningOperationDto extends Record {
     public override jsonClass: string = 'MiningOperationDto'
