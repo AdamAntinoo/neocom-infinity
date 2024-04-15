@@ -1,10 +1,10 @@
 import { expect } from 'expect';
-import { Before, Then, When, setWorldConstructor } from "@cucumber/cucumber";
+import { Before, Then, When } from "@cucumber/cucumber";
 import { Option } from "@sniptt/monads";
 import { lastValueFrom, map } from "rxjs";
 import { AxiosHeaders, AxiosRequestConfig, AxiosResponse } from "axios";
 import { NIN01World } from "../worlds/NIN01World";
-import { V2MiningOperation } from 'neocom-domain';
+import { V1MiningOperationDto } from 'neocom-domain';
 
 When('the endpoint {string} is activated from request', async function (this: NIN01World, endpoint: string) {
     expect(this.httpService).toBeDefined
@@ -19,7 +19,7 @@ When('the endpoint {string} is activated from request', async function (this: NI
         headers: headers
     }
     console.log('step.01')
-    const sut = lastValueFrom(this.httpService.get<V2MiningOperation[]>(request, config)
+    const sut = lastValueFrom(this.httpService.get<V1MiningOperationDto[]>(request, config)
         .pipe(map((axiosResponse: AxiosResponse) => {
             console.log('step.02')
             this.response = axiosResponse

@@ -1,15 +1,11 @@
 import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
 import { HttpModule } from '@nestjs/axios'
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ScheduleModule, SchedulerRegistry } from '@nestjs/schedule';
 import { V1MiningOperationsController } from '@Infra/adapter/inbound/esisecureapi/v1.miningoperations.controller';
 import { ESISecureDataServiceHALGeneratorAdapter } from '@Infra/adapter/outbound/ESISecureDataServices/esi.securedataservice.halgenerator.adapter';
 import { ESISecureDataServicesAdapter } from '@Infra/adapter/outbound/ESISecureDataServices/esi.securedataservices.adapter';
-import { AuthenticationServicesAdapter } from '@Infra/adapter/outbound/AuthenticationServices/authenticationservices.adapter';
 import { LoggerMiddleware } from '@Infra/config/LoggerInterceptor';
 import { JwtModule } from '@nestjs/jwt';
-import { AuthenticationServicesPort } from 'application/ports/AuthenticationServices.port';
 import { ESIDataServicesPort } from 'application/ports/EsiDataServices.port';
 import { CapsuleerMiningOperationsUseCase } from 'application/use-cases/mining-operation/CapsuleerMiningOperationsUseCase';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -33,9 +29,9 @@ const ENV = process.env.NODE_ENV
             envFilePath: !ENV ? '.env' : `.env.${ENV}`
         })
     ],
-    controllers: [AppController, V1MiningOperationsController],
+    controllers: [V1MiningOperationsController],
     providers: [
-        AppService, SchedulerRegistry,
+        SchedulerRegistry,
         LoggerMiddleware,
         ConfigService,
         { provide: ESIDataServicesPort, useClass: ESISecureDataServicesAdapter },

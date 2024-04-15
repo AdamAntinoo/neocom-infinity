@@ -1,9 +1,8 @@
 import { expect } from 'expect';
 import { When } from "@cucumber/cucumber"
 import { NIN01World } from "../worlds/NIN01World"
-import { V2MiningOperation } from "neocom-domain"
 import { GetCharactersCharacterIdMining200Ok } from 'application/domain/esi-model/getCharactersCharacterIdMining200Ok';
-import { V1MiningOperationDto } from 'neocom-domain/dto/V1MiningOperationDto.dto';
+import { V1MiningOperationDto } from 'neocom-domain';
 
 When('the endpoint {string} is activated', async function (this: NIN01World, endpoint: string) {
     expect(endpoint).toBeDefined()

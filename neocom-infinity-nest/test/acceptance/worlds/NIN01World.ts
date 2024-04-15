@@ -2,17 +2,14 @@ import { V1MiningOperationsController } from "@Infra/adapter/inbound/esisecureap
 import { AuthenticationServicesAdapter } from "@Infra/adapter/outbound/AuthenticationServices/authenticationservices.adapter"
 import { ESIMiningSecureService } from "@Infra/adapter/outbound/ESISecureDataServices/esi.mining.secure.adapter"
 import { ESISecureDataServiceHALGeneratorAdapter } from "@Infra/adapter/outbound/ESISecureDataServices/esi.securedataservice.halgenerator.adapter"
-import { World, setWorldConstructor } from "@cucumber/cucumber"
+import { World } from "@cucumber/cucumber"
 import { HttpService } from "@nestjs/axios"
 import { ConfigService } from "@nestjs/config"
 import { NestFactory } from "@nestjs/core"
 import { AppModule } from "app.module"
-import { GetCharactersCharacterIdAgentsResearch200Ok } from "application/domain/esi-model/getCharactersCharacterIdAgentsResearch200Ok"
 import { GetCharactersCharacterIdMining200Ok } from "application/domain/esi-model/models"
-import { IEsiMiningSecureService } from "application/ports/IEsiMiningSecureService.port"
 import { AxiosResponse } from "axios"
-import { V2MiningOperation } from "neocom-domain"
-import { V1MiningOperationDto } from "neocom-domain/dto/V1MiningOperationDto.dto"
+import { V1MiningOperationDto } from "neocom-domain"
 
 export class NIN01World extends World {
     // - Common

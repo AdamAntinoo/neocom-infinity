@@ -5,7 +5,7 @@ import { CapsuleerMiningOperationsUseCase } from 'application/use-cases/mining-o
 import { EsiSecureApi } from '@Infra/api/esiSecure.api';
 import { AuthenticationTokenValidator } from "../validator/AuthenticationTokenValidator";
 import { MiningOperationsUseCaseInputConstructor } from "../MiningOperationsUseCaseInputConstructor";
-import { V1MiningOperationDto } from "neocom-domain/dto/V1MiningOperationDto.dto";
+import { V1MiningOperationDto } from "neocom-domain";
 
 @Controller('/nin/v1/character/')
 export class V1MiningOperationsController implements EsiSecureApi {

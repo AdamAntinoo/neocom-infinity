@@ -1,4 +1,3 @@
-import { V2MiningOperation } from 'neocom-domain'
 import { IEsiMiningSecureService } from "./IEsiMiningSecureService.port";
 import { GetCharactersCharacterIdMining200Ok } from 'application/domain/esi-model/models';
 
