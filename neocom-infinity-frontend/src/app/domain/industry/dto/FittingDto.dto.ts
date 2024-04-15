@@ -1,5 +1,5 @@
 // - DOMAIN
-import { EveItemDto } from '@domain/core/dto/EveItemDto.dto'
+import { EveItemDto } from 'neocom-domain/EveItemDto.dto'
 import { HullDto } from './HullDto.dto'
 
 export class FittingDto {
@@ -16,11 +16,11 @@ export class FittingDto {
         Object.assign(this, values)
         this.transform()
     }
-    private transform () : void{
+    private transform(): void {
         if (null != this.shipHull) this.shipHull = new EveItemDto(this.shipHull)
     }
     // -  G E T T E R S
-    public getHullGroup () : string {
+    public getHullGroup(): string {
         return this.shipHull.hullGroup
     }
 }

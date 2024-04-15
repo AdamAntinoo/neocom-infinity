@@ -2,7 +2,7 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Input } from '@angular/core';
-import { EveItemDto } from '@domain/core/dto/EveItemDto.dto';
+import { EveItemDto } from 'neocom-domain/EveItemDto.dto';
 import { FittingItem } from '@domain/FittingItem.domain';
 import { BuildActionDto } from '@domain/industry/dto/BuildActionDto.dto';
 import { FittingBuildConfigurationDto } from '@domain/industry/dto/FittingBuildConfigurationDto.dto';
@@ -18,12 +18,12 @@ import { V2NodeContainerRenderComponent } from '../v2-node-container-render/v2-n
     styleUrls: ['./v1-fitting-item-render.component.scss']
 })
 export class V1FittingItemRenderComponent extends V2NodeContainerRenderComponent {
-    @Input() id : string
+    @Input() id: string
     // - G E T T E R S
     public getNode(): FittingItemHAL {
         return this.node as FittingItemHAL
     }
-    public getUniqueId() : string{
+    public getUniqueId(): string {
         return this.id
     }
     public getName(): string {
@@ -32,7 +32,7 @@ export class V1FittingItemRenderComponent extends V2NodeContainerRenderComponent
     public getURLIcon(): string {
         if (this.node) return this.getNode().getURLIcon()
     }
-    public getModuleGroup  () : string{
+    public getModuleGroup(): string {
         if (this.node) return this.getNode().getModuleGroup()
     }
     public getTech(): string {

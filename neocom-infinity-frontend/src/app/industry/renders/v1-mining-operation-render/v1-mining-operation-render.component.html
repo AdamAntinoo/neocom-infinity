@@ -8,16 +8,33 @@
     <div class="separator-4"></div>
     <div class="column">
       <div class="field">
-        <span cy-field-label="resource" class="label">RESOURCE NAME</span><br />
-        <span cy-field-value="resource" class="typename">{{
-          getTypeName()
-        }}</span>
+        <span cy-field-label="date" class="label">DATE</span><br />
+        <span cy-field-value="date" class="date">{{ getDate() }}</span>
       </div>
       <div class="field">
-        <span cy-field-label="quantity" class="label">QUANTITY</span><br />
-        <span cy-field-value="quantity" class="quantity">{{
-          getQuantity()
+        <span cy-field-label="system" class="label">SYSTEM</span><br />
+        <span cy-field-value="system" class="system">{{
+          getSystemName()
         }}</span>
+        <span cy-field-value="systemId" class="systemId">{{
+          getSystemId()
+        }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div *ngFor="let resource of getResources()">
+      <div>
+        <span>icon</span>
+        <span>name</span>
+        <span>
+          <v1-stack
+            *ngIf="node.jsonClass === 'V1Stack'"
+            [container]="container"
+            [node]="node"
+            [variant]="variant"
+          ></v1-stack>
+        </span>
       </div>
     </div>
   </div>

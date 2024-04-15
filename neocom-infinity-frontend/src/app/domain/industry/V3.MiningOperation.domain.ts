@@ -1,11 +1,12 @@
 import { LookupSolarSystem } from "@app/modules/planetary/domain/LookupSolarSystem.domain"
 import { NeoCom } from "@domain/NeoCom.domain"
-import { EveItemDto } from "@domain/core/dto/EveItemDto.dto"
+import { EveItemDto } from "neocom-domain/EveItemDto.dto"
 import { EsiType } from "@domain/esi/EsiType.esi"
 import { UniverseType } from "@domain/esi/UniverseType.esi"
 import { HALLink } from "@innovative/domain/HALLink.domain"
 import { ITransformable, NeoComError, V1MiningResourceDto } from "neocom-domain"
 import { V1MiningOperation } from "./V1.MiningOperation.domain"
+import { V1Stack } from "@domain/V1Stack.domain"
 
 export class V3MiningOperation extends NeoCom implements ITransformable<V3MiningOperation>{
     public jsonClass: string = 'MiningOperation'
@@ -13,7 +14,7 @@ export class V3MiningOperation extends NeoCom implements ITransformable<V3Mining
     public date?: string
     // public quantity?: number
     public solarSystem: HALLink<LookupSolarSystem>
-    private resources : V1MiningResourceDto[]
+    private resources: V1Stack[]
     // public type: HALLink<UniverseType>
 
     constructor(values: Object = {}) {
@@ -31,6 +32,12 @@ export class V3MiningOperation extends NeoCom implements ITransformable<V3Mining
     }
     public getIdentifier(): string {
         return this.id
+    }
+    public getResources(): V1Stack[] {
+        return this.resources
+    }
+    public getSolarSystemId(): number {
+        return this.solarSystem.getTarget().systemId
     }
     // public getQuantity(): number {
     //     return this.quantity
@@ -51,7 +58,7 @@ export class V3MiningOperation extends NeoCom implements ITransformable<V3Mining
             this.operation = new V3MiningOperation(values)
             this.operation.resources = []
         }
-        public addResource ( resource : V1MiningResourceDto){
+        public addResource(resource: V1Stack) {
             // if ( undefined == resource)throw new NeoComError.Builder(MANDATORY_FIELD_MISSING).build()
             this.operation.resources.push(resource)
         }

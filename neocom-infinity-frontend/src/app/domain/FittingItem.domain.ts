@@ -1,7 +1,7 @@
 // - DOMAIN
 import { HALResolver } from '@app/services/HALResolver.service';
 import { Observable } from 'rxjs';
-import { EveItemDto } from './core/dto/EveItemDto.dto';
+import { EveItemDto } from '../../neocom-domain/EveItemDto.dto';
 import { FittingItemHAL } from './industry/hal/FittingItemHAL.hal';
 import { NeoCom } from './NeoCom.domain';
 

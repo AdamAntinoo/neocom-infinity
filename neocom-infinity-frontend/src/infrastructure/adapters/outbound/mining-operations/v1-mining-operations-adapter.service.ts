@@ -9,6 +9,7 @@ import { UniverseType } from '@domain/esi/UniverseType.esi';
 import { HALResolverService } from '@innovative/domain/HALResolver.service';
 import { HALLink } from '@innovative/domain/HALLink.domain';
 import { V1MiningOperationDto } from 'neocom-domain';
+import { V1Stack } from '@domain/V1Stack.domain';
 
 @Injectable({
     providedIn: 'root'
@@ -34,7 +35,7 @@ export class V1MiningOperationsAdapterService {
                         solarSystem: this.newHalLinkForSolarSystem(element.solarSystemId),
                     })
                     for (var resource of element.getResources())
-                        workItem.addResource(resource)
+                        workItem.addResource(new V1Stack(resource))
                     resolveData.push(workItem.build())
                 })
                 return resolveData
