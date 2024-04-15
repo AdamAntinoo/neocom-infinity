@@ -1,36 +1,25 @@
 import { MANDATORY_FIELD_MISSING } from "../exceptions/NeoComSharedErrorCatalog"
 import { NeoComError } from "../exceptions/NeoComError"
-import { V1MiningResourceDto } from "./V1MiningResourceDto.dto"
+import { V1MiningResourceDto } from "./V1.MiningResource.dto"
+import { Record } from "../public-api"
 
-export class V1MiningOperationDto {
-    public jsonClass: string = 'MiningOperationDto'
+export class V1MiningOperationDto extends Record {
+    public override jsonClass: string = 'MiningOperationDto'
     public id?: string
     public date?: string
     public solarSystemId?: number
     private resources: V1MiningResourceDto[] = []
 
-    constructor(fields: object = {}) {
-        Object.assign(this, fields)
-    }
-
-    public transform(): V1MiningOperationDto {
-        console.log('transform->no need transformation')
-        return this
-    }
     public getResources(): V1MiningResourceDto[] {
         return this.resources
-    }
-    public addMiningResource(miningResource: V1MiningResourceDto): V1MiningOperationDto {
-        this.resources.push(miningResource)
-        return this
     }
 
     public static Builder = class Builder {
         public operation: V1MiningOperationDto
 
-        constructor() {
-            this.operation = new V1MiningOperationDto()
-            this.operation.resources = []
+        constructor(fields: object = {}) {
+            this.operation = new V1MiningOperationDto(fields)
+            if (undefined != this.operation.resources) this.operation.resources = []
         }
         public withId(id: string): Builder {
             if (undefined == id) throw new NeoComError.Builder(MANDATORY_FIELD_MISSING).build()
@@ -45,6 +34,11 @@ export class V1MiningOperationDto {
         public withSolarSystem(solarSytem: number): Builder {
             if (undefined == solarSytem) throw new NeoComError.Builder(MANDATORY_FIELD_MISSING).build()
             this.operation.solarSystemId = solarSytem
+            return this
+        }
+        public addMiningResource(miningResource: V1MiningResourceDto): Builder {
+            if (undefined != miningResource)
+                this.operation.resources.push(miningResource)
             return this
         }
         public build(): V1MiningOperationDto {

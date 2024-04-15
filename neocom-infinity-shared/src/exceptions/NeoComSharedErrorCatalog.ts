@@ -1,13 +1,16 @@
 import { Record } from "../interfaces/Record.interface"
 
 export interface NeoComErrorDefinition{
-     id?: string
      httpCode?: number
      code?: string
      messagePattern?: string
 }
 
 export class NeoComSharedErrorDefinition extends Record implements NeoComErrorDefinition{
+    public override jsonClass:string='NeoComErrorDefinition'
+    httpCode?: number
+    code?:string
+    messagePattern?: string
 }
 
 export const TOKEN_NOT_PRESENT:NeoComErrorDefinition=new NeoComSharedErrorDefinition({

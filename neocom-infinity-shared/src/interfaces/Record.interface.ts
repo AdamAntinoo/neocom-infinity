@@ -1,5 +1,7 @@
 export class Record {
-    constructor(values: object = {}) {
-        Object.assign(this, values);
+    public jsonClass:string ='Record'
+    
+    constructor(fields: object = {}) {
+        Object.assign(this, fields);
     }
 }

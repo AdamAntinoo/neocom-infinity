@@ -6,8 +6,10 @@ export * from './converter/NoActionConverter'
 
 export * from './core/ITransformable.interface'
 
-export * from './dto/V1MiningOperationDto.dto'
-export * from './dto/V1MiningResourceDto.dto'
+export * from './dto/V1.EsiType.dto'
+export * from './dto/V1.MarketData.dto'
+export * from './dto/V1.MiningOperation.dto'
+export * from './dto/V1.MiningResource.dto'
 
 export * from './exceptions/NeoComError'
 export * from './exceptions/NeoComSharedErrorCatalog'
