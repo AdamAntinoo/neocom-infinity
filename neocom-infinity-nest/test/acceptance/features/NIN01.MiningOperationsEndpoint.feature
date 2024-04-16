@@ -1,9 +1,10 @@
 @NIN01 @MiningOperation @Endpoint
 Feature: [NIN01] Validate the api defined for the Mining Operations endpoint.
 
-  [STORY] The ESI GET request gives a result with the current complete list as obtained from the Esi service.
-  [STORY] The backend should get the ESI data and aggregate it by system and date.
-  [STORY] For each system-date pair we generate a single Mining Operation that will contain the list of resources mined for that combination.
+  [STORY-NIN] The ESI GET request gives a result with the current complete list as obtained from the Esi service.
+  [STORY-NIN] The backend should get the ESI data and aggregate it by system and date.
+  [STORY-NIN] For each system-date pair we generate a single Mining Operation that will contain the list of resources mined for that combination.
+  [STORY-NIN] Replace Mining Resource by the new EsiType and the grouping on the Stack.
 
   Background: Authentication preparation
     Given a environment prepared for capsuleer 93813310

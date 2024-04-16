@@ -12,6 +12,7 @@ declare namespace GetTypeInformationUseCase {
 @Injectable()
 export class GetTypeInformationUseCase {
     private esiUniverseTypeUrl = '/esi/v1/fuzzworks/marketData/'
+    private readonly PREDEFINED_REGION = 30000142
 
     constructor(private readonly esiUniverseServices: ESIDataUniverseServicesPort) { }
 
@@ -31,13 +32,13 @@ export class GetTypeInformationUseCase {
                 categoryId: esiGroup.category_id,
                 categoryName: esiCategory.name,
                 volume: esiType.volume,
-                marketDataLink: this.generateMarketDataLink(esiType.type_id)
+                marketDataLink: this.generateMarketDataLink(esiType.type_id, this.PREDEFINED_REGION)
             })
             resolve(type)
         })
     }
 
-    private generateMarketDataLink(typeId: number): string {
-        return this.esiUniverseTypeUrl + typeId
+    private generateMarketDataLink(typeId: number, region: number): string {
+        return this.esiUniverseTypeUrl + typeId + '/' + region
     }
 }

@@ -18,9 +18,9 @@ export class V1EsiUniverseController implements EsiUniversepi {
         if (undefined != params.typeId)
             return this.getEsiGetTypeInformationUseCase.esiGetTypeInformation(params.typeId)
     }
-    @Get('fuzzwork/marketdata/:typeId/:region')
+    @Get('fuzzworks/marketdata/:typeId/:region')
     public async esiGetMarketData(@Param() params: any): Promise<V1MarketDataDto> {
-        console.log('parameters->'+JSON.stringify(params))
+        console.log('parameters->' + JSON.stringify(params))
         return this.getGetMarketDataUseCase.esiGetMarketData(
             new MarketDataUseCaseInputConstructor().construct(params)
         )

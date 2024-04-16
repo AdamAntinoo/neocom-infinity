@@ -51,8 +51,9 @@ The aggregation then will show the list of resources mined on that date and syst
 This is an example of the heavy hierarchical data distribution inside ESI. Just ot get all the basic information about a type inside the Eve universe we need to get access to the Item, then to the Group and finally to the Category. This just is to get basic information, additional data like Market Data and other interecting informaiton should be accessed by more endpoints.
 
 **[EPIC-0.22] Create aggregated data models for the EsiType and complementaty data.**
-* [STORY-SHARED] Create the DTOs to reference the original sets from ESI.
-* [STORY-NIN] Create on additional endpoint to access the EsiType structure removing hierarchy data for Group and Category.
+* **[STORY-SHARED]** Create the DTOs to reference the original sets from ESI.
+* **[STORY-NIN]** Create on additional endpoint to access the EsiType structure removing hierarchy data for Group and Category.
+* **[STORY-NIN]** New endpoint to get Market Data for a type at a Region.
 * [STORY-NIN] Replace Mining Resource by the new EsiType and the grouping on the Stack.
 * [STORY-NIF] Update the Mining Operations with the new data structures and complete the UI presentation of this data.
 
