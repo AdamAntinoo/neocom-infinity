@@ -2,7 +2,6 @@ import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/c
 import { HttpModule } from '@nestjs/axios'
 import { ScheduleModule, SchedulerRegistry } from '@nestjs/schedule';
 import { V1MiningOperationsController } from '@Infra/adapter/inbound/esisecureapi/v1.miningoperations.controller';
-import { ESISecureDataServiceHALGeneratorAdapter } from '@Infra/adapter/outbound/ESISecureDataServices/esi.securedataservice.halgenerator.adapter';
 import { ESISecureDataServicesAdapter } from '@Infra/adapter/outbound/ESISecureDataServices/esi.securedataservices.adapter';
 import { LoggerMiddleware } from '@Infra/config/LoggerInterceptor';
 import { JwtModule } from '@nestjs/jwt';
@@ -44,7 +43,6 @@ const ENV = process.env.NODE_ENV
         { provide: CapsuleerMiningOperationsUseCase, useClass: CapsuleerMiningOperationsUseCase },
         GetTypeInformationUseCase,GetMarketDataUseCase,
         { provide: ESIDataUniverseServicesPort, useClass: ESIDataUniverseAdapter },
-        { provide: ESISecureDataServiceHALGeneratorAdapter, useClass: ESISecureDataServiceHALGeneratorAdapter }
     ],
 })
 export class AppModule implements NestModule {

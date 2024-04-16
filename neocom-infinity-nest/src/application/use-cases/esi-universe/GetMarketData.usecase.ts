@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { ESIDataUniverseServicesPort } from "application/ports/ESIDataUniverseServices.port";
 import { V1MarketDataDto } from "neocom-domain";
-import { FuzzWorkMarketData } from "neocom-domain/FuzzWorkMarketData.dto";
+import { FuzzWorkMarketData } from "neocom-domain";
 
 export interface GetMarketDataUseCaseInput {
     typeId: number

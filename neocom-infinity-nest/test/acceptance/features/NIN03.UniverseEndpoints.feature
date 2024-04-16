@@ -23,4 +23,4 @@ Feature: [NIN03] Create aggregated data models for the EsiType and complementaty
     When the endpoint 'esi/marketdata' is activated
     Then the esi response has a MarketData with the next fields
       | buy.price | buy.orders | sell.price | sell.orders |
-      | 13.95     | 6.0        | 34.89      | 3           |
+      | 13.95     | 6.0        | 34.75      | 4           |

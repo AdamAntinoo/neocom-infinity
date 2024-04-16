@@ -2,7 +2,6 @@ import { CapsuleerMiningOperationsUseCase, MiningOperationsUseCaseInput } from "
 import { HttpService } from "@nestjs/axios"
 import { Observable } from "rxjs"
 import { Test } from "@nestjs/testing"
-import { ESISecureDataServiceHALGeneratorAdapter } from "@Infra/adapter/outbound/ESISecureDataServices/esi.securedataservice.halgenerator.adapter"
 import { ESIDataServicesPort } from "application/ports/EsiDataServices.port"
 import { ESIMiningSecureService } from "@Infra/adapter/outbound/ESISecureDataServices/esi.mining.secure.adapter"
 import { ESISecureDataServicesAdapter } from "@Infra/adapter/outbound/ESISecureDataServices/esi.securedataservices.adapter"
@@ -22,7 +21,6 @@ describe('USECASE CapsuleerMiningOperationsUseCase [Module: Application.UseCases
                 { provide: ESIDataServicesPort, useClass: ESISecureDataServicesAdapter },
                 { provide: IEsiMiningSecureService, useClass: ESIMiningSecureService },
                 { provide: CapsuleerMiningOperationsUseCase, useClass: CapsuleerMiningOperationsUseCase },
-                { provide: ESISecureDataServiceHALGeneratorAdapter, useClass: ESISecureDataServiceHALGeneratorAdapter },
                 {
                     provide: HttpService, useValue: {
                         get: (request: string) => {
@@ -150,7 +148,7 @@ describe('USECASE CapsuleerMiningOperationsUseCase [Module: Application.UseCases
                 expect(response[0] instanceof V1MiningOperationDto).toBeTruthy()
                 expect(response[0].id).toEqual('2024-02-25/30003538')
                 expect(response[0].date).toEqual('2024-02-25')
-                expect(response[0].solarSystemId).toEqual(30003538)
+                expect(response[0].solarSystemLink).toEqual('https://esi.evetech.net/latest/universe/systems/30003538/?datasource=tranquility&language=en')
                 expect(response[0].getResources().length).toBe(2)
             })
         })
