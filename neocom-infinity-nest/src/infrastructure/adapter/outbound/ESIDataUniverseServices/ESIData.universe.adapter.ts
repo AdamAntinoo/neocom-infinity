@@ -7,7 +7,7 @@ import { GetUniverseCategoriesCategoryIdOk } from "application/domain/esi-model/
 import { GetUniverseGroupsGroupIdOk } from "application/domain/esi-model/getUniverseGroupsGroupIdOk";
 import { GetUniverseTypesTypeIdOk } from "application/domain/esi-model/getUniverseTypesTypeIdOk";
 import { ESIDataUniverseServicesPort } from "application/ports/ESIDataUniverseServices.port";
-import { FuzzWorkMarketData } from "neocom-domain/FuzzWorkMarketData.dto";
+import { FuzzWorkMarketData } from "neocom-domain";
 import { Injectable } from "@nestjs/common";
 
 export const esiUniverseTypeUrl = '/universe/types/'
@@ -24,7 +24,7 @@ export class ESIDataUniverseAdapter implements ESIDataUniverseServicesPort {
 
     public async getEsiType(typeId: number): Promise<GetUniverseTypesTypeIdOk> {
         const request: string = this.configuration.get<string>('ESI_UNIVERSE_HOST') + esiUniverseTypeUrl + typeId
-        console.log('type>request->'+request)
+        console.log('type>request->' + request)
         const config: AxiosRequestConfig = {
             headers: this.generateEsiUniverseHeaders()
         }
@@ -58,7 +58,7 @@ export class ESIDataUniverseAdapter implements ESIDataUniverseServicesPort {
     }
     public async getFuzzWorkMarketData(typeId: number, systemId: number): Promise<FuzzWorkMarketData> {
         const request: string = fuzzWorkMarketDataUrl + systemId + '&types=' + typeId
-        console.log('marketdata>request->'+request)
+        console.log('marketdata>request->' + request)
         const config: AxiosRequestConfig = {
             headers: this.generateEsiUniverseHeaders()
         }

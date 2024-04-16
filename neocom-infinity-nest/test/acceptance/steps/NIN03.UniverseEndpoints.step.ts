@@ -1,9 +1,7 @@
 import { Before, Given, Then, When, setWorldConstructor } from '@cucumber/cucumber';
 import { expect } from 'expect';
 import { NIN01World } from '../worlds/NIN01World';
-import { GetCharactersCharacterIdMining200Ok } from 'application/domain/esi-model/getCharactersCharacterIdMining200Ok';
-import { V1EsiTypeDto, V1MarketDataDto, V1MiningOperationDto } from 'neocom-domain';
-import { V1MiningResourceDto } from 'neocom-domain';
+import { V1EsiTypeDto, V1MarketDataDto } from 'neocom-domain';
 
 Given('a request for EsiType with type {int}', function (this: NIN01World, typeId: number) {
     expect(typeId).toBeDefined()
@@ -29,6 +27,7 @@ Then('the esi response has a EsiType with the next fields', function (this: NIN0
     expect(marketData).toBeDefined()
     expect(validateMarketData(row, marketData)).toBeTruthy()
   })
+  
 //-----
 
 function validatEsiTypeInformation(row: any, esiType: V1EsiTypeDto): boolean {

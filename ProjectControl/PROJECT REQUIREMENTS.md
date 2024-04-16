@@ -57,6 +57,9 @@ This is an example of the heavy hierarchical data distribution inside ESI. Just 
 * [STORY-NIN] Replace Mining Resource by the new EsiType and the grouping on the Stack.
 * [STORY-NIF] Update the Mining Operations with the new data structures and complete the UI presentation of this data.
 
+**[EPIC-0.23] Create new endpoint to handle Esi locations and their representation at the UX.**
+* [STORY-NIN] Locations require one additional or additional endpoints to aggregate the location path.
+
 ## Fitting build
 **Fitting Build Configuration** is a hierarchical render example. A Fitting is composed of different layers of data that are also composed of more data layers.
 

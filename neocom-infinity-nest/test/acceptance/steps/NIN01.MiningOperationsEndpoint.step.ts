@@ -3,7 +3,7 @@ import { expect } from 'expect';
 import { NIN01World } from '../worlds/NIN01World';
 import { GetCharactersCharacterIdMining200Ok } from 'application/domain/esi-model/getCharactersCharacterIdMining200Ok';
 import { V1MiningOperationDto } from 'neocom-domain';
-import { V1MiningResourceDto } from 'neocom-domain';
+import { V1StackDto } from 'neocom-domain';
 
 Then('the esi response has {int} items', function (this: NIN01World, size: number) {
     expect(this.miningActionsResponse).toBeDefined()
@@ -44,10 +44,10 @@ Then('the MiningOperation has {int} resources', function (this: NIN01World, reso
 })
 Then('the MiningResource at position {int} has next contents', function (this: NIN01World, position: number, dataTable) {
     const row = dataTable.hashes()[position - 1]
-    expect(row).toBeDefined
+    expect(row).toBeDefined()
     expect(this.targetMiningOperation).toBeDefined()
     expect(this.targetMiningOperation.getResources()).toBeDefined()
-    const resource: V1MiningResourceDto = this.targetMiningOperation.getResources()[position - 1]
+    const resource: V1StackDto = this.targetMiningOperation.getResources()[position - 1]
     expect(resource).toBeDefined()
     expect(validateMiningResource(row, resource)).toBeTruthy()
 })
@@ -57,7 +57,7 @@ function validateMiningOperation(row: any, operation: V1MiningOperationDto): boo
     expect(row['jsonClass']).toBe(operation.jsonClass)
     expect(row['id']).toBe(operation.id)
     expect(row['date']).toBe(operation.date)
-    expect(Number(row['solarSystemId'])).toBe(operation.solarSystemId)
+    expect(row['solarSystemLink']).toBe(operation.solarSystemLink)
     expect(Number(row['resourceCount'])).toBe(operation.getResources().length)
     return true
 }
@@ -68,11 +68,8 @@ function validateEsiMiningOperation(row: any, operation: GetCharactersCharacterI
     expect(row['typeId']).toBe(operation.type_id)
     return true
 }
-function validateMiningResource(row: any, resource: V1MiningResourceDto): boolean {
-    expect(row['id']).toBe(resource.id)
-    expect(row['date']).toBe(resource.date)
+function validateMiningResource(row: any, resource: V1StackDto): boolean {
     expect(Number(row['quantity'])).toBe(resource.quantity)
-    expect(row['solarSystemId']).toBe(resource.solarSystemLink)
-    expect(row['typeId']).toBe(resource.typeLink)
+    expect(row['typeLink']).toBe(resource.typeLink)
     return true
 }

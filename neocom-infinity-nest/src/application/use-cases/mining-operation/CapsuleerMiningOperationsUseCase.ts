@@ -1,10 +1,9 @@
 import { EsiToken } from "@Infra/adapter/inbound/EsiToken.interface";
 import { Injectable } from "@nestjs/common";
-import { V1MiningOperationDto } from "neocom-domain";
+import { V1MiningOperationDto, V1StackDto } from "neocom-domain";
 import { GetCharactersCharacterIdMining200Ok } from "application/domain/esi-model/models";
 import { ESIDataServicesPort } from "application/ports/EsiDataServices.port";
 import { Optional } from "typescript-optional";
-import { V1MiningResourceDto } from "neocom-domain";
 import { MiningOperationConverter } from "@Infra/adapter/outbound/ESISecureDataServices/converter/MiningOperationConverter";
 
 export interface MiningOperationsUseCaseInput {
@@ -34,7 +33,7 @@ export class CapsuleerMiningOperationsUseCase {
                 // - find the operation where to store the mining action.
                 const operationOptional: Optional<V1MiningOperationDto> = this.findOperation(miningAction, transformedOperations)
                 if (operationOptional.isPresent()) {
-                    operationOptional.get().addMiningResource(new MiningOperationConverter<GetCharactersCharacterIdMining200Ok, V1MiningResourceDto>()
+                    operationOptional.get().addMiningResource(new MiningOperationConverter<GetCharactersCharacterIdMining200Ok, V1StackDto>()
                         .convert(miningAction)
                     )
                 }
@@ -43,9 +42,9 @@ export class CapsuleerMiningOperationsUseCase {
                     const addition: V1MiningOperationDto = new V1MiningOperationDto.Builder()
                         .withId(this.generateIdentifierForMiningAction(miningAction))
                         .withDate(miningAction.date)
-                        .withSolarSystem(miningAction.solar_system_id)
+                        .withSolarSystemLink(this.getSystemLink(miningAction.solar_system_id))
                         .build()
-                    addition.addMiningResource(new MiningOperationConverter<GetCharactersCharacterIdMining200Ok, V1MiningResourceDto>()
+                    addition.addMiningResource(new MiningOperationConverter<GetCharactersCharacterIdMining200Ok, V1StackDto>()
                         .convert(miningAction)
                     )
                     // Add the new item to the collection
@@ -65,5 +64,8 @@ export class CapsuleerMiningOperationsUseCase {
     }
     private generateIdentifierForMiningAction(miningAction: GetCharactersCharacterIdMining200Ok): string {
         return miningAction.date + '/' + miningAction.solar_system_id
+    }
+    public getSystemLink(systemId: number): string {
+        return 'https://esi.evetech.net/latest/universe/systems/' + systemId + '/?datasource=tranquility&language=en'
     }
 }
