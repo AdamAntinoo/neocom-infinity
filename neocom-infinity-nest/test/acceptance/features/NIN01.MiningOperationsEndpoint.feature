@@ -9,7 +9,7 @@ Feature: [NIN01] Validate the api defined for the Mining Operations endpoint.
     Given a environment prepared for capsuleer 93813310
     Given a environment prepared with predefined token
 
-  @NIN01  @NIN01.01
+  @NIN01 @NIN01.01
   Scenario: [NIN01.01] Call the ESI service and validate we get a valid response with some items.
     When the endpoint 'esi/miningoperations' is activated
     Then the esi response has 6 items

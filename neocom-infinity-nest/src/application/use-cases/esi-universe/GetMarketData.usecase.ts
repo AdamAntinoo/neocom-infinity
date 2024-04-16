@@ -22,10 +22,10 @@ export class GetMarketDataUseCase {
         return new Promise<V1MarketDataDto>((resolve) => {
             const data: FuzzWorkMarketData = esiMarketData[input.typeId]
             const marketData: V1MarketDataDto = new V1MarketDataDto({
-                buyPrice: data.buy.max,
-                buyOrderCount: data.buy.orderCount,
-                sellPrice: data.sell.min,
-                sellOrderCount: data.sell.orderCount
+                buyPrice: Number(data.buy.max),
+                buyOrderCount: Number(data.buy.orderCount),
+                sellPrice: Number(data.sell.min),
+                sellOrderCount: Number(data.sell.orderCount)
             })
             resolve(marketData)
         })
