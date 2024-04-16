@@ -3,12 +3,13 @@ import { V1EsiUniverseController } from "./v1.esiuniverse.controller"
 import { NestFactory } from "@nestjs/core"
 import { AppModule } from "app.module"
 import { Test } from "@nestjs/testing"
-import { V1EsiTypeDto } from "neocom-domain"
+import { V1EsiTypeDto, V1MarketDataDto } from "neocom-domain"
+import { GetMarketDataUseCase, GetMarketDataUseCaseInput } from "application/use-cases/esi-universe/GetMarketData.usecase"
 
-describe('CONTROLLER V1MiningOperationsController [Module: Infrastructure.Adapters]', () => {
-    let appModule: any
+describe('CONTROLLER V1EsiUniverseController [Module: Infrastructure.Adapters]', () => {
     let controller: V1EsiUniverseController
-    let useCase: GetTypeInformationUseCase
+    let typeUseCase: GetTypeInformationUseCase
+    let marketUseCase: GetMarketDataUseCase
 
     beforeEach(async () => {
         const moduleRef = await Test.createTestingModule({
@@ -33,12 +34,27 @@ describe('CONTROLLER V1MiningOperationsController [Module: Infrastructure.Adapte
                             })
                         }
                     }
+                },
+                {
+                    provide: GetMarketDataUseCase, useValue: {
+                        esiGetMarketData: (input: GetMarketDataUseCaseInput) => {
+                            return new Promise((resolve) => {
+                                resolve(new V1MarketDataDto({
+                                    buyPrice: 15.0,
+                                    buyOrderCount: 100.0,
+                                    sellPrice: 34.0,
+                                    sellOrderCount: 80.0
+                                }))
+                            })
+                        }
+                    }
                 }
             ],
         }).compile();
 
-        useCase = moduleRef.get<GetTypeInformationUseCase>(GetTypeInformationUseCase);
-        controller = moduleRef.get<V1EsiUniverseController>(V1EsiUniverseController);
+        typeUseCase = moduleRef.get<GetTypeInformationUseCase>(GetTypeInformationUseCase)
+        marketUseCase = moduleRef.get<GetMarketDataUseCase>(GetMarketDataUseCase)
+        controller = new V1EsiUniverseController(typeUseCase, marketUseCase)
     })
 
     describe('Constructor contract phase', () => {
@@ -50,7 +66,7 @@ describe('CONTROLLER V1MiningOperationsController [Module: Infrastructure.Adapte
         test('when a request with id arrives we get a valid response', async () => {
             expect(controller).toBeDefined()
             const typeId: number = 17464
-            const sut: V1EsiTypeDto = await controller.esiGetTypeInformation(typeId)
+            const sut: V1EsiTypeDto = await controller.esiGetTypeInformation({typeId: typeId})
                 .then((response: V1EsiTypeDto) => {
                     expect(response.typeId).toBe(17464)
                     expect(response.iconId).toBe(34)
@@ -62,6 +78,22 @@ describe('CONTROLLER V1MiningOperationsController [Module: Infrastructure.Adapte
                     expect(response.categoryName).toBe('-category-name-')
                     expect(response.volume).toBe(0.1)
                     expect(response.marketDataLink).toBe('/esi/v1/fuzzworks/marketData/17464')
+                    return response
+                })
+            expect(sut).toBeDefined()
+        })
+        test('when a request for market data arrives we get a valid response', async () => {
+            expect(controller).toBeDefined()
+            const input: GetMarketDataUseCaseInput = {
+                typeId: 17464,
+                region: 300
+            }
+            const sut: V1MarketDataDto = await controller.esiGetMarketData(input)
+                .then((response: V1MarketDataDto) => {
+                    expect(response.buyPrice).toBe(15.0)
+                    expect(response.buyOrderCount).toBe(100.0)
+                    expect(response.sellPrice).toBe(34.0)
+                    expect(response.sellOrderCount).toBe(80.0)
                     return response
                 })
             expect(sut).toBeDefined()

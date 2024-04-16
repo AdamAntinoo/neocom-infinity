@@ -29,3 +29,6 @@ curl --location "https://market.fuzzwork.co.uk/aggregates/?region=30000142&types
 
 # Command to get one Esi Type data
 curl --request GET --location "http://localhost:3000/esi/v1/universe/types/17464"
+
+# Command to get type market data from Jita
+curl --request GET --location "http://localhost:3000/esi/v1/fuzzwork/marketdata/17464/30000142"
