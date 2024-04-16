@@ -1,21 +1,21 @@
 import { HttpService } from "@nestjs/axios";
+import { firstValueFrom, map } from "rxjs";
+import { AxiosHeaders, AxiosRequestConfig, AxiosResponse } from "axios";
+import { ConfigService } from "@nestjs/config"
+
 import { GetUniverseCategoriesCategoryIdOk } from "application/domain/esi-model/getUniverseCategoriesCategoryIdOk";
 import { GetUniverseGroupsGroupIdOk } from "application/domain/esi-model/getUniverseGroupsGroupIdOk";
 import { GetUniverseTypesTypeIdOk } from "application/domain/esi-model/getUniverseTypesTypeIdOk";
 import { ESIDataUniverseServicesPort } from "application/ports/ESIDataUniverseServices.port";
-import { AxiosHeaders, AxiosRequestConfig, AxiosResponse } from "axios";
 import { FuzzWorkMarketData } from "neocom-domain/FuzzWorkMarketData.dto";
-import { firstValueFrom, lastValueFrom, map } from "rxjs";
-import { ConfigService } from "@nestjs/config"
-import { IEsiMiningSecureService } from "application/ports/IEsiMiningSecureService.port"
-import { GetCharactersCharacterIdMining200Ok } from "application/domain/esi-model/models"
-import { V1MiningOperationDto } from "neocom-domain"
+import { Injectable } from "@nestjs/common";
 
 export const esiUniverseTypeUrl = '/universe/types/'
 export const esiUniverseGroupUrl = '/universe/groups/'
 export const esiUniverseCategoryUrl = '/universe/categories/'
 export const fuzzWorkMarketDataUrl = 'https://market.fuzzwork.co.uk/aggregates/?region='
 
+@Injectable()
 export class ESIDataUniverseAdapter implements ESIDataUniverseServicesPort {
     constructor(
         private readonly httpService: HttpService,
@@ -24,6 +24,7 @@ export class ESIDataUniverseAdapter implements ESIDataUniverseServicesPort {
 
     public async getEsiType(typeId: number): Promise<GetUniverseTypesTypeIdOk> {
         const request: string = this.configuration.get<string>('ESI_UNIVERSE_HOST') + esiUniverseTypeUrl + typeId
+        console.log('type>request->'+request)
         const config: AxiosRequestConfig = {
             headers: this.generateEsiUniverseHeaders()
         }

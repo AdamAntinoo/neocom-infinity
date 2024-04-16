@@ -26,3 +26,6 @@ curl --request GET --location "http://localhost:30000/nin/v1/character/miningope
 
 # Commands to retrieve FuzzWorks data
 curl --location "https://market.fuzzwork.co.uk/aggregates/?region=30000142&types=34,35,36,37,38,39,40"
+
+# Command to get one Esi Type data
+curl --request GET --location "http://localhost:3000/esi/v1/universe/types/17464"

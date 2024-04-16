@@ -7,5 +7,5 @@ export abstract class ESIDataUniverseServicesPort {
     public abstract getEsiType(typeId: number): Promise<GetUniverseTypesTypeIdOk>
     public abstract getEsiGroup(groupId: number): Promise<GetUniverseGroupsGroupIdOk>
     public abstract getEsiCategory(categoryId: number): Promise<GetUniverseCategoriesCategoryIdOk>
-    public abstract getFuzzWorkMarketData<T>(typeId: number, systemId:number): Promise<FuzzWorkMarketData<T>>
+    public abstract getFuzzWorkMarketData(typeId: number, systemId:number): Promise<FuzzWorkMarketData>
 }

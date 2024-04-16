@@ -11,6 +11,10 @@ import { CapsuleerMiningOperationsUseCase } from 'application/use-cases/mining-o
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ESIMiningSecureService } from '@Infra/adapter/outbound/ESISecureDataServices/esi.mining.secure.adapter';
 import { IEsiMiningSecureService } from 'application/ports/IEsiMiningSecureService.port';
+import { V1EsiUniverseController } from '@Infra/adapter/inbound/esiuniverse/v1.esiuniverse.controller';
+import { GetTypeInformationUseCase } from 'application/use-cases/esi-universe/GetTypeInformation.usecase';
+import { ESIDataUniverseServicesPort } from 'application/ports/ESIDataUniverseServices.port';
+import { ESIDataUniverseAdapter } from '@Infra/adapter/outbound/ESIDataUniverseServices/ESIData.universe.adapter';
 
 const ENV = process.env.NODE_ENV
 
@@ -29,7 +33,7 @@ const ENV = process.env.NODE_ENV
             envFilePath: !ENV ? '.env' : `.env.${ENV}`
         })
     ],
-    controllers: [V1MiningOperationsController],
+    controllers: [V1MiningOperationsController, V1EsiUniverseController],
     providers: [
         SchedulerRegistry,
         LoggerMiddleware,
@@ -37,6 +41,8 @@ const ENV = process.env.NODE_ENV
         { provide: ESIDataServicesPort, useClass: ESISecureDataServicesAdapter },
         { provide: IEsiMiningSecureService, useClass: ESIMiningSecureService },
         { provide: CapsuleerMiningOperationsUseCase, useClass: CapsuleerMiningOperationsUseCase },
+        GetTypeInformationUseCase,
+        { provide: ESIDataUniverseServicesPort, useClass: ESIDataUniverseAdapter },
         { provide: ESISecureDataServiceHALGeneratorAdapter, useClass: ESISecureDataServiceHALGeneratorAdapter }
     ],
 })

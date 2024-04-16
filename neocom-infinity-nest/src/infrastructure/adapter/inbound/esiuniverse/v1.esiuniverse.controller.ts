@@ -1,17 +1,18 @@
 import { EsiUniversepi } from "@Infra/api/esiUniverse.api";
-import { Controller, Get } from "@nestjs/common";
+import { Controller, Get, Param } from "@nestjs/common";
 import { GetTypeInformationUseCase } from "application/use-cases/esi-universe/GetTypeInformation.usecase";
 import { V1EsiTypeDto } from "neocom-domain";
 
-@Controller('/nin/v1/character/')
+@Controller('/esi/v1/universe/')
 export class V1EsiUniverseController implements EsiUniversepi {
     constructor(
         private readonly getEsiGetTypeInformationUseCase: GetTypeInformationUseCase,
     ) { }
 
-    @Get('miningoperations')
-    public async esiGetTypeInformation(typeId: number): Promise<V1EsiTypeDto> {
-        if (undefined != typeId)
-            return this.getEsiGetTypeInformationUseCase.esiGetTypeInformation(typeId)
+    @Get('types/:typeId')
+    public async esiGetTypeInformation(@Param() params: any): Promise<V1EsiTypeDto> {
+        console.log('typeId->' + params.typeId)
+        if (undefined != params.typeId)
+            return this.getEsiGetTypeInformationUseCase.esiGetTypeInformation(params.typeId)
     }
 }
