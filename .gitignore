@@ -9,9 +9,4 @@ node_modules/
 package-lock.json
 *.log
 coverage/
-
-neocom-frontend-cypress/
-
-neocom-infinity-shared/pnpm-lock.yaml
-
-neocom-infinity-shared/.eslintrc.json
+.idea/
