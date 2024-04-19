@@ -1,5 +1,5 @@
 import { V1MiningOperationDto } from "./V1.MiningOperation.dto"
-import { V1MiningResourceDto } from "./V1.MiningResource.dto"
+import { V1StackDto } from "./V1.Stack.dto"
 
 describe('DTO V1MiningOperationDto [Module: neocom-domain - Version: v3]', () => {
     // - C O N S T R U C T I O N   P H A S E
@@ -19,24 +19,24 @@ describe('DTO V1MiningOperationDto [Module: neocom-domain - Version: v3]', () =>
             const sut: V1MiningOperationDto = new V1MiningOperationDto.Builder()
                 .withId('-test-id-')
                 .withDate('2024/01/01')
-                .withSolarSystem(432)
+                .withSolarSystemLink('-link-')
                 .build()
             expect(sut).toBeDefined
             expect(sut.jsonClass).toBe('MiningOperationDto')
             expect(sut.id).toBe('-test-id-')
             expect(sut.date).toBe('2024/01/01')
-            expect(sut.solarSystemId).toBe(432)
+            expect(sut.solarSystemLink).toBe('-link-')
             expect(sut.getResources().length).toBe(0)
         })
         test('when constructed with builder resources', () => {
             const sut: V1MiningOperationDto = new V1MiningOperationDto.Builder()
                 .withId('-test-id-')
                 .withDate('2024/01/01')
-                .withSolarSystem(432)
-                .addMiningResource(new V1MiningResourceDto({
+                .withSolarSystemLink('-link-')
+                .addMiningResource(new V1StackDto({
                     id: '-id-'
                 }))
-                .addMiningResource(new V1MiningResourceDto({
+                .addMiningResource(new V1StackDto({
                     id: '-id-'
                 }))
                 .build()
@@ -44,12 +44,12 @@ describe('DTO V1MiningOperationDto [Module: neocom-domain - Version: v3]', () =>
             expect(sut.jsonClass).toBe('MiningOperationDto')
             expect(sut.id).toBe('-test-id-')
             expect(sut.date).toBe('2024/01/01')
-            expect(sut.solarSystemId).toBe(432)
+            expect(sut.solarSystemLink).toBe('-link-')
             expect(sut.getResources().length).toBe(2)
         })
         test('when constructed with partial data', () => {
             const sut: V1MiningOperationDto = new V1MiningOperationDto.Builder({
-                solarSystemId: 145
+                solarSystemLink: '-link-'
             })
                 .withId('-test-id-')
                 .withDate('2024/01/01')
@@ -58,7 +58,7 @@ describe('DTO V1MiningOperationDto [Module: neocom-domain - Version: v3]', () =>
             expect(sut.jsonClass).toBe('MiningOperationDto')
             expect(sut.id).toBe('-test-id-')
             expect(sut.date).toBe('2024/01/01')
-            expect(sut.solarSystemId).toBe(145)
+            expect(sut.solarSystemLink).toBe('-link-')
             expect(sut.getResources().length).toBe(0)
         })
     })

@@ -1,32 +1,19 @@
 import { IConverter } from "neocom-domain/dist/converter/IConverter.interface"
 import { GetCharactersCharacterIdMining200Ok } from "application/domain/esi-model/models"
-import { V1MiningResourceDto } from "neocom-domain"
+import { V1StackDto } from "neocom-domain"
 
-export class MiningOperationConverter<S, D> implements IConverter<GetCharactersCharacterIdMining200Ok, V1MiningResourceDto>{
-    public convert(source: GetCharactersCharacterIdMining200Ok): V1MiningResourceDto {
-        let solarSystem: string = undefined
+export class MiningOperationConverter<S, D> implements IConverter<GetCharactersCharacterIdMining200Ok, V1StackDto>{
+    public convert(source: GetCharactersCharacterIdMining200Ok): V1StackDto {
         let type: string = undefined
-        if (source.solar_system_id) {
-            solarSystem = this.getSystemLink(source.solar_system_id)
-        }
         if (source.type_id) {
             type = this.getTypeLink(source.type_id)
         }
-        return new V1MiningResourceDto({
-            id: this.miningResourceUniqueIdGenerator(source),
-            date: source.date,
+        return new V1StackDto({
             quantity: source.quantity,
-            solarSystemLink: solarSystem,
             typeLink: type
         })
     }
-    public getSystemLink(systemId: number): string {
-        return 'https://esi.evetech.net/latest/universe/systems/' + systemId + '/?datasource=tranquility&language=en'
-    }
     public getTypeLink(typeId: number): string {
-        return 'https://esi.evetech.net/latest/universe/types/' + typeId + '/?datasource=tranquility&language=en'
-    }
-    private miningResourceUniqueIdGenerator(source : GetCharactersCharacterIdMining200Ok): string{
-        return source.date + '/' + source.solar_system_id + '-' + source.type_id
+        return '/esi/v1/universe/types/' + typeId 
     }
 }

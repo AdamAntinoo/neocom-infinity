@@ -22,15 +22,16 @@
     "version": "gitversion /showvariable AssemblySemFileVer > .version.json",
     "build": "nest build",
     "start": "npm run start:dev",
-    "start:dev": "NODE_ENV=development npm run version && npm run tag && nest start --watch",
+    "start:dev": "npm run version && npm run tag && VERSION=`cat.version.json` NODE_ENV=development nest start --watch",
     "docker:wiremock:up": "docker-compose -f ./support/docker-wiremock.yml up & ",
     "docker:wiremock:down": "docker-compose -f ./support/docker-wiremock.yml down & ",
     "docker:start": "npm run docker:wiremock:up",
     "docker:stop": "npm run docker:wiremock:down",
-    "cucumber": "./node_modules/@cucumber/cucumber/bin/cucumber-js ./test/**/*.feature --no-strict --require-module ts-node/register --require-module tsconfig-paths/register --require ./test/acceptance/steps/**/*.ts",
+    "cucumber": "NODE_ENV=acceptance ./node_modules/@cucumber/cucumber/bin/cucumber-js ./test/**/*.feature --no-strict --require-module ts-node/register --require-module tsconfig-paths/register --require ./test/acceptance/steps/**/*.ts",
+    "cucumber:prefix": "NODE_ENV=acceptance ./node_modules/@cucumber/cucumber/bin/cucumber-js ./test/**/*.feature --no-strict --require-module ts-node/register --require-module tsconfig-paths/register --require ./test/acceptance/steps/**/*.ts --tags",
     "acc:nin01": "./node_modules/@cucumber/cucumber/bin/cucumber-js ./test/**/*.feature --no-strict --require-module ts-node/register --require-module tsconfig-paths/register --require ./test/acceptance/steps/**/*.ts --tags @NIN01",
     "acc:nin02": "./node_modules/@cucumber/cucumber/bin/cucumber-js ./test/**/*.feature --no-strict --require-module ts-node/register --require-module tsconfig-paths/register --require ./test/acceptance/steps/**/*.ts --tags @NIN02",
-    "acc:nin03": "./node_modules/@cucumber/cucumber/bin/cucumber-js ./test/**/*.feature --no-strict --require-module ts-node/register --require-module tsconfig-paths/register --require ./test/acceptance/steps/**/*.ts --tags @NIN03",
+    "acc:nin03": "npm run cucumber:prefix @NIN03",
     "test": "jest --verbose",
     "test:cov": "jest --verbose --coverage"
   },
@@ -45,7 +46,7 @@
     "@nestjs/schedule": "^4.0.1",
     "@sniptt/monads": "^0.5.10",
     "cookie-parser": "^1.4.6",
-    "neocom-domain": "0.2.9",
+    "neocom-domain": "^0.3.1",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
     "typescript-optional": "^3.0.0-alpha.3"
@@ -78,23 +79,11 @@
     "typescript": "^5.4.5"
   },
   "jest": {
+    "rootDir": "src",
     "moduleFileExtensions": [
       "js",
       "json",
       "ts"
-    ],
-    "rootDir": "src",
-    "transform": {
-      "^.+\\.(t|j)s$": "ts-jest"
-    },
-    "collectCoverageFrom": [
-      "src/**/*.ts",
-      "!src/**/*.module.ts"
-    ],
-    "coverageDirectory": "./coverage",
-    "testEnvironment": "node",
-    "testMatch": [
-      "**/*.spec.ts"
     ],
     "moduleNameMapper": {
       "^@App/(.*)$": "<rootDir>/application/$1",
@@ -105,12 +94,36 @@
       "node_modules",
       "src"
     ],
-    "collectCoverage": true,
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/*.spec.ts"
+    ],
+    "collectCoverage": false,
+    "coverageDirectory": "../coverage",
     "coverageReporters": [
       "json",
       "lcov",
       "text",
       "clover"
+    ],
+    "collectCoverageFrom": [
+      "**/*.(t|j)s",
+      "src/**/*.ts",
+      "!src/**/*.module.ts",
+      "!src/application/domain/esi-model/*.(t|j)s"
+    ],
+    "coveragePathIgnorePatterns": [
+      "node_modules",
+      "test-config",
+      "interfaces",
+      "jestGlobalMocks.ts",
+      ".module.ts",
+      "<rootDir>/src/app/main.ts",
+      ".mock.ts",
+      "<rootDir>/src/application/domain/esi-model/*.ts"
     ]
   }
 }

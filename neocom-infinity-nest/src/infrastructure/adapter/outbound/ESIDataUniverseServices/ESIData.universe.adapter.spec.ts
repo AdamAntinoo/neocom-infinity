@@ -6,7 +6,7 @@ import { ESIDataUniverseAdapter } from "./ESIData.universe.adapter"
 import { GetUniverseTypesTypeIdOk } from "application/domain/esi-model/getUniverseTypesTypeIdOk"
 import { GetUniverseGroupsGroupIdOk } from "application/domain/esi-model/getUniverseGroupsGroupIdOk"
 import { GetUniverseCategoriesCategoryIdOk } from "application/domain/esi-model/getUniverseCategoriesCategoryIdOk"
-import { FuzzWorkMarketData, MarketData } from "neocom-domain/FuzzWorkMarketData.dto"
+import { FuzzWorkMarketData, MarketData } from "neocom-domain"
 
 describe('SERVICE ESIDataUniverseAdapter [Module: Infrastructure.service]', () => {
     let httpService: HttpService

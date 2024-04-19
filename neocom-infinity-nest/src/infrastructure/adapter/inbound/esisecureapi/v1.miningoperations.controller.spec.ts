@@ -7,7 +7,6 @@ import { AppModule } from 'app.module';
 import { V1MiningOperationDto } from 'neocom-domain/';
 import { ESIDataServicesPort } from 'application/ports/EsiDataServices.port';
 import { ESISecureDataServicesAdapter } from '@Infra/adapter/outbound/ESISecureDataServices/esi.securedataservices.adapter';
-import { ESISecureDataServiceHALGeneratorAdapter } from '@Infra/adapter/outbound/ESISecureDataServices/esi.securedataservice.halgenerator.adapter';
 import { ConfigService } from '@nestjs/config';
 import { IEsiMiningSecureService } from 'application/ports/IEsiMiningSecureService.port';
 import { ESIMiningSecureService } from '@Infra/adapter/outbound/ESISecureDataServices/esi.mining.secure.adapter';
@@ -40,7 +39,7 @@ describe('CONTROLLER V1MiningOperationsController [Module: Infrastructure.Adapte
                 ConfigService, CapsuleerMiningOperationsUseCase, JwtService,
                 { provide: IEsiMiningSecureService, useClass: ESIMiningSecureService },
                 { provide: ESIDataServicesPort, useClass: ESISecureDataServicesAdapter },
-                { provide: ESISecureDataServiceHALGeneratorAdapter, useClass: ESISecureDataServiceHALGeneratorAdapter }
+
             ],
         }).compile();
 

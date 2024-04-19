@@ -7,13 +7,13 @@ import { GetUniverseCategoriesCategoryIdOk } from "application/domain/esi-model/
 import { GetUniverseGroupsGroupIdOk } from "application/domain/esi-model/getUniverseGroupsGroupIdOk";
 import { GetUniverseTypesTypeIdOk } from "application/domain/esi-model/getUniverseTypesTypeIdOk";
 import { ESIDataUniverseServicesPort } from "application/ports/ESIDataUniverseServices.port";
-import { FuzzWorkMarketData } from "neocom-domain/FuzzWorkMarketData.dto";
+import { FuzzWorkMarketData } from "neocom-domain";
 import { Injectable } from "@nestjs/common";
 
 export const esiUniverseTypeUrl = '/universe/types/'
 export const esiUniverseGroupUrl = '/universe/groups/'
 export const esiUniverseCategoryUrl = '/universe/categories/'
-export const fuzzWorkMarketDataUrl = 'https://market.fuzzwork.co.uk/aggregates/?region='
+export const FUZZWORK_PREFIX = '/aggregates/?region='
 
 @Injectable()
 export class ESIDataUniverseAdapter implements ESIDataUniverseServicesPort {
@@ -24,7 +24,7 @@ export class ESIDataUniverseAdapter implements ESIDataUniverseServicesPort {
 
     public async getEsiType(typeId: number): Promise<GetUniverseTypesTypeIdOk> {
         const request: string = this.configuration.get<string>('ESI_UNIVERSE_HOST') + esiUniverseTypeUrl + typeId
-        console.log('type>request->'+request)
+        console.log('type>request->' + request)
         const config: AxiosRequestConfig = {
             headers: this.generateEsiUniverseHeaders()
         }
@@ -57,8 +57,8 @@ export class ESIDataUniverseAdapter implements ESIDataUniverseServicesPort {
         )
     }
     public async getFuzzWorkMarketData(typeId: number, systemId: number): Promise<FuzzWorkMarketData> {
-        const request: string = fuzzWorkMarketDataUrl + systemId + '&types=' + typeId
-        console.log('marketdata>request->'+request)
+        const request: string = this.configuration.get<string>('FUZZ_UNIVERSE_HOST')+FUZZWORK_PREFIX + systemId + '&types=' + typeId
+        console.log('marketdata>request->' + request)
         const config: AxiosRequestConfig = {
             headers: this.generateEsiUniverseHeaders()
         }
