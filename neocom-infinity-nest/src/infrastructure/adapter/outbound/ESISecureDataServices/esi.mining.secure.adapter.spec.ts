@@ -49,7 +49,7 @@ describe('SERVICE ESIMiningSecureService [Module: Infrastructure.service]', () =
             expect(esiSecureService).toBeDefined()
         })
     })
-    describe('functionality phase ', () => {
+    describe('functionality phase', () => {
         test('when the endpoint is called then we get a list of mining actions', () => {
             const pilotId: number = 321
             const token: string = ''

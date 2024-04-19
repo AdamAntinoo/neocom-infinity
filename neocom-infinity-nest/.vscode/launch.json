@@ -40,6 +40,25 @@
       ]
     },
     {
+      "name": ">Acc>NIN03",
+      "type": "node",
+      "request": "launch",
+      "console": "integratedTerminal",
+      "program": "${workspaceRoot}/node_modules/@cucumber/cucumber/bin/cucumber-js",
+      "args": [
+        "./test/**/*.feature",
+        "--no-strict",
+        "--require-module",
+        "ts-node/register",
+        "--require-module",
+        "tsconfig-paths/register",
+        "--require",
+        "./test/acceptance/steps/**/*.ts",
+        "--tags",
+        "@NIN03.02"
+      ]
+    },
+    {
       "name": ">Debug>Development",
       "type": "node",
       "request": "launch",

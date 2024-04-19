@@ -13,7 +13,10 @@ export class V1MiningOperationDto extends Record {
     public getResources(): V1MiningResourceDto[] {
         return this.resources
     }
-
+    public addMiningResource(miningResource: V1MiningResourceDto): V1MiningOperationDto {
+        this.resources.push(miningResource)
+        return this
+    }
     public static Builder = class Builder {
         public operation: V1MiningOperationDto
 

@@ -28,3 +28,8 @@ export const MANDATORY_FIELD_MISSING:NeoComErrorDefinition=new NeoComSharedError
     code: "MANDATORY-FIELD-MISSING",
     messagePattern: "The mandatory field on a Builder is missing."
 })
+export const REQUEST_INVALID:NeoComErrorDefinition=new NeoComSharedErrorDefinition({
+    httpCode: 400,
+    code: "REQUEST-INVALID",
+    messagePattern: "Missing required parameter."
+})

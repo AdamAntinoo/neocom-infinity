@@ -30,6 +30,7 @@
     "cucumber": "./node_modules/@cucumber/cucumber/bin/cucumber-js ./test/**/*.feature --no-strict --require-module ts-node/register --require-module tsconfig-paths/register --require ./test/acceptance/steps/**/*.ts",
     "acc:nin01": "./node_modules/@cucumber/cucumber/bin/cucumber-js ./test/**/*.feature --no-strict --require-module ts-node/register --require-module tsconfig-paths/register --require ./test/acceptance/steps/**/*.ts --tags @NIN01",
     "acc:nin02": "./node_modules/@cucumber/cucumber/bin/cucumber-js ./test/**/*.feature --no-strict --require-module ts-node/register --require-module tsconfig-paths/register --require ./test/acceptance/steps/**/*.ts --tags @NIN02",
+    "acc:nin03": "./node_modules/@cucumber/cucumber/bin/cucumber-js ./test/**/*.feature --no-strict --require-module ts-node/register --require-module tsconfig-paths/register --require ./test/acceptance/steps/**/*.ts --tags @NIN03",
     "test": "jest --verbose",
     "test:cov": "jest --verbose --coverage"
   },
@@ -44,7 +45,7 @@
     "@nestjs/schedule": "^4.0.1",
     "@sniptt/monads": "^0.5.10",
     "cookie-parser": "^1.4.6",
-    "neocom-domain": "0.2.5",
+    "neocom-domain": "0.2.9",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
     "typescript-optional": "^3.0.0-alpha.3"
