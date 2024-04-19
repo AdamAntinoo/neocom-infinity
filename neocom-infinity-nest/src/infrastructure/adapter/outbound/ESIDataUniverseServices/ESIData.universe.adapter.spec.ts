@@ -1,5 +1,5 @@
 import { HttpService } from "@nestjs/axios"
-import { ConfigService } from "@nestjs/config"
+import { ConfigModule, ConfigService } from "@nestjs/config"
 import { Test } from "@nestjs/testing"
 import { Observable } from "rxjs"
 import { ESIDataUniverseAdapter } from "./ESIData.universe.adapter"
@@ -14,14 +14,22 @@ describe('SERVICE ESIDataUniverseAdapter [Module: Infrastructure.service]', () =
     let esiUniverseService: ESIDataUniverseAdapter
 
     beforeEach(async () => {
+        const ENV = process.env.NODE_ENV
+
         const moduleRef = await Test.createTestingModule({
+            imports: [
+                ConfigModule.forRoot({
+                    isGlobal: true,
+                    envFilePath: '.env'
+                })
+            ],
             providers: [
                 ConfigService,
                 {
                     provide: HttpService, useValue: {
                         get: (request: string) => {
                             switch (request) {
-                                case 'undefined/universe/types/17464': {
+                                case 'https://esi.evetech.net/latest/universe/types/17464': {
                                     return new Observable((observer) => {
                                         observer.next({
                                             data: {
@@ -42,7 +50,7 @@ describe('SERVICE ESIDataUniverseAdapter [Module: Infrastructure.service]', () =
                                         })
                                     })
                                 }
-                                case 'undefined/universe/groups/17464': {
+                                case 'https://esi.evetech.net/latest/universe/groups/17464': {
                                     return new Observable((observer) => {
                                         observer.next({
                                             data: {
@@ -68,7 +76,7 @@ describe('SERVICE ESIDataUniverseAdapter [Module: Infrastructure.service]', () =
                                         })
                                     })
                                 }
-                                case 'undefined/universe/categories/17464': {
+                                case 'https://esi.evetech.net/latest/universe/categories/17464': {
                                     return new Observable((observer) => {
                                         observer.next({
                                             data: {
@@ -79,7 +87,7 @@ describe('SERVICE ESIDataUniverseAdapter [Module: Infrastructure.service]', () =
                                         })
                                     })
                                 }
-                                case 'https://market.fuzzwork.co.uk/aggregates/?region=30000142&types=17464': {
+                                case 'http://localhost:5271/aggregates/?region=30000142&types=17464': {
                                     return new Observable((observer) => {
                                         observer.next({
                                             data: {
@@ -158,7 +166,7 @@ describe('SERVICE ESIDataUniverseAdapter [Module: Infrastructure.service]', () =
                 expect(data.name).toBe('Asteroid')
             })
         })
-        test('when the fuxxwork service endpoint is called then we get market data', async () => {
+        test('when the fuzzwork service endpoint is called then we get market data', async () => {
             const typeId: number = 17464
             const systemId: number = 30000142
             const sut: Promise<FuzzWorkMarketData> = esiUniverseService.getFuzzWorkMarketData(typeId, systemId)
