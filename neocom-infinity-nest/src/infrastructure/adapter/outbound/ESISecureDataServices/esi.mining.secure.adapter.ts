@@ -14,7 +14,7 @@ export class ESIMiningSecureService implements IEsiMiningSecureService<GetCharac
 
     public async getMiningOperations(characterId: number, token: string): Promise<GetCharactersCharacterIdMining200Ok[]> {
         const request = this.configuration.get<string>('BACKEND_HOST') + '/characters/' + characterId + '/mining/'
-        console.log('request->' + request)
+        console.log('miningOperations>request->' + request)
         const headers: AxiosHeaders = new AxiosHeaders()
         headers.set('Content-Type', 'application/json')
         headers.set('x-neocom-check', 'check header')

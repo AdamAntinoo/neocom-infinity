@@ -13,7 +13,7 @@ async function bootstrap() {
     app.use(cookieParser())
     const configService = app.get(ConfigService)
     const port = configService.get<number>('PORT') || 3000
-    const backendproxy = configService.get<number>('BACKEND_HOST') || 'http://esi-data-tst:5271'
+    const backendproxy = configService.get<string>('BACKEND_HOST') || 'http://esi-data-tst:5271'
 
     await app.listen(port)
     const filename = process.env.BANNER

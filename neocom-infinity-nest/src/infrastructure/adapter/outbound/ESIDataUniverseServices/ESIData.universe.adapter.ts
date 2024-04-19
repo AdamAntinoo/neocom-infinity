@@ -13,7 +13,7 @@ import { Injectable } from "@nestjs/common";
 export const esiUniverseTypeUrl = '/universe/types/'
 export const esiUniverseGroupUrl = '/universe/groups/'
 export const esiUniverseCategoryUrl = '/universe/categories/'
-export const fuzzWorkMarketDataUrl = 'https://market.fuzzwork.co.uk/aggregates/?region='
+export const FUZZWORK_PREFIX = '/aggregates/?region='
 
 @Injectable()
 export class ESIDataUniverseAdapter implements ESIDataUniverseServicesPort {
@@ -57,7 +57,7 @@ export class ESIDataUniverseAdapter implements ESIDataUniverseServicesPort {
         )
     }
     public async getFuzzWorkMarketData(typeId: number, systemId: number): Promise<FuzzWorkMarketData> {
-        const request: string = fuzzWorkMarketDataUrl + systemId + '&types=' + typeId
+        const request: string = this.configuration.get<string>('FUZZ_UNIVERSE_HOST')+FUZZWORK_PREFIX + systemId + '&types=' + typeId
         console.log('marketdata>request->' + request)
         const config: AxiosRequestConfig = {
             headers: this.generateEsiUniverseHeaders()
