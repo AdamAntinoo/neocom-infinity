@@ -22,7 +22,7 @@
     "version": "gitversion /showvariable AssemblySemFileVer > .version.json",
     "build": "nest build",
     "start": "npm run start:dev",
-    "start:dev": "NODE_ENV=development npm run version && npm run tag && nest start --watch",
+    "start:dev": "npm run version && npm run tag && VERSION=`cat.version.json` NODE_ENV=development nest start --watch",
     "docker:wiremock:up": "docker-compose -f ./support/docker-wiremock.yml up & ",
     "docker:wiremock:down": "docker-compose -f ./support/docker-wiremock.yml down & ",
     "docker:start": "npm run docker:wiremock:up",

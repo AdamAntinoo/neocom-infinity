@@ -24,6 +24,8 @@ async function bootstrap() {
         console.log("Version: " + START_YELLOW + process.env.VERSION + END_BOLD)
         console.log("Listening on port: " + START_YELLOW + port + END_BOLD)
         console.log("Backend URL path: " + START_GREEN + backendproxy + END_BOLD)
+        console.log("Esi Universe URL path: " + START_GREEN + configService.get<string>('ESI_UNIVERSE_HOST') + END_BOLD)
+        console.log("Fuzz URL path: " + START_GREEN + configService.get<string>('FUZZ_UNIVERSE_HOST') + END_BOLD)
 
         console.log(data)
         console.log("Server Ready for Connections")
