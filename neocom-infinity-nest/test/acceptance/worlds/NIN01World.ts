@@ -2,7 +2,6 @@ import { V1MiningOperationsController } from "@Infra/adapter/inbound/esisecureap
 import { V1EsiUniverseController } from "@Infra/adapter/inbound/esiuniverse/v1.esiuniverse.controller"
 import { AuthenticationServicesAdapter } from "@Infra/adapter/outbound/AuthenticationServices/authenticationservices.adapter"
 import { ESIMiningSecureService } from "@Infra/adapter/outbound/ESISecureDataServices/esi.mining.secure.adapter"
-import { ESISecureDataServiceHALGeneratorAdapter } from "@Infra/adapter/outbound/ESISecureDataServices/esi.securedataservice.halgenerator.adapter"
 import { World } from "@cucumber/cucumber"
 import { HttpService } from "@nestjs/axios"
 import { ConfigService } from "@nestjs/config"
@@ -16,7 +15,6 @@ export class NIN01World extends World {
     // - Common
     protected appModule: any
     public httpService: HttpService
-    private halGenerator: ESISecureDataServiceHALGeneratorAdapter
     private configuration: ConfigService
     // NIN01
     public characterId: number
@@ -46,9 +44,7 @@ export class NIN01World extends World {
     public async init() {
         console.log('NIN01World init')
         this.appModule = await NestFactory.create(AppModule)
-        console.log('module->' + this.appModule)
         this.httpService = this.appModule.get(HttpService)
-        this.halGenerator = this.appModule.get(ESISecureDataServiceHALGeneratorAdapter)
         this.configuration = this.appModule.get(ConfigService)
 
         this.miningOperationsController = this.appModule.get(V1MiningOperationsController)

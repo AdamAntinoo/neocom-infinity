@@ -1,0 +1,24 @@
+{
+  "mappings": [
+    {
+      "priority": 10,
+      "request": {
+        "method": "GET",
+        "urlPath": "/aggregates/"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "fuzzwork.jita.17464.json",
+        "headers": {
+          "Content-Type": "application/json",
+          "Allow": "OPTIONS, GET",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "*",
+          "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
+          "cache-control": "max-age: 600, public",
+          "Scenario": "NIN01.01"
+        }
+      }
+    }
+  ]
+}
