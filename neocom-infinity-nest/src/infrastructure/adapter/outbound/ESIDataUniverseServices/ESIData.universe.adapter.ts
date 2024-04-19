@@ -57,7 +57,7 @@ export class ESIDataUniverseAdapter implements ESIDataUniverseServicesPort {
         )
     }
     public async getFuzzWorkMarketData(typeId: number, systemId: number): Promise<FuzzWorkMarketData> {
-        const request: string = this.configuration.get<string>('FUZZ_UNIVERSE_HOST')+FUZZWORK_PREFIX + systemId + '&types=' + typeId
+        const request: string = this.configuration.get('FUZZ_UNIVERSE_HOST')+FUZZWORK_PREFIX + systemId + '&types=' + typeId
         console.log('marketdata>request->' + request)
         const config: AxiosRequestConfig = {
             headers: this.generateEsiUniverseHeaders()

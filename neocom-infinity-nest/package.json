@@ -32,8 +32,8 @@
     "acc:nin01": "./node_modules/@cucumber/cucumber/bin/cucumber-js ./test/**/*.feature --no-strict --require-module ts-node/register --require-module tsconfig-paths/register --require ./test/acceptance/steps/**/*.ts --tags @NIN01",
     "acc:nin02": "./node_modules/@cucumber/cucumber/bin/cucumber-js ./test/**/*.feature --no-strict --require-module ts-node/register --require-module tsconfig-paths/register --require ./test/acceptance/steps/**/*.ts --tags @NIN02",
     "acc:nin03": "npm run cucumber:prefix @NIN03",
-    "test": "jest --verbose",
-    "test:cov": "jest --verbose --coverage"
+    "test": "NODE_ENV=development jest --verbose",
+    "test:cov": "NODE_ENV=development jest --verbose --coverage"
   },
   "dependencies": {
     "@nestjs/axios": "^3.0.2",
