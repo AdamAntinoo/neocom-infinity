@@ -9,7 +9,6 @@ export interface MarketData {
     percentile: number
 }
 export interface FuzzWorkMarketData {
-        buy: MarketData,
-        sell: MarketData
-    
+    buy: MarketData,
+    sell: MarketData
 }
