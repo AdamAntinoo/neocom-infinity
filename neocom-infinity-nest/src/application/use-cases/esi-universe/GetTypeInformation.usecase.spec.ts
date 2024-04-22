@@ -2,6 +2,7 @@ import { Test } from "@nestjs/testing"
 import { GetTypeInformationUseCase } from "./GetTypeInformation.usecase"
 import { ESIDataUniverseServicesPort } from "application/ports/ESIDataUniverseServices.port"
 import { V1EsiTypeDto } from "neocom-domain"
+import { EsiDataUniverseMock } from "mocks/EsiDataUniverse.mock"
 
 describe('USECASE CapsuleerMiningOperationsUseCase [Module: Application.UseCases]', () => {
     let useCase: GetTypeInformationUseCase
@@ -10,45 +11,7 @@ describe('USECASE CapsuleerMiningOperationsUseCase [Module: Application.UseCases
     beforeEach(async () => {
         const moduleRef = await Test.createTestingModule({
             providers: [
-                {
-                    provide: ESIDataUniverseServicesPort, useValue: {
-                        getEsiType: (typeId: number) => {
-                            console.log('method->' + 'GET')
-                            console.log('request->' + typeId)
-                            return new Promise((resolve) => {
-                                resolve({
-                                    type_id: typeId,
-                                    name: '-type-name-',
-                                    description: '-test-description-',
-                                    group_id: 34,
-                                    icon_id: 34,
-                                    volume: 0.1
-                                })
-                            })
-                        },
-                        getEsiGroup: (groupId: number) => {
-                            console.log('method->' + 'GET')
-                            console.log('request->' + groupId)
-                            return new Promise((resolve) => {
-                                resolve({
-                                    group_id: groupId,
-                                    name: '-group-name-',
-                                    category_id: 76
-                                })
-                            })
-                        },
-                        getEsiCategory: (categoryId: number) => {
-                            console.log('method->' + 'GET')
-                            console.log('request->' + categoryId)
-                            return new Promise((resolve) => {
-                                resolve({
-                                    category_id: categoryId,
-                                    name: '-category-name-'
-                                })
-                            })
-                        }
-                    }
-                }
+                { provide: ESIDataUniverseServicesPort, useClass: EsiDataUniverseMock }
             ],
         }).compile()
 
