@@ -12,7 +12,7 @@ Feature: [NIF10.01]Show the list of all mining operations available for a capsul
 
   # - P A G E   S T R U C T U R E
   @NIF10.01
-  Scenario: [NIF10.01]Show the list of all mining operations available for a capsuleer.
+  Scenario: [NIF10.01] Show the list of all mining operations available for a capsuleer.
     Given the page "Mining Operations" is activated
     Then the page "Mining Operations" has 4 panels
     # - Check the panel contents visible on the page

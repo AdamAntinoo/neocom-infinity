@@ -1,13 +1,14 @@
 import { LookupSolarSystem } from "@app/modules/planetary/domain/LookupSolarSystem.domain"
 import { NeoCom } from "@domain/NeoCom.domain"
 import { V1Stack } from "@domain/esi/V1.Stack.domain"
-import { MANDATORY_FIELD_MISSING, NeoComError } from "neocom-domain"
+import { V1SpaceLocation } from "@domain/esi/v1.SpaceLocation.domain"
+import { MANDATORY_FIELD_MISSING, NeoComError, V1SpaceLocationDto } from "neocom-domain"
 
 export class V3MiningOperation extends NeoCom {
     public jsonClass: string = 'MiningOperation'
     public id: string
     public date: string
-    public solarSystem: LookupSolarSystem
+    public solarSystem: V1SpaceLocation
     public resources: V1Stack[] = []
 
     public constructor(values: Object = {}) {
@@ -43,7 +44,7 @@ export class V3MiningOperation extends NeoCom {
         constructor(fields: Object = {}) {
             this.miningOperation = new V3MiningOperation(fields)
         }
-        public withSolarSystem(solarSystem: LookupSolarSystem): Builder {
+        public withSolarSystem(solarSystem: V1SpaceLocation): Builder {
             if (undefined == solarSystem) throw new NeoComError.Builder(MANDATORY_FIELD_MISSING).build()
             this.miningOperation.solarSystem = solarSystem
             return this

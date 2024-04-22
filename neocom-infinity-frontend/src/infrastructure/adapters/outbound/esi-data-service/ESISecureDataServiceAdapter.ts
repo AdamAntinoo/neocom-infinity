@@ -15,7 +15,13 @@ import { V1MiningOperationDto } from 'neocom-domain';
 export class ESISecureDataServiceAdapter implements ESISecureDataServicePort {
     private esiMiningOperationsTypedRequest: ESIMiningOperationsTypedRequest
 
-    constructor(private configuration: ConfigurationAdapter, private httpService: HttpClient) { }
+    constructor(
+        private readonly configuration: ConfigurationAdapter,
+        private readonly httpService: HttpClient
+    ) {
+        console.log('ESISecureDataServiceAdapter')
+        console.log('ESISecureDataServiceAdapter>configuration->' + this.configuration.getNestBackendHost())
+    }
 
     // - M I N I N G    O P E R A T I O N S
     public v1_apiEsiMiningOperationsData(pilotId: number): Observable<V1MiningOperationDto[]> {
@@ -23,7 +29,7 @@ export class ESISecureDataServiceAdapter implements ESISecureDataServicePort {
         const transformer: ResponseTransformer = new ResponseTransformer()
             .setDescription('Does nothing since the response expected is a list of HAL links.')
             .setTransformation((entrydata: any): V1MiningOperationDto[] => {
-                let results: V1MiningOperationDto[] = [];
+                let results: V1MiningOperationDto[] = []
                 if (entrydata instanceof Array) {
                     for (let key in entrydata)
                         results.push(new V1MiningOperationDto(entrydata[key]))

@@ -13,7 +13,12 @@ export class V2UniverseType extends EsiNode {
     public capacity: number
     public packagedVolume: number
     public volume: number
-    public marketDataLink: V1MarketData
+    public marketData: V1MarketData
+
+    public withMarketData ( marketData : V1MarketData): V2UniverseType{
+        this.marketData=marketData
+        return this
+    }
 
     protected decode(): void { }
 }

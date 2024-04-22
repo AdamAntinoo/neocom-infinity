@@ -15,8 +15,6 @@
     "heroku-postbuild": "ng build --configuration=${NODE_ENV}",
     "serve:integration": "export NODE_ENV=integration && export PORT=5202 && npm run build:dev && npm start",
     "test:cuc": "ng test --include=src/../cucumber/**/*.step.ts",
-    "test:prepare": "npm run docker:start &",
-    "test:stop": "npm run docker:stop &",
     "docker:start": "docker-compose -f ./support/docker-compose.yml up ",
     "docker:stop": "docker-compose -f ./support/docker-compose.yml down ",
     "version": "echo `gitversion /showvariable MajorMinorPatch`-`gitversion /showvariable CommitsSinceVersionSource`",
@@ -25,12 +23,12 @@
     "build:dev": "ng build --configuration=development --watch ",
     "build:staging": "ng build --configuration=staging",
     "start:dev": "NODE_ENV=development ng serve --proxy-config proxy.conf.json --port 5201 ",
-    "test:dev": "ng test --watch --progress ",
+    "test": "ng test --watch --progress ",
     "start:staging": "export NODE_ENV=staging && npm run tag && npm run build:staging && node server.js "
   },
   "private": true,
   "engines": {
-    "node": "v20.12.1",
+    "node": "v20.12.2",
     "npm": "10.5.0"
   },
   "cypress-cucumber-preprocessor": {
@@ -57,7 +55,7 @@
     "@angular/platform-browser-dynamic": "13.4.0",
     "@angular/router": "13.4.0",
     "@swimlane/ngx-charts": "20.0.0",
-    "neocom-domain": "0.2.5",
+    "neocom-domain": "^0.4.1",
     "config": "3.3.1",
     "express": "4.17.1",
     "express-http-proxy": "1.6.0",

@@ -1,19 +1,17 @@
 import { TestBed } from "@angular/core/testing";
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing'
-import { HttpClient, HttpClientModule, HttpErrorResponse } from '@angular/common/http'
-import { Observable } from "rxjs";
+import { HttpClient, HttpClientModule } from '@angular/common/http'
 
-import { ConfigurationAdapter } from "@infra/adapters/outbound/configuration/ConfigurationAdapter";
-import { ESISecureDataServiceAdapter } from "@infra/adapters/outbound/esi-data-service/ESISecureDataServiceAdapter";
-import { ESIMiningOperation } from "@infra/adapters/outbound/esi-data-service/domain/ESIMiningOperation";
 import { NeoComCredential } from "@domain/NeoComCredential.domain";
+import { V1MiningOperationDto } from "neocom-domain";
+import { ConfigurationAdapter } from "@adapter/outbound/configuration/ConfigurationAdapter";
+import { ESISecureDataServiceAdapter } from "@adapter/outbound/esi-data-service/ESISecureDataServiceAdapter";
 
 describe('Feature: [NIF05]-Fetch mining data along the time.', () => {
     let esiAdapter: ESISecureDataServiceAdapter
     let configuration: ConfigurationAdapter
     let credential: NeoComCredential
 
-    let getMiningDataResponse: ESIMiningOperation[]
+    let getMiningDataResponse: V1MiningOperationDto[]
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -47,7 +45,7 @@ describe('Feature: [NIF05]-Fetch mining data along the time.', () => {
                     console.log('Get Mining Data-><')
                     const pilotId: number = 34565
                     const sut = esiAdapter.v1_apiEsiMiningOperationsData(pilotId)
-                    sut.subscribe((response: ESIMiningOperation[]) => {
+                    sut.subscribe((response: V1MiningOperationDto[]) => {
                         //     console.log('response->' + JSON.stringify(response))
                         //     expect(response).toBeDefined()
                         //     getMiningDataResponse = response
