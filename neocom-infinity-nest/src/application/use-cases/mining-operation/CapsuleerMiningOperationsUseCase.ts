@@ -5,6 +5,7 @@ import { GetCharactersCharacterIdMining200Ok } from "application/domain/esi-mode
 import { ESIDataServicesPort } from "application/ports/EsiDataServices.port";
 import { Optional } from "typescript-optional";
 import { MiningOperationConverter } from "@Infra/adapter/outbound/ESISecureDataServices/converter/MiningOperationConverter";
+import { ESI_CONSTANTS } from "@Infra/config/GlobalConstants";
 
 export interface MiningOperationsUseCaseInput {
     jwt: string // Original encoded token to be passed to ESI
@@ -65,7 +66,7 @@ export class CapsuleerMiningOperationsUseCase {
     private generateIdentifierForMiningAction(miningAction: GetCharactersCharacterIdMining200Ok): string {
         return miningAction.date + '/' + miningAction.solar_system_id
     }
-    public getSystemLink(systemId: number): string {
-        return 'https://esi.evetech.net/latest/universe/systems/' + systemId + '/?datasource=tranquility&language=en'
+    public getSystemLink(locationId: number): string {
+        return  ESI_CONSTANTS.BACKEND_ESI_V1_PREFIX+ESI_CONSTANTS.BACKEND_ESI_SPACE_LOCATION + locationId 
     }
 }

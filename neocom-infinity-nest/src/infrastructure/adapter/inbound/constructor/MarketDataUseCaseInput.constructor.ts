@@ -8,7 +8,7 @@ export class MarketDataUseCaseInputConstructor {
         if (undefined == parameters.typeId) throw new NeoComError.Builder(REQUEST_INVALID).build()
         const input: GetMarketDataUseCaseInput = {
             typeId: parameters.typeId,
-            region: region
+            systemId: region
         }
         return input
     }

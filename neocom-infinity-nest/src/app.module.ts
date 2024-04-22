@@ -15,6 +15,7 @@ import { GetTypeInformationUseCase } from 'application/use-cases/esi-universe/Ge
 import { ESIDataUniverseServicesPort } from 'application/ports/ESIDataUniverseServices.port';
 import { ESIDataUniverseAdapter } from '@Infra/adapter/outbound/ESIDataUniverseServices/ESIData.universe.adapter';
 import { GetMarketDataUseCase } from 'application/use-cases/esi-universe/GetMarketData.usecase';
+import { GetSpaceLocationUseCase } from 'application/use-cases/esi-universe/GetSpaceLocation.usecase';
 
 const ENV = process.env.NODE_ENV
 
@@ -41,7 +42,7 @@ const ENV = process.env.NODE_ENV
         { provide: ESIDataServicesPort, useClass: ESISecureDataServicesAdapter },
         { provide: IEsiMiningSecureService, useClass: ESIMiningSecureService },
         { provide: CapsuleerMiningOperationsUseCase, useClass: CapsuleerMiningOperationsUseCase },
-        GetTypeInformationUseCase,GetMarketDataUseCase,
+        GetTypeInformationUseCase,GetMarketDataUseCase,GetSpaceLocationUseCase,
         { provide: ESIDataUniverseServicesPort, useClass: ESIDataUniverseAdapter },
     ],
 })

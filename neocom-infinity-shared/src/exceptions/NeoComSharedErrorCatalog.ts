@@ -33,3 +33,13 @@ export const REQUEST_INVALID:NeoComErrorDefinition=new NeoComSharedErrorDefiniti
     code: "REQUEST-INVALID",
     messagePattern: "Missing required parameter."
 })
+export const TYPE_INVALID:NeoComErrorDefinition=new NeoComSharedErrorDefinition({
+    httpCode: 401,
+    code: "TYPE-INVALID",
+    messagePattern: "The requested EVE type is not present or invalid."
+})
+export const LOCATION_INVALID:NeoComErrorDefinition=new NeoComSharedErrorDefinition({
+    httpCode: 401,
+    code: "LOCATION-INVALID",
+    messagePattern: "The requested location is not present or invalid."
+})

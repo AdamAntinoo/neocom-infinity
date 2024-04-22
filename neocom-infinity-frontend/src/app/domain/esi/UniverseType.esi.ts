@@ -1,5 +1,5 @@
 import { EsiNode } from "./EsiNode.esi"
-
+/** @deprecated */
 export class UniverseType extends EsiNode {
     public typeId: number
     public name: string
