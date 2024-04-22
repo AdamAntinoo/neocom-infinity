@@ -32,3 +32,8 @@ curl --request GET --location "http://localhost:3000/esi/v1/universe/types/17464
 
 # Command to get type market data from Jita
 curl --request GET --location "http://localhost:3000/esi/v1/fuzzworks/marketdata/17464/30000142"
+
+# Command to get space location. Region
+curl --request GET --location "http://localhost:3000/esi/v1/universe/spacelocation/30000142"
+
+{"jsonClass":"SpaceLocationDto","refenceType":"Region","regionId":10000002,"regionName":"The Forge","constellationId":20000020,"constellationName":"Kimotoro","systemId":30000142,"systemName":"Jita"}

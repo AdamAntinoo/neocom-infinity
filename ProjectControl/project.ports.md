@@ -42,3 +42,6 @@ The project will provide all ports on the range 5200 to 5299. Digits for port as
 #### 5242 - [INTEGRATION] Backend SB application server
 
 ## Production
+- **5230 - Backend SpringBoot Server**
+- **5240 - Backend Postgres Repository**
+- **5250 - Backend Redis Cache**
