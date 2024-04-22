@@ -5,7 +5,7 @@ import { FuzzWorkMarketData } from "neocom-domain";
 
 export interface GetMarketDataUseCaseInput {
     typeId: number
-    region: number
+    systemId: number
 }
 declare namespace GetMarketDataUseCase {
     export type Request = GetMarketDataUseCaseInput
@@ -17,7 +17,7 @@ export class GetMarketDataUseCase {
 
     public async esiGetMarketData(input: GetMarketDataUseCase.Request): Promise<V1MarketDataDto> {
         const esiMarketData: FuzzWorkMarketData = await this.esiUniverseServices.getFuzzWorkMarketData(
-            input.typeId, input.region
+            input.typeId, input.systemId
         )
         return new Promise<V1MarketDataDto>((resolve) => {
             const data: FuzzWorkMarketData = esiMarketData[input.typeId]

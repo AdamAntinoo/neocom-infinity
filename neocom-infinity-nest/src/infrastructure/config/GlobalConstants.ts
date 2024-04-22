@@ -1,0 +1,9 @@
+
+export const ESI_CONSTANTS = Object.freeze({
+    FUZZWORK_PREFIX: '/aggregates/?region=',
+    ESI_UNIVERSE_REGION_URL: '/universe/regions/',
+    ESI_UNIVERSE_REQUEST_SUFFIX: '/?datasource=tranquility&language=en',
+    ESI_UNIVERSE_CONSTELLATION_URL: '/universe/constellations/',
+    ESI_UNIVERSE_SYSTEM_URL: '/universe/systems/',
+    ESI_UNIVERSE_STATION_URL: '/universe/stations/'
+})
