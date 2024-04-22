@@ -1,4 +1,4 @@
-import { V1SolarSystem } from "./V1SolarSystem.interface"
+import { V1SolarSystem } from "./V1.SolarSystem.interface"
 
 export interface V1Station extends V1SolarSystem {
     stationId?: number
