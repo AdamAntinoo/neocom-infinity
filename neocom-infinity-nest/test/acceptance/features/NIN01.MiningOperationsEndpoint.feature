@@ -24,8 +24,8 @@ Feature: [NIN01] Validate the api defined for the Mining Operations endpoint.
   Scenario: [NIN01.03] Validate that one of the resources returned has the correct contents.
     When the endpoint 'capsuleer/miningoperations' is activated
     And the MiningOperation record at position 1 has next contents
-      | jsonClass          | id                  | date       | solarSystemLink                                                                              | resourceCount |
-      | MiningOperationDto | 2024-02-25/30003538 | 2024-02-25 | https://esi.evetech.net/latest/universe/systems/30003538/?datasource=tranquility&language=en | 2             |
+      | jsonClass          | id                  | date       | solarSystemLink                         | resourceCount |
+      | MiningOperationDto | 2024-02-25/30003538 | 2024-02-25 | /esi/v1/universe/spacelocation/30003538 | 2             |
 
   @NIN01 @NIN01.04
   Scenario: [NIN01.04] Check that the Mining Resources are properly generated.

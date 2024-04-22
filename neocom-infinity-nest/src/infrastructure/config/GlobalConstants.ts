@@ -5,5 +5,8 @@ export const ESI_CONSTANTS = Object.freeze({
     ESI_UNIVERSE_REQUEST_SUFFIX: '/?datasource=tranquility&language=en',
     ESI_UNIVERSE_CONSTELLATION_URL: '/universe/constellations/',
     ESI_UNIVERSE_SYSTEM_URL: '/universe/systems/',
-    ESI_UNIVERSE_STATION_URL: '/universe/stations/'
+    ESI_UNIVERSE_STATION_URL: '/universe/stations/',
+
+    BACKEND_ESI_V1_PREFIX : '/esi/v1/',
+    BACKEND_ESI_SPACE_LOCATION: 'universe/spacelocation/'
 })

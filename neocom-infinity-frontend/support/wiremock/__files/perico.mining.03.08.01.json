@@ -15,7 +15,7 @@
     ],
     "id": "2024-02-25/30003538",
     "date": "2024-02-25",
-    "solarSystemLink": "https://esi.evetech.net/latest/universe/systems/30003538/?datasource=tranquility&language=en"
+    "solarSystemLink": "/esi/v1/universe/spacelocation/30003538"
   },
   {
     "jsonClass": "MiningOperationDto",
@@ -28,7 +28,7 @@
     ],
     "id": "2024-02-23/30003541",
     "date": "2024-02-23",
-    "solarSystemLink": "https://esi.evetech.net/latest/universe/systems/30003541/?datasource=tranquility&language=en"
+    "solarSystemLink": "/esi/v1/universe/spacelocation/30003541"
   },
   {
     "jsonClass": "MiningOperationDto",
@@ -51,6 +51,6 @@
     ],
     "id": "2024-02-23/30003538",
     "date": "2024-02-23",
-    "solarSystemLink": "https://esi.evetech.net/latest/universe/systems/30003538/?datasource=tranquility&language=en"
+    "solarSystemLink": "/esi/v1/universe/spacelocation/30003538"
   }
 ]
