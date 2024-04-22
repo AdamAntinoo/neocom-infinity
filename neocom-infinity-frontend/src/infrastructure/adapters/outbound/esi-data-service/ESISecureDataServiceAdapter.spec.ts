@@ -5,7 +5,6 @@ import { HttpClientTestingModule } from "@angular/common/http/testing"
 import { TestBed } from "@angular/core/testing"
 
 import { ESISecureDataServiceAdapter } from './ESISecureDataServiceAdapter'
-import { ESIMiningOperation } from './domain/ESIMiningOperation'
 import { ConfigurationAdapter } from '../configuration/ConfigurationAdapter'
 
 xdescribe('ADAPTER ESISecureDataServiceAdapter [Module: Infra]', () => {
@@ -46,17 +45,17 @@ xdescribe('ADAPTER ESISecureDataServiceAdapter [Module: Infra]', () => {
         console.log('><[Infra/ESISecureDataServiceAdapter]> should be created')
         expect(service).toBeDefined()
     })
-    it('when requested for mining operations', () => {
-        const pilotId: number = 321
-        service.v1_apiEsiMiningOperationsData(pilotId)
-            .subscribe((response: ESIMiningOperation[]) => {
-                console.log('response->' + JSON.stringify(response))
-                expect(response).toBeDefined()
-                expect(response.length).toBe(1)
-                const sut: ESIMiningOperation = response[0]
-                expect(sut).toBeDefined()
-                expect(sut.quantity).toBe(324)
-            },
-                err => console.log('v1_apiEsiMiningOperationsData.exception->' + JSON.stringify(err)))
-    })
+    // it('when requested for mining operations', () => {
+    //     const pilotId: number = 321
+    //     service.v1_apiEsiMiningOperationsData(pilotId)
+    //         .subscribe((response: ESIMiningOperation[]) => {
+    //             console.log('response->' + JSON.stringify(response))
+    //             expect(response).toBeDefined()
+    //             expect(response.length).toBe(1)
+    //             const sut: ESIMiningOperation = response[0]
+    //             expect(sut).toBeDefined()
+    //             expect(sut.quantity).toBe(324)
+    //         },
+    //             err => console.log('v1_apiEsiMiningOperationsData.exception->' + JSON.stringify(err)))
+    // })
 })

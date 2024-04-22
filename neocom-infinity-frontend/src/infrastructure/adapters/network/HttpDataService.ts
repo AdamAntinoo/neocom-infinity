@@ -6,6 +6,7 @@ import { Injectable } from "@angular/core";
 @Injectable({
     providedIn: 'root'
 })
+/** @deprecated */
 export class HttpDataService {
     constructor(private httpService: HttpClient) { }
 

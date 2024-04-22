@@ -41,8 +41,11 @@
       "@app/*": [
         "src/app/*"
       ],
-      "@infra/*": [
-        "src/infrastructure/*"
+      "@adapter/*": [
+        "src/infrastructure/adapters/*"
+      ],
+      "@constructor/*": [
+        "src/infrastructure/constructors/*"
       ],
       "neocom-domain/*": [
         "src/neocom-domain/*"

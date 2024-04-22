@@ -1,9 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { V1MiningOperationsPageComponent } from '../../pages/v1-mining-operations-page/V1MiningOperationsPage';
-import { BackgroundEnabledComponent } from '@innovative/components/background-enabled/background-enabled.component';
 import { IRefreshable } from '@innovative/domain/interfaces/IRefreshable.interface';
 import { AppPanelComponent } from '@innovative/components/app-panel/app-panel.component';
-import { V1MiningOperationsAdapterService } from '@infra/adapters/outbound/mining-operations/v1-mining-operations-adapter.service';
+import { V1MiningOperationsAdapterService } from '@adapter/outbound/mining-operations/V1.mining-operations.adapter';
 
 @Component({
     selector: 'v1-miningoperations-panel',
