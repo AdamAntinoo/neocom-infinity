@@ -5,6 +5,6 @@
   "regionName": "The Forge",
   "constellationId": 20000020,
   "constellationName": "Kimotoro",
-  "systemId": 30000142,
-  "systemName": "Jita"
+  "solarSystemId": 30000142,
+  "solarSystemName": "Jita"
 }

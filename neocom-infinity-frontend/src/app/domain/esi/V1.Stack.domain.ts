@@ -6,7 +6,19 @@ export class V1Stack extends NeoCom {
     public quantity: number
     public type: V2UniverseType
 
-    public decode(): void { }
+    public decode(): void {
+        this.jsonClass = 'Stack'
+    }
+
+    public identify(): string {
+        return 'Stack'
+    }
+    public getIdentifier(): string {
+        return 'STACK'
+    }
+    public getSellPrice (): number{
+        return this.type.marketData.sellPrice
+    }
 
     public static Builder = class Builder {
         public stack: V1Stack

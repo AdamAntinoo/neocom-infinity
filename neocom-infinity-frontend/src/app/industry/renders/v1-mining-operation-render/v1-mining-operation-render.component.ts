@@ -18,15 +18,20 @@ export class V1MiningOperationRenderComponent extends V2NodeContainerRenderCompo
         return '-'
     }
     public getResources(): V1Stack[] {
+        console.log('MiningOperation>resources->'+JSON.stringify(this.getNode().resources))
         return this.getNode().getResources()
     }
     public getDate(): string {
-        return '2024-01-01'
+        return this.getNode().date
     }
     public getSystemName(): string {
-        return 'SYSTEM-NAME'
+        if (undefined == this.getNode()) return '-'
+        return this.getNode().solarSystem.regionName + '->' + this.getNode().solarSystem.constellationName + '->' + this.getNode().solarSystem.solarSystemName
     }
     public getSystemId(): number {
-        return 34
+        return this.getNode().solarSystem.solarSystemId
+    }
+    public getEstimatedValue(): number{
+        return this.getNode().getEstimatedValue()
     }
 }

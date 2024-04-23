@@ -10,15 +10,23 @@ import { V1Stack } from '@domain/esi/V1.Stack.domain'
 export class V1StackRenderComponent extends V2NodeContainerRenderComponent {
 
     public getNode(): V1Stack {
+        console.log('Stack->' + this.node.jsonClass)
         return this.node as V1Stack
+    }
+    public getUniqueId(): string {
+        if (this.node) return this.getNode().getIdentifier()
+        return '-'
     }
     public getURLIcon(): string {
         return 'url'
     }
     public getName(): string {
-        return 'name'
+        return this.getNode().type.name
     }
-    public getQuantity(): string {
-        return 'name'
+    public getQuantity(): number {
+        return this.getNode().quantity
+    }
+    public getPrice(): number {
+        return this.getNode().getSellPrice()
     }
 }

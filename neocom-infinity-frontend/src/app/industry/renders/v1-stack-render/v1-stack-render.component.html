@@ -1,17 +1,42 @@
-<div class="neocom-panel panel-red" draggable [dragData]="node" [dragScope]="'RESOURCE'" [dragClass]="'resource-selected'">
-  <div class="row">
-      <img class="neocom-icon iconsize-20" src="{{getURLIcon()}}">
+<!-- M I N I N G   S T A C K -->
+<div id="{{ getUniqueId() }}" class="panel-yellow">
+  <div class="insets row">
+    <img
+      class="neocom-icon iconsize-16"
+      src="assets/res-sde/drawable/systems.png"
+    />
+    <div class="separator-4"></div>
+    <div class="row">
       <div class="field resource-name-width">
-          <span cy-field-label="security" class="label">RESOURCE NAME</span><br>
-          <span cy-field-value="resourceName" class="resource-name">{{getName()}}</span>
+        <span cy-field-label="security" class="label">RESOURCE NAME</span><br />
+        <span cy-field-value="resourceName" class="resource-name">{{
+          getName()
+        }}</span>
       </div>
+      <div><span>&nbsp;</span></div>
       <div class="field resource-quantity-width">
-          <span cy-field-label="security" class="label">QUANTITY</span><br>
-          <span cy-field-value="resourceName" class="resource-name right">{{getQuantity()}}</span>
+        <span cy-field-label="security" class="label">QUANTITY</span><br />
+        <span cy-field-value="resourceName" class="resource-name right">{{
+          getQuantity()
+        }}</span>
       </div>
+      <div><span>&nbsp;</span></div>
+      <div class="field resource-level">
+        <span cy-field-label="security" class="label">RESOURCE PRICE</span
+        ><br />
+        <span cy-field-value="resourceLevel" class="resource-level">
+          {{ getPrice() | iskscaled }}
+        </span>
+      </div>
+      <div><span>&nbsp;</span></div>
+      <div><span>&nbsp;</span></div>
       <div class="field resource-level right">
-          <span cy-field-label="security" class="label">RESOURCE PRICE</span><br>
-          <span cy-field-value="resourceLevel" class="resource-level">{{getQuantity()}}</span>
+        <span cy-field-label="security" class="label">EXPECTED VALUE</span
+        ><br />
+        <span cy-field-value="resourceLevel" class="resource-level">
+          {{ getPrice() * getQuantity() | iskscaled }}
+        </span>
       </div>
+    </div>
   </div>
 </div>

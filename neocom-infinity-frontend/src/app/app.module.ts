@@ -84,7 +84,6 @@ registerLocaleData(localeEs);
         // - ELEMENTS ON THE FLY
         V1MiningOperationsPageComponent,
         V1MiningOperationsPanelComponent,
-        V1StackRenderComponent
     ],
     providers: [
         // - SERVICES
