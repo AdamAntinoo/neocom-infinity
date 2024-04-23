@@ -15,7 +15,10 @@ export class BackendFactory {
 
     public async construct(backendData: Record): Promise<any> {
         // Use the jsonClass to determine the class to construct.
-        console.log('Request factory for->' + backendData.jsonClass)
+        console.log('03 Request factory for->' + backendData.jsonClass)
+        console.log('03 Request factory with data->' + JSON.stringify(backendData))
+        if (undefined == backendData.jsonClass)
+            console.log('invaud class->' + JSON.stringify(backendData))
         switch (backendData.jsonClass) {
             case 'StackDto': {
                 console.log('stack->' + JSON.stringify(backendData))
@@ -45,20 +48,28 @@ export class BackendFactory {
                 return new V1MarketData(backendData)
             }
             case 'MiningOperationDto': {
-                console.log('MiningOperationDto')
-                // const operationDto: V1MiningOperationDto = backendData
+                // console.log('case MiningOperationDto')
+                const operationDto: V1MiningOperationDto = backendData as V1MiningOperationDto
+                console.log('case miningOperation>backendData->' + JSON.stringify(operationDto))
                 const solarSystemDto: V1SpaceLocationDto = await this.resolver.apiv3_GetUnsecuredLink<V1SpaceLocationDto>(
-                    backendData['solarSystemLink']
+                    operationDto.solarSystemLink
                 )
-                const solarSystem : V1SpaceLocation = await this.construct(solarSystemDto)
+                const solarSystem: V1SpaceLocation = await this.construct(solarSystemDto)
+                const resources: V1Stack[] = []
+                for (let resource of operationDto.getResources()) {
+                    resources.push(await this.construct(resource))
+                }
+                console.log('resources->' + resources.length)
                 const operation: V3MiningOperation = new V3MiningOperation.Builder(backendData)
                     .withSolarSystem(solarSystem)
+                    .withResources(resources)
                     .build()
+                return operation
             }
-            case 'SpaceLocationDto':{
-                console.log('spaceLocation->' + JSON.stringify(backendData))
+            case 'SpaceLocationDto': {
+                console.log('case spaceLocation->' + JSON.stringify(backendData))
                 return new V1SpaceLocation(backendData)
-           }
+            }
         }
     }
 }

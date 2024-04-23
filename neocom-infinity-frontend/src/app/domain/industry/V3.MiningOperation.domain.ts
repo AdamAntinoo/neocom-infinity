@@ -37,7 +37,11 @@ export class V3MiningOperation extends NeoCom {
         this.resources.push(resource)
         return this
     }
-
+    public withSolarSystem(solarSystem: V1SpaceLocation): V3MiningOperation {
+        // if (undefined == solarSystem) throw new NeoComError.Builder(MANDATORY_FIELD_MISSING).build()
+        this.solarSystem = solarSystem
+        return this
+    }
     public static Builder = class Builder {
         public miningOperation: V3MiningOperation
 
@@ -45,8 +49,12 @@ export class V3MiningOperation extends NeoCom {
             this.miningOperation = new V3MiningOperation(fields)
         }
         public withSolarSystem(solarSystem: V1SpaceLocation): Builder {
-            if (undefined == solarSystem) throw new NeoComError.Builder(MANDATORY_FIELD_MISSING).build()
+            // if (undefined == solarSystem) throw new NeoComError.Builder(MANDATORY_FIELD_MISSING).build()
             this.miningOperation.solarSystem = solarSystem
+            return this
+        }
+        public withResources(resources: V1Stack[]): Builder {
+            this.miningOperation.resources = resources
             return this
         }
         public build(): V3MiningOperation {

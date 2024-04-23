@@ -7,7 +7,7 @@ import { ESISecureDataServicePort } from "@app/ports/ESISecureDataServicePort";
 import { ConfigurationAdapter } from '../configuration/ConfigurationAdapter';
 import { ESIMiningOperationsTypedRequest } from './ESIMiningOperationsTypedRequest';
 import { ResponseTransformer } from 'neocom-domain/ResponseTransformer';
-import { V1MiningOperationDto } from 'neocom-domain';
+import { V1MiningOperationDto, V1StackDto } from 'neocom-domain';
 
 @Injectable({
     providedIn: 'root'
@@ -19,7 +19,6 @@ export class ESISecureDataServiceAdapter implements ESISecureDataServicePort {
         private readonly configuration: ConfigurationAdapter,
         private readonly httpService: HttpClient
     ) {
-        console.log('ESISecureDataServiceAdapter')
         console.log('ESISecureDataServiceAdapter>configuration->' + this.configuration.getNestBackendHost())
     }
 
@@ -32,9 +31,9 @@ export class ESISecureDataServiceAdapter implements ESISecureDataServicePort {
                 let results: V1MiningOperationDto[] = []
                 if (entrydata instanceof Array) {
                     for (let key in entrydata)
-                        results.push(new V1MiningOperationDto(entrydata[key]))
+                        results.push(this.buildMiningOperation(entrydata[key]))
                 } else
-                    results.push(new V1MiningOperationDto(entrydata))
+                    results.push(this.buildMiningOperation(entrydata))
 
                 return results;
             })
@@ -44,5 +43,16 @@ export class ESISecureDataServiceAdapter implements ESISecureDataServicePort {
                     transformer.description)
                 return transformer.transform(data)
             }))
+    }
+    private buildMiningOperation ( entryData : any ): V1MiningOperationDto{
+        const miningOperationDto : V1MiningOperationDto = new V1MiningOperationDto.Builder(entryData)
+        .build()
+        for ( let resourceDto of entryData['resources']){
+            const stackDto : V1StackDto = new V1StackDto(resourceDto)
+            console.log('02 building stackDto->'+JSON.stringify(stackDto))
+            miningOperationDto.addMiningResource(stackDto)
+        }
+        console.log('02 building miningOperationDto->'+JSON.stringify(miningOperationDto))
+        return miningOperationDto
     }
 }

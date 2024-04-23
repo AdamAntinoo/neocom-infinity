@@ -1,12 +1,12 @@
 import { MANDATORY_FIELD_MISSING, NeoComError } from "neocom-domain";
-import { EsiNode } from "./EsiNode.esi";
 import { V2UniverseType } from "./V2.UniverseType.domain";
+import { NeoCom } from "@domain/NeoCom.domain";
 
-export class V1Stack extends EsiNode {
+export class V1Stack extends NeoCom {
     public quantity: number
     public type: V2UniverseType
 
-    protected decode(): void { }
+    public decode(): void { }
 
     public static Builder = class Builder {
         public stack: V1Stack

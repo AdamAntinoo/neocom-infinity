@@ -17,7 +17,7 @@ export class V2UniverseType extends EsiNode {
 
     public withMarketData ( marketData : V1MarketData): V2UniverseType{
         this.marketData=marketData
-        return this
+        return
     }
 
     protected decode(): void { }

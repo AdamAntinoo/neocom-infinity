@@ -21,33 +21,20 @@ export class V1MiningOperationsAdapterService {
     ) { }
 
     public downloadMiningOperationsForCharacter(characterId: number): Observable<V3MiningOperation[]> {
-        console.log('downloadMiningOperationsForCharacter->' + characterId)
+        console.log('01 downloadMiningOperationsForCharacter->' + characterId)
         return this.esiSecureAdapter.v1_apiEsiMiningOperationsData(characterId)
             .pipe(map((miningOperationList: V1MiningOperationDto[]) => {
                 const resolveData: V3MiningOperation[] = []
+                let index:number =0
                 miningOperationList.forEach((element: V1MiningOperationDto) => {
-                    console.log('operation->' + JSON.stringify(element))
+                    index++
+                    console.log('processing operation by index->' + index)
                     this.factory.construct(element).then((operation: V3MiningOperation) => {
-                        console.log('RESULTING OPERATION->'+JSON.stringify(operation))
+                        // console.log('RESULTING OPERATION->' + JSON.stringify(operation))
                         resolveData.push(operation)
                     })
-                    // new MiningOperationConstructor(this.resolver).construct(element)
-                    //     .then((operation: V3MiningOperation) => {
-                    //         resolveData.push(operation)
-                    //     })
                 })
                 return resolveData
             }))
     }
 }
-// this.factory.construct(element).then((operation: V3MiningOperation) => {
-//     resolveData.push(operation)
-// })
-// miningOperationList.forEach((element: V1MiningOperationDto) => {
-//     const operation : V3MiningOperation =  this.factory.construct(element)
-//     resolveData.push(operation)
-//     // new MiningOperationConstructor(this.resolver).construct(element)
-//     //     .then((operation: V3MiningOperation) => {
-//     //         resolveData.push(operation)
-//     //     })
-// })
