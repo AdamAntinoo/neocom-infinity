@@ -7,6 +7,7 @@ configuration.ts
 git_push.sh
 index.ts
 model/errorResponse.ts
+model/esiTypeDto.ts
 model/miningOperation.ts
 model/models.ts
 variables.ts

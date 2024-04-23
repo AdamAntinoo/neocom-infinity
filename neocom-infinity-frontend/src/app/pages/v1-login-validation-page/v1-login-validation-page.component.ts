@@ -16,7 +16,7 @@ import { NeoComException } from '@innovative/domain/NeoComException'
 import { IsolationService } from '@innovative/services/isolation.service'
 import { NeoComConstants } from '@app/platform/NeocomConstants.platform'
 import { ExceptionCatalog } from '@app/platform/ExceptionCatalog'
-import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer'
+import { ResponseTransformer } from 'neocom-domain/ResponseTransformer'
 import { BackgroundEnabledComponent } from '@innovative/components/background-enabled/background-enabled.component'
 import { AuthenticationStateResponse } from '@domain/dto/AuthenticationStateResponse.dto'
 import { NeoComCredential } from '@domain/NeoComCredential.domain'
@@ -72,7 +72,7 @@ export class V1LoginValidationPageComponent extends BackgroundEnabledComponent i
                             this.router.navigate(['dashboard'])   // Jump to the Dashboard page if all complete.
                         } else {
                             this.isolationService.deleteAllCookies()
-                              this.router.navigate(['/start']) // Jump to the exception information page to login again.
+                            this.router.navigate(['/start']) // Jump to the exception information page to login again.
                         }
                     })
                 )

@@ -1,6 +1,13 @@
 {
-  "/api/*": {
-    "target": "http://localhost:5201",
+  "/api/v3/neocom/*": {
+    "target": "http://localhost:5272",
+    "secure": false,
+    "logLevel": "debug",
+    "timeout": 30000,
+    "changeOrigin": true
+  },
+  "/esi/v1/*": {
+    "target": "http://localhost:5272",
     "secure": false,
     "logLevel": "debug",
     "timeout": 30000,
@@ -34,4 +41,11 @@
     "timeout": 30000,
     "changeOrigin": true
   },
+  "/api/*": {
+    "target": "http://localhost:5201",
+    "secure": false,
+    "logLevel": "debug",
+    "timeout": 30000,
+    "changeOrigin": true
+  }
 }

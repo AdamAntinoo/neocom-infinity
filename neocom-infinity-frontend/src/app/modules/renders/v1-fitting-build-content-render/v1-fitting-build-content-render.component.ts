@@ -8,7 +8,7 @@ import { HALResolver } from '@app/services/HALResolver.service';
 import { FittingItem } from '@domain/FittingItem.domain';
 import { FittingBuildContentDto } from '@domain/industry/dto/FittingBuildContentDto.dto';
 import { V2NodeContainerRenderComponent } from '../v2-node-container-render/v2-node-container-render.component';
-import { EveItemDto } from '@domain/core/dto/EveItemDto.dto';
+import { EveItemDto } from 'neocom-domain/EveItemDto.dto';
 import { FittingItemHAL } from '@domain/industry/hal/FittingItemHAL.hal';
 import { MarketOrderDto } from '@domain/industry/dto/MarketOrderDto.dto';
 

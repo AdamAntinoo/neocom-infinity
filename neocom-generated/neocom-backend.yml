@@ -26,6 +26,8 @@ tags:
     externalDocs:
       description: Find out more
       url: https://github.com/AdamAntinoo/neocom-infinity/tree/master/neocom-infinity-nest/README.md
+  - name: esiUniverse
+    description: Set of endpoints that encapsulate and provide publis data from the ESI Universe.
 
 paths:
   /nin/v1/character/miningoperations:
@@ -64,6 +66,35 @@ paths:
         '401':
           $ref: "#/components/responses/ApplicationError"
           description: The authentication token is not present or invalid so the request is not authorized.
+  
+  /esi/v1/universe/types/{typeId}:
+    get:
+      tags:
+        - esiUniverse
+      summary: Get the main information related to an Eve type from the ESI data source.
+      description: >
+        Instead using 3 endpoints directly to the ESI Data Service, encapsulate group and category info into a single cached request to the new backend.
+      operationId: esiGetTypeInformation
+      parameters:
+        - name: typeId
+          in: path
+          description: The unique ESI type identifier.
+          required: true
+          explode: false
+          schema:
+            type: number
+            example: 17464
+
+      responses:
+        '200':
+          description: Success retrieval of the type, group and category data.
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/EsiTypeDto'          
+
 security:
   - neocom_esi_auth: []
 
@@ -119,6 +150,17 @@ components:
         - quantity
         - solarSystem
         - type
+    EsiTypeDto:
+      type: object
+      properties:
+        typeId:
+          type: integer
+          format: int32
+          description: The unique type identifier.
+          example: 17464
+      required:
+        - typeId
+
     ErrorResponse:
       type: object
       properties:

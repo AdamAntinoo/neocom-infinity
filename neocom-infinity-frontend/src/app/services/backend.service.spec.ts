@@ -13,7 +13,7 @@ import { RouteMockUpComponent } from '@app/testing/RouteMockUp.component'
 import { routes } from '@app/testing/RouteMockUp.component'
 import { IsolationService } from '@innovative/services/isolation.service'
 import { HttpClientWrapperService } from '@innovative/services/httpclientwrapper.service'
-import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer'
+import { ResponseTransformer } from 'neocom-domain/ResponseTransformer'
 // - PROVIDERS
 import { SupportIsolationService } from '@app/testing/SupportIsolation.service'
 import { SupportHttpClientWrapperService } from '@app/testing/SupportHttpClientWrapperService.service'
@@ -75,7 +75,7 @@ describe('SERVICE BackendService [Module: APP]', () => {
     describe('Code Coverage Phase [apiv1_validateAuthenticationState]', () => {
         it('apiv1_ValidateAuthenticatedSession.success: validate the authentication is still valid', async () => {
             console.log('step 01')
-             service.apiv1_ValidateAuthtenticationState()
+            service.apiv1_ValidateAuthtenticationState()
                 .subscribe(response => {
                     console.log('step 07')
                     console.log('--[apiv1_validateAuthenticationState]> response: ' + JSON.stringify(response))
@@ -83,7 +83,7 @@ describe('SERVICE BackendService [Module: APP]', () => {
                     expect(response.state).toContain('valid')
                 })
             console.log('step 05')
-            httpController.service('GET', {state:"valid"})
+            httpController.service('GET', { state: "valid" })
         })
     })
     describe('Code Coverage Phase [apiv1_ValidateAuthorizationToken]', () => {

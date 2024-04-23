@@ -1,7 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { LookupSolarSystem } from '@app/modules/planetary/domain/LookupSolarSystem.domain';
 import { ICollaboration } from '@innovative/domain/interfaces/ICollaboration.interface';
-import { INamed } from '@innovative/domain/interfaces/INamed.interface';
 
 @Pipe({ name: 'systemFilter' })
 export class SystemFilterPipe implements PipeTransform {

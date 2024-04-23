@@ -1,7 +1,7 @@
-import { ConfigurationPort } from "@app/ports/ConfigurationPort"
-import { TypedRequest } from "../../network/TypedRequest"
-import { ConfigurationAdapter } from "../../inbound/configuration/ConfigurationAdapter"
 import { HttpHeaders } from "@angular/common/http"
+
+import { BACKEND_LINKS } from "@adapter/outbound/configuration/GlobalConstants"
+import { TypedRequest } from "neocom-domain"
 
 
 declare namespace ESIMiningOperationsTypedRequest {
@@ -13,23 +13,16 @@ export class ESIMiningOperationsTypedRequest implements TypedRequest {
     public request: string
     public options: {}
 
-    constructor(private configuration: ConfigurationAdapter) {
-        console.log('ESIMiningOperationsTypedRequest->' + JSON.stringify(configuration))
-        let newheaders = new HttpHeaders()
+    constructor() {
         this.options = {
-            // headers: new HttpHeaders({
-            //     'Accept': '*/*',
-            //     'Content-Type': 'application/json',
-            //     'Cache-Control':'no-cache'
-            // }),
-            // observe: 'response',
-            // responseType: 'json'
+            headers: new HttpHeaders()
         }
     }
 
-    public prepare(parameters: ESIMiningOperationsTypedRequest.Request) {
-        console.log('prepare->parameters->' + parameters)
-        this.request = this.configuration.getNestBackendHost() + '/characters/' + parameters + '/miningoperation'
+    public prepare(requestInput: ESIMiningOperationsTypedRequest.Request) {
+        console.log('prepare->parameters->' + requestInput)
+        this.request = BACKEND_LINKS.BACKEND_MINING_OPERATIONS_PREFIX + requestInput + BACKEND_LINKS.BACKEND_MINING_OPERATIONS_OPERATION
+        console.log('prepare->request->' + this.request)
         return this
     }
 

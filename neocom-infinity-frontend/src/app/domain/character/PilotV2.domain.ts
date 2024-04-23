@@ -6,7 +6,7 @@ import { environment } from '@env/environment';
 import { Corporation } from '../Corporation.domain';
 import { HALNode } from '../hal/HALNode.hal';
 import { HALLink } from '../hal/HALLink.hal';
-import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer';
+import { ResponseTransformer } from 'neocom-domain/ResponseTransformer';
 import { PlatformConstants } from '@env/PlatformConstants';
 import { CorporationV1 } from '../corporation/CorporationV1.domain';
 import { SpaceLocationV1 } from '@domain/location/SpaceLocationV1.domain';
@@ -17,10 +17,10 @@ import { NeoComConstants } from '@app/platform/NeocomConstants.platform';
 import { PublicPilotV1 } from './PublicPilotV1.domain';
 
 export class PilotV2 extends PublicPilotV1 {
-    public totalSkillpoints:number
-    public walletBalance:number
-    public currentShipName:string
-    public currentShipTypeName:string
+    public totalSkillpoints: number
+    public walletBalance: number
+    public currentShipName: string
+    public currentShipTypeName: string
     public lastKnownLocation: SpaceLocationV1
 
     constructor(values: Object = {}) {
@@ -33,8 +33,8 @@ export class PilotV2 extends PublicPilotV1 {
         return this.pilotId
     }
     public getCorporationId(): number {
-      if ( this.corporation)  return this.corporation.getCorporationId()
-      else return -1
+        if (this.corporation) return this.corporation.getCorporationId()
+        else return -1
     }
     public getPilotIcon(): string {
         if (null == this.url4Icon) return NeoComConstants.DEFAULT_AVATAR_PLACEHOLDER;

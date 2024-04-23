@@ -15,7 +15,7 @@ import { RouteMockUpComponent } from '@app/testing/RouteMockUp.component';
 import { routes } from '@app/testing/RouteMockUp.component';
 import { IsolationService } from '@innovative/services/isolation.service';
 import { HttpClientWrapperService } from '@innovative/services/httpclientwrapper.service';
-import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer';
+import { ResponseTransformer } from 'neocom-domain/ResponseTransformer';
 // - PROVIDERS
 import { AppStoreService } from '@app/services/appstore.service';
 import { BackendService } from '@app/services/backend.service';

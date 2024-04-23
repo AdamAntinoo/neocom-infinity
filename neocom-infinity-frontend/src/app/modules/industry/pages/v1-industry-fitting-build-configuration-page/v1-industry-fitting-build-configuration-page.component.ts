@@ -14,7 +14,7 @@ import { IRefreshable } from '@innovative/domain/interfaces/IRefreshable.interfa
 // - SERVICES
 import { BackendService } from '@app/services/backend.service'
 import { V1FittingConfigurationPanelComponent } from '../../panels/v1-fitting-configuration-panel/v1-fitting-configuration-panel.component'
-import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer'
+import { ResponseTransformer } from 'neocom-domain/ResponseTransformer'
 
 @Component({
     selector: 'v1-industry-fitting-build-configuration-page',
@@ -22,8 +22,8 @@ import { ResponseTransformer } from '@innovative/services/support/ResponseTransf
     styleUrls: ['./v1-industry-fitting-build-configuration-page.component.scss']
 })
 export class V1IndustryFittingBuildConfigurationPageComponent extends BackgroundEnabledComponent implements OnInit, IRefreshable {
-    @ViewChild(V1FittingConfigurationPanelComponent) savedConfiguration : V1FittingConfigurationPanelComponent
-    @ViewChild(V1FittingConfigurationPanelComponent) targetConfiguration : V1FittingConfigurationPanelComponent
+    @ViewChild(V1FittingConfigurationPanelComponent) savedConfiguration: V1FittingConfigurationPanelComponent
+    @ViewChild(V1FittingConfigurationPanelComponent) targetConfiguration: V1FittingConfigurationPanelComponent
     private identity: number
 
     constructor(
@@ -58,8 +58,8 @@ export class V1IndustryFittingBuildConfigurationPageComponent extends Background
                     return entrydata
                 }))
                 .subscribe((response: any) => {
-                    this.savedConfiguration.sendConfigurationReference( response.savedBuildData.href);
-                    this.targetConfiguration.sendConfigurationReference( response.savedBuildData.href);
+                    this.savedConfiguration.sendConfigurationReference(response.savedBuildData.href);
+                    this.targetConfiguration.sendConfigurationReference(response.savedBuildData.href);
                     // const coilList = this.sortCoildByMaterialColor(response.getCoils())
                     // console.log('-[V1CoilsPanelComponent.downloadCoils]> Nodes downloaded: ' + coilList.length)
                     // this.completeDowload(coilList) // Notify the completion of the download.

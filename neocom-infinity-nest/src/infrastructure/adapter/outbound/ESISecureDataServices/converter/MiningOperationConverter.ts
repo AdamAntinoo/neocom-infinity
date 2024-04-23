@@ -1,26 +1,19 @@
 import { IConverter } from "neocom-domain/dist/converter/IConverter.interface"
-import { IESIMiningOperation } from "../domain/IESIMiningOperation.interface"
-import { ESISecureDataServiceHALGeneratorAdapter } from "../esi.securedataservice.halgenerator.adapter"
-import { V2MiningOperation } from "neocom-domain/dist/entities/V2.MiningOperation"
+import { GetCharactersCharacterIdMining200Ok } from "application/domain/esi-model/models"
+import { V1StackDto } from "neocom-domain"
 
-export class MiningOperationConverter<S, D> implements IConverter<IESIMiningOperation, V2MiningOperation>{
-    constructor(private halGenerator: ESISecureDataServiceHALGeneratorAdapter) { }
-
-    public convert(source: IESIMiningOperation): V2MiningOperation {
-        let solarSystem: string = undefined
+export class MiningOperationConverter<S, D> implements IConverter<GetCharactersCharacterIdMining200Ok, V1StackDto>{
+    public convert(source: GetCharactersCharacterIdMining200Ok): V1StackDto {
         let type: string = undefined
-        if (source.solar_system_id) {
-            solarSystem = this.halGenerator.getSystemLink(source.solar_system_id)
-        }
         if (source.type_id) {
-            type = this.halGenerator.getTypeLink(source.type_id)
+            type = this.getTypeLink(source.type_id)
         }
-        return new V2MiningOperation({
-            id: source.date + '-' + source.solar_system_id + '-' + source.type_id,
-            date: source.date,
+        return new V1StackDto({
             quantity: source.quantity,
-            solarSystem: solarSystem,
-            typeId: type
+            typeLink: type
         })
+    }
+    public getTypeLink(typeId: number): string {
+        return '/esi/v1/universe/types/' + typeId 
     }
 }

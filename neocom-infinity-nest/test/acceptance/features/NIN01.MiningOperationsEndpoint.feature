@@ -1,21 +1,37 @@
 @NIN01 @MiningOperation @Endpoint
-Feature: [NIN01]-Validate the api defined for the Mining Operations endpoint.
+Feature: [NIN01] Validate the api defined for the Mining Operations endpoint.
 
-  [STORY] When the GET request arrives the result should be the current complete list as ontained from the Esi service.
-  [STORY] Since data on the Esi endpoint will be removed after 30 days may be it will be necessary to persist old information. This is not defined.
-  [STORY] There is a filter option for the GET endpoint that will only retrieve the current date mined resources.
-  [STORY] Mining Operation data should be pushed to the server. To be defined.
+  [STORY-NIN] The ESI GET request gives a result with the current complete list as obtained from the Esi service.
+  [STORY-NIN] The backend should get the ESI data and aggregate it by system and date.
+  [STORY-NIN] For each system-date pair we generate a single Mining Operation that will contain the list of resources mined for that combination.
+  [STORY-NIN] Replace Mining Resource by the new EsiType and the grouping on the Stack.
 
-  @NIN01.01
-  Scenario: [NIN01.01]-Get the Esi mined resources and transform them into the MiningOperation data expected by the frontend.
+  Background: Authentication preparation
     Given a environment prepared for capsuleer 93813310
-    When the endpoint 'capsuleer/miningoperations' is activated
-    And the response has 4 items
+    Given a environment prepared with predefined token
 
-  @NIN01.02
-  Scenario: [NIN01.02]-Validate that one of the resources returned has the correct contents.
-    Given a environment prepared for capsuleer 93813310
+  @NIN01 @NIN01.01
+  Scenario: [NIN01.01] Call the ESI service and validate we get a valid response with some items.
+    When the endpoint 'esi/miningoperations' is activated
+    Then the esi response has 6 items
+
+  @NIN01 @NIN01.02
+  Scenario: [NIN01.02] Aggregate the records obtained from ESI by system and then by date.
     When the endpoint 'capsuleer/miningoperations' is activated
-    And the Mined Resources record at position 1 has next contents
-      | jsonClass       | date       | quantity | solarSystem | typeId |
-      | MiningOperation | 2024-02-23 | 210      |             |        |
+    And the list of items is processed we get 3 MiningOperations
+
+  @NIN01 @NIN01.03
+  Scenario: [NIN01.03] Validate that one of the resources returned has the correct contents.
+    When the endpoint 'capsuleer/miningoperations' is activated
+    And the MiningOperation record at position 1 has next contents
+      | jsonClass          | id                  | date       | solarSystemLink                         | resourceCount |
+      | MiningOperationDto | 2024-02-25/30003538 | 2024-02-25 | /esi/v1/universe/spacelocation/30003538 | 2             |
+
+  @NIN01 @NIN01.04
+  Scenario: [NIN01.04] Check that the Mining Resources are properly generated.
+    When the endpoint 'capsuleer/miningoperations' is activated
+    Then the MiningOperation record at position 1 is the target
+    Then the MiningOperation has 2 resources
+    And the MiningResource at position 1 has next contents
+      | jsonClass | quantity | typeLink                     |
+      | StackDto  | 10000    | /esi/v1/universe/types/17464 |

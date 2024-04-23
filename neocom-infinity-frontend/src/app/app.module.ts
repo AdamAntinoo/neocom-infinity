@@ -47,6 +47,7 @@ import { V1StartPageComponent } from './pages/v1-start-page/v1-start-page.compon
 import { V1MiningOperationsPageComponent } from './industry/pages/v1-mining-operations-page/V1MiningOperationsPage';
 import { V1MiningOperationsPanelComponent } from './industry/panels/v1-miningoperations-panel/v1-miningoperations-panel.component';
 import { RendersModule } from './modules/renders/renders.module';
+import { V1StackRenderComponent } from './industry/renders/v1-stack-render/v1-stack-render.component';
 registerLocaleData(localeEs);
 
 @NgModule({
@@ -82,7 +83,7 @@ registerLocaleData(localeEs);
         V1StartPageComponent,
         // - ELEMENTS ON THE FLY
         V1MiningOperationsPageComponent,
-        V1MiningOperationsPanelComponent
+        V1MiningOperationsPanelComponent,
     ],
     providers: [
         // - SERVICES

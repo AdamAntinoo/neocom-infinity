@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 // - SERVICES
 import { AppStoreService } from '@app/services/appstore.service';
-import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer';
+import { ResponseTransformer } from 'neocom-domain/ResponseTransformer';
 // - DOMAIN
 import { Fitting } from '../../../../domain/Fitting.domain';
 import { GroupContainer } from '@domain/GroupContainer.domain';
@@ -20,7 +20,7 @@ import { AppPanelComponent } from '@innovative/components/app-panel/app-panel.co
 export class PilotFittingsPageComponent extends AppPanelComponent implements OnInit {
     private hullCategories: Map<string, GroupContainer> = new Map<string, GroupContainer>();
     private shipClasses: Map<string, GroupContainer> = new Map<string, GroupContainer>();
-    private fittingList : ICollaboration[]=[]
+    private fittingList: ICollaboration[] = []
 
     constructor(protected appStoreService: AppStoreService) { super(); }
 

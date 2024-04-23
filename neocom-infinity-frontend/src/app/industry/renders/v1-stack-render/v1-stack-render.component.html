@@ -1,0 +1,48 @@
+<!-- M I N I N G   S T A C K -->
+<div id="{{ getUniqueId() }}" class="panel-yellow">
+  <div class="insets row">
+    <img
+      class="neocom-icon iconsize-16"
+      src="assets/res-sde/drawable/systems.png"
+    />
+    <div class="separator-4"></div>
+    <div class="row">
+      <div class="field">
+        <span cy-field-label="security" class="label">RESOURCE NAME</span><br />
+        <span cy-field-value="resourceName" class="resource-name">{{
+          getName()
+        }}</span>
+      </div>
+      <div><span>&nbsp;</span></div>
+      <div class="field right">
+        <span cy-field-label="security" class="label">QUANTITY</span><br />
+        <span cy-field-value="resourceName" class="resource-name right">{{
+          getQuantity()
+        }}</span>
+      </div>
+      <div><span>&nbsp;</span></div>
+      <div class="field right">
+        <span cy-field-label="security" class="label">RESOURCE PRICE</span
+        ><br />
+        <span cy-field-value="resourceLevel" class="resource-level">
+          {{ getPrice() | iskscaled }}
+        </span>
+      </div>
+      <div><span>&nbsp;</span></div>
+      <div class="field right">
+        <span cy-field-label="security" class="label">VOLUME</span><br />
+        <span cy-field-value="resourceLevel" class="resource-level">
+          {{ getVolume() * getQuantity() | m3volume }}
+        </span>
+      </div>
+      <div><span>&nbsp;</span></div>
+      <div class="field right">
+        <span cy-field-label="security" class="label">EXPECTED VALUE</span
+        ><br />
+        <span cy-field-value="resourceLevel" class="resource-level">
+          {{ getPrice() * getQuantity() | iskscaled }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,15 +1,16 @@
 import { JwtService } from "@nestjs/jwt"
-import { TOKEN_INVALID, TOKEN_NOT_PRESENT } from "application/domain/NeoComErrorCatalog"
-import { NeoComError } from "application/domain/NeocomError"
+import { TOKEN_INVALID, TOKEN_NOT_PRESENT } from "neocom-domain"
+import { NeoComError } from "neocom-domain"
 import { EsiToken } from "../EsiToken.interface"
 
 export class AuthenticationTokenValidator {
     constructor(private readonly jwtService: JwtService) { }
 
     public validate(token: string): EsiToken {
+        if ( undefined == token) throw new NeoComError.Builder(TOKEN_NOT_PRESENT).build()
         if (token.startsWith('Bearer ')) {
             const decodedToken: EsiToken = this.jwtService.decode(this.extractToken(token)) as EsiToken
-            console.log('decodedToken->' + JSON.stringify(decodedToken))
+            if (null === decodedToken) throw new NeoComError.Builder(TOKEN_NOT_PRESENT).build()
             if (undefined === decodedToken) throw new NeoComError.Builder(TOKEN_NOT_PRESENT).build()
             if (!this.validateSub(decodedToken)) throw new NeoComError.Builder(TOKEN_INVALID).build()
             // const capsuleerId = this.extractCapsuleerId ( decodedToken.sub)

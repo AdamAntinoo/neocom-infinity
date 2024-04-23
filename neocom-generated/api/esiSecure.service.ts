@@ -16,6 +16,7 @@ import { HttpService } from '@nestjs/axios';
 import { AxiosResponse } from 'axios';
 import { Observable } from 'rxjs';
 import { ErrorResponse } from '../model/errorResponse';
+import { EsiTypeDto } from '../model/esiTypeDto';
 import { MiningOperation } from '../model/miningOperation';
 import { Configuration } from '../configuration';
 
@@ -41,6 +42,42 @@ export class EsiSecureService {
         return consumes.includes(form);
     }
 
+    /**
+     * Get the main information related to an Eve type from the ESI data source.
+     * Instead using 3 endpoints directly to the ESI Data Service, encapsulate group and category info into a single cached request to the new backend. 
+     * @param typeId The unique ESI type identifier.
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public esiGetTypeInformation(typeId: number, ): Observable<AxiosResponse<Array<EsiTypeDto>>>;
+    public esiGetTypeInformation(typeId: number, ): Observable<any> {
+
+        if (typeId === null || typeId === undefined) {
+            throw new Error('Required parameter typeId was null or undefined when calling esiGetTypeInformation.');
+        }
+
+        let headers = {...this.defaultHeaders};
+
+        // authentication (neocom_esi_auth) required
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers['Accept'] = httpHeaderAcceptSelected;
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+        return this.httpClient.get<Array<EsiTypeDto>>(`${this.basePath}/esi/v1/universe/types/${encodeURIComponent(String(typeId))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers
+            }
+        );
+    }
     /**
      * Get the minings operations for current target.
      * Gets the list of Esi Mining Operations that are generated automatically during mining. The target to be used is the capsuleer identifier or corporation identifier that is found on the authentication token. &lt;br&gt; The list  of operations is transformed to a hyperlink suitable frontend interpretation and operation items are given a unique key for easy identification of changes. &lt;br&gt; There is no persistence for this kind of data. 
