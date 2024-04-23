@@ -18,7 +18,7 @@ export class V1MiningOperationRenderComponent extends V2NodeContainerRenderCompo
         return '-'
     }
     public getResources(): V1Stack[] {
-        console.log('MiningOperation>resources->'+JSON.stringify(this.getNode().resources))
+        console.log('MiningOperation>resources->' + JSON.stringify(this.getNode().resources))
         return this.getNode().getResources()
     }
     public getDate(): string {
@@ -31,7 +31,10 @@ export class V1MiningOperationRenderComponent extends V2NodeContainerRenderCompo
     public getSystemId(): number {
         return this.getNode().solarSystem.solarSystemId
     }
-    public getEstimatedValue(): number{
+    public getEstimatedValue(): number {
         return this.getNode().getEstimatedValue()
+    }
+    public getVolume(): number {
+        return this.getNode().getVolume()
     }
 }

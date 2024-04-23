@@ -32,6 +32,13 @@ export class V3MiningOperation extends NeoCom {
         }
         return value
     }
+    public getVolume () : number{
+        let volume: number = 0.0
+        for (let resource of this.resources) {
+            volume += resource.type.volume * resource.quantity
+        }
+        return volume
+    }
     /** @deprecated */
     public addResource(resource: V1Stack): V3MiningOperation {
         this.resources.push(resource)

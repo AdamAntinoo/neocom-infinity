@@ -30,6 +30,7 @@ import { IskScaledPipe } from './pipes/iskscaled.pipe';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { V1MiningOperationRenderComponent } from '@app/industry/renders/v1-mining-operation-render/v1-mining-operation-render.component';
 import { V1StackRenderComponent } from '@app/industry/renders/v1-stack-render/v1-stack-render.component';
+import { M3VolumePipe } from './pipes/m3volume.pipe';
 
 
 @NgModule({
@@ -66,7 +67,8 @@ import { V1StackRenderComponent } from '@app/industry/renders/v1-stack-render/v1
         V1MiningOperationRenderComponent,
         V1StackRenderComponent,
         // - PIPES
-        IskScaledPipe
+        IskScaledPipe,
+        M3VolumePipe
 
     ],
     exports: [
@@ -96,7 +98,8 @@ import { V1StackRenderComponent } from '@app/industry/renders/v1-stack-render/v1
         V1MiningOperationRenderComponent,
         V1StackRenderComponent,
         // - PIPES
-        IskScaledPipe
+        IskScaledPipe,
+        M3VolumePipe
     ]
 })
 export class RendersModule { }

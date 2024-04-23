@@ -7,21 +7,21 @@
     />
     <div class="separator-4"></div>
     <div class="row">
-      <div class="field resource-name-width">
+      <div class="field">
         <span cy-field-label="security" class="label">RESOURCE NAME</span><br />
         <span cy-field-value="resourceName" class="resource-name">{{
           getName()
         }}</span>
       </div>
       <div><span>&nbsp;</span></div>
-      <div class="field resource-quantity-width">
+      <div class="field right">
         <span cy-field-label="security" class="label">QUANTITY</span><br />
         <span cy-field-value="resourceName" class="resource-name right">{{
           getQuantity()
         }}</span>
       </div>
       <div><span>&nbsp;</span></div>
-      <div class="field resource-level">
+      <div class="field right">
         <span cy-field-label="security" class="label">RESOURCE PRICE</span
         ><br />
         <span cy-field-value="resourceLevel" class="resource-level">
@@ -29,8 +29,14 @@
         </span>
       </div>
       <div><span>&nbsp;</span></div>
+      <div class="field right">
+        <span cy-field-label="security" class="label">VOLUME</span><br />
+        <span cy-field-value="resourceLevel" class="resource-level">
+          {{ getVolume() * getQuantity() | m3volume }}
+        </span>
+      </div>
       <div><span>&nbsp;</span></div>
-      <div class="field resource-level right">
+      <div class="field right">
         <span cy-field-label="security" class="label">EXPECTED VALUE</span
         ><br />
         <span cy-field-value="resourceLevel" class="resource-level">

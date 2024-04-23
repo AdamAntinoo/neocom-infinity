@@ -29,4 +29,7 @@ export class V1StackRenderComponent extends V2NodeContainerRenderComponent {
     public getPrice(): number {
         return this.getNode().getSellPrice()
     }
+    public getVolume () : number {
+        return this.getNode().type.volume
+    }
 }
