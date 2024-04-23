@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators'
+import { map, mergeMap } from 'rxjs/operators'
 
 import { ESISecureDataServiceAdapter } from '../esi-data-service/ESISecureDataServiceAdapter';
 import { V3MiningOperation } from '@domain/industry/V3.MiningOperation.domain';
@@ -21,23 +21,20 @@ export class V1MiningOperationsAdapterService {
     ) { }
 
     public downloadMiningOperationsForCharacter(characterId: number): Observable<V3MiningOperation[]> {
-        // console.log('01 downloadMiningOperationsForCharacter->' + characterId)
         return this.esiSecureAdapter.v1_apiEsiMiningOperationsData(characterId)
-            .pipe(map((miningOperationList: V1MiningOperationDto[]) => {
-                // console.log('subscription output for mapping->',JSON.stringify(miningOperationList))
+            .pipe(mergeMap(async (miningOperationList: V1MiningOperationDto[]) => {
                 const resolveData: V3MiningOperation[] = []
-                // let index:number =0
-                miningOperationList.forEach((element: V1MiningOperationDto) => {
-                    // index++
-                    // console.log('element->' + JSON.stringify(element))
-                    // console.log(this.factory)
-                  /*  const operation: Promise<V3MiningOperation> =*/ this.factory.construct(element)
-                    .then((operation: V3MiningOperation) => {
-                        // console.log('RESULTING OPERATION->' + JSON.stringify(operation))
-                        resolveData.push(operation)
-                    })
-                })
+                for (let miningOperation of miningOperationList) {
+                    const operation: V3MiningOperation = await this.resolvePromise(miningOperation)
+                    // operation.then((operation: V3MiningOperation) => {
+                    // console.log('RESULTING OPERATION->' + JSON.stringify(operation))
+                    resolveData.push(operation)
+                    // })
+                }
                 return resolveData
             }))
+    }
+    private async resolvePromise(operation: V1MiningOperationDto): Promise<V3MiningOperation> {
+        return await this.factory.construct(operation)
     }
 }

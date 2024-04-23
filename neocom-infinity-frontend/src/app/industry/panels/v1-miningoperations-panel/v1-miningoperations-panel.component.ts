@@ -15,12 +15,12 @@ export class V1MiningOperationsPanelComponent extends AppPanelComponent implemen
     constructor(private readonly miningOperationsAdapter: V1MiningOperationsAdapterService) {
         super()
     }
-    ngOnInit(): void {
+    public ngOnInit(): void {
         this.refresh()
     }
 
-    clean(): void { }
-    refresh(): void {
+    public clean(): void { }
+    public refresh(): void {
         this.clean()
         const characterId = 34
         this.backendConnections.push(this.miningOperationsAdapter.downloadMiningOperationsForCharacter(characterId)

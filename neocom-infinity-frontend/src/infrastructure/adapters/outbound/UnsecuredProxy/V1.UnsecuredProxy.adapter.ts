@@ -18,11 +18,11 @@ export class UnsecuredProxy implements UnsecuredProxyPort {
 
     constructor(private readonly httpClient: HttpClient) { }
 
-    public apiv3_GetUnsecuredLink<T>(link: string): Promise<T> {
+    public async apiv3_GetUnsecuredLink<T>(link: string): Promise<T> {
         if (undefined != link) {
             console.log(">[UnsecuredProxy.apiv3_GetUnsecuredLink]> link: " + link)
             const newheaders = new HttpHeaders()
-            return firstValueFrom(
+            return await firstValueFrom(
                 this.httpClient.get(link, { headers: newheaders }) as Observable<T>
             )
         }
