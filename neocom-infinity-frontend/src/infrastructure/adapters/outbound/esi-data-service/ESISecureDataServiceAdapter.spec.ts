@@ -5,38 +5,19 @@ import { HttpClientTestingModule } from "@angular/common/http/testing"
 import { TestBed } from "@angular/core/testing"
 
 import { ESISecureDataServiceAdapter } from './ESISecureDataServiceAdapter'
-import { ESIMiningOperation } from './domain/ESIMiningOperation'
-import { ConfigurationAdapter } from '../../inbound/configuration/ConfigurationAdapter'
+import { ConfigurationAdapter } from '../configuration/ConfigurationAdapter'
+import { HttpServiceMock } from 'src/test/service-mocks/HttpService.mock'
+import { V1MiningOperationDto } from 'neocom-domain'
 
-xdescribe('ADAPTER ESISecureDataServiceAdapter [Module: Infra]', () => {
+describe('ADAPTER ESISecureDataServiceAdapter [Module: Infrastrucrture/Adapters]', () => {
     let service: ESISecureDataServiceAdapter
-    // let getRequest: TestTypedRequest = new TestTypedRequest().prepare({ param: 123 })
 
     beforeEach(() => {
         TestBed.configureTestingModule({
             schemas: [NO_ERRORS_SCHEMA],
-            imports: [HttpClientModule
-                // HttpClientTestingModule
-            ],
             providers: [
                 { provide: ConfigurationAdapter, useClass: ConfigurationAdapter },
-                { provide: HttpClient, useClass: HttpClient },
-                // {
-                //     provide: HttpClient, useValue: {
-                //         get: (request: string, headers?: object) => {
-                //             console.log('method->' + 'GET')
-                //             console.log('request->' + request)
-                //             console.log('options->' + JSON.stringify(headers))
-
-                //             return Observable.create((observer) => {
-                //                 observer.next([new ESIMiningOperation({
-                //                     quantity: 324
-                //                 })]);
-                //                 observer.complete();
-                //             });
-                //         }
-                //     }
-                // }
+                { provide: HttpClient, useClass: HttpServiceMock },
             ]
         })
             .compileComponents()
@@ -46,17 +27,25 @@ xdescribe('ADAPTER ESISecureDataServiceAdapter [Module: Infra]', () => {
         console.log('><[Infra/ESISecureDataServiceAdapter]> should be created')
         expect(service).toBeDefined()
     })
-    it('when requested for mining operations', () => {
-        const pilotId: number = 321
-        service.v1_apiEsiMiningOperationsData(pilotId)
-            .subscribe((response: ESIMiningOperation[]) => {
-                console.log('response->' + JSON.stringify(response))
-                expect(response).toBeDefined()
-                expect(response.length).toBe(1)
-                const sut: ESIMiningOperation = response[0]
-                expect(sut).toBeDefined()
-                expect(sut.quantity).toBe(324)
-            },
-                err => console.log('v1_apiEsiMiningOperationsData.exception->' + JSON.stringify(err)))
+    it('check the injected are available', () => {
+        const serviceAny: any = service as any
+        expect(service['configuration']).toBeDefined()
+        expect(service['httpService']).toBeDefined()
+    })
+    describe('Endpoint phase', () => {
+        it('when the backend request then return an observable', async () => {
+            const pilotId: number = 776665
+            const sut: Observable<V1MiningOperationDto[]> = service.v1_apiEsiMiningOperationsData(pilotId)
+            expect(sut).toBeDefined()
+            await sut.subscribe((operations: V1MiningOperationDto[]) => {
+                expect(operations).toBeDefined()
+                expect(operations.length).toBe(3)
+                console.log('operation->' + JSON.stringify(operations[0]))
+                expect(operations[0].jsonClass).toBe('MiningOperationDto')
+                expect(operations[0].resources).toBeDefined()
+                expect(operations[0].resources.length).toBe(2)
+                expect(operations[0].resources[0].jsonClass).toBe('StackDto')
+            })
+        })
     })
 })

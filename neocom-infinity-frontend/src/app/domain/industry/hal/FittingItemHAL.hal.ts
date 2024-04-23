@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 // - DOMAIN
 import { HALLink } from '@domain/hal/HALLink.hal';
 import { HALNode } from '@domain/hal/HALNode.hal';
-import { EveItemDto } from '@domain/core/dto/EveItemDto.dto';
+import { EveItemDto } from 'neocom-domain/EveItemDto.dto';
 import { NeoCom } from '@domain/NeoCom.domain';
 
 export class FittingItemHAL extends HALNode {
@@ -17,7 +17,7 @@ export class FittingItemHAL extends HALNode {
         Object.assign(this, values)
         this.transform()
     }
-    public  transform(): void {
+    public transform(): void {
         // if ( this.item) {
         //     this.item = new HALLink<EveItemDto>(this.item)
         // }
@@ -51,8 +51,8 @@ export class FittingItemHAL extends HALNode {
     }
     public accessItem(): Promise<EveItemDto> {
         // console.log('Resolver: ' + this.getResolver())
-         // TODO Replace this by the download HALLink replacement
-         return this.item.access(this.getResolver())
+        // TODO Replace this by the download HALLink replacement
+        return this.item.access(this.getResolver())
     }
     public async getName2(): Promise<string> {
         const halItem: EveItemDto = new EveItemDto(await this.getItem())

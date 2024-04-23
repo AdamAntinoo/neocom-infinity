@@ -1,4 +1,3 @@
-
 export const ESI_CONSTANTS = Object.freeze({
     FUZZWORK_PREFIX: '/aggregates/?region=',
     ESI_UNIVERSE_REGION_URL: '/universe/regions/',

@@ -1,63 +1,70 @@
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "outDir": "./dist/out-tsc",
-    "sourceMap": true,
-    "declaration": false,
-    "downlevelIteration": true,
-    "experimentalDecorators": true,
-    "target": "es2020",
-    "module": "es2020",
-    "moduleResolution": "node",
-    "importHelpers": true,
-    "strictPropertyInitialization": false,
-    "allowSyntheticDefaultImports": true,
-    "lib": [
-      "es2020",
-      "dom"
-    ],
-    "types": [
-      "jasmine",
-      "node",
-      "cypress"
-    ],
-    "baseUrl": "./",
-    "paths": {
-      "@env/*": [
-        "src/environments/*"
-      ],
-      "@domain/*": [
-        "src/app/domain/*"
-      ],
-      "@shared/*": [
-        "src/app/modules/shared/*"
-      ],
-      "@innovative/*": [
-        "src/app/modules/innovative-core/*"
-      ],
-      "@common/*": [
-        "src/app/modules/common/*"
-      ],
-      "@app/*": [
-        "src/app/*"
-      ],
-      "@infra/*": [
-        "src/infrastructure/*"
-      ],
+    "compileOnSave": false,
+    "compilerOptions": {
+        "outDir": "./dist/out-tsc",
+        "sourceMap": true,
+        "declaration": false,
+        "downlevelIteration": true,
+        "experimentalDecorators": true,
+        "target": "es2020",
+        "module": "es2020",
+        "moduleResolution": "node",
+        "importHelpers": true,
+        "strictPropertyInitialization": false,
+        "allowSyntheticDefaultImports": true,
+        "lib": [
+            "es2020",
+            "dom"
+        ],
+        "types": [
+            "jasmine",
+            "node",
+            "cypress"
+        ],
+        "baseUrl": "./",
+        "paths": {
+            "@env/*": [
+                "src/environments/*"
+            ],
+            "@domain/*": [
+                "src/app/domain/*"
+            ],
+            "@shared/*": [
+                "src/app/modules/shared/*"
+            ],
+            "@innovative/*": [
+                "src/app/modules/innovative-core/*"
+            ],
+            "@common/*": [
+                "src/app/modules/common/*"
+            ],
+            "@app/*": [
+                "src/app/*"
+            ],
+            "@adapter/*": [
+                "src/infrastructure/adapters/*"
+            ],
+            "@constructor/*": [
+                "src/infrastructure/constructors/*"
+            ],
+            "neocom-domain/*": [
+                "src/neocom-domain/*"
+            ],
+        },
     },
-  },
-  "angularCompilerOptions": {
-    "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true
-  },
-  // THis elements are required to isolate expect from test and cypress.
-  "include": [
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules",
-    "cypress.config.ts",
-    "cypress"
-  ]
+    "angularCompilerOptions": {
+        "fullTemplateTypeCheck": true,
+        "strictInjectionParameters": true
+    },
+    // THis elements are required to isolate expect from test and cypress.
+    "include": [
+        "**/*.ts",
+        "**/*.tsx",
+        "../neocom-infinity-shared/src/interfaces/TypedRequest.interface.ts"
+, "../neocom-infinity-shared/src/interfaces/IConstructor.interface.ts"    ],
+    "exclude": [
+        "node_modules",
+        "cypress.config.ts",
+        "cypress"
+    ]
 }

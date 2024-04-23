@@ -13,6 +13,7 @@ import { HALLinkArray } from '@domain/hal/HALLinkArray.hal'
 @Injectable({
     providedIn: 'root'
 })
+/** @deprecated */
 export class HALResolver {
     constructor(protected httpClient: HttpClient) { }
 

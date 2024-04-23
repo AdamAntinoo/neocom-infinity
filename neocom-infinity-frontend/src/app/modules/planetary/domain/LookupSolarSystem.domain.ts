@@ -5,6 +5,7 @@ import { NeoCom } from "@domain/NeoCom.domain";
 import { INamed } from "@innovative/domain/interfaces/INamed.interface";
 
 export class LookupSolarSystem extends NeoCom implements INamed {
+    public systemId: number
     public systemName: string
     public region: string
     public security: number

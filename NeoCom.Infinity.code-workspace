@@ -52,6 +52,9 @@
         "workbench.preferredDarkColorTheme": "Atom One Dark",
         "[html]": {
             "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[scss]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode"
         }
     }
 }

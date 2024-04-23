@@ -12,7 +12,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { environment } from '@env/environment.prod';
 import { NeoComResponse } from '@app/domain/dto/NeoComResponse.dto';
 import { NeoComException } from '@innovative/domain/NeoComException';
-import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer';
+import { ResponseTransformer } from 'neocom-domain/ResponseTransformer';
 import { Corporation } from '@app/domain/Corporation.domain';
 import { SupportAppStoreService } from './SupportAppStore.service';
 import { Pilot } from '@app/domain/Pilot.domain';

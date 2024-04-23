@@ -14,6 +14,7 @@ import { PublicService } from '@app/services/public.service'
 @Injectable({
     providedIn: 'root'
 })
+/** @deprecated */
 export class HALResolverService {
     constructor(protected publicService: PublicService) { }
     public resolve<T>(link: HALLink<T>, typeRef: T): Promise<T> {

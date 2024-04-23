@@ -37,11 +37,11 @@ end
 
 The aggregation then will show the list of resources mined on that date and system. Ore data is already aggregated. The panel should also show some economic information about the expected value and volume of the panel aggregation. Check if the economic data is undertandable as a whole aggregate or if there should be also some calculation at the ore level.
 
-**[EPIC-0.21]-Add Mining Operations page and functionality to see what is the product of minery.**
+**[EPIC-0.21] Add Mining Operations page and functionality to see what is the input form mining.**
 * **[STORY-NIN]** The backend should get the ESI data and aggregate it by system and date. For each system-date pair we generate a single Mining Operation that will contain the list of resources mined for that combination.
-* [STORY-NIF] The frontend should aggregate economic information to each of the ores on the mining operation. The economic data is the estimated value for the ore at the Jita hub that is the predefined trading hub.
+* **[STORY-NIN]** The backend should aggregate economic information to each of the ores on the mining operation. The economic data is the estimated value for the ore at the Amarr hub that is the predefined trading hub.
 * [STORY-NIF] Volumetrics can be calculated at the frontend. For each ore the type information provides volume information that can be aggregated by ore and by system-date pair.
-* [STORY-NIF] Date is on the format YYYY-MM-DD.
+* **[STORY-NIF]** Date is on the format YYYY-MM-DD.
 * [STORY-NIF] System information should provide the Region->Constellation->System. The hover over each of the localtion path names should provide the location unique identifier.
 * [STORY-NIF] Ore box contents are still under definition. The expected content is the small icon for the ore, the ore name, the stack quantity the estimated economic value and the volume it occupies.
 * [STORY-NIF] system-date panel should report information for the date, the system location path and the selected trade hub where the economic data estimation is calculated. It should also show the global volume and the global economic estimated value.
@@ -50,14 +50,18 @@ The aggregation then will show the list of resources mined on that date and syst
 ### 2.1 ESI Item Type
 This is an example of the heavy hierarchical data distribution inside ESI. Just ot get all the basic information about a type inside the Eve universe we need to get access to the Item, then to the Group and finally to the Category. This just is to get basic information, additional data like Market Data and other interecting informaiton should be accessed by more endpoints.
 
-**[EPIC-0.22] Create aggregated data models for the EsiType and complementaty data.**
-* **[STORY-SHARED]** Create the DTOs to reference the original sets from ESI.
-* **[STORY-NIN]** Create on additional endpoint to access the EsiType structure removing hierarchy data for Group and Category.
-* **[STORY-NIN]** New endpoint to get Market Data for a type at a Region.
-* **[STORY-NIN]** Replace Mining Resource by the new EsiType and the grouping on the Stack.
+**[EPIC-0.22] Create aggregated data models for the EsiType and complementaty data.***
+* [STORY-SHARED] Create the DTOs to reference the original sets from ESI.
+* [STORY-NIN] Create on additional endpoint to access the EsiType structure removing hierarchy data for Group and Category.
+* [STORY-NIN] Replace Mining Resource by the new EsiType and the grouping on the Stack.
+* [STORY-NIF] Update the Mining Operations with the new data structures and complete the UI presentation of this data.
 
 **[EPIC-0.23] Create new endpoint to handle Esi locations and their representation at the UX.**
 * **[STORY-NIN]** Locations require additional endpoints to aggregate the location path.
+
+## 3. FrontEnd Link Ressolution
+EsiType -> EsiMarkletData
+
 
 ## Fitting build
 **Fitting Build Configuration** is a hierarchical render example. A Fitting is composed of different layers of data that are also composed of more data layers.

@@ -11,7 +11,7 @@ import { BackgroundEnabledComponent } from '@innovative/components/background-en
 import { PlanetaryDataRecord } from '@domain/planetary/planetary-data-record';
 import { PlanetaryDataService } from '../../service/PlanetaryData.service';
 import { KnownSystem } from '@domain/planetary/KnownSystem.domain';
-import { ResponseTransformer } from '@innovative/services/support/ResponseTransformer';
+import { ResponseTransformer } from 'neocom-domain/ResponseTransformer';
 import { IRefreshable } from '@innovative/domain/interfaces/IRefreshable.interface';
 import { PlanetaryData } from '@domain/planetary/PlanetaryData.domain';
 

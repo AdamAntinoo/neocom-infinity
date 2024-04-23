@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
-import { ESISecureDataServiceAdapter } from './adapters/outbound/esi-data-service/ESISecureDataServiceAdapter';
-import { V1MiningOperationsAdapterService } from './adapters/outbound/mining-operations/v1-mining-operations-adapter.service';
+import { ESISecureDataServiceAdapter } from '@adapter/outbound/esi-data-service/ESISecureDataServiceAdapter';
+import { V1MiningOperationsAdapterService } from '@adapter/outbound/mining-operations/V1.mining-operations.adapter';
+import { UnsecuredProxy } from '@adapter/outbound/UnsecuredProxy/V1.UnsecuredProxy.adapter';
+import { BackendFactory } from '@adapter/factory/BackendFactory';
 
 @NgModule({
     imports: [
@@ -12,8 +14,10 @@ import { V1MiningOperationsAdapterService } from './adapters/outbound/mining-ope
     ],
     providers: [
         // - SERVICES
-        { provide: ESISecureDataServiceAdapter, useClass: ESISecureDataServiceAdapter }
-        { provide: V1MiningOperationsAdapterService, useClass: V1MiningOperationsAdapterService }
+        ESISecureDataServiceAdapter,
+        V1MiningOperationsAdapterService,
+        UnsecuredProxy,
+        BackendFactory
     ]
 })
 export class InfrastructureModule { }

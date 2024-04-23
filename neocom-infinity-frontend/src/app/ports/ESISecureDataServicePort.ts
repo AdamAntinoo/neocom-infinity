@@ -1,6 +1,7 @@
 import { Observable } from "rxjs"
-import { ESIMiningOperation } from "@infra/adapters/outbound/esi-data-service/domain/ESIMiningOperation"
+
+import { V1MiningOperationDto } from "neocom-domain"
 
 export interface ESISecureDataServicePort{
-    v1_apiEsiMiningOperationsData(pilotId: number): Observable<ESIMiningOperation[]>
+    v1_apiEsiMiningOperationsData(pilotId: number): Observable<V1MiningOperationDto[]>
 }

@@ -2,7 +2,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 // - COMPONENTS
-import { AppCommonModule } from '../common/common.module';
 import { NeocomViewerPanelComponent } from './neocom-viewer-panel/neocom-viewer-panel.component';
 
 import { V2PilotRenderComponent } from './v2-pilot-render/v2-pilot-render.component';
@@ -30,6 +29,8 @@ import { V1LoyaltyOfferRenderComponent } from './v1-loyalty-offer-render/v1-loya
 import { IskScaledPipe } from './pipes/iskscaled.pipe';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { V1MiningOperationRenderComponent } from '@app/industry/renders/v1-mining-operation-render/v1-mining-operation-render.component';
+import { V1StackRenderComponent } from '@app/industry/renders/v1-stack-render/v1-stack-render.component';
+import { M3VolumePipe } from './pipes/m3volume.pipe';
 
 
 @NgModule({
@@ -64,8 +65,10 @@ import { V1MiningOperationRenderComponent } from '@app/industry/renders/v1-minin
         V1LoyaltyCorporationRenderComponent,
         V1LoyaltyOfferRenderComponent,
         V1MiningOperationRenderComponent,
+        V1StackRenderComponent,
         // - PIPES
-        IskScaledPipe
+        IskScaledPipe,
+        M3VolumePipe
 
     ],
     exports: [
@@ -93,8 +96,10 @@ import { V1MiningOperationRenderComponent } from '@app/industry/renders/v1-minin
         V1LoyaltyCorporationRenderComponent,
         V1LoyaltyOfferRenderComponent,
         V1MiningOperationRenderComponent,
+        V1StackRenderComponent,
         // - PIPES
-        IskScaledPipe
+        IskScaledPipe,
+        M3VolumePipe
     ]
 })
 export class RendersModule { }

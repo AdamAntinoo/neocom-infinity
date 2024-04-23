@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { V2NodeContainerRenderComponent } from '@app/modules/renders/v2-node-container-render/v2-node-container-render.component'
-import { UniverseType } from '@domain/esi/UniverseType.esi'
-import { V1MiningOperation } from '@domain/industry/V1.MiningOperation.domain'
+import { V1Stack } from '@domain/esi/V1.Stack.domain'
 import { V3MiningOperation } from '@domain/industry/V3.MiningOperation.domain'
 
 @Component({
@@ -15,16 +14,27 @@ export class V1MiningOperationRenderComponent extends V2NodeContainerRenderCompo
         return this.node as V3MiningOperation
     }
     public getUniqueId(): string {
-        // TODO - Use the common method to get the unique identifier
         if (this.node) return this.getNode().getIdentifier()
         return '-'
     }
-    public getQuantity() {
-        if (this.node) return this.getNode().getQuantity()
-        return '-'
+    public getResources(): V1Stack[] {
+        console.log('MiningOperation>resources->' + JSON.stringify(this.getNode().resources))
+        return this.getNode().getResources()
     }
-    public getTypeName(): string {
-        if (this.node) return this.getNode().getTypeName()
-        return '-'
+    public getDate(): string {
+        return this.getNode().date
+    }
+    public getSystemName(): string {
+        if (undefined == this.getNode()) return '-'
+        return this.getNode().solarSystem.regionName + '->' + this.getNode().solarSystem.constellationName + '->' + this.getNode().solarSystem.solarSystemName
+    }
+    public getSystemId(): number {
+        return this.getNode().solarSystem.solarSystemId
+    }
+    public getEstimatedValue(): number {
+        return this.getNode().getEstimatedValue()
+    }
+    public getVolume(): number {
+        return this.getNode().getVolume()
     }
 }

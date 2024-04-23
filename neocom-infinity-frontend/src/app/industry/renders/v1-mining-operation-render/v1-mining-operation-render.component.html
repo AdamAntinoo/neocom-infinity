@@ -7,17 +7,48 @@
     />
     <div class="separator-4"></div>
     <div class="column">
-      <div class="field">
-        <span cy-field-label="resource" class="label">RESOURCE NAME</span><br />
-        <span cy-field-value="resource" class="typename">{{
-          getTypeName()
-        }}</span>
+      <div class="row">
+        <div class="field">
+          <span cy-field-label="date" class="label">DATE</span><br />
+          <span cy-field-value="date" class="date">{{ getDate() }}</span>
+        </div>
+        <div><span>&nbsp;</span></div>
+        <div class="field">
+          <span
+            cy-field-label="system"
+            class="label"
+            title="{{ getSystemId() }}"
+            >SYSTEM</span
+          ><br />
+          <span cy-field-value="system" class="date">{{
+            getSystemName()
+          }}</span>
+        </div>
+        <div><span>&nbsp;</span></div>
+        <div class="field right">
+          <span cy-field-label="value" class="label">TOTAL VOLUME</span><br />
+          <span cy-field-value="value" class="value">{{
+            getVolume() | m3volume
+          }}</span>
+        </div>
+        <div><span>&nbsp;</span></div>
+        <div class="field right">
+          <span cy-field-label="value" class="label">ESTIMATED VALUE</span
+          ><br />
+          <span cy-field-value="value" class="value">{{
+            getEstimatedValue() | iskscaled
+          }}</span>
+        </div>
       </div>
-      <div class="field">
-        <span cy-field-label="quantity" class="label">QUANTITY</span><br />
-        <span cy-field-value="quantity" class="quantity">{{
-          getQuantity()
-        }}</span>
+      <div class="column">
+        <div *ngFor="let resource of getResources()">
+          <v1-stack
+            *ngIf="resource.jsonClass === 'Stack'"
+            [container]="container"
+            [node]="resource"
+            [variant]="variant"
+          ></v1-stack>
+        </div>
       </div>
     </div>
   </div>
