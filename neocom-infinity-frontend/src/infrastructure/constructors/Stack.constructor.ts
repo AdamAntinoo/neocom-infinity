@@ -1,7 +1,6 @@
-import { V1EsiTypeDto, V1StackDto } from "neocom-domain";
+import { IConstructor, V1EsiTypeDto, V1StackDto } from "neocom-domain";
 import { V1Stack } from "@domain/esi/V1.Stack.domain";
 import { UnsecuredProxy } from "@adapter/outbound/UnsecuredProxy/V1.UnsecuredProxy.adapter";
-import { IConstructor } from "neocom-domain/IConstructor.interface";
 
 export class StackConstructor implements IConstructor<V1StackDto, V1Stack>{
     constructor(private readonly resolver: UnsecuredProxy) { }

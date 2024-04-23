@@ -3,20 +3,27 @@ import { NeoComError } from "../exceptions/NeoComError"
 import { Record } from "../interfaces/Record.interface"
 import { V1StackDto } from "./V1.Stack.dto"
 
+/**
+ * This class requires a builder because there are dependencies on other classes. If not object do not get the correct structure.
+ * But probably this is not required on the way we expect to convert DTO into entities at the frontend. Review.
+ */
 export class V1MiningOperationDto extends Record {
     public override jsonClass: string = 'MiningOperationDto'
     public id?: string
     public date?: string
     public solarSystemLink?: string
-    private resources: V1StackDto[] = []
+    public resources: V1StackDto[] = []
 
+    /** @deprecated */
     public getResources(): V1StackDto[] {
         return this.resources
     }
+    /** @deprecated */
     public addMiningResource(miningResource: V1StackDto): V1StackDto {
         this.resources.push(miningResource)
         return this
     }
+    /** @deprecated */
     public static Builder = class Builder {
         public operation: V1MiningOperationDto
 
@@ -38,6 +45,7 @@ export class V1MiningOperationDto extends Record {
             this.operation.solarSystemLink = link
             return this
         }
+        // TODO - Add a constructor to add all resources on one call
         public addMiningResource(miningResource: V1StackDto): Builder {
             if (undefined != miningResource)
                 this.operation.resources.push(miningResource)

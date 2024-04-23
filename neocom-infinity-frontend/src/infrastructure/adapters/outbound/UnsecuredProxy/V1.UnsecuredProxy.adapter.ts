@@ -14,7 +14,8 @@ import { Observable, firstValueFrom } from "rxjs";
 @Injectable({
     providedIn: 'root'
 })
-export class UnsecuredProxy implements UnsecuredProxyPort{
+export class UnsecuredProxy implements UnsecuredProxyPort {
+
     constructor(private readonly httpClient: HttpClient) { }
 
     public apiv3_GetUnsecuredLink<T>(link: string): Promise<T> {

@@ -15,13 +15,23 @@ export class BackendFactory {
 
     public async construct(backendData: Record): Promise<any> {
         // Use the jsonClass to determine the class to construct.
-        console.log('03 Request factory for->' + backendData.jsonClass)
+        if (undefined == backendData) {
+            console.log('undefined request')
+            return new Promise<string>((resolve) => {
+                resolve('UNDEFINED')
+            })
+        }
         console.log('03 Request factory with data->' + JSON.stringify(backendData))
-        if (undefined == backendData.jsonClass)
-            console.log('invaud class->' + JSON.stringify(backendData))
+        if (undefined == backendData['jsonClass']) {
+            console.log('invalid class->' + JSON.stringify(backendData))
+            return new Promise<string>((resolve) => {
+                resolve('INVALID')
+            })
+        }
+        console.log('03 Request factory for->' + backendData.jsonClass)
         switch (backendData.jsonClass) {
             case 'StackDto': {
-                console.log('stack->' + JSON.stringify(backendData))
+                console.log('case stack->' + JSON.stringify(backendData))
                 const stackDto: V1StackDto = backendData
                 const typeDto: V1EsiTypeDto = await this.resolver.apiv3_GetUnsecuredLink<V1EsiTypeDto>(stackDto.typeLink)
                 const type: V2UniverseType = await this.construct(typeDto)
@@ -32,7 +42,7 @@ export class BackendFactory {
                 return stack
             }
             case 'EsiType': {
-                console.log('type->' + JSON.stringify(backendData))
+                console.log('case type->' + JSON.stringify(backendData))
                 const esiType: V1EsiTypeDto = backendData
                 const marketDataDto: V1MarketDataDto = await this.resolver.apiv3_GetUnsecuredLink<V1MarketDataDto>(
                     esiType.marketDataLink
@@ -48,18 +58,18 @@ export class BackendFactory {
                 return new V1MarketData(backendData)
             }
             case 'MiningOperationDto': {
-                // console.log('case MiningOperationDto')
+                console.log('case miningOperation->' + JSON.stringify(backendData))
                 const operationDto: V1MiningOperationDto = backendData as V1MiningOperationDto
-                console.log('case miningOperation>backendData->' + JSON.stringify(operationDto))
+                // console.log('case miningOperation>backendData->' + JSON.stringify(operationDto))
                 const solarSystemDto: V1SpaceLocationDto = await this.resolver.apiv3_GetUnsecuredLink<V1SpaceLocationDto>(
                     operationDto.solarSystemLink
                 )
                 const solarSystem: V1SpaceLocation = await this.construct(solarSystemDto)
                 const resources: V1Stack[] = []
-                for (let resource of operationDto.getResources()) {
+                for (let resource of operationDto.resources) {
                     resources.push(await this.construct(resource))
                 }
-                console.log('resources->' + resources.length)
+                // console.log('resources->' + resources.length)
                 const operation: V3MiningOperation = new V3MiningOperation.Builder(backendData)
                     .withSolarSystem(solarSystem)
                     .withResources(resources)

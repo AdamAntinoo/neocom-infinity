@@ -21,15 +21,18 @@ export class V1MiningOperationsAdapterService {
     ) { }
 
     public downloadMiningOperationsForCharacter(characterId: number): Observable<V3MiningOperation[]> {
-        console.log('01 downloadMiningOperationsForCharacter->' + characterId)
+        // console.log('01 downloadMiningOperationsForCharacter->' + characterId)
         return this.esiSecureAdapter.v1_apiEsiMiningOperationsData(characterId)
             .pipe(map((miningOperationList: V1MiningOperationDto[]) => {
+                // console.log('subscription output for mapping->',JSON.stringify(miningOperationList))
                 const resolveData: V3MiningOperation[] = []
-                let index:number =0
+                // let index:number =0
                 miningOperationList.forEach((element: V1MiningOperationDto) => {
-                    index++
-                    console.log('processing operation by index->' + index)
-                    this.factory.construct(element).then((operation: V3MiningOperation) => {
+                    // index++
+                    // console.log('element->' + JSON.stringify(element))
+                    // console.log(this.factory)
+                  /*  const operation: Promise<V3MiningOperation> =*/ this.factory.construct(element)
+                    .then((operation: V3MiningOperation) => {
                         // console.log('RESULTING OPERATION->' + JSON.stringify(operation))
                         resolveData.push(operation)
                     })

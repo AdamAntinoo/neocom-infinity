@@ -1,39 +1,27 @@
-import { TestBed } from "@angular/core/testing"
 import { ESIMiningOperationsTypedRequest } from "./ESIMiningOperationsTypedRequest"
-import { ConfigurationAdapter } from "../configuration/ConfigurationAdapter"
 
 describe('DTO ESIMiningOperationsTypedRequest [Module: Network]', () => {
-    let configuration: ConfigurationAdapter
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-            providers: [
-                { provide: ConfigurationAdapter }
-            ]
-        }).compileComponents()
-        configuration = TestBed.inject(ConfigurationAdapter)
-    })
-
     it('Should be created', () => {
-        const request = new ESIMiningOperationsTypedRequest(configuration)
+        const request = new ESIMiningOperationsTypedRequest()
         expect(request).toBeDefined()
     })
     it('when getting method shoeld be GET', () => {
-        const request = new ESIMiningOperationsTypedRequest(configuration)
+        const request = new ESIMiningOperationsTypedRequest()
         expect(request).toBeDefined()
         expect(request.method).toBe('GET')
     })
     it('when prepared then request should match', () => {
         const pilotId: number = 123
-        const request = new ESIMiningOperationsTypedRequest(configuration).prepare(pilotId)
+        const request = new ESIMiningOperationsTypedRequest().prepare(pilotId)
         expect(request).toBeDefined()
         expect(request.method).toBe('GET')
-        expect(request.request).toBe('https://localhost:9999' + '/characters/' + pilotId + '/miningoperation')
-        expect(request.options).toBeUndefined()
+        expect(request.request).toBe('/api/v3/neocom/characters/123/miningoperation')
     })
-    it('when prepared then options should not be defined', () => {
+    it('when prepared then options should be defined but empty', () => {
         const pilotId: number = 123
-        const request = new ESIMiningOperationsTypedRequest(configuration).prepare(pilotId)
+        const request = new ESIMiningOperationsTypedRequest().prepare(pilotId)
         expect(request).toBeDefined()
-        expect(request.options).toBeUndefined()
+        expect(request.options).toBeDefined()
+        expect(request.options['headers']).toBeDefined()
     })
 })

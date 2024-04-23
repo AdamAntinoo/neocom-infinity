@@ -20,6 +20,8 @@ export * from './dto/FuzzWorkMarketData.dto'
 export * from './exceptions/NeoComError'
 export * from './exceptions/NeoComSharedErrorCatalog'
 
+export * from './interfaces/IConstructor.interface'
 export * from './interfaces/Record.interface'
+export * from './interfaces/TypedRequest.interface'
 
 export * from './transformer/TypedResponseTransformer'

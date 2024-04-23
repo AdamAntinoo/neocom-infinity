@@ -5,7 +5,7 @@ import { HttpClientTestingModule } from "@angular/common/http/testing"
 import { TestBed } from "@angular/core/testing"
 
 import { HttpDataService } from "./HttpDataService"
-import { TypedRequest } from '../../../neocom-domain/TypedRequest'
+import { TypedRequest } from '../../../../../neocom-infinity-shared/src/interfaces/TypedRequest.interface'
 
 class TestTypedRequest implements TypedRequest {
     method: string = 'GET'

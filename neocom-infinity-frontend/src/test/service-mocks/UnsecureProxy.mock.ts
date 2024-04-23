@@ -1,112 +1,29 @@
 import { LookupSolarSystem } from "@app/modules/planetary/domain/LookupSolarSystem.domain";
 import { UnsecuredProxyPort } from "@app/ports/UnsecuredProxy.port";
-import { V1EsiTypeDto, V1MarketDataDto } from "neocom-domain";
+import { V1SpaceLocation } from "@domain/esi/v1.SpaceLocation.domain";
+import { V1EsiTypeDto, V1MarketDataDto, V1SpaceLocationDto } from "neocom-domain";
 
 export class UnsecureProxyMock implements UnsecuredProxyPort {
     public apiv3_GetUnsecuredLink(link: string): Promise<any> {
         console.log('proxy>link->' + link)
 
         switch (link) {
-            case '/link/solarSystem/3000': {
-                return new Promise<LookupSolarSystem>((resolve) => {
-                    resolve(new LookupSolarSystem({
-                        "constellation_id": 20000516,
-                        "name": "Merz",
-                        "planets": [
-                            {
-                                "asteroid_belts": [
-                                    40224608
-                                ],
-                                "planet_id": 40224607
-                            },
-                            {
-                                "asteroid_belts": [
-                                    40224610,
-                                    40224611
-                                ],
-                                "planet_id": 40224609
-                            },
-                            {
-                                "moons": [
-                                    40224613
-                                ],
-                                "planet_id": 40224612
-                            },
-                            {
-                                "planet_id": 40224614
-                            },
-                            {
-                                "moons": [
-                                    40224616
-                                ],
-                                "planet_id": 40224615
-                            },
-                            {
-                                "asteroid_belts": [
-                                    40224623,
-                                    40224635,
-                                    40224637
-                                ],
-                                "moons": [
-                                    40224618,
-                                    40224619,
-                                    40224620,
-                                    40224621,
-                                    40224622,
-                                    40224624,
-                                    40224625,
-                                    40224626,
-                                    40224627,
-                                    40224628,
-                                    40224629,
-                                    40224630,
-                                    40224631,
-                                    40224632,
-                                    40224633,
-                                    40224634,
-                                    40224636
-                                ],
-                                "planet_id": 40224617
-                            },
-                            {
-                                "asteroid_belts": [
-                                    40224641
-                                ],
-                                "moons": [
-                                    40224639,
-                                    40224640
-                                ],
-                                "planet_id": 40224638
-                            },
-                            {
-                                "asteroid_belts": [
-                                    40224643
-                                ],
-                                "moons": [
-                                    40224644,
-                                    40224645
-                                ],
-                                "planet_id": 40224642
-                            }
-                        ],
-                        "position": {
-                            "x": -152138598390024900,
-                            "y": 88708866628344240,
-                            "z": -97916358241993840
-                        },
-                        "security_class": "B1",
-                        "security_status": 0.6561367511749268,
-                        "star_id": 40224606,
-                        "stargates": [
-                            50005259,
-                            50005260,
-                            50005261,
-                            50005262
-                        ],
-                        "system_id": 30003538
+            case '/esi/v1/universe/spacelocation/30003538': {
+                return new Promise<V1SpaceLocationDto>((resolve) => {
+                    resolve(new V1SpaceLocationDto({
+                        jsonClass: 'SpaceLocationDto',
+                        refenceType: 'Region',
+                        regionId: 10000002,
+                        regionName: 'The Forge',
+                        constellationId: 20000020,
+                        constellationName: 'Kimotoro',
+                        systemId: 30000142,
+                        systemName: 'Jita'
                     }))
-                 })
+                })
             }
+            case'/esi/v1/universe/types/17459':
+            case '/esi/v1/universe/types/1224':
             case '/esi/v1/universe/types/17464': {
                 return new Promise<V1EsiTypeDto>((resolve) => {
                     resolve(new V1EsiTypeDto({
@@ -153,6 +70,8 @@ export class UnsecureProxyMock implements UnsecuredProxyPort {
                     }))
                 })
             }
+            default:
+                console.log('LINK not found->'+link)
         }
     }
 

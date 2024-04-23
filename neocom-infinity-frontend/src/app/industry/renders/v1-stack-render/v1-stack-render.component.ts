@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'
 import { V2NodeContainerRenderComponent } from '@app/modules/renders/v2-node-container-render/v2-node-container-render.component'
 import { V1Stack } from '@domain/esi/V1.Stack.domain'
-i
+
 @Component({
     selector: 'v1-stack',
     templateUrl: './v1-stack-render.component.html',

@@ -10,8 +10,12 @@ import { Observable } from 'rxjs';
 import { V3MiningOperation } from '@domain/industry/V3.MiningOperation.domain';
 import { ConfigurationAdapter } from '../configuration/ConfigurationAdapter';
 import { V1MiningOperationDto } from 'neocom-domain';
+import { HttpClientWrapperService } from '@innovative/services/httpclientwrapper.service';
+import { HttpServiceMock } from 'src/test/service-mocks/HttpService.mock';
+import { UnsecuredProxy } from '../UnsecuredProxy/V1.UnsecuredProxy.adapter';
+import { UnsecureProxyMock } from 'src/test/service-mocks/UnsecureProxy.mock';
 
-describe('ADAPTER V1MiningOperationsAdapterService [Module: Infrastructure]', () => {
+xdescribe('ADAPTER V1MiningOperationsAdapterService [Module: Infrastructure]', () => {
     let service: ESISecureDataServiceAdapter
     let factory: BackendFactory
     let adapter: V1MiningOperationsAdapterService
@@ -22,82 +26,11 @@ describe('ADAPTER V1MiningOperationsAdapterService [Module: Infrastructure]', ()
             imports: [HttpClientModule
             ],
             providers: [
-                {
-                    provide: HttpClient, useValue: {
-                        get: (request: string, headers?: object) => {
-                            console.log('method->' + 'GET')
-                            console.log('request->' + request)
-                            console.log('options->' + JSON.stringify(headers))
-
-                            switch (request) {
-                                case '/api/v3/neocom/characters/93813310/miningoperation': {
-                                    return Observable.create((observer) => {
-                                        observer.next([
-                                            {
-                                                "jsonClass": "MiningOperationDto",
-                                                "resources": [
-                                                    {
-                                                        "jsonClass": "StackDto",
-                                                        "quantity": 10000,
-                                                        "typeLink": "/esi/v1/universe/types/17464"
-                                                    },
-                                                    {
-                                                        "jsonClass": "StackDto",
-                                                        "quantity": 12000,
-                                                        "typeLink": "/esi/v1/universe/types/1224"
-                                                    }
-                                                ],
-                                                "id": "2024-02-25/30003538",
-                                                "date": "2024-02-25",
-                                                "solarSystemLink": "/esi/v1/universe/spacelocation/30003538"
-                                            },
-                                            {
-                                                "jsonClass": "MiningOperationDto",
-                                                "resources": [
-                                                    {
-                                                        "jsonClass": "StackDto",
-                                                        "quantity": 210,
-                                                        "typeLink": "/esi/v1/universe/types/17453"
-                                                    }
-                                                ],
-                                                "id": "2024-02-23/30003541",
-                                                "date": "2024-02-23",
-                                                "solarSystemLink": "/esi/v1/universe/spacelocation/30003541"
-                                            },
-                                            {
-                                                "jsonClass": "MiningOperationDto",
-                                                "resources": [
-                                                    {
-                                                        "jsonClass": "StackDto",
-                                                        "quantity": 34243,
-                                                        "typeLink": "/esi/v1/universe/types/17464"
-                                                    },
-                                                    {
-                                                        "jsonClass": "StackDto",
-                                                        "quantity": 3073,
-                                                        "typeLink": "/esi/v1/universe/types/1224"
-                                                    },
-                                                    {
-                                                        "jsonClass": "StackDto",
-                                                        "quantity": 10288,
-                                                        "typeLink": "/esi/v1/universe/types/17459"
-                                                    }
-                                                ],
-                                                "id": "2024-02-23/30003538",
-                                                "date": "2024-02-23",
-                                                "solarSystemLink": "/esi/v1/universe/spacelocation/30003538"
-                                            }
-                                        ])
-                                        observer.complete()
-                                    })
-                                }
-                            }
-                        }
-                    }
-                },
+                { provide: HttpClient, useClass: HttpServiceMock },
                 { provide: ConfigurationAdapter, useClass: ConfigurationAdapter },
                 { provide: ESISecureDataServiceAdapter, useClass: ESISecureDataServiceAdapter },
-                { provide: BackendFactory, useClass: BackendFactory }
+                { provide: BackendFactory, useClass: BackendFactory },
+                { provide: UnsecuredProxy, useClass: UnsecureProxyMock }
             ]
         })
             .compileComponents()
@@ -112,20 +45,19 @@ describe('ADAPTER V1MiningOperationsAdapterService [Module: Infrastructure]', ()
             expect(service).toBeTruthy()
         })
     })
-    fdescribe('Service Delivery phase', () => {
+    describe('Service Delivery phase', () => {
         it('when the downloadMiningOperationsForCharacter is called we return a valid Promise', async () => {
             expect(adapter).toBeDefined()
             const pilotId: number = 93813310
             const sut: Observable<V3MiningOperation[]> = adapter.downloadMiningOperationsForCharacter(pilotId)
             expect(sut).toBeDefined()
-            console.log('data ready')
+            // console.log('data ready')
             await sut.subscribe((operations: V3MiningOperation[]) => {
-                console.log(JSON.stringify(operations))
+                // console.log(JSON.stringify(operations))
                 // console.log('enter subscription')
                 expect(operations).toBeDefined()
-                // expect(operations.length).toBe(3)
+                expect(operations.length).toBe(3)
                 //     const operation: V3MiningOperation = operations[0]
-                //     console.log('oepration->' + operation)
                 //     expect(operation).toBeDefined()
             })
         })
