@@ -1,7 +1,7 @@
-import { EsiNode } from "./EsiNode.esi"
+import { NeoCom } from "@domain/NeoCom.domain"
 import { V1MarketData } from "./V1.MarketData.domain"
 
-export class V2UniverseType extends EsiNode {
+export class V2UniverseType extends NeoCom {
     public typeId: number
     public name: string
     public description: string
@@ -15,10 +15,10 @@ export class V2UniverseType extends EsiNode {
     public volume: number
     public marketData: V1MarketData
 
-    public withMarketData ( marketData : V1MarketData): V2UniverseType{
-        this.marketData=marketData
-        return
+    public withMarketData(marketData: V1MarketData): V2UniverseType {
+        this.marketData = marketData
+        return this
     }
 
-    protected decode(): void { }
+    public decode(): void { }
 }
