@@ -14,5 +14,3 @@ kubectl port-forward svc/nin-svc 8000:8000
 
 ## Kubectl commands
 kubectl config set-context --current --namespace neocom
-
-0.21.0-mining-sessions.1

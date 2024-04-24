@@ -22,6 +22,9 @@
     ],
     "baseUrl": "src",
     "paths": {
+      "@Application/*": [
+        "application/*"
+      ],
       "@Domain/*": [
         "domain/*"
       ],

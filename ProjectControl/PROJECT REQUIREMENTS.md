@@ -37,7 +37,7 @@ end
 
 The aggregation then will show the list of resources mined on that date and system. Ore data is already aggregated. The panel should also show some economic information about the expected value and volume of the panel aggregation. Check if the economic data is undertandable as a whole aggregate or if there should be also some calculation at the ore level.
 
-**[EPIC-0.21] Add Mining Operations page and functionality to see what is the input form mining.**
+**[EPIC-0.21] Add Mining Operations page and functionality to see what is the input from mining.**
 * **[STORY-NIN]** The backend should get the ESI data and aggregate it by system and date. For each system-date pair we generate a single Mining Operation that will contain the list of resources mined for that combination.
 * **[STORY-NIN]** The backend should aggregate economic information to each of the ores on the mining operation. The economic data is the estimated value for the ore at the Amarr hub that is the predefined trading hub.
 * [STORY-NIF] Volumetrics can be calculated at the frontend. For each ore the type information provides volume information that can be aggregated by ore and by system-date pair.
