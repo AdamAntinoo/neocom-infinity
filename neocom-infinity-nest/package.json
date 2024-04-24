@@ -32,7 +32,8 @@
     "test": "NODE_ENV=development jest --verbose",
     "test:watch": "NODE_ENV=development jest --verbose --watch",
     "test:cov": "NODE_ENV=development jest --verbose --coverage",
-    "deploy:staging": ". ./.deploy/deploy.create.image.sh staging"
+    "deploy:staging": ". ./.deploy/deploy.create.image.sh staging",
+    "upload:staging": ". ./.deploy/deploy.kubernetes.sh staging"
   },
   "dependencies": {
     "@nestjs/axios": "^3.0.2",

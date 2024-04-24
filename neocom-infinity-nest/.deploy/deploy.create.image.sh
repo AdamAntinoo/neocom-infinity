@@ -12,14 +12,21 @@ if [ -z "$ENVIRONMENT" ]; then
 fi
 # - define variables for deployment
 LAUNCH_LOCATION="$(dirname "$0")"
-PROJECT_ROOT=$LAUNCH_LOCATION
 PROJECT_NAME=neocom-infinity-nest
+PROJECT_ROOT=%teamcity.build.checkoutDir%/$PROJECT_NAME
+cd $PROJECT_ROOT
 WORKING_DIR=$PROJECT_ROOT
 DEPLOY_DIR=$WORKING_DIR/.deploy
 SOURCES_DIR=$PROJECT_ROOT/src
 export IMAGE_NAME=$PROJECT_NAME
 export ENV=$ENVIRONMENT
 export PORT=3000 # Port number is hardcoded to the default port number of the service. Mapping is done at the Docker level
+echo "##teamcity[setParameter name='_NEOCOM.IMAGE_NAME' value='$IMAGE_NAME']"
+echo "##teamcity[setParameter name='_NEOCOM.ENV' value='$ENV']"
+echo "##teamcity[setParameter name='_NEOCOM.PORT' value='$PORT']"
+
+echo "##teamcity[setParameter name='_NEOCOM.WORKING_DIR' value='$WORKING_DIR']"
+echo "##teamcity[setParameter name='_NEOCOM.DEPLOY_DIR' value='$DEPLOY_DIR']"
 
 # - generate banner
 echo '>>> Creating banner'
@@ -43,24 +50,17 @@ export SEMVERSION=$SEMVER-$VMETA
 export VERSION=`gitversion /showvariable AssemblySemFileVer`
 echo 'SEMVERSION->'$SEMVERSION
 echo 'VERSION->'$VERSION
+echo "##teamcity[setParameter name='_NEOCOM.SEMVERSION' value='$SEMVERSION']"
+echo "##teamcity[setParameter name='_NEOCOM.VERSION' value='$VERSION']"
 
 # - image identification and tags
 export TAG=$IMAGE_NAME:$VERSION
 echo "Environment->$ENV"
 echo "Version->$VERSION"
 echo "Tags->$TAG"
+echo "##teamcity[setParameter name='_NEOCOM.TAG' value='$TAG']"
 
 # - build the image
 echo '>>> Building image'
 cat $DEPLOY_DIR/dockerfile.template | envsubst > $DEPLOY_DIR/Dockerfile
 docker build -f $DEPLOY_DIR/Dockerfile -t $IMAGE_NAME $WORKING_DIR
-
-# - tag the image
-# echo ">>> Tagging image->adamantinoo/$IMAGE_NAME:$VERSION"
-# docker tag $IMAGE_NAME adamantinoo/$IMAGE_NAME:$VERSION
-# docker tag $IMAGE_NAME TAG
-# docker push adamantinoo/$IMAGE_NAME:$VERSION
-
-# # - update the kubernetes elements
-# cat deployment-nest.template.yaml | envsubst > deployment.yaml
-# kubectl apply -f deployment.yaml
