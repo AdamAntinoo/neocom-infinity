@@ -2,3 +2,4 @@
 docker/app-banner.txt
 docker/*.jar
 *.db
+app-banner.txt

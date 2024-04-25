@@ -2,15 +2,15 @@
 FROM adoptopenjdk/openjdk11 AS BASEIMAGE
 
 WORKDIR /app
+
 # copy jars and configuration to image
 COPY ./build/libs/neocom-backend.jar /app
 COPY ./build/resources /app/resources
-# copy SDE database
-#COPY ./src/main/resources/sde.db /app
 
 # Create a second image that has only the build files and the configuration.
 FROM adoptopenjdk/openjdk11 AS RUNNER
 ENV PORT=$PORT
+ENV NEOCOM_DATABASE_URL="$NEOCOM_DATABASE_URL"
 ENV SPRING_DATASOURCE_URL="$SPRING_DATASOURCE_URL"
 ENV SPRING_DATASOURCE_USERNAME="$SPRING_DATASOURCE_USERNAME"
 ENV SPRING_DATASOURCE_PASSWORD="$SPRING_DATASOURCE_PASSWORD"

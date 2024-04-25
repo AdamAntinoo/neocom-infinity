@@ -32,10 +32,10 @@ echo "##teamcity[setParameter name='_NEOCOM.DEPLOY_DIR' value='$DEPLOY_DIR']"
 
 # - generate banner
 echo '>>> Creating banner'
-export BANNER_LOCATION=$WORKING_DIR/src/main/resources/app-banner.txt
+export BANNER_LOCATION=$WORKING_DIR/src/main/resources
 echo 'BANNER_LOCATION->'$BANNER_LOCATION
-figlet NeoSpring `gitversion /showvariable AssemblySemFileVer` > app-banner.txt
-cat app-banner.txt
+figlet NeoSpring `gitversion /showvariable AssemblySemFileVer` > $BANNER_LOCATION/app-banner.txt
+cat $BANNER_LOCATION/app-banner.txt
 figlet $ENV
 
 echo "WORKING_DIR->$WORKING_DIR"
@@ -50,10 +50,12 @@ export SEMVER=`gitversion /showvariable MajorMinorPatch`
 export VMETA=`gitversion /showvariable CommitsSinceVersionSource`
 export SEMVERSION=$SEMVER-$VMETA
 export VERSION=`gitversion /showvariable AssemblySemFileVer`
+export JAR_VERSION="0.20.3"
 echo 'SEMVERSION->'$SEMVERSION
 echo 'VERSION->'$VERSION
 echo "##teamcity[setParameter name='_NEOCOM.SEMVERSION' value='$SEMVERSION']"
 echo "##teamcity[setParameter name='_NEOCOM.VERSION' value='$VERSION']"
+echo "##teamcity[setParameter name='_NEOCOM.JAR_VERSION' value='$JAR_VERSION']"
 
 # - image identification and tags
 export TAG=$IMAGE_NAME:$VERSION
@@ -65,7 +67,8 @@ echo "##teamcity[setParameter name='_NEOCOM.TAG' value='$TAG']"
 # - export environment properties
 export HOST_IP=`ipconfig getifaddr $(route -n get default | awk '$1=="interface:" { print $2 }')`
 export REDIS_CACHE_URL="redis://${HOST_IP}:5250"
-export SPRING_DATASOURCE_URL="jdbc:postgresql://${HOST_IP}:5240/postgres"
+export NEOCOM_DATABASE_URL="jdbc:postgresql://${HOST_IP}:5240/neocom?user=adamantinoo&password=z.iliada.2020"
+export SPRING_DATASOURCE_URL="jdbc:postgresql://${HOST_IP}:5240/neocom"
 export SPRING_DATASOURCE_USERNAME='adamantinoo'
 export SPRING_DATASOURCE_PASSWORD='z.iliada.2020'
 
@@ -74,7 +77,7 @@ echo '>>> Building image'
 export JAVA_HOME='/Users/adam/Library/Java/JavaVirtualMachines/corretto-11.0.22/Contents/Home'
 rm -rf $PROJECT_ROOT/build
 ./gradlew bootJar || exit 1
-mv $PROJECT_ROOT/build/libs/$PROJECT_NAME-$VERSION.jar $PROJECT_ROOT/build/libs/neocom-backend.jar
-#cp $PROJECT_ROOT/build/libs/neocom-infinity-backend*.jar $PROJECT_ROOT/build/libs/${PROJECT_NAME}-${VERSION}".jar"
+cp $PROJECT_ROOT/build/libs/$PROJECT_NAME-$JAR_VERSION.jar $PROJECT_ROOT/build/libs/neocom-backend.jar
+
 cat $DEPLOY_DIR/dockerfile.template | envsubst > $DEPLOY_DIR/Dockerfile
 docker build -f $DEPLOY_DIR/Dockerfile -t $IMAGE_NAME $WORKING_DIR
