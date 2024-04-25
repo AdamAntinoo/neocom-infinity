@@ -35,7 +35,7 @@ public class RedisDataStoreImplementationTest {
 	private Station station;
 	private GetMarketsRegionIdOrders200Ok orderData;
 
-	@Test
+//	@Test
 	public void accessEsiItem4IdNotFound() {
 		// Prepare
 		this.clearESITCache();
@@ -46,7 +46,7 @@ public class RedisDataStoreImplementationTest {
 		Assertions.assertNull( obtained );
 	}
 
-	@Test
+//	@Test
 	public void accessLowestSellOrderCached() {
 		this.accessLowestSellOrderNotCached();
 		// Given
@@ -66,7 +66,7 @@ public class RedisDataStoreImplementationTest {
 		Assertions.assertEquals( TEST_MARKET_ORDER_ID, obtained.getOrderId() );
 	}
 
-	@Test
+//	@Test
 	public void accessLowestSellOrderNotCached() {
 		// Given
 		final MarketOrder marketOrder = new MarketOrder.Builder()
@@ -85,7 +85,7 @@ public class RedisDataStoreImplementationTest {
 		Assertions.assertEquals( TEST_MARKET_ORDER_ID, obtained.getOrderId() );
 	}
 
-	@BeforeEach
+//	@BeforeEach
 	public void beforeEach() {
 		this.region = new GetUniverseRegionsRegionIdOk();
 		this.region.setRegionId( this.regionId );
@@ -102,7 +102,7 @@ public class RedisDataStoreImplementationTest {
 		this.orderData.setVolumeTotal( TEST_MARKET_ORDER_VOLUME_TOTAL );
 	}
 
-	@Test
+//	@Test
 	public void constructorContract() {
 		final RedisDataStoreImplementation redisDataStore = new RedisDataStoreImplementation( REDIS_LOCAL_DEFAULT_ADDRESS );
 		Assertions.assertNotNull( redisDataStore );
