@@ -14,9 +14,9 @@ export ENV=$ENVIRONMENT
 
 # - define variables for deployment
 export NAMESPACE="neocom-$ENVIRONMENT"
-export APP_CODE="neonest"
-export MODULE_NAME="neocom-infinity-nest"
-export PORT=3000
+export APP_CODE="neospring"
+export MODULE_NAME="neocom-infinity-backend"
+export PORT=9500
 
 export IMAGE_NAME=$MODULE_NAME
 export VERSION=`gitversion /showvariable AssemblySemFileVer`
@@ -39,7 +39,7 @@ echo "LAUNCH_LOCATION->$LAUNCH_LOCATION"
 # PROJECT_ROOT=%teamcity.build.checkoutDir%/$PROJECT_NAME
 # cd $PROJECT_ROOT
 # WORKING_DIR=$PROJECT_ROOT
-DEPLOY_DIR=$PROJECT_ROOT/.deploy
+DEPLOY_DIR=.deploy
 echo "DEPLOY_DIR->$DEPLOY_DIR"
 
 cat $DEPLOY_DIR/deployment.template.yaml | envsubst > $DEPLOY_DIR/deployment.yaml
