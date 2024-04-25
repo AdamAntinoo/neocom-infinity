@@ -23,9 +23,6 @@ spring:
 
 P:
   runtime:
-    #    configuration:
-    #      properties:
-    #        path: "/build/resources/main/properties"
     filesystem:
       application:
         directory: ./NeoCom.Infinity

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,7 +14,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.filter.ForwardedHeaderFilter;
 
 import org.dimensinfin.logging.LogWrapper;
-
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableScheduling
@@ -46,6 +46,7 @@ public class NeoComInfinityBackendApplication {
 
 		private String readAllBytes() {
 			try {
+				LogWrapper.info("Locating banner file at:"+System.getenv( "NEOCOM_BANNER_LOCATION" ));
 				final File resource = new File( System.getenv( "NEOCOM_BANNER_LOCATION" ) );
 				return new String( Files.readAllBytes( resource.toPath() ) );
 			} catch (final IOException ioe) {
