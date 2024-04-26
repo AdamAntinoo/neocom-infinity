@@ -33,6 +33,7 @@ app.locals.appname = config.get('settings.appname')
 app.locals.port = process.env.PORT || config.get('settings.port')
 app.locals.applicationhome = config.get('settings.applicationhome')
 app.locals.backendproxy = config.get('settings.backendproxy')
+app.locals.nestproxy = config.get('settings.nestproxy')
 app.locals.apppath = config.get('settings.apppath')
 
 // - L O G G I N G
@@ -70,6 +71,18 @@ app.use('/actuator', proxy(app.locals.backendproxy, {
 }))
 
 // - A P I   M O U N T P O I N T
+app.use('/api/v3', proxy(app.locals.nestproxy, {
+  proxyReqPathResolver: function (req) {
+    console.log('Nestend: ' + app.locals.nestproxy + 'api/v3' + req.url)
+    return app.locals.nestproxy + 'api/v3' + req.url
+  }
+}))
+app.use('/esi/v1', proxy(app.locals.nestproxy, {
+  proxyReqPathResolver: function (req) {
+    console.log('Nestend: ' + app.locals.nestproxy + 'esi/v1' + req.url)
+    return app.locals.nestproxy + 'esi/v1' + req.url
+  }
+}))
 app.use('/api', proxy(app.locals.backendproxy, {
   proxyReqPathResolver: function (req) {
     console.log('Backend: ' + app.locals.backendproxy + 'api' + req.url)
@@ -96,13 +109,15 @@ app.listen(process.env.PORT || app.locals.port || 3000, function () {
       console.log("Listening on port: " + START_YELLOW + app.locals.port + END_BOLD)
       console.log("Serving application: " + START_YELLOW + app.locals.appname + END_BOLD)
       console.log("Application URL path: " + START_GREEN + "http://localhost:" + app.locals.port + '/' + END_BOLD)
-      console.log("Backend URL path: " + START_GREEN + app.locals.backendproxy + END_BOLD)
+      // console.log("Backend URL path: " + START_GREEN + app.locals.backendproxy + END_BOLD)
       console.log("Proxy redirection for " + START_YELLOW + "/actuator" + END_BOLD + ": " +
         'Backend: ' + START_GREEN + app.locals.backendproxy + 'actuator' + END_BOLD)
-      console.log("Proxy redirection for " + START_YELLOW + "/api" + END_BOLD + ": " +
+      console.log("Proxy redirection for " + START_YELLOW + "/api/vn" + END_BOLD + ": " +
         'Backend: ' + START_GREEN + app.locals.backendproxy + 'api' + END_BOLD)
-      console.log("Proxy redirection for " + START_YELLOW + "/" + END_BOLD + ": " +
-        'Local: ' + START_GREEN + app.locals.applicationhome + END_BOLD)
+      console.log("Proxy redirection for " + START_YELLOW + "/api/v3" + END_BOLD + ": " +
+        'Backend: ' + START_GREEN + app.locals.nestproxy + 'api/v3' + END_BOLD)
+      console.log("Proxy redirection for " + START_YELLOW + "/esi/v1" + END_BOLD + ": " +
+        'Backend: ' + START_GREEN + app.locals.nestproxy + 'esi/v1' + END_BOLD)
       const filename = 'app-banner.txt'
 
       console.log('>>> Additional properties:')
@@ -115,7 +130,7 @@ app.listen(process.env.PORT || app.locals.port || 3000, function () {
       fs.readFile(filename, 'utf8', function (err, data) {
         if (err) throw err
         console.log(data)
-        console.log("Server Ready for Connections")
+        console.log(START_GREEN + ">>> Server Ready for Connections <<<" + END_BOLD)
       })
     })
 })
