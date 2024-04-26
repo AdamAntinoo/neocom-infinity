@@ -71,10 +71,10 @@ app.use('/actuator', proxy(app.locals.backendproxy, {
 }))
 
 // - A P I   M O U N T P O I N T
-app.use('/api/v3', proxy(app.locals.nestproxy, {
+app.use('/nin/v1', proxy(app.locals.nestproxy, {
   proxyReqPathResolver: function (req) {
-    console.log('Nestend: ' + app.locals.nestproxy + 'api/v3' + req.url)
-    return app.locals.nestproxy + 'api/v3' + req.url
+    console.log('Nestend: ' + app.locals.nestproxy + 'nin/v1' + req.url)
+    return app.locals.nestproxy + 'nin/v1' + req.url
   }
 }))
 app.use('/esi/v1', proxy(app.locals.nestproxy, {
@@ -114,8 +114,8 @@ app.listen(process.env.PORT || app.locals.port || 3000, function () {
         'Backend: ' + START_GREEN + app.locals.backendproxy + 'actuator' + END_BOLD)
       console.log("Proxy redirection for " + START_YELLOW + "/api/vn" + END_BOLD + ": " +
         'Backend: ' + START_GREEN + app.locals.backendproxy + 'api' + END_BOLD)
-      console.log("Proxy redirection for " + START_YELLOW + "/api/v3" + END_BOLD + ": " +
-        'Backend: ' + START_GREEN + app.locals.nestproxy + 'api/v3' + END_BOLD)
+      console.log("Proxy redirection for " + START_YELLOW + "/nin/v1" + END_BOLD + ": " +
+        'Backend: ' + START_GREEN + app.locals.nestproxy + 'nin/v1' + END_BOLD)
       console.log("Proxy redirection for " + START_YELLOW + "/esi/v1" + END_BOLD + ": " +
         'Backend: ' + START_GREEN + app.locals.nestproxy + 'esi/v1' + END_BOLD)
       const filename = 'app-banner.txt'
