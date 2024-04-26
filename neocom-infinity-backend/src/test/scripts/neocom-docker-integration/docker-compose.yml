@@ -36,26 +36,26 @@ services:
     volumes:
       - cache:/data
 
-#  neocom-backend-integration-app:
-#    container_name: neocom-backend-integration-app
-#    image: neocom/neocom-infinity.backend
-#    ports:
-#      - "5242:9500"
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=default
-#      - JDBC_DATABASE_URL=jdbc:postgresql://neocom-backend-integration-postgres:5282/postgres
-#      - NEOCOM_DATABASE_URL=jdbc:postgresql://neocom-backend-integration-postgres:5282/postgres?user=neocom-user&password=neocom-password
-#      - DB_USER=neocom-user
-#      - DB_PASSWORD=neocom-password
-#      - NEOCOM_BANNER_LOCATION=./app-banner.txt
-#      - PROPERTIES_DIRECTORY=/properties-integration
-#      - SDE_DATABASE_PATH=/sde.db
-#      - APPLICATION_DIRECTORY=./NeoCom.Infinity.Integration
-#      - PROFILE=production
-#      - REDIS_URL=redis://neocom-backend-integration-redis:6379
-#      - SPRING_DATASOURCE_URL=jdbc:postgresql://neocom-backend-integration-postgres:5282/postgres
-#      - SPRING_DATASOURCE_USERNAME=neocom-user
-#      - SPRING_DATASOURCE_PASSWORD=neocom-password
+  neocom-backend-integration-app:
+    container_name: neocom-backend-integration-app
+    image: neocom/neocom-infinity.backend
+    ports:
+      - "5242:9500"
+    environment:
+      - SPRING_PROFILES_ACTIVE=default
+      - JDBC_DATABASE_URL=jdbc:postgresql://localhost:5282/postgres
+      - NEOCOM_DATABASE_URL=jdbc:postgresql://localhost:5282/postgres?user=adamantinoo&password=z.iliada.2020
+      - DB_USER=adamantinoo
+      - DB_PASSWORD=z.iliada.2020
+      - NEOCOM_BANNER_LOCATION=./app-banner.txt
+      - PROPERTIES_DIRECTORY=/properties-staging
+      - SDE_DATABASE_PATH=/sde.db
+      - APPLICATION_DIRECTORY=./NeoCom.Infinity.Integration
+      - PROFILE=staging
+      - REDIS_URL=redis://neocom-backend-integration-redis:6379
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5282/postgres
+      - SPRING_DATASOURCE_USERNAME=adamantinoo
+      - SPRING_DATASOURCE_PASSWORD=z.iliada.2020
 
 volumes:
   cache:

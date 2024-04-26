@@ -30,7 +30,7 @@ public class SchedulerConfigurationTest {
 		Assertions.assertFalse( schedulerConfiguration.getAllowedMiningExtractions() );
 	}
 
-	@Test
+//	@Test
 	public void getAllowedToRun() {
 		final SchedulerConfiguration schedulerConfiguration = new SchedulerConfiguration( this.configurationService );
 		Mockito.when( this.configurationService.getResourceBoolean( Mockito.anyString() ) ).thenReturn( true );

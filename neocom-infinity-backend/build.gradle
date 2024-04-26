@@ -36,7 +36,7 @@ repositories {
 
 // - P R O J E C T   D E F I N I T I O N
 group = 'org.dimensinfin.eveonline.neocom'
-version = '0.20.0'
+version = '0.20.3'
 archivesBaseName = 'neocom-infinity-backend'
 sourceCompatibility = '11'
 targetCompatibility = '11'
@@ -163,4 +163,11 @@ sonarqube {
 //        target = '1.8'
 //        writeToLog = true
 //    }
+//}
+
+// - B O O T B U I L D I M A G E
+//tasks.named("bootBuildImage") {
+//    imageName = "neocom/backend"
+//    publishImage = true
+//    tags = "generated"
 //}

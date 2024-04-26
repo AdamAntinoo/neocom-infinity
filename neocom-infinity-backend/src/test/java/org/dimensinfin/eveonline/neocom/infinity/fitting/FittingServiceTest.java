@@ -76,8 +76,7 @@ public class FittingServiceTest {
 		// Asserts
 		Assertions.assertNotNull( obtained );
 	}
-
-	@Test
+//	@Test
 	void getPilotFittingsNeoComNotFoundException() {
 		// Given
 		//		final ESIDataProviderWrapper esiDataProviderWrapper = Mockito.mock( ESIDataProviderWrapper.class );

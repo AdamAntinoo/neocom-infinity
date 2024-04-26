@@ -17,7 +17,7 @@ BANNER_LOCATION=$WORKING_DIR/app-banner.txt
 echo 'BANNER_LOCATION->'$BANNER_LOCATION
 
 # - identification
-echo "Environment->$1"
+echo "Environment->$ENV"
 echo "Version->$VERSION"
 
 # - generate banner
