@@ -21,12 +21,12 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 
 import org.dimensinfin.logging.LogWrapper;
 
-import static org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendApplication.NEOCOM_COOKIE_NAME;
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.AUTHORIZATION_HEADER_NAME;
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.SECRET;
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.SIGNATURE_HEADER_NAME;
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.SUBJECT;
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.TOKEN_PREFIX;
+import static org.dimensinfin.eveonline.neocom.infinity.infrastructure.config.GlobalAppConstants.TransportConstants.NEOCOM_COOKIE_NAME;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 	private static final List<String> signatures = new ArrayList<>();
@@ -49,8 +49,8 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 	                                 @NotNull final HttpServletResponse response,
 	                                 @NotNull final FilterChain chain ) throws IOException, ServletException {
 		if ((this.validateCookie( request )) &&
-				(this.validateSignature( request )) &&
-				(this.validateJWTToken( request, this.accessCookieToken( request ) ))) {
+			(this.validateSignature( request )) &&
+			(this.validateJWTToken( request, this.accessCookieToken( request ) ))) {
 			final UsernamePasswordAuthenticationToken authentication = this.getAuthentication( request );
 			if (null != authentication) SecurityContextHolder.getContext().setAuthentication( authentication );
 		}
@@ -70,8 +70,8 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 		final String token = request.getHeader( AUTHORIZATION_HEADER_NAME );
 		if (token != null) {
 			final DecodedJWT jwtToken = JWT.require( Algorithm.HMAC512( SECRET.getBytes() ) )
-					.build()
-					.verify( token.replace( TOKEN_PREFIX, "" ) );
+				.build()
+				.verify( token.replace( TOKEN_PREFIX, "" ) );
 			if (this.validateSubject( token )) { // Check this is the subject we expect
 				return new UsernamePasswordAuthenticationToken( jwtToken.getPayload(), null, new ArrayList<>() );
 			}
@@ -97,7 +97,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 			return false;
 		}
 		LogWrapper.info( MessageFormat.format( "Check JWT Token consistency: {0}",
-				header.equals( TOKEN_PREFIX + cookieJWTToken ) ) );
+			header.equals( TOKEN_PREFIX + cookieJWTToken ) ) );
 		return header.equals( TOKEN_PREFIX + cookieJWTToken );
 	}
 
@@ -112,9 +112,9 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
 	private boolean validateSubject( final String token ) {
 		final String subject = JWT.require( Algorithm.HMAC512( SECRET.getBytes() ) )
-				.build()
-				.verify( token.replace( TOKEN_PREFIX, "" ) )
-				.getSubject();
+			.build()
+			.verify( token.replace( TOKEN_PREFIX, "" ) )
+			.getSubject();
 
 		if (null != subject)
 			if (subject.equalsIgnoreCase( SUBJECT )) return true;

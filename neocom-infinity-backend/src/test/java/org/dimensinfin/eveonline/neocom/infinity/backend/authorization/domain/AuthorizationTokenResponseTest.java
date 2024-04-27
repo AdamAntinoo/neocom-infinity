@@ -24,11 +24,13 @@ public class AuthorizationTokenResponseTest {
 		final AuthorizationTokenResponse request = new AuthorizationTokenResponse.Builder()
 				.withCredential( this.credential )
 				.withJwtToken( "FFJJWWTT-TTKKEENNFF" )
+				.withEsiToken("-ESI-TOKEN-")
 				.withCookie( this.cookie )
 				.build();
 		Assertions.assertNotNull( request );
 		Assertions.assertNotNull( request.getCredential() );
 		Assertions.assertNotNull( request.getJwtToken() );
+		Assertions.assertNotNull( request.getEsiToken() );
 		Assertions.assertNotNull( request.getCookie() );
 	}
 
@@ -38,6 +40,7 @@ public class AuthorizationTokenResponseTest {
 				() -> new AuthorizationTokenResponse.Builder()
 						.withCredential( null )
 						.withJwtToken( "FFJJWWTT-TTKKEENNFF" )
+						.withEsiToken("-ESI-TOKEN-")
 						.withCookie( this.cookie )
 						.build(),
 				"Expected ValidateAuthorizationTokenResponse.Builder() to throw null verification, but it didn't." );
@@ -45,6 +48,7 @@ public class AuthorizationTokenResponseTest {
 				() -> new AuthorizationTokenResponse.Builder()
 						.withCredential( this.credential )
 						.withJwtToken( null )
+						.withEsiToken("-ESI-TOKEN-")
 						.withCookie( this.cookie )
 						.build(),
 				"Expected ValidateAuthorizationTokenResponse.Builder() to throw null verification, but it didn't." );
@@ -52,6 +56,15 @@ public class AuthorizationTokenResponseTest {
 				() -> new AuthorizationTokenResponse.Builder()
 						.withCredential( this.credential )
 						.withJwtToken( "FFJJWWTT-TTKKEENNFF" )
+						.withEsiToken(null)
+						.withCookie( this.cookie )
+						.build(),
+				"Expected ValidateAuthorizationTokenResponse.Builder() to throw null verification, but it didn't." );
+		Assertions.assertThrows( NullPointerException.class,
+				() -> new AuthorizationTokenResponse.Builder()
+						.withCredential( this.credential )
+						.withJwtToken( "FFJJWWTT-TTKKEENNFF" )
+						.withEsiToken("-ESI-TOKEN-")
 						.withCookie( null )
 						.build(),
 				"Expected ValidateAuthorizationTokenResponse.Builder() to throw null verification, but it didn't." );
@@ -63,11 +76,13 @@ public class AuthorizationTokenResponseTest {
 		final AuthorizationTokenResponse request = new AuthorizationTokenResponse.Builder()
 				.withCredential( this.credential )
 				.withJwtToken( "FFJJWWTT-TTKKEENNFF" )
+				.withEsiToken("-ESI-TOKEN-")
 				.withCookie( cookie )
 				.build();
 		Assertions.assertNotNull( request );
 		Assertions.assertNotNull( request.getCredential() );
 		Assertions.assertNotNull( request.getJwtToken() );
+		Assertions.assertNotNull( request.getEsiToken() );
 		Assertions.assertNotNull( request.getCookie() );
 	}
 }

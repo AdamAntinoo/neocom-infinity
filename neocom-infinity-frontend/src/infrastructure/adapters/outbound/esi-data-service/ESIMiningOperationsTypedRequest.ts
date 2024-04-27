@@ -2,6 +2,8 @@ import { HttpHeaders } from "@angular/common/http"
 
 import { BACKEND_LINKS } from "@adapter/outbound/configuration/GlobalConstants"
 import { TypedRequest } from "neocom-domain"
+import { IsolationService } from "@innovative/services/isolation.service"
+import { PlatformConstants } from "@env/PlatformConstants"
 
 
 declare namespace ESIMiningOperationsTypedRequest {
@@ -13,9 +15,12 @@ export class ESIMiningOperationsTypedRequest implements TypedRequest {
     public request: string
     public options: {}
 
-    constructor() {
+    constructor(private readonly isolationService: IsolationService) {
+        const headers: HttpHeaders = new HttpHeaders()
+        headers.append('Cookie', 'Authentication=' + this.isolationService.getFromSession(PlatformConstants.ESITOKEN_KEY)
+        )
         this.options = {
-            headers: new HttpHeaders()
+            headers: headers
         }
     }
 

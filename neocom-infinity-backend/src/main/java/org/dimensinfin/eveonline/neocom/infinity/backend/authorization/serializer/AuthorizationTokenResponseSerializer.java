@@ -18,7 +18,8 @@ public class AuthorizationTokenResponseSerializer extends JsonSerializer<Authori
 		jgen.writeStartObject();
 
 		jgen.writeStringField( "responseType", "ValidateAuthorizationTokenResponse" );
-		jgen.writeObjectField( "jwtToken", value.getJwtToken() );
+		jgen.writeStringField( "jwtToken", value.getJwtToken() );
+		jgen.writeStringField( "esiToken", value.getEsiToken() );
 		jgen.writeObjectField( "credential", value.getCredential() );
 
 		jgen.writeEndObject();

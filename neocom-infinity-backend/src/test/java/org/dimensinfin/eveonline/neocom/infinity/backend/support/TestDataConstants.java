@@ -3,6 +3,12 @@ package org.dimensinfin.eveonline.neocom.infinity.backend.support;
 import org.joda.time.DateTime;
 
 public class TestDataConstants {
+	public static class CredentialConstants{
+		public static final Integer TEST_ACCOUNT_ID=123456;
+		public static final String TEST_DATASOURCE="-DATASOURCE-";
+		public static final String TEST_ACCESSTOKEN="-TEST_ACCESSTOKEN-";
+		public static final String TEST_ACCOUNT_NAME="-TEST_ACCOUNT_NAME-";
+	}
 	public static class PilotConstants {
 		public static final Integer TEST_PILOT_ID = 93813310;
 		public static final String TEST_PILOT_NAME = "-TEST_PILOT_NAME-";

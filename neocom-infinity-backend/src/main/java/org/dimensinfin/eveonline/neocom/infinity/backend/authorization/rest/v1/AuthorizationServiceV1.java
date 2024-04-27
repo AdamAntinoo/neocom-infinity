@@ -32,11 +32,11 @@ import org.dimensinfin.logging.LogWrapper;
 public class AuthorizationServiceV1 {
 	public static NeoComRestError errorINVALIDSTATEVERIFICATION() {
 		return new NeoComRestError.Builder()
-				.withErrorName( "INVALID_STATE_VERIFICATION" )
-				.withHttpStatus( HttpStatus.UNAUTHORIZED )
-				.withErrorCode( "dimensinfin.neocom.authorization.invalid.state" )
-				.withMessage( "Authorization failure because invalid state verification." )
-				.build();
+			.withErrorName( "INVALID_STATE_VERIFICATION" )
+			.withHttpStatus( HttpStatus.UNAUTHORIZED )
+			.withErrorCode( "dimensinfin.neocom.authorization.invalid.state" )
+			.withMessage( "Authorization failure because invalid state verification." )
+			.build();
 	}
 
 	private final IConfigurationService configurationService;
@@ -60,9 +60,8 @@ public class AuthorizationServiceV1 {
 	}
 
 	/**
-	 * Check the cookie contents. There should contain an valid JWT token.
-	 * If the cookie has contents then see it we can create the JWT token. If affirmative then the cookie is valid. If there is any exception
-	 * then we can invalidate the cookie and return again the 'not valid' message
+	 * Check the cookie contents. There should contain an valid JWT token. If the cookie has contents then see it we can create the JWT token. If
+	 * affirmative then the cookie is valid. If there is any exception then we can invalidate the cookie and return again the 'not valid' message
 	 *
 	 * @return the response message depending on the scenario found.
 	 */
@@ -71,16 +70,16 @@ public class AuthorizationServiceV1 {
 		if (this.jwtTokenService.validateToken( sourceJWT )) { // Token if correct then validate the Credential is at the repository.
 			try {
 				final Credential credential = Objects.requireNonNull( this.credentialRepository.findCredentialById(
-						Objects.requireNonNull( this.jwtTokenService.extractPayload( sourceJWT ).getUniqueId() )
+					Objects.requireNonNull( this.jwtTokenService.extractPayload( sourceJWT ).getUniqueId() )
 				) );
 				LogWrapper.info( credential.toString() );
 				// Create a new cookie with a new expiration time.
 				response.addCookie( this.cookieService.generateCookie( sourceJWT ) );
 				return new AuthenticationStateResponse.Builder()
-						.withState( AuthenticationStateResponse.AuthenticationStateType.VALID )
-						.withJwtToken( sourceJWT )
-						.withCredential( credential )
-						.build();
+					.withState( AuthenticationStateResponse.AuthenticationStateType.VALID )
+					.withJwtToken( sourceJWT )
+					.withCredential( credential )
+					.build();
 			} catch (final SQLException sqle) {
 				LogWrapper.error( sqle );
 				return new AuthenticationStateResponse.Builder().withState( AuthenticationStateResponse.AuthenticationStateType.NOT_FOUND ).build();
@@ -97,34 +96,34 @@ public class AuthorizationServiceV1 {
 	public AuthorizationTokenResponse validateAuthorizationToken( final AuthorizationTokenRequest authorizationTokenRequest ) {
 		LogWrapper.enter();
 		final NeoComOAuth2Flow oauthFlow = new NeoComOAuth2Flow.Builder()
-				.withConfigurationService( this.configurationService )
-				.build();
+			.withConfigurationService( this.configurationService )
+			.build();
 		authorizationTokenRequest.setRunningFlow( oauthFlow );
 		this.verifyState( authorizationTokenRequest ); // Check if the state matches the backend state configured.
 		final TokenVerification tokenStore = this.verifyCharacter( authorizationTokenRequest ); // Validate pointer character is valid.
 		final GetCharactersCharacterIdOk pilotData = this.esiDataService.getCharactersCharacterId(
-				tokenStore.getAccountIdentifier()
+			tokenStore.getAccountIdentifier()
 		);
 		// - C R E D E N T I A L
 		// Create and persist the credential. Do an update if it already exists.
 		LogWrapper.info( "Creating Credential..." );
 		final TokenTranslationResponse token = tokenStore.getTokenTranslationResponse();
 		final Credential credential = new Credential.Builder( tokenStore.getAccountIdentifier() )
-				.withAccountName( tokenStore.getVerifyCharacterResponse().getCharacterName() )
-				.withCorporationId( pilotData.getCorporationId() )
-				.withTokenType( token.getTokenType() )
-				.withAccessToken( token.getAccessToken() )
-				.withRefreshToken( token.getRefreshToken() )
-				.withDataSource( tokenStore.getDataSource() )
-				.withScope( tokenStore.getScopes() )
-				.build();
+			.withAccountName( tokenStore.getVerifyCharacterResponse().getCharacterName() )
+			.withCorporationId( pilotData.getCorporationId() )
+			.withTokenType( token.getTokenType() )
+			.withAccessToken( token.getAccessToken() )
+			.withRefreshToken( token.getRefreshToken() )
+			.withDataSource( tokenStore.getDataSource() )
+			.withScope( tokenStore.getScopes() )
+			.build();
 		try {
 			this.credentialRepository.persist( credential );
 		} catch (final SQLException sqle) {
 			throw new NeoComRuntimeBackendException( NeoComRuntimeBackendException.errorUNEXPECTEDSQLEXCEPTION( sqle ) );
 		}
 		LogWrapper.info( MessageFormat.format( "Credential #{0}-{1} created successfully.",
-				credential.getAccountId() + "", credential.getAccountName() ) );
+			credential.getAccountId() + "", credential.getAccountName() ) );
 
 		// - J W T T O K E N
 		final String jwtToken = this.jwtTokenService.createJWTToken( credential.getUniqueCredential(), pilotData.getCorporationId() );
@@ -132,10 +131,11 @@ public class AuthorizationServiceV1 {
 		// - R E S P O N S E
 		try {
 			return new AuthorizationTokenResponse.Builder()
-					.withCredential( credential )
-					.withJwtToken( jwtToken )
-					.withCookie( this.cookieService.generateCookie( jwtToken ) )
-					.build();
+				.withCredential( credential )
+				.withJwtToken( jwtToken )
+				// Add the ESI token so it can be used at NIN.
+				.withEsiToken( token.getAccessToken() )
+				.build();
 		} finally {
 			LogWrapper.exit();
 		}
@@ -145,6 +145,8 @@ public class AuthorizationServiceV1 {
 		LogWrapper.enter();
 		final NeoComOAuth2Flow oauthFlow = authorizationTokenRequest.getOauthFlow();
 		try {
+			// TODO - This call is going to be made to the real esi login and it is going to fail for invalid codes.
+			// TODO - Parametrize the NeoComOAuth to read OAuth server parameters from a configuration properties file.
 			final TokenVerification tokenStore = oauthFlow.onTranslationStep();
 			return Objects.requireNonNull( tokenStore );
 		} finally {
@@ -155,8 +157,8 @@ public class AuthorizationServiceV1 {
 	private void verifyState( final AuthorizationTokenRequest authorizationTokenRequest ) {
 		LogWrapper.enter();
 		authorizationTokenRequest.getOauthFlow().onStartFlow( authorizationTokenRequest.getCode(),
-				authorizationTokenRequest.getState(),
-				authorizationTokenRequest.getDataSourceName() );
+			authorizationTokenRequest.getState(),
+			authorizationTokenRequest.getDataSourceName() );
 		if (!authorizationTokenRequest.getOauthFlow().verifyState( authorizationTokenRequest.getState() ))
 			throw new NeoComRuntimeBackendException( errorINVALIDSTATEVERIFICATION() );
 		LogWrapper.exit( "Calling state verification: OK." );
