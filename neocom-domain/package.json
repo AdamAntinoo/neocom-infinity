@@ -1,7 +1,7 @@
 {
     "name": "neocom-domain",
     "version": "0.4.3",
-    "description": "Shared library for NeoCom Typesxcript code.",
+    "description": "Shared library for NeoCom Typescript code.",
     "main": "dist/public-api.js",
     "types": "dist/public-api.d.ts",
     "type": "commonjs",
