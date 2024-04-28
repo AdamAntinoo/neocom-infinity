@@ -7,10 +7,13 @@
             "path": "neocom-infinity-frontend"
         },
         {
-            "path": "neocom-infinity-shared"
+            "path": "neocom-generated"
+        }
+        {
+            "path": "neocom-shared"
         },
         {
-            "path": "neocom-generated"
+            "path": "neocom-domain"
         },
         {
             "path": ".deploy"
@@ -20,16 +23,17 @@
         },
         {
             "path": "ProjectControl"
-        }
+        },
     ],
     "settings": {
-        "html.format.wrapLineLength": 140,
+        "html.format.wrapLineLength": 150,
         "editor.wordWrap": "wordWrapColumn",
         "editor.wrappingIndent": "indent",
-        "editor.wordWrapColumn": 130,
+        "editor.wordWrapColumn": 150,
         "editor.rulers": [
             120,
-            130
+            130,
+	    150
         ],
         "git.ignoreLimitWarning": true,
         "html.format.wrapAttributes": "force-aligned",
