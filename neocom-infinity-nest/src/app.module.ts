@@ -8,7 +8,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { ESIDataServicesPort } from 'application/ports/EsiDataServices.port';
 import { CapsuleerMiningOperationsUseCase } from 'application/use-cases/mining-operation/CapsuleerMiningOperationsUseCase';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { ESIMiningSecureService } from '@Infra/adapter/outbound/ESISecureDataServices/esi.mining.secure.adapter';
+import { V1MiningOperationsAdapter } from '@Infra/adapter/outbound/ESISecureDataServices/MiningOperations/V1.MiningOperations.adapter';
 import { IEsiMiningSecureService } from 'application/ports/IEsiMiningSecureService.port';
 import { V1EsiUniverseController } from '@Infra/adapter/inbound/esiuniverse/v1.esiuniverse.controller';
 import { GetTypeInformationUseCase } from 'application/use-cases/esi-universe/GetTypeInformation.usecase';
@@ -40,9 +40,9 @@ const ENV = process.env.NODE_ENV
         LoggerMiddleware,
         ConfigService,
         { provide: ESIDataServicesPort, useClass: ESISecureDataServicesAdapter },
-        { provide: IEsiMiningSecureService, useClass: ESIMiningSecureService },
+        { provide: IEsiMiningSecureService, useClass: V1MiningOperationsAdapter },
         { provide: CapsuleerMiningOperationsUseCase, useClass: CapsuleerMiningOperationsUseCase },
-        GetTypeInformationUseCase,GetMarketDataUseCase,GetSpaceLocationUseCase,
+        GetTypeInformationUseCase, GetMarketDataUseCase, GetSpaceLocationUseCase,
         { provide: ESIDataUniverseServicesPort, useClass: ESIDataUniverseAdapter },
     ],
 })

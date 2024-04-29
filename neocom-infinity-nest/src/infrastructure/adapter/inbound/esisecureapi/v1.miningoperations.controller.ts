@@ -6,6 +6,7 @@ import { EsiSecureApi } from '@Infra/api/esiSecure.api';
 import { AuthenticationTokenValidator } from "../validator/AuthenticationTokenValidator";
 import { MiningOperationsUseCaseInputConstructor } from "../MiningOperationsUseCaseInputConstructor";
 import { V1MiningOperationDto } from "neocom-domain";
+import { COOKIE_DEFINITIONS } from "neocom-shared";
 
 @Controller('/nin/v1/character/')
 export class V1MiningOperationsController implements EsiSecureApi {
@@ -15,7 +16,7 @@ export class V1MiningOperationsController implements EsiSecureApi {
     ) { }
 
     @Get('miningoperations')
-    public async getMiningOperations(@Cookies('Authentication') token: string): Promise<V1MiningOperationDto[]> {
+    public async getMiningOperations(@Cookies(COOKIE_DEFINITIONS.ESI_COOKIE_NAME) token: string): Promise<V1MiningOperationDto[]> {
         return this.getCapsuleerMiningOperationsUseCase.getMiningOperations(
             new MiningOperationsUseCaseInputConstructor().construct(token,
                 new AuthenticationTokenValidator(this.jwtService).validate(token)
