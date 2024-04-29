@@ -1,9 +1,8 @@
 import { HttpHeaders } from "@angular/common/http"
 
-import { BACKEND_LINKS } from "@adapter/outbound/configuration/GlobalConstants"
 import { TypedRequest } from "neocom-domain"
 import { IsolationService } from "@innovative/services/isolation.service"
-import { PlatformConstants } from "@env/PlatformConstants"
+import { BACKEND_LINKS, STORAGE_LINKS } from "@env/PlatformConstants"
 
 
 declare namespace ESIMiningOperationsTypedRequest {
@@ -17,7 +16,7 @@ export class ESIMiningOperationsTypedRequest implements TypedRequest {
 
     constructor(private readonly isolationService: IsolationService) {
         const headers: HttpHeaders = new HttpHeaders()
-        headers.append('Cookie', 'Authentication=' + this.isolationService.getFromSession(PlatformConstants.ESITOKEN_KEY)
+        headers.append('Cookie', 'Authentication=' + this.isolationService.getFromSession(STORAGE_LINKS.ESITOKEN_KEY)
         )
         this.options = {
             headers: headers
@@ -26,7 +25,7 @@ export class ESIMiningOperationsTypedRequest implements TypedRequest {
 
     public prepare(requestInput: ESIMiningOperationsTypedRequest.Request) {
         console.log('prepare->parameters->' + requestInput)
-        this.request = BACKEND_LINKS.BACKEND_MINING_OPERATIONS_PREFIX
+        this.request = BACKEND_LINKS.BACKEND_MINING_OPERATIONS_LINK
         console.log('prepare->request->' + this.request)
         return this
     }
