@@ -39,8 +39,8 @@ export class BackendService extends PublicService {
         protected httpService: BackendHttpWrapper,
         protected isolation: IsolationService) {
         super(httpUniverseService, halResolver)
-        this.APIV1 = environment.serverName + PlatformConstants.NEOCOM_V1
-        this.APIV2 = environment.serverName + PlatformConstants.NEOCOM_V2
+        this.APIV1 =  PlatformConstants.NEOCOM_V1
+        this.APIV2 = PlatformConstants.NEOCOM_V2
     }
 
     // - B A C K E N D - A P I

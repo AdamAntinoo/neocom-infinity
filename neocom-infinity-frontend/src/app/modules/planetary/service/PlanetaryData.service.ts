@@ -50,7 +50,7 @@ export class PlanetaryDataService extends BackendService {
         protected httpService: BackendHttpWrapper,
         protected isolation: IsolationService) {
         super(httpUniverseService, halResolver, httpService, isolation)
-        this.PLANETARYV1 = environment.serverName + PlatformConstants.NEOCOM_V1
+        this.PLANETARYV1 =  PlatformConstants.NEOCOM_V1
         this.RESOURCES = '/assets/properties/'
         // this.APIV2 = environment.serverName + environment.apiVersion2
         // Initialize planetary data conversion structures.

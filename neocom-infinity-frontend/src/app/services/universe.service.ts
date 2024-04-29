@@ -22,7 +22,7 @@ export class UniverseService {
     constructor(
         protected httpUniverseService: UniverseHttpWrapper,
         protected halResolver: HALResolver) {
-        this.UNIVERSEV1 = environment.serverName + '/api/v1' + '/universe'
+        this.UNIVERSEV1 = '/api/v1' + '/universe'
     }
 
     // - U N I V E R S E   A P I

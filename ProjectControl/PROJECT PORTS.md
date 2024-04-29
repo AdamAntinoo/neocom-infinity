@@ -1,16 +1,21 @@
 # NEOCOM Application Port Mapping - Project Code 52
 ## Port Nomenclature
 The project will provide all ports on the range 5200 to 5299. Digits for port assignment follow next rules.
-- The first two digits are always 5 and 2.
-- The third digit is for the functionality group. Like server, mocks and other services. Goes from 0 (main service) to 9.
+- The first two digits are always **5** and **2**.
+- The third digit is for the functionality group. Like server, mocks and other services. Goes from 0 (main service) to 9. Services may depend on the environment like the mocks thare are not present on staging or production.
 - The fourth and last digit is for the environment.
-    * Value **0** is for *PRODUCTION* environment
-    * Value **1** is for development and local runs not deployed. 
-    * Value **2** for Acceptance testing.
-    * Value **3** for Staging and local deployments.
+    * Value **0** is for ***PRODUCTION*** environment
+    * Value **1** is for ***STAGING*** and user testing before production deployment. 
+    * Value **2** for ***Integration*** testing agaings other operative modules.
+    * Value **3** for ***Acceptance*** testing. Uses mocks for acceptance tests.
+    * Value **4** for ***Unit Testing*** and other local tests.
+    * Value **5** is for ***DEVELOPMENT*** runs and manual tests.
 
 ## Development
-* **5201** - Development Angular Frontend application. Uses mocks but no access to Internet.
+* **5205** - Development Angular Frontend application. Uses mocks but no access to Internet.
+* **5215** - Public ESI endpoints ApiSimulator.
+* **5225** - Backend /api/* endpoints.
+* **5235** - WireMock /api/v3 endpoints.
 #### 5234 - [DEVELOPMENT] Postgresql Common database
 
 #### 5200 - [DEVELOPMENT] Frontend Node server

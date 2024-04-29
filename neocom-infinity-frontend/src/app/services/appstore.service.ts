@@ -22,7 +22,7 @@ import { Fitting } from '@app/domain/Fitting.domain';
 import { AppCoreStoreService } from '@innovative/services/AppCoreStoreService.service';
 import { BackendHttpWrapper } from './backend.httpwrapper';
 import { ResponseTransformer } from 'neocom-domain/ResponseTransformer';
-import { PlatformConstants } from '@env/PlatformConstants';
+import {  STORAGE_LINKS } from '@env/PlatformConstants';
 import { ExceptionCodes } from '@app/platform/ExceptionCodes';
 import { NeoComCredential } from '@domain/NeoComCredential.domain';
 
@@ -54,7 +54,7 @@ export class AppStoreService extends AppCoreStoreService {
     * @throws NeoComException(ExceptionCodes.AUTHENTICATION_EXCEPTION)
     */
     private getCredential(): NeoComCredential {
-        const credentialJson = this.isolationService.getFromSession(PlatformConstants.CREDENTIAL_KEY)
+        const credentialJson = this.isolationService.getFromSession(STORAGE_LINKS.CREDENTIAL_KEY)
         console.log('Dashboard.getCredential>Credential at session: ' + credentialJson)
         if (null == credentialJson)
             throw new NeoComException()

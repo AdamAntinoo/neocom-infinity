@@ -15,11 +15,11 @@ export class ESIMiningOperationsTypedRequest implements TypedRequest {
     public options: {}
 
     constructor(private readonly isolationService: IsolationService) {
-        const headers: HttpHeaders = new HttpHeaders()
-        headers.append('Cookie', 'Authentication=' + this.isolationService.getFromSession(STORAGE_LINKS.ESITOKEN_KEY)
-        )
+        let headers: HttpHeaders = new HttpHeaders()
+        headers = headers.set('Cookie', 'ESI-DATA-SERVICES' + '=' + this.isolationService.getFromSession(STORAGE_LINKS.ESITOKEN_KEY))
+        headers = headers.set('set-cookie', 'ESI-DATA-SERVICES' + '=' + this.isolationService.getFromSession(STORAGE_LINKS.ESITOKEN_KEY) + '; Max-Age=604800; Expires=Thu, 11-Feb-2021 18:40:51 GMT; Path=/; HttpOnly')
         this.options = {
-            headers: headers
+            headers: headers,
         }
     }
 
