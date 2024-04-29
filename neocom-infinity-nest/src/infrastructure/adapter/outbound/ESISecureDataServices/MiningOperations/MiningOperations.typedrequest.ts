@@ -20,7 +20,7 @@ export class MiningOperationsTypedRequest implements TypedRequest {
 		this.prepare(parameters)
 	}
 	public prepare(parameters: MiningOperationsTypedRequestParameters): TypedRequest {
-		this.request = this.configuration.get<string>('BACKEND_HOST') + '/characters/' + parameters.characterId + '/mining/'
+		this.request = this.configuration.get<string>('ESI_BACKEND_HOST') + '/characters/' + parameters.characterId + '/mining/'
 		console.log('miningOperations>request->' + this.request)
 		this.options = this.prepareOptions()
 

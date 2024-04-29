@@ -46,4 +46,5 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
 # Banner
 app-banner.txt
+.app-banner.txt
 .version.json
