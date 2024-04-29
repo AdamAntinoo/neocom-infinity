@@ -1,6 +1,8 @@
 {
   "settings": {
-    "backendproxy": "http://host.docker.internal:5233/"
+    "port": 5000,
+    "backendproxy": "http://host.docker.internal:32100/",
+    "nestproxy": "http://host.docker.internal:32200/"
   },
   "pages": {
     "staticpublic": "./public",

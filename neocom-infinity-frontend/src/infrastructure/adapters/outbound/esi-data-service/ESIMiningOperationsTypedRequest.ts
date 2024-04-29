@@ -21,7 +21,7 @@ export class ESIMiningOperationsTypedRequest implements TypedRequest {
 
     public prepare(requestInput: ESIMiningOperationsTypedRequest.Request) {
         console.log('prepare->parameters->' + requestInput)
-        this.request = BACKEND_LINKS.BACKEND_MINING_OPERATIONS_PREFIX + requestInput + BACKEND_LINKS.BACKEND_MINING_OPERATIONS_OPERATION
+        this.request = BACKEND_LINKS.BACKEND_MINING_OPERATIONS_PREFIX
         console.log('prepare->request->' + this.request)
         return this
     }
