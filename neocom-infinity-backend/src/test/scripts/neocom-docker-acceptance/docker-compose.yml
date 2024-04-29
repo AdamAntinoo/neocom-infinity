@@ -27,6 +27,16 @@ services:
       - POSTGRES_USER=neocom-user
       - POSTGRES_PASSWORD=neocom-password
 
+  neocom-backend-acceptance-redis:
+    container_name: neocom-backend-acceptance-redis
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning
+    volumes:
+      - ./neocom-cache:/data
+
   acceptance:
     container_name: neocom-backend-acceptance-app
     image: neocom/neocom-infinity.backend
@@ -34,11 +44,11 @@ services:
       - "5241:9500"
     environment:
       - SPRING_PROFILES_ACTIVE=acceptance
-      - JDBC_DATABASE_URL=jdbc:postgresql://neocom-backend-acceptance-postgres:5432/postgres
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://neocom-backend-acceptance-postgres:5432/postgres"
+      - SPRING_DATASOURCE_USERNAME="neocom-user"
+      - SPRING_DATASOURCE_PASSWORD="neocom-password"
       - NEOCOM_DATABASE_URL=jdbc:postgresql://neocom-backend-acceptance-postgres:5432/postgres?user=neocom-user&password=neocom-password
-      - REDIS_URL=redis://host.docker.internal:6379
-      - DB_USER=neocom-user
-      - DB_PASSWORD=neocom-password
+      - REDIS_URL=redis://neocom-backend-acceptance-redis:6379
       - NEOCOM_BANNER_LOCATION=./app-banner.txt
       - PROPERTIES_DIRECTORY=/properties-acceptance
       - SDE_DATABASE_PATH=/sde.db
@@ -52,7 +62,7 @@ services:
       - "5251:6090"
     volumes:
       # WARNING - Use full absolute paths to make this work.
-      - /home/adam/Development/NeoCom0.20/NeoCom-Infinity/NeoCom-Infinity-Backend/src/test/resources/esioauth-simulation:/esioauth-simulation
+      - /Users/adam/IdeaProjects/neocom-infinity/neocom-infinity-backend/src/test/resources/esioauth-simulation:/esioauth-simulation
     command: "bin/apisimulator start /esioauth-simulation -p 6090"
 
   #  neocom-backend-acceptance-apisimulator-esi-universe-data:
@@ -72,7 +82,7 @@ services:
       - "5271:6090"
     volumes:
       # WARNING - Use full absolute paths to make this work.
-      - /home/adam/Development/NeoCom0.20/NeoCom-Infinity/NeoCom-Infinity-Backend/src/test/resources/esidata-simulation:/esidata-simulation
+      - /Users/adam/IdeaProjects/neocom-infinity/neocom-infinity-backend/src/test/resources/esidata-simulation:/esidata-simulation
     command: "bin/apisimulator start /esidata-simulation -p 6090"
 
 #  neocom-backend-acceptance-redis:
