@@ -1,6 +1,7 @@
 {
+  "description": "This file will only be used to configure the express server. Prefere tu use environment variables",
   "settings": {
-    "port": 5201,
+    "port": 5205,
     "backendproxy": "http://localhost:5210/"
   },
   "pages": {

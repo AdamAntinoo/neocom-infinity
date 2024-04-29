@@ -32,8 +32,9 @@ var options = {
 app.locals.appname = config.get('settings.appname')
 app.locals.port = process.env.PORT || config.get('settings.port')
 app.locals.applicationhome = config.get('settings.applicationhome')
-app.locals.backendproxy = config.get('settings.backendproxy')
-app.locals.nestproxy = config.get('settings.nestproxy')
+app.locals.publicproxy = process.env.PUBLICPROXY
+app.locals.backendproxy = process.env.BACKENDPROXY
+app.locals.nestproxy = process.env.NESTPROXY
 app.locals.apppath = config.get('settings.apppath')
 
 // - L O G G I N G
