@@ -20,7 +20,12 @@ export class V1MiningOperationsAdapter implements IEsiMiningSecureService<GetCha
 				token: token,
 			},
 			this.configuration,
-		)
+		).build()
+		if (process.env.LOGLEVEL == 'debug')
+			this.httpService.axiosRef.interceptors.request.use(request => {
+				console.log('Starting Request', JSON.stringify(request, null, 2))
+				return request
+			})
 		return await firstValueFrom(
 			this.httpService.get<V1MiningOperationDto[]>(request.request, request.options).pipe(
 				map((axiosResponse: AxiosResponse) => {
