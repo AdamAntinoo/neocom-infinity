@@ -1,6 +1,6 @@
 {
   "name": "neonest",
-  "version": "0.20.7-8",
+  "version": "0.20.5-11",
   "description": "NeoCom Infinity Typescript backend server. Implemented with NestJS technology.",
   "author": "adamantinoo.git@gmail.com",
   "private": true,
@@ -11,7 +11,6 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "start:debug": "nest start --debug --watch",
-    "start:stage": "npm run tag && VERSION=`gitversion /showvariable AssemblySemFileVer` NODE_ENV=staging nest start",
     "start:prod": "node dist/main",
     "build": "nest build",
     "cucumber": "NODE_ENV=acceptance ./node_modules/@cucumber/cucumber/bin/cucumber-js ./test/**/*.feature --no-strict --require-module ts-node/register --require-module tsconfig-paths/register --require ./test/acceptance/steps/**/*.ts",
@@ -24,15 +23,18 @@
     "docker:start": "docker-compose -f ./support/docker-wiremock.yml up & ",
     "docker:stop": "docker-compose -f ./support/docker-wiremock.yml down ",
     "tag": "figlet NeoNest `gitversion /showvariable AssemblySemFileVer` > .app-banner.txt",
-    "semver": "gitversion /showvariable AssemblySemFileVer > .version.json",
-    "version": "npm version --allow-same-version `cat .version.json`",
-    "start:dev": "npm run version && npm run tag && VERSION=`cat .version.json` NODE_ENV=development nest start --watch",
+    "semver": "gitversion /showvariable AssemblySemFileVer > .version.json && echo 'VERSION='`cat .version.json` > .env.version",
+    "version:update": "npm version --allow-same-version `cat .version.json`",
+    "start:dev": "npm run tag && npm run semver && NODE_ENV=development nest start --watch",
+    "start:staging": "npm run tag && npm run semver && VERSION=`cat .version.json` NODE_ENV=staging nest start --watch",
     "start": "npm run start:dev",
     "test": "NODE_ENV=development jest --verbose",
     "test:watch": "NODE_ENV=development jest --verbose --watch",
     "test:cov": "NODE_ENV=development jest --verbose --coverage",
     "test:acc": "NODE_ENV=acceptance ./node_modules/@cucumber/cucumber/bin/cucumber-js ./test/**/*.feature --no-strict --require-module ts-node/register --require-module tsconfig-paths/register --require ./test/acceptance/steps/**/*.ts",
-    "test:full": "npm run docker:start && npm run jest && npm run test:acc"
+    "test:full": "npm run docker:start && npm run jest && npm run test:acc",
+    "deploy:prepare": "npm run tag && npm run semver && npm run version:update && npm run build",
+    "debug": "VERSION=`cat .version.json` NODE_ENV=staging nest start --debug --watch"
   },
   "dependencies": {
     "@nestjs/axios": "^3.0.2",
