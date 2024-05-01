@@ -84,9 +84,9 @@
       "request": "launch",
       "protocol": "inspector",
       "sourceMaps": true,
-      "stopOnEntry": true,
       "console": "integratedTerminal",
       "program": "${workspaceFolder}/src/main.ts",
+      "smartStep": true,
       "args": [
         "${workspaceFolder}/src/main.ts"
       ],

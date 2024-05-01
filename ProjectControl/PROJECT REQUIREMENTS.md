@@ -3,6 +3,20 @@ NeoCom Infinity is a new version with a reconfigured User Interface (UX) that ai
 
 Developments are mainly docused on Industry and on Market improvements and leaving Fittings and other areas to a later requirement refinement.
 
+# Exgernal Connections
+```mermaid
+sequenceDiagram
+    participant dotcom
+    participant iframe
+    participant viewscreen
+    dotcom->>iframe: loads html w/ iframe url
+    iframe->>viewscreen: request template
+    viewscreen->>iframe: html & javascript
+    iframe->>dotcom: iframe ready
+    dotcom->>iframe: set mermaid data on iframe
+    iframe->>iframe: render mermaid
+```
+
 ## 1. Industry
 Industry is a key element on Eve Online and that is because is one of the most stable sources for ISK. It can be divided into two areas, Mining and Manufacturing. Recent changes on the Eve Online gameplay have added more mining functionalities that are worth to integrate on Infinity.
 
@@ -59,8 +73,9 @@ This is an example of the heavy hierarchical data distribution inside ESI. Just 
 **[EPIC-0.23] Create new endpoint to handle Esi locations and their representation at the UX.**
 * **[STORY-NIN]** Locations require additional endpoints to aggregate the location path.
 
-## 3. FrontEnd Link Ressolution
+## 3. FrontEnd Link Resolution
 EsiType -> EsiMarkletData
+
 
 
 ## Fitting build

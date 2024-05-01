@@ -24,41 +24,5 @@
         {
             "path": "ProjectControl"
         },
-    ],
-    "settings": {
-        "html.format.wrapLineLength": 150,
-        "editor.wordWrap": "wordWrapColumn",
-        "editor.wrappingIndent": "indent",
-        "editor.wordWrapColumn": 150,
-        "editor.rulers": [
-            120,
-            130,
-	    150
-        ],
-        "git.ignoreLimitWarning": true,
-        "html.format.wrapAttributes": "force-aligned",
-        "files.autoSave": "afterDelay",
-        "files.autoSaveDelay": 4000,
-        "files.autoSaveWorkspaceFilesOnly": true,
-        "workbench.localHistory.mergeWindow": 15,
-        "editor.defaultFormatter": "vscode.typescript-language-features",
-        "prettier.embeddedLanguageFormatting": "off",
-        "prettier.endOfLine": "auto",
-        "prettier.printWidth": 150,
-        "prettier.semi": false,
-        "prettier.singleQuote": true,
-        "prettier.tabWidth": 4,
-        "prettier.trailingComma": "none",
-        "prettier.useTabs": true,
-        "workbench.colorTheme": "Atom One Dark",
-        "eslint.ignoreUntitled": true,
-        "eslint.quiet": true,
-        "workbench.preferredDarkColorTheme": "Atom One Dark",
-        "[html]": {
-            "editor.defaultFormatter": "esbenp.prettier-vscode"
-        },
-        "[scss]": {
-            "editor.defaultFormatter": "esbenp.prettier-vscode"
-        }
-    }
+    ]
 }

@@ -14,6 +14,7 @@ function printData(configService: ConfigService<unknown, boolean>) {
 	const logLevel = process.env.LOGLEVEL
 
 	console.log('Nest JS Server version: ' + START_GREEN + '10.3.2' + END_ENHANCED)
+	console.log('Reading environment: ' + START_YELLOW + process.env.ENVIRONMENT + END_ENHANCED)
 	console.log('Running environment: ' + START_YELLOW + process.env.NODE_ENV + END_ENHANCED)
 	console.log('Version: ' + START_YELLOW + process.env.VERSION + END_ENHANCED)
 	console.log('LogLevel: ' + START_RED + logLevel + END_ENHANCED)

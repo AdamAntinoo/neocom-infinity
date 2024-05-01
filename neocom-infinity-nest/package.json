@@ -1,6 +1,6 @@
 {
   "name": "neonest",
-  "version": "0.20.5-11",
+  "version": "0.20.5-14",
   "description": "NeoCom Infinity Typescript backend server. Implemented with NestJS technology.",
   "author": "adamantinoo.git@gmail.com",
   "private": true,
