@@ -27,7 +27,9 @@
     "start:dev": "NODE_ENV=development ng serve --proxy-config proxy.conf.js --port 5205 ",
     "start": "npm run start:dev",
     "build": "ng build ",
-    "run:dev": "npm run build && NODE_ENV=development PORT=5205 PUBLICPROXY=http://localhost:5215 BACKENDPROXY=http://localhost:5225 NESTPROXY=http://localhost:5235 && node server.js"
+    "run:dev": "npm run build && NODE_ENV=development PORT=5205 PUBLICPROXY=http://localhost:5215 BACKENDPROXY=http://localhost:5225 NESTPROXY=http://localhost:5235 && node server.js",
+    "env:dev": "NODE_ENV=development . ./scripts/generate.env.sh",
+    "env:staging": "NODE_ENV=staging . ./scripts/generate.env.sh"
   },
   "private": true,
   "engines": {
