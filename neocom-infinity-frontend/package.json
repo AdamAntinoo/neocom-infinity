@@ -17,7 +17,7 @@
     "test:cuc": "ng test --include=src/../cucumber/**/*.step.ts",
     "build:dev": "ng build --configuration=development --watch ",
     "build:staging": "export NODE_ENV=staging && npm run tag && ng build --configuration=staging",
-    "start:staging": "export NODE_ENV=staging && npm run tag && npm run build:staging && node server.js ",
+    "start:stagingx": "export NODE_ENV=staging && npm run tag && npm run build:staging && node server.js ",
     "docker:start": "docker-compose -f ./support/docker-compose.yml up & ",
     "docker:stop": "docker-compose -f ./support/docker-compose.yml down ",
     "semver": "gitversion /showvariable AssemblySemFileVer > .version.json && cat .version.json",
@@ -29,7 +29,8 @@
     "build": "ng build ",
     "run:dev": "npm run build && NODE_ENV=development PORT=5205 PUBLICPROXY=http://localhost:5215 BACKENDPROXY=http://localhost:5225 NESTPROXY=http://localhost:5235 && node server.js",
     "env:dev": "NODE_ENV=development . ./scripts/generate.env.sh",
-    "env:staging": "NODE_ENV=staging . ./scripts/generate.env.sh"
+    "env:staging": "NODE_ENV=staging . ./scripts/generate.env.sh",
+    "start:staging": "npm run env:staging && . .env.staging && node server.js "
   },
   "private": true,
   "engines": {

@@ -2,15 +2,25 @@
 const express = require('express')
 const path = require('path')
 const compression = require('compression')
-const config = require('config')
+// const config = require('config')
 const proxy = require('express-http-proxy')
 const fs = require('fs')
 const { promisify } = require('util')
 const exec = promisify(require('child_process').exec)
+// const { APPTITLE } = require('./src/environments/PlatformConstants.ts')
 
 // - S E R V E R   O P T I O N S
 const app = express()
 app.use(compression())
+// - S E R V E R   C O N F I G U R A T I O N
+app.locals.appname = 'Neocom Infinity - Frontend'
+app.locals.port = process.env.PORT || 3000
+app.locals.applicationhome = process.env.APP_HOME || '/dist'
+app.locals.publicproxy = process.env.PUBLICPROXY
+app.locals.backendproxy = process.env.BACKENDPROXY
+app.locals.nestproxy = process.env.NESTPROXY
+app.locals.apppath = process.env.APP_BASEREF || '/app'
+
 var options = {
   dotfiles: 'ignore',
   etag: true,
@@ -21,21 +31,12 @@ var options = {
   redirect: false,
   setHeaders: function (res, path, stat) {
     res.set('x-timestamp', Date.now())
-    res.set('x-app-name', 'NeoCom.Infinity.Frontend')
+    res.set('x-app-name', app.locals.appname)
     res.set('Access-Control-Allow-Origin', '*')
     res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
     res.set('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, DELETE')
   }
 }
-
-// - S E R V E R   C O N F I G U R A T I O N
-app.locals.appname = config.get('settings.appname')
-app.locals.port = process.env.PORT || config.get('settings.port')
-app.locals.applicationhome = config.get('settings.applicationhome')
-app.locals.publicproxy = process.env.PUBLICPROXY
-app.locals.backendproxy = process.env.BACKENDPROXY
-app.locals.nestproxy = process.env.NESTPROXY
-app.locals.apppath = config.get('settings.apppath')
 
 // - L O G G I N G
 app.use(function (req, res, next) {
@@ -64,12 +65,13 @@ app.get('*.*', function (req, res) {
 })
 
 // - A C T U A T O R   M O U N T P O I N T
-app.use('/actuator', proxy(app.locals.backendproxy, {
-  proxyReqPathResolver: function (req) {
-    console.log('Backend: ' + app.locals.backendproxy + 'actuator' + req.url)
-    return app.locals.backendproxy + 'actuator' + req.url
-  }
-}))
+/** @deprecated */
+// app.use('/actuator', proxy(app.locals.backendproxy, {
+//   proxyReqPathResolver: function (req) {
+//     console.log('Backend: ' + app.locals.backendproxy + 'actuator' + req.url)
+//     return app.locals.backendproxy + 'actuator' + req.url
+//   }
+// }))
 
 // - A P I   M O U N T P O I N T
 app.use('/nin/v1', proxy(app.locals.nestproxy, {
@@ -99,39 +101,37 @@ app.get('/app/*', function (req, res) {
 
 const START_YELLOW = "\x1b[33m\x1b[1m"
 const START_GREEN = "\x1b[32m\x1b[1m"
+const START_RED = "\x1b[31m\x1b[1m"
+const START_BLUE = "\x1b[34m\x1b[1m"
 const END_BOLD = "\x1b[0m"
+
 // - L I S T E N
-app.listen(process.env.PORT || app.locals.port || 3000, function () {
-  exec('echo `gitversion /showvariable MajorMinorPatch`-`gitversion /showvariable CommitsSinceVersionSource`'
-    , (err, stdout, stderr) => {
-      console.log("Node Express server version: v20.11.1")
-      console.log("Running environment: " + START_YELLOW + process.env.NODE_ENV + END_BOLD)
-      console.log("Current build: " + START_YELLOW + stdout.replace("\n", "") + END_BOLD)
-      console.log("Listening on port: " + START_YELLOW + app.locals.port + END_BOLD)
-      console.log("Serving application: " + START_YELLOW + app.locals.appname + END_BOLD)
-      console.log("Application URL path: " + START_GREEN + "http://localhost:" + app.locals.port + '/' + END_BOLD)
-      // console.log("Backend URL path: " + START_GREEN + app.locals.backendproxy + END_BOLD)
-      console.log("Proxy redirection for " + START_YELLOW + "/actuator" + END_BOLD + ": " +
-        'Backend: ' + START_GREEN + app.locals.backendproxy + 'actuator' + END_BOLD)
-      console.log("Proxy redirection for " + START_YELLOW + "/api/vn" + END_BOLD + ": " +
-        'Backend: ' + START_GREEN + app.locals.backendproxy + 'api' + END_BOLD)
-      console.log("Proxy redirection for " + START_YELLOW + "/nin/v1" + END_BOLD + ": " +
-        'Backend: ' + START_GREEN + app.locals.nestproxy + 'nin/v1' + END_BOLD)
-      console.log("Proxy redirection for " + START_YELLOW + "/esi/v1" + END_BOLD + ": " +
-        'Backend: ' + START_GREEN + app.locals.nestproxy + 'esi/v1' + END_BOLD)
-      const filename = 'app-banner.txt'
+app.listen(process.env.PORT, function () {
+  // exec('echo `gitversion /showvariable MajorMinorPatch`-`gitversion /showvariable CommitsSinceVersionSource`'
+  //   , (err, stdout, stderr) => {
+  console.log("Node Express server version: " + START_GREEN + process.env.NODE_VERSION + END_BOLD)
+  console.log("Running environment: " + START_YELLOW + process.env.NODE_ENV + END_BOLD)
+  console.log("Current build: " + START_YELLOW + process.env.VERSION + END_BOLD)
+  console.log("Listening on port: " + START_YELLOW + app.locals.port + END_BOLD)
+  console.log("Serving application: " + START_YELLOW + app.locals.appname + END_BOLD)
+  console.log("Application URL path: " + START_GREEN + "http://localhost:" + app.locals.port + '/' + END_BOLD)
+  console.log("Proxy redirection for " + START_YELLOW + "/api/v*" + END_BOLD + ": " +
+    'Backend: ' + START_GREEN + app.locals.backendproxy + 'api' + END_BOLD)
+  console.log("Proxy redirection for " + START_YELLOW + "/nin/v1" + END_BOLD + ": " +
+    'Backend: ' + START_GREEN + app.locals.nestproxy + 'nin/v1' + END_BOLD)
+  console.log("Proxy redirection for " + START_YELLOW + "/esi/v1" + END_BOLD + ": " +
+    'Backend: ' + START_GREEN + app.locals.nestproxy + 'esi/v1' + END_BOLD)
 
-      console.log('>>> Additional properties:')
-      console.log('>Env>Login Link: ' + process.env.LOGIN_LINK)
-      console.log('>Env>Port: ' + process.env.PORT)
-      console.log('>Env>Image Name: ' + process.env.IMAGE_NAME)
-      console.log('>Env>Semantic Version: ' + process.env.SEMVER)
-      console.log('>Env>Tag Version: ' + process.env.TAGVERSION)
+  const filename = '.app-banner.txt'
 
-      fs.readFile(filename, 'utf8', function (err, data) {
-        if (err) throw err
-        console.log(data)
-        console.log(START_GREEN + ">>> Server Ready for Connections <<<" + END_BOLD)
-      })
-    })
+  console.log('>>> Additional properties:')
+  console.log('>Env>Port: ' + START_BLUE + process.env.PORT + END_BOLD)
+  console.log('>Env>Version: ' + START_BLUE + process.env.SEMVERSION + END_BOLD)
+  console.log('>Env>Tag Version: ' + START_BLUE + process.env.VERSION + END_BOLD)
+
+  fs.readFile(filename, 'utf8', function (err, data) {
+    if (err) throw err
+    console.log(data)
+    console.log(START_GREEN + ">>> Server Ready for Connections <<<" + END_BOLD)
+  })
 })
