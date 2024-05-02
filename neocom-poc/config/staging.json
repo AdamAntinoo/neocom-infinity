@@ -1,0 +1,11 @@
+{
+    "globals": {
+        "level": "staging"
+    },
+    "settings": {
+        "port": 5003
+    },
+    "data": {
+        "envvalue": "sta"
+    }
+}

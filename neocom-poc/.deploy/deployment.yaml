@@ -1,0 +1,50 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: neocom-neopoc-svc
+  namespace: neocom-staging
+spec:
+  selector:
+    app: neopoc-development
+    version: 0.0.2
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 6000
+      nodePort: 32009
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: neopoc-development
+  namespace: neocom-staging
+  labels:
+    app: neopoc-development
+    version: "0.0.2"
+    port: "6000"
+    module: neopoc
+spec:
+  selector:
+    matchLabels:
+      app: neopoc-development
+  template:
+    metadata:
+      labels:
+        app: neopoc-development
+        version: "0.0.2"
+        port: "6000"
+        module: neopoc
+    spec:
+      containers:
+      - name: neopoc-development
+        image: adamantinoo/neocom-poc:0.0.4
+        envFrom:
+          - configMapRef:
+              name: neocom-poc-environment
+        ports:
+        - containerPort: 6000
+        imagePullPolicy: Always
+      serviceAccountName: default
