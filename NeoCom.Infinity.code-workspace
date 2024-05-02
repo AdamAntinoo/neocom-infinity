@@ -7,22 +7,16 @@
             "path": "neocom-infinity-frontend"
         },
         {
-            "path": "neocom-generated"
-        }
-        {
             "path": "neocom-shared"
         },
         {
             "path": "neocom-domain"
         },
         {
-            "path": ".deploy"
-        },
-        {
-            "path": ".vscode"
+            "path": "neocom-poc"
         },
         {
             "path": "ProjectControl"
-        },
+        }
     ]
 }

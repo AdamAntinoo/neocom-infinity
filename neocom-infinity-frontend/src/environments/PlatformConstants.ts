@@ -6,7 +6,9 @@ export const PlatformConstants = {
     DEFAULT_VARIANT: '-DEFAULT-',
     DEFAULT_FEATURE_REF: 'assets/media/default-feature.jpeg',
     DEFAULT_FEATURE_LABEL: '-',
-    VALID_SESSION_STATE: 'VALID'
+    VALID_SESSION_STATE: 'VALID',
+    COPYRIGHT: '© 2019,2024 Dimensinfin Industries',
+    APPTITLE: 'NeoCom Infinity',
 }
 export const BACKEND_LINKS = Object.freeze({
     BACKEND_MINING_OPERATIONS_LINK: '/nin/v1/character/miningoperations'
