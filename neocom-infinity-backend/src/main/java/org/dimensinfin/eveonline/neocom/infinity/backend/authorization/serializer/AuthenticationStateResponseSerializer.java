@@ -21,6 +21,7 @@ public class AuthenticationStateResponseSerializer extends JsonSerializer<Authen
 
 		jgen.writeStringField( "state", value.getState().name() );
 		if (null != value.getJwtToken()) jgen.writeObjectField( "jwtToken", value.getJwtToken() );
+		if (null != value.getEsiToken()) jgen.writeObjectField( "esiToken", value.getEsiToken() );
 		if (null != value.getCredential()) jgen.writeObjectField( "credential", value.getCredential() );
 
 		jgen.writeEndObject();

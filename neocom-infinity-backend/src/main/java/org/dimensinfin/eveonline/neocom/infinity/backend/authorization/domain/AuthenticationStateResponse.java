@@ -15,6 +15,7 @@ public class AuthenticationStateResponse {
 
 	private AuthenticationStateType state = AuthenticationStateType.NOT_VALID;
 	private String jwtToken;
+	private String esiToken;
 	private Credential credential;
 
 	// - C O N S T R U C T O R S
@@ -27,6 +28,10 @@ public class AuthenticationStateResponse {
 
 	public String getJwtToken() {
 		return this.jwtToken;
+	}
+
+	public String getEsiToken() {
+		return this.esiToken;
 	}
 
 	public AuthenticationStateType getState() {
@@ -53,6 +58,11 @@ public class AuthenticationStateResponse {
 
 		public AuthenticationStateResponse.Builder withJwtToken( final String jwtToken ) {
 			this.onConstruction.jwtToken = Objects.requireNonNull( jwtToken );
+			return this;
+		}
+
+		public AuthenticationStateResponse.Builder withEsiToken( final String token ) {
+			this.onConstruction.esiToken = Objects.requireNonNull( token );
 			return this;
 		}
 

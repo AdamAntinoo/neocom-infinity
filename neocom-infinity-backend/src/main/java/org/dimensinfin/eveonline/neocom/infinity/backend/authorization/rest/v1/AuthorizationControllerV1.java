@@ -44,19 +44,19 @@ public class AuthorizationControllerV1 {
 	}
 
 	@GetMapping(path = { "/validateAuthorizationToken" },
-		consumes = "application/json",
-		produces = "application/json")
+			consumes = "application/json",
+			produces = "application/json")
 	public ResponseEntity<AuthorizationTokenResponse> validate( @RequestParam(value = "code") @NotNull final String code,
 	                                                            @RequestParam(value = "state") @NotNull final String state,
 	                                                            @RequestParam(value = "dataSource", required = false) final String dataSource,
 	                                                            final HttpServletResponse response ) {
 		final AuthorizationTokenRequest authorizationTokenRequest = new AuthorizationTokenRequest.Builder()
-			.withCode( code )
-			.withState( state )
-			.withDataSource( (null != dataSource) ? dataSource : DEFAULT_ESI_SERVER )
-			.build();
+				.withCode( code )
+				.withState( state )
+				.withDataSource( (null != dataSource) ? dataSource : DEFAULT_ESI_SERVER )
+				.build();
 		final AuthorizationTokenResponse authorizationResponse = this.authorizationServiceV1
-			.validateAuthorizationToken( authorizationTokenRequest );
+				.validateAuthorizationToken( authorizationTokenRequest );
 		response.addCookie( this.generateCookie( NEOCOM_COOKIE_NAME, authorizationResponse.getJwtToken() ) );
 		response.addCookie( this.generateCookie( ESI_COOKIE_NAME, authorizationResponse.getEsiToken() ) );
 		return new ResponseEntity<>( authorizationResponse, HttpStatus.OK );
@@ -81,16 +81,21 @@ public class AuthorizationControllerV1 {
 	 */
 	@GetMapping(path = { "/validateAuthenticationState" }, produces = "application/json")
 	public ResponseEntity<AuthenticationStateResponse> validateAuthenticationState(
-		@CookieValue(value = NEOCOM_COOKIE_NAME, defaultValue = "-INVALID-") final String neocomCookieData,
-		final HttpServletResponse response ) {
+			@CookieValue(value = NEOCOM_COOKIE_NAME, defaultValue = "-INVALID-") final String neocomCookieData,
+			final HttpServletResponse response ) {
 		LogWrapper.info( MessageFormat.format( "Cookie value: {0}", neocomCookieData ) );
 		// Validate if the cookie is empty. Is so do not go ahead and return a 'not found' immediately.
 		if (neocomCookieData.toUpperCase().contains( "INVALID" ))
 			return new ResponseEntity<>( new AuthenticationStateResponse.Builder()
-				.withState( AuthenticationStateResponse.AuthenticationStateType.NOT_FOUND )
-				.build(), HttpStatus.OK );
-		else
-			return new ResponseEntity<>( this.authorizationServiceV1.validateAuthenticationState( neocomCookieData, response ), HttpStatus.OK );
+					.withState( AuthenticationStateResponse.AuthenticationStateType.NOT_FOUND )
+					.build(), HttpStatus.OK );
+		else {
+			final AuthenticationStateResponse validateResponse = this.authorizationServiceV1.validateAuthenticationState( neocomCookieData,
+					response );
+			response.addCookie( this.generateCookie( NEOCOM_COOKIE_NAME, validateResponse.getJwtToken() ) );
+			response.addCookie( this.generateCookie( ESI_COOKIE_NAME, validateResponse.getEsiToken() ) );
+			return new ResponseEntity<>( validateResponse, HttpStatus.OK );
+		}
 	}
 
 	private Cookie generateCookie( final String name, final String payload ) {
