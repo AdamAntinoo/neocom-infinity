@@ -22,7 +22,7 @@ services:
     container_name: neocom-backend-development-apisimulator-esi-oauth
     image: apimastery/apisimulator:1.8
     ports:
-      - "5250:6090"
+      - "5252:6090"
     volumes:
       # WARNING - Use full absolute paths to make this work.
       - ../../resources/esioauth-simulation:/esioauth-simulation
@@ -32,7 +32,7 @@ services:
     container_name: neocom-backend-development-apisimulator-esi-data
     image: apimastery/apisimulator:1.8
     ports:
-      - "5270:6090"
+      - "5272:6090"
     volumes:
       # WARNING - Use full absolute paths to make this work.
       - ../../resources/esidata-simulation:/esidata-simulation

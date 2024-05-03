@@ -5,7 +5,7 @@ import { environment } from '@env/environment';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { HttpClientWrapperService } from '@innovative/services/httpclientwrapper.service';
-import { PlatformConstants } from '@env/PlatformConstants';
+import {  STORAGE_LINKS } from '@env/PlatformConstants';
 import { IsolationService } from '@innovative/services/isolation.service';
 
 @Injectable({
@@ -33,7 +33,7 @@ export class BackendHttpWrapper extends HttpClientWrapperService {
         headers = headers.set('xApp-Platform', environment.platform)
         headers = headers.set('xApp-Signature', 'S0000.0020.0000')
         // Add authentication
-        headers = headers.set('Authorization', 'Bearer ' + this.isolationService.getFromSession(PlatformConstants.JWTTOKEN_KEY))
+        headers = headers.set('Authorization', 'Bearer ' + this.isolationService.getFromSession(STORAGE_LINKS.JWTTOKEN_KEY))
 
         if (null != _requestHeaders) { // Copy in additional headers.
             for (let key of _requestHeaders.keys()) {

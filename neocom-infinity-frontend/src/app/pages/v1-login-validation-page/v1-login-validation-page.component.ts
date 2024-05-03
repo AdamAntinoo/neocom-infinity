@@ -20,7 +20,7 @@ import { ResponseTransformer } from 'neocom-domain/ResponseTransformer'
 import { BackgroundEnabledComponent } from '@innovative/components/background-enabled/background-enabled.component'
 import { AuthenticationStateResponse } from '@domain/dto/AuthenticationStateResponse.dto'
 import { NeoComCredential } from '@domain/NeoComCredential.domain'
-import { PlatformConstants } from '@env/PlatformConstants'
+import {  STORAGE_LINKS } from '@env/PlatformConstants'
 
 @Component({
     selector: 'app-login-validation-page',
@@ -65,9 +65,10 @@ export class V1LoginValidationPageComponent extends BackgroundEnabledComponent i
                         console.log('-[V1LoginValidationPageComponent.<ngOnInit>.apiValidateAuthorizationToken]> JWT: ' +
                             response.getJwtToken())
                         if (this.validateJWT(response.getJwtToken(), credential)) {
-                            // Store the new tocken and credential
-                            this.isolationService.setToSession(PlatformConstants.JWTTOKEN_KEY, response.getJwtToken())
-                            this.isolationService.setToSession(PlatformConstants.CREDENTIAL_KEY, JSON.stringify(response.getCredential()))
+                            // Store the new token and credential
+                            this.isolationService.setToSession(STORAGE_LINKS.JWTTOKEN_KEY, response.getJwtToken())
+                            this.isolationService.setToSession(STORAGE_LINKS.ESITOKEN_KEY, response.getEsiToken())
+                            this.isolationService.setToSession(STORAGE_LINKS.CREDENTIAL_KEY, JSON.stringify(response.getCredential()))
                             console.log('-[V1LoginValidationPageComponent.<ngOnInit>.apiValidateAuthorizationToken]> Routing to: /dashbaord')
                             this.router.navigate(['dashboard'])   // Jump to the Dashboard page if all complete.
                         } else {

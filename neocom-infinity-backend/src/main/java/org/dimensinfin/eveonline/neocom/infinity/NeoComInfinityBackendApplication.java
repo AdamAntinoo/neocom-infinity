@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,6 +13,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.filter.ForwardedHeaderFilter;
 
 import org.dimensinfin.logging.LogWrapper;
+
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableScheduling
@@ -21,7 +21,6 @@ import org.dimensinfin.logging.LogWrapper;
 public class NeoComInfinityBackendApplication {
 	public static final String APPLICATION_ERROR_CODE_PREFIX = "dimensinfin.eveonline.neocom";
 	public static final String PERSISTENCE_ERROR = ".persistence.sql.error";
-	public static final String NEOCOM_COOKIE_NAME = "NEOCOM-INFINITY";
 
 	public static void main( final String[] args ) {
 		LogWrapper.enter();
@@ -46,17 +45,17 @@ public class NeoComInfinityBackendApplication {
 
 		private String readAllBytes() {
 			try {
-				LogWrapper.info("Locating banner file at:"+System.getenv( "NEOCOM_BANNER_LOCATION" ));
+				LogWrapper.info( "Locating banner file at:" + System.getenv( "NEOCOM_BANNER_LOCATION" ) );
 				final File resource = new File( System.getenv( "NEOCOM_BANNER_LOCATION" ) );
 				return new String( Files.readAllBytes( resource.toPath() ) );
 			} catch (final IOException ioe) {
 				LogWrapper.error( ioe );
 				return "        ___      ___      ___  \n" +
-						"__   __/ _ \\    / _ \\    / _ \\ \n" +
-						"\\ \\ / / | | |  | | | |  | | | |\n" +
-						" \\ V /| |_| |  | |_| |  | |_| |\n" +
-						"  \\_/  \\___(_)  \\___(_)  \\___/ \n" +
-						"                               \n";
+					"__   __/ _ \\    / _ \\    / _ \\ \n" +
+					"\\ \\ / / | | |  | | | |  | | | |\n" +
+					" \\ V /| |_| |  | |_| |  | |_| |\n" +
+					"  \\_/  \\___(_)  \\___(_)  \\___/ \n" +
+					"                               \n";
 			}
 		}
 	}

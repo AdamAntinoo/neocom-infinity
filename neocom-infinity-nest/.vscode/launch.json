@@ -77,6 +77,28 @@
       "cwd": "${workspaceRoot}",
       "console": "integratedTerminal",
       "protocol": "inspector"
+    },
+    {
+      "name": ">Debug>Staging",
+      "type": "node",
+      "request": "launch",
+      "protocol": "inspector",
+      "sourceMaps": true,
+      "console": "integratedTerminal",
+      "program": "${workspaceFolder}/src/main.ts",
+      "smartStep": true,
+      "args": [
+        "${workspaceFolder}/src/main.ts"
+      ],
+      "runtimeArgs": [
+        "--nolazy",
+        "-r",
+        "ts-node/register",
+        "-r",
+        "tsconfig-paths/register"
+      ],
+      "envFile": "${workspaceFolder}/.env.staging",
+      "cwd": "${workspaceRoot}",
     }
   ]
 }

@@ -30,7 +30,7 @@ import { PlatformConstants } from '@env/PlatformConstants';
 export class V1PilotPanelComponent extends BackgroundEnabledComponent implements OnInit, IRefreshable {
     @Input() identifier: number
     public pilot: PublicPilotV1
-    private APIV1: string = environment.serverName + PlatformConstants.NEOCOM_V1
+    private APIV1: string = PlatformConstants.NEOCOM_V1
 
     constructor(
         protected isolationService: IsolationService,

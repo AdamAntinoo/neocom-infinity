@@ -1,29 +1,29 @@
-import { HttpHeaders } from "@angular/common/http"
+import { HttpHeaders } from '@angular/common/http'
 
-import { BACKEND_LINKS } from "@adapter/outbound/configuration/GlobalConstants"
-import { TypedRequest } from "neocom-domain"
-
+import { TypedRequest } from 'neocom-domain'
+import { IsolationService } from '@innovative/services/isolation.service'
+import { BACKEND_LINKS, STORAGE_LINKS } from '@env/PlatformConstants'
 
 declare namespace ESIMiningOperationsTypedRequest {
-    export type Request = number
+	export type Request = number
 }
 
 export class ESIMiningOperationsTypedRequest implements TypedRequest {
-    public method: string = 'GET'
-    public request: string
-    public options: {}
+	public method: string = 'GET'
+	public request: string
+	public options: {}
 
-    constructor() {
-        this.options = {
-            headers: new HttpHeaders()
-        }
-    }
+	constructor(private readonly isolationService: IsolationService) {
+		let headers: HttpHeaders = new HttpHeaders()
+		this.options = {
+			headers: headers,
+		}
+	}
 
-    public prepare(requestInput: ESIMiningOperationsTypedRequest.Request) {
-        console.log('prepare->parameters->' + requestInput)
-        this.request = BACKEND_LINKS.BACKEND_MINING_OPERATIONS_PREFIX
-        console.log('prepare->request->' + this.request)
-        return this
-    }
-
+	public prepare(requestInput: ESIMiningOperationsTypedRequest.Request) {
+		console.log('prepare->parameters->' + requestInput)
+		this.request = BACKEND_LINKS.BACKEND_MINING_OPERATIONS_LINK
+		console.log('prepare->request->' + this.request)
+		return this
+	}
 }

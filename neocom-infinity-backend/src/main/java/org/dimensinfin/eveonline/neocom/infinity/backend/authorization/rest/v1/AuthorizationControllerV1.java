@@ -1,6 +1,8 @@
 package org.dimensinfin.eveonline.neocom.infinity.backend.authorization.rest.v1;
 
 import java.text.MessageFormat;
+import java.util.concurrent.TimeUnit;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.constraints.NotNull;
 
@@ -20,7 +22,8 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.Au
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenResponse;
 import org.dimensinfin.logging.LogWrapper;
 
-import static org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendApplication.NEOCOM_COOKIE_NAME;
+import static org.dimensinfin.eveonline.neocom.infinity.infrastructure.config.GlobalAppConstants.TransportConstants.ESI_COOKIE_NAME;
+import static org.dimensinfin.eveonline.neocom.infinity.infrastructure.config.GlobalAppConstants.TransportConstants.NEOCOM_COOKIE_NAME;
 import static org.dimensinfin.eveonline.neocom.provider.ESIDataProvider.DEFAULT_ESI_SERVER;
 
 /**
@@ -54,13 +57,14 @@ public class AuthorizationControllerV1 {
 				.build();
 		final AuthorizationTokenResponse authorizationResponse = this.authorizationServiceV1
 				.validateAuthorizationToken( authorizationTokenRequest );
-		response.addCookie( authorizationResponse.getCookie() );
+		response.addCookie( this.generateCookie( NEOCOM_COOKIE_NAME, authorizationResponse.getJwtToken() ) );
+		response.addCookie( this.generateCookie( ESI_COOKIE_NAME, authorizationResponse.getEsiToken() ) );
 		return new ResponseEntity<>( authorizationResponse, HttpStatus.OK );
 	}
 
 	/**
-	 * This endpoints is expected to receive a HttpOnly cookie from the frontend with the JWT token. There are some scenarios to
-	 * handle the different responses.
+	 * This endpoints is expected to receive a HttpOnly cookie from the frontend with the JWT token. There are some scenarios to handle the different
+	 * responses.
 	 *
 	 * <ul>
 	 *     <li><b>cookie not exists</b>- if this is a new login of from a new terminal the cookie is not set. Then the endpoint returns the 'not
@@ -85,7 +89,21 @@ public class AuthorizationControllerV1 {
 			return new ResponseEntity<>( new AuthenticationStateResponse.Builder()
 					.withState( AuthenticationStateResponse.AuthenticationStateType.NOT_FOUND )
 					.build(), HttpStatus.OK );
-		else
-			return new ResponseEntity<>( this.authorizationServiceV1.validateAuthenticationState( neocomCookieData, response ), HttpStatus.OK );
+		else {
+			final AuthenticationStateResponse validateResponse = this.authorizationServiceV1.validateAuthenticationState( neocomCookieData,
+					response );
+			response.addCookie( this.generateCookie( NEOCOM_COOKIE_NAME, validateResponse.getJwtToken() ) );
+			response.addCookie( this.generateCookie( ESI_COOKIE_NAME, validateResponse.getEsiToken() ) );
+			return new ResponseEntity<>( validateResponse, HttpStatus.OK );
+		}
+	}
+
+	private Cookie generateCookie( final String name, final String payload ) {
+		final Cookie cookie = new Cookie( name, payload );
+		cookie.setSecure( false ); // Use HTTPS
+		cookie.setHttpOnly( true ); // Only for server access
+		cookie.setMaxAge( (int) TimeUnit.DAYS.toSeconds( 7 ) ); // expires in 7 days
+		cookie.setPath( "/" );
+		return cookie;
 	}
 }

@@ -22,5 +22,5 @@ support/backend-simulation/*.log
 cypress/cucumber-json/
 
 # Project files not required to be stored
-app-banner.txt
+.app-banner.txt
 .version.json

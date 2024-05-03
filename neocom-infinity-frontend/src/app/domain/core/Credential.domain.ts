@@ -3,7 +3,7 @@ import { deprecate } from 'util';
 import { NeoCom } from '../NeoCom.domain';
 
 /**
- * @deprecated The method should not be used
+ * Used to receive the token validation at the authentication flow.
  */
 export class NeocomCredential extends NeoCom {
     private uniqueId: string;

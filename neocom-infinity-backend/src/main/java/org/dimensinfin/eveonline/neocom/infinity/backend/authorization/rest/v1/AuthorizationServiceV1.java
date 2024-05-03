@@ -60,9 +60,8 @@ public class AuthorizationServiceV1 {
 	}
 
 	/**
-	 * Check the cookie contents. There should contain an valid JWT token.
-	 * If the cookie has contents then see it we can create the JWT token. If affirmative then the cookie is valid. If there is any exception
-	 * then we can invalidate the cookie and return again the 'not valid' message
+	 * Check the cookie contents. There should contain an valid JWT token. If the cookie has contents then see it we can create the JWT token. If
+	 * affirmative then the cookie is valid. If there is any exception then we can invalidate the cookie and return again the 'not valid' message
 	 *
 	 * @return the response message depending on the scenario found.
 	 */
@@ -79,6 +78,7 @@ public class AuthorizationServiceV1 {
 				return new AuthenticationStateResponse.Builder()
 						.withState( AuthenticationStateResponse.AuthenticationStateType.VALID )
 						.withJwtToken( sourceJWT )
+						.withEsiToken( credential.getAccessToken() )
 						.withCredential( credential )
 						.build();
 			} catch (final SQLException sqle) {
@@ -134,7 +134,8 @@ public class AuthorizationServiceV1 {
 			return new AuthorizationTokenResponse.Builder()
 					.withCredential( credential )
 					.withJwtToken( jwtToken )
-					.withCookie( this.cookieService.generateCookie( jwtToken ) )
+					// Add the ESI token so it can be used at NIN.
+					.withEsiToken( token.getAccessToken() )
 					.build();
 		} finally {
 			LogWrapper.exit();
@@ -145,6 +146,8 @@ public class AuthorizationServiceV1 {
 		LogWrapper.enter();
 		final NeoComOAuth2Flow oauthFlow = authorizationTokenRequest.getOauthFlow();
 		try {
+			// TODO - This call is going to be made to the real esi login and it is going to fail for invalid codes.
+			// TODO - Parametrize the NeoComOAuth to read OAuth server parameters from a configuration properties file.
 			final TokenVerification tokenStore = oauthFlow.onTranslationStep();
 			return Objects.requireNonNull( tokenStore );
 		} finally {

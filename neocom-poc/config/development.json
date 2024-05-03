@@ -1,0 +1,11 @@
+{
+    "globals": {
+        "level": "development"
+    },
+    "settings":{
+        "port": 5002
+    },
+   "data":{
+        "envvalue": "dev"
+    }
+}

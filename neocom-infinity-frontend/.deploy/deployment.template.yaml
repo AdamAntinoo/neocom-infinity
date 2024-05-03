@@ -22,11 +22,25 @@ metadata:
   name: neocom-frontend-environment
   namespace: $NAMESPACE
 data:
-  LOGIN_LINK: "$LOGIN_LINK"
-  VERSION: "$VERSION"
-  TAGVERSION: "$VERSION"
+  NODE_ENV: "$NODE_ENV"
   PORT: "$PORT"
-  IMAGE_NAME: "$IMAGE_TAG"
+  ENVIRONMENT: "$ENVIRONMENT"
+  NODE_VERSION: "$NODE_VERSION"
+  PRODUCTION: $PRODUCTION
+  SEMVERSION: "$SEMVERSION"
+  VERSION: "$VERSION"
+  ESI_CLIENTID: "$ESI_CLIENTID"
+  ESI_STATE: "$ESI_STATE"
+  CALLBACK_URL: "$CALLBACK_URL"
+  ESIPROXY: "$ESIPROXY"
+  OAUTHPROXY: "$OAUTHPROXY"
+  PUBLICPROXY: "$PUBLICPROXY"
+  BACKENDPROXY: "$BACKENDPROXY"
+  NESTPROXY: "$NESTPROXY"
+  APP_CODE: "$APP_CODE"
+  MODULE_NAME: "$MODULE_NAME"
+  APP_HOME: "$APP_HOME"
+  APP_BASEREF: "$APP_BASEREF"
 
 ---
 
@@ -57,28 +71,100 @@ spec:
         image: adamantinoo/$IMAGE_TAG
         env:
         - name: NODE_ENV
-          value: "$ENV"
-        - name: LOGIN_LINK # Notice that the case is different here
-                                     # from the key name in the ConfigMap.
-          valueFrom:
-            configMapKeyRef:
-              name: neocom-frontend-environment           # The ConfigMap this value comes from.
-              key: LOGIN_LINK # The key to fetch.
-        - name: SEMVER
           valueFrom:
             configMapKeyRef:
               name: neocom-frontend-environment
-              key: VERSION
-        - name: IMAGE_NAME
-          valueFrom:
-            configMapKeyRef:
-              name: neocom-frontend-environment
-              key: IMAGE_NAME
+              key: NODE_ENV
         - name: PORT
           valueFrom:
             configMapKeyRef:
               name: neocom-frontend-environment
               key: PORT
+        - name: ENVIRONMENT
+          valueFrom:
+            configMapKeyRef:
+              name: neocom-frontend-environment
+              key: ENVIRONMENT
+        - name: NODE_VERSION
+          valueFrom:
+            configMapKeyRef:
+              name: neocom-frontend-environment
+              key: NODE_VERSION
+        - name: PRODUCTION
+          valueFrom:
+            configMapKeyRef:
+              name: neocom-frontend-environment
+              key: PRODUCTION
+        - name: SEMVERSION
+          valueFrom:
+            configMapKeyRef:
+              name: neocom-frontend-environment
+              key: SEMVERSION
+        - name: VERSION
+          valueFrom:
+            configMapKeyRef:
+              name: neocom-frontend-environment
+              key: VERSION
+        - name: ESI_CLIENTID
+          valueFrom:
+            configMapKeyRef:
+              name: neocom-frontend-environment
+              key: ESI_CLIENTID
+        - name: ESI_STATE
+          valueFrom:
+            configMapKeyRef:
+              name: neocom-frontend-environment
+              key: ESI_STATE
+        - name: CALLBACK_URL
+          valueFrom:
+            configMapKeyRef:
+              name: neocom-frontend-environment
+              key: CALLBACK_URL
+        - name: ESIPROXY
+          valueFrom:
+            configMapKeyRef:
+              name: neocom-frontend-environment
+              key: ESIPROXY
+        - name: OAUTHPROXY
+          valueFrom:
+            configMapKeyRef:
+              name: neocom-frontend-environment
+              key: OAUTHPROXY
+        - name: PUBLICPROXY
+          valueFrom:
+            configMapKeyRef:
+              name: neocom-frontend-environment
+              key: PUBLICPROXY
+        - name: BACKENDPROXY
+          valueFrom:
+            configMapKeyRef:
+              name: neocom-frontend-environment
+              key: BACKENDPROXY
+        - name: NESTPROXY
+          valueFrom:
+            configMapKeyRef:
+              name: neocom-frontend-environment
+              key: NESTPROXY
+        - name: APP_CODE
+          valueFrom:
+            configMapKeyRef:
+              name: neocom-frontend-environment
+              key: APP_CODE
+        - name: MODULE_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: neocom-frontend-environment
+              key: MODULE_NAME
+        - name: APP_HOME
+          valueFrom:
+            configMapKeyRef:
+              name: neocom-frontend-environment
+              key: APP_HOME
+        - name: APP_BASEREF
+          valueFrom:
+            configMapKeyRef:
+              name: neocom-frontend-environment
+              key: APP_BASEREF
         ports:
         - containerPort: $PORT
         imagePullPolicy: Always

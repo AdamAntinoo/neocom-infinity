@@ -3,7 +3,7 @@ mode: Mainline
 branches:
   main:
     tag: ''
-    increment: Patch
+    increment: Minor
     prevent-increment-of-merged-branch-version: true
     track-merge-target: false
     regex: main|releases?[/-]
@@ -21,7 +21,7 @@ branches:
   pull-request:
     mode: ContinuousDelivery
     tag: PullRequest
-    increment: None
+    increment: Patch
     prevent-increment-of-merged-branch-version: false
     tag-number-pattern: '[/-](?<number>\d+)[-/]'
     track-merge-target: false

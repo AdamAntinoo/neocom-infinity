@@ -1,0 +1,7 @@
+# Node Framework
+dist/
+coverage/
+node_modules/
+
+pnpm-lock.yaml
+.eslintrc.json

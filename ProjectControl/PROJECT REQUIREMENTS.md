@@ -3,6 +3,70 @@ NeoCom Infinity is a new version with a reconfigured User Interface (UX) that ai
 
 Developments are mainly docused on Industry and on Market improvements and leaving Fittings and other areas to a later requirement refinement.
 
+# External Connections
+
+# 1. Authorization Flow
+The access tot ESO data requires to be authenticated on the Eve platform. This is authorized with a OAuth2 authentication flow. The ESI services have registered some application data to create this flow.
+
+The flow starts from the user interface with a customer request that initiates the authorization flow. We call the ***ESI login service*** (https://login.eveonline.com) with the application *unique code identifier* and the callback URL that should match what is configured for the registered application at ESI backend.
+
+The *callback* ([frontend]/app/loginValidation) is the place we the NeoCom application expectdd to receive one authorization code. With this code the flow should go then to the OAuth flow and generate the authorization token.
+Once we get the authorization code we can start navigating on the application pages.
+
+```mermaid
+sequenceDiagram
+    participant user
+    user->>app-login-validation-page: clicks the ESI login button
+    app-login-validation-page->>esilogin: code & callback
+    esilogin-->>app-login-validation-page: callback & token
+    app-login-validation-page->>backend: validateAuthorizationToken [code]
+    backend-->>app-login-validation-page: AuthenticationStateResponse
+    app-login-validation-page->>app-login-validation-page: validateJWT
+    app-login-validation-page-->>IsolationService: JWTTOKEN_KEY
+    app-login-validation-page-->>IsolationService: ESITOKEN_KEY
+    app-login-validation-page-->>IsolationService: CREDENTIAL_KEY
+    app-login-validation-page->>dashboard-home-page: routing
+    dashboard-home-page-->>user: rendered dashboard page
+```
+The backend code flow will call the ESI authorization service and validate the response to get a new valid authorization token.
+
+```mermaid
+sequenceDiagram
+    Frontend->>AuthorizationControllerV1: validate
+    AuthorizationControllerV1->>AuthorizationServiceV1: validateAuthorizationToken
+    AuthorizationServiceV1->>AuthorizationServiceV1: verifyState
+    AuthorizationServiceV1->>AuthorizationServiceV1: verifyCharacter
+    AuthorizationServiceV1->>NeoComOAuth2Flow: onTranslationStep
+    NeoComOAuth2Flow->>NeoComOAuth2Flow: getTokenTranslationResponse
+    NeoComOAuth2Flow->>esilogin: /v2/oauth/token
+    esilogin-->>NeoComOAuth2Flow: TokenTranslationResponse
+    NeoComOAuth2Flow->>NeoComOAuth2Flow: getVerifyCharacterResponse
+    NeoComOAuth2Flow->>esilogin: /oauth/verify
+    esilogin-->>NeoComOAuth2Flow: VerifyCharacterResponse
+    NeoComOAuth2Flow-->>AuthorizationServiceV1: TokenVerification
+    AuthorizationServiceV1-->AuthorizationServiceV1: many actions...
+    AuthorizationServiceV1->CredentialRepository: credential
+    AuthorizationServiceV1-->>AuthorizationControllerV1: AuthorizationTokenResponse
+    AuthorizationControllerV1-->>Frontend: AuthorizationTokenResponse
+    AuthorizationControllerV1->>Frontend: NEOCOM-INFINITY
+    AuthorizationControllerV1->>Frontend: ESI-DATA-SERVICES
+```
+The pages navigation will require to get access to secured data on the ESI services that requires this authorization to be valid. This is implemented with a guard process that will check is the authorization is still valid.
+
+```mermaid
+sequenceDiagram
+    dashboard-home-page->>TokenAuthorizationGuard: canActivate
+    TokenAuthorizationGuard->>AuthenticationService: isAuthenticated
+    AuthenticationService->>IsolationService:  getFromSession
+    IsolationService-->>AuthenticationService: JWTTOKEN_KEY
+    AuthenticationService->>AuthenticationService: validateJwtToken
+    AuthenticationService-->>TokenAuthorizationGuard: true/false
+    TokenAuthorizationGuard-->>dashboard-home-page: true
+    TokenAuthorizationGuard-->>v1-start-page: false
+```
+
+From this point on any call to the backend services (be them the Java backend or the Nest backend) will receive two cookies from the frontend. One called NEOCOM-INFINITY has a JWT for the Java backend identification. The other named ESI-DATA-SERVICES has the ESI authorization token. This token should be updated when the token expires and the OAuth2 refresh mechanism kicks in and replaces the expired token.
+
 ## 1. Industry
 Industry is a key element on Eve Online and that is because is one of the most stable sources for ISK. It can be divided into two areas, Mining and Manufacturing. Recent changes on the Eve Online gameplay have added more mining functionalities that are worth to integrate on Infinity.
 
@@ -59,8 +123,9 @@ This is an example of the heavy hierarchical data distribution inside ESI. Just 
 **[EPIC-0.23] Create new endpoint to handle Esi locations and their representation at the UX.**
 * **[STORY-NIN]** Locations require additional endpoints to aggregate the location path.
 
-## 3. FrontEnd Link Ressolution
+## 3. FrontEnd Link Resolution
 EsiType -> EsiMarkletData
+
 
 
 ## Fitting build

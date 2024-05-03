@@ -18,31 +18,32 @@
 version: "3.9"
 
 services:
-  neocom-frontend-dev-backend-apisimulator:
-    container_name: NIF-dev-backend-apisimulator
+  neocom-frontend-public:
+    container_name: NIF-public-api
     image: apimastery/apisimulator:1.8
     ports:
-      - "5210:6090"
-    volumes:
-      # WARNING - Use full absolute paths to make this work.
-      - ../backend-simulation:/backend-simulation
-    command: "bin/apisimulator start /backend-simulation -p 6090"
-
-  neocom-frontend-dev-public-apisimulator:
-    container_name: NIF-dev-public-apisimulator
-    image: apimastery/apisimulator:1.8
-    ports:
-      - "5290:6090"
+      - "5215:6090"
     volumes:
       # WARNING - Use full absolute paths to make this work.
       - ../public-simulation:/public-simulation
     command: "bin/apisimulator start /public-simulation -p 6090"
 
-  neocom-frontend-dev-nest-esi-wiremock:
-    container_name: NIF-dev-nest-esi-wiremock
+  neocom-frontend-backend:
+    container_name: NIF-backend-api
+    image: apimastery/apisimulator:1.8
+    ports:
+      - "5225:6090"
+    volumes:
+      # WARNING - Use full absolute paths to make this work.
+      - ../backend-simulation:/backend-simulation
+    command: "bin/apisimulator start /backend-simulation -p 6090"
+
+
+  neocom-frontend-nest-backend:
+    container_name: NIF-nest-backend-wire
     image: wiremock/wiremock:3.3.1
     ports:
-      - "5272:8080"
+      - "5235:8080"
     volumes:
       - ./wiremock:/home/wiremock
     command: --verbose --global-response-templating

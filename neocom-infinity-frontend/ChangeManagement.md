@@ -1,5 +1,8 @@
 # Change Management
-## Version v0.20.0
+## Version 
+## Version v0.20
+* Update the development ports and scripts to be used for operating the frontend application.
+
 * Updated the project configuration to a most recent Angular version.
 * Changed the java shell script to start the mock server by a docker container with the Api Simulator instance.
 * The Pilot should belong to a Corporation. There are two types os corporations, the NPC game corporations that do not belong to

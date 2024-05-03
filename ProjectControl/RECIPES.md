@@ -11,3 +11,8 @@ minikube service -n neocom nif-svc --url
 
 # Generate Node sources from OpenApi specification
 openapi-generator-cli generate -g typescript-nestjs -i esi.openapi.json
+
+# Generate a config map from file
+kubectl create configmap -n neocom-staging neocom-poc-environment --from-file=environment=.env.development
+configmap/neocom-poc-environment created
+

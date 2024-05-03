@@ -13,10 +13,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.security.authentication.AuthenticationManager;
 
-import static org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendApplication.NEOCOM_COOKIE_NAME;
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.AUTHORIZATION_HEADER_NAME;
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.SIGNATURE_HEADER_NAME;
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.TOKEN_PREFIX;
+import static org.dimensinfin.eveonline.neocom.infinity.infrastructure.config.GlobalAppConstants.TransportConstants.NEOCOM_COOKIE_NAME;
 
 public class JWTAuthorizationFilterTest {
 
@@ -43,7 +43,7 @@ public class JWTAuthorizationFilterTest {
 	public void doFilterInternal() throws IOException, ServletException {
 		// Given
 		final String JWT_TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9" +
-				".eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6OTg2NjEwOTIsImFjY291bnROYW1lIjoiVGVzdGluZyBDaGFyYWN0ZXIgQWNjb3VudCIsImlzcyI6Ik5lb0NvbS5JbmZpbml0eS5CYWNrZW5kIiwidW5pcXVlSWQiOiJ0cmFucXVpbGl0eS45MzgxMzMxMCIsInBpbG90SWQiOjkzODEzMzEwfQ.0eq0Mk6cfK4AR-CALcq6EDdb-Cgr5VyxB0ruX0f9CeRU9oDv637wofTV_7PcxMF9Z2w9SU-ImhxAYO3QXOFCjw";
+			".eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6OTg2NjEwOTIsImFjY291bnROYW1lIjoiVGVzdGluZyBDaGFyYWN0ZXIgQWNjb3VudCIsImlzcyI6Ik5lb0NvbS5JbmZpbml0eS5CYWNrZW5kIiwidW5pcXVlSWQiOiJ0cmFucXVpbGl0eS45MzgxMzMxMCIsInBpbG90SWQiOjkzODEzMzEwfQ.0eq0Mk6cfK4AR-CALcq6EDdb-Cgr5VyxB0ruX0f9CeRU9oDv637wofTV_7PcxMF9Z2w9SU-ImhxAYO3QXOFCjw";
 		final Cookie neoComCookie = Mockito.mock( Cookie.class );
 		final Cookie[] cookies = new Cookie[1];
 		cookies[0] = neoComCookie;
@@ -91,7 +91,7 @@ public class JWTAuthorizationFilterTest {
 	public void doFilterInternalSignatureNotFound() throws IOException, ServletException {
 		// Given
 		final String JWT_TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9" +
-				".eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6OTg2NjEwOTIsImFjY291bnROYW1lIjoiVGVzdGluZyBDaGFyYWN0ZXIgQWNjb3VudCIsImlzcyI6Ik5lb0NvbS5JbmZpbml0eS5CYWNrZW5kIiwidW5pcXVlSWQiOiJ0cmFucXVpbGl0eS45MzgxMzMxMCIsInBpbG90SWQiOjkzODEzMzEwfQ.0eq0Mk6cfK4AR-CALcq6EDdb-Cgr5VyxB0ruX0f9CeRU9oDv637wofTV_7PcxMF9Z2w9SU-ImhxAYO3QXOFCjw";
+			".eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6OTg2NjEwOTIsImFjY291bnROYW1lIjoiVGVzdGluZyBDaGFyYWN0ZXIgQWNjb3VudCIsImlzcyI6Ik5lb0NvbS5JbmZpbml0eS5CYWNrZW5kIiwidW5pcXVlSWQiOiJ0cmFucXVpbGl0eS45MzgxMzMxMCIsInBpbG90SWQiOjkzODEzMzEwfQ.0eq0Mk6cfK4AR-CALcq6EDdb-Cgr5VyxB0ruX0f9CeRU9oDv637wofTV_7PcxMF9Z2w9SU-ImhxAYO3QXOFCjw";
 		final Cookie neoComCookie = Mockito.mock( Cookie.class );
 		final Cookie[] cookies = new Cookie[1];
 		cookies[0] = neoComCookie;

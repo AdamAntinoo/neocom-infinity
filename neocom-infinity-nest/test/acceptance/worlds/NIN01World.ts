@@ -1,7 +1,7 @@
 import { V1MiningOperationsController } from "@Infra/adapter/inbound/esisecureapi/v1.miningoperations.controller"
 import { V1EsiUniverseController } from "@Infra/adapter/inbound/esiuniverse/v1.esiuniverse.controller"
 import { AuthenticationServicesAdapter } from "@Infra/adapter/outbound/AuthenticationServices/authenticationservices.adapter"
-import { ESIMiningSecureService } from "@Infra/adapter/outbound/ESISecureDataServices/esi.mining.secure.adapter"
+import { V1MiningOperationsAdapter } from "@Infra/adapter/outbound/ESISecureDataServices/MiningOperations/V1.MiningOperations.adapter"
 import { World } from "@cucumber/cucumber"
 import { HttpService } from "@nestjs/axios"
 import { ConfigService } from "@nestjs/config"
@@ -21,7 +21,7 @@ export class NIN01World extends World {
     public miningOperationsController: V1MiningOperationsController
     public miningActionsResponse: GetCharactersCharacterIdMining200Ok[]
     public miningOperationsResponse: V1MiningOperationDto[]
-    public esiMiningSecureService: ESIMiningSecureService
+    public esiMiningSecureService: V1MiningOperationsAdapter
     public targetMiningOperation: V1MiningOperationDto
     // NIN02
     public authenticationService: AuthenticationServicesAdapter
@@ -49,6 +49,6 @@ export class NIN01World extends World {
 
         this.miningOperationsController = this.appModule.get(V1MiningOperationsController)
         this.universeController = this.appModule.get(V1EsiUniverseController)
-        this.esiMiningSecureService = new ESIMiningSecureService(this.httpService, this.configuration)
+        this.esiMiningSecureService = new V1MiningOperationsAdapter(this.httpService, this.configuration)
     }
 }

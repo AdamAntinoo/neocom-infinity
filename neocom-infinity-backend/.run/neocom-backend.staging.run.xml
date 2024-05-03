@@ -1,0 +1,26 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="neocom-backend.staging" type="Application" factoryName="Application">
+    <option name="ALTERNATIVE_JRE_PATH" value="11-OpenJDK" />
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <envs>
+      <env name="APPLICATION_DIRECTORY" value="/build/NeoCom.Infinity.Integration" />
+      <env name="DB_PASSWORD" value="z.iliada.2020" />
+      <env name="DB_USER" value="adamantinoo" />
+      <env name="NEOCOM_BANNER_LOCATION" value="./build/resources/main/app-banner.txt" />
+      <env name="NEOCOM_DATABASE_URL" value="jdbc:postgresql://localhost:5240/postgres?user=adamantinoo&amp;password=z.iliada.2020" />
+      <env name="PROFILE" value="staging" />
+      <env name="PROPERTIES_DIRECTORY" value="/build/resources/main/properties-staging" />
+      <env name="REDIS_URL" value="redis://localhost:5250" />
+      <env name="SDE_DATABASE_PATH" value="/build/resources/main/sde.db" />
+      <env name="SPRING_DATASOURCE_PASSWORD" value="z.iliada.2020" />
+      <env name="SPRING_DATASOURCE_URL" value="jdbc:postgresql://0.0.0.0:5240/postgres" />
+      <env name="SPRING_DATASOURCE_USERNAME" value="adamantinoo" />
+    </envs>
+    <option name="MAIN_CLASS_NAME" value="org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendApplication" />
+    <module name="NeoCom.Infinity.Backend.main" />
+    <option name="PROGRAM_PARAMETERS" value="--spring.profiles.active=staging --server.port=6000" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

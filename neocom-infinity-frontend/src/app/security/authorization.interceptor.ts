@@ -8,8 +8,7 @@ import { HttpHandler } from '@angular/common/http';
 import { HttpEvent } from '@angular/common/http';
 // - SERVICES
 import { IsolationService } from '@innovative/services/isolation.service';
-import { NeoComConstants } from '@app/platform/NeocomConstants.platform';
-import { PlatformConstants } from '@env/PlatformConstants';
+import {  STORAGE_LINKS } from '@env/PlatformConstants';
 
 @Injectable({
     providedIn: 'root'
@@ -21,7 +20,7 @@ export class AuthorizationInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>,
         next: HttpHandler): Observable<HttpEvent<any>> {
 
-        const idToken = this.isolationService.getFromSession(PlatformConstants.JWTTOKEN_KEY);
+        const idToken = this.isolationService.getFromSession(STORAGE_LINKS.JWTTOKEN_KEY);
 
         if (idToken) {
             const cloned = req.clone({

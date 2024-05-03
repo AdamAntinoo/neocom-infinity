@@ -19,7 +19,7 @@ import { ESIUniverseDataService } from '@app/services/ESIUniverseData.service'
 import { V1BlueprintListPageComponent } from '../../pages/v1-blueprint-list-page/v1-blueprint-list-page.component'
 import { V1ProcessedBlueprintSummary } from '@app/modules/industry/domain/V1ProcessedBlueprintSummary.domain'
 import { NeoComCredential } from '@domain/NeoComCredential.domain'
-import { PlatformConstants } from '@env/PlatformConstants'
+import { PlatformConstants, STORAGE_LINKS } from '@env/PlatformConstants'
 import { NeoComException } from '@innovative/domain/NeoComException'
 
 @Component({
@@ -122,7 +122,7 @@ export class V1AvailableBlueprintsPanelComponent extends AppPanelComponent imple
         return this.getCredential().getAccountId()
     }
     private getCredential(): NeoComCredential {
-        const credentialJson = this.isolationService.getFromSession(PlatformConstants.CREDENTIAL_KEY)
+        const credentialJson = this.isolationService.getFromSession(STORAGE_LINKS.CREDENTIAL_KEY)
         console.log('Dashboard.getCredential>Credential at session: ' + credentialJson)
         if (null == credentialJson)
             throw new NeoComException()

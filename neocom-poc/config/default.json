@@ -1,0 +1,9 @@
+{
+    "globals": {
+        "appname": "neocom-poc",
+        "level": "global"
+    },
+    "settings":{
+        "port": 5001
+    }
+}
