@@ -2,12 +2,10 @@
 const express = require('express')
 const path = require('path')
 const compression = require('compression')
-// const config = require('config')
 const proxy = require('express-http-proxy')
 const fs = require('fs')
 const { promisify } = require('util')
 const exec = promisify(require('child_process').exec)
-// const { APPTITLE } = require('./src/environments/PlatformConstants.ts')
 
 // - S E R V E R   O P T I O N S
 const app = express()
@@ -63,15 +61,6 @@ app.get('*.*', function (req, res) {
   console.log("Static: " + __dirname + app.locals.applicationhome + req.url)
   res.status(200).sendFile(path.join(__dirname + app.locals.applicationhome + req.url))
 })
-
-// - A C T U A T O R   M O U N T P O I N T
-/** @deprecated */
-// app.use('/actuator', proxy(app.locals.backendproxy, {
-//   proxyReqPathResolver: function (req) {
-//     console.log('Backend: ' + app.locals.backendproxy + 'actuator' + req.url)
-//     return app.locals.backendproxy + 'actuator' + req.url
-//   }
-// }))
 
 // - A P I   M O U N T P O I N T
 app.use('/nin/v1', proxy(app.locals.nestproxy, {
