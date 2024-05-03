@@ -12,7 +12,7 @@ function logProvider() { //(2)
 }
 var PROXY_CONF = {
   "/api/v3/neocom/*": {
-    "target": "http://host.docker.internal:32200",
+    "target": "http://localhost:5235",
     "secure": false,
     "logLevel": "debug",
     "logProvider": logProvider,
@@ -28,7 +28,7 @@ var PROXY_CONF = {
     "changeOrigin": true
   },
   "/esi/v1/*": {
-    "target": "http://localhost:3000",
+    "target": "http://localhost:5235",
     "secure": false,
     "logLevel": "debug",
     "logProvider": logProvider,
@@ -36,7 +36,7 @@ var PROXY_CONF = {
     "changeOrigin": true
   },
   "/api/v1/neocom/validateAuthenticationState": {
-    "target": "http://localhost:6000",
+    "target": "http://localhost:5235",
     "secure": false,
     "logLevel": "debug",
     "logProvider": logProvider,
@@ -44,7 +44,7 @@ var PROXY_CONF = {
     "changeOrigin": true
   },
   "/api/v1/neocom/*": {
-    "target": "http://localhost:6000",
+    "target": "http://localhost:5225",
     "secure": false,
     "logLevel": "debug",
     "logProvider": logProvider,
@@ -52,7 +52,7 @@ var PROXY_CONF = {
     "changeOrigin": true
   },
   "/api/v2/neocom/*": {
-    "target": "http://host.docker.internal:32100",
+    "target": "http://localhost:5225",
     "secure": false,
     "logLevel": "debug",
     "logProvider": logProvider,
@@ -60,7 +60,7 @@ var PROXY_CONF = {
     "changeOrigin": true
   },
   "/api/v1/universe/*": {
-    "target": "http://host.docker.internal:32100",
+    "target": "http://localhost:5215",
     "secure": false,
     "logLevel": "debug",
     "logProvider": logProvider,
@@ -68,7 +68,7 @@ var PROXY_CONF = {
     "changeOrigin": true
   },
   "/api/v2/universe/*": {
-    "target": "http://host.docker.internal:32100",
+    "target": "http://localhost:5215",
     "secure": false,
     "logLevel": "debug",
     "logProvider": logProvider,
@@ -76,7 +76,7 @@ var PROXY_CONF = {
     "changeOrigin": true
   },
   "/api/v1/public/*": {
-    "target": "http://localhost:6000",
+    "target": "http://localhost:5215",
     "secure": false,
     "logLevel": "debug",
     "logProvider": logProvider,
@@ -84,7 +84,7 @@ var PROXY_CONF = {
     "changeOrigin": true
   },
   "/api/*": {
-    "target": "http://host.docker.internal:32100",
+    "target": "http://localhost:5205",
     "secure": false,
     "logLevel": "debug",
     "logProvider": logProvider,
