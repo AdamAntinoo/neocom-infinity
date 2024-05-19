@@ -34,4 +34,50 @@
             <version>2.5.0</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>6.6.0</version>
+                <executions>
+                    <execution>
+                        <id>generate-neocom-api-java-model</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/resources/static/NeoCom-API-0.27.yml</inputSpec>
+                            <generatorName>spring</generatorName>
+                            <generateApis>true</generateApis>
+                            <generateModels>true</generateModels>
+                            <generateSupportingFiles>false</generateSupportingFiles>
+                            <packageName>org.dimensinfin.eveonline.neocom.infinity</packageName>
+                            <modelPackage>org.dimensinfin.eveonline.neocom.infinity.domain</modelPackage>
+                            <modelNameSuffix>Dto</modelNameSuffix>
+                            <library>spring-cloud</library>
+                            <configOptions>
+                                <hideGenerationTimestamp>true</hideGenerationTimestamp>
+                                <annotationLibrary>swagger2</annotationLibrary>
+                                <additionalModelTypeAnnotations>
+                                    @lombok.Builder
+                                    @lombok.Data
+                                    @lombok.AllArgsConstructor
+                                    @lombok.NoArgsConstructor
+                                </additionalModelTypeAnnotations>
+                                <serializationLibrary>jackson</serializationLibrary>
+                                <useOptional>true</useOptional>
+                                <useResponseEntity>true</useResponseEntity>
+                                <useSpringBoot3>true</useSpringBoot3>
+                                <useSwaggerUI>true</useSwaggerUI>
+                                <documentationProvider>springdoc</documentationProvider>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
