@@ -1,0 +1,103 @@
+openapi: 3.0.3
+info:
+  title: NeoCom Backend API
+  version: 0.27.0
+tags:
+  - name: Authorization
+    description: NeoCom Authorization Endpoint set
+paths:
+  '/api/v1/neocom/refreshAuthorization':
+    get:
+      tags:
+        - Authorization
+      summary: Get a new updated authorization token from Esi.
+      description: |
+        Get a new updated authorization token from Esi. Use the current Credential refresh token to access ESI and get a new valid and not expired
+        authorization token.
+        
+        Update the new token on the corresponding Credential and also update the NeoCom cookie on server response.
+        
+        New token will last for another 15 minutes.
+      operationId: refreshAuthorizationToken
+      responses:
+        '200':
+          description: Token refresh completed successfully. A new authorization token is available.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RefreshTokenResponse'
+
+components:
+  schemas:
+    RefreshTokenResponse:
+      type: object
+      properties:
+        credential:
+          $ref: '#/components/schemas/Credential'
+    Credential:
+      type: object
+      properties:
+        uniqueCredential:
+          type: string
+          format: uuid
+          example: 73a4c25a-69e2-42e1-bc20-29f8fe607dfe
+          description: The unique identifier for a credential entity instance.
+        accountId:
+          type: integer
+          format: int32
+          example: 9886754
+          description: The Eve Online account number.
+        accountName:
+          type: string
+          example: EveOnline-12-march-2024
+          description: The Eve Online account name identifier. Each Eve Online account can contain up to 3 characters with a single account identification.
+        corporationId:
+          type: integer
+          format: int32
+          example: 4563422
+          description: The unique identifier for the Corporation on the Eve Online set of data. Initial game corporations are also on this list along user created corporations.
+        dataSource:
+          type: string
+          description: The Eve Online data source for the ESI requests. It can differentiate between Production (tranquility server) and development and testing (singularity).
+          enum:
+            - tranquility
+            - singularity
+        accessToken:
+          type: string
+          format: jwt
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+          description: The ESI Data Source authorization token received when creating a token with a set of i for ona of the characters related to aEve Online account.
+        tokenType:
+          type: string
+          deprecated: true
+          description: The token type. There is only one type of token nowadays.
+        scope:
+          type: string
+          example: publicData esi-calendar.respond_calendar_events.v1 esi-calendar.read_calendar_events.v1 esi-location.read_location.v1 esi-location.read_ship_type.v1 esi-mail.organize_mail.v1 esi-mail.read_mail.v1 esi-mail.send_mail.v1 esi-skills.read_skills.v1 esi-skills.read_skillqueue.v1 esi-wallet.read_character_wallet.v1 esi-wallet.read_corporation_wallet.v1 esi-search.search_structures.v1 esi-clones.read_clones.v1 esi-characters.read_contacts.v1 esi-universe.read_structures.v1 esi-bookmarks.read_character_bookmarks.v1 esi-killmails.read_killmails.v1 esi-corporations.read_corporation_membership.v1 esi-assets.read_assets.v1 esi-planets.manage_planets.v1 esi-fleets.read_fleet.v1 esi-fleets.write_fleet.v1 esi-ui.open_window.v1 esi-ui.write_waypoint.v1 esi-characters.write_contacts.v1 esi-fittings.read_fittings.v1 esi-fittings.write_fittings.v1 esi-markets.structure_markets.v1 esi-corporations.read_structures.v1 esi-characters.read_loyalty.v1 esi-characters.read_opportunities.v1 esi-characters.read_chat_channels.v1 esi-characters.read_medals.v1 esi-characters.read_standings.v1 esi-characters.read_agents_research.v1 esi-industry.read_character_jobs.v1 esi-markets.read_character_orders.v1 esi-characters.read_blueprints.v1 esi-characters.read_corporation_roles.v1 esi-location.read_online.v1 esi-contracts.read_character_contracts.v1 esi-clones.read_implants.v1 esi-characters.read_fatigue.v1 esi-killmails.read_corporation_killmails.v1 esi-corporations.track_members.v1 esi-wallet.read_corporation_wallets.v1 esi-characters.read_notifications.v1 esi-corporations.read_divisions.v1 esi-corporations.read_contacts.v1 esi-assets.read_corporation_assets.v1 esi-corporations.read_titles.v1 esi-corporations.read_blueprints.v1 esi-bookmarks.read_corporation_bookmarks.v1 esi-contracts.read_corporation_contracts.v1 esi-corporations.read_standings.v1 esi-corporations.read_starbases.v1 esi-industry.read_corporation_jobs.v1 esi-markets.read_corporation_orders.v1 esi-corporations.read_container_logs.v1 esi-industry.read_character_mining.v1 esi-industry.read_corporation_mining.v1 esi-planets.read_customs_offices.v1 esi-corporations.read_facilities.v1 esi-corporations.read_medals.v1 esi-characters.read_titles.v1 esi-alliances.read_contacts.v1 esi-characters.read_fw_stats.v1 esi-corporations.read_fw_stats.v1 esi-characterstats.read.v1
+          description: The list of authorized scoped from the set of ESI Data Source possible grant permissions.
+        refreshToken:
+          type: string
+          format: base64
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+          description: The refresh identifier token to be used to get a new access token once the current one is expired.
+        assetsCount:
+          type: integer
+          format: int32
+          deprecated: true
+          description: the number of assets for this character. This information is no longer required on the authorization credential.
+        walletBalance:
+          type: double
+          example: 10764985.82
+          deprecated: true
+          description: the amount of ISKs for this credential character. This information is no longer required on the authorization credential.
+        miningResourcesEstimatedValue:
+          type: double
+          deprecated: true
+        raceName:
+          type: string
+          deprecated: true
+        jwtoken:
+          type: string
+          format: jwt
+          deprecated: true
+          description: The application JWT token to be used to isolate authorization from the frontend. This is no longer equired since we need the ESI authorization token to be available to other backend servers.
