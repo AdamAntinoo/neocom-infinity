@@ -17,6 +17,12 @@
         },
         {
             "path": "ProjectControl"
+        },
+        {
+            "path": "neocom-openapi"
+        },
+        {
+            "path": "neocom-generated"
         }
     ]
 }
