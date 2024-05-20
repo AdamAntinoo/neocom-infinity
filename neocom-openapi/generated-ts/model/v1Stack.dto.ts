@@ -11,30 +11,18 @@
  */
 
 
-export interface MiningOperationDto { 
+export interface V1StackDto { 
     /**
      * The class of the Json object that is being described.
      */
-    jsonClass: string;
+    readonly jsonClass: string;
     /**
-     * The unique identifier for a mining operation. Is composed of the date, the eve system  identifier and the type of the ore that is being represented on the mining operation. 
-     */
-    id: string;
-    /**
-     * The extraction date for this ore. Each extraction is aggegated by date and ore type.
-     */
-    date: string;
-    /**
-     * The ore stack size or the ore quentity extracted.
+     * The ore stack size or the ore quantity extracted.
      */
     quantity: number;
     /**
-     * The Eve system unique identifier where the ore was extracted.
+     * The Eve type access link for the stack type.
      */
-    solarSystem: number;
-    /**
-     * The Eve unique identifier for the extracted ore type.
-     */
-    type: number;
+    typeLink?: string;
 }
 

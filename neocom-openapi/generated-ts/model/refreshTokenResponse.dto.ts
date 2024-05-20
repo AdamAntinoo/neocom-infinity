@@ -9,7 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { CredentialDto } from './credential';
+import { CredentialDto } from './credential.dto';
 
 
 export interface RefreshTokenResponseDto { 

@@ -7,7 +7,7 @@ package org.dimensinfin.eveonline.neocom.infinity.api;
 
 import org.dimensinfin.eveonline.neocom.infinity.domain.AssetDto;
 import org.dimensinfin.eveonline.neocom.infinity.domain.BackendErrorDto;
-import org.dimensinfin.eveonline.neocom.infinity.domain.MiningOperationDto;
+import org.dimensinfin.eveonline.neocom.infinity.domain.V1MiningOperationDto;
 import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -91,7 +91,7 @@ public interface CharacterApi {
         tags = { "Character" },
         responses = {
             @ApiResponse(responseCode = "200", description = "Success retrieving the list of Mining Operations.", content = {
-                @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = MiningOperationDto.class)))
+                @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = V1MiningOperationDto.class)))
             }),
             @ApiResponse(responseCode = "401", description = "Unauthorized. The current active access token is not present. The character identified thus cannot be accessed and the credential cannot be found.", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = BackendErrorDto.class))
@@ -109,7 +109,7 @@ public interface CharacterApi {
         value = "/api/v3/neocom/character/miningoperations",
         produces = "application/json"
     )
-    ResponseEntity<List<MiningOperationDto>> getMiningOperations(
+    ResponseEntity<List<V1MiningOperationDto>> getMiningOperations(
         @NotNull @Parameter(name = "NEOCOM-TOKEN", description = "The access token to be used for authorization. This token will contain information to locate the credential to be used for data location.", required = true, in = ParameterIn.COOKIE) @CookieValue(name = "NEOCOM-TOKEN") String NEOCOM_TOKEN
     );
 

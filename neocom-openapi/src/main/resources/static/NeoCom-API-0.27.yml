@@ -144,7 +144,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/MiningOperation'
+                  $ref: '#/components/schemas/v1.MiningOperation'
         '401':
           description: Unauthorized. The current active access token is not present. The character identified thus cannot be accessed and the credential cannot be found.
           content:
@@ -262,13 +262,14 @@ components:
       required:
         - id
         - typeId
-    MiningOperation:
+    v1.MiningOperation:
       type: object
       properties:
         jsonClass:
           type: string
           description: The class of the Json object that is being described.
-          example: MiningOperation
+          default: MiningOperationDto
+          example: MiningOperationDto
         id:
           type: string
           format: uuid
@@ -281,28 +282,45 @@ components:
           format: date
           description: The extraction date for this ore. Each extraction is aggegated by date and ore type.
           example: '2024-02-23'
-        quantity:
-          type: integer
-          format: int32
-          description: The ore stack size or the ore quentity extracted.
-          example: 854
-        solarSystem:
-          type: integer
-          format: int32
-          description: The Eve system unique identifier where the ore was extracted.
-          example: 30003541
-        type:
-          type: integer
-          format: int32
-          example: 17453
-          description: The Eve unique identifier for the extracted ore type.
+        solarSystemLink:
+          type: string
+          format: url
+          description: The Eve system link to the Location Provider to get a complete Eve Location.
+          example: /api/v4/universe/spacelocation/30003538
+        resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/v1.Stack'
       required:
         - jsonClass
         - id
         - date
+        - solarSystemLink
+        - resources
+    v1.Stack:
+      properties:
+        jsonClass:
+          type: string
+          readOnly: true
+          default: StackDto
+          example: StackDto
+          description: The class of the Json object that is being described.
+        quantity:
+          type: integer
+          format: int32
+          default: 0
+          example: 854
+          description: The ore stack size or the ore quantity extracted.
+        typeLink:
+          type: string
+          format: url
+          example: /api/v4/universe/types/1224
+          description: The Eve type access link for the stack type.
+      required:
+        - jsonClass
         - quantity
-        - solarSystem
-        - type
+        - typelink
+
     EsiTypeDto:
       type: object
       properties:

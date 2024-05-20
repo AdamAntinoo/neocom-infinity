@@ -15,14 +15,15 @@ import { Inject, Injectable, Optional } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { AxiosResponse } from 'axios';
 import { Observable } from 'rxjs';
-import { AssetDto } from '../model/asset';
-import { BackendErrorDto } from '../model/backendError';
-import { MiningOperationDto } from '../model/miningOperation';
+import { AssetDto } from '../model/asset.dto';
+import { BackendErrorDto } from '../model/backendError.dto';
+import { V1MiningOperationDto } from '../model/v1MiningOperation.dto';
 import { Configuration } from '../configuration';
+import { CharacterServiceInterface } from './character.serviceInterface';
 
 
 @Injectable()
-export class CharacterService {
+export class CharacterService implements CharacterServiceInterface {
 
     protected basePath = 'http://localhost';
     public defaultHeaders: Record<string,string> = {};
@@ -84,7 +85,7 @@ export class CharacterService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getMiningOperations(nEOCOMTOKEN: string, ): Observable<AxiosResponse<Array<MiningOperationDto>>>;
+    public getMiningOperations(nEOCOMTOKEN: string, ): Observable<AxiosResponse<Array<V1MiningOperationDto>>>;
     public getMiningOperations(nEOCOMTOKEN: string, ): Observable<any> {
 
         if (nEOCOMTOKEN === null || nEOCOMTOKEN === undefined) {
@@ -106,7 +107,7 @@ export class CharacterService {
         // to determine the Content-Type header
         const consumes: string[] = [
         ];
-        return this.httpClient.get<Array<MiningOperationDto>>(`${this.basePath}/api/v3/neocom/character/miningoperations`,
+        return this.httpClient.get<Array<V1MiningOperationDto>>(`${this.basePath}/api/v3/neocom/character/miningoperations`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers

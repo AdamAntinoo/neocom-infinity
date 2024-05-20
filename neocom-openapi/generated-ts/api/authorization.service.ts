@@ -15,13 +15,14 @@ import { Inject, Injectable, Optional } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { AxiosResponse } from 'axios';
 import { Observable } from 'rxjs';
-import { BackendErrorDto } from '../model/backendError';
-import { RefreshTokenResponseDto } from '../model/refreshTokenResponse';
+import { BackendErrorDto } from '../model/backendError.dto';
+import { RefreshTokenResponseDto } from '../model/refreshTokenResponse.dto';
 import { Configuration } from '../configuration';
+import { AuthorizationServiceInterface } from './authorization.serviceInterface';
 
 
 @Injectable()
-export class AuthorizationService {
+export class AuthorizationService implements AuthorizationServiceInterface {
 
     protected basePath = 'http://localhost';
     public defaultHeaders: Record<string,string> = {};

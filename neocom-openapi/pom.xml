@@ -118,30 +118,14 @@
                             <generateApis>true</generateApis>
                             <generateModels>true</generateModels>
                             <generateSupportingFiles>true</generateSupportingFiles>
-<!--                            <apiPackage>org.dimensinfin.eveonline.neocom.infinity.api</apiPackage>-->
-<!--                            <modelPackage>org.dimensinfin.eveonline.neocom.infinity.domain</modelPackage>-->
                             <modelNameSuffix>Dto</modelNameSuffix>
-<!--                            <library>spring-cloud</library>-->
                             <output>generated-ts</output>
-<!--                            <packageName>org.dimensinfin.eveonline.neocom.infinity</packageName>-->
-<!--                            <templateDirectory>src/main/resources/templates</templateDirectory>-->
                             <configOptions>
                                 <disallowAdditionalPropertiesIfNotPresent>false</disallowAdditionalPropertiesIfNotPresent>
+                                <modelFileSuffix>.dto</modelFileSuffix>
+                                <nestVersion>8.0.0</nestVersion>
                                 <npmName>neocom-shared</npmName>
-                                <!--                                <hideGenerationTimestamp>true</hideGenerationTimestamp>-->
-<!--                                <annotationLibrary>swagger2</annotationLibrary>-->
-<!--                                <additionalModelTypeAnnotations>-->
-<!--                                    @lombok.Builder-->
-<!--                                    @lombok.Data-->
-<!--                                    @lombok.AllArgsConstructor-->
-<!--                                    @lombok.NoArgsConstructor-->
-<!--                                </additionalModelTypeAnnotations>-->
-<!--                                <serializationLibrary>jackson</serializationLibrary>-->
-<!--                                <useOptional>true</useOptional>-->
-<!--                                <useResponseEntity>true</useResponseEntity>-->
-<!--                                <useSpringBoot3>true</useSpringBoot3>-->
-<!--                                <useSwaggerUI>true</useSwaggerUI>-->
-<!--                                <documentationProvider>springdoc</documentationProvider>-->
+                                <withInterfaces>true</withInterfaces>
                             </configOptions>
                         </configuration>
                     </execution>
