@@ -42,3 +42,4 @@ build/
 generated-java/.openapi-generator/
 generated-ts/.openapi-generator/
 generated-ts/git_push.sh
+generate-typescript.sh
