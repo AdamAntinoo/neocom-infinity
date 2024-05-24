@@ -11,18 +11,9 @@
  */
 
 import { Observable }                                        from 'rxjs';
-
-import { BackendErrorDto } from '../model/backendError.dto';
 import { V1MiningOperationDto } from '../model/v1MiningOperation.dto';
 
-
-import { Configuration }                                     from '../configuration';
-
-
 export interface IndustryServiceInterface {
-    defaultHeaders: {};
-    configuration: Configuration;
-
     /**
     * Get the minings operations for current target character.
     * Gets the list of Esi Mining Operations that are generated automatically during mining. The target to be used is the capsuleer identifier or corporation identifier that is found on the access token. &lt;br&gt; The list  of operations is transformed to a hyperlink suitable frontend interpretation and operation items are given a unique key for easy identification of changes. &lt;br&gt; There is no persistence for this kind of data. 

@@ -25,4 +25,6 @@ api/authorization.service.ts
 api/authorization.serviceInterface.ts
 api/api.ts
 api/character.service.ts
+api/industry.service.ts
 
+public-api.ts

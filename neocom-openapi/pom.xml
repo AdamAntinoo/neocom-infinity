@@ -114,7 +114,7 @@
                             <skip>${skip.ts}</skip>
                             <inputSpec>${project.basedir}/src/main/resources/static/NeoCom-API-0.27.yml</inputSpec>
                             <generatorName>typescript-nestjs</generatorName>
-                            <generateApis>true</generateApis>
+                            <generateApis>false</generateApis>
                             <generateModels>true</generateModels>
                             <generateSupportingFiles>false</generateSupportingFiles>
                             <modelNameSuffix>Dto</modelNameSuffix>
@@ -124,7 +124,7 @@
                                 <modelFileSuffix>.dto</modelFileSuffix>
                                 <nestVersion>8.0.0</nestVersion>
                                 <npmName>neocom-shared</npmName>
-                                <withInterfaces>true</withInterfaces>
+                                <withInterfaces>false</withInterfaces>
                                 <enumPropertyNaming>UPPERCASE</enumPropertyNaming>
                                 <tags>Character,Industry</tags>
                             </configOptions>
