@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"path": "neocom-infinity-nest"
+		},
+		{
+			"path": "neocom-infinity-frontend"
+		},
+		{
+			"path": "neocom-domain"
+		},
+		{
+			"path": "neocom-openapi"
+		},
+		{
+			"path": "neocom-shared"
+		},
+		{
+			"path": "ProjectControl"
+		}
+	],
+	"settings": {}
+}
