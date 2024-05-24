@@ -12,3 +12,4 @@
 *[EPIC-0.29] PROJECT update the publiched api into a web service and update the schems for the DTOs.*
 * [STORY-PROJECT] Create the new web service to publish the api.
 * [STORY-PROJECT] Update the schemas for the DTOs.
+* [STORY-PROJECT] Upgrade Java version to the latest version. This affects the project and TeamCity.

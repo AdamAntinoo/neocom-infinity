@@ -48,6 +48,7 @@ public class AuthenticationStateResponse {
 		}
 
 		public AuthenticationStateResponse build() {
+			// TODO - Add mandatory fields validation
 			return this.onConstruction;
 		}
 
