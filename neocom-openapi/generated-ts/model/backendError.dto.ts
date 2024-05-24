@@ -10,24 +10,15 @@
  * Do not edit the class manually.
  */
 
-import { Observable }                                        from 'rxjs';
 
-import { BackendErrorDto } from '../model/backendError.dto';
-import { V1AssetDto } from '../model/v1Asset.dto';
-
-
-import { Configuration }                                     from '../configuration';
-
-
-export interface CharacterServiceInterface {
-    defaultHeaders: {};
-    configuration: Configuration;
-
+export interface BackendErrorDto { 
     /**
-    * Get the complete list of assets for the selected character.
-    * Gets the complete list of assets for a character. The list can be a quite long array of elements. For echa of them the process will convert the raw ESI data into a asset Stack that will point to a ESI Type element and a ESI Location. Asset Group and Category are lookked up and added to the Asset definition. 
-    * @param nEOCOMTOKEN The access token to be used for authorization. This token will contain information to locate the credential to be used for data location.
-    */
-    getCharacterAssets(nEOCOMTOKEN: string, extraHttpRequestParams?: any): Observable<Array<V1AssetDto>>;
-
+     * The string error code that identifies the exact error message variant.
+     */
+    errorCode?: string;
+    /**
+     * The exception message reported by the backend.
+     */
+    message?: string;
 }
+

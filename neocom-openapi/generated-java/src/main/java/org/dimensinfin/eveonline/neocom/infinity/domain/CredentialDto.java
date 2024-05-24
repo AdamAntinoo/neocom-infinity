@@ -115,8 +115,8 @@ public class CredentialDto {
   private String scope;
   private String refreshToken;
   private Integer assetsCount;
-  private Double walletBalance = null;
-  private Double miningResourcesEstimatedValue = null;
+  private Double walletBalance;
+  private Double miningResourcesEstimatedValue;
   private String raceName;
   private String jwtoken;
 }

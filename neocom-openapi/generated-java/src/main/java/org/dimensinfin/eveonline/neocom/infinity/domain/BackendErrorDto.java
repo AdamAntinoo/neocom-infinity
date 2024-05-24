@@ -27,27 +27,24 @@ import jakarta.annotation.Generated;
 import java.io.Serial;
 
 /**
- * V1StackDto
+ * BackendErrorDto
  */
 @JsonPropertyOrder({
-  V1StackDto.JSON_PROPERTY_JSON_CLASS,
-  V1StackDto.JSON_PROPERTY_QUANTITY,
-  V1StackDto.JSON_PROPERTY_TYPE_LINK
+  BackendErrorDto.JSON_PROPERTY_ERROR_CODE,
+  BackendErrorDto.JSON_PROPERTY_MESSAGE
 })
-@JsonTypeName("v1.Stack")
+@JsonTypeName("BackendError")
 @lombok.Builder
 @lombok.Data
 @lombok.AllArgsConstructor
 @lombok.NoArgsConstructor
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
-public class V1StackDto {
+public class BackendErrorDto {
 
-  public static final String JSON_PROPERTY_JSON_CLASS = "jsonClass";
-  public static final String JSON_PROPERTY_QUANTITY = "quantity";
-  public static final String JSON_PROPERTY_TYPE_LINK = "typeLink";
+  public static final String JSON_PROPERTY_ERROR_CODE = "errorCode";
+  public static final String JSON_PROPERTY_MESSAGE = "message";
 
-  private String jsonClass = "StackDto";
-  private Integer quantity = 0;
-  private String typeLink;
+  private String errorCode;
+  private String message;
 }
 

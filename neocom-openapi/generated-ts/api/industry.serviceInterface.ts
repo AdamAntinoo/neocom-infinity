@@ -13,21 +13,21 @@
 import { Observable }                                        from 'rxjs';
 
 import { BackendErrorDto } from '../model/backendError.dto';
-import { V1AssetDto } from '../model/v1Asset.dto';
+import { V1MiningOperationDto } from '../model/v1MiningOperation.dto';
 
 
 import { Configuration }                                     from '../configuration';
 
 
-export interface CharacterServiceInterface {
+export interface IndustryServiceInterface {
     defaultHeaders: {};
     configuration: Configuration;
 
     /**
-    * Get the complete list of assets for the selected character.
-    * Gets the complete list of assets for a character. The list can be a quite long array of elements. For echa of them the process will convert the raw ESI data into a asset Stack that will point to a ESI Type element and a ESI Location. Asset Group and Category are lookked up and added to the Asset definition. 
+    * Get the minings operations for current target character.
+    * Gets the list of Esi Mining Operations that are generated automatically during mining. The target to be used is the capsuleer identifier or corporation identifier that is found on the access token. &lt;br&gt; The list  of operations is transformed to a hyperlink suitable frontend interpretation and operation items are given a unique key for easy identification of changes. &lt;br&gt; There is no persistence for this kind of data. 
     * @param nEOCOMTOKEN The access token to be used for authorization. This token will contain information to locate the credential to be used for data location.
     */
-    getCharacterAssets(nEOCOMTOKEN: string, extraHttpRequestParams?: any): Observable<Array<V1AssetDto>>;
+    getMiningOperations(nEOCOMTOKEN: string, extraHttpRequestParams?: any): Observable<Array<V1MiningOperationDto>>;
 
 }

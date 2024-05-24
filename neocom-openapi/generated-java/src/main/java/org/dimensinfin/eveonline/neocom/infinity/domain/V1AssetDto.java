@@ -1,4 +1,4 @@
-/**
+/*
  * NeoCom Backend API
  * New NeoCom Infinity backend API. This is the complete API implementation for the backend services exposed, whatever the backend server that will provide the service. Initial implementations used the Java backend server and the ESI Public Data Services as a complementary source. New implementations have a dual backend service, part of it the original Java SpringBoot services and a new NestJS Typescript service that will implement new services and also hide the ESI Public sources into a HyperLink like DTO definitions. <br> Different api endpoints will be isolated with a version prefix so even they are all defined under the same path root the different version will be used by routers and proxies to fire the request to the correct backend implementation. 
  *
@@ -10,24 +10,41 @@
  * Do not edit the class manually.
  */
 
-import { Observable }                                        from 'rxjs';
 
-import { BackendErrorDto } from '../model/backendError.dto';
-import { V1AssetDto } from '../model/v1Asset.dto';
+package org.dimensinfin.eveonline.neocom.infinity.domain;
 
+import java.util.Objects;
+import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import { Configuration }                                     from '../configuration';
+import jakarta.annotation.Generated;
+import java.io.Serial;
 
+/**
+ * V1AssetDto
+ */
+@JsonPropertyOrder({
+  V1AssetDto.JSON_PROPERTY_ID,
+  V1AssetDto.JSON_PROPERTY_TYPE_ID
+})
+@JsonTypeName("v1.Asset")
+@lombok.Builder
+@lombok.Data
+@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
+public class V1AssetDto {
 
-export interface CharacterServiceInterface {
-    defaultHeaders: {};
-    configuration: Configuration;
+  public static final String JSON_PROPERTY_ID = "id";
+  public static final String JSON_PROPERTY_TYPE_ID = "typeId";
 
-    /**
-    * Get the complete list of assets for the selected character.
-    * Gets the complete list of assets for a character. The list can be a quite long array of elements. For echa of them the process will convert the raw ESI data into a asset Stack that will point to a ESI Type element and a ESI Location. Asset Group and Category are lookked up and added to the Asset definition. 
-    * @param nEOCOMTOKEN The access token to be used for authorization. This token will contain information to locate the credential to be used for data location.
-    */
-    getCharacterAssets(nEOCOMTOKEN: string, extraHttpRequestParams?: any): Observable<Array<V1AssetDto>>;
-
+  private Integer id;
+  private Integer typeId;
 }
+
