@@ -5,5 +5,10 @@
 * [STORY-NIB] Create new refresh endpoint to refreh the ESI authoriation token.
 
 *[EPIC-0.28] NIN endpoint to retrieve the list of character assets.*
-* [STORY-SHARED] Create the new data strucures to define assets.
+* [STORY-DOMAIN] Create the new data strucures to define assets.
 * [STORY-NIN] Create the adapter to retrieve the list of character assets.
+* [STORY-NIN] Update the adapter definitions to use the new openapi definitions.
+
+*[EPIC-0.29] PROJECT update the publiched api into a web service and update the schems for the DTOs.*
+* [STORY-PROJECT] Create the new web service to publish the api.
+* [STORY-PROJECT] Update the schemas for the DTOs.

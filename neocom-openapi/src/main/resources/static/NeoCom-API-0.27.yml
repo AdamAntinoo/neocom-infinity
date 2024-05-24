@@ -256,14 +256,12 @@ components:
           format: in64
           example: 133456985
           description: The ESI unique record identifier for one asset Stack
-        typeId:
-          type: integer
-          format: int32
-          example: 17845
-          description: the unique ESI type identifier for any Eve Object type.
+        resource:
+          type: object
+          $ref: '#/components/schemas/v1.Stack'
       required:
         - id
-        - typeId
+        - resource
     v1.MiningOperation:
       type: object
       properties:

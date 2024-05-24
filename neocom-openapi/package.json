@@ -1,6 +1,6 @@
 {
   "name": "neocom-api",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "The neocom-api module serves as a foundational framework for generating API and domain models essential for the data interchange between frontend and backend systems in NeoCom Infinity applications. It leverages TypeScript to ensure type safety and consistency across different parts of the application, facilitating easier maintenance and scalability. The module includes build scripts for cleaning and compiling the TypeScript files, ensuring that the latest changes are always ready for deployment.",
   "main": "dist/public-api.js",
   "types": "dist/public-api.d.ts",
