@@ -40,7 +40,7 @@ build/
 
 ### OpenApi generated files
 generated-java/.openapi-generator/
-generated-ts/.openapi-generator/
+generated-ts/
 generated-ts/git_push.sh
 generate-typescript.sh
 

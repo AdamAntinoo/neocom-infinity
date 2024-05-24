@@ -18,6 +18,7 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import org.dimensinfin.eveonline.neocom.infinity.domain.V1StackDto;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import jakarta.validation.constraints.*;
@@ -31,7 +32,7 @@ import java.io.Serial;
  */
 @JsonPropertyOrder({
   V1AssetDto.JSON_PROPERTY_ID,
-  V1AssetDto.JSON_PROPERTY_TYPE_ID
+  V1AssetDto.JSON_PROPERTY_RESOURCE
 })
 @JsonTypeName("v1.Asset")
 @lombok.Builder
@@ -42,9 +43,9 @@ import java.io.Serial;
 public class V1AssetDto {
 
   public static final String JSON_PROPERTY_ID = "id";
-  public static final String JSON_PROPERTY_TYPE_ID = "typeId";
+  public static final String JSON_PROPERTY_RESOURCE = "resource";
 
   private Integer id;
-  private Integer typeId;
+  private V1StackDto resource;
 }
 

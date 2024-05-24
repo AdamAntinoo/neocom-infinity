@@ -11,6 +11,12 @@
 		},
 		{
 			"path": "neocom-openapi"
+		},
+		{
+			"path": "neocom-shared"
+		},
+		{
+			"path": "ProjectControl"
 		}
 	],
 	"settings": {}
