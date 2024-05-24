@@ -116,7 +116,7 @@
                             <generatorName>typescript-nestjs</generatorName>
                             <generateApis>true</generateApis>
                             <generateModels>true</generateModels>
-                            <generateSupportingFiles>true</generateSupportingFiles>
+                            <generateSupportingFiles>false</generateSupportingFiles>
                             <modelNameSuffix>Dto</modelNameSuffix>
                             <output>generated-ts</output>
                             <configOptions>
@@ -125,6 +125,7 @@
                                 <nestVersion>8.0.0</nestVersion>
                                 <npmName>neocom-shared</npmName>
                                 <withInterfaces>true</withInterfaces>
+                                <enumPropertyNaming>UPPERCASE</enumPropertyNaming>
                                 <tags>Character,Industry</tags>
                             </configOptions>
                         </configuration>

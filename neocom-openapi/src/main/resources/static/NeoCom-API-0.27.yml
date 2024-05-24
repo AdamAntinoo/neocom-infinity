@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: NeoCom Backend API
-  version: 0.27.0
+  version: 0.27.1
   description: >
     New NeoCom Infinity backend API. This is the complete API implementation for the backend services exposed, whatever the backend server
     that will provide the service. Initial implementations used the Java backend server and the ESI Public Data Services as a complementary source.
@@ -84,7 +84,7 @@ paths:
         data into a asset Stack that will point to a ESI Type element and a ESI Location. Asset Group and Category are lookked up and added to the Asset definition.
       operationId: getCharacterAssets
       parameters:
-        - name: NEOCOM-TOKEN
+        - name: NEOCOM_TOKEN
           in: cookie
           example: esjhkjegjhjgwehihiuwyer.jkhwrhgwbjhvwge
           description: The access token to be used for authorization. This token will contain information to locate the credential to be used for data location.
@@ -100,7 +100,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Asset'
+                  $ref: '#/components/schemas/v1.Asset'
         '401':
           description: Unauthorized. The current active access token is not present. The character identified thus cannot be accessed and the credential cannot be found.
           content:
@@ -116,7 +116,7 @@ paths:
   '/api/v3/neocom/character/miningoperations':
     get:
       tags:
-        - Character
+        - Industry
       summary: Get the minings operations for current target character.
       description: >
         Gets the list of Esi Mining Operations that are generated automatically during mining. The target to be used
@@ -128,7 +128,7 @@ paths:
         There is no persistence for this kind of data.
       operationId: getMiningOperations
       parameters:
-        - name: NEOCOM-TOKEN
+        - name: NEOCOM_TOKEN
           in: cookie
           example: esjhkjegjhjgwehihiuwyer.jkhwrhgwbjhvwge
           description: The access token to be used for authorization. This token will contain information to locate the credential to be used for data location.
@@ -231,12 +231,14 @@ components:
           deprecated: true
           description: the number of assets for this character. This information is no longer required on the authorization credential.
         walletBalance:
-          type: double
+          type: number
+          format: double
           example: 10764985.82
           deprecated: true
           description: the amount of ISKs for this credential character. This information is no longer required on the authorization credential.
         miningResourcesEstimatedValue:
-          type: double
+          type: number
+          format: double
           deprecated: true
         raceName:
           type: string
@@ -246,7 +248,7 @@ components:
           format: jwt
           deprecated: true
           description: The application JWT token to be used to isolate authorization from the frontend. This is no longer equired since we need the ESI authorization token to be available to other backend servers.
-    Asset:
+    v1.Asset:
       type: object
       properties:
         id:
