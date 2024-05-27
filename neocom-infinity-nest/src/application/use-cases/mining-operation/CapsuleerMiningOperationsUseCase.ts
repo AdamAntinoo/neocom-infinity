@@ -18,13 +18,10 @@ declare namespace CapsuleerMiningOperationsUseCase {
 
 @Injectable()
 export class CapsuleerMiningOperationsUseCase {
-	constructor(private readonly dataServices: ESIDataServicesPort) {}
+	constructor(private readonly esiDataService: ESIDataServicesPort) {}
 
 	public async getMiningOperations(input: MiningOperationsUseCaseInput): Promise<V1MiningOperationDto[]> {
-		const esiMiningOperations: GetCharactersCharacterIdMining200Ok[] = await this.dataServices.miningOperations.getMiningOperations(
-			input.capsuleerId,
-			input.jwt,
-		)
+		const esiMiningOperations: GetCharactersCharacterIdMining200Ok[] = await this.esiDataService.getMiningOperations(input.capsuleerId, input.jwt)
 		return this.aggregateMiningOperations(esiMiningOperations)
 	}
 	private aggregateMiningOperations(esiMiningOperations: GetCharactersCharacterIdMining200Ok[]): Promise<V1MiningOperationDto[]> {
@@ -53,7 +50,7 @@ export class CapsuleerMiningOperationsUseCase {
 		})
 	}
 	private findOperation(miningAction: GetCharactersCharacterIdMining200Ok, operationsList: V1MiningOperationDto[]): Optional<V1MiningOperationDto> {
-		for (var operation of operationsList) {
+		for (const operation of operationsList) {
 			const newIdentifier: string = this.generateIdentifierForMiningAction(miningAction)
 			if (newIdentifier === operation.id) return Optional.of(operation)
 		}
