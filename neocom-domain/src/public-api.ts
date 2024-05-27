@@ -25,3 +25,4 @@ export * from './interfaces/Record.interface'
 export * from './interfaces/TypedRequest.interface'
 
 export * from './transformer/TypedResponseTransformer'
+ 
