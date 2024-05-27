@@ -16,16 +16,18 @@ export class MiningOperationsTypedRequest {
 	constructor(
 		private readonly parameters: MiningOperationsTypedRequestParameters,
 		private readonly configuration: ConfigService,
-	) {}
+	) {
+		super()
+	}
 
-	private prepare(parameters: MiningOperationsTypedRequestParameters): MiningOperationsTypedRequest {
+	private prepareRequest(parameters: MiningOperationsTypedRequestParameters): MiningOperationsTypedRequest {
 		this.request = this.configuration.get<string>('ESI_BACKEND_HOST') + '/characters/' + parameters.characterId + '/mining/'
 		this.logger.log('miningOperations>request->' + this.request)
 
 		return this
 	}
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	private prepareOptions(parameters: MiningOperationsTypedRequestParameters) {
+	protected prepareOptions(parameters: MiningOperationsTypedRequestParameters) {
 		let headers: AxiosHeaders = new AxiosHeaders()
 		// WARNING - Headers is a singleton object that needs to be recreated for every set.
 		headers = headers.set('Content-Type', 'application/json')
@@ -38,7 +40,7 @@ export class MiningOperationsTypedRequest {
 	}
 	public build(): MiningOperationsTypedRequest {
 		this.method = 'GET'
-		this.prepare(this.parameters)
+		this.prepareRequest(this.parameters)
 		this.prepareOptions(this.parameters)
 		return this
 	}
