@@ -2,20 +2,19 @@ import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/c
 import { HttpModule } from '@nestjs/axios'
 import { ScheduleModule, SchedulerRegistry } from '@nestjs/schedule'
 import { V1MiningOperationsController } from '@Infra/adapter/inbound/esisecureapi/v1.miningoperations.controller'
-import { ESISecureDataServicesAdapter } from '@Infra/adapter/outbound/ESISecureDataServices/esi.securedataservices.adapter'
 import { LoggerMiddleware } from '@Infra/config/LoggerInterceptor'
 import { JwtModule } from '@nestjs/jwt'
-import { ESIDataServicesPort } from 'application/ports/EsiDataServices.port'
 import { CapsuleerMiningOperationsUseCase } from 'application/use-cases/mining-operation/CapsuleerMiningOperationsUseCase'
 import { ConfigModule, ConfigService } from '@nestjs/config'
-import { V1MiningOperationsAdapter } from '@Infra/adapter/outbound/ESISecureDataServices/MiningOperations/V1.MiningOperations.adapter'
-import { IEsiMiningSecureService } from 'application/ports/IEsiMiningSecureService.port'
 import { V1EsiUniverseController } from '@Infra/adapter/inbound/esiuniverse/v1.esiuniverse.controller'
 import { GetTypeInformationUseCase } from 'application/use-cases/esi-universe/GetTypeInformation.usecase'
 import { ESIDataUniverseServicesPort } from 'application/ports/ESIDataUniverseServices.port'
 import { ESIDataUniverseAdapter } from '@Infra/adapter/outbound/ESIDataUniverseServices/ESIData.universe.adapter'
 import { GetMarketDataUseCase } from 'application/use-cases/esi-universe/GetMarketData.usecase'
 import { GetSpaceLocationUseCase } from 'application/use-cases/esi-universe/GetSpaceLocation.usecase'
+import { V1ESISecureDataAdapter } from '@Infra/adapter/outbound/ESISecureDataServices/V1.EsiSecureData.adapter'
+
+import { V1CharacterController } from '@Infra/adapter/inbound/character/V1.Character.controller'
 
 const ENV = process.env.NODE_ENV
 
@@ -39,8 +38,9 @@ const ENV = process.env.NODE_ENV
 		SchedulerRegistry,
 		LoggerMiddleware,
 		ConfigService,
-		{ provide: ESIDataServicesPort, useClass: ESISecureDataServicesAdapter },
-		{ provide: IEsiMiningSecureService, useClass: V1MiningOperationsAdapter },
+		// CONTROLLERS
+		V1CharacterController,
+		{ provide: V1ESISecureDataAdapter, useClass: V1ESISecureDataAdapter },
 		{ provide: CapsuleerMiningOperationsUseCase, useClass: CapsuleerMiningOperationsUseCase },
 		GetTypeInformationUseCase,
 		GetMarketDataUseCase,

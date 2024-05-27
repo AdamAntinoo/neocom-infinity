@@ -1,4 +1,4 @@
-import { V1AssetDto } from "../dto/V1.Asset.dto"
+import { V1AssetDto } from 'neocom-domain'
 
 export interface CharacterServiceInterface {
 	getCharactersCharacterIdBlueprints(token: string): Promise<V1AssetDto[]>
