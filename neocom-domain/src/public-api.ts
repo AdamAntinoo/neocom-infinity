@@ -6,6 +6,7 @@ export * from './converter/NoActionConverter'
 
 export * from './core/ITransformable.interface'
 
+export * from './dto/V1.Asset.dto'
 export * from './dto/V1.Constellation.interface'
 export * from './dto/V1.EsiType.dto'
 export * from './dto/V1.MarketData.dto'
@@ -25,4 +26,5 @@ export * from './interfaces/Record.interface'
 export * from './interfaces/TypedRequest.interface'
 
 export * from './transformer/TypedResponseTransformer'
- 
+
+export * from './esi-api/model/models'
