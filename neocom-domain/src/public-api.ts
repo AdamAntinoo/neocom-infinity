@@ -1,6 +1,9 @@
 /*
  * Public API Surface of neocom-domain
  */
+export * from './api/industry.interface.api'
+export * from './api/character.interface.api'
+
 export * from './converter/IConverter.interface'
 export * from './converter/NoActionConverter'
 
@@ -28,3 +31,4 @@ export * from './interfaces/TypedRequest.interface'
 export * from './transformer/TypedResponseTransformer'
 
 export * from './esi-api/model/models'
+
