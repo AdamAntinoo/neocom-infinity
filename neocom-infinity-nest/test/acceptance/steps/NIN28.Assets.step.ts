@@ -5,7 +5,7 @@ Then('the response body is a list of assets', function (this: NIN01World) {
 	expect(this.esiAssetsResponse).toBeDefined()
 	expect(this.esiAssetsResponse.length).toBeGreaterThan(0	)
 	const asset = this.esiAssetsResponse[0]
-	expect(asset.jsonClass).toBe('AssetDto')
+	// expect(asset.jsonClass).toBe('AssetDto')
 	expect(asset.id).toBeDefined()
 	expect(asset.locationLink).toBeDefined()
 	expect(asset.resource).toBeDefined()

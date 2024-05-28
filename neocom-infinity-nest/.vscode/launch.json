@@ -87,6 +87,9 @@
       "args": [
         "${workspaceFolder}/src/main.ts"
       ],
+      "env": {
+        "NODE_ENV": "development"
+      },
       "runtimeArgs": [
         "--nolazy",
         "-r",
