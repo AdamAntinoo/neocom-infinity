@@ -28,7 +28,6 @@ export * from "./interfaces/BaseTypedRequest"
 export * from "./interfaces/IConstructor.interface"
 export * from "./interfaces/IGenerator.interface"
 export * from "./interfaces/ITransformable.interface"
-export * from "./interfaces/ITypedRequest.interface"
 export * from "./interfaces/Record.interface"
 
 export * from "./transformer/TypedResponseTransformer"

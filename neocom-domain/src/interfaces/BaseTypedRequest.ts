@@ -1,8 +1,7 @@
 import { Logger } from "@nestjs/common"
 import { AxiosRequestConfig } from "axios"
-import { ITypedRequest } from "./ITypedRequest.interface"
 
-export abstract class BaseTypedRequest implements ITypedRequest {
+export abstract class BaseTypedRequest {
 	protected readonly logger = new Logger("BaseTypedRequest")
 	public method: string = "GET"
 	public requestAge: number = 600
