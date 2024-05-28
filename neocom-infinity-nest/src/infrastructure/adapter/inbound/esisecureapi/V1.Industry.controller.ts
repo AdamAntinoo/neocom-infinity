@@ -3,11 +3,11 @@ import { JwtService } from '@nestjs/jwt'
 
 import { Cookies } from '@Infra/config/Cookie.decorator'
 import { AuthenticationTokenValidator } from '../validator/AuthenticationTokenValidator'
-import { MiningOperationsUseCaseInputConstructor } from '../../../../application/use-cases/esisecure/constructors/MiningOperationsUseCaseInputConstructor'
 import { V1MiningOperationDto } from 'neocom-domain'
 import { COOKIE_DEFINITIONS } from 'neocom-shared'
-import { IndustryServiceInterface } from 'neocom-domain/industry.interface.api'
+import { IndustryServiceInterface } from 'neocom-domain'
 import { CapsuleerMiningOperationsUseCase } from '@Application/use-cases/esisecure/CapsuleerMiningOperationsUseCase'
+import { MiningOperationsUseCaseInputConstructor } from '@Application/use-cases/esisecure/constructors/MiningOperationsUseCaseInputConstructor'
 
 @Controller('/api/v3/neocom/character')
 export class V1IndustryController implements IndustryServiceInterface {

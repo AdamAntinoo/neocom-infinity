@@ -1,3 +1,6 @@
+import { EsiToken } from '@Application/domain/EsiToken.interface'
+import { MiningOperationsUseCaseInput } from '../CapsuleerMiningOperationsUseCase'
+
 export class AssetsUseCaseInputConstructor {
 	public construct(jwt: string, token: EsiToken): MiningOperationsUseCaseInput {
 		const instance: MiningOperationsUseCaseInput = {

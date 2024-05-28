@@ -4,7 +4,7 @@
       "priority": 10,
       "request": {
         "method": "GET",
-        "urlPathPattern": "/latest/characters/([0-9]+)/assets/",
+        "urlPathPattern": "/v5/characters/([0-9]+)/assets/",
         "queryParameters": {
           "datasource": {
             "equalTo": "tranquility"
@@ -16,22 +16,12 @@
         "bodyFileName": "assets.93813310.json",
         "headers": {
           "Content-Type": "application/json",
-          "access-control-allow-credentials": "true",
-          "access-control-allow-headers": "Content-Type,Authorization,If-None-Match,X-User-Agent",
-          "access-control-allow-methods": "GET,HEAD,OPTIONS",
-          "access-control-allow-origin": "*",
-          "access-control-expose-headers": "Content-Type,Warning,ETag,X-Pages,X-ESI-Error-Limit-Remain,X-ESI-Error-Limit-Reset",
-          "access-control-max-age": "600",
-          "allow": "GET,HEAD,OPTIONS",
-          "cache-control": "private",
-          "content-encoding": "gzip",
-          "content-type": "application/json; charset=UTF-8",
-          "date": "Mon, 27 May 2024 09:29:42 GMT",
-          "etag": "a4e460d1a36e9f7d6b518e2d201790f78929b6f18920d44497b22e93",
-          "strict-transport-security": "max-age=31536000",
-          "vary": "Accept-Encoding",
-          "x-esi-error-limit-remain": "100",
-          "x-esi-error-limit-reset": "18"
+          "Allow": "OPTIONS, GET",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "*",
+          "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
+          "cache-control": "max-age: 600, public",
+          "Scenario": "NIN28.01"
         }
       }
     }

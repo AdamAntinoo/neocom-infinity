@@ -2,16 +2,17 @@ import { firstValueFrom, map } from 'rxjs'
 import { HttpService } from '@nestjs/axios'
 import { AxiosResponse } from 'axios'
 import { ConfigService } from '@nestjs/config'
-import { Logger } from '@nestjs/common'
+import { Injectable, Logger } from '@nestjs/common'
 
 import { ESIDataServicesPort } from '@Application/ports/EsiDataServices.port'
 import { GetCharactersCharacterIdAssets200Ok, GetCharactersCharacterIdMining200Ok, V1MiningOperationDto } from 'neocom-domain'
 import { MiningOperationsTypedRequest } from './typedrequests/MiningOperations.typedrequest'
 import { AssetsTypedRequest } from './typedrequests/Assets.typedrequest'
 
+@Injectable()
 export class V1ESISecureDataAdapter implements ESIDataServicesPort {
 	private readonly logger = new Logger('MiningOperationsTypedRequest')
-	private basePath = 'https://esi.evetech.net/latest'
+	// private basePath = 'https://esi.evetech.net/latest'
 
 	constructor(
 		private readonly httpService: HttpService,

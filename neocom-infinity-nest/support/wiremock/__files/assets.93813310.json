@@ -74,7 +74,7 @@
     "location_type": "item",
     "quantity": 61,
     "type_id": 15625
-  }
+  },
   {
     "is_singleton": true,
     "item_id": 1035013588778,
@@ -111,7 +111,7 @@
     "location_type": "item",
     "quantity": 1,
     "type_id": 11302
-  }
+  },
   {
     "is_singleton": false,
     "item_id": 1035159702797,

@@ -1,11 +1,11 @@
-import { EsiToken } from '@Infra/adapter/inbound/EsiToken.interface'
 import { Injectable } from '@nestjs/common'
-import { V1MiningOperationDto, V1StackDto } from 'neocom-domain'
-import { GetCharactersCharacterIdMining200Ok } from 'application/domain/esi-model/models'
 import { Optional } from 'typescript-optional'
+import { V1MiningOperationDto, V1StackDto } from 'neocom-domain'
+import { GetCharactersCharacterIdMining200Ok } from 'neocom-domain'
+import { EsiToken } from '@Application/domain/EsiToken.interface'
 import { MiningOperationConverter } from '@Infra/adapter/outbound/ESISecureDataServices/converter/MiningOperationConverter'
 import { ESI_CONSTANTS } from '@Infra/config/GlobalConstants'
-import { V1ESISecureDataAdapter } from '@Infra/adapter/outbound/ESISecureDataServices/V1.EsiSecureData.adapter'
+import { ESIDataServicesPort } from '@Application/ports/EsiDataServices.port'
 
 export interface MiningOperationsUseCaseInput {
 	jwt: string // Original encoded token to be passed to ESI
@@ -18,7 +18,7 @@ declare namespace CapsuleerMiningOperationsUseCase {
 
 @Injectable()
 export class CapsuleerMiningOperationsUseCase {
-	constructor(private readonly esiDataService: V1ESISecureDataAdapter) {}
+	constructor(private readonly esiDataService: ESIDataServicesPort) {}
 
 	public async getMiningOperations(input: MiningOperationsUseCaseInput): Promise<V1MiningOperationDto[]> {
 		const esiMiningOperations: GetCharactersCharacterIdMining200Ok[] = await this.esiDataService.getMiningOperations(input.capsuleerId, input.jwt)

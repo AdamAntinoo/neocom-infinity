@@ -1,8 +1,7 @@
 import { expect } from 'expect'
 import { Then, When } from "@cucumber/cucumber"
 import { NIN01World } from "../worlds/NIN01World"
-import { GetCharactersCharacterIdMining200Ok } from 'application/domain/esi-model/getCharactersCharacterIdMining200Ok'
-import { V1EsiTypeDto, V1MarketDataDto, V1MiningOperationDto } from 'neocom-domain'
+import { GetCharactersCharacterIdMining200Ok, V1EsiTypeDto, V1MarketDataDto, V1MiningOperationDto } from 'neocom-domain'
 import { V1AssetDto } from 'neocom-domain'
 
 When('the endpoint {string} is activated', async function (this: NIN01World, endpoint: string) {

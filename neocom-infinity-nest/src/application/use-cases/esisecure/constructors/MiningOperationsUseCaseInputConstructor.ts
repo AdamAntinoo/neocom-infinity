@@ -1,5 +1,5 @@
-import { MiningOperationsUseCaseInput } from 'application/use-cases/mining-operation/CapsuleerMiningOperationsUseCase'
-import { EsiToken } from './EsiToken.interface'
+import { MiningOperationsUseCaseInput } from '@Application/use-cases/esisecure/CapsuleerMiningOperationsUseCase'
+import { EsiToken } from '../../../domain/EsiToken.interface'
 
 export class MiningOperationsUseCaseInputConstructor {
 	public construct(jwt: string, token: EsiToken): MiningOperationsUseCaseInput {
