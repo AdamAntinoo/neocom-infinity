@@ -1,4 +1,4 @@
-import { ESIDataUniverseServicesPort } from '@Application/ports/ESIDataUniverseServices.port'
+import { ESIDataUniverseServicesPort } from '@App/ports/ESIDataUniverseServices.port'
 import {
 	GetUniverseTypesTypeIdOk,
 	GetUniverseGroupsGroupIdOk,

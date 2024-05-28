@@ -1,4 +1,4 @@
-import { ESIDataUniverseServicesPort } from '@Application/ports/ESIDataUniverseServices.port'
+import { ESIDataUniverseServicesPort } from '@App/ports/ESIDataUniverseServices.port'
 import { Injectable } from '@nestjs/common'
 import { GetUniverseCategoriesCategoryIdOk, GetUniverseGroupsGroupIdOk, GetUniverseTypesTypeIdOk, V1EsiTypeDto } from 'neocom-domain'
 

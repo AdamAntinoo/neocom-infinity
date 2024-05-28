@@ -5,9 +5,9 @@ import { V1AssetDto } from 'neocom-domain'
 import { CharacterServiceInterface } from 'neocom-domain'
 import { COOKIE_DEFINITIONS } from 'neocom-shared'
 import { AuthenticationTokenValidator } from '../validator/AuthenticationTokenValidator'
-import { AssetsUseCaseInputConstructor } from '@Application/use-cases/esisecure/constructors/AssetsUseCaseInput.constuctor'
-import { CapsuleerAssetsUseCase } from '@Application/use-cases/esisecure/CapsuleerAssets.usecase'
-import { CapsuleerBlueprintsUseCase } from '@Application/use-cases/esisecure/CapsuleerBlueprints.usecase'
+import { AssetsUseCaseInputConstructor } from '@App/use-cases/esisecure/constructors/AssetsUseCaseInput.constuctor'
+import { CapsuleerAssetsUseCase } from '@App/use-cases/esisecure/CapsuleerAssets.usecase'
+import { CapsuleerBlueprintsUseCase } from '@App/use-cases/esisecure/CapsuleerBlueprints.usecase'
 
 @Controller('/api/v3/neocom/character')
 export class V1CharacterController implements CharacterServiceInterface {

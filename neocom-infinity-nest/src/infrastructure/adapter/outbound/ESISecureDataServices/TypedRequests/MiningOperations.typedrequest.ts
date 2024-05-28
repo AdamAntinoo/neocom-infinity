@@ -16,9 +16,7 @@ export class MiningOperationsTypedRequest {
 	constructor(
 		private readonly parameters: MiningOperationsTypedRequestParameters,
 		private readonly configuration: ConfigService,
-	) {
-		super()
-	}
+	) {}
 
 	private prepareRequest(parameters: MiningOperationsTypedRequestParameters): MiningOperationsTypedRequest {
 		this.request = this.configuration.get<string>('ESI_BACKEND_HOST') + '/characters/' + parameters.characterId + '/mining/'

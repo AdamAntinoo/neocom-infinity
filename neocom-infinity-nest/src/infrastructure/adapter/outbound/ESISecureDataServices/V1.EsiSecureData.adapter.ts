@@ -4,7 +4,7 @@ import { AxiosResponse } from 'axios'
 import { ConfigService } from '@nestjs/config'
 import { Injectable, Logger } from '@nestjs/common'
 
-import { ESIDataServicesPort } from '@Application/ports/EsiDataServices.port'
+import { ESIDataServicesPort } from '@App/ports/ESIDataServices.port'
 import { GetCharactersCharacterIdAssets200Ok, GetCharactersCharacterIdMining200Ok, V1MiningOperationDto } from 'neocom-domain'
 import { MiningOperationsTypedRequest } from './typedrequests/MiningOperations.typedrequest'
 import { AssetsTypedRequest } from './typedrequests/Assets.typedrequest'

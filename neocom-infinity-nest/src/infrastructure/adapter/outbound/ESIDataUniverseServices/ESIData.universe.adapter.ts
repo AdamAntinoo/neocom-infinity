@@ -4,7 +4,7 @@ import { AxiosHeaders, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { ConfigService } from '@nestjs/config'
 
 import { ESI_CONSTANTS } from '@Infra/config/GlobalConstants'
-import { ESIDataUniverseServicesPort } from '@Application/ports/ESIDataUniverseServices.port'
+import { ESIDataUniverseServicesPort } from '@App/ports/ESIDataUniverseServices.port'
 import { Injectable } from '@nestjs/common'
 import {
 	GetUniverseTypesTypeIdOk,

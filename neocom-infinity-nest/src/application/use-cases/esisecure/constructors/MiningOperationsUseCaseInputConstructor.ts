@@ -1,4 +1,4 @@
-import { MiningOperationsUseCaseInput } from '@Application/use-cases/esisecure/CapsuleerMiningOperationsUseCase'
+import { MiningOperationsUseCaseInput } from '@App/use-cases/esisecure/CapsuleerMiningOperationsUseCase'
 import { EsiToken } from '../../../domain/EsiToken.interface'
 
 export class MiningOperationsUseCaseInputConstructor {

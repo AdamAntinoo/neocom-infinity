@@ -2,24 +2,20 @@ import { CapsuleerMiningOperationsUseCase, MiningOperationsUseCaseInput } from '
 import { HttpService } from '@nestjs/axios'
 import { Observable } from 'rxjs'
 import { Test } from '@nestjs/testing'
-import { ESIDataServicesPort } from 'application/ports/EsiDataServices.port'
-import { V1MiningOperationsAdapter } from '@Infra/adapter/outbound/ESISecureDataServices/MiningOperations/V1.MiningOperations.adapter'
-import { ESISecureDataServicesAdapter } from '@Infra/adapter/outbound/ESISecureDataServices/esi.securedataservices.adapter'
-import { IEsiMiningSecureService } from 'application/ports/IEsiMiningSecureService.port'
-import { V1MiningOperationDto } from 'neocom-domain'
+import { ESIDataServicesPort } from '@App/ports/ESIDataServices.port'
+import { GetCharactersCharacterIdMining200Ok, V1MiningOperationDto } from 'neocom-domain'
 import { ConfigService } from '@nestjs/config'
-import { GetCharactersCharacterIdMining200Ok } from 'application/domain/esi-model/getCharactersCharacterIdMining200Ok'
+import { V1ESISecureDataAdapter } from '@Infra/adapter/outbound/ESISecureDataServices/V1.EsiSecureData.adapter'
 
 describe('USECASE CapsuleerMiningOperationsUseCase [Module: Application.UseCases]', () => {
 	let useCase: CapsuleerMiningOperationsUseCase
-	let dataServices: ESISecureDataServicesAdapter
+	let dataServices: ESIDataServicesPort
 
 	beforeEach(async () => {
 		const moduleRef = await Test.createTestingModule({
 			providers: [
 				ConfigService,
-				{ provide: ESIDataServicesPort, useClass: ESISecureDataServicesAdapter },
-				{ provide: IEsiMiningSecureService, useClass: V1MiningOperationsAdapter },
+				{ provide: ESIDataServicesPort, useClass: V1ESISecureDataAdapter },
 				{ provide: CapsuleerMiningOperationsUseCase, useClass: CapsuleerMiningOperationsUseCase },
 				{
 					provide: HttpService,
@@ -97,7 +93,7 @@ describe('USECASE CapsuleerMiningOperationsUseCase [Module: Application.UseCases
 				},
 				capsuleerId: 32,
 			}
-			const service = dataServices.miningOperations
+			// const service = dataServices.miningOperations
 			const operations = new Promise<GetCharactersCharacterIdMining200Ok[]>(resolve => {
 				resolve([
 					{
@@ -138,7 +134,7 @@ describe('USECASE CapsuleerMiningOperationsUseCase [Module: Application.UseCases
 					},
 				])
 			})
-			jest.spyOn(service, 'getMiningOperations').mockImplementation(() => operations)
+			jest.spyOn(dataServices, 'getMiningOperations').mockImplementation(() => operations)
 
 			const sut: Promise<V1MiningOperationDto[]> = useCase.getMiningOperations(input)
 			expect(sut).toBeDefined

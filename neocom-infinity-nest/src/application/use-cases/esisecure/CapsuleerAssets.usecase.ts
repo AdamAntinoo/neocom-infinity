@@ -1,5 +1,5 @@
-import { ESIDataServicesPort } from '@Application/ports/EsiDataServices.port'
-import { EsiToken } from '@Application/domain/EsiToken.interface'
+import { ESIDataServicesPort } from '@App/ports/ESIDataServices.port'
+import { EsiToken } from '@App/domain/EsiToken.interface'
 import { Injectable } from '@nestjs/common'
 import { GetCharactersCharacterIdAssets200Ok, V1StackDto } from 'neocom-domain'
 import { Builder } from 'builder-pattern'

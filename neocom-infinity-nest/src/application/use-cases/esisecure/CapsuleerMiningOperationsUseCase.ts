@@ -2,10 +2,10 @@ import { Injectable } from '@nestjs/common'
 import { Optional } from 'typescript-optional'
 import { V1MiningOperationDto, V1StackDto } from 'neocom-domain'
 import { GetCharactersCharacterIdMining200Ok } from 'neocom-domain'
-import { EsiToken } from '@Application/domain/EsiToken.interface'
+import { EsiToken } from '@App/domain/EsiToken.interface'
 import { MiningOperationConverter } from '@Infra/adapter/outbound/ESISecureDataServices/converter/MiningOperationConverter'
 import { ESI_CONSTANTS } from '@Infra/config/GlobalConstants'
-import { ESIDataServicesPort } from '@Application/ports/EsiDataServices.port'
+import { ESIDataServicesPort } from '@App/ports/ESIDataServices.port'
 
 export interface MiningOperationsUseCaseInput {
 	jwt: string // Original encoded token to be passed to ESI

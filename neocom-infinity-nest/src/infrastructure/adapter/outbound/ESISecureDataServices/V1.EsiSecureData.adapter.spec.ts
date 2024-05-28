@@ -1,21 +1,21 @@
+import { ESIDataServicesPort } from '@App/ports/ESIDataServices.port'
 import { HttpService } from '@nestjs/axios'
+import { ConfigService } from '@nestjs/config'
 import { Test } from '@nestjs/testing'
 import { Observable } from 'rxjs'
-import { V1MiningOperationsAdapter } from './V1.MiningOperations.adapter'
-import { GetCharactersCharacterIdMining200Ok } from 'application/domain/esi-model/getCharactersCharacterIdMining200Ok'
-import { ConfigService } from '@nestjs/config'
-import { IEsiMiningSecureService } from 'application/ports/IEsiMiningSecureService.port'
+import { V1ESISecureDataAdapter } from './V1.EsiSecureData.adapter'
+import { GetCharactersCharacterIdMining200Ok } from 'neocom-domain'
 
 describe('SERVICE ESIMiningSecureService [Module: Infrastructure.service]', () => {
 	let httpService: HttpService
 	let configure: ConfigService
-	let esiSecureService: V1MiningOperationsAdapter
+	let esiSecureService: ESIDataServicesPort
 
 	beforeEach(async () => {
 		const moduleRef = await Test.createTestingModule({
 			providers: [
 				ConfigService,
-				{ provide: IEsiMiningSecureService, useClass: V1MiningOperationsAdapter },
+				{ provide: ESIDataServicesPort, useClass: V1ESISecureDataAdapter },
 				{
 					provide: HttpService,
 					useValue: {
@@ -40,9 +40,9 @@ describe('SERVICE ESIMiningSecureService [Module: Infrastructure.service]', () =
 			],
 		}).compile()
 
-		httpService = moduleRef.get<HttpService>(HttpService)
-		configure = moduleRef.get<ConfigService>(ConfigService)
-		esiSecureService = new V1MiningOperationsAdapter(httpService, configure)
+		httpService = await moduleRef.resolve(HttpService)
+		configure = await moduleRef.resolve(ConfigService)
+		esiSecureService = new V1ESISecureDataAdapter(httpService, configure)
 	})
 
 	describe('constructor contract phase', () => {

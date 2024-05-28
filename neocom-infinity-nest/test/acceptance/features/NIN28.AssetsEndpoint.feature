@@ -10,7 +10,7 @@ Feature: [NIN28] NIN endpoint to retrieve the list of character assets.
 		Given a environment prepared with predefined token
 
 	@NIN28 @NIN28.01
-	Scenario: [NIN28.01] Get a list of assets when requwsting them on the endpoint.
+	Scenario: [NIN28.01] Get a list of assets when requesting them on the endpoint.
 		# Given a request for Character with id 93813310
 		When the endpoint 'esi/Assets' is activated
 		Then the response is "200 OK"

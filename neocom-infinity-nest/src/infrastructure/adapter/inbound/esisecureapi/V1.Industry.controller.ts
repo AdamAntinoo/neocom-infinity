@@ -6,8 +6,8 @@ import { AuthenticationTokenValidator } from '../validator/AuthenticationTokenVa
 import { V1MiningOperationDto } from 'neocom-domain'
 import { COOKIE_DEFINITIONS } from 'neocom-shared'
 import { IndustryServiceInterface } from 'neocom-domain'
-import { CapsuleerMiningOperationsUseCase } from '@Application/use-cases/esisecure/CapsuleerMiningOperationsUseCase'
-import { MiningOperationsUseCaseInputConstructor } from '@Application/use-cases/esisecure/constructors/MiningOperationsUseCaseInputConstructor'
+import { CapsuleerMiningOperationsUseCase } from '@App/use-cases/esisecure/CapsuleerMiningOperationsUseCase'
+import { MiningOperationsUseCaseInputConstructor } from '@App/use-cases/esisecure/constructors/MiningOperationsUseCaseInputConstructor'
 
 @Controller('/api/v3/neocom/character')
 export class V1IndustryController implements IndustryServiceInterface {
