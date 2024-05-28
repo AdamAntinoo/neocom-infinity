@@ -5,13 +5,15 @@ import { V1AssetDto } from 'neocom-domain'
 import { CharacterServiceInterface } from 'neocom-domain/character.interface.api'
 import { COOKIE_DEFINITIONS } from 'neocom-shared'
 import { AuthenticationTokenValidator } from '../validator/AuthenticationTokenValidator'
+import { AssetsUseCaseInputConstructor } from '@Application/use-cases/esisecure/constructors/AssetsUseCaseInput.constuctor'
 import { CapsuleerAssetsUseCase } from '@Application/use-cases/esisecure/CapsuleerAssets.usecase'
+import { CapsuleerBlueprintsUseCase } from '@Application/use-cases/esisecure/CapsuleerBlueprints.usecase'
 
-@Controller('/api/v3/neocom/character/miningoperations')
+@Controller('/api/v3/neocom/character')
 export class V1CharacterController implements CharacterServiceInterface {
 	constructor(
 		private readonly getCapsuleerAssetsUseCase: CapsuleerAssetsUseCase,
-		private readonly getCapsuleerBlueprintsUseCase: CapsuleerABlueprintsUseCase,
+		private readonly getCapsuleerBlueprintsUseCase: CapsuleerBlueprintsUseCase,
 		private readonly jwtService: JwtService,
 	) {}
 
@@ -22,7 +24,7 @@ export class V1CharacterController implements CharacterServiceInterface {
 	}
 
 	@Get('assets')
-	public async getCharactersCharacterIdAssets(@Cookies(COOKIE_DEFINITIONS.ESI_COOKIE_NAME) token: string): CapsuleerAssetsUseCase.Response {
+	public async getCharactersCharacterIdAssets(@Cookies(COOKIE_DEFINITIONS.ESI_COOKIE_NAME) token: string): Promise<V1AssetDto[]> {
 		return this.getCapsuleerAssetsUseCase.getAssets(
 			new AssetsUseCaseInputConstructor().construct(token, new AuthenticationTokenValidator(this.jwtService).validate(token)),
 		)
