@@ -1,7 +1,7 @@
 import { Record } from "../interfaces/Record.interface"
 
 export class V1EsiTypeDto extends Record {
-    public override jsonClass: string = 'EsiType'
+    public override jsonClass: string = 'EsiTypeDto'
     public typeId?: number
     public name?: string
     public description?: string

@@ -12,7 +12,7 @@ describe('DTO V1MiningOperationDto [Module: neocom-domain - Version: v3]', () =>
             try {
                 new V1MiningOperationDto.Builder().build()
             } catch (e: any) {
-                expect(e.message).toEqual('The mandatory field on a Builder is missing.')
+                expect(e.message).toEqual('A mandatory field on a Builder is missing.')
             }
         })
         test('when constructed with builder', () => {
@@ -33,13 +33,14 @@ describe('DTO V1MiningOperationDto [Module: neocom-domain - Version: v3]', () =>
                 .withId('-test-id-')
                 .withDate('2024/01/01')
                 .withSolarSystemLink('-link-')
-                .addMiningResource(new V1StackDto({
-                    id: '-id-'
-                }))
-                .addMiningResource(new V1StackDto({
-                    id: '-id-'
-                }))
+                
                 .build()
+                .addMiningResource(new V1StackDto({
+                    id: '-id-'
+                }))
+                .addMiningResource(new V1StackDto({
+                    id: '-id-'
+                }))
             expect(sut).toBeDefined
             expect(sut.jsonClass).toBe('MiningOperationDto')
             expect(sut.id).toBe('-test-id-')

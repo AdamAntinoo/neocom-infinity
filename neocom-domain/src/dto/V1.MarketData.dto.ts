@@ -2,9 +2,8 @@ import { NeoComError } from "../exceptions/NeoComError"
 import { MANDATORY_FIELD_MISSING } from "../exceptions/NeoComSharedErrorCatalog"
 import { Record } from "../interfaces/Record.interface"
 
-// TODO - The re is no builder request for this class. Has no dependencies on other objects
 export class V1MarketDataDto extends Record {
-    public override jsonClass: string = 'MarketData'
+    public override jsonClass: string = 'MarketDataDto'
     public buyPrice?: number
     public buyOrderCount?: number
     public sellPrice?: number

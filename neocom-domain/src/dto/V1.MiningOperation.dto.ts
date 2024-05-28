@@ -14,16 +14,14 @@ export class V1MiningOperationDto extends Record {
     public solarSystemLink?: string
     public resources: V1StackDto[] = []
 
-    /** @deprecated */
     public getResources(): V1StackDto[] {
         return this.resources
     }
-    /** @deprecated */
-    public addMiningResource(miningResource: V1StackDto): V1StackDto {
+    public addMiningResource(miningResource: V1StackDto): V1MiningOperationDto {
         this.resources.push(miningResource)
         return this
     }
-    /** @deprecated */
+
     public static Builder = class Builder {
         public operation: V1MiningOperationDto
 
@@ -43,12 +41,6 @@ export class V1MiningOperationDto extends Record {
         public withSolarSystemLink(link: string): Builder {
             if (undefined == link) throw new NeoComError.Builder(MANDATORY_FIELD_MISSING).build()
             this.operation.solarSystemLink = link
-            return this
-        }
-        // TODO - Add a constructor to add all resources on one call
-        public addMiningResource(miningResource: V1StackDto): Builder {
-            if (undefined != miningResource)
-                this.operation.resources.push(miningResource)
             return this
         }
         public build(): V1MiningOperationDto {
