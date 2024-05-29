@@ -1,0 +1,6 @@
+export enum LocationTypeEnum {
+	HANGAR = 'Hangar',
+	STORAGE = 'STORAGE',
+	STORAGE_CONTAINER = 'STORAGE_CONTAINER',
+	STORAGE_SLOT = 'STORAGE_SLOT',
+}
