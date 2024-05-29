@@ -14,3 +14,8 @@ kubectl port-forward svc/nin-svc 8000:8000
 
 ## Kubectl commands
 kubectl config set-context --current --namespace neocom
+
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.tabSize": 4
+    },

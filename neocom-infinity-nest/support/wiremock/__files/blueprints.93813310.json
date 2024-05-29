@@ -35,7 +35,7 @@
 		"location_id": 60006907,
 		"material_efficiency": 10,
 		"quantity": -1,
-		"runs": -1,
+		"runs": 100,
 		"time_efficiency": 20,
 		"type_id": 31395
 	},

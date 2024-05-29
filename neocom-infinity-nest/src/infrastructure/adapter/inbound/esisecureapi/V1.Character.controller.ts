@@ -8,7 +8,7 @@ import { AuthenticationTokenValidator } from '../validator/AuthenticationTokenVa
 import { EsiSecureUseCaseInputConstructor } from '@App/use-cases/esisecure/constructors/EsiSecureUseCaseInput.constuctor'
 import { CapsuleerAssetsUseCase } from '@App/use-cases/esisecure/CapsuleerAssets.usecase'
 import { CapsuleerBlueprintsUseCase, CapsuleerBlueprintsUseCaseInput } from '@App/use-cases/esisecure/CapsuleerBlueprints.usecase'
-import { V1BlueprintDto } from 'neocom-domain/V1.Blueprint.dto'
+import { V1BlueprintDto } from 'neocom-domain'
 
 @Controller('/api/v3/neocom/character')
 export class V1CharacterController implements CharacterServiceInterface {

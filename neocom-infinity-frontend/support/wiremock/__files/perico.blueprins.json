@@ -45,8 +45,8 @@
     "jsonClass": "BlueprintDto",
     "materialEfficiency": 10,
     "timeEfficiency": 20,
-    "runs": -1,
-    "original": true,
+    "runs": 100,
+    "original": false,
     "id": 1005458732399,
     "typeLink": "/api/v3/neocom/universe/types/31395",
     "storageLocation": {
@@ -107,7 +107,7 @@
     "typeLink": "/api/v3/neocom/universe/types/31359",
     "storageLocation": {
       "jsonClass": "StorageLocationDto",
-      "locationType": "Hangar",
+      "locationType": "AssetSafety",
       "locationLink": "/esi/v1/universe/spacelocation/60006907"
     }
   },

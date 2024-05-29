@@ -2,10 +2,9 @@ import { EsiToken } from '@App/domain/EsiToken.interface'
 import { ESIDataServicesPort } from '@App/ports/ESIDataServices.port'
 import { Injectable } from '@nestjs/common'
 import { GetCharactersCharacterIdBlueprints200Ok } from 'neocom-domain'
-import { V1BlueprintDto } from 'neocom-domain/V1.Blueprint.dto'
+import { V1BlueprintDto } from 'neocom-domain'
 import { IUseCaseInput } from './constructors/UsecaseInput.interface'
-import { V1StorageLocationDto } from 'neocom-domain/V1.V1StorageLocation.dto'
-import { LocationTypeEnum } from 'neocom-domain/LocationType.enumerated'
+import { V1StorageLocationDto } from 'neocom-domain'
 
 export interface CapsuleerBlueprintsUseCaseInput extends IUseCaseInput {
 	jwt: string // Original encoded token to be passed to ESI
@@ -18,7 +17,7 @@ declare namespace CapsuleerBlueprintsUseCase {
 }
 @Injectable()
 export class CapsuleerBlueprintsUseCase {
-	constructor(private readonly esiSecureAdapter: ESIDataServicesPort) {}
+	constructor(private readonly esiSecureAdapter: ESIDataServicesPort) { }
 
 	public async getBlueprints(input: CapsuleerBlueprintsUseCaseInput): Promise<V1BlueprintDto[]> {
 		const esiBlueprints: GetCharactersCharacterIdBlueprints200Ok[] = await this.esiSecureAdapter.getCharactersCharacterIdBlueprints(
@@ -32,7 +31,7 @@ export class CapsuleerBlueprintsUseCase {
 			const transformedBlueprints: V1BlueprintDto[] = []
 			for (const blueprint of esiBlueprints) {
 				const storageLocation: V1StorageLocationDto = new V1StorageLocationDto.Builder()
-					.withLocationType(this.convertStringToEnum(blueprint.location_flag))
+					.withLocationType(blueprint.location_flag)
 					.withLocation(blueprint.location_id)
 					.build()
 				transformedBlueprints.push(
@@ -47,8 +46,5 @@ export class CapsuleerBlueprintsUseCase {
 			}
 			resolve(transformedBlueprints)
 		})
-	}
-	private convertStringToEnum(value: string): LocationTypeEnum {
-		return LocationTypeEnum[value as keyof typeof LocationTypeEnum]
 	}
 }

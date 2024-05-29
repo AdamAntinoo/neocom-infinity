@@ -11,8 +11,7 @@ import { AppModule } from "app.module"
 import { AxiosResponse } from "axios"
 import { GetCharactersCharacterIdMining200Ok, V1EsiTypeDto, V1MarketDataDto, V1MiningOperationDto } from "neocom-domain"
 import { V1AssetDto } from "neocom-domain"
-import { V1BlueprintDto } from "neocom-domain/V1.Blueprint.dto"
-
+import { V1BlueprintDto } from "neocom-domain"
 export class NIN01World extends World {
     // - Common
     protected appModule: any
