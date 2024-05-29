@@ -2,11 +2,10 @@ import { NeoComError } from "../exceptions/NeoComError"
 import { MANDATORY_FIELD_MISSING } from "../exceptions/NeoComSharedErrorCatalog"
 import { Record } from "../interfaces/Record.interface"
 import { LocationLinkGenerator } from "../linkgenerators/LocationLink.generator"
-import { LocationTypeEnum } from "./LocationType.enumerated"
 
 export class V1StorageLocationDto extends Record {
 	public override jsonClass: string = "StorageLocationDto"
-	public locationType: LocationTypeEnum = LocationTypeEnum.HANGAR
+	public locationType: string = 'Hangar'
 	public locationLink?: string
 
 	public static Builder = class Builder {
@@ -15,7 +14,7 @@ export class V1StorageLocationDto extends Record {
 		constructor(fields: object = {}) {
 			this.constructingInstance = new V1StorageLocationDto(fields)
 		}
-		public withLocationType(locationType: LocationTypeEnum): Builder {
+		public withLocationType(locationType: string): Builder {
 			this.constructingInstance.locationType = locationType
 			return this
 		}

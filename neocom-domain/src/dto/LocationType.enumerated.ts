@@ -1,5 +1,5 @@
 export enum LocationTypeEnum {
-	HANGAR = 'Hangar',
+	HANGAR = 'HANGAR',
 	STORAGE = 'STORAGE',
 	STORAGE_CONTAINER = 'STORAGE_CONTAINER',
 	STORAGE_SLOT = 'STORAGE_SLOT',
