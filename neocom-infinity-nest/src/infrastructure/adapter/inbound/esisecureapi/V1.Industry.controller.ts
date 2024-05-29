@@ -7,7 +7,7 @@ import { V1MiningOperationDto } from 'neocom-domain'
 import { COOKIE_DEFINITIONS } from 'neocom-shared'
 import { IndustryServiceInterface } from 'neocom-domain'
 import { CapsuleerMiningOperationsUseCase } from '@App/use-cases/esisecure/CapsuleerMiningOperationsUseCase'
-import { MiningOperationsUseCaseInputConstructor } from '@App/use-cases/esisecure/constructors/MiningOperationsUseCaseInputConstructor'
+import { EsiSecureUseCaseInputConstructor } from '@App/use-cases/esisecure/constructors/EsiSecureUseCaseInput.constuctor'
 
 @Controller('/api/v3/neocom/character')
 export class V1IndustryController implements IndustryServiceInterface {
@@ -19,7 +19,7 @@ export class V1IndustryController implements IndustryServiceInterface {
 	@Get('miningoperations')
 	public async getMiningOperations(@Cookies(COOKIE_DEFINITIONS.ESI_COOKIE_NAME) token: string): Promise<V1MiningOperationDto[]> {
 		return this.getCapsuleerMiningOperationsUseCase.getMiningOperations(
-			new MiningOperationsUseCaseInputConstructor().construct(token, new AuthenticationTokenValidator(this.jwtService).validate(token)),
+			new EsiSecureUseCaseInputConstructor().construct(token, new AuthenticationTokenValidator(this.jwtService).validate(token)),
 		)
 	}
 }

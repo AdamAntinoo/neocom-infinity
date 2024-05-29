@@ -24,6 +24,31 @@
           "Scenario": "NIN28.01"
         }
       }
+    },
+    {
+      "priority": 10,
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/v3/characters/([0-9]+)/blueprints/",
+        "queryParameters": {
+          "datasource": {
+            "equalTo": "tranquility"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "blueprints.93813310.json",
+        "headers": {
+          "Content-Type": "application/json",
+          "Allow": "OPTIONS, GET",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "*",
+          "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
+          "cache-control": "max-age: 600, public",
+          "Scenario": "NIN28.02"
+        }
+      }
     }
   ]
 }

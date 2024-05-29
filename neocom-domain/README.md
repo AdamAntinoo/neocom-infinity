@@ -8,5 +8,11 @@ To publish a new library version execute the following commands:
 ./node_modules/madge/bin/cli.js --circular ./src/**
 
 ## Changelog
+* [0.6.0] Add blueprint and related classes. Moved constants and link generators to this public library.
 * [0.4.3] Add additional interfaces to the model
 * [0.4.2] Make DTO fields publis and remove the need for methods or builders unless required to construct them. Better use Constructors.
+
+## ToDo
+Unit tests for:
+* LocationLink
+* TypeLink

@@ -16,3 +16,10 @@ Feature: [NIN28] NIN endpoint to retrieve the list of character assets.
 		Then the response is "200 OK"
 		And the response body is a list of assets
 		And the response body contains 14 asset
+
+	@NIN28 @NIN28.02
+	Scenario: [NIN28.02] Get a list of the blueprints belonging to the selected character.
+		When the endpoint 'esi/Blueprints' is activated
+		Then the response is "200 OK"
+		And the response body is a list of blueprints
+		And the response body contains 14 blueprint

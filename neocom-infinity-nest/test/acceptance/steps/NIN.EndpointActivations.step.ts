@@ -3,6 +3,7 @@ import { Then, When } from "@cucumber/cucumber"
 import { NIN01World } from "../worlds/NIN01World"
 import { GetCharactersCharacterIdMining200Ok, V1EsiTypeDto, V1MarketDataDto, V1MiningOperationDto } from 'neocom-domain'
 import { V1AssetDto } from 'neocom-domain'
+import { V1BlueprintDto } from 'neocom-domain/V1.Blueprint.dto'
 
 When('the endpoint {string} is activated', async function (this: NIN01World, endpoint: string) {
     expect(endpoint).toBeDefined()
@@ -61,6 +62,18 @@ When('the endpoint {string} is activated', async function (this: NIN01World, end
             this.responseResultCode = '200 OK'
             await sut.then((data: V1AssetDto[]) => {
                 this.esiAssetsResponse = data
+            })
+            break
+        }
+        case 'esi/Blueprints': {
+            expect(this.characterController).toBeDefined()
+            expect(this.characterId).toBeDefined()
+            expect(this.token).toBeDefined()
+            const sut: Promise<V1BlueprintDto[]> = this.characterController.getCharactersCharacterIdBlueprints(this.token)
+            expect(sut).toBeDefined()
+            this.responseResultCode = '200 OK'
+            await sut.then((data: V1BlueprintDto[]) => {
+                this.esiBlueprintsResponse = data
             })
             break
         }

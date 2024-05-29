@@ -5,9 +5,10 @@ import { V1AssetDto } from 'neocom-domain'
 import { CharacterServiceInterface } from 'neocom-domain'
 import { COOKIE_DEFINITIONS } from 'neocom-shared'
 import { AuthenticationTokenValidator } from '../validator/AuthenticationTokenValidator'
-import { AssetsUseCaseInputConstructor } from '@App/use-cases/esisecure/constructors/AssetsUseCaseInput.constuctor'
+import { EsiSecureUseCaseInputConstructor } from '@App/use-cases/esisecure/constructors/EsiSecureUseCaseInput.constuctor'
 import { CapsuleerAssetsUseCase } from '@App/use-cases/esisecure/CapsuleerAssets.usecase'
-import { CapsuleerBlueprintsUseCase } from '@App/use-cases/esisecure/CapsuleerBlueprints.usecase'
+import { CapsuleerBlueprintsUseCase, CapsuleerBlueprintsUseCaseInput } from '@App/use-cases/esisecure/CapsuleerBlueprints.usecase'
+import { V1BlueprintDto } from 'neocom-domain/V1.Blueprint.dto'
 
 @Controller('/api/v3/neocom/character')
 export class V1CharacterController implements CharacterServiceInterface {
@@ -18,15 +19,19 @@ export class V1CharacterController implements CharacterServiceInterface {
 	) {}
 
 	@Get('blueprints')
-	public async getCharactersCharacterIdBlueprints(@Cookies(COOKIE_DEFINITIONS.ESI_COOKIE_NAME) token: string): Promise<V1AssetDto[]> {
-		console.log(token)
-		throw new Error('Method not implemented.')
+	public async getCharactersCharacterIdBlueprints(@Cookies(COOKIE_DEFINITIONS.ESI_COOKIE_NAME) token: string): Promise<V1BlueprintDto[]> {
+		return this.getCapsuleerBlueprintsUseCase.getBlueprints(
+			new EsiSecureUseCaseInputConstructor<CapsuleerBlueprintsUseCaseInput>().construct(
+				token,
+				new AuthenticationTokenValidator(this.jwtService).validate(token),
+			),
+		)
 	}
 
 	@Get('assets')
 	public async getCharactersCharacterIdAssets(@Cookies(COOKIE_DEFINITIONS.ESI_COOKIE_NAME) token: string): Promise<V1AssetDto[]> {
 		return this.getCapsuleerAssetsUseCase.getAssets(
-			new AssetsUseCaseInputConstructor().construct(token, new AuthenticationTokenValidator(this.jwtService).validate(token)),
+			new EsiSecureUseCaseInputConstructor().construct(token, new AuthenticationTokenValidator(this.jwtService).validate(token)),
 		)
 	}
 }
