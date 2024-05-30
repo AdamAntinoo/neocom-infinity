@@ -33,6 +33,8 @@
             </v1-loyalty-offer>
             <v1-mining-operation *ngIf="node.jsonClass === 'MiningOperation'" [container]="container" [node]="node" [variant]="variant">
             </v1-mining-operation>
+            <v1-blueprint-category *ngIf="node.jsonClass === 'BlueprintCategory'" [container]="container" [node]="node" [variant]="variant">
+            </v1-blueprint-category>
         </div>
     </div>
 </div>
