@@ -1,3 +1,4 @@
+/** @deprecated */
 export enum NCVariant {
     DEFAULT='-DEFAULT-',
     FITTING_CONFIGURATION = '-FITTING-CONFIGURATION-',

@@ -1,9 +1,9 @@
 // - DOMAIN
 import { NeoComDelayed } from "@domain/core/NeoComDelayed.domain";
 import { EsiType } from "@domain/esi/EsiType.esi"
-import { NeoCom } from "@domain/NeoCom.domain";
 import { Resource } from "./Resource.domain"
 
+/** @deprecated */
 export class ProcessedBlueprint extends NeoComDelayed {
     public type: EsiType
     public output: EsiType

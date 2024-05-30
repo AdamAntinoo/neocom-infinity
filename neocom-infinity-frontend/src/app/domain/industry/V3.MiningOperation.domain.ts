@@ -50,6 +50,7 @@ export class V3MiningOperation extends NeoCom {
         this.solarSystem = solarSystem
         return this
     }
+    
     public static Builder = class Builder {
         public miningOperation: V3MiningOperation
 

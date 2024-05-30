@@ -2,11 +2,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators'
 
-import { ESISecureDataServiceAdapter } from '../esi-data-service/ESISecureDataServiceAdapter';
 import { V3MiningOperation } from '@domain/industry/V3.MiningOperation.domain';
 import { V1MiningOperationDto } from 'neocom-domain';
 import { BackendFactory } from '@adapter/factory/BackendFactory';
+import { SecuredServicesPort } from 'src/infrastructure/ports/SecuredServices.port';
+import { V1SecuredProxyAdapter } from '../SecuredProxy/v1.SecuredProxy.adapter';
 
+/** @deprecated */
 @Injectable({
     providedIn: 'root'
 })
@@ -16,12 +18,12 @@ import { BackendFactory } from '@adapter/factory/BackendFactory';
 export class V1MiningOperationsAdapterService {
 
     constructor(
-        private readonly esiSecureAdapter: ESISecureDataServiceAdapter,
+        private readonly esiSecureAdapter: V1SecuredProxyAdapter,
         private readonly factory: BackendFactory
     ) { }
 
     public downloadMiningOperationsForCharacter(characterId: number): Observable<V3MiningOperation[]> {
-        return this.esiSecureAdapter.v1_apiEsiMiningOperationsData(characterId)
+        return this.esiSecureAdapter.v3_apiNeocomMiningOperationsData(characterId)
             .pipe(mergeMap(async (miningOperationList: V1MiningOperationDto[]) => {
                 const resolveData: V3MiningOperation[] = []
                 for (let miningOperation of miningOperationList) {

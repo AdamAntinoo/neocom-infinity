@@ -50,6 +50,7 @@ import { RendersModule } from './modules/renders/renders.module'
 import { V1StackRenderComponent } from './industry/renders/v1-stack-render/v1-stack-render.component'
 import { V1BlueprintListPageComponent } from './industry/pages/v1-blueprint-list-page/v1-blueprint-list-page.component'
 import { V1BlueprintCategoriesPanel } from './industry/panels/v1-blueprint-categories/v1-blueprint-categories.component';
+import { BlueprintToCategoryListUseCase } from './usecases/BlueprintToCategoryList.usecase'
 registerLocaleData(localeEs)
 
 @NgModule({
@@ -88,10 +89,11 @@ registerLocaleData(localeEs)
 		V1MiningOperationsPanelComponent,
         V1BlueprintListPageComponent,
 		V1BlueprintCategoriesPanel,
-	],
+ 	],
 	providers: [
 		// - SERVICES
-		{ provide: AppStoreService, useClass: AppStoreService },
+        BlueprintToCategoryListUseCase,
+        { provide: AppStoreService, useClass: AppStoreService },
 		{ provide: UniverseService, useClass: UniverseService },
 		{ provide: BackendService, useClass: BackendService },
 		{ provide: AuthenticationService, useClass: AuthenticationService },
