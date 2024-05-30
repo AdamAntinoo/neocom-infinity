@@ -29,7 +29,6 @@ export * from "./esi-api/model/models"
 export * from "./exceptions/NeoComError"
 export * from "./exceptions/NeoComSharedErrorCatalog"
 
-export * from "./interfaces/BaseTypedRequest"
 export * from "./interfaces/IConstructor.interface"
 export * from "./interfaces/IGenerator.interface"
 export * from "./interfaces/ITransformable.interface"
