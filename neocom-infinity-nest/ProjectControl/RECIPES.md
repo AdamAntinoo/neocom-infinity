@@ -19,3 +19,15 @@ kubectl config set-context --current --namespace neocom
         "editor.defaultFormatter": "esbenp.prettier-vscode",
         "editor.tabSize": 4
     },
+
+# VSCode Settings
+    "files.associations": {
+        "*.step.ts": "steps",
+        "*.ts": "typescript"
+    },
+    "[steps]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },

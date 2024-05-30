@@ -1,7 +1,7 @@
 # Build library
 To publish a new library version execute the following commands:
 * Update the version number on the package.json
-* npm run build
+* npm run distribute
 * npm publish
 
 # Command to search for circular dependencies or invalid public-api imports
@@ -16,3 +16,4 @@ To publish a new library version execute the following commands:
 Unit tests for:
 * LocationLink
 * TypeLink
+* V1StackDto

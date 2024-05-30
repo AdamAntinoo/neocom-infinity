@@ -1,9 +1,7 @@
 import { ESIDataServicesPort } from '@App/ports/ESIDataServices.port'
 import { EsiToken } from '@App/domain/EsiToken.interface'
 import { Injectable } from '@nestjs/common'
-import { GetCharactersCharacterIdAssets200Ok, V1StackDto } from 'neocom-domain'
-import { Builder } from 'builder-pattern'
-import { TypeLinkGenerator } from '@Infra/adapter/outbound/LinkGenerators/TypeLink.generator'
+import { GetCharactersCharacterIdAssets200Ok, TypeLinkGenerator, V1StackDto } from 'neocom-domain'
 import { LocationLinkGenerator } from '@Infra/adapter/outbound/LinkGenerators/LocationLink.generator'
 import { V1AssetDto } from 'neocom-domain'
 
@@ -19,7 +17,7 @@ declare namespace CapsuleerAssetsUseCase {
 
 @Injectable()
 export class CapsuleerAssetsUseCase {
-	constructor(private readonly esiSecureAdapter: ESIDataServicesPort) {}
+	constructor(private readonly esiSecureAdapter: ESIDataServicesPort) { }
 
 	public async getAssets(input: CapsuleerAssetsUseCaseInput): Promise<V1AssetDto[]> {
 		const esiAssets: GetCharactersCharacterIdAssets200Ok[] = await this.esiSecureAdapter.getCharactersCharacterIdAssets(
@@ -33,10 +31,14 @@ export class CapsuleerAssetsUseCase {
 			const transformedAssets: V1AssetDto[] = []
 			for (const asset of esiAssets) {
 				transformedAssets.push(
-					Builder<V1AssetDto>()
-						.id(asset.item_id)
-						.resource(Builder<V1StackDto>().quantity(asset.quantity).typeLink(new TypeLinkGenerator().generate(asset.type_id)).build())
-						.locationLink(new LocationLinkGenerator().generate(asset.location_id))
+					new V1AssetDto.Builder()
+						.withId(asset.item_id)
+						.withResource(
+							new V1StackDto.Builder().withQuantity(asset.quantity)
+								.withTypeLink(new TypeLinkGenerator().generate(asset.type_id))
+								.build()
+						)
+						.withLocationLink(new LocationLinkGenerator().generate(asset.location_id))
 						.build(),
 				)
 			}

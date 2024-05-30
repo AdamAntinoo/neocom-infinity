@@ -18,17 +18,14 @@ export class V1AssetDto extends Record {
 
 		public withId(id: number): Builder {
 			this.constructingInstance.id = id
-			if (undefined == this.constructingInstance.id) throw new NeoComError.Builder(MANDATORY_FIELD_MISSING).build()
 			return this
 		}
 		public withResource(resource: V1StackDto): Builder {
-			if (undefined == resource) throw new NeoComError.Builder(MANDATORY_FIELD_MISSING).build()
 			this.constructingInstance.resource = resource
 			return this
 		}
 		public withLocationLink(locationLink: string): Builder {
 			this.constructingInstance.locationLink = locationLink
-			if (undefined == this.constructingInstance.locationLink) throw new NeoComError.Builder(MANDATORY_FIELD_MISSING).build()
 			return this
 		}
 		public build(): V1AssetDto {
