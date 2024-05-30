@@ -5,3 +5,6 @@ node_modules/
 
 pnpm-lock.yaml
 .eslintrc.json
+
+# ESI swagger generated code fom the neocom-java-core project
+src/esi-api/api/

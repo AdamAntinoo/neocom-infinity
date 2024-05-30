@@ -1,6 +1,4 @@
-build
-test
+build/
 test/
-test/**
-coverage
-node_modules
+coverage/
+node_modules/

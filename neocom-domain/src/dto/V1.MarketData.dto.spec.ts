@@ -11,7 +11,7 @@ describe('DTO V1MarketDataDto [Module: neocom-domain - Version: v3]', () => {
             try {
                 new V1MarketDataDto.Builder().build()
             } catch (e: any) {
-                expect(e.message).toEqual('The mandatory field on a Builder is missing.')
+                expect(e.message).toEqual('A mandatory field on a Builder is missing.')
             }
         })
         test('when constructed with all data', () => {
@@ -23,7 +23,7 @@ describe('DTO V1MarketDataDto [Module: neocom-domain - Version: v3]', () => {
                 .withSellPrice(200.0)
                 .build()
             expect(sut).toBeDefined
-            expect(sut.jsonClass).toBe('MarketData')
+            expect(sut.jsonClass).toBe('MarketDataDto')
             expect(sut.buyPrice).toBe(100.0)
             expect(sut.sellPrice).toBe(200.0)
             expect(sut.buyOrderCount).toBe(10)
@@ -35,7 +35,7 @@ describe('DTO V1MarketDataDto [Module: neocom-domain - Version: v3]', () => {
                 .withSellPrice(200.0)
                 .build()
             expect(sut).toBeDefined
-            expect(sut.jsonClass).toBe('MarketData')
+            expect(sut.jsonClass).toBe('MarketDataDto')
             expect(sut.buyPrice).toBe(100.0)
             expect(sut.sellPrice).toBe(200.0)
             expect(sut.buyOrderCount).toBe(0)

@@ -1,18 +1,19 @@
-import { expect } from 'expect';
-import { When } from "@cucumber/cucumber"
+import { expect } from 'expect'
+import { Then, When } from "@cucumber/cucumber"
 import { NIN01World } from "../worlds/NIN01World"
-import { GetCharactersCharacterIdMining200Ok } from 'application/domain/esi-model/getCharactersCharacterIdMining200Ok';
-import { V1EsiTypeDto, V1MarketDataDto, V1MiningOperationDto } from 'neocom-domain';
+import { GetCharactersCharacterIdMining200Ok, V1EsiTypeDto, V1MarketDataDto, V1MiningOperationDto } from 'neocom-domain'
+import { V1AssetDto } from 'neocom-domain'
+import { V1BlueprintDto } from 'neocom-domain'
 
 When('the endpoint {string} is activated', async function (this: NIN01World, endpoint: string) {
     expect(endpoint).toBeDefined()
     switch (endpoint) {
         case 'esi/miningoperations': {
             // Request the output form the direct ESI service
-            expect(this.esiMiningSecureService).toBeDefined()
+            // expect(this.esiMiningSecureService).toBeDefined()
             expect(this.characterId).toBeDefined()
             expect(this.token).toBeDefined()
-            const sut: Promise<GetCharactersCharacterIdMining200Ok[]> = this.esiMiningSecureService.getMiningOperations(this.characterId, this.token)
+            const sut: Promise<GetCharactersCharacterIdMining200Ok[]> = this.esiSecureDataService.getMiningOperations(this.characterId, this.token)
             expect(sut).toBeDefined()
             await sut.then((esiResponse: GetCharactersCharacterIdMining200Ok[]) => {
                 // Store the response at the world
@@ -52,5 +53,33 @@ When('the endpoint {string} is activated', async function (this: NIN01World, end
             })
             break
         }
+        case 'esi/Assets': {
+            expect(this.characterController).toBeDefined()
+            expect(this.characterId).toBeDefined()
+            expect(this.token).toBeDefined()
+            const sut: Promise<V1AssetDto[]> = this.characterController.getCharactersCharacterIdAssets(this.token)
+            expect(sut).toBeDefined()
+            this.responseResultCode = '200 OK'
+            await sut.then((data: V1AssetDto[]) => {
+                this.esiAssetsResponse = data
+            })
+            break
+        }
+        case 'esi/Blueprints': {
+            expect(this.characterController).toBeDefined()
+            expect(this.characterId).toBeDefined()
+            expect(this.token).toBeDefined()
+            const sut: Promise<V1BlueprintDto[]> = this.characterController.getCharactersCharacterIdBlueprints(this.token)
+            expect(sut).toBeDefined()
+            this.responseResultCode = '200 OK'
+            await sut.then((data: V1BlueprintDto[]) => {
+                this.esiBlueprintsResponse = data
+            })
+            break
+        }
     }
+})
+Then('the response is {string}', function (this: NIN01World, responseCode:string) {
+    expect( this.responseResultCode).toBeDefined()
+    expect(this.responseResultCode).toBe(responseCode)
 })

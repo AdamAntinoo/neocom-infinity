@@ -1,21 +1,23 @@
 import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common'
 import { HttpModule } from '@nestjs/axios'
 import { ScheduleModule, SchedulerRegistry } from '@nestjs/schedule'
-import { V1MiningOperationsController } from '@Infra/adapter/inbound/esisecureapi/v1.miningoperations.controller'
-import { ESISecureDataServicesAdapter } from '@Infra/adapter/outbound/ESISecureDataServices/esi.securedataservices.adapter'
 import { LoggerMiddleware } from '@Infra/config/LoggerInterceptor'
 import { JwtModule } from '@nestjs/jwt'
-import { ESIDataServicesPort } from 'application/ports/EsiDataServices.port'
-import { CapsuleerMiningOperationsUseCase } from 'application/use-cases/mining-operation/CapsuleerMiningOperationsUseCase'
+import { CapsuleerMiningOperationsUseCase } from '@App/use-cases/esisecure/CapsuleerMiningOperationsUseCase'
 import { ConfigModule, ConfigService } from '@nestjs/config'
-import { V1MiningOperationsAdapter } from '@Infra/adapter/outbound/ESISecureDataServices/MiningOperations/V1.MiningOperations.adapter'
-import { IEsiMiningSecureService } from 'application/ports/IEsiMiningSecureService.port'
-import { V1EsiUniverseController } from '@Infra/adapter/inbound/esiuniverse/v1.esiuniverse.controller'
 import { GetTypeInformationUseCase } from 'application/use-cases/esi-universe/GetTypeInformation.usecase'
 import { ESIDataUniverseServicesPort } from 'application/ports/ESIDataUniverseServices.port'
 import { ESIDataUniverseAdapter } from '@Infra/adapter/outbound/ESIDataUniverseServices/ESIData.universe.adapter'
 import { GetMarketDataUseCase } from 'application/use-cases/esi-universe/GetMarketData.usecase'
 import { GetSpaceLocationUseCase } from 'application/use-cases/esi-universe/GetSpaceLocation.usecase'
+import { V1ESISecureDataAdapter } from '@Infra/adapter/outbound/ESISecureDataServices/V1.EsiSecureData.adapter'
+
+import { ESIDataServicesPort } from '@App/ports/ESIDataServices.port'
+import { CapsuleerAssetsUseCase } from '@App/use-cases/esisecure/CapsuleerAssets.usecase'
+import { CapsuleerBlueprintsUseCase } from '@App/use-cases/esisecure/CapsuleerBlueprints.usecase'
+import { V1CharacterController } from '@Infra/adapter/inbound/esisecureapi/V1.Character.controller'
+import { V1EsiUniverseController } from '@Infra/adapter/inbound/esiuniverse/v1.esiuniverse.controller'
+import { V1IndustryController } from '@Infra/adapter/inbound/esisecureapi/V1.Industry.controller'
 
 const ENV = process.env.NODE_ENV
 
@@ -34,13 +36,16 @@ const ENV = process.env.NODE_ENV
 			envFilePath: [!ENV ? '.env' : `.env.${ENV}`, '.env.version'],
 		}),
 	],
-	controllers: [V1MiningOperationsController, V1EsiUniverseController],
+	controllers: [V1CharacterController, V1IndustryController, V1EsiUniverseController],
 	providers: [
 		SchedulerRegistry,
 		LoggerMiddleware,
 		ConfigService,
-		{ provide: ESIDataServicesPort, useClass: ESISecureDataServicesAdapter },
-		{ provide: IEsiMiningSecureService, useClass: V1MiningOperationsAdapter },
+		// PORTS
+		{ provide: ESIDataServicesPort, useClass: V1ESISecureDataAdapter },
+		{ provide: ESIDataUniverseServicesPort, useClass: ESIDataUniverseAdapter },
+		{ provide: CapsuleerAssetsUseCase, useClass: CapsuleerAssetsUseCase },
+		{ provide: CapsuleerBlueprintsUseCase, useClass: CapsuleerBlueprintsUseCase },
 		{ provide: CapsuleerMiningOperationsUseCase, useClass: CapsuleerMiningOperationsUseCase },
 		GetTypeInformationUseCase,
 		GetMarketDataUseCase,

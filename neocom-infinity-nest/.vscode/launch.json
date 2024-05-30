@@ -59,12 +59,37 @@
       ]
     },
     {
+      "name": ">Acc>NIN28",
+      "type": "node",
+      "request": "launch",
+      "console": "integratedTerminal",
+      "env": {
+        "NODE_ENV": "acceptance"
+      },
+      "program": "${workspaceRoot}/node_modules/@cucumber/cucumber/bin/cucumber-js",
+      "args": [
+        "./test/**/*.feature",
+        "--no-strict",
+        "--require-module",
+        "ts-node/register",
+        "--require-module",
+        "tsconfig-paths/register",
+        "--require",
+        "./test/acceptance/steps/**/*.ts",
+        "--tags",
+        "@NIN28.03"
+      ]
+    },
+    {
       "name": ">Debug>Development",
       "type": "node",
       "request": "launch",
       "args": [
         "${workspaceFolder}/src/main.ts"
       ],
+      "env": {
+        "NODE_ENV": "development"
+      },
       "runtimeArgs": [
         "--nolazy",
         "-r",

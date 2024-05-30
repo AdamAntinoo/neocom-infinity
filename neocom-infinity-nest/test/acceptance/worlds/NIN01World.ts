@@ -1,27 +1,29 @@
-import { V1MiningOperationsController } from "@Infra/adapter/inbound/esisecureapi/v1.miningoperations.controller"
+import { ESIDataServicesPort } from "@App/ports/ESIDataServices.port"
+import { V1CharacterController } from "@Infra/adapter/inbound/esisecureapi/V1.Character.controller"
+import { V1IndustryController } from "@Infra/adapter/inbound/esisecureapi/V1.Industry.controller"
 import { V1EsiUniverseController } from "@Infra/adapter/inbound/esiuniverse/v1.esiuniverse.controller"
 import { AuthenticationServicesAdapter } from "@Infra/adapter/outbound/AuthenticationServices/authenticationservices.adapter"
-import { V1MiningOperationsAdapter } from "@Infra/adapter/outbound/ESISecureDataServices/MiningOperations/V1.MiningOperations.adapter"
 import { World } from "@cucumber/cucumber"
 import { HttpService } from "@nestjs/axios"
 import { ConfigService } from "@nestjs/config"
 import { NestFactory } from "@nestjs/core"
 import { AppModule } from "app.module"
-import { GetCharactersCharacterIdMining200Ok } from "application/domain/esi-model/models"
 import { AxiosResponse } from "axios"
-import { V1EsiTypeDto, V1MarketDataDto, V1MiningOperationDto } from "neocom-domain"
-
+import { GetCharactersCharacterIdMining200Ok, V1EsiTypeDto, V1MarketDataDto, V1MiningOperationDto } from "neocom-domain"
+import { V1AssetDto } from "neocom-domain"
+import { V1BlueprintDto } from "neocom-domain"
 export class NIN01World extends World {
     // - Common
     protected appModule: any
     public httpService: HttpService
-    private configuration: ConfigService
+    public responseResultCode:string
+    public configuration: ConfigService
+    public esiSecureDataService : ESIDataServicesPort
     // NIN01
     public characterId: number
-    public miningOperationsController: V1MiningOperationsController
+    public miningOperationsController: V1IndustryController
     public miningActionsResponse: GetCharactersCharacterIdMining200Ok[]
     public miningOperationsResponse: V1MiningOperationDto[]
-    public esiMiningSecureService: V1MiningOperationsAdapter
     public targetMiningOperation: V1MiningOperationDto
     // NIN02
     public authenticationService: AuthenticationServicesAdapter
@@ -33,6 +35,11 @@ export class NIN01World extends World {
     public esiTypeInformationResponse: V1EsiTypeDto
     public region: number
     public esiMarketDataResponse: V1MarketDataDto
+    // NIN28
+    public characterController : V1CharacterController
+    public esiAssetsResponse: V1AssetDto[]
+    public esiBlueprintsResponse: V1BlueprintDto[]
+
 
     constructor(options) {
         super(options)
@@ -47,8 +54,9 @@ export class NIN01World extends World {
         this.httpService = this.appModule.get(HttpService)
         this.configuration = this.appModule.get(ConfigService)
 
-        this.miningOperationsController = this.appModule.get(V1MiningOperationsController)
+        this.miningOperationsController = this.appModule.get(V1IndustryController)
         this.universeController = this.appModule.get(V1EsiUniverseController)
-        this.esiMiningSecureService = new V1MiningOperationsAdapter(this.httpService, this.configuration)
+        this.characterController= this.appModule.get(V1CharacterController)
+        this.esiSecureDataService = this.appModule.get(ESIDataServicesPort)
     }
 }
