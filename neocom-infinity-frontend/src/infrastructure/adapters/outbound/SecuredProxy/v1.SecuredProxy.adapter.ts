@@ -4,6 +4,7 @@ import { SecuredServicesPort } from 'src/infrastructure/ports/SecuredServices.po
 import { ApiMiningOperationsTypedRequest } from './typedrequests/ApiMiningOperations.typedrequest'
 import { ApiBlueprintsTypedRequest } from './typedrequests/ApiBlueprints.typedrequest'
 import { HttpClient } from '@angular/common/http'
+import { Injectable } from '@angular/core'
 
 /**
  * This adapter will collect the backend data transformation endpoints that encapsulate data provided by ESI under the authorization token.
@@ -11,6 +12,9 @@ import { HttpClient } from '@angular/common/http'
  *
  * Exceptions will be launched when the request is not successful and should be handled by the UI on a generic way using the Toaster.
  */
+@Injectable({
+    providedIn: 'root'
+})
 export class V1SecuredProxyAdapter implements SecuredServicesPort {
 	constructor(private readonly httpService: HttpClient) {}
 
@@ -23,7 +27,7 @@ export class V1SecuredProxyAdapter implements SecuredServicesPort {
 		})
 	}
 	// - B L U P R I N T S
-	v3_apiNeocomBlueprintsData(pilotId: number): Observable<V1BlueprintDto[]> {
+	v3_apiNeocomBlueprintsData(token: string): Observable<V1BlueprintDto[]> {
 		const apiTypedRequest: ApiBlueprintsTypedRequest = new ApiBlueprintsTypedRequest({ token: 'token' }).build()
 		return this.httpService.get<V1BlueprintDto[]>(apiTypedRequest.request, {
 			headers: apiTypedRequest.options.headers,

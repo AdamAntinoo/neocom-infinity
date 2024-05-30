@@ -2,11 +2,13 @@ import { HttpHeaders } from '@angular/common/http'
 
 import { BACKEND_LINKS } from '@env/PlatformConstants'
 import { AngularBaseTypedRequest } from '@adapter/network/AngularBase.typedrequest'
+import { ESI_CONSTANTS } from 'neocom-domain'
 
 export interface BlueprintsTypedRequestParameters {
 	token
 }
 export class ApiBlueprintsTypedRequest extends AngularBaseTypedRequest {
+    public requestAge:number = 3600
 	constructor(
 		private readonly parameters: BlueprintsTypedRequestParameters,
 	) {
@@ -14,7 +16,7 @@ export class ApiBlueprintsTypedRequest extends AngularBaseTypedRequest {
 	}
 
     protected prepareRequest(): void {
-		this.request = BACKEND_LINKS.BACKEND_BLUEPRINTS_LINK + '-session-id'
+		this.request = ESI_CONSTANTS.BACKEND_ESI_V3_PREFIX +BACKEND_LINKS.BACKEND_BLUEPRINTS_LINK + '-session-id'
 		console.log('prepare->request->' + this.request)
 	}
 	protected prepareOptions(): void {
@@ -29,7 +31,7 @@ export class ApiBlueprintsTypedRequest extends AngularBaseTypedRequest {
 		}
 	}
 	protected prepareBody(): void {
-		throw new Error('Method not implemented.')
+		return undefined
 	}
     public build(): ApiBlueprintsTypedRequest {
 		this.prepare()

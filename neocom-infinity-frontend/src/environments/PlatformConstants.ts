@@ -11,7 +11,9 @@ export const PlatformConstants = {
     APPTITLE: 'NeoCom Infinity',
 }
 export const BACKEND_LINKS = Object.freeze({
-    BACKEND_MINING_OPERATIONS_LINK: '/nin/v1/character/miningoperations'
+    BACKEND_MINING_OPERATIONS_LINK: '/api/v3/character/miningoperations',
+    BACKEND_BLUEPRINTS_LINK: 'character/blueprints/session/',
+    BACKEND_ASSETS_LINK: '/api/v3/character/assets/session'
 })
 export const STORAGE_LINKS = Object.freeze({
     JWTTOKEN_KEY: '-JWTTOKEN_KEY-',

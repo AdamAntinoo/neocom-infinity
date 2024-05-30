@@ -1,11 +1,12 @@
 import { UnsecuredProxy } from "@adapter/outbound/UnsecuredProxy/V1.UnsecuredProxy.adapter";
 import { Injectable } from "@angular/core";
+import { V1BlueprintItem } from "@app/industry/domain/v1.BlueprintItem.domain";
 import { V1MarketData } from "@domain/esi/V1.MarketData.domain";
 import { V1Stack } from "@domain/esi/V1.Stack.domain";
 import { V2UniverseType } from "@domain/esi/V2.UniverseType.domain";
 import { V1SpaceLocation } from "@domain/esi/v1.SpaceLocation.domain";
 import { V3MiningOperation } from "@domain/industry/V3.MiningOperation.domain";
-import { Record, V1EsiTypeDto, V1MarketDataDto, V1MiningOperationDto, V1SpaceLocationDto, V1StackDto } from "neocom-domain";
+import { Record, V1BlueprintDto, V1EsiTypeDto, V1MarketDataDto, V1MiningOperationDto, V1SpaceLocationDto, V1StackDto } from "neocom-domain";
 
 @Injectable({
     providedIn: 'root'
@@ -77,6 +78,18 @@ export class BackendFactory {
             case 'SpaceLocationDto': {
                 console.log('BackendFactory>case spaceLocation->' + JSON.stringify(backendData))
                 return new V1SpaceLocation(backendData)
+            }
+            case 'BlueprintDto': {
+                console.log('BackendFactory>case blueprint->' + JSON.stringify(backendData))
+                const blueprint : V1BlueprintDto = backendData as V1BlueprintDto
+                const typeDto = await this.resolver.apiv3_GetUnsecuredLink<V1EsiTypeDto>(blueprint.typeLink)
+                const type = await this.construct(typeDto)
+                const storageLocationDto = await this.resolver.apiv3_GetUnsecuredLink<V1SpaceLocationDto>(blueprint.storageLocation.locationLink)
+                const storageLocation=await this.construct(storageLocationDto)
+                return new V1BlueprintItem.Builder(backendData)
+                    .withType(type)
+                    .withStorageLocation(storageLocation, blueprint.storageLocation.locationType)
+                    .build()
             }
         }
     }
