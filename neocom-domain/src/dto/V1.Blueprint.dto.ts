@@ -28,6 +28,7 @@ export class V1BlueprintDto extends Record {
 	public materialEfficiency: number = 0
 	public timeEfficiency: number = 0
 	public runs: number = 1
+	public identicalQuantity: number = 1
 	public original: boolean = false
 
 	public isIdentical(blueprint: V1BlueprintDto): boolean {

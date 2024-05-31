@@ -17,7 +17,8 @@ describe('USECASE CapsuleerBlueprintsUseCaseInput [Module: Application.UseCases]
 				ConfigService,
 				{ provide: ESIDataServicesPort, useClass: V1ESISecureDataAdapter },
 				{
-					provide: HttpService, useValue: {
+					provide: HttpService,
+					useValue: {
 						get: (request: string) => {
 							console.log('method->' + 'GET')
 							console.log('request->' + request)
@@ -25,8 +26,9 @@ describe('USECASE CapsuleerBlueprintsUseCaseInput [Module: Application.UseCases]
 								observer.next()
 							})
 						},
-					}
-				}]
+					},
+				},
+			],
 		}).compile()
 
 		dataServices = await moduleRef.resolve(ESIDataServicesPort)
@@ -39,7 +41,7 @@ describe('USECASE CapsuleerBlueprintsUseCaseInput [Module: Application.UseCases]
 		})
 	})
 	describe('endpoints phase', () => {
-		test('when request for assets then return a list of character assets', async () => {
+		test('when request for blueprints then return a list of character blueprints', async () => {
 			expect(useCase).toBeDefined()
 			const input: CapsuleerBlueprintsUseCaseInput = {
 				jwt: '-jwt-token-',
@@ -51,7 +53,7 @@ describe('USECASE CapsuleerBlueprintsUseCaseInput [Module: Application.UseCases]
 				},
 				capsuleerId: 32,
 			}
-			const assets = new Promise<GetCharactersCharacterIdBlueprints200Ok[]>(resolve => {
+			const blueprints = new Promise<GetCharactersCharacterIdBlueprints200Ok[]>(resolve => {
 				resolve([
 					{
 						item_id: 1004406235971,
@@ -75,7 +77,7 @@ describe('USECASE CapsuleerBlueprintsUseCaseInput [Module: Application.UseCases]
 					},
 				])
 			})
-			jest.spyOn(dataServices, 'getCharactersCharacterIdBlueprints').mockImplementation(() => assets)
+			jest.spyOn(dataServices, 'getCharactersCharacterIdBlueprints').mockImplementation(() => blueprints)
 
 			const sut: Promise<V1BlueprintDto[]> = useCase.getBlueprints(input)
 			expect(sut).toBeDefined
@@ -89,6 +91,71 @@ describe('USECASE CapsuleerBlueprintsUseCaseInput [Module: Application.UseCases]
 				expect(response[0].materialEfficiency).toEqual(10)
 				expect(response[0].timeEfficiency).toEqual(20)
 				expect(response[0].runs).toEqual(-1)
+				expect(response[0].identicalQuantity).toEqual(1)
+				expect(response[0].original).toBeTruthy()
+			})
+		})
+		test('when request for blueprints then return a list of character blueprints with identical characteristics', async () => {
+			expect(useCase).toBeDefined()
+			const input: CapsuleerBlueprintsUseCaseInput = {
+				jwt: '-jwt-token-',
+				token: {
+					scp: [''],
+					sub: 'string',
+					tenant: 'string',
+					name: 'string',
+				},
+				capsuleerId: 32,
+			}
+			const blueprints = new Promise<GetCharactersCharacterIdBlueprints200Ok[]>(resolve => {
+				resolve([
+					{
+						item_id: 1004406235971,
+						location_flag: 'Hangar',
+						location_id: 60006907,
+						material_efficiency: 10,
+						quantity: -1,
+						runs: -1,
+						time_efficiency: 20,
+						type_id: 785,
+					},
+					{
+						item_id: 1004406235972,
+						location_flag: 'Hangar',
+						location_id: 60006907,
+						material_efficiency: 10,
+						quantity: -1,
+						runs: -1,
+						time_efficiency: 20,
+						type_id: 785,
+					},
+					{
+						item_id: 1004406235973,
+						location_flag: 'Hangar',
+						location_id: 60006907,
+						material_efficiency: 10,
+						quantity: -1,
+						runs: -1,
+						time_efficiency: 20,
+						type_id: 785,
+					},
+				])
+			})
+			jest.spyOn(dataServices, 'getCharactersCharacterIdBlueprints').mockImplementation(() => blueprints)
+
+			const sut: Promise<V1BlueprintDto[]> = useCase.getBlueprints(input)
+			expect(sut).toBeDefined
+			await sut.then((response: V1BlueprintDto[]) => {
+				expect(response.length).toBe(1)
+				expect(response[0]).toBeDefined()
+				expect(response[0] instanceof V1BlueprintDto).toBeTruthy()
+				expect(response[0].id).toEqual(1004406235971)
+				expect(response[0].typeLink).toEqual('/api/v3/neocom/universe/types/785')
+				expect(response[0].storageLocation).toBeDefined()
+				expect(response[0].materialEfficiency).toEqual(10)
+				expect(response[0].timeEfficiency).toEqual(20)
+				expect(response[0].runs).toEqual(-1)
+				expect(response[0].identicalQuantity).toEqual(3)
 				expect(response[0].original).toBeTruthy()
 			})
 		})

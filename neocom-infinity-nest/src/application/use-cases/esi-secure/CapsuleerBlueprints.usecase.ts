@@ -15,9 +15,18 @@ declare namespace CapsuleerBlueprintsUseCase {
 	export type Request = CapsuleerBlueprintsUseCaseInput
 	export type Response = Promise<V1BlueprintDto>
 }
+/**
+ * The use case starts with a list of the character blueprints as a raw data array where the items are instances of V1BlueprintDto. This has the ESI
+ * data representation , then to simplify backend requests and UI presentation we should pack all identical blueprints that at the ESI representation
+ * are always singletons with a 1 quantity into Stacks of identical blueprints. This is a simplification of the ESI data representation of a
+ * blueprint.
+ *
+ * The packiing should create a new V1BlueprintDto for each unique blueprint and set the identicalQuantity property to the number of identical
+ * blueprints.
+ */
 @Injectable()
 export class CapsuleerBlueprintsUseCase {
-	constructor(private readonly esiSecureAdapter: ESIDataServicesPort) { }
+	constructor(private readonly esiSecureAdapter: ESIDataServicesPort) {}
 
 	public async getBlueprints(input: CapsuleerBlueprintsUseCaseInput): Promise<V1BlueprintDto[]> {
 		const esiBlueprints: GetCharactersCharacterIdBlueprints200Ok[] = await this.esiSecureAdapter.getCharactersCharacterIdBlueprints(
@@ -28,23 +37,31 @@ export class CapsuleerBlueprintsUseCase {
 	}
 	private convertBlueprints(esiBlueprints: GetCharactersCharacterIdBlueprints200Ok[]): Promise<V1BlueprintDto[]> {
 		return new Promise<V1BlueprintDto[]>(resolve => {
-			const transformedBlueprints: V1BlueprintDto[] = []
+			let transformedBlueprints: V1BlueprintDto[] = []
 			for (const blueprint of esiBlueprints) {
 				const storageLocation: V1StorageLocationDto = new V1StorageLocationDto.Builder()
 					.withLocationType(blueprint.location_flag)
 					.withLocation(blueprint.location_id)
 					.build()
-				transformedBlueprints.push(
-					new V1BlueprintDto.Builder()
-						.withId(blueprint.item_id)
-						.withTypeLink(blueprint.type_id)
-						.withEfficiency(blueprint.material_efficiency, blueprint.time_efficiency)
-						.withStorageLocation(storageLocation)
-						.withRuns(blueprint.runs)
-						.build(),
-				)
+				const blueprintDto: V1BlueprintDto = new V1BlueprintDto.Builder()
+					.withId(blueprint.item_id)
+					.withTypeLink(blueprint.type_id)
+					.withEfficiency(blueprint.material_efficiency, blueprint.time_efficiency)
+					.withStorageLocation(storageLocation)
+					.withRuns(blueprint.runs)
+					.build()
+				transformedBlueprints = this.packBlueprint(blueprintDto, transformedBlueprints)
 			}
 			resolve(transformedBlueprints)
 		})
+	}
+	private packBlueprint(blueprintDto: V1BlueprintDto, transformedBlueprints: V1BlueprintDto[]): V1BlueprintDto[] {
+		const existingBlueprint = transformedBlueprints.find(bp => bp.isIdentical(blueprintDto))
+		if (existingBlueprint) {
+			existingBlueprint.identicalQuantity++
+		} else {
+			transformedBlueprints.push(blueprintDto)
+		}
+		return transformedBlueprints
 	}
 }

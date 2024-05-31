@@ -6,7 +6,6 @@ import { Injectable, Logger } from '@nestjs/common'
 
 import { ESIDataServicesPort } from '@App/ports/ESIDataServices.port'
 import {
-	BaseTypedRequest,
 	GetCharactersCharacterIdAssets200Ok,
 	GetCharactersCharacterIdBlueprints200Ok,
 	GetCharactersCharacterIdMining200Ok,
@@ -17,6 +16,7 @@ import {
 import { MiningOperationsTypedRequest } from './typedrequests/MiningOperations.typedrequest'
 import { AssetsTypedRequest } from './typedrequests/Assets.typedrequest'
 import { BlueprintsTypedRequest } from './TypedRequests/Blueprints.typedreques'
+import { BaseTypedRequest } from './TypedRequests/Base.typedrequest'
 
 export interface EsiSecureAdapterInput {
 	characterId: number

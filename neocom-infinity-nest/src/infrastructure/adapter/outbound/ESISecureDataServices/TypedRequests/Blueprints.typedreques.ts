@@ -1,6 +1,6 @@
 import { ConfigService } from '@nestjs/config'
 import { AxiosHeaders } from 'axios'
-import { BaseTypedRequest } from 'neocom-domain'
+import { BaseTypedRequest } from './Base.typedrequest'
 
 export interface AssetsTypedRequestParameters {
 	characterId
@@ -37,6 +37,9 @@ export class BlueprintsTypedRequest extends BaseTypedRequest {
 		this.options = {
 			headers: headers,
 		}
+	}
+	protected preparePayload(): void {
+		this.payload = {}
 	}
 	public build(): BlueprintsTypedRequest {
 		this.prepare()
