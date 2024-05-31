@@ -48,8 +48,9 @@ import { V1MiningOperationsPageComponent } from './industry/pages/v1-mining-oper
 import { V1MiningOperationsPanelComponent } from './industry/panels/v1-miningoperations-panel/v1-miningoperations-panel.component'
 import { RendersModule } from './modules/renders/renders.module'
 import { V1BlueprintListPageComponent } from './industry/pages/v1-blueprint-list-page/v1-blueprint-list-page.component'
-import { V1BlueprintCategoriesPanel } from './industry/panels/v1-blueprint-categories/v1-blueprint-categories.component';
-import { BlueprintToCategoryListUseCase } from './usecases/BlueprintToCategoryList.usecase';
+import { V1BlueprintCategoriesPanel } from './industry/panels/v1-blueprint-categories/v1-blueprint-categories.component'
+import { BlueprintToCategoryListUseCase } from './use-cases/BlueprintToCategoryList.usecase'
+import { V1BlueprintBOMPanelComponent } from './modules/industry/manufacture/panels/v1-blueprint-bompanel/v1-blueprint-bompanel.component'
 registerLocaleData(localeEs)
 
 @NgModule({
@@ -86,18 +87,19 @@ registerLocaleData(localeEs)
 		// - ELEMENTS ON THE FLY
 		V1MiningOperationsPageComponent,
 		V1MiningOperationsPanelComponent,
-        V1BlueprintListPageComponent,
+		V1BlueprintListPageComponent,
 		V1BlueprintCategoriesPanel,
- 	],
+        V1BlueprintBOMPanelComponent
+	],
 	providers: [
 		// - SERVICES
-        BlueprintToCategoryListUseCase,
-        { provide: AppStoreService, useClass: AppStoreService },
+		BlueprintToCategoryListUseCase,
+		{ provide: AppStoreService, useClass: AppStoreService },
 		{ provide: UniverseService, useClass: UniverseService },
 		{ provide: BackendService, useClass: BackendService },
 		{ provide: AuthenticationService, useClass: AuthenticationService },
 	],
 	bootstrap: [AppComponent],
-	exports: [V1BlueprintCategoriesPanel],
+	exports: [],
 })
 export class AppModule {}

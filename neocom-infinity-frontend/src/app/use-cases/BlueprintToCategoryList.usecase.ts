@@ -50,11 +50,3 @@ export class BlueprintToCategoryListUseCase {
 		return undefined
 	}
 }
-function downloadBlueprintCategories(characterId: number): Observable<V1BlueprintCategoryContainer[]> {
-	const singleCategory = new V1BlueprintCategoryContainer() // Assuming V1Category can be instantiated like this
-	console.log(singleCategory)
-	// Set properties of singleCategory as needed
-	return of([singleCategory]).pipe(
-		delay(1000), // Delay the emission by 1000 milliseconds (1 second)
-	)
-}

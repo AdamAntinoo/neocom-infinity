@@ -19,6 +19,13 @@
 * [STORY-NIF] Stack identical blueprints into a single blueprint item with multiple instances like a stack.
 * [STORY-NIF] Add a second panel to the right to show the detailed blueprint data for the selected blueprint.
 
+[EPIC-0.30] Research if it is possible to get backe the Processed Blueprint services.
+* [STORY-NIB] Activate the endpoint to retrieve the processed blueprints.
+* [STORY-NIB] Generate a mock for the Processed Blueprints output.
+* [STORY-NIN] Migrate the Processed Blueprint coce and use a two level service. The first level adapter will ge the data from a REST feeded second level adapter.
+
+[EPIC-0.30] NIF Aggragate the Blueprints by location.
+* [STORY-NIF] Create a new panel to show all blueprint locations. Mostly stations and under stations on Containers.
 
 
 *[EPIC-0.29] PROJECT update the published api into a web service and update the schemas for the DTOs.*

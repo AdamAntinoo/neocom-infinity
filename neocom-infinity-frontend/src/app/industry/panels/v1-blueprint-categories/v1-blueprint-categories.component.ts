@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core'
 import { V1BlueprintListPageComponent } from '@app/industry/pages/v1-blueprint-list-page/v1-blueprint-list-page.component'
 import { V1MiningOperationsPageComponent } from '@app/industry/pages/v1-mining-operations-page/V1MiningOperationsPage'
 import { AppStoreService } from '@app/services/appstore.service'
-import { BlueprintToCategoryListUseCase } from '@app/usecases/BlueprintToCategoryList.usecase'
+import { BlueprintToCategoryListUseCase } from '@app/use-cases/BlueprintToCategoryList.usecase'
 import { V1BlueprintCategoryContainer } from '@app/industry/domain/v1.BlueprintCategory.container'
 import { EsiCategory } from '@domain/esi/EsiCategory.esi'
 import { AppPanelComponent } from '@innovative/components/app-panel/app-panel.component'
@@ -23,7 +23,7 @@ export class V1BlueprintCategoriesPanel extends AppPanelComponent implements OnI
 		super()
 	}
 	public ngOnInit(): void {
-        console.log('>[V1AvailableBlueprintsPanelComponent.ngOnInit]')
+		console.log('>[V1AvailableBlueprintsPanelComponent.ngOnInit]')
 		this.setVariant(NCVariant.MY_BLUEPRINTS)
 		super.ngOnInit()
 		console.log('<[V1AvailableBlueprintsPanelComponent.ngOnInit]')
@@ -36,8 +36,8 @@ export class V1BlueprintCategoriesPanel extends AppPanelComponent implements OnI
 			this.useCase.execute({ token: '-now-defined-as-a-cookie' }).subscribe(categories => {
 				console.log('download completed')
 				this.completeDowload(categories)
-                const nodes = this.getNodes2Render()
-                console.log('nodes->' + JSON.stringify(nodes))
+				const nodes = this.getNodes2Render()
+				console.log('nodes->' + JSON.stringify(nodes))
 			}),
 		)
 	}
