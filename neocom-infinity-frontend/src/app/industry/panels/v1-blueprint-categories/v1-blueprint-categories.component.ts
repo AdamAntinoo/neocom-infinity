@@ -32,6 +32,8 @@ export class V1BlueprintCategoriesPanel extends AppPanelComponent implements OnI
 			this.useCase.execute({ token: '-now-defined-as-a-cookie' }).subscribe(categories => {
 				console.log('download completed')
 				this.completeDowload(categories)
+                const nodes = this.getNodes2Render()
+                console.log('nodes->' + JSON.stringify(nodes))
 			}),
 		)
 	}

@@ -6,7 +6,7 @@ export class V1BlueprintCategoryContainer extends NeoCom {
 	public jsonClass: string = 'BlueprintCategoryContainer'
 	public categoryId: number
 	public name: string
-	private blueprints: V1BlueprintItem[]
+	private blueprints: V1BlueprintItem[] = []
 
 	public constructor(values: Object = {}) {
 		super(values)
@@ -23,6 +23,7 @@ export class V1BlueprintCategoryContainer extends NeoCom {
 		return this.blueprints
 	}
 	public collaborate2View(): ICollaboration[] {
-		return this.blueprints
+		if (this.isExpanded()) return this.blueprints
+		else return [this]
 	}
 }

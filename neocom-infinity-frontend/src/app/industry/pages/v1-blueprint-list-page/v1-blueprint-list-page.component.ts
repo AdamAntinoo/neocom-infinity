@@ -13,7 +13,7 @@ import { V1AvailableBlueprintsPanelComponent } from '../../../modules/industry/m
 	styleUrls: ['./v1-blueprint-list-page.component.scss'],
 })
 export class V1BlueprintListPageComponent {
-	@ViewChild(V1AvailableBlueprintsPanelComponent) availableBlueprints: V1AvailableBlueprintsPanelComponent
+	// @ViewChild(V1AvailableBlueprintsPanelComponent) availableBlueprints: V1AvailableBlueprintsPanelComponent
 	public self: V1BlueprintListPageComponent
 	public selectedBlueprint: ProcessedBlueprint
 

@@ -28,10 +28,7 @@ export class V1MiningOperationsAdapterService {
                 const resolveData: V3MiningOperation[] = []
                 for (let miningOperation of miningOperationList) {
                     const operation: V3MiningOperation = await this.resolvePromise(miningOperation)
-                    // operation.then((operation: V3MiningOperation) => {
-                    // console.log('RESULTING OPERATION->' + JSON.stringify(operation))
                     resolveData.push(operation)
-                    // })
                 }
                 return resolveData
             }))
