@@ -66,10 +66,15 @@
   <div class="insets row">
     <img class="neocom-icon iconsize-60" src="{{getTypeIconUrl()}}">
     <div class="separator-4"></div>
-    <div class="column complete">
+    <div class="row">
       <div cy-name="blueprintName" class="field">
         <span cy-field-label="blueprintName" class="label">BLUEPRINT NAME</span><br>
-        <span cy-field-value="blueprintName">blueprintname</span>
+        <span cy-field-value="blueprintName">{{getBlueprintName()}}</span>
+      </div>
+      <div class="separator-4"></div>
+      <div cy-name="identicalQuantity" class="field">
+        <span cy-field-label="identicalQuantity" class="label">IDENTICALS</span><br>
+        <span cy-field-value="identicalQuantity" class="right">{{getIdenticalsQuantity()}}</span>
       </div>
     </div>
   </div>

@@ -60,4 +60,5 @@ Feature: [EPIC-0.29] NIF Page review and change to show the list of blueprints.
     When the target is clicked
     Given the target is the panel of type "blueprint-categories"
     When the target the "blueprint" with id "1005458706867"
-    Then field named "blueprintName" with label "BLUEPRINT NAME" has contents "blueprintname"
+    Then field named "blueprintName" with label "BLUEPRINT NAME" has contents "Massive Scordite"
+    And field named "identicalQuantity" with label "IDENTICALS" has contents "12"

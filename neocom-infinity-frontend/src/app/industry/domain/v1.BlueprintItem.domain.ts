@@ -11,6 +11,7 @@ export class V1BlueprintItem extends NeoCom {
 	public storageLocationType: string
 	public materialEfficiency: number = 0
 	public timeEfficiency: number = 0
+	public identicalQuantity: number = 1
 	public runs: number = 1
 	public original: boolean = false
 
@@ -23,10 +24,12 @@ export class V1BlueprintItem extends NeoCom {
 	public getUniqueId(): string {
 		return this.id.toString()
 	}
-
-	// public getTypeIconUrl(): string {
-	// 	return `https://images.cui.com/6/${this.type.id}.png`
-	// }
+	public getTypeIconUrl(): string {
+		return this.type.getTypeIconUrl()
+	}
+	public getBlueprintName(): string {
+		return this.type.name
+	}
 
 	public static Builder = class Builder {
 		public inConstruction: V1BlueprintItem

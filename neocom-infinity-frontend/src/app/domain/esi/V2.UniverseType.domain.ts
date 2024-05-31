@@ -21,4 +21,8 @@ export class V2UniverseType extends NeoCom {
     }
 
     public decode(): void { }
+
+    public getTypeIconUrl(): string {
+        return `https://images.evetech.net/types/${this.typeId}/icon`
+    }
 }
