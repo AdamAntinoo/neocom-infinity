@@ -20,6 +20,14 @@ export class V1BlueprintItem extends NeoCom {
 		this.jsonClass = 'BlueprintItem'
 	}
 
+	public getUniqueId(): string {
+		return this.id.toString()
+	}
+
+	// public getTypeIconUrl(): string {
+	// 	return `https://images.cui.com/6/${this.type.id}.png`
+	// }
+
 	public static Builder = class Builder {
 		public inConstruction: V1BlueprintItem
 

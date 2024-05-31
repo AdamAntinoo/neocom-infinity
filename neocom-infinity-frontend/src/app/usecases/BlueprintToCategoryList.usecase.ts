@@ -36,7 +36,7 @@ export class BlueprintToCategoryListUseCase {
 		if (undefined === this.findCategory(blueprint.type.categoryId, data)) {
 			const category = new V1BlueprintCategoryContainer()
 			category.categoryId = blueprint.type.categoryId
-			category.name = blueprint.type.name
+			category.name = blueprint.type.categoryName
 			data.push(category)
 			category.addBlueprint(blueprint)
 		} else {

@@ -76,7 +76,7 @@ var PROXY_CONF = {
     "changeOrigin": true
   },
   "/api/v1/public/*": {
-    "target": "http://localhost:5215",
+    "target": "http://localhost:5235",
     "secure": false,
     "logLevel": "debug",
     "logProvider": logProvider,

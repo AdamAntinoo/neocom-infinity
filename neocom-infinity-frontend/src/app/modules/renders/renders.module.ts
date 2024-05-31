@@ -99,6 +99,7 @@ import { V1BlueprintCategoryRender } from '@app/industry/renders/v1-blueprint-ca
         V1LoyaltyOfferRenderComponent,
         V1MiningOperationRenderComponent,
         V1StackRenderComponent,
+        // V1BlueprintRenderComponent,
         // - PIPES
         IskScaledPipe,
         M3VolumePipe

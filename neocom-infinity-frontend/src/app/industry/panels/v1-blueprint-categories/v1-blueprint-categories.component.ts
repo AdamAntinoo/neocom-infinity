@@ -9,6 +9,7 @@ import { EsiCategory } from '@domain/esi/EsiCategory.esi'
 import { AppPanelComponent } from '@innovative/components/app-panel/app-panel.component'
 import { IRefreshable } from '@innovative/domain/interfaces/IRefreshable.interface'
 import { Observable, delay, of } from 'rxjs'
+import { NCVariant } from '@env/NeoComVariants'
 
 @Component({
 	selector: 'v1-blueprint-categories-panel',
@@ -22,7 +23,10 @@ export class V1BlueprintCategoriesPanel extends AppPanelComponent implements OnI
 		super()
 	}
 	public ngOnInit(): void {
-		this.refresh()
+        console.log('>[V1AvailableBlueprintsPanelComponent.ngOnInit]')
+		this.setVariant(NCVariant.MY_BLUEPRINTS)
+		super.ngOnInit()
+		console.log('<[V1AvailableBlueprintsPanelComponent.ngOnInit]')
 	}
 
 	public clean(): void {}

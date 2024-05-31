@@ -4,6 +4,33 @@
       "priority": 10,
       "request": {
         "method": "GET",
+        "urlPathTemplate": "/api/v1/public/server/status"
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "server": "tranquility",
+          "players": 26172,
+          "backendVersion": "0.20.0",
+          "SDEVersion": "20201231-APP",
+          "start_time": "2021-02-23T11:04:11.000Z",
+          "startAgo": "3 hours, 28 minutes and 33 seconds ago",
+          "nextDowntime": "Downtime in 19 hours, 27 minutes and 15 seconds"
+        },
+        "headers": {
+          "Content-Type": "application/json",
+          "Allow": "OPTIONS, GET",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Origin, Authorization, Accept, Accept-Encoding, X-Auth-Token, x-app-signature, xapp-authentication-check, xapp-name, xapp-platform, xapp-signature, xapp-version",
+          "Access-Control-Allow-Methods": "POST, GET, OPTIONS, DELETE, PUT, PATCH",
+          "cache-control": "public"
+        }
+      }
+    },
+    {
+      "priority": 10,
+      "request": {
+        "method": "GET",
         "urlPathTemplate": "/api/v1/neocom/pilots/{pilotId}"
       },
       "response": {

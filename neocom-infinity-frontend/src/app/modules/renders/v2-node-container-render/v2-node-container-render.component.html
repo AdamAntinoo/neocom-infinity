@@ -35,6 +35,8 @@
             </v1-mining-operation>
             <v1-blueprint-category *ngIf="node.jsonClass === 'BlueprintCategoryContainer'" [container]="container" [node]="node" [variant]="variant">
             </v1-blueprint-category>
-        </div>
+            <v1-blueprint *ngIf="node.jsonClass === 'BlueprintItem'" [container]="container" [node]="node" [variant]="variant">
+            </v1-blueprint>
+     </div>
     </div>
 </div>

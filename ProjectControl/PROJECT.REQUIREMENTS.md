@@ -11,9 +11,13 @@
 
 [EPIC-0.29] NIF Page review and change to show the list of blueprints.
 * ***[STORY-NIF]*** Review the actual code to see if there is a page to display the character blueprints.
-* [STORY-NIF] Replace current page with blueprints with a new backend request and then classify them by Category.
-* [STORY-NIF] Create a Render for the different categories.
+* ***[STORY-NIF]*** Replace current page with blueprints with a new backend request and then classify them by Category.
+* ***[STORY-NIF]*** Create a Render for the different categories.
+* ***[STORY-NIF]*** Add Category expansion/collapse.
 * [STORY-NIF] Update the render for Blueprints.
+* [STORY-NIN] Add the type icon url to the generated DTO.
+* [STORY-NIF] Stack identical blueprints into a single blueprint item with multiple instances like a stack.
+* [STORY-NIF] Add a second panel to the right to show the detailed blueprint data for the selected blueprint.
 
 
 

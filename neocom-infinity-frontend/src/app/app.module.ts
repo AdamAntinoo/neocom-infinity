@@ -50,7 +50,8 @@ import { RendersModule } from './modules/renders/renders.module'
 import { V1StackRenderComponent } from './industry/renders/v1-stack-render/v1-stack-render.component'
 import { V1BlueprintListPageComponent } from './industry/pages/v1-blueprint-list-page/v1-blueprint-list-page.component'
 import { V1BlueprintCategoriesPanel } from './industry/panels/v1-blueprint-categories/v1-blueprint-categories.component';
-import { BlueprintToCategoryListUseCase } from './usecases/BlueprintToCategoryList.usecase'
+import { BlueprintToCategoryListUseCase } from './usecases/BlueprintToCategoryList.usecase';
+import { V1BlueprintRenderComponent } from './industry/renders/v1-blueprint-render/v1-blueprint-render.component'
 registerLocaleData(localeEs)
 
 @NgModule({

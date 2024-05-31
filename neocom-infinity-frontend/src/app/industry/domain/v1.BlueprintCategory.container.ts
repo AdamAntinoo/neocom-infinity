@@ -23,7 +23,13 @@ export class V1BlueprintCategoryContainer extends NeoCom {
 		return this.blueprints
 	}
 	public collaborate2View(): ICollaboration[] {
-		if (this.isExpanded()) return this.blueprints
-		else return [this]
+		let collaboration: NeoCom[] = []
+		// Process each Location for new collaborations.
+		collaboration.push(this)
+		if (this.isExpanded())
+			for (let node of this.blueprints) {
+				collaboration.push(node)
+			}
+		return collaboration
 	}
 }

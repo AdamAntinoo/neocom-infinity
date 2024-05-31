@@ -53,6 +53,7 @@ export class SupportService {
 		this.translationTable['planetary-system'] = 'v1-planetary-system'
 		this.translationTable['mining-operation'] = 'v1-mining-operation'
         this.translationTable['blueprint-category'] = 'v1-blueprint-category'
+        this.translationTable['blueprint'] = 'v1-blueprint'
 		// this.translationTable['request'] = 'v1-request'
 		// this.translationTable['coil'] = 'v1-coil'
 		// this.translationTable['build-countdown-timer'] = 'v1-build-countdown-timer'

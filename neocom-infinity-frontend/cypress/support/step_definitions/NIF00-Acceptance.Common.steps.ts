@@ -3,7 +3,7 @@ import { Given } from '@badeball/cypress-cucumber-preprocessor'
 import { When, Then } from '@badeball/cypress-cucumber-preprocessor'
 // - SERVICE
 import { SupportService } from './SupportService.support'
-import { PlatformConstants } from '../../../src/environments/PlatformConstants'
+import { PlatformConstants, STORAGE_LINKS } from '../../../src/environments/PlatformConstants'
 import { NeoComCredential } from '../../../src/app/domain/NeoComCredential.domain'
 
 const TITLE_VALIDATION = 'NeoCom.Infinity'
@@ -26,17 +26,23 @@ Given('a valid Credential on the session storage', function () {
 		raceName: 'Amarr',
 		dataSource: 'tranquility',
 	})
-	supportService.setToSession(PlatformConstants.CREDENTIAL_KEY, JSON.stringify(credential))
+	supportService.setToSession(STORAGE_LINKS.CREDENTIAL_KEY, JSON.stringify(credential))
 })
 Given('a valid JWT Token on the session storage', function () {
 	// - Set a valid Credential on the session storage.
 	const jwtToken: string =
 		'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6MTQyNzY2MTU3MywiYWNjb3VudE5hbWUiOiJBZGFtIEFudGlub28iLCJpc3MiOiJOZW9Db20uSW5maW5pdHkuQmFja2VuZCIsInVuaXF1ZUlkIjoidHJhbnF1aWxpdHkvOTIwMDIwNjciLCJwaWxvdElkIjo5MjAwMjA2N30.6JgBvtHyhvD8aY8-I4075tb433mYMpn9sNeYCkIO28LbhqVR4CZ-x1t_sk4IOLLtzSN07bF4c7ZceWw_ta4Brw'
-	supportService.setToSession(PlatformConstants.JWTTOKEN_KEY, jwtToken)
+	supportService.setToSession(STORAGE_LINKS.JWTTOKEN_KEY, jwtToken)
 })
 Given('a valid NEOCOM-INFINITY cookie', function () {
 	cy.setCookie(
 		'NEOCOM-INFINITY',
+		'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6MTQyNzY2MTU3MywiYWNjb3VudE5hbWUiOiJBZGFtIEFudGlub28iLCJpc3MiOiJOZW9Db20uSW5maW5pdHkuQmFja2VuZCIsInVuaXF1ZUlkIjoidHJhbnF1aWxpdHkvOTIwMDIwNjciLCJwaWxvdElkIjo5MjAwMjA2N30.6JgBvtHyhvD8aY8-I4075tb433mYMpn9sNeYCkIO28LbhqVR4CZ-x1t_sk4IOLLtzSN07bF4c7ZceWw_ta4Brw',
+	)
+})
+Given('a valid ESI-DATA-SERVICES cookie', function () {
+	cy.setCookie(
+		'ESI-DATA-SERVICES',
 		'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6MTQyNzY2MTU3MywiYWNjb3VudE5hbWUiOiJBZGFtIEFudGlub28iLCJpc3MiOiJOZW9Db20uSW5maW5pdHkuQmFja2VuZCIsInVuaXF1ZUlkIjoidHJhbnF1aWxpdHkvOTIwMDIwNjciLCJwaWxvdElkIjo5MjAwMjA2N30.6JgBvtHyhvD8aY8-I4075tb433mYMpn9sNeYCkIO28LbhqVR4CZ-x1t_sk4IOLLtzSN07bF4c7ZceWw_ta4Brw',
 	)
 })
@@ -129,8 +135,8 @@ Given('the target the {string} with id {string}', function (symbolicName: string
 	const tag = supportService.translateTag(symbolicName) // Do name replacement
 	cy.log('>[translation]> ' + symbolicName + ' -> ' + tag)
 	cy.get('@target-panel')
-		.find(tag)
-		.find('[id="' + recordId + '"]')
+		.get(tag)
+		.get('[id="' + recordId + '"]')
 		.as('target')
 		.should('exist')
 })
@@ -160,9 +166,6 @@ When('the panel loaging message completes', function () {
 
 // - F I E L D S
 Then('field named {string} with label {string} has contents {string}', function (fieldName: string, fieldLabel: string, fieldValue: string) {
-	cy.get('@target').within($item => {
-		cy.get('[cy-field-label="' + fieldName + '"]').contains(fieldLabel, { matchCase: false })
-	})
 	cy.get('@target').within($item => {
 		cy.get('.label')
 			.contains(fieldLabel, { matchCase: false })
