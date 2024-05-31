@@ -1,6 +1,6 @@
 {
   "name": "neonest",
-  "version": "0.28.1-7",
+  "version": "0.29.0-9",
   "description": "NeoCom Infinity Typescript backend server. Implemented with NestJS technology.",
   "author": "adamantinoo.git@gmail.com",
   "private": true,
@@ -35,7 +35,8 @@
     "acc:nin01": "npm run cucumber:prefix @NIN01",
     "acc:nin02": "npm run cucumber:prefix @NIN02",
     "acc:nin03": "npm run cucumber:prefix @NIN03",
-    "acc:nin28": "npm run cucumber:prefix @NIN28"
+    "acc:nin28": "npm run cucumber:prefix @NIN28",
+    "upgrade:neocom": "npm install --save neocom-domain"
   },
   "dependencies": {
     "@nestjs/axios": "^3.0.2",
@@ -48,7 +49,7 @@
     "@nestjs/schedule": "^4.0.1",
     "@sniptt/monads": "^0.5.10",
     "cookie-parser": "^1.4.6",
-    "neocom-domain": "^0.6.3",
+    "neocom-domain": "^0.6.5",
     "neocom-shared": "^0.0.1",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",

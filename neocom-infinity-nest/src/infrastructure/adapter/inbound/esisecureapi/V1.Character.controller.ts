@@ -4,9 +4,9 @@ import { JwtService } from '@nestjs/jwt'
 import { V1AssetDto } from 'neocom-domain'
 import { COOKIE_DEFINITIONS } from 'neocom-shared'
 import { AuthenticationTokenValidator } from '../validator/AuthenticationTokenValidator'
-import { EsiSecureUseCaseInputConstructor } from '@App/use-cases/esisecure/constructors/EsiSecureUseCaseInput.constuctor'
-import { CapsuleerAssetsUseCase } from '@App/use-cases/esisecure/CapsuleerAssets.usecase'
-import { CapsuleerBlueprintsUseCase, CapsuleerBlueprintsUseCaseInput } from '@App/use-cases/esisecure/CapsuleerBlueprints.usecase'
+import { EsiSecureUseCaseInputConstructor } from '@App/use-cases/esi-secure/constructors/EsiSecureUseCaseInput.constuctor'
+import { CapsuleerAssetsUseCase } from '@App/use-cases/esi-secure/CapsuleerAssets.usecase'
+import { CapsuleerBlueprintsUseCase, CapsuleerBlueprintsUseCaseInput } from '@App/use-cases/esi-secure/CapsuleerBlueprints.usecase'
 import { V1BlueprintDto } from 'neocom-domain'
 
 @Controller('/api/v3/neocom/character')

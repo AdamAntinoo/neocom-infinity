@@ -1,5 +1,5 @@
 import { Test } from '@nestjs/testing'
-import { CapsuleerMiningOperationsUseCase } from '@App/use-cases/esisecure/CapsuleerMiningOperationsUseCase'
+import { CapsuleerMiningOperationsUseCase } from '@App/use-cases/esi-secure/CapsuleerMiningOperationsUseCase'
 import { JwtService } from '@nestjs/jwt'
 import { V1MiningOperationDto } from 'neocom-domain/'
 import { ESIDataServicesPort } from '@App/ports/ESIDataServices.port'
