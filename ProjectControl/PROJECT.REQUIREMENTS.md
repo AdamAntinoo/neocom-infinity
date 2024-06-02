@@ -26,3 +26,6 @@
 
 
 bluepri
+
+[EPIC-0.30]
+* [STORY.NIB] Replace the old MarketData structures that are currently unusable by ahte new Fuzzwork MarketData structures.

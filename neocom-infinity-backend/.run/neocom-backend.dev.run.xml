@@ -1,17 +1,17 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="neocom-backend.dev" type="Application" factoryName="Application">
-    <option name="ALTERNATIVE_JRE_PATH" value="11-OpenJDK" />
+    <option name="ALTERNATIVE_JRE_PATH" value="11" />
     <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
     <envs>
       <env name="APPLICATION_DIRECTORY" value="/build/NeoCom.Infinity.Integration" />
       <env name="NEOCOM_BANNER_LOCATION" value="./build/resources/main/app-banner.txt" />
-      <env name="NEOCOM_DATABASE_URL" value="jdbc:postgresql://localhost:5281/postgres?user=neocom-user&amp;password=neocom-password" />
+      <env name="NEOCOM_DATABASE_URL" value="jdbc:postgresql://localhost:5255/neocom?user=neocom-user&amp;password=neocom-password" />
       <env name="PROFILE" value="development" />
-      <env name="PROPERTIES_DIRECTORY" value="/build/resources/main/properties-staging" />
-      <env name="REDIS_URL" value="redis://localhost:6379" />
+      <env name="PROPERTIES_DIRECTORY" value="/build/resources/main/properties-dev" />
+      <env name="REDIS_URL" value="redis://localhost:5250" />
       <env name="SDE_DATABASE_PATH" value="/build/resources/main/sde.db" />
       <env name="SPRING_DATASOURCE_PASSWORD" value="neocom-password" />
-      <env name="SPRING_DATASOURCE_URL" value="jdbc:postgresql://0.0.0.0:5281/postgres" />
+      <env name="SPRING_DATASOURCE_URL" value="jdbc:postgresql://0.0.0.0:5255/neocom" />
       <env name="SPRING_DATASOURCE_USERNAME" value="neocom-user" />
     </envs>
     <option name="MAIN_CLASS_NAME" value="org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendApplication" />

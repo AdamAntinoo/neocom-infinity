@@ -17,6 +17,9 @@
 		},
 		{
 			"path": "ProjectControl"
+		},
+		{
+			"path": "neocom-infinity-backend"
 		}
 	],
 	"settings": {}
