@@ -1,5 +1,6 @@
 package org.dimensinfin.eveonline.neocom.infinity.backend.industry.converter;
 
+import java.util.Objects;
 import javax.validation.constraints.NotNull;
 
 import org.dimensinfin.core.interfaces.Converter;
@@ -31,7 +32,9 @@ public class ProcessedBlueprintToSummaryConverter implements Converter<Processed
 				.withUID( this.uniqueId )
 				.withBlueprint( input.getBlueprint() )
 				.withOutput( input.getOutput() )
-				.withTradeStation( input.getOutputMarketData().getBestSellOrder().getStation() )
+				.withTradeStation( Objects.isNull( input.getOutputMarketData().getBestSellOrder() ) ?
+						input.getOutputMarketData().getRegionHub() :
+						input.getOutputMarketData().getBestSellOrder().getStation() )
 				.withManufactureCost( manufactureCost )
 				.withCostIndex( costIndex )
 				.build();
