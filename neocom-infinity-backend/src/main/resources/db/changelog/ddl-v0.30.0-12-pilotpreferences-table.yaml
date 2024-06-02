@@ -1,0 +1,47 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0_30_0_1201_neocom_create_pilotpreferences_table
+      author: NeoCom development team. Adam Antinoo (adamantinoo.git@gmail.com).
+      changes:
+        - createTable:
+            schemaName: neocom
+            tableName: PilotPreferences
+            columns:
+              - column:
+                  name: id
+                  type: varchar(32)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    updatable: false
+                  remarks: The unique property identifier.
+              - column:
+                  name: pilotId
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(300)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: stringValue
+                  type: varchar(300)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: numberValue
+                  type: float
+                  constraints:
+                    nullable: true
+              - column:
+                  name: creationTime
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: lastUpdateTime
+                  type: bigint
+                  constraints:
+                    nullable: false
