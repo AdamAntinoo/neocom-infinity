@@ -39,3 +39,9 @@
 
 [PENDING]
 * [STORY-NIN] Update the adapter definitions to use the new openapi definitions.
+
+
+bluepri
+
+[EPIC-0.30]
+* [STORY.NIB] Replace the old MarketData structures that are currently unusable by ahte new Fuzzwork MarketData structures.
