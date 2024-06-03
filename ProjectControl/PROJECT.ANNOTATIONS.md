@@ -20,7 +20,7 @@ Developments are mainly docused on Industry and on Market improvements and leavi
 
 # External Connections
 
-# 1. Authorization Flowa
+# 1. Authorization Flow
 The access tot ESO data requires to be authenticated on the Eve platform. This is authorized with a OAuth2 authentication flow. The ESI services have registered some application data to create this flow.
 
 The flow starts from the user interface with a customer request that initiates the authorization flow. We call the ***ESI login service*** (https://login.eveonline.com) with the application *unique code identifier* and the *callback URL* that should match what is configured for the registered application at ESI backend.
@@ -109,10 +109,10 @@ sequenceDiagram
 ```
 
 
-## 1. Industry
+# 2. Industry
 Industry is a key element on Eve Online and that is because is one of the most stable sources for ISK. It can be divided into two areas, Mining and Manufacturing. Recent changes on the Eve Online gameplay have added more mining functionalities that are worth to integrate on Infinity.
 
-## 1.1 Mining Operations
+## 2.1 Mining Operations
 Now Eve provides an endpoint to return the last ore mineral revocered by mining operations. This will make easy to see the progress on the mining schedule and budget.
 
 The **Mining Operations** activity is under the main dashboard on the **Industry** page under the Mining Operations activation button.
@@ -143,17 +143,67 @@ end
 
 The aggregation then will show the list of resources mined on that date and system. Ore data is already aggregated. The panel should also show some economic information about the expected value and volume of the panel aggregation. Check if the economic data is undertandable as a whole aggregate or if there should be also some calculation at the ore level.
 
-**[EPIC-0.21] Add Mining Operations page and functionality to see what is the input from mining.**
-* **[STORY-NIN]** The backend should get the ESI data and aggregate it by system and date. For each system-date pair we generate a single Mining Operation that will contain the list of resources mined for that combination.
-* **[STORY-NIN]** The backend should aggregate economic information to each of the ores on the mining operation. The economic data is the estimated value for the ore at the Amarr hub that is the predefined trading hub.
-* [STORY-NIF] Volumetrics can be calculated at the frontend. For each ore the type information provides volume information that can be aggregated by ore and by system-date pair.
-* **[STORY-NIF]** Date is on the format YYYY-MM-DD.
-* [STORY-NIF] System information should provide the Region->Constellation->System. The hover over each of the localtion path names should provide the location unique identifier.
-* [STORY-NIF] Ore box contents are still under definition. The expected content is the small icon for the ore, the ore name, the stack quantity the estimated economic value and the volume it occupies.
-* [STORY-NIF] system-date panel should report information for the date, the system location path and the selected trade hub where the economic data estimation is calculated. It should also show the global volume and the global economic estimated value.
+## 2.2 Market Data and impact on Manufacturing
+Being the manufacturing of items the other importat area on the Industry career, then we found that the access to Market Data and the ability to evaluate the cust/profit of any item or operation is a key element at the time to make decissions on the manufacturing process.
 
-## 2. Core
-### 2.1 ESI Item Type
+There are other market data sources besides the ESI Market set of endpoints. But first we need to define what is the important data to manage and most important how the location affects the data.
+
+There is not a single market place on Eve. There is the reference market at Jita xxx that since many years has been a main hub for reference but there are other importan hubs on other regions like Hek or Amarr.
+
+So to start we have the Jita refeence, then the main or capital hubs for each region and then the local markets on a system. Inside a single system there can be many markets because the constructions of private stations or outposts allows to focus on market services that vcan lower the taxes and thus atract more market operations.
+
+So when we want to evaluate the manufacture cost of an items, what are the main factors to take on account to create a comparison index value?
+* We have the item location that will select the current system as the most close Market Hub.
+* Then we have the Region Market Hub that should be calculated the number of jumps from the item current location as an additional comparison value.
+* Finally the other main hubs and the main reference market at Jita and Perimeter.
+
+### 2.2.1 Market Data Sources. ESI.
+The ESI Market Data source provides the most up to date data but only for selected regions. There is a huge amount of data to process so this is suitable for backend background processing and caching.
+
+The data from ESI is provides as a set of market entries in the like of this sample. These entries are all the market opwrations on a region for a specific item.
+```
+[
+  {
+    "duration": 90,
+    "is_buy_order": true,
+    "issued": "2024-05-10T05:32:37Z",
+    "location_id": 60003760,
+    "min_volume": 1,
+    "order_id": 6769028876,
+    "price": 11.11,
+    "range": "station",
+    "system_id": 30000142,
+    "type_id": 17464,
+    "volume_remain": 17604391,
+    "volume_total": 20000000
+  },
+  {
+    "duration": 90,
+    "is_buy_order": true,
+    "issued": "2024-06-01T19:01:41Z",
+    "location_id": 60003760,
+    "min_volume": 1,
+    "order_id": 6788478493,
+    "price": 12.65,
+    "range": "station",
+    "system_id": 30000142,
+    "type_id": 17464,
+    "volume_remain": 9355681,
+    "volume_total": 10000000
+  }
+]
+```
+Where the buy/sell order is defined by the *is_buy_order* field and the location by the *system_id* and *location_id* identifiers.
+
+We can extract the first factor from fontering the output for the specific system where the item is located. This system will become the closest Market Hub for the item.
+
+The way to do the processing for this first factor will be to, knwing the item system, obtain the region where that systems is located. Then request ESI the market operations for that region and then filter out only the ones for that system.
+
+A system can have multiple locations, for example different stations and structures where market operations can be issued. But system 
+
+
+# 3. Core
+## 2.1 ESI Item Type
 This is an example of the heavy hierarchical data distribution inside ESI. Just ot get all the basic information about a type inside the Eve universe we need to get access to the Item, then to the Group and finally to the Category. This just is to get basic information, additional data like Market Data and other interecting informaiton should be accessed by more endpoints.
 
 **[EPIC-0.22] Create aggregated data models for the EsiType and complementaty data.***

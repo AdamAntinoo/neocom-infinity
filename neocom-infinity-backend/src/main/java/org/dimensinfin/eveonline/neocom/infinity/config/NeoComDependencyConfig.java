@@ -13,6 +13,8 @@ import org.dimensinfin.eveonline.neocom.database.repositories.CredentialReposito
 import org.dimensinfin.eveonline.neocom.database.repositories.PilotPreferencesRepository;
 import org.dimensinfin.eveonline.neocom.database.repositories.SDERepository;
 import org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendDependenciesModule;
+import org.dimensinfin.eveonline.neocom.infinity.app.ports.MarketDataPort;
+import org.dimensinfin.eveonline.neocom.infinity.infrastructure.adapters.outbound.MarketData.MarketDataAdapter;
 import org.dimensinfin.eveonline.neocom.infinity.service.RedisDataStoreImplementation;
 import org.dimensinfin.eveonline.neocom.infinity.service.SBConfigurationService;
 import org.dimensinfin.eveonline.neocom.infinity.service.SBFileSystemService;
@@ -153,5 +155,11 @@ public class NeoComDependencyConfig {
 	public PilotPreferencesRepository dependency_25_PilotPreferencesRepository() {
 		LogWrapper.enter();
 		return this.injector.getInstance( PilotPreferencesRepository.class );
+	}
+
+	@Bean
+	public MarketDataPort dependency_26_MarketDataPort() {
+		LogWrapper.enter();
+		return this.injector.getInstance( MarketDataAdapter.class );
 	}
 }

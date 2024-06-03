@@ -1,0 +1,1 @@
+curl -v --request GET --location "http://market.fuzzwork.co.uk/aggregates?station=30000142&types=17464"
