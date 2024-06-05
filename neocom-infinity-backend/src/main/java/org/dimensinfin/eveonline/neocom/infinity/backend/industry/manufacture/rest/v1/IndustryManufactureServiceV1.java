@@ -47,7 +47,7 @@ public class IndustryManufactureServiceV1 extends NeoComAuthenticatedService {
 					.map( blueprint -> new ProcessedBlueprintToSummaryConverter(
 							this.dataStoreService.generateBlueprintCostIndexUniqueId( pilotId ) +
 									REDIS_SEPARATOR +
-									blueprint.getBlueprintTypeId() )
+									blueprint.getTypeId() )
 							.convert( blueprint )
 					)
 					.collect( Collectors.toList() );

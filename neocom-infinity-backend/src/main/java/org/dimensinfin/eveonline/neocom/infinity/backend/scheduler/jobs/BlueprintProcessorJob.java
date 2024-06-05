@@ -13,8 +13,8 @@ import org.dimensinfin.eveonline.neocom.domain.EsiType;
 import org.dimensinfin.eveonline.neocom.domain.space.SpaceLocation;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdBlueprints200Ok;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetMarketsRegionIdOrders200Ok;
+import org.dimensinfin.eveonline.neocom.industry.domain.ProcessedBlueprint;
 import org.dimensinfin.eveonline.neocom.industry.domain.Resource;
-import org.dimensinfin.eveonline.neocom.infinity.app.domain.ProcessedBlueprintDto;
 import org.dimensinfin.eveonline.neocom.infinity.app.functional.BlueprintPack;
 import org.dimensinfin.eveonline.neocom.infinity.app.functional.LocationLookup;
 import org.dimensinfin.eveonline.neocom.market.MarketData;
@@ -109,7 +109,7 @@ public class BlueprintProcessorJob extends NeoComBackendJob {
 						//						final EsiType blueprint = this.jobServicePackager.getResourceFactory().generateType4Id( blueprintType );
 						//						final MarketData blueprintMarketData = this.jobServicePackager.getMarketService()
 						//								.getMarketConsolidatedByRegion4ItemId( defaultRegionId, blueprint.getTypeId() );
-						return ProcessedBlueprintDto.builder()
+						return ProcessedBlueprint.builder()
 								.typeId( blueprintTypeId )
 								.blueprintItem( blueprint )
 								.location( bpLoc.getLocation().get() )
@@ -117,6 +117,8 @@ public class BlueprintProcessorJob extends NeoComBackendJob {
 								.timeEfficiency( bpLoc.getBlueprint().getTimeEfficiency() )
 								.outputTypeId( outputModuleId )
 								.outputItem( outputModule )
+								.manufactureCost( bomAtRegionCost )
+								.outputCost( outputModuleAtRegionCost )
 								.bom( bom )
 								.index( index )
 								.build();
@@ -141,9 +143,11 @@ public class BlueprintProcessorJob extends NeoComBackendJob {
 						//								.withBOM( bomPriced )
 						//								.build();
 					} )
-					.forEach( pbp -> pbp.toString() );
-			//					.forEach( blueprint -> this.jobServicePackager.getDataStoreService()
-			//							.updateProcessedBlueprint( this.credential.getAccountId(), blueprint ) );
+					.forEach( blueprint -> {
+						LogWrapper.info( "Processed Blueprint->" + blueprint.toString() );
+						this.jobServicePackager.getDataStoreService()
+								.updateProcessedBlueprint( this.credential.getAccountId(), blueprint );
+					} );
 		} catch (
 				final Exception rte) {
 			LogWrapper.error( rte );

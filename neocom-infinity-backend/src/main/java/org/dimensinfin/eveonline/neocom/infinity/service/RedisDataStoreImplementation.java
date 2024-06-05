@@ -57,7 +57,7 @@ public class RedisDataStoreImplementation implements IDataStore {
 	public GetUniverseTypesTypeIdOk accessEsiItem4Id( final int typeId, final ESIDataService.EsiItemPassThrough esiItemPassThrough ) {
 		final RBucket<GetUniverseTypesTypeIdOk> esiIBucket = this.redisClient
 				.getBucket( this.generateEsiItemUniqueId( typeId ) );
-		if (null == esiIBucket.get()) {
+		if ( null == esiIBucket.get() ) {
 			final GetUniverseTypesTypeIdOk type;
 			try {
 				type = NeoObjects.requireNonNull( esiItemPassThrough.downloadEsiType( typeId ), "ESI Type detected null after downloading." );
@@ -73,9 +73,9 @@ public class RedisDataStoreImplementation implements IDataStore {
 	}
 
 	/**
-	 * Reads the LSO from the map cache corresponding to the selected region. The uses the type to locate the map record.
-	 * If the LSO is not found then it will use the callback to get a fresh value.
-	 * LSO entries are time lived and after a time they are removed from the Map so new callbacks should be issued.
+	 * Reads the LSO from the map cache corresponding to the selected region. The uses the type to locate the map record. If the LSO is not found then
+	 * it will use the callback to get a fresh value. LSO entries are time lived and after a time they are removed from the Map so new callbacks
+	 * should be issued.
 	 *
 	 * @param regionId                    the region where to find the orders.
 	 * @param typeId                      the type identifier for the orders to search.
@@ -89,7 +89,7 @@ public class RedisDataStoreImplementation implements IDataStore {
 		final String uniqueLSOKey = this.generateLowestSellOrderUniqueId( regionId );
 		final RMapCache<String, MarketOrder> LSOMap = this.redisClient.getMapCache( uniqueLSOKey );
 		final MarketOrder entry = LSOMap.get( uniqueLSOKey + REDIS_SEPARATOR + typeId );
-		if (null == entry) { // The data is not on the cache. Fetch it from the service and update the cache.
+		if ( null == entry ) { // The data is not on the cache. Fetch it from the service and update the cache.
 			final MarketOrder order;
 			try {
 				order = Objects.requireNonNull( lowestSellOrderReloadMethod.getLowestSellOrder( regionId, typeId ) );
@@ -107,10 +107,10 @@ public class RedisDataStoreImplementation implements IDataStore {
 	}
 
 	/**
-	 * Return the list of Processed Blueprints that have the BOM along with the price and cost. If the list is empty that means that the pilot has
-	 * no blueprints or that the processing task has not been run and there are no updated blueprint data.
-	 * The store uses a single key per pilot to store the complete list of processed blueprints in JSON coded format.
-	 * The blueprint data generator is a background process that will scan the list of blueprints and the update the store.
+	 * Return the list of Processed Blueprints that have the BOM along with the price and cost. If the list is empty that means that the pilot has no
+	 * blueprints or that the processing task has not been run and there are no updated blueprint data. The store uses a single key per pilot to store
+	 * the complete list of processed blueprints in JSON coded format. The blueprint data generator is a background process that will scan the list of
+	 * blueprints and the update the store.
 	 */
 	@Override
 	public List<ProcessedBlueprint> accessProcessedBlueprints( final Integer pilotId ) {
@@ -138,12 +138,16 @@ public class RedisDataStoreImplementation implements IDataStore {
 
 	@Override
 	public void updateProcessedBlueprint( final Integer pilotId, final ProcessedBlueprint blueprint ) {
+		LogWrapper.enter();
 		final String uniqueLSOKey = this.generateBlueprintCostIndexUniqueId( pilotId );
 		final RMapCache<String, ProcessedBlueprint> BCIMap = this.redisClient.getMapCache( uniqueLSOKey );
 		try {
-			BCIMap.put( uniqueLSOKey + REDIS_SEPARATOR + blueprint.getBlueprintTypeId(), blueprint );
+			BCIMap.put( uniqueLSOKey + REDIS_SEPARATOR + blueprint.getLocation().getLocationId() + REDIS_SEPARATOR + blueprint.getTypeId(),
+					blueprint );
+			LogWrapper.exit();
 		} catch (final RuntimeException rte) {
 			LogWrapper.error( rte );
+			LogWrapper.exit();
 		}
 	}
 

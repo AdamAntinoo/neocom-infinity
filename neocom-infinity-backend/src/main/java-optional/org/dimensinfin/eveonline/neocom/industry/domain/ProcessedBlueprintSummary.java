@@ -109,12 +109,12 @@ public class ProcessedBlueprintSummary {
 			return this;
 		}
 
-		public ProcessedBlueprintSummary.Builder withOutput( final PricedResource output ) {
+		public ProcessedBlueprintSummary.Builder withOutput( final EsiType output ) {
 			if (null != output) {
 				this.onConstruction.outputTypeId = output.getTypeId();
 				this.onConstruction.outputTypeName = output.getName();
 				this.onConstruction.outputTypeIconURL = output.getTypeIconURL();
-				this.onConstruction.outputPrice = output.getMarketPrice();
+//				this.onConstruction.outputPrice = output.getMarketPrice();
 			}
 			return this;
 		}
