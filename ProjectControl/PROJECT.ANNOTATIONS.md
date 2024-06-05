@@ -165,6 +165,31 @@ This is an example of the heavy hierarchical data distribution inside ESI. Just 
 **[EPIC-0.23] Create new endpoint to handle Esi locations and their representation at the UX.**
 * **[STORY-NIN]** Locations require additional endpoints to aggregate the location path.
 
+
+
+
+### Global Market Data Provider
+There is an ESI endpoint that will give average data for the price of every item on the Eve universe. The is is default data that can be used to replace the item value while a more detailed and focused location market data is being fetched. Initially the value of an item will be calculated from this global suurce and when the item is going to be used then we can select to retrieve a more detailed market data for an specific location.
+
+This will leverage a full development until the moment we really know what price information is relevant, like if the item's location is enought for that filtering or if we can only relay on main hubs. Probably for buying items we can search for a more specific place related to current location.
+
+Manufacturing is still quite undefined since the main element will be the station where the manufacturing process should take place. Once we know that place (for example through a user preference) we can then search for the station and the item on the market to see the manufacturing cost.
+
+
+### Preferred Market Hubs
+Whan calculation the prices for an item we are going to follow the next algorith:
+* First get the Global price for the item as default value.
+* Then get the region market hub.
+* Then calculate the distance to the region market hub.
+* If the distance is below a capsuleer preference value then this is a suitable trading place. Use it
+* If the distance is greater then get the item price for the system where the item is located.
+
+
+### Multiple locations
+When calculating the cost index for a blueprint we can find the case that the same blueprint is located on different stations on different systems at different regions. Effectively the cost index of that two blueprints is different and thenhas to be stored as two different elements on the list of cost index.
+
+So blueprints are aggregated by region at a first instance.
+
 ## 3. FrontEnd Link Resolution
 EsiType -> EsiMarkletData
 

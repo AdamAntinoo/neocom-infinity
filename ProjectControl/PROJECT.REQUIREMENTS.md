@@ -43,5 +43,11 @@
 
 bluepri
 
+	[EPIC-0.30] Manage Market Data from their different sources.
+	* [STORY-NIB] Create a new endpoint to retrieve Global Market Prices to be used as a base value.
+	* [STORY-NIB] Create a new endpoint to retrieve System specific market orders to be used to calculate a system wide price.
+	* [STORY-NIB] Create a new endpoint to retrieve Station item prices.
+
+
 [EPIC-0.30]
 * [STORY.NIB] Replace the old MarketData structures that are currently unusable by ahte new Fuzzwork MarketData structures.

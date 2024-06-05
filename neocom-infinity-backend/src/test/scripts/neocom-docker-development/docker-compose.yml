@@ -15,39 +15,49 @@
 # The list of project ports is on the document:
 #   {REPOSITORY}/README.md
 
-version: '3'
-
 services:
-    NIB-dev-apisimulator-esi-oauth:
-        container_name: NIB-dev-apisimulator-esi-oauth
-        image: apimastery/apisimulator:1.8
-        ports:
-            - "5265:6090"
-        volumes:
-            # WARNING - Use full absolute paths to make this work.
-            - ../../resources/esioauth-simulation:/esioauth-simulation
-        command: "bin/apisimulator start /esioauth-simulation -p 6090"
+  NIB-dev-apisimulator-esi-oauth:
+    container_name: NIB-dev-apisimulator-esi-oauth
+    image: apimastery/apisimulator:1.8
+    ports:
+      - "5265:6090"
+    volumes:
+      # WARNING - Use full absolute paths to make this work.
+      - ../../resources/esioauth-simulation:/esioauth-simulation
+    command: "bin/apisimulator start /esioauth-simulation -p 6090"
 
-    NIB-dev-apisimulator-esi-data:
-        container_name: NIB-dev-apisimulator-esi-data
-        image: apimastery/apisimulator:1.8
-        ports:
-            - "5275:6090"
-        volumes:
-            # WARNING - Use full absolute paths to make this work.
-            - ../../resources/esidata-simulation:/esidata-simulation
-        command: "bin/apisimulator start /esidata-simulation -p 6090"
+  NIB-dev-apisimulator-esi-data:
+    container_name: NIB-dev-apisimulator-esi-data
+    image: apimastery/apisimulator:1.8
+    ports:
+      - "5275:6090"
+    environment:
+      APISIMULATOR_LOG_LEVEL: "debug"
+    volumes:
+      # WARNING - Use full absolute paths to make this work.
+      - ../../resources/esidata-simulation:/esidata-simulation
+    command: "bin/apisimulator start /esidata-simulation -p 6090"
 
-    NIB-dev-neocom-postgres:
-        container_name: NIB-dev-neocom-postgres
-        image: "postgres:latest"
-        restart: always
-        ports:
-            - "5255:5432"
-        environment:
-            - CURRENT_UID=1000
-            - POSTGRES_DB=neocom
-            - POSTGRES_USER=neocom-user
-            - POSTGRES_PASSWORD=neocom-password
-        volumes:
-            - ../../scripts/neocom-docker-development/.db/development/postgres-neocom:/var/lib/postgresql/data
+  NIB-dev-neocom-postgres:
+    container_name: NIB-dev-neocom-postgres
+    image: "postgres:latest"
+    restart: always
+    ports:
+      - "5255:5432"
+    environment:
+      - CURRENT_UID=1000
+      - POSTGRES_DB=neocom
+      - POSTGRES_USER=neocom-user
+      - POSTGRES_PASSWORD=neocom-password
+    volumes:
+      - ../../scripts/neocom-docker-development/.db/development/postgres-neocom:/var/lib/postgresql/data
+
+  NIB-dev-neocom-redis:
+    container_name: NIB-dev-neocom-redis
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - '5245:6379'
+    command: redis-server --save 20 1 --loglevel warning
+    volumes:
+      - ../../scripts/neocom-docker-development/.db/development/neocom-cache:/data
