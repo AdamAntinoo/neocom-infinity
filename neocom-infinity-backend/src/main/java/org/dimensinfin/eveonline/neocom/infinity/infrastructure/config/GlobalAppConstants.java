@@ -6,4 +6,8 @@ public class GlobalAppConstants {
 		public static final String ESI_COOKIE_NAME = "ESI-DATA-SERVICES";
 
 	}
+
+	public static class PersistenceConstants {
+		public static final String REDIS_SEPARATOR = ":";
+	}
 }

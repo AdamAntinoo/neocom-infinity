@@ -1,0 +1,795 @@
+[
+  {
+    "blueprintTypeId": 1196,
+    "blueprint": {
+      "typeId": 1196,
+      "name": "Cap Recharger I Blueprint",
+      "description": "",
+      "group": {
+        "groupId": 123,
+        "groupName": "Capacitor Recharger Blueprint",
+        "groupCategoryId": 9
+      },
+      "category": {
+        "categoryId": 9,
+        "categoryName": "Blueprint"
+      },
+      "type": {
+        "typeId": 1196,
+        "name": "Cap Recharger I Blueprint",
+        "description": "",
+        "groupId": 123,
+        "marketGroupId": 1555,
+        "capacity": 0.0,
+        "mass": 0.0,
+        "packagedVolume": 0.01,
+        "volume": 0.01
+      },
+      "tech": "Tech I",
+      "volume": 0.01,
+      "isBlueprint": true,
+      "typeIconURL": "https://image.eveonline.com/Type/1196_64.png",
+      "marketData": {
+        "rel": "marketData",
+        "href": "http://localhost:9500/api/v1/universe/market/consolidated/byregion/10000002/1196"
+      }
+    },
+    "output": {
+      "typeId": 1195,
+      "name": "Cap Recharger I",
+      "description": "Increases the capacitor recharge rate.",
+      "group": {
+        "groupId": 43,
+        "groupName": "Capacitor Recharger",
+        "groupCategoryId": 7
+      },
+      "category": {
+        "categoryId": 7,
+        "categoryName": "Module"
+      },
+      "type": {
+        "typeId": 1195,
+        "name": "Cap Recharger I",
+        "description": "Increases the capacitor recharge rate.",
+        "groupId": 43,
+        "marketGroupId": 665,
+        "capacity": 0.0,
+        "mass": 1.0,
+        "packagedVolume": 5.0,
+        "volume": 5.0
+      },
+      "tech": "Tech I",
+      "volume": 5.0,
+      "isBlueprint": false,
+      "typeIconURL": "https://image.eveonline.com/Type/1195_64.png",
+      "marketData": {
+        "rel": "marketData",
+        "href": "http://localhost:9500/api/v1/universe/market/consolidated/byregion/10000002/1195"
+      }
+    },
+    "billOfMaterials": [
+      {
+        "typeId": 40,
+        "name": "Megacyte",
+        "quantity": 2,
+        "group": {
+          "groupId": 18,
+          "groupName": "Mineral",
+          "groupCategoryId": 4
+        },
+        "category": {
+          "categoryId": 4,
+          "categoryName": "Material"
+        },
+        "type": {
+          "typeId": 40,
+          "name": "Megacyte",
+          "description": "An extremely rare mineral found in comets and very occasionally in asteroids that have traveled through gas clouds. Has unique explosive traits that make it very valuable in the armaments industry.\r\n\r\nMay be obtained by reprocessing <a href=showinfo:22>Arkonor</a> ore and its variations which are available in null security status and wormhole systems.\r\n\r\nSignificant amounts of Megacyte are also present in rare ores like <a href=showinfo:19>Spodumain</a>, <a href=showinfo:52316>Bezdnacine</a>, and <a href=showinfo:52306>Talassonite</a>.\r\n\r\nThe rare ore <a href=showinfo:74533>Ducinium</a> also contains significant quantities and is found primarily in nullsec and W-space systems containing A0 (Blue Small) stars, as well as surveyed locations on the borders of empire and nullsec space.",
+          "groupId": 18,
+          "marketGroupId": 1857,
+          "capacity": 0.0,
+          "mass": 0.0,
+          "packagedVolume": 0.01,
+          "volume": 0.01
+        },
+        "tech": "Tech I",
+        "volume": 0.01,
+        "isBlueprint": false,
+        "typeIconURL": "https://image.eveonline.com/Type/40_64.png"
+      },
+      {
+        "typeId": 34,
+        "name": "Tritanium",
+        "quantity": 763,
+        "group": {
+          "groupId": 18,
+          "groupName": "Mineral",
+          "groupCategoryId": 4
+        },
+        "category": {
+          "categoryId": 4,
+          "categoryName": "Material"
+        },
+        "type": {
+          "typeId": 34,
+          "name": "Tritanium",
+          "description": "The main building block in space structures. A very hard, yet bendable metal. Cannot be used in human habitats due to its instability at atmospheric temperatures. Very common throughout the central regions of known universe.\r\n\r\nMay be obtained by reprocessing the following ores and their variations available in high security status star systems:\r\n<a href=showinfo:1230>Veldspar</a>, <a href=showinfo:1228>Scordite</a>, <a href=showinfo:18>Plagioclase</a>\r\n\r\nIt is also present in huge amounts in rare ores like <a href=showinfo:19>Spodumain</a>, <a href=showinfo:52316>Bezdnacine</a>, <a href=showinfo:52315>Rakovene</a> and <a href=showinfo:52306>Talassonite</a>.",
+          "groupId": 18,
+          "marketGroupId": 1857,
+          "capacity": 0.0,
+          "mass": 0.0,
+          "packagedVolume": 0.01,
+          "volume": 0.01
+        },
+        "tech": "Tech I",
+        "volume": 0.01,
+        "isBlueprint": false,
+        "typeIconURL": "https://image.eveonline.com/Type/34_64.png"
+      },
+      {
+        "typeId": 35,
+        "name": "Pyerite",
+        "quantity": 321,
+        "group": {
+          "groupId": 18,
+          "groupName": "Mineral",
+          "groupCategoryId": 4
+        },
+        "category": {
+          "categoryId": 4,
+          "categoryName": "Material"
+        },
+        "type": {
+          "typeId": 35,
+          "name": "Pyerite",
+          "description": "A soft crystal-like mineral with a very distinguishing orange glow as if on fire. Used as conduit and in the bio-chemical industry. Commonly found in many asteroid-ore types.\r\n\r\nMay be obtained by reprocessing the following ores and their variations:\r\n\r\nHigh security status star systems:\r\n<a href=showinfo:1228>Scordite</a>, <a href=showinfo:1224>Pyroxeres</a>\r\n\r\nLow security status star systems:\r\n<a href=showinfo:1224>Pyroxeres</a>, <a href=showinfo:1227>Omber</a>, <a href=showinfo:21>Hedbergite</a>, <a href=showinfo:1229>Gneiss</a>, <a href=showinfo:1225>Crokite</a>\r\n\r\nNull security status star systems:\r\n<a href=showinfo:1224>Pyroxeres</a>, <a href=showinfo:1223>Bistot</a>, <a href=showinfo:22>Arkonor</a>\r\n\r\nWormhole systems:\r\n<a href=showinfo:1224>Pyroxeres</a>, <a href=showinfo:1227>Omber</a>, <a href=showinfo:1229>Gneiss</a>, <a href=showinfo:1223>Bistot</a>, <a href=showinfo:22>Arkonor</a>\r\n\r\nThe rare ore <a href=showinfo:74521>Mordunium</a> also contains significant quantities and is found primarily in nullsec and W-space systems containing A0 (Blue Small) stars, as well as surveyed locations on the borders of empire and nullsec space.",
+          "groupId": 18,
+          "marketGroupId": 1857,
+          "capacity": 0.0,
+          "mass": 0.0,
+          "packagedVolume": 0.01,
+          "volume": 0.01
+        },
+        "tech": "Tech I",
+        "volume": 0.01,
+        "isBlueprint": false,
+        "typeIconURL": "https://image.eveonline.com/Type/35_64.png"
+      },
+      {
+        "typeId": 36,
+        "name": "Mexallon",
+        "quantity": 412,
+        "group": {
+          "groupId": 18,
+          "groupName": "Mineral",
+          "groupCategoryId": 4
+        },
+        "category": {
+          "categoryId": 4,
+          "categoryName": "Material"
+        },
+        "type": {
+          "typeId": 36,
+          "name": "Mexallon",
+          "description": "Very flexible metallic mineral, dull to bright silvery green in color. Can be mixed with <a href=showinfo:34>Tritanium</a> to make extremely hard alloys or it can be used by itself for various purposes. Fairly common in most regions.\r\n\r\nMay be obtained by reprocessing the following ores and their variations:\r\n\r\nHigh security status star systems:\r\n<a href=showinfo:1224>Pyroxeres</a>, <a href=showinfo:18>Plagioclase</a>\r\n\r\nLow security status star systems:\r\n<a href=showinfo:1224>Pyroxeres</a>, <a href=showinfo:20>Kernite</a>, <a href=showinfo:1226>Jaspet</a>, <a href=showinfo:1229>Gneiss</a>, <a href=showinfo:1232>Dark Ochre</a>, <a href=showinfo:1225>Crokite</a>\r\n\r\nNull security status star systems:\r\n<a href=showinfo:1224>Pyroxeres</a>, <a href=showinfo:20>Kernite</a>, <a href=showinfo:1223>Bistot</a>, <a href=showinfo:22>Arkonor</a>\r\n\r\nWormhole systems:\r\n<a href=showinfo:1224>Pyroxeres</a>, <a href=showinfo:20>Kernite</a>, <a href=showinfo:1229>Gneiss</a>, <a href=showinfo:1223>Bistot</a>, <a href=showinfo:22>Arkonor</a>",
+          "groupId": 18,
+          "marketGroupId": 1857,
+          "capacity": 0.0,
+          "mass": 0.0,
+          "packagedVolume": 0.01,
+          "volume": 0.01
+        },
+        "tech": "Tech I",
+        "volume": 0.01,
+        "isBlueprint": false,
+        "typeIconURL": "https://image.eveonline.com/Type/36_64.png"
+      },
+      {
+        "typeId": 1196,
+        "name": "Cap Recharger I Blueprint",
+        "quantity": 1,
+        "group": {
+          "groupId": 123,
+          "groupName": "Capacitor Recharger Blueprint",
+          "groupCategoryId": 9
+        },
+        "category": {
+          "categoryId": 9,
+          "categoryName": "Blueprint"
+        },
+        "type": {
+          "typeId": 1196,
+          "name": "Cap Recharger I Blueprint",
+          "description": "",
+          "groupId": 123,
+          "marketGroupId": 1555,
+          "capacity": 0.0,
+          "mass": 0.0,
+          "packagedVolume": 0.01,
+          "volume": 0.01
+        },
+        "tech": "Tech I",
+        "volume": 0.01,
+        "isBlueprint": true,
+        "typeIconURL": "https://image.eveonline.com/Type/1196_64.png"
+      },
+      {
+        "typeId": 3380,
+        "name": "Industry",
+        "quantity": 1,
+        "group": {
+          "groupId": 268,
+          "groupName": "Production",
+          "groupCategoryId": 16
+        },
+        "category": {
+          "categoryId": 16,
+          "categoryName": "Skill"
+        },
+        "type": {
+          "typeId": 3380,
+          "name": "Industry",
+          "description": "Allows basic operation of factories. 4% reduction in manufacturing time per skill level.",
+          "groupId": 268,
+          "marketGroupId": 369,
+          "capacity": 0.0,
+          "mass": 0.0,
+          "packagedVolume": 0.01,
+          "volume": 0.01
+        },
+        "tech": "Tech I",
+        "volume": 0.01,
+        "isBlueprint": false,
+        "typeIconURL": "https://image.eveonline.com/Type/3380_64.png"
+      }
+    ]
+  },
+  {
+    "blueprintTypeId": 12275,
+    "blueprint": {
+      "typeId": 12275,
+      "name": "Ballistic Control System I Blueprint",
+      "description": "",
+      "group": {
+        "groupId": 400,
+        "groupName": "Ballistic Control System Blueprint",
+        "groupCategoryId": 9
+      },
+      "category": {
+        "categoryId": 9,
+        "categoryName": "Blueprint"
+      },
+      "type": {
+        "typeId": 12275,
+        "name": "Ballistic Control System I Blueprint",
+        "description": "",
+        "groupId": 400,
+        "marketGroupId": 343,
+        "capacity": 0.0,
+        "mass": 0.0,
+        "packagedVolume": 0.01,
+        "volume": 0.01
+      },
+      "tech": "Tech I",
+      "volume": 0.01,
+      "isBlueprint": true,
+      "typeIconURL": "https://image.eveonline.com/Type/12275_64.png",
+      "marketData": {
+        "rel": "marketData",
+        "href": "http://localhost:9500/api/v1/universe/market/consolidated/byregion/10000002/12275"
+      }
+    },
+    "output": {
+      "typeId": 12274,
+      "name": "Ballistic Control System I",
+      "description": "A computer system designed for monitoring and guiding missiles in flight, thus allowing for superior effectiveness and lethality. \r\n\r\nPenalty: Using more than one type of this module or similar modules that affect the same attribute on the ship will be penalized.",
+      "group": {
+        "groupId": 367,
+        "groupName": "Ballistic Control system",
+        "groupCategoryId": 7
+      },
+      "category": {
+        "categoryId": 7,
+        "categoryName": "Module"
+      },
+      "type": {
+        "typeId": 12274,
+        "name": "Ballistic Control System I",
+        "description": "A computer system designed for monitoring and guiding missiles in flight, thus allowing for superior effectiveness and lethality. \r\n\r\nPenalty: Using more than one type of this module or similar modules that affect the same attribute on the ship will be penalized.",
+        "groupId": 367,
+        "marketGroupId": 645,
+        "capacity": 0.0,
+        "mass": 1.0,
+        "packagedVolume": 5.0,
+        "volume": 5.0
+      },
+      "tech": "Tech I",
+      "volume": 5.0,
+      "isBlueprint": false,
+      "typeIconURL": "https://image.eveonline.com/Type/12274_64.png",
+      "marketData": {
+        "rel": "marketData",
+        "href": "http://localhost:9500/api/v1/universe/market/consolidated/byregion/10000002/12274"
+      }
+    },
+    "billOfMaterials": [
+      {
+        "typeId": 40,
+        "name": "Megacyte",
+        "quantity": 4,
+        "group": {
+          "groupId": 18,
+          "groupName": "Mineral",
+          "groupCategoryId": 4
+        },
+        "category": {
+          "categoryId": 4,
+          "categoryName": "Material"
+        },
+        "type": {
+          "typeId": 40,
+          "name": "Megacyte",
+          "description": "An extremely rare mineral found in comets and very occasionally in asteroids that have traveled through gas clouds. Has unique explosive traits that make it very valuable in the armaments industry.\r\n\r\nMay be obtained by reprocessing <a href=showinfo:22>Arkonor</a> ore and its variations which are available in null security status and wormhole systems.\r\n\r\nSignificant amounts of Megacyte are also present in rare ores like <a href=showinfo:19>Spodumain</a>, <a href=showinfo:52316>Bezdnacine</a>, and <a href=showinfo:52306>Talassonite</a>.\r\n\r\nThe rare ore <a href=showinfo:74533>Ducinium</a> also contains significant quantities and is found primarily in nullsec and W-space systems containing A0 (Blue Small) stars, as well as surveyed locations on the borders of empire and nullsec space.",
+          "groupId": 18,
+          "marketGroupId": 1857,
+          "capacity": 0.0,
+          "mass": 0.0,
+          "packagedVolume": 0.01,
+          "volume": 0.01
+        },
+        "tech": "Tech I",
+        "volume": 0.01,
+        "isBlueprint": false,
+        "typeIconURL": "https://image.eveonline.com/Type/40_64.png"
+      },
+      {
+        "typeId": 34,
+        "name": "Tritanium",
+        "quantity": 1351,
+        "group": {
+          "groupId": 18,
+          "groupName": "Mineral",
+          "groupCategoryId": 4
+        },
+        "category": {
+          "categoryId": 4,
+          "categoryName": "Material"
+        },
+        "type": {
+          "typeId": 34,
+          "name": "Tritanium",
+          "description": "The main building block in space structures. A very hard, yet bendable metal. Cannot be used in human habitats due to its instability at atmospheric temperatures. Very common throughout the central regions of known universe.\r\n\r\nMay be obtained by reprocessing the following ores and their variations available in high security status star systems:\r\n<a href=showinfo:1230>Veldspar</a>, <a href=showinfo:1228>Scordite</a>, <a href=showinfo:18>Plagioclase</a>\r\n\r\nIt is also present in huge amounts in rare ores like <a href=showinfo:19>Spodumain</a>, <a href=showinfo:52316>Bezdnacine</a>, <a href=showinfo:52315>Rakovene</a> and <a href=showinfo:52306>Talassonite</a>.",
+          "groupId": 18,
+          "marketGroupId": 1857,
+          "capacity": 0.0,
+          "mass": 0.0,
+          "packagedVolume": 0.01,
+          "volume": 0.01
+        },
+        "tech": "Tech I",
+        "volume": 0.01,
+        "isBlueprint": false,
+        "typeIconURL": "https://image.eveonline.com/Type/34_64.png"
+      },
+      {
+        "typeId": 36,
+        "name": "Mexallon",
+        "quantity": 636,
+        "group": {
+          "groupId": 18,
+          "groupName": "Mineral",
+          "groupCategoryId": 4
+        },
+        "category": {
+          "categoryId": 4,
+          "categoryName": "Material"
+        },
+        "type": {
+          "typeId": 36,
+          "name": "Mexallon",
+          "description": "Very flexible metallic mineral, dull to bright silvery green in color. Can be mixed with <a href=showinfo:34>Tritanium</a> to make extremely hard alloys or it can be used by itself for various purposes. Fairly common in most regions.\r\n\r\nMay be obtained by reprocessing the following ores and their variations:\r\n\r\nHigh security status star systems:\r\n<a href=showinfo:1224>Pyroxeres</a>, <a href=showinfo:18>Plagioclase</a>\r\n\r\nLow security status star systems:\r\n<a href=showinfo:1224>Pyroxeres</a>, <a href=showinfo:20>Kernite</a>, <a href=showinfo:1226>Jaspet</a>, <a href=showinfo:1229>Gneiss</a>, <a href=showinfo:1232>Dark Ochre</a>, <a href=showinfo:1225>Crokite</a>\r\n\r\nNull security status star systems:\r\n<a href=showinfo:1224>Pyroxeres</a>, <a href=showinfo:20>Kernite</a>, <a href=showinfo:1223>Bistot</a>, <a href=showinfo:22>Arkonor</a>\r\n\r\nWormhole systems:\r\n<a href=showinfo:1224>Pyroxeres</a>, <a href=showinfo:20>Kernite</a>, <a href=showinfo:1229>Gneiss</a>, <a href=showinfo:1223>Bistot</a>, <a href=showinfo:22>Arkonor</a>",
+          "groupId": 18,
+          "marketGroupId": 1857,
+          "capacity": 0.0,
+          "mass": 0.0,
+          "packagedVolume": 0.01,
+          "volume": 0.01
+        },
+        "tech": "Tech I",
+        "volume": 0.01,
+        "isBlueprint": false,
+        "typeIconURL": "https://image.eveonline.com/Type/36_64.png"
+      },
+      {
+        "typeId": 37,
+        "name": "Isogen",
+        "quantity": 4,
+        "group": {
+          "groupId": 18,
+          "groupName": "Mineral",
+          "groupCategoryId": 4
+        },
+        "category": {
+          "categoryId": 4,
+          "categoryName": "Material"
+        },
+        "type": {
+          "typeId": 37,
+          "name": "Isogen",
+          "description": "Light-bluish crystal, formed by intense pressure deep within large asteroids and moons. Used in electronic and weapon manufacturing. Only found in abundance in a few areas.\r\n\r\nMay be obtained by reprocessing the following ores and their variations:\r\n\r\nLow security status star systems:\r\n<a href=showinfo:1227>Omber</a>, <a href=showinfo:20>Kernite</a>, <a href=showinfo:1231>Hemorphite</a>, <a href=showinfo:1229>Gneiss</a>, <a href=showinfo:1232>Dark Ochre</a>\r\n\r\nNull security status star systems:\r\n<a href=showinfo:20>Kernite</a>\r\n\r\nWormhole systems:\r\n<a href=showinfo:1227>Omber</a>, <a href=showinfo:20>Kernite</a>, <a href=showinfo:1229>Gneiss</a>\r\n\r\nIt is also present in huge amounts in rare ores like <a href=showinfo:19>Spodumain</a>, <a href=showinfo:52316>Bezdnacine</a> and <a href=showinfo:52315>Rakovene</a>.\r\n\r\nThe rare ore <a href=showinfo:74525>Ytirium</a> also contains significant quantities and is found primarily in nullsec and W-space systems containing A0 (Blue Small) stars, as well as surveyed locations on the borders of empire and nullsec space.",
+          "groupId": 18,
+          "marketGroupId": 1857,
+          "capacity": 0.0,
+          "mass": 0.0,
+          "packagedVolume": 0.01,
+          "volume": 0.01
+        },
+        "tech": "Tech I",
+        "volume": 0.01,
+        "isBlueprint": false,
+        "typeIconURL": "https://image.eveonline.com/Type/37_64.png"
+      },
+      {
+        "typeId": 39,
+        "name": "Zydrine",
+        "quantity": 14,
+        "group": {
+          "groupId": 18,
+          "groupName": "Mineral",
+          "groupCategoryId": 4
+        },
+        "category": {
+          "categoryId": 4,
+          "categoryName": "Material"
+        },
+        "type": {
+          "typeId": 39,
+          "name": "Zydrine",
+          "description": "Only found in huge geodes; rocks on the outside with crystal-like quartz on the inside. The rarest and most precious of these geodes are those that contain the dark green zydrine within. Very rare and very expensive.\r\n\r\nMay be obtained by reprocessing <a href=showinfo:1223>Bistot</a> ore and its variations which are available in null security status and wormhole systems.\r\n\r\nSignificant amounts of Zydrine are also present in rare ores like <a href=showinfo:19>Spodumain</a> and <a href=showinfo:52315>Rakovene</a>.\r\n\r\nThe rare ore <a href=showinfo:74529>Eifyrium</a> also contains significant quantities and is found primarily in nullsec and W-space systems containing A0 (Blue Small) stars, as well as surveyed locations on the borders of empire and nullsec space.",
+          "groupId": 18,
+          "marketGroupId": 1857,
+          "capacity": 0.0,
+          "mass": 0.0,
+          "packagedVolume": 0.01,
+          "volume": 0.01
+        },
+        "tech": "Tech I",
+        "volume": 0.01,
+        "isBlueprint": false,
+        "typeIconURL": "https://image.eveonline.com/Type/39_64.png"
+      },
+      {
+        "typeId": 12275,
+        "name": "Ballistic Control System I Blueprint",
+        "quantity": 1,
+        "group": {
+          "groupId": 400,
+          "groupName": "Ballistic Control System Blueprint",
+          "groupCategoryId": 9
+        },
+        "category": {
+          "categoryId": 9,
+          "categoryName": "Blueprint"
+        },
+        "type": {
+          "typeId": 12275,
+          "name": "Ballistic Control System I Blueprint",
+          "description": "",
+          "groupId": 400,
+          "marketGroupId": 343,
+          "capacity": 0.0,
+          "mass": 0.0,
+          "packagedVolume": 0.01,
+          "volume": 0.01
+        },
+        "tech": "Tech I",
+        "volume": 0.01,
+        "isBlueprint": true,
+        "typeIconURL": "https://image.eveonline.com/Type/12275_64.png"
+      },
+      {
+        "typeId": 3380,
+        "name": "Industry",
+        "quantity": 1,
+        "group": {
+          "groupId": 268,
+          "groupName": "Production",
+          "groupCategoryId": 16
+        },
+        "category": {
+          "categoryId": 16,
+          "categoryName": "Skill"
+        },
+        "type": {
+          "typeId": 3380,
+          "name": "Industry",
+          "description": "Allows basic operation of factories. 4% reduction in manufacturing time per skill level.",
+          "groupId": 268,
+          "marketGroupId": 369,
+          "capacity": 0.0,
+          "mass": 0.0,
+          "packagedVolume": 0.01,
+          "volume": 0.01
+        },
+        "tech": "Tech I",
+        "volume": 0.01,
+        "isBlueprint": false,
+        "typeIconURL": "https://image.eveonline.com/Type/3380_64.png"
+      }
+    ]
+  },
+  {
+    "blueprintTypeId": 828,
+    "blueprint": {
+      "typeId": 828,
+      "name": "720mm Howitzer Artillery I Blueprint",
+      "description": "",
+      "group": {
+        "groupId": 135,
+        "groupName": "Projectile Weapon Blueprint",
+        "groupCategoryId": 9
+      },
+      "category": {
+        "categoryId": 9,
+        "categoryName": "Blueprint"
+      },
+      "type": {
+        "typeId": 828,
+        "name": "720mm Howitzer Artillery I Blueprint",
+        "description": "",
+        "groupId": 135,
+        "marketGroupId": 297,
+        "capacity": 0.0,
+        "mass": 0.0,
+        "packagedVolume": 0.01,
+        "volume": 0.01
+      },
+      "tech": "Tech I",
+      "volume": 0.01,
+      "isBlueprint": true,
+      "typeIconURL": "https://image.eveonline.com/Type/828_64.png",
+      "marketData": {
+        "rel": "marketData",
+        "href": "http://localhost:9500/api/v1/universe/market/consolidated/byregion/10000002/828"
+      }
+    },
+    "output": {
+      "typeId": 493,
+      "name": "720mm Howitzer Artillery I",
+      "description": "This 720mm rocket-assisted howitzer is designed for long-range bombardment. \r\n\r\nMust be loaded with any of the following projectile ammo types: Carbonized Lead, Depleted Uranium, EMP, Fusion, Nuclear, Phased Plasma, Proton, or Titanium Sabot.",
+      "group": {
+        "groupId": 55,
+        "groupName": "Projectile Weapon",
+        "groupCategoryId": 7
+      },
+      "category": {
+        "categoryId": 7,
+        "categoryName": "Module"
+      },
+      "type": {
+        "typeId": 493,
+        "name": "720mm Howitzer Artillery I",
+        "description": "This 720mm rocket-assisted howitzer is designed for long-range bombardment. \r\n\r\nMust be loaded with any of the following projectile ammo types: Carbonized Lead, Depleted Uranium, EMP, Fusion, Nuclear, Phased Plasma, Proton, or Titanium Sabot.",
+        "groupId": 55,
+        "marketGroupId": 578,
+        "capacity": 0.25,
+        "mass": 50.0,
+        "packagedVolume": 25.0,
+        "volume": 25.0
+      },
+      "tech": "Tech I",
+      "volume": 25.0,
+      "isBlueprint": false,
+      "typeIconURL": "https://image.eveonline.com/Type/493_64.png",
+      "marketData": {
+        "rel": "marketData",
+        "href": "http://localhost:9500/api/v1/universe/market/consolidated/byregion/10000002/493"
+      }
+    },
+    "billOfMaterials": [
+      {
+        "typeId": 34,
+        "name": "Tritanium",
+        "quantity": 9133,
+        "group": {
+          "groupId": 18,
+          "groupName": "Mineral",
+          "groupCategoryId": 4
+        },
+        "category": {
+          "categoryId": 4,
+          "categoryName": "Material"
+        },
+        "type": {
+          "typeId": 34,
+          "name": "Tritanium",
+          "description": "The main building block in space structures. A very hard, yet bendable metal. Cannot be used in human habitats due to its instability at atmospheric temperatures. Very common throughout the central regions of known universe.\r\n\r\nMay be obtained by reprocessing the following ores and their variations available in high security status star systems:\r\n<a href=showinfo:1230>Veldspar</a>, <a href=showinfo:1228>Scordite</a>, <a href=showinfo:18>Plagioclase</a>\r\n\r\nIt is also present in huge amounts in rare ores like <a href=showinfo:19>Spodumain</a>, <a href=showinfo:52316>Bezdnacine</a>, <a href=showinfo:52315>Rakovene</a> and <a href=showinfo:52306>Talassonite</a>.",
+          "groupId": 18,
+          "marketGroupId": 1857,
+          "capacity": 0.0,
+          "mass": 0.0,
+          "packagedVolume": 0.01,
+          "volume": 0.01
+        },
+        "tech": "Tech I",
+        "volume": 0.01,
+        "isBlueprint": false,
+        "typeIconURL": "https://image.eveonline.com/Type/34_64.png"
+      },
+      {
+        "typeId": 35,
+        "name": "Pyerite",
+        "quantity": 2981,
+        "group": {
+          "groupId": 18,
+          "groupName": "Mineral",
+          "groupCategoryId": 4
+        },
+        "category": {
+          "categoryId": 4,
+          "categoryName": "Material"
+        },
+        "type": {
+          "typeId": 35,
+          "name": "Pyerite",
+          "description": "A soft crystal-like mineral with a very distinguishing orange glow as if on fire. Used as conduit and in the bio-chemical industry. Commonly found in many asteroid-ore types.\r\n\r\nMay be obtained by reprocessing the following ores and their variations:\r\n\r\nHigh security status star systems:\r\n<a href=showinfo:1228>Scordite</a>, <a href=showinfo:1224>Pyroxeres</a>\r\n\r\nLow security status star systems:\r\n<a href=showinfo:1224>Pyroxeres</a>, <a href=showinfo:1227>Omber</a>, <a href=showinfo:21>Hedbergite</a>, <a href=showinfo:1229>Gneiss</a>, <a href=showinfo:1225>Crokite</a>\r\n\r\nNull security status star systems:\r\n<a href=showinfo:1224>Pyroxeres</a>, <a href=showinfo:1223>Bistot</a>, <a href=showinfo:22>Arkonor</a>\r\n\r\nWormhole systems:\r\n<a href=showinfo:1224>Pyroxeres</a>, <a href=showinfo:1227>Omber</a>, <a href=showinfo:1229>Gneiss</a>, <a href=showinfo:1223>Bistot</a>, <a href=showinfo:22>Arkonor</a>\r\n\r\nThe rare ore <a href=showinfo:74521>Mordunium</a> also contains significant quantities and is found primarily in nullsec and W-space systems containing A0 (Blue Small) stars, as well as surveyed locations on the borders of empire and nullsec space.",
+          "groupId": 18,
+          "marketGroupId": 1857,
+          "capacity": 0.0,
+          "mass": 0.0,
+          "packagedVolume": 0.01,
+          "volume": 0.01
+        },
+        "tech": "Tech I",
+        "volume": 0.01,
+        "isBlueprint": false,
+        "typeIconURL": "https://image.eveonline.com/Type/35_64.png"
+      },
+      {
+        "typeId": 36,
+        "name": "Mexallon",
+        "quantity": 3599,
+        "group": {
+          "groupId": 18,
+          "groupName": "Mineral",
+          "groupCategoryId": 4
+        },
+        "category": {
+          "categoryId": 4,
+          "categoryName": "Material"
+        },
+        "type": {
+          "typeId": 36,
+          "name": "Mexallon",
+          "description": "Very flexible metallic mineral, dull to bright silvery green in color. Can be mixed with <a href=showinfo:34>Tritanium</a> to make extremely hard alloys or it can be used by itself for various purposes. Fairly common in most regions.\r\n\r\nMay be obtained by reprocessing the following ores and their variations:\r\n\r\nHigh security status star systems:\r\n<a href=showinfo:1224>Pyroxeres</a>, <a href=showinfo:18>Plagioclase</a>\r\n\r\nLow security status star systems:\r\n<a href=showinfo:1224>Pyroxeres</a>, <a href=showinfo:20>Kernite</a>, <a href=showinfo:1226>Jaspet</a>, <a href=showinfo:1229>Gneiss</a>, <a href=showinfo:1232>Dark Ochre</a>, <a href=showinfo:1225>Crokite</a>\r\n\r\nNull security status star systems:\r\n<a href=showinfo:1224>Pyroxeres</a>, <a href=showinfo:20>Kernite</a>, <a href=showinfo:1223>Bistot</a>, <a href=showinfo:22>Arkonor</a>\r\n\r\nWormhole systems:\r\n<a href=showinfo:1224>Pyroxeres</a>, <a href=showinfo:20>Kernite</a>, <a href=showinfo:1229>Gneiss</a>, <a href=showinfo:1223>Bistot</a>, <a href=showinfo:22>Arkonor</a>",
+          "groupId": 18,
+          "marketGroupId": 1857,
+          "capacity": 0.0,
+          "mass": 0.0,
+          "packagedVolume": 0.01,
+          "volume": 0.01
+        },
+        "tech": "Tech I",
+        "volume": 0.01,
+        "isBlueprint": false,
+        "typeIconURL": "https://image.eveonline.com/Type/36_64.png"
+      },
+      {
+        "typeId": 37,
+        "name": "Isogen",
+        "quantity": 2,
+        "group": {
+          "groupId": 18,
+          "groupName": "Mineral",
+          "groupCategoryId": 4
+        },
+        "category": {
+          "categoryId": 4,
+          "categoryName": "Material"
+        },
+        "type": {
+          "typeId": 37,
+          "name": "Isogen",
+          "description": "Light-bluish crystal, formed by intense pressure deep within large asteroids and moons. Used in electronic and weapon manufacturing. Only found in abundance in a few areas.\r\n\r\nMay be obtained by reprocessing the following ores and their variations:\r\n\r\nLow security status star systems:\r\n<a href=showinfo:1227>Omber</a>, <a href=showinfo:20>Kernite</a>, <a href=showinfo:1231>Hemorphite</a>, <a href=showinfo:1229>Gneiss</a>, <a href=showinfo:1232>Dark Ochre</a>\r\n\r\nNull security status star systems:\r\n<a href=showinfo:20>Kernite</a>\r\n\r\nWormhole systems:\r\n<a href=showinfo:1227>Omber</a>, <a href=showinfo:20>Kernite</a>, <a href=showinfo:1229>Gneiss</a>\r\n\r\nIt is also present in huge amounts in rare ores like <a href=showinfo:19>Spodumain</a>, <a href=showinfo:52316>Bezdnacine</a> and <a href=showinfo:52315>Rakovene</a>.\r\n\r\nThe rare ore <a href=showinfo:74525>Ytirium</a> also contains significant quantities and is found primarily in nullsec and W-space systems containing A0 (Blue Small) stars, as well as surveyed locations on the borders of empire and nullsec space.",
+          "groupId": 18,
+          "marketGroupId": 1857,
+          "capacity": 0.0,
+          "mass": 0.0,
+          "packagedVolume": 0.01,
+          "volume": 0.01
+        },
+        "tech": "Tech I",
+        "volume": 0.01,
+        "isBlueprint": false,
+        "typeIconURL": "https://image.eveonline.com/Type/37_64.png"
+      },
+      {
+        "typeId": 38,
+        "name": "Nocxium",
+        "quantity": 18,
+        "group": {
+          "groupId": 18,
+          "groupName": "Mineral",
+          "groupCategoryId": 4
+        },
+        "category": {
+          "categoryId": 4,
+          "categoryName": "Material"
+        },
+        "type": {
+          "typeId": 38,
+          "name": "Nocxium",
+          "description": "A highly volatile mineral only formed during supernovas, thus severely limiting the extent of its distribution. Vital ingredient in capsule production, making it very coveted.\r\n\r\nMay be obtained by reprocessing the following ores and their variations available in low security status star systems:\r\n<a href=showinfo:1226>Jaspet</a>, <a href=showinfo:1231>Hemorphite</a>, <a href=showinfo:21>Hedbergite</a>, <a href=showinfo:1232>Dark Ochre</a>, <a href=showinfo:1225>Crokite</a>\r\n\r\nIt is also present in significant amounts in rare ores like <a href=showinfo:19>Spodumain</a> and <a href=showinfo:52306>Talassonite</a>.",
+          "groupId": 18,
+          "marketGroupId": 1857,
+          "capacity": 0.0,
+          "mass": 0.0,
+          "packagedVolume": 0.01,
+          "volume": 0.01
+        },
+        "tech": "Tech I",
+        "volume": 0.01,
+        "isBlueprint": false,
+        "typeIconURL": "https://image.eveonline.com/Type/38_64.png"
+      },
+      {
+        "typeId": 828,
+        "name": "720mm Howitzer Artillery I Blueprint",
+        "quantity": 1,
+        "group": {
+          "groupId": 135,
+          "groupName": "Projectile Weapon Blueprint",
+          "groupCategoryId": 9
+        },
+        "category": {
+          "categoryId": 9,
+          "categoryName": "Blueprint"
+        },
+        "type": {
+          "typeId": 828,
+          "name": "720mm Howitzer Artillery I Blueprint",
+          "description": "",
+          "groupId": 135,
+          "marketGroupId": 297,
+          "capacity": 0.0,
+          "mass": 0.0,
+          "packagedVolume": 0.01,
+          "volume": 0.01
+        },
+        "tech": "Tech I",
+        "volume": 0.01,
+        "isBlueprint": true,
+        "typeIconURL": "https://image.eveonline.com/Type/828_64.png"
+      },
+      {
+        "typeId": 3380,
+        "name": "Industry",
+        "quantity": 1,
+        "group": {
+          "groupId": 268,
+          "groupName": "Production",
+          "groupCategoryId": 16
+        },
+        "category": {
+          "categoryId": 16,
+          "categoryName": "Skill"
+        },
+        "type": {
+          "typeId": 3380,
+          "name": "Industry",
+          "description": "Allows basic operation of factories. 4% reduction in manufacturing time per skill level.",
+          "groupId": 268,
+          "marketGroupId": 369,
+          "capacity": 0.0,
+          "mass": 0.0,
+          "packagedVolume": 0.01,
+          "volume": 0.01
+        },
+        "tech": "Tech I",
+        "volume": 0.01,
+        "isBlueprint": false,
+        "typeIconURL": "https://image.eveonline.com/Type/3380_64.png"
+      }
+    ]
+  }
+]

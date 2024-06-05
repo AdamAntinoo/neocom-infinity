@@ -48,10 +48,6 @@ public class BlueprintProcessorJob extends NeoComBackendJob {
 	public Boolean call() throws Exception {
 		LogWrapper.enter();
 		try {
-			/* deprecated. Blueprints should contain the item location. */
-			final int defaultRegionId = this.jobServicePackager.getPreferencesRepository()
-					.accessMarketRegionId( this.credential.getAccountId() )
-					.getNumberValue().intValue();
 			// Get the list of blueprints and then pack them for identical characteristics.
 			final List<GetCharactersCharacterIdBlueprints200Ok> blueprints = this.jobServicePackager.getEsiDataService()
 					.getCharactersCharacterIdBlueprints( this.credential );
@@ -84,31 +80,6 @@ public class BlueprintProcessorJob extends NeoComBackendJob {
 						Double index = 0.0;
 						if ( bomAtRegionCost > 0.0 )
 							index = outputModuleAtRegionCost / bomAtRegionCost;
-
-						//						final SpaceLocation spaceLocation = bpLoc.location().get();
-						//						if ( spaceLocation instanceof Station ) return ((Station) spaceLocation).getRegionId();
-						//						if ( spaceLocation instanceof SpaceSystem ) return ((SpaceSystem) spaceLocation).getRegionId();
-						//
-						//						final MarketData outputMarketData = this.jobServicePackager.getMarketService()
-						//								.getMarketConsolidatedByRegion4ItemId( defaultRegionId, outputModuleId );
-						//						final List<Resource> bom = this.jobServicePackager.getSDERepository().accessBillOfMaterials( blueprintType );
-						//						final List<PricedResource> bomPriced = new ArrayList<>();
-						//						for (final Resource resource : bom) {
-						//							final MarketData marketData = this.jobServicePackager.getMarketService()
-						//									.getMarketConsolidatedByRegion4ItemId( defaultRegionId, resource.getTypeId() );
-						//							bomPriced.add( new PricedResource.Builder()
-						//									.withQuantity( resource.getQuantity() )
-						//									.withMarketData( marketData )
-						//									.withPrice( this.getBestSellPriceFromMarketData( marketData ) )
-						//									.withItemType( resource.getType() )
-						//									.withGroup( resource.getGroup() )
-						//									.withCategory( resource.getCategory() )
-						//									.build()
-						//							);
-						//						}
-						//						final EsiType blueprint = this.jobServicePackager.getResourceFactory().generateType4Id( blueprintType );
-						//						final MarketData blueprintMarketData = this.jobServicePackager.getMarketService()
-						//								.getMarketConsolidatedByRegion4ItemId( defaultRegionId, blueprint.getTypeId() );
 						return ProcessedBlueprint.builder()
 								.typeId( blueprintTypeId )
 								.blueprintItem( blueprint )
@@ -122,26 +93,6 @@ public class BlueprintProcessorJob extends NeoComBackendJob {
 								.bom( bom )
 								.index( index )
 								.build();
-
-
-						//										new PricedResource.Builder()
-						//										.withCategory( blueprint.getCategory() )
-						//										.withGroup( blueprint.getGroup() )
-						//										.withItemType( blueprint.getType() )
-						//										.withMarketData( blueprintMarketData )
-						//										.withPrice( this.getBestSellPriceFromMarketData( blueprintMarketData ) )
-						//										.build()
-						//								)
-						//								.withOutput( new PricedResource.Builder()
-						//										.withCategory( outputModule.getCategory() )
-						//										.withGroup( outputModule.getGroup() )
-						//										.withItemType( outputModule.getType() )
-						//										.withMarketData( outputMarketData )
-						//										.withPrice( this.getBestSellPriceFromMarketData( outputMarketData ) )
-						//										.build() )
-						//								.withOutputMarketData( outputMarketData )
-						//								.withBOM( bomPriced )
-						//								.build();
 					} )
 					.forEach( blueprint -> {
 						LogWrapper.info( "Processed Blueprint->" + blueprint.toString() );

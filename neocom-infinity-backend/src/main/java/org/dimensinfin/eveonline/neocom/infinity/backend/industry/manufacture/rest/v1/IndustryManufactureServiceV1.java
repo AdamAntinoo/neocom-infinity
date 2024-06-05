@@ -39,18 +39,10 @@ public class IndustryManufactureServiceV1 extends NeoComAuthenticatedService {
 		return this.dataStoreService.accessProcessedBlueprintsByUID( pilotId, blueprintUID );
 	}
 
-	public List<ProcessedBlueprintSummary> getBlueprints4PilotWithCostIndex( @NotNull final Integer pilotId ) {
+	public List<ProcessedBlueprint> getBlueprints4PilotWithCostIndex( @NotNull final Integer pilotId ) {
 		try {
 			return this.dataStoreService.accessProcessedBlueprints( NeoObjects.requireNonNull(
-					this.getAuthorizedCredential().getAccountId() ) )
-					.stream()
-					.map( blueprint -> new ProcessedBlueprintToSummaryConverter(
-							this.dataStoreService.generateBlueprintCostIndexUniqueId( pilotId ) +
-									REDIS_SEPARATOR +
-									blueprint.getTypeId() )
-							.convert( blueprint )
-					)
-					.collect( Collectors.toList() );
+					this.getAuthorizedCredential().getAccountId() ) );
 		} catch (final NullPointerException npe) {
 			LogWrapper.error( npe );
 			throw new NeoComRuntimeBackendException( ExceptionMessagesExternalisedType.CREDENTIAL_NOT_FOUND.getMessage( pilotId ) );

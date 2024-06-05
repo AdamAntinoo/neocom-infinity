@@ -29,14 +29,6 @@ public class BlueprintPack implements UnaryOperator<List<GetCharactersCharacterI
 	}
 
 	private boolean isIdentical( final GetCharactersCharacterIdBlueprints200Ok target, final GetCharactersCharacterIdBlueprints200Ok source ) {
-		LogWrapper.info( "target->" + target.toString() );
-		LogWrapper.info( "source->" + source.toString() );
-		final boolean identity = (Objects.equals( target.getTypeId(), source.getTypeId() )) &&
-				(Objects.equals( target.getLocationId(), source.getLocationId() )) &&
-				(Objects.equals( target.getMaterialEfficiency(), source.getMaterialEfficiency() )) &&
-				(Objects.equals( target.getTimeEfficiency(), source.getTimeEfficiency() )) &&
-				(Objects.equals( target.getRuns(), source.getRuns() ));
-		LogWrapper.info( "identity->" + identity );
 		return (Objects.equals( target.getTypeId(), source.getTypeId() )) &&
 				(Objects.equals( target.getLocationId(), source.getLocationId() )) &&
 				(Objects.equals( target.getMaterialEfficiency(), source.getMaterialEfficiency() )) &&

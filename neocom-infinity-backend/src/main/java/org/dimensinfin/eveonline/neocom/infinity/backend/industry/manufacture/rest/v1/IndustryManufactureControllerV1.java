@@ -54,7 +54,7 @@ public class IndustryManufactureControllerV1 extends IndustryControllerV1 {
 			consumes = "application/json",
 			produces = "application/json")
 	@Cacheable(lifetime = 15, unit = TimeUnit.MINUTES)
-	public ResponseEntity<List<ProcessedBlueprintSummary>> getBlueprints4PilotWithCostIndex( @PathVariable @NotNull final Integer pilotId ) {
+	public ResponseEntity<List<ProcessedBlueprint>> getBlueprints4PilotWithCostIndex( @PathVariable @NotNull final Integer pilotId ) {
 		this.neoComAuthenticationProvider.validatePilotIdentifier( pilotId );
 		return new ResponseEntity<>( this.industryManufactureServiceV1.getBlueprints4PilotWithCostIndex( pilotId ), HttpStatus.OK );
 	}
