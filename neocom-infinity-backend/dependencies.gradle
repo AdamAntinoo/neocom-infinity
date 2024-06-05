@@ -70,6 +70,7 @@ dependencies {
     implementation "joda-time:joda-time:$jodaTimeVersion" // Just use it until the next DataManagement version has the correct dependencies
     implementation "com.fasterxml.jackson.datatype:jackson-datatype-joda:$jacksonVersion"
     implementation "com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion"
+    implementation project(':neocom-datamanagement')
 }
 // - E N V I R O N M E N T   D E P E N D E N C I E S
 def profile = System.getenv('PROFILE') ?: "development"

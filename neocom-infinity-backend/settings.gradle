@@ -1,1 +1,3 @@
 rootProject.name = 'NeoCom.Infinity.Backend'
+include ':neocom-datamanagement'
+project(':neocom-datamanagement').projectDir = new File('/Users/adam/IdeaProjects/neocom-datamanagement')
