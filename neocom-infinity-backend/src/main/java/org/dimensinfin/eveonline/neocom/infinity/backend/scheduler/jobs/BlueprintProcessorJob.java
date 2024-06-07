@@ -55,9 +55,9 @@ public class BlueprintProcessorJob extends NeoComBackendJob {
 			final Set<String> addedBlueprintLocators = new HashSet<>();
 			packedBlueprints.stream()
 					.map( ( GetCharactersCharacterIdBlueprints200Ok bp ) -> {
-						final Optional<SpaceLocation> location = new LocationLookup().apply( this.jobServicePackager
-								.getLocationCatalogService().searchLocation4Id( bp.getLocationId() )
-						); // Get the location to extract the Region
+						final Optional<SpaceLocation> location = this.jobServicePackager
+								.getLocationCatalogService()
+								.lookupLocation4Id( bp.getLocationId(), credential ); // Get the location to extract the Region
 						return BlueprintAndLocation.builder()
 								.blueprint( bp )
 								.location( location )
@@ -81,17 +81,17 @@ public class BlueprintProcessorJob extends NeoComBackendJob {
 						if ( bomAtRegionCost > 0.0 )
 							index = outputModuleAtRegionCost / bomAtRegionCost;
 						return ProcessedBlueprint.builder()
-								.typeId( blueprintTypeId )
-								.blueprintItem( blueprint )
-								.location( bpLoc.getLocation().get() )
-								.materialEfficiency( bpLoc.getBlueprint().getMaterialEfficiency() )
-								.timeEfficiency( bpLoc.getBlueprint().getTimeEfficiency() )
-								.outputTypeId( outputModuleId )
-								.outputItem( outputModule )
-								.manufactureCost( bomAtRegionCost )
-								.outputCost( outputModuleAtRegionCost )
-								.bom( bom )
-								.index( index )
+								.withTypeId( blueprintTypeId )
+								.withBlueprintItem( blueprint )
+								.withLocation( bpLoc.getLocation().get() )
+								.withMaterialEfficiency( bpLoc.getBlueprint().getMaterialEfficiency() )
+								.withTimeEfficiency( bpLoc.getBlueprint().getTimeEfficiency() )
+								.withOutputTypeId( outputModuleId )
+								.withOutputItem( outputModule )
+								.withManufactureCost( bomAtRegionCost )
+								.withOutputCost( outputModuleAtRegionCost )
+								.withBom( bom )
+								.withIndex( index )
 								.build();
 					} )
 					.forEach( blueprint -> {

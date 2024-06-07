@@ -4,18 +4,22 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import org.redisson.Redisson;
 import org.redisson.api.RBucket;
 import org.redisson.api.RMapCache;
 import org.redisson.api.RedissonClient;
+import org.redisson.codec.JsonJacksonCodec;
 import org.redisson.config.Config;
 
+import org.dimensinfin.eveonline.neocom.domain.space.SpaceLocation;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseTypesTypeIdOk;
 import org.dimensinfin.eveonline.neocom.exception.NeoComRuntimeException;
 import org.dimensinfin.eveonline.neocom.industry.domain.ProcessedBlueprint;
@@ -28,16 +32,23 @@ import org.dimensinfin.eveonline.neocom.utility.NeoObjects;
 import org.dimensinfin.logging.LogWrapper;
 
 /**
+ * THis is the Redis implementation for a permanent Data Store. Data will not expire and will be persisted.
+ *
  * @author Adam Antinoo (adamantinoo.git@gmail.com)
  * @since 0.20.0
  */
 public class RedisDataStoreImplementation implements IDataStore {
-	public static final String REDIS_SEPARATOR = ":";
+	private static final ObjectMapper neocomObjectMapper = new ObjectMapper();
+	private static final JsonJacksonCodec codec = new JsonJacksonCodec( neocomObjectMapper );
 	protected static final String LOWEST_SELL_ORDER_MAP = "LSO";
 	protected static final String ESITYPE_CACHE_NAME = "ESIT";
 	protected static final Integer LOWEST_SELL_ORDER_TTL = 300;
+	// - Processed Blueprints
 	private static final String COST_INDEX_BLUEPRINTS_CACHE_NAME = "BCI";
 	private static final Integer COST_INDEX_BLUEPRINTS_TTL = 12;
+	// - Locations
+	private static final String SPACE_LOCATIONS_CACHE_NAME = "SPL";
+	private static final Integer SPACE_LOCATIONS_CACHE_TTL = 12;
 
 	protected final RedissonClient redisClient;
 
@@ -147,6 +158,27 @@ public class RedisDataStoreImplementation implements IDataStore {
 			LogWrapper.exit();
 		} catch (final RuntimeException rte) {
 			LogWrapper.error( rte );
+			LogWrapper.exit();
+		}
+	}
+
+	@Override
+	public Optional<SpaceLocation> accessLocation( final String locationCacheId ) {
+		final RMapCache<String, SpaceLocation> BCIMap = this.redisClient.getMapCache( SPACE_LOCATIONS_CACHE_NAME, codec );
+		final SpaceLocation location = BCIMap.get( locationCacheId );
+		if ( Objects.isNull( location ) ) return Optional.empty();
+		else return Optional.of( location );
+	}
+
+	@Override
+	public void updateLocation( final String locationCacheId, final SpaceLocation location ) {
+		LogWrapper.enter();
+		final RMapCache<String, SpaceLocation> BCIMap = this.redisClient.getMapCache( SPACE_LOCATIONS_CACHE_NAME, codec );
+		try {
+			BCIMap.put( SPACE_LOCATIONS_CACHE_NAME + REDIS_SEPARATOR + locationCacheId, location );
+		} catch (final RuntimeException rte) {
+			LogWrapper.error( rte );
+		} finally {
 			LogWrapper.exit();
 		}
 	}
