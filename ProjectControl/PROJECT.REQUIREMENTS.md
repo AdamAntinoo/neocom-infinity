@@ -14,6 +14,17 @@
 * ***[STORY-NIF]*** Replace current page with blueprints with a new backend request and then classify them by Category.
 * ***[STORY-NIF]*** Create a Render for the different categories.
 * ***[STORY-NIF]*** Add Category expansion/collapse.
+* ***[STORY-NIB]*** Review the access to Market Data and see if we can use the same endpoint to retrieve the data.
+* [STORY-PROJECT] Make EsiType compatible between the NIB and NIF implementations.
+* [STORY-NIN] Update the adapter definitions to use the new openapi definitions.
+
+
+* [STORY-NIB] Create a new endpoint to retrieve Global Market Prices to be used as a base value.
+* [STORY-NIB] Create a new endpoint to retrieve System specific market orders to be used to calculate a system wide price.
+* [STORY-NIB] Create a new endpoint to retrieve Station item prices.
+
+
+
 * [STORY-NIF] Update the render for Blueprints.
 * [STORY-NIN] Add the type icon url to the generated DTO.
 * [STORY-NIF] Stack identical blueprints into a single blueprint item with multiple instances like a stack.
@@ -28,26 +39,9 @@
 * [STORY-NIF] Create a new panel to show all blueprint locations. Mostly stations and under stations on Containers.
 
 
-*[EPIC-0.29] PROJECT update the published api into a web service and update the schemas for the DTOs.*
+*[EPIC-0.-] PROJECT update the published api into a web service and update the schemas for the DTOs.*
 * [STORY-PROJECT] Create the new web service to publish the api.
 * [STORY-PROJECT] Update the schemas for the DTOs.
 * [STORY-PROJECT] Upgrade Java version to the latest version. This affects the project and TeamCity.
 * [STORY-NIF] Update to the latest version of Angular.
 * [STORY-NIN] Update dependencies to use the latest versions.
-
-
-
-[PENDING]
-* [STORY-NIN] Update the adapter definitions to use the new openapi definitions.
-
-
-bluepri
-
-	[EPIC-0.30] Manage Market Data from their different sources.
-	* [STORY-NIB] Create a new endpoint to retrieve Global Market Prices to be used as a base value.
-	* [STORY-NIB] Create a new endpoint to retrieve System specific market orders to be used to calculate a system wide price.
-	* [STORY-NIB] Create a new endpoint to retrieve Station item prices.
-
-
-[EPIC-0.30]
-* [STORY.NIB] Replace the old MarketData structures that are currently unusable by ahte new Fuzzwork MarketData structures.
