@@ -10,4 +10,19 @@ export const ESI_CONSTANTS = Object.freeze({
 	BACKEND_ESI_V3_PREFIX: '/api/v3/neocom/',
 	BACKEND_ESI_TYPE: 'universe/types/',
 	BACKEND_ESI_SPACE_LOCATION: 'universe/spacelocation/',
+
+	BLUEPRINT: 'Blueprint',
+	SKILL: 'Skill',
+	MINERAL: 'Mineral',
+	COMPONENT: 'Component',
+	SHIP: 'Ship',
+	DRONE: 'Drone',
+	MODULE: 'Module',
+	CHARGE: 'Charge',
+	PLANETARY_COMMODITIES: 'Planetary Commodities',
+	SALVAGED_MATERIALS: 'Salvaged Materials',
+	DATACORES: 'Datacores',
+	ASTEROID: 'Asteroid',
+	COMPOSITE: 'Composite',
+
 })

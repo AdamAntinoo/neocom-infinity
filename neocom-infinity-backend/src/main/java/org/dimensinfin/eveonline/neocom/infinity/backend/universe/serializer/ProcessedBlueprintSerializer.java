@@ -14,7 +14,6 @@ import org.dimensinfin.eveonline.neocom.industry.domain.ProcessedBlueprint;
  * @since 0.20.0
  */
 @JsonComponent
-@Deprecated
 public class ProcessedBlueprintSerializer extends JsonSerializer<ProcessedBlueprint> {
 	@Override
 	public void serialize( final ProcessedBlueprint value, final JsonGenerator gen, final SerializerProvider provider )
