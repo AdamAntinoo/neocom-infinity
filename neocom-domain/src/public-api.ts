@@ -24,6 +24,8 @@ export * from "./dto/V1.Stack.dto"
 export * from "./dto/V1.Station.interface"
 export * from "./dto/V1.StorageLocation.dto"
 
+export * from "./enums/IndustryGroup.enumerated"
+
 export * from "./esi-api/model/models"
 
 export * from "./exceptions/NeoComError"
