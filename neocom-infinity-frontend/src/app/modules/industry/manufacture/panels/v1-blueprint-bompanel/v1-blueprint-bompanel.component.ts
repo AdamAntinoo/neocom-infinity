@@ -11,7 +11,7 @@ import { BOMGroup, BOMGroupBuilder } from '@app/modules/industry/domain/V1BOMGro
 import { IRefreshable } from '@innovative/domain/interfaces/IRefreshable.interface'
 import { NCVariant } from '@env/NeoComVariants'
 import { ProcessedBlueprintDto } from '@app/modules/industry/dto/ProcessedBlueprintDto.dto'
-import { ProcessedBlueprint } from '@app/modules/industry/domain/V1ProcessedBlueprint.domain'
+import { ProcessedBlueprint } from '@app/industry/domain/V1ProcessedBlueprint.domain'
 import { BOMResourceBuilder } from '@app/modules/industry/domain/V1BOMResource.domain'
 import { BuildActionDto } from '@domain/industry/dto/BuildActionDto.dto'
 import { Resource } from '@app/modules/industry/domain/Resource.domain'

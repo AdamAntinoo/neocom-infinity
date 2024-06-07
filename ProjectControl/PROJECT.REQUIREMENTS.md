@@ -16,6 +16,10 @@
 * ***[STORY-NIF]*** Add Category expansion/collapse.
 * ***[STORY-NIB]*** Review the access to Market Data and see if we can use the same endpoint to retrieve the data.
 * [STORY-PROJECT] Make EsiType compatible between the NIB and NIF implementations.
+* [STORY-NIF] Upgrade the current bluepint page to get the new Processed Blueprint data.
+
+
+
 * [STORY-NIN] Update the adapter definitions to use the new openapi definitions.
 
 

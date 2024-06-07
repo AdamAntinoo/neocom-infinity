@@ -1,7 +1,7 @@
 // - CORE
 import { Component } from '@angular/core'
 import { ViewChild } from '@angular/core'
-import { ProcessedBlueprint } from '@app/modules/industry/domain/V1ProcessedBlueprint.domain'
+import { ProcessedBlueprint } from '@app/industry/domain/V1ProcessedBlueprint.domain'
 import { ProcessedBlueprintDto } from '@app/modules/industry/dto/ProcessedBlueprintDto.dto'
 import { AppStoreService } from '@app/services/appstore.service'
 import { IsolationService } from '@innovative/services/isolation.service'

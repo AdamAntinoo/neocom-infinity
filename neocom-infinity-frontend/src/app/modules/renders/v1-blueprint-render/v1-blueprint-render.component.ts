@@ -1,7 +1,7 @@
 // - CORE
 import { Component } from '@angular/core'
 import { V1BlueprintItem } from '@app/industry/domain/v1.BlueprintItem.domain'
-import { ProcessedBlueprint } from '@app/modules/industry/domain/V1ProcessedBlueprint.domain'
+import { ProcessedBlueprint } from '@app/industry/domain/V1ProcessedBlueprint.domain'
 import { V1ProcessedBlueprintSummary } from '@app/modules/industry/domain/V1ProcessedBlueprintSummary.domain'
 import { ProcessedBlueprintDto } from '@app/modules/industry/dto/ProcessedBlueprintDto.dto'
 // - DOMAIN
@@ -50,15 +50,15 @@ export class V1BlueprintRenderComponent extends V2NodeContainerRenderComponent {
 		if (this.node) return this.getNode().outputTypeIconURL
 		else return NeoComConstants.DEFAULT_ICON_PLACEHOLDER
 	}
-    // - Attributes for V1BlueprintItem
+	// - Attributes for V1BlueprintItem
 	public getTypeIconUrl(): string {
 		const node = this.getNode() as unknown as V1BlueprintItem
 		if (node) return node.type.getTypeIconUrl()
 		else return NeoComConstants.DEFAULT_ICON_PLACEHOLDER
 	}
-    public getIdenticalsQuantity(): number {
-        const node = this.getNode() as unknown as V1BlueprintItem
-        if (node) return node.identicalQuantity
-        else return 0
-    }
+	public getIdenticalsQuantity(): number {
+		const node = this.getNode() as unknown as V1BlueprintItem
+		if (node) return node.identicalQuantity
+		else return 0
+	}
 }
