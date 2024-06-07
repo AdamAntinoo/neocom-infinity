@@ -1,6 +1,6 @@
 {
   "name": "neocom-infinity",
-  "version": "0.29.0-12",
+  "version": "0.29.0-27",
   "scripts": {
     "cucumber": "./node_modules/@cucumber/cucumber/bin/cucumber-js ./cucumber/**/*.feature --no-strict --require-module ts-node/register --require-module tsconfig-paths/register --require ./cucumber/**/*.step.ts --tags @NIF05.01",
     "document:dev": "compodoc -p tsconfig.json src",
@@ -32,7 +32,7 @@
     "docker:stop": "docker-compose -f ./support/docker-compose.yml down ",
     "start:dev": "NODE_ENV=development npm run tag && npm run semver && npm run version:update &&ng serve --proxy-config proxy.conf.js --port 5201 ",
     "cypress:open": "./node_modules/cypress/bin/cypress open",
-    "upgrade:neocom": "npm install --save neocom-domain"
+    "upgrade:neocom": "npm uninstall --save npm neocom-domain && npm install --save-exact neocom-domain"
   },
   "private": true,
   "engines": {
@@ -69,7 +69,7 @@
     "express-http-proxy": "1.6.0",
     "fs": "0.0.1-security",
     "jwt-decode": "2.2.0",
-    "neocom-domain": "^0.6.7",
+    "neocom-domain": "^0.29.0",
     "neocom-shared": "^0.0.1",
     "ng-drag-drop": "5.0.0",
     "ngx-toastr": "14.3.0",

@@ -5,8 +5,6 @@ docker run --name teamcity-server-instance  \
     -p 8111:8111 \
     jetbrains/teamcity-server
 
-# Docker / Kubernetes / Minikube
-
 
 # Generate Node sources from OpenApi specification
 openapi-generator-cli generate -g typescript-nestjs -i esi.openapi.json
@@ -14,3 +12,8 @@ openapi-generator-cli generate -g typescript-nestjs -i esi.openapi.json
 # Generate a config map from file
 kubectl create configmap -n neocom-staging neocom-poc-environment --from-file=environment=.env.development
 configmap/neocom-poc-environment created
+
+# KUBERNETES
+## Start Kubernetes Dashboard
+kubectl -n kubernetes-dashboard create token admin-user
+kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard-kong-proxy 8443:443

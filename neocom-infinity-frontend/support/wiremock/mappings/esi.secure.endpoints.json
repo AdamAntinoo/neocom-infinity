@@ -4,7 +4,7 @@
       "priority": 10,
       "request": {
         "method": "GET",
-        "urlPathTemplate": "/nin/v1/character/miningoperations",
+        "urlPathTemplate": "/api/v3/neocom/character/miningoperations",
         "cookies": {
           "ESI-DATA-SERVICES": {
             "matches": ".*"
