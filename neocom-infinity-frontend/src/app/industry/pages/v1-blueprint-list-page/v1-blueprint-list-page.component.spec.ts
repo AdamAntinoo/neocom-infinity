@@ -25,7 +25,7 @@ import { NeocomCredential } from '@domain/core/Credential.domain'
 import { NeoComException } from '@innovative/domain/NeoComException'
 import { ExceptionCodes } from '@app/platform/ExceptionCodes'
 import { V1BlueprintListPageComponent } from './v1-blueprint-list-page.component'
-import { ProcessedBlueprint } from '@app/industry/domain/V1ProcessedBlueprint.domain'
+import { ProcessedBlueprint } from '@app/industry/domain/v2.ProcessedBlueprint.domain'
 
 describe('PAGE V1BlueprintListPageComponent [Module: INDUSTRY/MANUFACTURE]', () => {
 	let component: V1BlueprintListPageComponent

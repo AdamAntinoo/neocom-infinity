@@ -1,8 +1,8 @@
 // - CORE
 import { Component } from '@angular/core'
 import { ViewChild } from '@angular/core'
-import { ProcessedBlueprint } from '@app/industry/domain/V1ProcessedBlueprint.domain'
-import { ProcessedBlueprintDto } from '@app/modules/industry/dto/ProcessedBlueprintDto.dto'
+import { ProcessedBlueprint } from '@app/industry/domain/v2.ProcessedBlueprint.domain'
+import { ProcessedBlueprintDto } from 'neocom-domain/v1.ProcessedBlueprint.dto'
 import { AppStoreService } from '@app/services/appstore.service'
 import { IsolationService } from '@innovative/services/isolation.service'
 import { V1AvailableBlueprintsPanelComponent } from '../../../modules/industry/manufacture/panels/v1-available-blueprints-panel/v1-available-blueprints-panel.component'

@@ -20,7 +20,10 @@ export class V2UniverseType extends NeoCom {
         return this
     }
 
-    public decode(): void { }
+    public identify(): string {
+        return 'KnownSystem'
+    }
+   public decode(): void { }
 
     public getTypeIconUrl(): string {
         return `https://images.evetech.net/types/${this.typeId}/icon`

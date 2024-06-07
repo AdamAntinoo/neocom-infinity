@@ -23,10 +23,10 @@ export class V1BlueprintCategoriesPanel extends AppPanelComponent implements OnI
 		super()
 	}
 	public ngOnInit(): void {
-		console.log('>[V1AvailableBlueprintsPanelComponent.ngOnInit]')
+		console.log('>[V1BlueprintCategoriesPanel.ngOnInit]')
 		this.setVariant(NCVariant.MY_BLUEPRINTS)
 		super.ngOnInit()
-		console.log('<[V1AvailableBlueprintsPanelComponent.ngOnInit]')
+		console.log('<[V1BlueprintCategoriesPanel.ngOnInit]')
 	}
 
 	public clean(): void {}

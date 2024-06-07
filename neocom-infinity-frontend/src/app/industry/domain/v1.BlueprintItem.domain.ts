@@ -4,7 +4,6 @@ import { V1SpaceLocation } from '@domain/esi/v1.SpaceLocation.domain'
 import { NeoComError, MANDATORY_FIELD_MISSING } from 'neocom-domain'
 
 export class V1BlueprintItem extends NeoCom {
-	public override jsonClass: string = 'BlueprintDto'
 	public id: number
 	public type: V2UniverseType
 	public storageLocation: V1SpaceLocation
@@ -15,12 +14,9 @@ export class V1BlueprintItem extends NeoCom {
 	public runs: number = 1
 	public original: boolean = false
 
-	constructor(values: Object = {}) {
-		super()
-		Object.assign(this, values)
-		this.jsonClass = 'BlueprintItem'
-	}
-
+    public override identify(): string {
+        return 'Blueprint'
+    }
 	public getUniqueId(): string {
 		return this.id.toString()
 	}

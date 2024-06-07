@@ -11,8 +11,11 @@ export const PlatformConstants = {
     APPTITLE: 'NeoCom Infinity',
 }
 export const BACKEND_LINKS = Object.freeze({
-    BACKEND_MINING_OPERATIONS_LINK: '/api/v3/character/miningoperations',
+    BACKEND_NEOCOM_V1: '/api/v1/neocom',
+    BACKEND_MINING_OPERATIONS_LINK: '/api/v3/neocom/character/miningoperations',
     BACKEND_BLUEPRINTS_LINK: 'character/blueprints/session/',
+    BACKEND_PROCESSED_BLUEPRINTS_LINK_S1:'/api/v1/neocom/industry/pilots/',
+    BACKEND_PROCESSED_BLUEPRINTS_LINK_S2:'/manufacture/blueprints',
     BACKEND_ASSETS_LINK: '/api/v3/character/assets/session'
 })
 export const STORAGE_LINKS = Object.freeze({

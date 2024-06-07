@@ -35,7 +35,7 @@ services:
       - "5225:6090"
     volumes:
       # WARNING - Use full absolute paths to make this work.
-      - ../backend-simulation:/backend-simulation
+      - ./logs/backend-simulation:/backend-simulation
     command: "bin/apisimulator start /backend-simulation -p 6090"
 
 
