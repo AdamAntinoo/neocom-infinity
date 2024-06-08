@@ -19,7 +19,7 @@ export class ApiProcessedBlueprintsTypedRequest extends AngularBaseTypedRequest 
 
     protected prepareRequest(): void {
         const pilotId : number =3
-		this.request = BACKEND_LINKS.BACKEND_NEOCOM_V1 +BACKEND_LINKS.BACKEND_PROCESSED_BLUEPRINTS_LINK_S1+this.parameters.pilotId+BACKEND_LINKS.BACKEND_PROCESSED_BLUEPRINTS_LINK_S2
+		this.request =  BACKEND_LINKS.BACKEND_PROCESSED_BLUEPRINTS_LINK_S1+this.parameters.pilotId+BACKEND_LINKS.BACKEND_PROCESSED_BLUEPRINTS_LINK_S2
 		console.log('>>prepare->request->' + this.request)
 	}
 	protected prepareOptions(): void {

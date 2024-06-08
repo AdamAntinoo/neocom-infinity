@@ -91,7 +91,7 @@ export class BackendFactory {
 					.withStorageLocation(storageLocation, blueprint.storageLocation.locationType)
 					.build()
 			}
-			case 'ProcessedBlupeintDto': {
+			case 'ProcessedBlueprintDto': {
 				console.log('>>BackendFactory>case blueprint->' + JSON.stringify(backendData))
 				const blueprint: V1ProcessedBlueprintDto = backendData as V1ProcessedBlueprintDto
 				const blueprintItem: V2UniverseType = await this.construct(blueprint.blueprintItem)
