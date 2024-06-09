@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.dimensinfin.eveonline.neocom.domain.Fitting;
 import org.dimensinfin.eveonline.neocom.infinity.backend.character.fitting.rest.v1.FittingsControllerV1;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendExceptionObsolete;
 
 public class FittingsControllerV1Test {
 
@@ -35,7 +35,7 @@ public class FittingsControllerV1Test {
 		Mockito.when( this.fittingService.getPilotFittings() ).thenReturn( response );
 		Mockito.when( this.neoComAuthenticationProvider.getAuthenticatedPilot() ).thenReturn( 93813310 );
 		// Test
-		final NeoComRuntimeBackendException thrown = Assertions.assertThrows( NeoComRuntimeBackendException.class,
+		final NeoComRuntimeBackendExceptionObsolete thrown = Assertions.assertThrows( NeoComRuntimeBackendExceptionObsolete.class,
 				() -> fittingsControllerV1.getPilotFittings( 100 ),
 				"Expected fittingsController.getPilotFittings() to throw null verification, but it didn't."
 		);

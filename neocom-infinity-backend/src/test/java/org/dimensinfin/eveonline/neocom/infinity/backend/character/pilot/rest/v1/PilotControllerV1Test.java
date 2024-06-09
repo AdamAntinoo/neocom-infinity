@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.dimensinfin.eveonline.neocom.character.domain.PilotV1;
 import org.dimensinfin.eveonline.neocom.domain.Pilot;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendExceptionObsolete;
 
 import static org.dimensinfin.eveonline.neocom.infinity.backend.support.TestDataConstants.PilotConstants.TEST_PILOT_ID;
 
@@ -52,7 +52,7 @@ public class PilotControllerV1Test {
 		Mockito.when( this.neoComAuthenticationProvider.getAuthenticatedPilot() ).thenReturn( INVALID_PILOT_ID );
 		// Test
 		final PilotControllerV1 pilotControllerV1 = new PilotControllerV1( this.neoComAuthenticationProvider, this.pilotServiceV1 );
-		Assertions.assertThrows( NeoComRuntimeBackendException.class, () -> {
+		Assertions.assertThrows( NeoComRuntimeBackendExceptionObsolete.class, () -> {
 			pilotControllerV1.getPilotData( pilotId );
 		} );
 	}

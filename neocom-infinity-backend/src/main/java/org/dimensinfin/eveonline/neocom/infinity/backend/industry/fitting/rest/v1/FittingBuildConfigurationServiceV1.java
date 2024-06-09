@@ -22,14 +22,14 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.servic
 import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetailsService;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRestError;
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendExceptionObsolete;
 import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComCredentialService;
 import org.dimensinfin.eveonline.neocom.infinity.datamanagement.industry.processor.IndustryBuildProcessor;
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
 import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;
 import org.dimensinfin.eveonline.neocom.service.ResourceFactory;
 
-import static org.dimensinfin.eveonline.neocom.infinity.backend.industry.IndustryControllerV1.INDUSTRY_ERROR_CODE_PREFIX;
+import static org.dimensinfin.eveonline.neocom.infinity.infrastructure.adapters.inbound.industryApi.IndustryControllerV2.INDUSTRY_ERROR_CODE_PREFIX;
 
 /**
  * Fitting Build Orders are a complex data structure that represents the components and actions that that user preferences when building a determinate
@@ -153,11 +153,11 @@ public class FittingBuildConfigurationServiceV1 extends NeoComCredentialService 
 				Collectors.toList(),
 				list -> {
 					if (list.isEmpty())
-						throw new NeoComRuntimeBackendException( Error_FITTINGSEARCHRETURNEDFAILURE(
+						throw new NeoComRuntimeBackendExceptionObsolete( Error_FITTINGSEARCHRETURNEDFAILURE(
 								MessageFormat.format( "There is no fitting matching the requested id {0}", fittingId )
 						) );
 					if (1 != list.size())
-						throw new NeoComRuntimeBackendException( Error_FITTINGSEARCHRETURNEDFAILURE(
+						throw new NeoComRuntimeBackendExceptionObsolete( Error_FITTINGSEARCHRETURNEDFAILURE(
 								MessageFormat.format( "There are more than one fitting matching the requested id {0}", fittingId )
 						) );
 					return list.get( 0 );
