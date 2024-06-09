@@ -17,8 +17,9 @@
 * ***[STORY-NIB]*** Review the access to Market Data and see if we can use the same endpoint to retrieve the data.
 * [STORY-PROJECT] Make EsiType compatible between the NIB and NIF implementations.
 * [STORY-NIF] Upgrade the current bluepint page to get the new Processed Blueprint data.
-
-
+* [STORY-NIB] Create a selector to return the corresponding Market Hut for any location. If there is no data for the selected region then use the Jita region selector.
+* [STORY-NIB] Functions should not return null in any case. Non existent values should be supported and replaced by default elements easy to identifícate on Frontend or on other functions. Use the MOCK code to identify such cases.
+* [STORY-NIB] Start to replace the use of cookies for authentication and use instead Headers. This will allow to use different characters from the same interface.
 
 * [STORY-NIN] Update the adapter definitions to use the new openapi definitions.
 
@@ -49,3 +50,4 @@
 * [STORY-PROJECT] Upgrade Java version to the latest version. This affects the project and TeamCity.
 * [STORY-NIF] Update to the latest version of Angular.
 * [STORY-NIN] Update dependencies to use the latest versions.
+l

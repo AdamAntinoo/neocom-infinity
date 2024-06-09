@@ -1,6 +1,5 @@
 package org.dimensinfin.eveonline.neocom.infinity.backend.industry.converter;
 
-import java.util.Objects;
 import javax.validation.constraints.NotNull;
 
 import org.dimensinfin.core.interfaces.Converter;
@@ -11,7 +10,9 @@ import org.dimensinfin.eveonline.neocom.industry.domain.ProcessedBlueprintSummar
 /**
  * @author Adam Antinoo (adamantinoo.git@gmail.com)
  * @since 0.20.0
+ * @deprecated
  */
+@Deprecated
 public class ProcessedBlueprintToSummaryConverter implements Converter<ProcessedBlueprint, ProcessedBlueprintSummary> {
 	private final String uniqueId;
 

@@ -13,6 +13,7 @@ import org.dimensinfin.eveonline.neocom.database.repositories.CredentialReposito
 import org.dimensinfin.eveonline.neocom.database.repositories.PilotPreferencesRepository;
 import org.dimensinfin.eveonline.neocom.database.repositories.SDERepository;
 import org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendDependenciesModule;
+import org.dimensinfin.eveonline.neocom.infinity.app.ports.DataStorePort;
 import org.dimensinfin.eveonline.neocom.infinity.service.RedisDataStoreImplementation;
 import org.dimensinfin.eveonline.neocom.infinity.service.SBConfigurationService;
 import org.dimensinfin.eveonline.neocom.infinity.service.SBFileSystemService;
@@ -115,6 +116,12 @@ public class NeoComDependencyConfig {
 
 	@Bean
 	public IDataStore dependency_18_IDataStore() {
+		LogWrapper.enter();
+		return this.injector.getInstance( RedisDataStoreImplementation.class );
+	}
+
+	@Bean
+	public DataStorePort dependency_18_DataStorePort() {
 		LogWrapper.enter();
 		return this.injector.getInstance( RedisDataStoreImplementation.class );
 	}
