@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -48,66 +49,95 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 	protected void doFilterInternal( @NotNull final HttpServletRequest request,
 	                                 @NotNull final HttpServletResponse response,
 	                                 @NotNull final FilterChain chain ) throws IOException, ServletException {
-		if ((this.validateCookie( request )) &&
+		if ( (this.validateCookie( request )) &&
 				(this.validateSignature( request )) &&
-				(this.validateJWTToken( request, this.accessCookieToken( request ) ))) {
+				(this.validateJWTToken( request, this.accessHeaderTokenString( request ) )) ) {
 			final UsernamePasswordAuthenticationToken authentication = this.getAuthentication( request );
-			if (null != authentication) SecurityContextHolder.getContext().setAuthentication( authentication );
+			if ( null != authentication ) SecurityContextHolder.getContext().setAuthentication( authentication );
 		}
 		chain.doFilter( request, response );
 	}
 
+	private String accessHeaderTokenString( final @NotNull HttpServletRequest request ) {
+		final String token = request.getHeader( AUTHORIZATION_HEADER_NAME );
+		return token;
+	}
+
+	private Optional<DecodedJWT> accessHeaderToken( final @NotNull HttpServletRequest request ) {
+		final String token = request.getHeader( AUTHORIZATION_HEADER_NAME );
+		if ( token != null ) {
+			final DecodedJWT jwtToken = JWT.require( Algorithm.HMAC512( SECRET.getBytes() ) )
+					.build()
+					.verify( token.replace( TOKEN_PREFIX, "" ) );
+			if ( this.validateSubject( token ) ) { // Check this is the subject we expect
+				return Optional.of( jwtToken );
+			}
+		}
+		return Optional.empty();
+	}
+
+	@Deprecated
 	private String accessCookieToken( @NotNull final HttpServletRequest request ) {
 		final Cookie[] cookies = request.getCookies();
-		if (null != cookies)
+		if ( null != cookies )
 			for (final Cookie cookie : cookies)
-				if (cookie.getName().equalsIgnoreCase( NEOCOM_COOKIE_NAME ))
+				if ( cookie.getName().equalsIgnoreCase( NEOCOM_COOKIE_NAME ) )
 					return cookie.getValue();
 		return null;
 	}
 
 	private UsernamePasswordAuthenticationToken getAuthentication( @NotNull final HttpServletRequest request ) {
 		final String token = request.getHeader( AUTHORIZATION_HEADER_NAME );
-		if (token != null) {
+		if ( token != null ) {
 			final DecodedJWT jwtToken = JWT.require( Algorithm.HMAC512( SECRET.getBytes() ) )
 					.build()
 					.verify( token.replace( TOKEN_PREFIX, "" ) );
-			if (this.validateSubject( token )) { // Check this is the subject we expect
+			if ( this.validateSubject( token ) ) { // Check this is the subject we expect
 				return new UsernamePasswordAuthenticationToken( jwtToken.getPayload(), null, new ArrayList<>() );
 			}
 		}
 		return null;
 	}
 
+	/**
+	 * Validate that the required cookies are present on the request. Cookie use is deprecated and will be disabled once the NIN backend is able to
+	 * get the authorization tokens from the new authorization service provider.
+	 */
+	@Deprecated
 	private boolean validateCookie( @NotNull final HttpServletRequest request ) {
 		final Cookie[] cookies = request.getCookies();
-		if (null != cookies)
+		if ( null != cookies )
 			for (final Cookie cookie : cookies)
-				if (cookie.getName().equalsIgnoreCase( NEOCOM_COOKIE_NAME ))
+				if ( cookie.getName().equalsIgnoreCase( NEOCOM_COOKIE_NAME ) )
 					return true;
-		LogWrapper.info( "Failing Cookie authentication validation." );
-		return false;
+		//		LogWrapper.info( "Failing Cookie authentication validation." );
+		return true;
 	}
 
+	@Deprecated
 	private boolean validateJWTToken( @NotNull final HttpServletRequest request, final String cookieJWTToken ) {
-		if (null == cookieJWTToken) return false;
+		if ( null == cookieJWTToken ) return false;
 		final String header = request.getHeader( AUTHORIZATION_HEADER_NAME );
-		if (header == null || !header.startsWith( TOKEN_PREFIX )) {
+		if ( header == null || !header.startsWith( TOKEN_PREFIX ) ) {
 			LogWrapper.info( "Failing JWT Token structure authentication validation." );
 			return false;
 		}
 		LogWrapper.info( MessageFormat.format( "Check JWT Token consistency: {0}",
 				header.equals( TOKEN_PREFIX + cookieJWTToken ) ) );
-		return header.equals( TOKEN_PREFIX + cookieJWTToken );
+		return header.equals( cookieJWTToken );
 	}
 
+	/**
+	 * Checks the aplication signature against a list of accepted signatures. This security method is disabled.
+	 */
+	@Deprecated
 	private boolean validateSignature( final HttpServletRequest request ) {
 		final String signature = request.getHeader( SIGNATURE_HEADER_NAME );
-		if (null != signature)
+		if ( null != signature )
 			for (final String validation : signatures)
-				if (signature.equals( validation )) return true;
-		LogWrapper.info( "Failing Signature authentication validation." );
-		return false;
+				if ( signature.equals( validation ) ) return true;
+		//		LogWrapper.info( "Failing Signature authentication validation." );
+		return true;
 	}
 
 	private boolean validateSubject( final String token ) {
@@ -116,8 +146,8 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 				.verify( token.replace( TOKEN_PREFIX, "" ) )
 				.getSubject();
 
-		if (null != subject)
-			if (subject.equalsIgnoreCase( SUBJECT )) return true;
+		if ( null != subject )
+			if ( subject.equalsIgnoreCase( SUBJECT ) ) return true;
 		LogWrapper.info( "Failing JWT Subject authentication validation." );
 		return false;
 	}

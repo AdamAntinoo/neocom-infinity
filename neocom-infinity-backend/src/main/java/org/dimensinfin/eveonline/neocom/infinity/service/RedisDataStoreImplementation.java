@@ -23,11 +23,11 @@ import org.dimensinfin.eveonline.neocom.domain.space.SpaceLocation;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseTypesTypeIdOk;
 import org.dimensinfin.eveonline.neocom.exception.NeoComRuntimeException;
 import org.dimensinfin.eveonline.neocom.industry.domain.ProcessedBlueprint;
+import org.dimensinfin.eveonline.neocom.infinity.app.ports.DataStorePort;
 import org.dimensinfin.eveonline.neocom.market.MarketOrder;
 import org.dimensinfin.eveonline.neocom.market.service.MarketService;
 import org.dimensinfin.eveonline.neocom.service.DMServicesDependenciesModule;
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
-import org.dimensinfin.eveonline.neocom.service.IDataStore;
 import org.dimensinfin.eveonline.neocom.utility.NeoObjects;
 import org.dimensinfin.logging.LogWrapper;
 
@@ -37,7 +37,7 @@ import org.dimensinfin.logging.LogWrapper;
  * @author Adam Antinoo (adamantinoo.git@gmail.com)
  * @since 0.20.0
  */
-public class RedisDataStoreImplementation implements IDataStore {
+public class RedisDataStoreImplementation implements DataStorePort {
 	private static final ObjectMapper neocomObjectMapper = new ObjectMapper();
 	private static final JsonJacksonCodec codec = new JsonJacksonCodec( neocomObjectMapper );
 	protected static final String LOWEST_SELL_ORDER_MAP = "LSO";
@@ -136,10 +136,10 @@ public class RedisDataStoreImplementation implements IDataStore {
 	}
 
 	@Override
-	public ProcessedBlueprint accessProcessedBlueprintsByUID( final Integer pilotId, final String blueprintUID ) {
+	public Optional<ProcessedBlueprint> accessProcessedBlueprintsByUID( final Integer pilotId, final String blueprintUID ) {
 		final String uniqueLSOKey = this.generateBlueprintCostIndexUniqueId( pilotId );
 		final RMapCache<String, ProcessedBlueprint> BCIMap = this.redisClient.getMapCache( uniqueLSOKey );
-		return BCIMap.get( blueprintUID );
+	return Optional.ofNullable(   BCIMap.get( blueprintUID ));
 	}
 
 	@Override
