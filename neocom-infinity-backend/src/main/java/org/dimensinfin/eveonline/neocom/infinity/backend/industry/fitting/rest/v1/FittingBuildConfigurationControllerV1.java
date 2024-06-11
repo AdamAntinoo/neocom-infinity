@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.dimensinfin.eveonline.neocom.infinity.backend.industry.IndustryControllerV1;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingBuildConfiguration;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingConfigurations;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
+import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComAuthenticatedController;
 
 @RestController
 @Validated
-public class FittingBuildConfigurationControllerV1 extends IndustryControllerV1 {
+public class FittingBuildConfigurationControllerV1 extends NeoComAuthenticatedController {
 	private final FittingBuildConfigurationServiceV1 fittingBuildConfigurationServiceV1;
 
 	// - C O N S T R U C T O R S

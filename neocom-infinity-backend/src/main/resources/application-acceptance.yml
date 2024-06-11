@@ -1,3 +1,6 @@
+server:
+  port: 9500
+
 endpoints:
   health:
     id: health
@@ -14,3 +17,9 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+
+acceptance:
+  server:
+    serverPort: 9500
+    serverHost: http://localhost
+    serverContentType: application/json

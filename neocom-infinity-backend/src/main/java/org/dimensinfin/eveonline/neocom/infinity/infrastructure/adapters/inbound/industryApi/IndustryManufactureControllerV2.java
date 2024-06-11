@@ -43,30 +43,28 @@ public class IndustryManufactureControllerV2 extends IndustryControllerV2 {
 	}
 
 	/**
+	 * SUMMARY: Gets the list of Processed Blueprints for the selected pilot including some standard cost calculations to get the blueprint comparison
+	 * profit index.
+	 *
 	 * Analyze the list of blueprints accessible to the selected pilot. Calculate the Bill Of Materials, the production cost and the current market
 	 * cost. For variable scenarios use the pilot configuration properties to identify the preferred manufacture factory or the trading market hub.
 	 * The endpoint is authenticated so validate the selected pilot identifier before going to fetch the data.
 	 *
 	 * v2 On this version we have removed data from the response. But Market Data is still used to calculate the manufacture and the bom costs to be
-	 * compared and to obtainf the comparison index. That index is the market sell profit against the manufacture cost. The value should be grater
-	 * than one for profitable items. Market Data used for the initial blueprint calculation is taken from the main hub that correspond to the region
-	 * where the item is located (to be completed).
+	 * compared and to obtain the comparison index. That index is the market sell profit against the manufacture cost. The value should be grater than
+	 * one for profitable items. Market Data used for the initial blueprint calculation is taken from the main hub that correspond to the region where
+	 * the item is located (to be completed).
 	 *
+	 * @param sessionId used only to dofferentiate requests and allow them to be cached differently. Session is only a intercommunication's gadget.
 	 * @return the list of Blueprints along with the information required to display and help to make decisions at the front end user interface.
 	 */
-	@GetMapping(path = "/pilots/{pilotId}/manufacture/blueprints",
+	@GetMapping(path = "/pilots/manufacture/blueprints/session/{sessionid}",
 			consumes = "application/json",
 			produces = "application/json")
 	@Cacheable(lifetime = 15, unit = TimeUnit.MINUTES)
-	public ResponseEntity<List<ProcessedBlueprint>> getBlueprints4PilotWithCostIndex( @PathVariable @NotNull final Integer pilotId ) {
-		final UnaryOperator<Integer> pilotIdentifierValidator = input -> {
-			if ( Objects.isNull( input ) )
-				throw new NeoComRuntimeHttpException( NeoComExceptionCatalog.INVALID_REQUEST_PARAMETER, "pilotId" );
-			this.neoComAuthenticationProvider.validatePilotIdentifier( input );
-			return input;
-		};
-		return new ResponseEntity<>( this.processedBlueprintsUseCase.getBlueprints4PilotWithCostIndex(
-				pilotIdentifierValidator.apply( pilotId )
+	public ResponseEntity<List<ProcessedBlueprint>> getProcessedBlueprints4Pilot( @PathVariable final String sessionId ) {
+		return new ResponseEntity<>( this.processedBlueprintsUseCase.getProcessedBlueprints4Pilot(
+				this.neoComAuthenticationProvider.getAuthenticatedPilot()
 		), HttpStatus.OK );
 	}
 

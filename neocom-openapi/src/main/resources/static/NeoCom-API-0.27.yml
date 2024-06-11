@@ -1,8 +1,47 @@
-openapi: 3.0.3
+openapi: '3.0.3'
 info:
-  title: NeoCom Backend API
-  version: 0.27.1
+  title: NeoCom Infinity Backend Public API
+  version: 0.29.0
   description: >
+    # Summary
+
+    ### New and latest NeoCom Api definitions to be used on the reviewed implementations for the new backend services.
+
+    This API defines all the client REST endpoints public and available to other systems. The API definition follows the OpenApi 3.0 specification
+    and there are provisioning for automatic code generation for this API clients.
+
+    This specification describes the implemented API for the backend on the application **NeoCom.Infinity**. The end points
+    described are expected to be used from the **Angular Frontend** application. The ouputs are formatted as JSON results and will
+    be consumed by json compliant applications or by clients that will transform them to Java instances. The recommended json deserializer is GSON.
+
+    For java transformation the JSON code could be used to generate the transformation code at the next link. **http://www.jsonschema2pojo.org/**.
+
+    # System Description
+
+    The backend is a single standalone SpringBoot server but that publishes more than a single service. There are 3 main services at this version:
+
+    * **neocom** - this is the authenticated set of endpoints that will collect and the data that can only be obtained when a Pilot is
+    authenticated on the ESI services page. Some of the endpoints may also have a counterpart on the other services for public or data that can
+    also be obtained with no authentication.
+    * **public** - Endpoints that export some sets of data like Character or Market or any other section and that do no require authentication.
+    * **universe** - Endpoints that reference universe or game data and not related to any of the previous or so generic and core that can be used
+    from anywhere. There are endpoitns for locations, types and other game data structures.
+
+    * **spacelocations** - This service will search for detailed data about a space location identifier and get the type, system, statios or
+    structure and any other specific data that is related to the location. Wormholes are still unsupported as many of the out of common space
+    coordinates.
+    * **items** - This is the item database access service. It will add all sorts of market data to each of the available items.
+
+    The exported data is being improved for HATEOAS support so now some of the endpoints will replace resolved esi data by an equivalent http link.
+    This will help to reduce response times because there is no need to go to the ESI servers to get the data (this is specially severe when there
+    are collections of data). The consumer application is really required that detailed data can follow the link to retrieve the additional
+    information but this is done at the user selection pace and not preloading all possible data records.
+
+
+    This is most effective on long lists like assets or fittings. Now instead of resolving each of the item accesses and also getting each item
+    market information the response will just report a link. Following that link we get the item and from it we can get any market additional data
+    is really required.
+
     New NeoCom Infinity backend API. This is the complete API implementation for the backend services exposed, whatever the backend server
     that will provide the service. Initial implementations used the Java backend server and the ESI Public Data Services as a complementary source.
     New implementations have a dual backend service, part of it the original Java SpringBoot services and a new NestJS Typescript service that will
@@ -10,15 +49,26 @@ info:
     <br>
     Different api endpoints will be isolated with a version prefix so even they are all defined under the same path root the different version will
     be used by routers and proxies to fire the request to the correct backend implementation.
+
+    ## CHANGES:
+    * [20201226] *Introduced the new Market Data endpoints both for authenticated and universal access.*
+    * [20240609] *Introduced the new endpoint separation by backed server. There are the neonest and the neospring servers.*
+
+    ## TODO:
+    * [20201019] *Replace old api endpoints by the new HAL endpoints and also document the corrent exception responses.*
+    * [20191025] *Complete the definition for the NeoComExceptionResponse once I have the correct serialization data.*
+
   contact:
     name: Adam Antinoo
     email: adamantinoo.git@gmail.com
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/license-2.0.html
+
 externalDocs:
   description: How to use this module.
   url: ./README.md
+
 tags:
   - name: Authorization
     description: NeoCom Authorization Endpoint set
@@ -26,6 +76,14 @@ tags:
     description: NeoCom endpoints related to character data.
   - name: Industry
     description: NeoCom Industry endpoints. Covers Character and Corporation if available.
+  - name: public
+    description: >
+      Public (P). Endpoints that export some sets of data like Character or Market or any other section and that do no require authentication.
+  - name: universe
+    description: >
+      Universe (U). Endpoints that reference universe or game data and not related to any of the previous or so generic and core that can be used
+      from anywhere. There are endpoints for locations, types and other game data structures. Any data that does not require authentication and
+      that is publicly available.
 paths:
   '/api/v1/neocom/refreshAuthorization':
     get:
@@ -113,7 +171,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BackendError'
-  '/api/v3/neocom/character/blueprints/session/{sessionid}':
+  /api/v3/neocom/character/blueprints/session/{sessionid}:
     get:
       tags:
         - Character
@@ -138,9 +196,9 @@ paths:
             format: jwt
           required: true
           example: esjhkjegjhjgwehihiuwyer.jkhwrhgwbjhvwge
-          description: The access token to be used for authorization. This token will contain information to locate the credential to be used for data location.
+          description: The access token to be used for authorization. This token will contain information to locate the credential to be used for data extraction.
       responses:
-        '200':
+        200:
           description: List of blueprints obtained and processed successfully. The new list is returned to the client.
           content:
             application/json:
@@ -148,13 +206,13 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/v1.Blueprint'
-        '401':
+        401:
           description: Unauthorized. The current active access token is not present. The character identified thus cannot be accessed and the credential cannot be found.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/BackendError'
-        '403':
+        403:
           description: Forbidden. The credential information is not valid to create a new access token and the authorization request is forbidden.
           content:
             application/json:
@@ -206,6 +264,48 @@ paths:
                 $ref: '#/components/schemas/BackendError'
       security:
         - neocom_esi_auth: []
+
+  # - N E O C O M   I N D U S T R Y
+  /api/v2/neospring/industry/pilots/manufacture/blueprints/session/{sessionId}:
+    get:
+      tags:
+        - Industry
+      operationId: getProcessedBlueprints4Pilot
+      summary: Gets the list of Processed Blueprints for the selected pilot including some standard cost calculations to get the blueprint comparison profit index.
+      description: >
+        Analyze the list of blueprints accessible to the selected pilot. Calculate the Bill Of Materials, the production cost and the current market
+        cost. For variable scenarios use the pilot configuration properties to identify the preferred manufacture factory or the trading market hub.
+        The endpoint is authenticated so validate the selected pilot identifier before going to fetch the data.
+        
+        v2 On this version we have removed data from the response. But Market Data is still used to calculate the manufacture and the bom costs to be
+        compared and to obtainf the comparison index. That index is the market sell profit against the manufacture cost. The value should be grater
+        than one for profitable items. Market Data used for the initial blueprint calculation is taken from the main hub that correspond to the region
+        where the item is located (to be completed).
+      parameters:
+        - name: sessionid
+          in: path
+          description: The session identifier to be used to cache the blueprints.
+          required: true
+          schema:
+            type: string
+        - in: header
+          name: NEOCOM-TOKEN
+          schema:
+            type: string
+            format: jwt
+          required: true
+          example: esjhkjegjhjgwehihiuwyer.jkhwrhgwbjhvwge
+          description: The access token to be used for authorization. This token will contain information to locate the credential to be used for data extraction.
+      responses:
+        200:
+          description: >
+            List of Processed Blueprints. A Processed Blueprint is a packed set of identical blueprints. Data is calculated using Region Hub market.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/v2.ProcessedBlueprint'
 
 components:
   schemas:
@@ -314,7 +414,7 @@ components:
       properties:
         jsonClass:
           type: string
-          description: The class of the Json object that is being described.
+          description: The unique and constant class name of the Json object that is being described.
           default: MiningOperationDto
           example: MiningOperationDto
         id:
@@ -367,6 +467,80 @@ components:
         - jsonClass
         - quantity
         - typelink
+    v0.NeocomDto:
+      type: object
+      required:
+        - jsonClass
+      properties:
+        jsonClass:
+          type: string
+          description: The unique and constant class name of the Json object that is being described.
+          example: SomeClassDto
+
+    v2.ProcessedBlueprint:
+      allOf:     # Combines the v0.NeocomDto and the inline model
+        - $ref: '#/components/schemas/v0.NeocomDto'
+        - type: object
+          required:
+            - rootCause
+          properties:
+            typeId:
+              type: integer
+              format: int32
+              description: the blueprint unique eve type identifier.
+              example: 17646
+            blueprintIten:
+              $ref: '#/components/schemas/v1.EsiType'
+            location:
+              $ref: '#/components/schemas/v1.SpaceLocation'
+            materialEfficiency:
+              type: integer
+              format: int32
+              multipleOf: 10
+              minimum: 0
+              maximum: 100
+              description: the efficiency value for the material usages for this blueprint. It can be increased researching the Original blueprint.
+              example: 10
+            timeEfficiency:
+              type: integer
+              format: int32
+              multipleOf: 10
+              minimum: 0
+              maximum: 100
+              description: the efficiency value for the time to build for this blueprint. It can be increased researching the Original blueprint.
+              example: 10
+            outputTypeId:
+              type: integer
+              format: int32
+              description: the blueprint unique eve type identifier.
+              example: 17647
+            outputItem:
+              $ref: '#/components/schemas/v1.EsiType'
+            manufactureCost:
+              type: number
+              format: double
+              description: the cost to manufacture ona single copy of the output item using this blueprint. Used Region Market for prices data.
+              example: 14984.76
+            outputCost:
+              type: number
+              format: double
+              description: the cost to buy one output item instead of manufacturing it with the blueprint. Used Region Market for prices data.
+              example: 14984.76
+            bom:
+              type: array
+              items:
+                $ref: '#/components/schemas/v1.Resource'
+            index:
+              type: number
+              format: double
+              description: the relative aspect between the manufacture cost and the output cost for this blueprint. Is the profit multiplier.
+              example: 1.500345
+
+            
+            
+
+
+
 
     EsiTypeDto:
       type: object

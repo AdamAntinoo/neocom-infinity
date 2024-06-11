@@ -11,11 +11,7 @@ import org.dimensinfin.eveonline.neocom.industry.domain.ProcessedBlueprint;
 import org.dimensinfin.eveonline.neocom.infinity.app.ports.DataStorePort;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetailsService;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
-import org.dimensinfin.eveonline.neocom.infinity.core.ExceptionMessagesExternalisedType;
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendExceptionObsolete;
 import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComAuthenticatedService;
-import org.dimensinfin.eveonline.neocom.infinity.domain.exceptions.NeoComRuntimeHttpException;
-import org.dimensinfin.logging.LogWrapper;
 
 @Service
 public class ProcessedBlueprintsUseCase extends NeoComAuthenticatedService {
@@ -39,7 +35,7 @@ public class ProcessedBlueprintsUseCase extends NeoComAuthenticatedService {
 		return this.dataStoreService.accessProcessedBlueprintsByUID( input.getPilotId(), input.getBlueprintUID() );
 	}
 
-	public List<ProcessedBlueprint> getBlueprints4PilotWithCostIndex(final @NotNull Integer pilotId ) {
-			return this.dataStoreService.accessProcessedBlueprints(pilotId);
+	public List<ProcessedBlueprint> getProcessedBlueprints4Pilot( final @NotNull Integer pilotId ) {
+		return this.dataStoreService.accessProcessedBlueprints( pilotId );
 	}
 }
