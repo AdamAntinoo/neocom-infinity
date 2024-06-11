@@ -31,7 +31,7 @@ public class IndustryManufactureServiceV1 extends NeoComAuthenticatedService {
 
 	// - G E T T E R S   &   S E T T E R S
 	public ProcessedBlueprint getBlueprints4Pilot4UID( final Integer pilotId, final String blueprintUID ) {
-		return this.dataStoreService.accessProcessedBlueprintsByUID( pilotId, blueprintUID );
+		return this.dataStoreService.accessProcessedBlueprintsByUID( pilotId, blueprintUID ).get();
 	}
 
 	public List<ProcessedBlueprint> getBlueprints4PilotWithCostIndex( @NotNull final Integer pilotId ) {
