@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="neocom-backend.dev" type="Application" factoryName="Application">
-    <option name="ALTERNATIVE_JRE_PATH" value="11" />
+    <option name="ALTERNATIVE_JRE_PATH" value="azul-17" />
     <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
     <envs>
       <env name="APPLICATION_DIRECTORY" value="/build/NeoCom.Infinity.Integration" />
@@ -17,6 +17,7 @@
     <option name="MAIN_CLASS_NAME" value="org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendApplication" />
     <module name="NeoCom.Infinity.Backend.main" />
     <option name="PROGRAM_PARAMETERS" value="--spring.profiles.active=dev --server.port=9500" />
+    <option name="VM_PARAMETERS" value="--add-opens java.base/java.lang=ALL-UNNAMED" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>

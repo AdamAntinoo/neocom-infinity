@@ -4,6 +4,9 @@
 .idea/sonarlint/
 .idea/caches/
 .idea/libraries/
+.idea/*.xml
+!.idea/saveactions_settings.xml
+!.idea/gradle.xml
 
 # Compilation ignorable directories
 .gradle/

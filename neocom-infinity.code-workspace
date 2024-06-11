@@ -22,5 +22,9 @@
 			"path": "neocom-infinity-backend"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"yaml.schemas": {
+			"openapi:v3": "file:///Users/adam/IdeaProjects/neocom-infinity/neocom-openapi/src/main/resources/static/NeoCom-API-0.27.yml"
+		}
+	}
 }
