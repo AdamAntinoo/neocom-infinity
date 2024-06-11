@@ -9,7 +9,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.dimensinfin.eveonline.neocom.exception.NeoComRuntimeException;
 import org.dimensinfin.eveonline.neocom.infinity.client.core.dto.RestExceptionResponse;
 
-public class NeoComRuntimeBackendException extends NeoComRuntimeException {
+public class NeoComRuntimeBackendExceptionObsolete extends NeoComRuntimeException {
 	private static final long serialVersionUID = -5119600231618946788L;
 
 	public static NeoComRestError errorRUNTIMEINTERNALERROR( final String message ) {
@@ -57,11 +57,11 @@ public class NeoComRuntimeBackendException extends NeoComRuntimeException {
 	private final HttpStatus httpStatus;
 
 	// - C O N S T R U C T O R S
-	public NeoComRuntimeBackendException( final String errorMessage ) {
+	public NeoComRuntimeBackendExceptionObsolete( final String errorMessage ) {
 		this( errorRUNTIMEINTERNALERROR( errorMessage ) );
 	}
 
-	public NeoComRuntimeBackendException( final NeoComRestError error ) {
+	public NeoComRuntimeBackendExceptionObsolete( final NeoComRestError error ) {
 		super( error.getMessage() );
 		this.errorName = error.getErrorName();
 		this.errorCode = error.getErrorCode();
@@ -70,7 +70,7 @@ public class NeoComRuntimeBackendException extends NeoComRuntimeException {
 		this.httpStatus = error.getStatus();
 	}
 
-	public NeoComRuntimeBackendException( final RestExceptionResponse exceptionResponse ) {
+	public NeoComRuntimeBackendExceptionObsolete( final RestExceptionResponse exceptionResponse ) {
 		super( exceptionResponse.getMessage() );
 		this.errorName = exceptionResponse.getErrorName();
 		this.errorCode = exceptionResponse.getErrorCode();
@@ -79,7 +79,7 @@ public class NeoComRuntimeBackendException extends NeoComRuntimeException {
 		this.httpStatus = HttpStatus.valueOf( exceptionResponse.getHttpStatusCode() );
 	}
 
-	public NeoComRuntimeBackendException( final NeoComRestError error, final String cause ) {
+	public NeoComRuntimeBackendExceptionObsolete( final NeoComRestError error, final String cause ) {
 		super( error.getMessage() );
 		this.errorName = error.getErrorName();
 		this.errorCode = error.getErrorCode();

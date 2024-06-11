@@ -27,7 +27,7 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.Au
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingBuildConfiguration;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.FittingConfigurations;
 import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.EsiItemModel;
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendExceptionObsolete;
 import org.dimensinfin.eveonline.neocom.infinity.support.NeoComWorld;
 import org.dimensinfin.eveonline.neocom.infinity.support.RequestType;
 import org.dimensinfin.eveonline.neocom.loyalty.domain.LoyaltyServiceConfiguration;
@@ -307,7 +307,7 @@ public class WhenTheRequestIsProcessed extends StepSupport {
 		try {
 			final ResponseEntity<?> response = this.processRequest( requestType );
 			this.neocomWorld.setHttpStatus( response.getStatusCode() );
-		} catch (final NeoComRuntimeBackendException runtime) {
+		} catch (final NeoComRuntimeBackendExceptionObsolete runtime) {
 			this.neocomWorld.setHttpStatus( runtime.getHttpStatus() );
 			this.neocomWorld.setApplicationException( runtime );
 			LogWrapper.error( runtime );

@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 
 import org.dimensinfin.eveonline.neocom.database.entities.MiningExtractionEntity;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendExceptionObsolete;
 import org.dimensinfin.eveonline.neocom.infinity.mining.rest.v1.MiningExtractionsController;
 import org.dimensinfin.eveonline.neocom.infinity.mining.rest.v1.MiningExtractionsService;
 
@@ -67,7 +67,7 @@ public class MiningExtractionsControllerTest {
 				responseMiningExtractionsList
 		);
 		// Exception
-		Assertions.assertThrows( NeoComRuntimeBackendException.class, () -> {
+		Assertions.assertThrows( NeoComRuntimeBackendExceptionObsolete.class, () -> {
 			miningExtractionsController.getTodayMiningExtractions4Pilot( -321654 );
 		} );
 	}

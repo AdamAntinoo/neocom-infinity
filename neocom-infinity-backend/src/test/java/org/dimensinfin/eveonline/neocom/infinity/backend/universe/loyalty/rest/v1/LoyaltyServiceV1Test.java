@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendExceptionObsolete;
 import org.dimensinfin.eveonline.neocom.loyalty.persistence.LoyaltyOfferEntity;
 import org.dimensinfin.eveonline.neocom.loyalty.persistence.LoyaltyOffersRepository;
 import org.dimensinfin.eveonline.neocom.loyalty.service.LoyaltyService;
@@ -46,7 +46,7 @@ public class LoyaltyServiceV1Test {
 				.thenThrow( new SQLException( "-EXCEPTION-" ) );
 		// Test
 		final LoyaltyServiceV1 serviceV1 = new LoyaltyServiceV1( this.loyaltyOffersRepository, this.loyaltyService );
-		Assertions.assertThrows( NeoComRuntimeBackendException.class, () -> {
+		Assertions.assertThrows( NeoComRuntimeBackendExceptionObsolete.class, () -> {
 			serviceV1.getLoyaltyRecommendedOfferForCorporation( TEST_LOYALTY_CORPORATION_ID );
 		} );
 	}
