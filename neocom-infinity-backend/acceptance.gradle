@@ -6,9 +6,10 @@
 //    commandLine 'bash', "$workingDir/docker-recycle.sh", "acceptance"
 //}
 task acceptanceTest(type: Test) {
+    group = 'acceptance'
     testClassesDirs = sourceSets.acceptance.output.classesDirs
     classpath = sourceSets.acceptance.runtimeClasspath
-    systemProperty "cucumber.filter.tags", System.getProperty("cucumber.filter.tags")
+//    systemProperty "cucumber.filter.tags", System.getProperty("cucumber.filter.tags")
 //    environment "PROFILE", "production"
 //    environment "DEFAULT_BACKEND_SERVER", "http://localhost"
 //    environment "DEFAULT_BACKEND_PORT", "5241"

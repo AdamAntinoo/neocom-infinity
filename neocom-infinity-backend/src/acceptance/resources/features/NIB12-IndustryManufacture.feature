@@ -1,7 +1,7 @@
 @NIB12 @Industry
-Feature: [NIB12] The Industry endpoint set has some manufacture endpoints related to the Blueprint analisys.
+Feature: [NIB12] The Industry endpoint set has some manufacture endpoints related to the Blueprint analysis.
 
-  [STORY] Create a new endpoint to retrieve the list of blueprints for a pilot along the manufacture cost and profit index. This list has no details about the blueprint processing because there is much information.
+  [STORY] Create a new endpoint to retrieve the list of blueprints for a pilot along the manufacture cost and profit index.
   [STORY] Add a second endpoint to access the detailed processed blueprint data in a one by one access using the unique identifier.
 
   Background:
