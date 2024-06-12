@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.util.List;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.ITargetConfiguration;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.api.IndustryApiV1;
@@ -19,28 +21,32 @@ import org.dimensinfin.logging.LogWrapper;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+@Component
 public class IndustryFeignClientV1 extends CommonFeignClient {
 	// - C O N S T R U C T O R S
+	@Autowired
 	public IndustryFeignClientV1( final @NotNull ITargetConfiguration acceptanceTargetConfig ) {
 		super( acceptanceTargetConfig );
 	}
 
-	public ResponseEntity<List<ProcessedBlueprintResponse>> getBlueprints4PilotWithCostIndex( final List<String> cookies,
-	                                                                                          final String authentication,
-	                                                                                          final Integer pilotId ) throws IOException {
-		final String ENDPOINT_MESSAGE = "Request the Blueprint list with Cost Index for a Pilot.";
+	public ResponseEntity<List<ProcessedBlueprintResponse>> getProcessedBlueprints4Pilot( final List<String> cookies,
+	                                                                                      final String authentication ) throws IOException {
+		final String ENDPOINT_MESSAGE = "Request the Processed Blueprint list for a Pilot.";
 		final Response<List<ProcessedBlueprintResponse>> response = new Retrofit.Builder()
 				.baseUrl( this.acceptanceTargetConfig.getBackendServer() )
 				.addConverterFactory( GSON_CONVERTER_FACTORY )
 				.client( okHttpClient )
 				.build()
 				.create( IndustryApiV1.class )
-				.getBlueprints4PilotWithCostIndex( this.prepareCookies( cookies ), authentication, pilotId )
+				.getProcessedBlueprints4Pilot( this.prepareCookies( cookies ), "Bearer " + authentication )
 				.execute();
-		if (response.isSuccessful()) {
+		if ( response.isSuccessful() ) {
 			LogWrapper.info( ENDPOINT_MESSAGE );
 			return new ResponseEntity<>( response.body(), HttpStatus.valueOf( response.code() ) );
-		} else throw new IOException( ENDPOINT_MESSAGE + FAILURE_SIGNAL_SUFFIX );
+		} else {
+			final String errorMessage = response.errorBody().toString();
+			throw new IOException( ENDPOINT_MESSAGE + FAILURE_SIGNAL_SUFFIX );
+		}
 	}
 
 	public ResponseEntity<FittingBuildConfiguration> getFittingBuildConfigurationSavedConfiguration( final String authentication, final Integer fittingId ) throws IOException {
@@ -53,7 +59,7 @@ public class IndustryFeignClientV1 extends CommonFeignClient {
 				.create( NeoComApiv1.class )
 				.getFittingBuildConfigurationSavedConfiguration( authentication, fittingId )
 				.execute();
-		if (response.isSuccessful()) {
+		if ( response.isSuccessful() ) {
 			LogWrapper.info( ENDPOINT_MESSAGE );
 			return new ResponseEntity<>( response.body(), HttpStatus.valueOf( response.code() ) );
 		} else throw new IOException( ENDPOINT_MESSAGE + FAILURE_SIGNAL_SUFFIX );
@@ -69,7 +75,7 @@ public class IndustryFeignClientV1 extends CommonFeignClient {
 				.create( NeoComApiv1.class )
 				.getFittingBuildConfigurationById( authentication, fittingId )
 				.execute();
-		if (response.isSuccessful()) {
+		if ( response.isSuccessful() ) {
 			LogWrapper.info( ENDPOINT_MESSAGE );
 			return new ResponseEntity<>( response.body(), HttpStatus.valueOf( response.code() ) );
 		} else throw new IOException( ENDPOINT_MESSAGE + FAILURE_SIGNAL_SUFFIX );

@@ -11,4 +11,7 @@ public abstract class StepSupport {
 	public StepSupport( final @NotNull NeoComWorld neoComWorld ) {
 		this.neocomWorld = neoComWorld;
 	}
+	public NeoComWorld getWorld(){
+		return this.neocomWorld;
+	}
 }

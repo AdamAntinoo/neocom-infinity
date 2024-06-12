@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -25,6 +26,7 @@ import retrofit2.Retrofit;
 @Component
 public class AuthorizationFeignClientV1 extends CommonFeignClient {
 	// - C O N S T R U C T O R S
+	@Autowired
 	public AuthorizationFeignClientV1( final @NotNull ITargetConfiguration acceptanceTargetConfig ) {
 		super( acceptanceTargetConfig );
 	}

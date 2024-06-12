@@ -21,7 +21,7 @@ public class GivenACleanCredentialsRepository extends StepSupport {
 	}
 
 	@Given("a clean Credentials repository")
-	public void a_clean_Coils_repository() throws IOException {
+	public void a_clean_Credentials_repository() throws IOException {
 		// Send the support message to clean the list of credentials at the repository.
 		this.neoComSupportFeignClient.deleteAllCredentials();
 		final Integer obtained = this.neoComSupportFeignClient.countCredentials();
