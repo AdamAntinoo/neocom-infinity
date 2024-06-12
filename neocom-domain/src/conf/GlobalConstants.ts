@@ -25,5 +25,4 @@ export const ESI_CONSTANTS = Object.freeze({
 	DATACORES: 'Datacores',
 	ASTEROID: 'Asteroid',
 	COMPOSITE: 'Composite',
-
 })
