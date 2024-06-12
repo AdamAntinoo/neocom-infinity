@@ -18,12 +18,11 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
+import org.dimensinfin.eveonline.neocom.infinity.domain.V1EsiTypeDto;
+import org.dimensinfin.eveonline.neocom.infinity.domain.V1SpaceLocationDto;
 import org.dimensinfin.eveonline.neocom.infinity.domain.V1StackDto;
-import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import jakarta.validation.constraints.*;
@@ -33,33 +32,54 @@ import jakarta.annotation.Generated;
 import java.io.Serial;
 
 /**
- * V1MiningOperationDto
+ * V2ProcessedBlueprintDto
  */
 @JsonPropertyOrder({
-  V1MiningOperationDto.JSON_PROPERTY_JSON_CLASS,
-  V1MiningOperationDto.JSON_PROPERTY_ID,
-  V1MiningOperationDto.JSON_PROPERTY_DATE,
-  V1MiningOperationDto.JSON_PROPERTY_SOLAR_SYSTEM_LINK,
-  V1MiningOperationDto.JSON_PROPERTY_RESOURCES
+  V2ProcessedBlueprintDto.JSON_PROPERTY_JSON_CLASS,
+  V2ProcessedBlueprintDto.JSON_PROPERTY_TYPE_ID,
+  V2ProcessedBlueprintDto.JSON_PROPERTY_BLUEPRINT_ITEN,
+  V2ProcessedBlueprintDto.JSON_PROPERTY_LOCATION,
+  V2ProcessedBlueprintDto.JSON_PROPERTY_MATERIAL_EFFICIENCY,
+  V2ProcessedBlueprintDto.JSON_PROPERTY_TIME_EFFICIENCY,
+  V2ProcessedBlueprintDto.JSON_PROPERTY_OUTPUT_TYPE_ID,
+  V2ProcessedBlueprintDto.JSON_PROPERTY_OUTPUT_ITEM,
+  V2ProcessedBlueprintDto.JSON_PROPERTY_MANUFACTURE_COST,
+  V2ProcessedBlueprintDto.JSON_PROPERTY_OUTPUT_COST,
+  V2ProcessedBlueprintDto.JSON_PROPERTY_BOM,
+  V2ProcessedBlueprintDto.JSON_PROPERTY_INDEX
 })
-@JsonTypeName("v1.MiningOperation")
+@JsonTypeName("v2.ProcessedBlueprint")
 @lombok.Builder
 @lombok.Data
 @lombok.AllArgsConstructor
 @lombok.NoArgsConstructor
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
-public class V1MiningOperationDto {
+public class V2ProcessedBlueprintDto {
 
   public static final String JSON_PROPERTY_JSON_CLASS = "jsonClass";
-  public static final String JSON_PROPERTY_ID = "id";
-  public static final String JSON_PROPERTY_DATE = "date";
-  public static final String JSON_PROPERTY_SOLAR_SYSTEM_LINK = "solarSystemLink";
-  public static final String JSON_PROPERTY_RESOURCES = "resources";
+  public static final String JSON_PROPERTY_TYPE_ID = "typeId";
+  public static final String JSON_PROPERTY_BLUEPRINT_ITEN = "blueprintIten";
+  public static final String JSON_PROPERTY_LOCATION = "location";
+  public static final String JSON_PROPERTY_MATERIAL_EFFICIENCY = "materialEfficiency";
+  public static final String JSON_PROPERTY_TIME_EFFICIENCY = "timeEfficiency";
+  public static final String JSON_PROPERTY_OUTPUT_TYPE_ID = "outputTypeId";
+  public static final String JSON_PROPERTY_OUTPUT_ITEM = "outputItem";
+  public static final String JSON_PROPERTY_MANUFACTURE_COST = "manufactureCost";
+  public static final String JSON_PROPERTY_OUTPUT_COST = "outputCost";
+  public static final String JSON_PROPERTY_BOM = "bom";
+  public static final String JSON_PROPERTY_INDEX = "index";
 
-  private String jsonClass = "MiningOperationDto";
-  private UUID id;
-  private LocalDate date;
-  private String solarSystemLink;
-  private List<@Valid V1StackDto> resources = new ArrayList<>();
+  private String jsonClass;
+  private Integer typeId;
+  private V1EsiTypeDto blueprintIten;
+  private V1SpaceLocationDto location;
+  private Integer materialEfficiency;
+  private Integer timeEfficiency;
+  private Integer outputTypeId;
+  private V1EsiTypeDto outputItem;
+  private Double manufactureCost;
+  private Double outputCost;
+  private List<@Valid V1StackDto> bom;
+  private Double index;
 }
 

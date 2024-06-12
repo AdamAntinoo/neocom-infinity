@@ -18,12 +18,6 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-import org.dimensinfin.eveonline.neocom.infinity.domain.V1StackDto;
-import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import jakarta.validation.constraints.*;
@@ -33,33 +27,24 @@ import jakarta.annotation.Generated;
 import java.io.Serial;
 
 /**
- * V1MiningOperationDto
+ * V1SpaceLocationDto
  */
 @JsonPropertyOrder({
-  V1MiningOperationDto.JSON_PROPERTY_JSON_CLASS,
-  V1MiningOperationDto.JSON_PROPERTY_ID,
-  V1MiningOperationDto.JSON_PROPERTY_DATE,
-  V1MiningOperationDto.JSON_PROPERTY_SOLAR_SYSTEM_LINK,
-  V1MiningOperationDto.JSON_PROPERTY_RESOURCES
+  V1SpaceLocationDto.JSON_PROPERTY_JSON_CLASS,
+  V1SpaceLocationDto.JSON_PROPERTY_LOCATION_ID
 })
-@JsonTypeName("v1.MiningOperation")
+@JsonTypeName("v1.SpaceLocation")
 @lombok.Builder
 @lombok.Data
 @lombok.AllArgsConstructor
 @lombok.NoArgsConstructor
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
-public class V1MiningOperationDto {
+public class V1SpaceLocationDto {
 
   public static final String JSON_PROPERTY_JSON_CLASS = "jsonClass";
-  public static final String JSON_PROPERTY_ID = "id";
-  public static final String JSON_PROPERTY_DATE = "date";
-  public static final String JSON_PROPERTY_SOLAR_SYSTEM_LINK = "solarSystemLink";
-  public static final String JSON_PROPERTY_RESOURCES = "resources";
+  public static final String JSON_PROPERTY_LOCATION_ID = "locationId";
 
-  private String jsonClass = "MiningOperationDto";
-  private UUID id;
-  private LocalDate date;
-  private String solarSystemLink;
-  private List<@Valid V1StackDto> resources = new ArrayList<>();
+  private String jsonClass;
+  private Integer locationId;
 }
 
