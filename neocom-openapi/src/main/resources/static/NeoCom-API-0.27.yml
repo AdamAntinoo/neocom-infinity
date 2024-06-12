@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: NeoCom Backend API
-  version: 0.27.1
+  version: 0.29.0
   description: >
     New NeoCom Infinity backend API. This is the complete API implementation for the backend services exposed, whatever the backend server
     that will provide the service. Initial implementations used the Java backend server and the ESI Public Data Services as a complementary source.
@@ -367,6 +367,8 @@ components:
         - jsonClass
         - quantity
         - typelink
+    v1.Blueprint:
+      type: object
 
     EsiTypeDto:
       type: object

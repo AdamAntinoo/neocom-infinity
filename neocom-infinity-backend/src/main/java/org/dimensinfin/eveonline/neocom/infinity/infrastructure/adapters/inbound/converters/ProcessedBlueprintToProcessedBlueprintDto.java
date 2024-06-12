@@ -4,12 +4,10 @@ import java.util.function.Function;
 
 import org.dimensinfin.eveonline.neocom.industry.domain.ProcessedBlueprint;
 
-import liquibase.pro.packaged.T;
-
-public class ProcessedBlueprintToProcessedBlueprintDto implements Function<ProcessedBlueprintDto, ProcessedBlueprint> {
+public class ProcessedBlueprintToProcessedBlueprintDto implements Function<ProcessedBlueprint, ProcessedBlueprint> {
 
 	@Override
-	public V2ProcessedBlueprintDto apply( final ProcessedBlueprint processedBlueprint ) {
+	public ProcessedBlueprint apply( final ProcessedBlueprint processedBlueprint ) {
 		return null;
 	}
 }

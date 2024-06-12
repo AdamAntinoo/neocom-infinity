@@ -20,7 +20,7 @@ Developments are mainly docused on Industry and on Market improvements and leavi
 
 # External Connections
 
-# 1. Authorization Flowa
+# 1. Authorization Flow
 The access tot ESO data requires to be authenticated on the Eve platform. This is authorized with a OAuth2 authentication flow. The ESI services have registered some application data to create this flow.
 
 The flow starts from the user interface with a customer request that initiates the authorization flow. We call the ***ESI login service*** (https://login.eveonline.com) with the application *unique code identifier* and the *callback URL* that should match what is configured for the registered application at ESI backend.
@@ -82,6 +82,15 @@ sequenceDiagram
     TokenAuthorizationGuard-->>dashboard-home-page: true
     TokenAuthorizationGuard-->>v1-start-page: false
 ```
+
+## New Authorization data
+To protect the backend from unauthorized access we need to use a JWT token that will not contain any ESI data. The NEOCOM-TOKEN is back and it should contain the IP address for the calling host when the authorization process was initiated. This way all requests are validated agains the existence of the JWT token and the match of the request IP with the authorized IP.
+
+Any ESI access will require of the ESI token that is only available from he Credentials repository at the Java backend. If any other service requires that ESI token it should then request it to the NIB backend and keep it only until token expiration.
+
+The best secure solution is to isilate the authorization and token management into a new backend service that will have no other endpoints available.
+
+
 The NeoCom cookie is deprecated and the only element to follow with authorization is the ESI token. This token will be used on all requests to any backend.
 Token expiration is one exception that should be added to the guard flow. If the token is expired there should be a new endpoint on the Java backend to generate a new token and publish it as the new cookie contents.
 

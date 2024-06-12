@@ -28,7 +28,7 @@ Add this dependency to your project's POM:
 <dependency>
     <groupId>org.openapitools</groupId>
     <artifactId>openapi-spring</artifactId>
-    <version>0.27.1</version>
+    <version>0.29.0</version>
     <scope>compile</scope>
 </dependency>
 ```
@@ -38,7 +38,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "org.openapitools:openapi-spring:0.27.1"
+compile "org.openapitools:openapi-spring:0.29.0"
 ```
 
 ### Others
@@ -49,5 +49,5 @@ mvn package
 
 Then manually install the following JARs:
 
-* target/openapi-spring-0.27.1.jar
+* target/openapi-spring-0.29.0.jar
 * target/lib/*.jar

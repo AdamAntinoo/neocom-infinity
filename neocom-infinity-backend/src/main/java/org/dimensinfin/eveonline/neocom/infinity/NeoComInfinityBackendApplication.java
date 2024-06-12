@@ -7,7 +7,6 @@ import java.nio.file.Files;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.filter.ForwardedHeaderFilter;
@@ -15,7 +14,6 @@ import org.springframework.web.filter.ForwardedHeaderFilter;
 import org.dimensinfin.logging.LogWrapper;
 
 @SpringBootApplication
-@EnableDiscoveryClient
 @EnableScheduling
 @EnableAutoConfiguration
 public class NeoComInfinityBackendApplication {
