@@ -1,7 +1,7 @@
 import { expect } from 'expect'
 import { Then, When } from "@cucumber/cucumber"
 import { NIN01World } from "../worlds/NIN01World"
-import { GetCharactersCharacterIdMining200Ok, V1EsiTypeDto, V1MarketDataDto, V1MiningOperationDto } from 'neocom-domain'
+import { GetCharactersCharacterIdMining200Ok, V1EsiTypeDto, V1MarketDataDto, V1MiningOperationDto, V2ProcessedBlueprintDto } from 'neocom-domain'
 import { V1AssetDto } from 'neocom-domain'
 import { V1BlueprintDto } from 'neocom-domain'
 
@@ -25,7 +25,7 @@ When('the endpoint {string} is activated', async function (this: NIN01World, end
             expect(this.miningOperationsController).toBeDefined()
             expect(this.characterId).toBeDefined()
             expect(this.token).toBeDefined()
-            const sut: Promise<V1MiningOperationDto[]> = this.miningOperationsController.getMiningOperations(this.token)
+            const sut: Promise<V1MiningOperationDto[]> = this.miningOperationsController.getMiningOperations4Pilot(this.token, '-session-')
             expect(sut).toBeDefined
             await sut.then((data: V1MiningOperationDto[]) => {
                 this.miningOperationsResponse = data
@@ -57,7 +57,7 @@ When('the endpoint {string} is activated', async function (this: NIN01World, end
             expect(this.characterController).toBeDefined()
             expect(this.characterId).toBeDefined()
             expect(this.token).toBeDefined()
-            const sut: Promise<V1AssetDto[]> = this.characterController.getCharactersCharacterIdAssets(this.token)
+            const sut: Promise<V1AssetDto[]> = this.characterController.getCharactersCharacterIdAssets(this.token, "-session-id-")
             expect(sut).toBeDefined()
             this.responseResultCode = '200 OK'
             await sut.then((data: V1AssetDto[]) => {
@@ -69,7 +69,7 @@ When('the endpoint {string} is activated', async function (this: NIN01World, end
             expect(this.characterController).toBeDefined()
             expect(this.characterId).toBeDefined()
             expect(this.token).toBeDefined()
-            const sut: Promise<V1BlueprintDto[]> = this.characterController.getCharactersCharacterIdBlueprints(this.token)
+            const sut: Promise<V1BlueprintDto[]> = this.characterController.getCharactersCharacterIdBlueprints(this.token, "-session-id-")
             expect(sut).toBeDefined()
             this.responseResultCode = '200 OK'
             await sut.then((data: V1BlueprintDto[]) => {
@@ -77,6 +77,20 @@ When('the endpoint {string} is activated', async function (this: NIN01World, end
             })
             break
         }
+        case 'industry/ProcessedBlueprints':{
+            expect(this.industryController).toBeDefined()
+            expect(this.characterId).toBeDefined()
+            expect(this.token).toBeDefined()
+            const sut : Promise<V2ProcessedBlueprintDto[]>=this.industryController.getProcessedBlueprints4Pilot(this.token, '-test-session-id-')
+            expect(sut).toBeDefined()
+            this.responseResultCode = '200 OK'
+            await sut.then((data: V2ProcessedBlueprintDto[]) => {
+                this.processedBlueprintsResponse = data
+            })
+            break
+        }
+        default:
+            throw new Error( 'Endpoint definition not found.')
     }
 })
 Then('the response is {string}', function (this: NIN01World, responseCode:string) {
