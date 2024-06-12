@@ -134,9 +134,8 @@ public class WhenTheRequestIsProcessed extends StepSupport {
 		this.processRequestByType( RequestType.GET_PILOT_DATA_ENDPOINT_NAME );
 	}
 
-	@When("the Get Pilot Industry Blueprints Cost Index request with pilot {int} is processed")
-	public void the_get_pilot_industry_blueprints_cost_index_request_with_pilot_is_processed( final Integer pilotIdentifier ) throws IOException {
-		this.neocomWorld.setPilotId( pilotIdentifier );
+	@When("the Get Pilot Industry Processed Blueprints request processed")
+	public void the_get_pilot_industry_processed_blueprints_request_processed(  ) throws IOException {
 		this.processRequestByType( RequestType.GET_PILOT_INDUSTRY_BLUEPRINTS_COST_INDEX );
 	}
 
@@ -288,12 +287,12 @@ public class WhenTheRequestIsProcessed extends StepSupport {
 				this.neocomWorld.setServerStatusResponseEntity( serverStatusResponseEntity );
 				return serverStatusResponseEntity;
 			case GET_PILOT_INDUSTRY_BLUEPRINTS_COST_INDEX:
-				Assertions.assertNotNull( this.neocomWorld.getPilotId() );
+				// - Extract the pilot information from the decoded Token.
+				Assertions.assertNotNull( this.getWorld().getAuthorizationHeader() );
 				final ResponseEntity<List<ProcessedBlueprintResponse>> pilotBlueprintsResponseEntity = this.industryFeignClientV1
-						.getBlueprints4PilotWithCostIndex(
+						.getProcessedBlueprints4Pilot(
 								this.neocomWorld.getCookies(),
-								this.neocomWorld.getJwtAuthorizationToken(),
-								this.neocomWorld.getPilotId()
+								this.getWorld().getAuthorizationHeader()
 						);
 				Assertions.assertNotNull( pilotBlueprintsResponseEntity );
 				this.neocomWorld.setPilotBlueprintsResponseEntity( pilotBlueprintsResponseEntity );

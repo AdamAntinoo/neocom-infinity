@@ -21,6 +21,11 @@ public class GlobalRestExceptionHandler extends ResponseEntityExceptionHandler {
 		return new ResponseEntity<>( new ApiError( neoComRuntimeBackendException ), neoComRuntimeBackendException.getHttpStatus() );
 	}
 
+	@ExceptionHandler(Exception.class)
+	protected ResponseEntity<String> handleNeoComRuntimeException( final Exception exception ) {
+		return new ResponseEntity<>( exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR );
+	}
+
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid( final MethodArgumentNotValidException ex, final HttpHeaders headers, final HttpStatus status, final WebRequest request ) {
 		LogWrapper.info( "Exception: " + ex.toString() );

@@ -7,6 +7,7 @@ import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.AcceptanceTargetConfig;
 import org.dimensinfin.eveonline.neocom.infinity.support.rest.NeoComApiv1;
@@ -20,6 +21,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+@Component
 public class NeoItemFeignClientV1 {
 	public static final Converter.Factory GSON_CONVERTER_FACTORY = GsonConverterFactory
 			.create( (new GsonBuilder())
@@ -34,7 +36,7 @@ public class NeoItemFeignClientV1 {
 				.create( NeoItemApiv1.class )
 				.getItemBasic( NeoComApiv1.NEOCOM_BACKEND_ACCEPTED_CONTENT_TYPE, itemId )
 				.execute();
-		if (response.isSuccessful()) {
+		if ( response.isSuccessful() ) {
 			NeoComLogger.info( "> Response is 200 OK." );
 			return new ResponseEntity<>( response.body(), HttpStatus.OK );
 		} else return new ResponseEntity<>( HttpStatus.BAD_REQUEST );

@@ -43,9 +43,9 @@ public class CommonFeignClient {
 							//							.registerTypeAdapter( PilotV1.class, new GSONPilotV1Deserializer() )
 							.create() );
 	public static final OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
-			.connectTimeout( 60, TimeUnit.SECONDS )
-			.readTimeout( 60, TimeUnit.SECONDS )
-			.writeTimeout( 60, TimeUnit.SECONDS )
+			.connectTimeout( 30, TimeUnit.SECONDS )
+			.readTimeout( 300, TimeUnit.SECONDS )
+			.writeTimeout( 300, TimeUnit.SECONDS )
 			.build();
 	protected static final String FAILURE_SIGNAL_SUFFIX = " Failed.";
 	protected final ITargetConfiguration acceptanceTargetConfig;

@@ -3,20 +3,22 @@ package org.dimensinfin.eveonline.neocom.infinity.acceptance.steps;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.NotImplementedException;
 import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.database.entities.MiningExtractionEntity;
+import org.dimensinfin.eveonline.neocom.database.repositories.CredentialRepository;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.api.NeoComSupportFeignClient;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.authorization.rest.v1.AuthorizationFeignClientV1;
-import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialRequest;
 import org.dimensinfin.eveonline.neocom.infinity.support.ConverterContainer;
 import org.dimensinfin.eveonline.neocom.infinity.support.NeoComWorld;
 import org.dimensinfin.eveonline.neocom.infinity.support.RequestType;
@@ -54,6 +56,7 @@ public class NIBCommonSteps extends SupportSteps {
 
 	private final NeoComSupportFeignClient neoComSupportFeignClient;
 	private final MiningExtractionsFeignClientSupport miningExtractionsFeignClientSupport;
+	private final CredentialRepository credentialRepository;
 
 	// - C O N S T R U C T O R S
 	@Autowired
@@ -66,7 +69,8 @@ public class NIBCommonSteps extends SupportSteps {
 	                       final NeoItemFeignClientV1 neoItemFeignClient,
 	                       final MiningExtractionsFeignClientV1 miningExtractionsFeignClient,
 	                       final NeoComSupportFeignClient neoComSupportFeignClient,
-	                       final MiningExtractionsFeignClientSupport miningExtractionsFeignClientSupport ) {
+	                       final MiningExtractionsFeignClientSupport miningExtractionsFeignClientSupport,
+	                       final CredentialRepository credentialRepository ) {
 		super( cucumberTableToRequestConverters, neocomWorld );
 		this.authorizationFeignClient = authorizationFeignClient;
 		this.corporationFeignClient = corporationFeignClient;
@@ -76,6 +80,7 @@ public class NIBCommonSteps extends SupportSteps {
 		this.miningExtractionsFeignClientV1 = miningExtractionsFeignClient;
 		this.neoComSupportFeignClient = neoComSupportFeignClient;
 		this.miningExtractionsFeignClientSupport = miningExtractionsFeignClientSupport;
+		this.credentialRepository = credentialRepository;
 	}
 
 	@Given("a ready scheduler")
@@ -134,7 +139,7 @@ public class NIBCommonSteps extends SupportSteps {
 	public void authorization_token_contained_in_file( final String tokenFilePath ) throws IOException {
 		// Process special values
 		final String jwtToken = Files.readString( Paths.get( FEATURES_DIRECTORY + tokenFilePath ) );
-		if (jwtToken.equalsIgnoreCase( "<null>" )) {
+		if ( jwtToken.equalsIgnoreCase( "<null>" ) ) {
 			this.neocomWorld.setJwtAuthorizationToken( null );
 			return;
 		}
@@ -170,15 +175,20 @@ public class NIBCommonSteps extends SupportSteps {
 	}
 
 	@Given("this list of Credentials stored at the repository")
-	public void this_list_of_Credentials_stored_at_the_repository( final List<Map<String, String>> dataTable ) throws IOException {
+	public void this_list_of_Credentials_stored_at_the_repository( final List<Map<String, String>> dataTable ) throws SQLException {
 		for (int i = 0; i < dataTable.size(); i++) {
 			final Map<String, String> row = dataTable.get( i );
 			final Credential credential = new CucumberTableToCredential().convert( row );
-			final StoreCredentialRequest storeCredentialRequest = new StoreCredentialRequest.Builder()
-					.withCredential( credential ).build();
-			this.neoComSupportFeignClient.storeCredential( storeCredentialRequest );
+			// - Replace the use of a support endpoint by a direct write of the Credential into the repository since now the application is on the context.
+			this.credentialRepository.persist( credential );
+			Assertions.assertEquals( this.credentialRepository.findCredentialById( credential.getUniqueCredential() ).getUniqueCredential(),
+					credential.getUniqueCredential()
+			);
+			//			final StoreCredentialRequest storeCredentialRequest = new StoreCredentialRequest.Builder()
+			//					.withCredential( credential ).build();
+			//			this.neoComSupportFeignClient.storeCredential( storeCredentialRequest );
 		}
-		Assert.assertEquals( dataTable.size(), this.neoComSupportFeignClient.countCredentials().intValue() );
+//		Assert.assertEquals( dataTable.size() );
 	}
 
 	private ResponseEntity processRequest( final RequestType requestType ) {

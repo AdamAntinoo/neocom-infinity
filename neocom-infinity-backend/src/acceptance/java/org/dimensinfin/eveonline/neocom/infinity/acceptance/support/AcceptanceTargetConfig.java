@@ -1,31 +1,36 @@
 package org.dimensinfin.eveonline.neocom.infinity.acceptance.support;
 
-import org.springframework.stereotype.Component;
+import java.util.Objects;
 
-import org.dimensinfin.logging.LogWrapper;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 @Component
 public class AcceptanceTargetConfig implements ITargetConfiguration {
-	private static final String DEFAULT_BACKEND_PORT = System.getenv( "DEFAULT_BACKEND_PORT" );
+	private static final Integer DEFAULT_BACKEND_PORT = 5275;
+	private static final String DEFAULT_BACKEND_SERVER = "http://localhost";
 	private static final String DEFAULT_BACKEND_ACCEPTED_CONTENT_TYPE = "application/json";
-	private static String DEFAULT_BACKEND_SERVER = System.getenv( "DEFAULT_BACKEND_SERVER" );
+	private final AcceptanceTargetConfigurationProperties properties;
+
+	@Autowired
+	public AcceptanceTargetConfig( final @NotNull AcceptanceTargetConfigurationProperties properties ) {this.properties = properties;}
+
+	public AcceptanceTargetConfig() {this.properties = new AcceptanceTargetConfigurationProperties();}
 
 	// - G E T T E R S   &   S E T T E R S
 	@Override
 	public String getBackendServer() {
-		if (null == DEFAULT_BACKEND_PORT) DEFAULT_BACKEND_SERVER = "http://localhost";
-		try {
-			final int port = Integer.parseInt( DEFAULT_BACKEND_PORT );
-			LogWrapper.info( DEFAULT_BACKEND_SERVER + ":" + port );
-			return DEFAULT_BACKEND_SERVER + ":" + port;
-		} catch (final RuntimeException rte) {
-			LogWrapper.info( DEFAULT_BACKEND_SERVER + ":" + 5240 );
-			return DEFAULT_BACKEND_SERVER + ":" + 5240;
-		}
+		return (Objects.isNull( this.properties.getServerHost() ) ? DEFAULT_BACKEND_SERVER : this.properties.getServerHost()) +
+				":" +
+				(Objects.isNull( this.properties.getServerPort() ) ? DEFAULT_BACKEND_PORT : this.properties.getServerPort());
 	}
 
 	@Override
 	public String getContentType() {
-		return DEFAULT_BACKEND_ACCEPTED_CONTENT_TYPE;
+		return (Objects.isNull(
+				this.properties.getServerContentType() ) ? DEFAULT_BACKEND_ACCEPTED_CONTENT_TYPE : this.properties.getServerContentType()
+		);
 	}
 }

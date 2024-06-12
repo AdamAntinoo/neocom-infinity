@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.database.entities.MiningExtractionEntity;
@@ -20,6 +21,12 @@ import org.dimensinfin.eveonline.neocom.infinity.support.neoitem.rest.v1.NeoItem
 import org.dimensinfin.eveonline.neocom.infinity.support.pilot.rest.v1.PilotResponse;
 import org.dimensinfin.eveonline.neocom.market.MarketData;
 
+import io.cucumber.spring.ScenarioScope;
+
+//@Getter
+//@Setter
+@ScenarioScope
+@Component
 public class NeoComWorld extends NewNeoComWorld {
 	private Integer itemIdentifier;
 	private Integer regionId;
@@ -46,9 +53,20 @@ public class NeoComWorld extends NewNeoComWorld {
 	private ResponseEntity<NeoItemTransport> neoItemBasicResponseEntity;
 	private ResponseEntity<List<MiningExtractionEntity>> miningExtractionsResponseEntity;
 
+	private String authorizationHeader;
+
 	// - G E T T E R S   &   S E T T E R S
 	public List<LocationAssetContainer> getCorporationAssetsByLocation() {
 		return this.corporationAssetsByLocation;
+	}
+
+	public String getAuthorizationHeader() {
+		return authorizationHeader;
+	}
+
+	public NeoComWorld setAuthorizationHeader( final String authorizationHeader ) {
+		this.authorizationHeader = authorizationHeader;
+		return this;
 	}
 
 	public NeoComWorld setCorporationAssetsByLocation( final List<LocationAssetContainer> corporationAssetsByLocation ) {

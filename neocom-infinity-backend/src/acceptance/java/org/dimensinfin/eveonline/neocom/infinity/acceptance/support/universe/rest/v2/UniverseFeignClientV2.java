@@ -3,8 +3,10 @@ package org.dimensinfin.eveonline.neocom.infinity.acceptance.support.universe.re
 import java.io.IOException;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.ITargetConfiguration;
 import org.dimensinfin.eveonline.neocom.infinity.backend.universe.domain.EsiItemModel;
@@ -14,9 +16,10 @@ import org.dimensinfin.logging.LogWrapper;
 
 import retrofit2.Response;
 import retrofit2.Retrofit;
-
+@Component
 public class UniverseFeignClientV2 extends CommonFeignClient {
 	// - C O N S T R U C T O R S
+	@Autowired
 	public UniverseFeignClientV2( final @NotNull ITargetConfiguration acceptanceTargetConfig ) {
 		super( acceptanceTargetConfig );
 	}

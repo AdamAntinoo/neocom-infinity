@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.AcceptanceTargetConfig;
+import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.AcceptanceTargetConfigurationProperties;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialRequest;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.client.CredentialCountResponse;
@@ -36,10 +37,14 @@ public class NeoComSupportFeignClient {
 							.registerTypeAdapter( LocalDate.class, new GSONLocalDateDeserializer() )
 							.create() );
 
+	private final AcceptanceTargetConfigurationProperties properties;
+
+	public NeoComSupportFeignClient( final AcceptanceTargetConfigurationProperties properties ) {this.properties = properties;}
+
 	// - G E T T E R S   &   S E T T E R S
 	public List<JobRecord> getRegisteredJobs() throws IOException {
 		final Response<List<JobRecord>> response = new Retrofit.Builder()
-				.baseUrl( new AcceptanceTargetConfig().getBackendServer() )
+				.baseUrl( new AcceptanceTargetConfig(this.properties).getBackendServer() )
 				.addConverterFactory( GSON_CONVERTER_FACTORY )
 				.build()
 				.create( NeoComSupportApi.class )
@@ -53,7 +58,7 @@ public class NeoComSupportFeignClient {
 
 	public Integer countCredentials() throws IOException {
 		final Response<CredentialCountResponse> response = new Retrofit.Builder()
-				.baseUrl( new AcceptanceTargetConfig().getBackendServer() )
+				.baseUrl( new AcceptanceTargetConfig(this.properties).getBackendServer() )
 				.addConverterFactory( GSON_CONVERTER_FACTORY )
 				.build()
 				.create( NeoComSupportApi.class )
@@ -69,7 +74,7 @@ public class NeoComSupportFeignClient {
 
 	public Integer countScheduleJobs() throws IOException {
 		final Response<ScheduleJobCountResponse> response = new Retrofit.Builder()
-				.baseUrl( new AcceptanceTargetConfig().getBackendServer() )
+				.baseUrl( new AcceptanceTargetConfig(this.properties).getBackendServer() )
 				.addConverterFactory( GSON_CONVERTER_FACTORY )
 				.build()
 				.create( NeoComSupportApi.class )
@@ -85,7 +90,7 @@ public class NeoComSupportFeignClient {
 
 	public Integer deleteAllCredentials() throws IOException {
 		final Response<CredentialCountResponse> response = new Retrofit.Builder()
-				.baseUrl( new AcceptanceTargetConfig().getBackendServer() )
+				.baseUrl( new AcceptanceTargetConfig(this.properties).getBackendServer() )
 				.addConverterFactory( GSON_CONVERTER_FACTORY )
 				.build()
 				.create( NeoComSupportApi.class )
@@ -101,7 +106,7 @@ public class NeoComSupportFeignClient {
 
 	public Integer deleteAllLoyaltyOffers() throws IOException {
 		final Response<Integer> response = new Retrofit.Builder()
-				.baseUrl( new AcceptanceTargetConfig().getBackendServer() )
+				.baseUrl( new AcceptanceTargetConfig(this.properties).getBackendServer() )
 				.addConverterFactory( GSON_CONVERTER_FACTORY )
 				.build()
 				.create( NeoComSupportApi.class )
@@ -115,7 +120,7 @@ public class NeoComSupportFeignClient {
 
 	public Credential findCredentialById( final String credentialId ) throws IOException {
 		final Response<Credential> response = new Retrofit.Builder()
-				.baseUrl( new AcceptanceTargetConfig().getBackendServer() )
+				.baseUrl( new AcceptanceTargetConfig(this.properties).getBackendServer() )
 				.addConverterFactory( GSON_CONVERTER_FACTORY )
 				.build()
 				.create( NeoComSupportApi.class )
@@ -129,7 +134,7 @@ public class NeoComSupportFeignClient {
 
 	public Integer restartScheduler() throws IOException {
 		final Response<ScheduleJobCountResponse> response = new Retrofit.Builder()
-				.baseUrl( new AcceptanceTargetConfig().getBackendServer() )
+				.baseUrl( new AcceptanceTargetConfig(this.properties).getBackendServer() )
 				.addConverterFactory( GSON_CONVERTER_FACTORY )
 				.build()
 				.create( NeoComSupportApi.class )
@@ -145,7 +150,7 @@ public class NeoComSupportFeignClient {
 
 	public StoreCredentialResponse storeCredential( final StoreCredentialRequest storeCredentialRequest ) throws IOException {
 		final Response<StoreCredentialResponse> response = new Retrofit.Builder()
-				.baseUrl( new AcceptanceTargetConfig().getBackendServer() )
+				.baseUrl( new AcceptanceTargetConfig(this.properties).getBackendServer() )
 				.addConverterFactory( GSON_CONVERTER_FACTORY )
 				.build()
 				.create( NeoComSupportApi.class )
