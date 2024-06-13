@@ -15,6 +15,10 @@
 * ***[STORY-NIF]*** Create a Render for the different categories.
 * ***[STORY-NIF]*** Add Category expansion/collapse.
 * ***[STORY-NIB]*** Review the access to Market Data and see if we can use the same endpoint to retrieve the data.
+* [STORY-NIF] Store Processed Blueprint data on Redis on a serialization compatible with NIN.
+* [STORY-NIN] Using Redis from other architecture elements requires that the Redis database content be compatible (JSON).
+
+
 * [STORY-PROJECT] Make EsiType compatible between the NIB and NIF implementations.
 * [STORY-NIN] Move the endpoint to retrieve Processed Blueprints from NIB. Leave the creation process at NIB.
 

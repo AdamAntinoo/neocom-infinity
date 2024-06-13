@@ -1,4 +1,4 @@
-import { EsiToken } from '@App/domain/EsiToken.interface'
+import { EsiToken } from '@Infra/adapter/security/EsiToken.interface'
 
 export interface IUseCaseInput {
 	jwt: string // Original encoded token to be passed to ESI

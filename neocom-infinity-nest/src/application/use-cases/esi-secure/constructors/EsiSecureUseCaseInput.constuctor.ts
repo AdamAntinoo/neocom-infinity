@@ -1,4 +1,4 @@
-import { EsiToken } from '@App/domain/EsiToken.interface'
+import { EsiToken } from '@Infra/adapter/security/EsiToken.interface'
 import { IUseCaseInput } from './UsecaseInput.interface'
 
 export class EsiSecureUseCaseInputConstructor<T extends IUseCaseInput> {

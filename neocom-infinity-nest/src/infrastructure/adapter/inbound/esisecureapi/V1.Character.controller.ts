@@ -1,8 +1,8 @@
-import { Cookies } from '@Infra/config/Cookie.decorator'
+import { Cookies } from '@Infra/adapter/security/Cookie.decorator'
 import { Controller, Get, Param } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
-import { V1AssetDto } from 'neocom-domain'
-import { COOKIE_DEFINITIONS } from 'neocom-shared'
+import { CharacterServiceInterface, V1AssetDto } from 'neocom-domain'
+import { COOKIE_DEFINITIONS } from 'neocom-domain'
 import { AuthenticationTokenValidator } from '../validator/AuthenticationTokenValidator'
 import { EsiSecureUseCaseInputConstructor } from '@App/use-cases/esi-secure/constructors/EsiSecureUseCaseInput.constuctor'
 import { CapsuleerAssetsUseCase } from '@App/use-cases/esi-secure/CapsuleerAssets.usecase'
@@ -10,7 +10,7 @@ import { CapsuleerBlueprintsUseCase, CapsuleerBlueprintsUseCaseInput } from '@Ap
 import { V1BlueprintDto } from 'neocom-domain'
 
 @Controller('/api/v3/neocom/character')
-export class V1CharacterController /*implements CharacterServiceInterface*/ {
+export class V1CharacterController implements CharacterServiceInterface {
 	constructor(
 		private readonly getCapsuleerAssetsUseCase: CapsuleerAssetsUseCase,
 		private readonly getCapsuleerBlueprintsUseCase: CapsuleerBlueprintsUseCase,
