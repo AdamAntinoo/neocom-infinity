@@ -18,6 +18,7 @@ import { CapsuleerBlueprintsUseCase } from '@App/use-cases/esi-secure/CapsuleerB
 import { V1CharacterController } from '@Infra/adapter/inbound/esisecureapi/V1.Character.controller'
 import { V1EsiUniverseController } from '@Infra/adapter/inbound/esiuniverse/v1.esiuniverse.controller'
 import { V1IndustryController } from '@Infra/adapter/inbound/esisecureapi/V1.Industry.controller'
+import { CacheModule } from '@nestjs/cache-manager'
 
 const ENV = process.env.NODE_ENV
 
@@ -35,6 +36,7 @@ const ENV = process.env.NODE_ENV
 			isGlobal: true,
 			envFilePath: [!ENV ? '.env' : `.env.${ENV}`, '.env.version'],
 		}),
+		CacheModule.register({ isGlobal: true }),
 	],
 	controllers: [V1CharacterController, V1IndustryController, V1EsiUniverseController],
 	providers: [
