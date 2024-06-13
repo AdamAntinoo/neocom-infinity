@@ -1,6 +1,11 @@
-import { GetUniverseCategoriesCategoryIdOk, GetUniverseGroupsGroupIdOk, GetUniverseTypesTypeIdOk, IConverter, V1EsiTypeDto } from 'neocom-domain'
-
-
+import {
+	GetUniverseCategoriesCategoryIdOk,
+	GetUniverseGroupsGroupIdOk,
+	GetUniverseTypesTypeIdOk,
+	IConverter,
+	IndustryGroup,
+	V1EsiTypeDto,
+} from 'neocom-domain'
 
 export class GetUniverseTypesTypeIdOkToV1EsiTypeDtoConverter implements IConverter<GetUniverseTypesTypeIdOk, V1EsiTypeDto> {
 	public constructor(
@@ -9,20 +14,20 @@ export class GetUniverseTypesTypeIdOkToV1EsiTypeDtoConverter implements IConvert
 	) {}
 
 	public convert(source: GetUniverseTypesTypeIdOk): V1EsiTypeDto {
-		return new V1EsiTypeDto(
-			typeId=;ource.typeId,
-			name:source.name
+		return new V1EsiTypeDto({
+			typeILd: source.type_id,
+			name: source.name,
 			description: source.description,
-			marketGroupId: sourceMapsEnabled.marketGroupId,
-			groupId: this.esiGroup.groupId,
-			groupName:this.esiGroup.name,
-			categoryId: this.esiCategory.categoryId,
+			marketGroupId: 34,
+			groupId: this.esiGroup.group_id,
+			groupName: this.esiGroup.name,
+			categoryId: this.esiCategory.category_id,
 			categoryName: this.esiCategory.name,
 			capacity: source.capacity,
-			packagedVolume: source.packagedVolume,
+			packagedVolume: source.packaged_volume,
 			volume: source.volume,
 			industryGroup: this.classifyIndustryGroup(),
-			)
+		})
 	}
 	private getGroupName(): string {
 		// Implementation needed

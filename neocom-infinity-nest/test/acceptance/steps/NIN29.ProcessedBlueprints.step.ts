@@ -8,7 +8,7 @@ Then('the response body is a list of processed blueprints', function () {
 	const asset: V2ProcessedBlueprintDto = this.processedBlueprintsResponse[0]
 	expect(asset.jsonClass).toBe('ProcessedBlueprintDto')
 	expect(asset.typeId).toBeDefined()
-	expect(asset.blueprintIten).toBeDefined()
+	expect(asset.blueprintItem).toBeDefined()
 	expect(asset.outputItem).toBeDefined()
 })
 

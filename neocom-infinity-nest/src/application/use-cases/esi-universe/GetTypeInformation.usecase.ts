@@ -37,7 +37,7 @@ export class GetTypeInformationUseCase {
 	private generateMarketDataLink(typeId: number, region: number): string {
 		return this.esiUniverseTypeUrl + typeId + '/' + region
 	}
-	private getHullType(typeId: number): Promise<V1EsiTypeDto> {
-		return this.esiUniverseServices.getEsiType(typeId)
-	}
+	// private getHullType(typeId: number): Promise<V1EsiTypeDto> {
+	// 	return this.esiUniverseServices.getEsiType(typeId)
+	// }
 }
