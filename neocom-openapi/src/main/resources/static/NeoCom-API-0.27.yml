@@ -280,7 +280,7 @@ paths:
       tags:
         - Industry
       operationId: getProcessedBlueprints4Pilot
-      summary: Gets the list of Processed Blueprints for the selected pilot including some standard cost calculations to get the blueprint comparison profit index.
+      summary: Gets the list of Extended Blueprints for the selected pilot including some standard cost calculations to get the blueprint comparison profit index.
       description: >
         **v1**
         Analyze the list of blueprints accessible to the selected pilot. Calculate the Bill Of Materials, the production cost and the current market
@@ -312,7 +312,7 @@ paths:
       responses:
         200:
           description: >
-            List of Processed Blueprints. A Processed Blueprint is a packed set of identical blueprints. Data is calculated using Region Hub market.
+            List of Extended Blueprints. A Extended Blueprint is a packed set of identical blueprints. Data is calculated using Region Hub market.
           content:
             application/json:
               schema:

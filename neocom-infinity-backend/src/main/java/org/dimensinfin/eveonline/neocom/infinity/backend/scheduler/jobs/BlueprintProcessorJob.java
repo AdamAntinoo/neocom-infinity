@@ -95,7 +95,7 @@ public class BlueprintProcessorJob extends NeoComBackendJob {
 								.build();
 					} )
 					.forEach( blueprint -> {
-						LogWrapper.info( "Processed Blueprint->" + blueprint.toString() );
+						LogWrapper.info( "Extended Blueprint->" + blueprint.toString() );
 						this.jobServicePackager.getDataStoreService()
 								.updateProcessedBlueprint( this.credential.getAccountId(), blueprint );
 					} );

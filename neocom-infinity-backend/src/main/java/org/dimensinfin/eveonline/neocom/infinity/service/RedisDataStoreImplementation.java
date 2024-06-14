@@ -43,7 +43,7 @@ public class RedisDataStoreImplementation implements DataStorePort {
 	protected static final String LOWEST_SELL_ORDER_MAP = "LSO";
 	protected static final String ESITYPE_CACHE_NAME = "ESIT";
 	protected static final Integer LOWEST_SELL_ORDER_TTL = 300;
-	// - Processed Blueprints
+	// - Extended Blueprints
 	private static final String COST_INDEX_BLUEPRINTS_CACHE_NAME = "BCI";
 	private static final Integer COST_INDEX_BLUEPRINTS_TTL = 12;
 	// - Locations
@@ -118,9 +118,9 @@ public class RedisDataStoreImplementation implements DataStorePort {
 	}
 
 	/**
-	 * Return the list of Processed Blueprints that have the BOM along with the price and cost. If the list is empty that means that the pilot has no
+	 * Return the list of Extended Blueprints that have the BOM along with the price and cost. If the list is empty that means that the pilot has no
 	 * blueprints or that the processing task has not been run and there are no updated blueprint data. The store uses a single key per pilot to store
-	 * the complete list of processed blueprints in JSON coded format. The blueprint data generator is a background process that will scan the list of
+	 * the complete list of Extended Blueprints in JSON coded format. The blueprint data generator is a background process that will scan the list of
 	 * blueprints and the update the store.
 	 */
 	@Override

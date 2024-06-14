@@ -2,7 +2,7 @@ import { Then } from '@cucumber/cucumber'
 import { NIN01World } from '../worlds/NIN01World'
 import { V2ProcessedBlueprintDto } from 'neocom-domain'
 
-Then('the response body is a list of processed blueprints', function () {
+Then('the response body is a list of Extended Blueprints', function () {
 	expect(this.processedBlueprintsResponse).toBeDefined()
 	expect(this.processedBlueprintsResponse.length).toBeGreaterThan(0)
 	const asset: V2ProcessedBlueprintDto = this.processedBlueprintsResponse[0]

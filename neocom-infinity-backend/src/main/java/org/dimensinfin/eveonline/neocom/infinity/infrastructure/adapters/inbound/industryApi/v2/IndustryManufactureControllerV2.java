@@ -43,7 +43,7 @@ public class IndustryManufactureControllerV2 extends IndustryControllerV2 {
 	}
 
 	/**
-	 * SUMMARY: Gets the list of Processed Blueprints for the selected pilot including some standard cost calculations to get the blueprint comparison
+	 * SUMMARY: Gets the list of Extended Blueprints for the selected pilot including some standard cost calculations to get the blueprint comparison
 	 * profit index.
 	 *
 	 * Analyze the list of blueprints accessible to the selected pilot. Calculate the Bill Of Materials, the production cost and the current market

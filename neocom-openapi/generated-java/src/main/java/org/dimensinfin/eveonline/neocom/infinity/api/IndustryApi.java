@@ -82,20 +82,20 @@ public interface IndustryApi {
 
 
     /**
-     * GET /api/v3/neonest/industry/pilots/manufacture/blueprints/session/{sessionid} : Gets the list of Processed Blueprints for the selected pilot including some standard cost calculations to get the blueprint comparison profit index.
+     * GET /api/v3/neonest/industry/pilots/manufacture/blueprints/session/{sessionid} : Gets the list of Extended Blueprints for the selected pilot including some standard cost calculations to get the blueprint comparison profit index.
      * **v1** Analyze the list of blueprints accessible to the selected pilot. Calculate the Bill Of Materials, the production cost and the current market cost. For variable scenarios use the pilot configuration properties to identify the preferred manufacture factory or the trading market hub. The endpoint is authenticated so validate the selected pilot identifier before going to fetch the data. &lt;br&gt; **v2** On this version we have removed data from the response. But Market Data is still used to calculate the manufacture and the bom costs to be compared and to obtain the comparison index. That index is the market sell profit against the manufacture cost. The value should be grater than one for profitable items. Market Data used for the initial blueprint calculation is taken from the main hub that corresponds to the region where the item is located (to be completed). 
      *
      * @param sessionid The session identifier to be used to cache the blueprints. This is an structural element not funational. (required)
      * @param xNeoComAuthorization The access token to be used for authorization. This token will contain information to locate the credential to be used for data extraction. (required)
-     * @return List of Processed Blueprints. A Processed Blueprint is a packed set of identical blueprints. Data is calculated using Region Hub market.  (status code 200)
+     * @return List of Extended Blueprints. A Extended Blueprint is a packed set of identical blueprints. Data is calculated using Region Hub market.  (status code 200)
      */
     @Operation(
         operationId = "getProcessedBlueprints4Pilot",
-        summary = "Gets the list of Processed Blueprints for the selected pilot including some standard cost calculations to get the blueprint comparison profit index.",
+        summary = "Gets the list of Extended Blueprints for the selected pilot including some standard cost calculations to get the blueprint comparison profit index.",
         description = "**v1** Analyze the list of blueprints accessible to the selected pilot. Calculate the Bill Of Materials, the production cost and the current market cost. For variable scenarios use the pilot configuration properties to identify the preferred manufacture factory or the trading market hub. The endpoint is authenticated so validate the selected pilot identifier before going to fetch the data. <br> **v2** On this version we have removed data from the response. But Market Data is still used to calculate the manufacture and the bom costs to be compared and to obtain the comparison index. That index is the market sell profit against the manufacture cost. The value should be grater than one for profitable items. Market Data used for the initial blueprint calculation is taken from the main hub that corresponds to the region where the item is located (to be completed). ",
         tags = { "Industry" },
         responses = {
-            @ApiResponse(responseCode = "200", description = "List of Processed Blueprints. A Processed Blueprint is a packed set of identical blueprints. Data is calculated using Region Hub market. ", content = {
+            @ApiResponse(responseCode = "200", description = "List of Extended Blueprints. A Extended Blueprint is a packed set of identical blueprints. Data is calculated using Region Hub market. ", content = {
                 @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = V2ProcessedBlueprintDto.class)))
             })
         }
