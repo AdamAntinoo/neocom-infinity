@@ -1,7 +1,6 @@
 package org.dimensinfin.eveonline.neocom.infinity.service;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.redisson.Redisson;
 import org.redisson.api.RBucket;
@@ -10,11 +9,13 @@ import org.redisson.api.RedissonClient;
 import org.redisson.codec.JsonJacksonCodec;
 import org.redisson.config.Config;
 
+import org.dimensinfin.eveonline.neocom.domain.EsiType;
 import org.dimensinfin.eveonline.neocom.domain.space.SpaceLocationImplementation;
 import org.dimensinfin.eveonline.neocom.domain.space.Station;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetMarketsRegionIdOrders200Ok;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseRegionsRegionIdOk;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseTypesTypeIdOk;
+import org.dimensinfin.eveonline.neocom.infinity.backend.support.InstanceGenerator;
 import org.dimensinfin.eveonline.neocom.market.MarketOrder;
 
 import static org.dimensinfin.eveonline.neocom.infinity.backend.support.TestDataConstants.MarketOrderConstants.TEST_MARKET_ORDER_ID;
@@ -22,12 +23,12 @@ import static org.dimensinfin.eveonline.neocom.infinity.backend.support.TestData
 import static org.dimensinfin.eveonline.neocom.infinity.backend.support.TestDataConstants.MarketOrderConstants.TEST_MARKET_ORDER_TYPE_ID;
 import static org.dimensinfin.eveonline.neocom.infinity.backend.support.TestDataConstants.MarketOrderConstants.TEST_MARKET_ORDER_VOLUME_REMAIN;
 import static org.dimensinfin.eveonline.neocom.infinity.backend.support.TestDataConstants.MarketOrderConstants.TEST_MARKET_ORDER_VOLUME_TOTAL;
-import static org.dimensinfin.eveonline.neocom.infinity.service.RedisDataStoreImplementation.ESITYPE_CACHE_NAME;
-import static org.dimensinfin.eveonline.neocom.infinity.service.RedisDataStoreImplementation.REDIS_SEPARATOR;
+import static org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants.DataStoreKeys.ESI_TYPE_KEY_NAME;
+import static org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants.REDIS_SEPARATOR;
 
 public class RedisDataStoreImplementationTest {
 	private static final Integer TEST_ESI_ITEM_ID = 85;
-	private static final String REDIS_LOCAL_DEFAULT_ADDRESS = "redis://localhost:6379";
+	private static final String REDIS_LOCAL_DEFAULT_ADDRESS = "redis://localhost:5245";
 	private static final String LOWEST_SELL_ORDER_MAP = "LSO";
 	private final Integer regionId = 10000002;
 	private final Integer typeId = 34;
@@ -35,7 +36,18 @@ public class RedisDataStoreImplementationTest {
 	private Station station;
 	private GetMarketsRegionIdOrders200Ok orderData;
 
-//	@Test
+	@Test
+	void when_a_new_esitype_then_store_serialized_jackson() {
+		// Given
+		final EsiType target = new InstanceGenerator().getEsiType();
+		final RedisDataStoreImplementation redisDataStore = new RedisDataStoreImplementation( REDIS_LOCAL_DEFAULT_ADDRESS );
+		// When
+		final EsiType sut = redisDataStore.storeEsiType4Id( target );
+		// Then
+		Assertions.assertNotNull( sut );
+	}
+
+	//	@Test
 	public void accessEsiItem4IdNotFound() {
 		// Prepare
 		this.clearESITCache();
@@ -46,7 +58,7 @@ public class RedisDataStoreImplementationTest {
 		Assertions.assertNull( obtained );
 	}
 
-//	@Test
+	//	@Test
 	public void accessLowestSellOrderCached() {
 		this.accessLowestSellOrderNotCached();
 		// Given
@@ -66,7 +78,7 @@ public class RedisDataStoreImplementationTest {
 		Assertions.assertEquals( TEST_MARKET_ORDER_ID, obtained.getOrderId() );
 	}
 
-//	@Test
+	//	@Test
 	public void accessLowestSellOrderNotCached() {
 		// Given
 		final MarketOrder marketOrder = new MarketOrder.Builder()
@@ -85,7 +97,7 @@ public class RedisDataStoreImplementationTest {
 		Assertions.assertEquals( TEST_MARKET_ORDER_ID, obtained.getOrderId() );
 	}
 
-//	@BeforeEach
+	//	@BeforeEach
 	public void beforeEach() {
 		this.region = new GetUniverseRegionsRegionIdOk();
 		this.region.setRegionId( this.regionId );
@@ -102,7 +114,7 @@ public class RedisDataStoreImplementationTest {
 		this.orderData.setVolumeTotal( TEST_MARKET_ORDER_VOLUME_TOTAL );
 	}
 
-//	@Test
+	//	@Test
 	public void constructorContract() {
 		final RedisDataStoreImplementation redisDataStore = new RedisDataStoreImplementation( REDIS_LOCAL_DEFAULT_ADDRESS );
 		Assertions.assertNotNull( redisDataStore );
@@ -120,7 +132,7 @@ public class RedisDataStoreImplementationTest {
 		final RedissonClient redisClient = Redisson.create( config );
 
 		final RBucket<GetUniverseTypesTypeIdOk> esiIBucket = redisClient
-				.getBucket( ESITYPE_CACHE_NAME + REDIS_SEPARATOR + TEST_ESI_ITEM_ID, new JsonJacksonCodec() );
+				.getBucket( ESI_TYPE_KEY_NAME + REDIS_SEPARATOR + TEST_ESI_ITEM_ID, new JsonJacksonCodec() );
 		esiIBucket.delete();
 	}
 

@@ -7,9 +7,8 @@ import java.util.Optional;
 import java.util.function.UnaryOperator;
 
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdBlueprints200Ok;
-import org.dimensinfin.logging.LogWrapper;
 
-public class BlueprintPack implements UnaryOperator<List<GetCharactersCharacterIdBlueprints200Ok>> {
+public class BlueprintPacker implements UnaryOperator<List<GetCharactersCharacterIdBlueprints200Ok>> {
 	@Override
 	public List<GetCharactersCharacterIdBlueprints200Ok> apply( final List<GetCharactersCharacterIdBlueprints200Ok> blueprints ) {
 		final List<GetCharactersCharacterIdBlueprints200Ok> packedBlueprints = new ArrayList<>();

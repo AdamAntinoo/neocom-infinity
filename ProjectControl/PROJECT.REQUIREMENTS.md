@@ -15,6 +15,15 @@
 * ***[STORY-NIF]*** Create a Render for the different categories.
 * ***[STORY-NIF]*** Add Category expansion/collapse.
 * ***[STORY-NIB]*** Review the access to Market Data and see if we can use the same endpoint to retrieve the data.
+* [STORY-NIB] Update the endpoint to retrieve Extended Blueprints to serve the data using the json information required at the frontend.
+* [STORY-NIB] Stabilize development and increase code coverage and hexagonal compliance.
+* [STORY-NIF] Upgrade the current bluepint page to get the new Extended Blueprint data.
+
+[EPIC-0.30] Change Data Cache Storage to be compatible between platforms.
+* [STORY-NIB] Replace the Data Store Redis implementation by a MongoDB implementation so all storeage is JSON comaprible format.
+
+
+
 * [STORY-NIF] Store Extended Blueprint data on Redis on a serialization compatible with NIN.
 * [STORY-NIN] Using Redis from other architecture elements requires that the Redis database content be compatible (JSON).
 
@@ -24,7 +33,6 @@
 
 
 
-* [STORY-NIF] Upgrade the current bluepint page to get the new Extended Blueprint data.
 * [STORY-NIB] Create a selector to return the corresponding Market Hub for any location. If there is no data for the selected region then use the Jita region selector.
 * [STORY-NIB] Functions should not return null in any case. Non existent values should be supported and replaced by default elements easy to identifícate on Frontend or on other functions. Use the MOCK code to identify such cases.
 * [STORY-NIB] Start to replace the use of cookies for authentication and use instead Headers. This will allow to use different characters from the same interface.

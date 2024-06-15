@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
@@ -19,6 +20,7 @@ import org.redisson.api.RedissonClient;
 import org.redisson.codec.JsonJacksonCodec;
 import org.redisson.config.Config;
 
+import org.dimensinfin.eveonline.neocom.domain.EsiType;
 import org.dimensinfin.eveonline.neocom.domain.space.SpaceLocation;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseTypesTypeIdOk;
 import org.dimensinfin.eveonline.neocom.exception.NeoComRuntimeException;
@@ -31,6 +33,12 @@ import org.dimensinfin.eveonline.neocom.service.ESIDataService;
 import org.dimensinfin.eveonline.neocom.utility.NeoObjects;
 import org.dimensinfin.logging.LogWrapper;
 
+import static org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants.DataStoreKeys.ESI_TYPE_KEY_NAME;
+import static org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants.DataStoreKeys.EXTENDED_BLUEPRINTS_KEY_NAME;
+import static org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants.DataStoreKeys.LOWEST_SELL_ORDER_TTL;
+import static org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants.DataStoreKeys.SPACE_LOCATIONS_KEY_NAME;
+import static org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants.REDIS_SEPARATOR;
+
 /**
  * THis is the Redis implementation for a permanent Data Store. Data will not expire and will be persisted.
  *
@@ -40,15 +48,6 @@ import org.dimensinfin.logging.LogWrapper;
 public class RedisDataStoreImplementation implements DataStorePort {
 	private static final ObjectMapper neocomObjectMapper = new ObjectMapper();
 	private static final JsonJacksonCodec codec = new JsonJacksonCodec( neocomObjectMapper );
-	protected static final String LOWEST_SELL_ORDER_MAP = "LSO";
-	protected static final String ESITYPE_CACHE_NAME = "ESIT";
-	protected static final Integer LOWEST_SELL_ORDER_TTL = 300;
-	// - Extended Blueprints
-	private static final String COST_INDEX_BLUEPRINTS_CACHE_NAME = "BCI";
-	private static final Integer COST_INDEX_BLUEPRINTS_TTL = 12;
-	// - Locations
-	private static final String SPACE_LOCATIONS_CACHE_NAME = "SPL";
-	private static final Integer SPACE_LOCATIONS_CACHE_TTL = 12;
 
 	protected final RedissonClient redisClient;
 
@@ -61,6 +60,44 @@ public class RedisDataStoreImplementation implements DataStorePort {
 		config.useSingleServer().setAddress( redisAddress );
 		this.redisClient = Redisson.create( config );
 		LogWrapper.exit();
+	}
+
+	@Override
+	public Optional<EsiType> accessEsiType4Id( final int typeId ) {
+		final String key = this.generateDataStoreUniqueKeyEsiType( typeId );
+		final  RBucket<EsiType> bucket = this.redisClient.getBucket(key);
+
+		return Optional.ofNullable( bucket.get() );
+	}
+
+	@Override
+	public EsiType storeEsiType4Id(  final EsiType target ) {
+		// - Construct the repository record.
+		try {
+			final String payload = neocomObjectMapper.writeValueAsString( target );
+			RBucket<String> bucket = this.redisClient.getBucket(this.generateDataStoreUniqueKeyEsiType(target.getTypeId()));
+			bucket.set(payload);
+		} catch (JsonProcessingException e) {
+			throw new RuntimeException( e );
+		}
+		//
+//
+//		AnyObject obj = bucket.get();
+//
+//
+//		bucket.set(RedisCacheEntry.builder()
+//				.withKey( key )
+//				.withPayload( neocomObjectMapper.writeValueAsString( processedBlueprint ); )
+//				.build()
+//		);
+//
+//		return Optional.empty();
+
+
+		return target;
+	}
+	private String generateDataStoreUniqueKeyEsiType( final int typeId){
+		return TYPE_KEY+ REDIS_SEPARATOR+typeId;
 	}
 
 	@Override
@@ -144,7 +181,7 @@ public class RedisDataStoreImplementation implements DataStorePort {
 
 	@Override
 	public String generateBlueprintCostIndexUniqueId( final Integer pilotId ) {
-		return COST_INDEX_BLUEPRINTS_CACHE_NAME + REDIS_SEPARATOR + pilotId;
+		return EXTENDED_BLUEPRINTS_KEY_NAME + REDIS_SEPARATOR + pilotId;
 	}
 
 	@Override
@@ -164,7 +201,7 @@ public class RedisDataStoreImplementation implements DataStorePort {
 
 	@Override
 	public Optional<SpaceLocation> accessLocation( final String locationCacheId ) {
-		final RMapCache<String, SpaceLocation> BCIMap = this.redisClient.getMapCache( SPACE_LOCATIONS_CACHE_NAME, codec );
+		final RMapCache<String, SpaceLocation> BCIMap = this.redisClient.getMapCache( SPACE_LOCATIONS_KEY_NAME, codec );
 		final SpaceLocation location = BCIMap.get( locationCacheId );
 		if ( Objects.isNull( location ) ) return Optional.empty();
 		else return Optional.of( location );
@@ -173,9 +210,9 @@ public class RedisDataStoreImplementation implements DataStorePort {
 	@Override
 	public void updateLocation( final String locationCacheId, final SpaceLocation location ) {
 		LogWrapper.enter();
-		final RMapCache<String, SpaceLocation> BCIMap = this.redisClient.getMapCache( SPACE_LOCATIONS_CACHE_NAME, codec );
+		final RMapCache<String, SpaceLocation> BCIMap = this.redisClient.getMapCache( SPACE_LOCATIONS_KEY_NAME, codec );
 		try {
-			BCIMap.put( SPACE_LOCATIONS_CACHE_NAME + REDIS_SEPARATOR + locationCacheId, location );
+			BCIMap.put( SPACE_LOCATIONS_KEY_NAME + REDIS_SEPARATOR + locationCacheId, location );
 		} catch (final RuntimeException rte) {
 			LogWrapper.error( rte );
 		} finally {
@@ -184,7 +221,7 @@ public class RedisDataStoreImplementation implements DataStorePort {
 	}
 
 	private String generateEsiItemUniqueId( final Integer typeId ) {
-		return ESITYPE_CACHE_NAME + REDIS_SEPARATOR + typeId;
+		return ESI_TYPE_KEY_NAME + REDIS_SEPARATOR + typeId;
 	}
 
 	private String generateLowestSellOrderUniqueId( final Integer regionId ) {

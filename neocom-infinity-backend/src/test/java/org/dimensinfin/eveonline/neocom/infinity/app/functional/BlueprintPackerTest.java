@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdBlueprints200Ok;
 
-class BlueprintPackTest {
+class BlueprintPackerTest {
 
 	@Test
 	void apply() {
@@ -30,7 +30,7 @@ class BlueprintPackTest {
 		blueprint2.setMaterialEfficiency( 10 );
 		blueprint2.setTimeEfficiency( 10 );
 		blueprint2.setRuns( 100 );
-		final BlueprintPack fun = new BlueprintPack();
+		final BlueprintPacker fun = new BlueprintPacker();
 		sourceList.add( blueprint1 );
 		sourceList.add( blueprint1 );
 		sourceList.add( blueprint1 );

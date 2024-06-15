@@ -15,10 +15,12 @@ import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterI
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetMarketsRegionIdOrders200Ok;
 import org.dimensinfin.eveonline.neocom.industry.domain.ProcessedBlueprint;
 import org.dimensinfin.eveonline.neocom.industry.domain.Resource;
-import org.dimensinfin.eveonline.neocom.infinity.app.functional.BlueprintPack;
-import org.dimensinfin.eveonline.neocom.infinity.app.functional.LocationLookup;
+import org.dimensinfin.eveonline.neocom.infinity.app.functional.BlueprintPacker;
+import org.dimensinfin.eveonline.neocom.infinity.infrastructure.config.LogMessageCatalog;
 import org.dimensinfin.eveonline.neocom.market.MarketData;
 import org.dimensinfin.logging.LogWrapper;
+
+import static org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants.REDIS_SEPARATOR;
 
 
 public class BlueprintProcessorJob extends NeoComBackendJob {
@@ -39,19 +41,19 @@ public class BlueprintProcessorJob extends NeoComBackendJob {
 	// - J O B
 
 	/**
-	 * The blueprint processor will get all the blueprints for a credential, then filter them to keep only distinct blueprint types and finally apply
-	 * the bill of materials to decompose the product requirements. With the BOM and the output product produced by the blueprint make a comparison
-	 * and create a <code>ProcessedBlueprint</code> instance that will report the profit index expected when manufacturing items with this blueprint
-	 * type.
+	 * The blueprint processor will get all the blueprints for a credential, then pack identical blueprints located exactly on the same location to
+	 * reduce the most the number of records to process and finally apply the bill of materials to decompose the manufacture requirements. With the
+	 * BOM and the output product produced by the blueprint we are able to make a comparison and create a <code>V2ExtendedBlueprint</code> instance
+	 * that will report the profit index expected when manufacturing items with this blueprint instance.
 	 */
 	@Override
 	public Boolean call() throws Exception {
 		LogWrapper.enter();
 		try {
-			// Get the list of blueprints and then pack them for identical characteristics.
+			// Get the list of blueprints and then pack them with identical characteristics.
 			final List<GetCharactersCharacterIdBlueprints200Ok> blueprints = this.jobServicePackager.getEsiDataService()
 					.getCharactersCharacterIdBlueprints( this.credential );
-			final List<GetCharactersCharacterIdBlueprints200Ok> packedBlueprints = new BlueprintPack().apply( blueprints );
+			final List<GetCharactersCharacterIdBlueprints200Ok> packedBlueprints = new BlueprintPacker().apply( blueprints );
 			final Set<String> addedBlueprintLocators = new HashSet<>();
 			packedBlueprints.stream()
 					.map( ( GetCharactersCharacterIdBlueprints200Ok bp ) -> {
@@ -63,11 +65,21 @@ public class BlueprintProcessorJob extends NeoComBackendJob {
 								.location( location )
 								.build();
 					} )
-					.filter( bpLoc -> bpLoc.getLocation().isPresent() )
-					.filter( bpLoc -> addedBlueprintLocators.add(
-							bpLoc.getBlueprint().getItemId() + ":" + bpLoc.getLocation().get().getLocationId() ) )
+					.filter( bpLoc -> {
+						if ( bpLoc.getLocation().isPresent() ) return true;
+						else {
+							LogWrapper.info( LogMessageCatalog.BLUEPRINT_LOCATION_NOT_PRESENT.getResolvedMessage(
+									bpLoc.getBlueprint().getTypeId(),
+									bpLoc.getBlueprint().getLocationId()
+							) );
+							return false;
+						}
+					} ) // Remove any blueprint that cannot be reached because the location is not present. This should be notified.
+					.filter( ( BlueprintAndLocation bpLoc ) -> addedBlueprintLocators.add(
+							bpLoc.getBlueprint().getItemId() + REDIS_SEPARATOR + bpLoc.getLocation().get()
+									.getLocationId() ) )
 					.map( ( BlueprintAndLocation bpLoc ) -> {
-						// Start to build the ProcessedBlueprintDto
+						// Start to build the V2ExtendedBlueprint
 						final int blueprintTypeId = bpLoc.getBlueprint().getTypeId();
 						final EsiType blueprint = this.jobServicePackager.getResourceFactory().generateType4Id( blueprintTypeId );
 						final int outputModuleId = this.jobServicePackager.getSDERepository().accessModule4Blueprint( blueprintTypeId );
