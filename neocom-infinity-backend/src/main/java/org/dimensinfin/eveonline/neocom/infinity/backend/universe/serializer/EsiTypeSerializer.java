@@ -6,12 +6,8 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import org.springframework.boot.jackson.JsonComponent;
-import org.springframework.hateoas.Link;
-import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 
 import org.dimensinfin.eveonline.neocom.domain.EsiType;
-import org.dimensinfin.eveonline.neocom.infinity.backend.universe.market.rest.v1.UniverseMarketControllerV1;
-import org.dimensinfin.eveonline.neocom.market.service.MarketService;
 import org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants;
 
 @JsonComponent
@@ -21,6 +17,7 @@ public class EsiTypeSerializer extends JsonSerializer<EsiType> {
 			throws IOException {
 		gen.writeStartObject();
 
+		gen.writeStringField( "jsonClass", value.getJsonClass() );
 		gen.writeNumberField( "typeId", value.getTypeId() );
 		gen.writeStringField( "name", value.getName() );
 		gen.writeNumberField( "marketGroupId", value.getType().getMarketGroupId() );

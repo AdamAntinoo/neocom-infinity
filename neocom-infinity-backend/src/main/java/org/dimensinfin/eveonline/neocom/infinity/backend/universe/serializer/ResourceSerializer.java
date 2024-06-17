@@ -17,6 +17,7 @@ public class ResourceSerializer extends JsonSerializer<Resource> {
 			throws IOException {
 		gen.writeStartObject();
 
+		gen.writeStringField( "jsonClass", value.getJsonClass() );
 		gen.writeNumberField( "typeId", value.getTypeId() );
 		gen.writeStringField( "name", value.getName() );
 		gen.writeNumberField( "quantity", value.getQuantity() );

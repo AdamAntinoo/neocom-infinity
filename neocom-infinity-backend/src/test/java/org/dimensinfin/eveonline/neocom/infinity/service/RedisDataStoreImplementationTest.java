@@ -48,12 +48,12 @@ public class RedisDataStoreImplementationTest {
 	}
 
 	//	@Test
-	public void accessEsiItem4IdNotFound() {
+	public void accessEsiUniverseItem4IdNotFound() {
 		// Prepare
 		this.clearESITCache();
 		// Test
 		final RedisDataStoreImplementation redisDataStore = new RedisDataStoreImplementation( REDIS_LOCAL_DEFAULT_ADDRESS );
-		final GetUniverseTypesTypeIdOk obtained = redisDataStore.accessEsiItem4Id( TEST_ESI_ITEM_ID, ( id ) -> null );
+		final GetUniverseTypesTypeIdOk obtained = redisDataStore.accessEsiUniverseItem4Id( TEST_ESI_ITEM_ID, ( id ) -> null );
 		// Assertions
 		Assertions.assertNull( obtained );
 	}

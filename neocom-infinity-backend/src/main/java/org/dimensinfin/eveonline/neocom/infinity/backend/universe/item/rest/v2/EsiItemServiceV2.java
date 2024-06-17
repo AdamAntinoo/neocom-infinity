@@ -20,7 +20,7 @@ public class EsiItemServiceV2 {
 	}
 
 	public EsiItemModel getItem( final @NotNull Integer itemId ) {
-		final GetUniverseTypesTypeIdOk item = this.esiDataService.searchEsiItem4Id( itemId );
+		final GetUniverseTypesTypeIdOk item = this.esiDataService.searchEsiUniverseType4Id( itemId );
 		final GetUniverseGroupsGroupIdOk group = this.esiDataService.searchItemGroup4Id( item.getGroupId() );
 		return new EsiItemModel.Builder()
 				.withTypeId( itemId )

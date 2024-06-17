@@ -20,6 +20,7 @@ public class ProcessedBlueprintSerializer extends JsonSerializer<ProcessedBluepr
 			throws IOException {
 		gen.writeStartObject();
 
+		gen.writeStringField( "jsonClass", "ProcessedBlueprintDto" );
 		gen.writeStringField( "uid", value.getStorageUniqueId() );
 		gen.writeNumberField( "typeId", value.getTypeId() );
 		if ( null != value.getBlueprintItem() ) gen.writeObjectField( "blueprint", value.getBlueprintItem() );

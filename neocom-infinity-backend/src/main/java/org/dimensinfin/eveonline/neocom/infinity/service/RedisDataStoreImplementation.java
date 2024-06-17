@@ -9,7 +9,6 @@ import java.util.concurrent.TimeUnit;
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
@@ -34,6 +33,7 @@ import org.dimensinfin.eveonline.neocom.utility.NeoObjects;
 import org.dimensinfin.logging.LogWrapper;
 
 import static org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants.DataStoreKeys.ESI_TYPE_KEY_NAME;
+import static org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants.DataStoreKeys.ESI_UNIVERSE_TYPE_KEY_NAME;
 import static org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants.DataStoreKeys.EXTENDED_BLUEPRINTS_KEY_NAME;
 import static org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants.DataStoreKeys.LOWEST_SELL_ORDER_TTL;
 import static org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants.DataStoreKeys.SPACE_LOCATIONS_KEY_NAME;
@@ -65,46 +65,27 @@ public class RedisDataStoreImplementation implements DataStorePort {
 	@Override
 	public Optional<EsiType> accessEsiType4Id( final int typeId ) {
 		final String key = this.generateDataStoreUniqueKeyEsiType( typeId );
-		final  RBucket<EsiType> bucket = this.redisClient.getBucket(key);
+		final RBucket<EsiType> bucket = this.redisClient.getBucket( key );
 
 		return Optional.ofNullable( bucket.get() );
 	}
 
 	@Override
-	public EsiType storeEsiType4Id(  final EsiType target ) {
-		// - Construct the repository record.
-		try {
-			final String payload = neocomObjectMapper.writeValueAsString( target );
-			RBucket<String> bucket = this.redisClient.getBucket(this.generateDataStoreUniqueKeyEsiType(target.getTypeId()));
-			bucket.set(payload);
-		} catch (JsonProcessingException e) {
-			throw new RuntimeException( e );
-		}
-		//
-//
-//		AnyObject obj = bucket.get();
-//
-//
-//		bucket.set(RedisCacheEntry.builder()
-//				.withKey( key )
-//				.withPayload( neocomObjectMapper.writeValueAsString( processedBlueprint ); )
-//				.build()
-//		);
-//
-//		return Optional.empty();
-
-
+	public EsiType storeEsiType4Id( final EsiType target ) {
+		RBucket<EsiType> bucket = this.redisClient.getBucket( this.generateDataStoreUniqueKeyEsiType( target.getTypeId() ) );
+		bucket.set( target );
 		return target;
 	}
-	private String generateDataStoreUniqueKeyEsiType( final int typeId){
-		return TYPE_KEY+ REDIS_SEPARATOR+typeId;
+
+	private String generateDataStoreUniqueKeyEsiType( final int typeId ) {
+		return ESI_TYPE_KEY_NAME + REDIS_SEPARATOR + typeId;
 	}
 
 	@Override
 	@Nullable
-	public GetUniverseTypesTypeIdOk accessEsiItem4Id( final int typeId, final ESIDataService.EsiItemPassThrough esiItemPassThrough ) {
+	public GetUniverseTypesTypeIdOk accessEsiUniverseItem4Id( final int typeId, final ESIDataService.EsiItemPassThrough esiItemPassThrough ) {
 		final RBucket<GetUniverseTypesTypeIdOk> esiIBucket = this.redisClient
-				.getBucket( this.generateEsiItemUniqueId( typeId ) );
+				.getBucket( this.generateDataStoreUniqueKeyEsiUniverseType( typeId ) );
 		if ( null == esiIBucket.get() ) {
 			final GetUniverseTypesTypeIdOk type;
 			try {
@@ -176,7 +157,7 @@ public class RedisDataStoreImplementation implements DataStorePort {
 	public Optional<ProcessedBlueprint> accessProcessedBlueprintsByUID( final Integer pilotId, final String blueprintUID ) {
 		final String uniqueLSOKey = this.generateBlueprintCostIndexUniqueId( pilotId );
 		final RMapCache<String, ProcessedBlueprint> BCIMap = this.redisClient.getMapCache( uniqueLSOKey );
-	return Optional.ofNullable(   BCIMap.get( blueprintUID ));
+		return Optional.ofNullable( BCIMap.get( blueprintUID ) );
 	}
 
 	@Override
@@ -220,8 +201,8 @@ public class RedisDataStoreImplementation implements DataStorePort {
 		}
 	}
 
-	private String generateEsiItemUniqueId( final Integer typeId ) {
-		return ESI_TYPE_KEY_NAME + REDIS_SEPARATOR + typeId;
+	private String generateDataStoreUniqueKeyEsiUniverseType( final Integer typeId ) {
+		return ESI_UNIVERSE_TYPE_KEY_NAME + REDIS_SEPARATOR + typeId;
 	}
 
 	private String generateLowestSellOrderUniqueId( final Integer regionId ) {
