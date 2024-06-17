@@ -482,7 +482,8 @@ components:
         - jsonClass
         - quantity
         - typelink
-    v0.NeocomDto:
+
+    EsiTypeDto:
       type: object
       required:
         - jsonClass

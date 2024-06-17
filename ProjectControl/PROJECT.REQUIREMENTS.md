@@ -31,6 +31,8 @@ Check if interfaces can do this job and be used with the Builder. (builder-patte
 
 
 * [STORY-PROJECT] Make EsiType compatible between the NIB and NIF implementations.
+* [STORY-NIF] Upgrade the current bluepint page to get the new Processed Blueprint data.
+* [STORY-NIB] Create a selector to return the corresponding Market Hub for any location. If there is no data for the selected region then use the Jita region selector.
 * [STORY-NIN] Move the endpoint to retrieve Extended Blueprints from NIB. Leave the creation process at NIB.
 
 
