@@ -15,9 +15,12 @@
 * ***[STORY-NIF]*** Create a Render for the different categories.
 * ***[STORY-NIF]*** Add Category expansion/collapse.
 * ***[STORY-NIB]*** Review the access to Market Data and see if we can use the same endpoint to retrieve the data.
-* [STORY-NIB] Update the endpoint to retrieve Extended Blueprints to serve the data using the json information required at the frontend.
-* [STORY-NIB] Stabilize development and increase code coverage and hexagonal compliance.
+* ***[STORY-NIB]*** Update the endpoint to retrieve Extended Blueprints to serve the data using the json information required at the frontend.
 * [STORY-NIF] Upgrade the current bluepint page to get the new Extended Blueprint data.
+
+
+
+* [STORY-NIB] Stabilize development and increase code coverage and hexagonal compliance.
 
 [EPIC-0.30] Change Data Cache Storage to be compatible between platforms.
 * [STORY-NIB] Replace the Data Store Redis implementation by a MongoDB implementation so all storeage is JSON comaprible format.
