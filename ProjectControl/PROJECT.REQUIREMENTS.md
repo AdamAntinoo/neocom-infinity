@@ -22,7 +22,9 @@
 [EPIC-0.30] Change Data Cache Storage to be compatible between platforms.
 * [STORY-NIB] Replace the Data Store Redis implementation by a MongoDB implementation so all storeage is JSON comaprible format.
 
-
+# NOTES
+DTO have no methods but should have a Builder to validate its construction for mandatory attributes.
+Check if interfaces can do this job and be used with the Builder. (builder-pattern). The response to this id TRUE so replace classes by openapi generated interfaces.
 
 * [STORY-NIF] Store Extended Blueprint data on Redis on a serialization compatible with NIN.
 * [STORY-NIN] Using Redis from other architecture elements requires that the Redis database content be compatible (JSON).
