@@ -13,7 +13,7 @@ import {
 	NeoComErrorDefinition,
 	NeoComSharedErrorDefinition,
 } from 'neocom-domain'
-import { MiningOperationsTypedRequest } from './typedrequests/MiningOperations.typedrequest'
+import { MiningOperationsTypedRequest } from './TypedRequests/xMiningOperations.typedrequest'
 import { AssetsTypedRequest } from './TypedRequests/xAssets.typedrequest'
 import { BlueprintsTypedRequest } from './TypedRequests/xBlueprints.typedreques'
 import { BaseTypedRequest } from './TypedRequests/Base.typedrequest'

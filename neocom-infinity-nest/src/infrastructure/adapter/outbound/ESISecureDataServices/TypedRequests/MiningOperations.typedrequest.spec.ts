@@ -1,5 +1,5 @@
 import { ConfigService } from '@nestjs/config'
-import { MiningOperationsTypedRequest } from './MiningOperations.typedrequest'
+import { MiningOperationsTypedRequest } from './xMiningOperations.typedrequest'
 import { Test } from '@nestjs/testing'
 
 describe('SERVICE MiningOperationsTypedRequest [Module: Infrastructure.adapter]', () => {
