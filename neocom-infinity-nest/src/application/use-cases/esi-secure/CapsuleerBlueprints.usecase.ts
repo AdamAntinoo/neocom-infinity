@@ -1,10 +1,10 @@
 import { EsiToken } from '@Infra/adapter/security/EsiToken.interface'
-import { ESIDataServicesPort } from '@App/ports/ESIDataServices.port'
+import { ESIDataServicesPort } from '@App/ports/v1ESIDataServices.port'
 import { Injectable } from '@nestjs/common'
 import { GetCharactersCharacterIdBlueprints200Ok } from 'neocom-domain'
 import { V1BlueprintDto } from 'neocom-domain'
 import { V1StorageLocationDto } from 'neocom-domain'
-import { IUseCaseInput } from './constructors/UseCaseInput.interface'
+import { IUseCaseInput } from './constructors/v1UseCaseInput.interface'
 
 export interface CapsuleerBlueprintsUseCaseInput extends IUseCaseInput {
 	jwt: string // Original encoded token to be passed to ESI

@@ -1,4 +1,4 @@
-import { ESIDataServicesPort } from '@App/ports/ESIDataServices.port'
+import { ESIDataServicesPort } from '@App/ports/v1ESIDataServices.port'
 import { HttpService } from '@nestjs/axios'
 import { ConfigService } from '@nestjs/config'
 import { Test } from '@nestjs/testing'

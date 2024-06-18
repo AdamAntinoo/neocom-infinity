@@ -5,7 +5,7 @@ import { GetCharactersCharacterIdMining200Ok } from 'neocom-domain'
 import { EsiToken } from '@Infra/adapter/security/EsiToken.interface'
 import { MiningOperationConverter } from '@Infra/adapter/outbound/ESISecureDataServices/converter/MiningOperationConverter'
 import { ESI_CONSTANTS } from '@Infra/config/GlobalConstants'
-import { ESIDataServicesPort } from '@App/ports/ESIDataServices.port'
+import { ESIDataServicesPort } from '@App/ports/v1ESIDataServices.port'
 
 export interface MiningOperationsUseCaseInput {
 	jwt: string // Original encoded token to be passed to ESI

@@ -1,4 +1,4 @@
-import { ESIDataServicesPort } from '@App/ports/ESIDataServices.port'
+import { ESIDataServicesPort } from '@App/ports/v1ESIDataServices.port'
 import { EsiToken } from '@Infra/adapter/security/EsiToken.interface'
 import { Injectable } from '@nestjs/common'
 import { GetCharactersCharacterIdAssets200Ok, TypeLinkGenerator, V1StackDto } from 'neocom-domain'

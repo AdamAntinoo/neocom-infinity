@@ -12,7 +12,7 @@ import { GetMarketDataUseCase } from 'application/use-cases/esi-universe/GetMark
 import { GetSpaceLocationUseCase } from 'application/use-cases/esi-universe/GetSpaceLocation.usecase'
 import { V1ESISecureDataAdapter } from '@Infra/adapter/outbound/ESISecureDataServices/V1.EsiSecureData.adapter'
 
-import { ESIDataServicesPort } from '@App/ports/ESIDataServices.port'
+import { ESIDataServicesPort } from '@App/ports/v1ESIDataServices.port'
 import { CapsuleerAssetsUseCase } from '@App/use-cases/esi-secure/CapsuleerAssets.usecase'
 import { CapsuleerBlueprintsUseCase } from '@App/use-cases/esi-secure/CapsuleerBlueprints.usecase'
 import { V1CharacterController } from '@Infra/adapter/inbound/esisecureapi/V1.Character.controller'

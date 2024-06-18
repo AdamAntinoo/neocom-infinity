@@ -1,5 +1,5 @@
 import { EsiToken } from '@Infra/adapter/security/EsiToken.interface'
-import { IUseCaseInput } from './UsecaseInput.interface'
+import { IUseCaseInput } from './v1UseCaseInput.interface'
 
 export class EsiSecureUseCaseInputConstructor<T extends IUseCaseInput> {
 	public construct(jwt: string, token: EsiToken): T {

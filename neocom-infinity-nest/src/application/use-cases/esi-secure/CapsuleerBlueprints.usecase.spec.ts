@@ -1,6 +1,6 @@
 import { HttpService } from '@nestjs/axios'
 import { Test } from '@nestjs/testing'
-import { ESIDataServicesPort } from '@App/ports/ESIDataServices.port'
+import { ESIDataServicesPort } from '@App/ports/v1ESIDataServices.port'
 import { ConfigService } from '@nestjs/config'
 import { V1ESISecureDataAdapter } from '@Infra/adapter/outbound/ESISecureDataServices/V1.EsiSecureData.adapter'
 import { CapsuleerBlueprintsUseCase, CapsuleerBlueprintsUseCaseInput } from './CapsuleerBlueprints.usecase'

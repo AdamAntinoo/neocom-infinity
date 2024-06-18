@@ -1,7 +1,7 @@
 import { HttpService } from '@nestjs/axios'
 import { Observable } from 'rxjs'
 import { Test } from '@nestjs/testing'
-import { ESIDataServicesPort } from '@App/ports/ESIDataServices.port'
+import { ESIDataServicesPort } from '@App/ports/v1ESIDataServices.port'
 import { GetCharactersCharacterIdAssets200Ok, V1AssetDto, V1StackDto } from 'neocom-domain'
 import { ConfigService } from '@nestjs/config'
 import { V1ESISecureDataAdapter } from '@Infra/adapter/outbound/ESISecureDataServices/V1.EsiSecureData.adapter'
