@@ -219,7 +219,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BackendError'
-  /api/v3/neonest/character/miningoperations/session/{sessionid}:
+  /api/v3/neospring/character/miningoperations/session/{sessionid}:
     get:
       tags:
         - Industry

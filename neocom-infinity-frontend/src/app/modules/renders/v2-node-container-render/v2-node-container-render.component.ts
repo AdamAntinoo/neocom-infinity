@@ -27,6 +27,10 @@ export class V2NodeContainerRenderComponent extends BackgroundEnabledComponent {
     public getNode(): NeoCom {
         return this.node;
     }
+    public getUniqueId(): string {
+		if (this.node) return this.getNode().getUniqueId()
+		return '-'
+	}
     public getVariant(): string {
         return this.variant;
     }

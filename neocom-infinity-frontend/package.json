@@ -1,6 +1,6 @@
 {
   "name": "neocom-infinity",
-  "version": "0.29.0-29",
+  "version": "0.29.0-48",
   "scripts": {
     "cucumber": "./node_modules/@cucumber/cucumber/bin/cucumber-js ./cucumber/**/*.feature --no-strict --require-module ts-node/register --require-module tsconfig-paths/register --require ./cucumber/**/*.step.ts --tags @NIF05.01",
     "document:dev": "compodoc -p tsconfig.json src",

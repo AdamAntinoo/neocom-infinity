@@ -19,7 +19,7 @@ export class V1PlanetarySystemRenderComponent extends NodeContainerRenderCompone
     public getNode(): KnownSystem {
         return this.node as KnownSystem
     }
-    public getUniqueId(): number {
+    public getUniqueId(): string {
         return this.getNode().getUniqueId()
     }
     public getSystemName(): string {

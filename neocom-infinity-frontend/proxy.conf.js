@@ -11,6 +11,14 @@ function logProvider() { //(2)
   })
 }
 var PROXY_CONF = {
+  "/api/v3/neospring/*": {
+    "target": "http://localhost:5235",
+    "secure": false,
+    "logLevel": "debug",
+    "logProvider": logProvider,
+    "timeout": 30000,
+    "changeOrigin": true
+  },
   "/api/v1/neocom/industry/pilots/*": {
     "target": "http://localhost:5235",
     "secure": false,

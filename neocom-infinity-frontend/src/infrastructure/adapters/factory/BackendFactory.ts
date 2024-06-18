@@ -8,7 +8,7 @@ import { V2UniverseType } from '@domain/esi/V2.UniverseType.domain'
 import { V1SpaceLocation } from '@domain/esi/v1.SpaceLocation.domain'
 import { V3MiningOperation } from '@domain/industry/V3.MiningOperation.domain'
 import { Record, V1BlueprintDto, V1EsiTypeDto, V1MarketDataDto, V1MiningOperationDto, V1SpaceLocationDto, V1StackDto } from 'neocom-domain'
-import { V1ProcessedBlueprintDto } from 'neocom-domain/v1.ProcessedBlueprint.dto'
+import { V2ProcessedBlueprintDto } from 'neocom-domain/v2ProcessedBlueprint.dto'
 
 @Injectable({
 	providedIn: 'root',
@@ -79,6 +79,10 @@ export class BackendFactory {
 				console.log('BackendFactory>case spaceLocation->' + JSON.stringify(backendData))
 				return new V1SpaceLocation(backendData)
 			}
+			case 'SpaceLocationImplementation': {
+				console.log('BackendFactory>case spaceLocation->' + JSON.stringify(backendData))
+				return new V1SpaceLocation(backendData)
+			}
 			case 'BlueprintDto': {
 				console.log('BackendFactory>case blueprint->' + JSON.stringify(backendData))
 				const blueprint: V1BlueprintDto = backendData as V1BlueprintDto
@@ -91,14 +95,17 @@ export class BackendFactory {
 					.withStorageLocation(storageLocation, blueprint.storageLocation.locationType)
 					.build()
 			}
+            case 'Resource':{
+                return new V1Stack(backendData)
+            }
 			case 'ProcessedBlueprintDto': {
 				console.log('>>BackendFactory>case blueprint->' + JSON.stringify(backendData))
-				const blueprint: V1ProcessedBlueprintDto = backendData as V1ProcessedBlueprintDto
-				const blueprintItem: V2UniverseType = await this.construct(blueprint.blueprintItem)
-				const outputItem: V2UniverseType = await this.construct(blueprint.outputItem)
+				const blueprint: V2ProcessedBlueprintDto = backendData as V2ProcessedBlueprintDto
+				const blueprintItem: V2UniverseType = await this.construct(blueprint.blueprint)
+				const outputItem: V2UniverseType = await this.construct(blueprint.output)
 				const location: V1SpaceLocation= await this.construct(blueprint.location)
 				const bom: V1Stack[] = []
-				for (let resource of blueprint.bom) bom.push(await this.construct(resource))
+				for (let resource of blueprint['billOfMaterials']) bom.push(await this.construct(resource))
 				return new V2ProcessedBlueprint.Builder(backendData)
 					.withBlueprintItem(blueprintItem)
 					.withOutputItem(outputItem)

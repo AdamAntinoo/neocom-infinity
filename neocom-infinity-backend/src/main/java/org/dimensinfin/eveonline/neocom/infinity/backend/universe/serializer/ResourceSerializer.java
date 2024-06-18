@@ -30,7 +30,6 @@ public class ResourceSerializer extends JsonSerializer<Resource> {
 		gen.writeNumberField( "packagedVolume", value.getType().getPackagedVolume() );
 		gen.writeNumberField( "volume", value.getType().getVolume() );
 		gen.writeStringField( "tech", value.getTech() );
-		gen.writeNumberField( "volume", value.getType().getVolume() );
 		gen.writeBooleanField( "isBlueprint", value.getCategoryName().equalsIgnoreCase( GlobalWideConstants.EveGlobal.BLUEPRINT ) );
 
 		gen.writeEndObject();

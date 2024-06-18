@@ -51,7 +51,8 @@ import { V1BlueprintListPageComponent } from './industry/pages/v1-blueprint-list
 import { V1BlueprintCategoriesPanel } from './industry/panels/v1-blueprint-categories/v1-blueprint-categories.component'
 import { BlueprintToCategoryListUseCase } from './use-cases/BlueprintToCategoryList.usecase'
 import { V1BlueprintBOMPanelComponent } from './modules/industry/manufacture/panels/v1-blueprint-bompanel/v1-blueprint-bompanel.component'
-import { V2AvailableBlueprintsPanelComponent } from './industry/panels/v2-available-blueprints-panel/v2-available-blueprints-panel.component'
+import { V2AvailableBlueprintsPanelComponent } from './industry/panels/v2-available-blueprints-panel/v2-available-blueprints-panel.component';
+import { V1ExtendedBlueprintRenderComponent } from './industry/renders/v1-extended-blueprint-render/v1-extended-blueprint-render.component'
 registerLocaleData(localeEs)
 
 @NgModule({
@@ -102,6 +103,7 @@ registerLocaleData(localeEs)
 		{ provide: AuthenticationService, useClass: AuthenticationService },
 	],
 	bootstrap: [AppComponent],
-	exports: [],
+	exports: [
+  ],
 })
 export class AppModule {}

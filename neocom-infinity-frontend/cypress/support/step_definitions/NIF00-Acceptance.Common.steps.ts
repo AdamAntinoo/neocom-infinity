@@ -135,8 +135,8 @@ Given('the target the {string} with id {string}', function (symbolicName: string
 	const tag = supportService.translateTag(symbolicName) // Do name replacement
 	cy.log('>[translation]> ' + symbolicName + ' -> ' + tag)
 	cy.get('@target-panel')
-		.get(tag)
-		.get('[id="' + recordId + '"]')
+		.find(tag)
+		.find('[id="' + recordId + '"]')
 		.as('target')
 		.should('exist')
 })

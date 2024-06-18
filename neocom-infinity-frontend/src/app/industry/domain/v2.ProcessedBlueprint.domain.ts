@@ -6,15 +6,17 @@ import { V1SpaceLocation } from '@domain/esi/v1.SpaceLocation.domain'
 import { MANDATORY_FIELD_MISSING, NeoComError } from 'neocom-domain'
 
 export class V2ProcessedBlueprint extends NeoCom {
+    public jsonClass:string='ExtendedBlueprint'
+    public uid: string
 	public blueprint: V2UniverseType
 	public output: V2UniverseType
 	public bom: V1Stack[]
-	public materialEfficiency: number = 0
-	public timeEfficiency: number = 0
+	public materialEfficiency: number
+	public timeEfficiency: number
 	public location: V1SpaceLocation
-	public manufactureCost: number = 0.0
-	public outputCost: number = 0.0
-	public index: number = 0.0
+	public manufactureCost: number
+	public outputCost: number
+	public index: number
 
 	public identify(): string {
 		return 'ProcessedBlueprint'
@@ -25,7 +27,7 @@ export class V2ProcessedBlueprint extends NeoCom {
 		if (this.blueprint) return this.blueprint.name
 	}
 	public getUniqueId(): string {
-		if (this.blueprint) return this.blueprint.typeId + ''
+		if (this.blueprint) return this.uid
 		else return '-'
 	}
 	public getTypeIconURL(): string {

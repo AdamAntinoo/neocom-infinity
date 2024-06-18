@@ -28,16 +28,16 @@
       "priority": 10,
       "request": {
         "method": "GET",
-        "urlPathPattern": "/api/v3/neocom/character/blueprints/session/(.*)",
-        "cookies": {
-          "ESI-DATA-SERVICES": {
+        "urlPathPattern": "/api/v3/neospring/character/miningoperations/session/(.*)",
+        "headers": {
+          "Authorization": {
             "matches": ".*"
           }
         }
       },
       "response": {
         "status": 200,
-        "bodyFileName": "perico.blueprints.json",
+        "bodyFileName": "perico.extendedblueprints.json",
         "headers": {
           "Content-Type": "application/json",
           "Allow": "OPTIONS, GET",

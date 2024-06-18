@@ -24,7 +24,7 @@ export class SupportService {
 		this.translationTable['app-info'] = 'app-info-panel'
 		this.translationTable['server-info'] = 'server-info-panel'
 		this.translationTable['pilot-list'] = 'v1-pilot-panel'
-		this.translationTable['available-blueprints'] = 'v1-available-blueprints-panel'
+		this.translationTable['available-blueprints'] = 'v2-available-blueprints-panel'
 		this.translationTable['mining-operations'] = 'v1-miningoperations-panel'
 		this.translationTable['blueprint-categories'] = 'v1-blueprint-categories-panel'
 
@@ -48,7 +48,7 @@ export class SupportService {
 		// - RENDERS
 		this.translationTable['exception'] = 'div'
 		this.translationTable['pilot'] = 'v2-pilot'
-		this.translationTable['processed-blueprint'] = 'v1-blueprint'
+		this.translationTable['processed-blueprint'] = 'v1-extended-blueprint-render'
 		this.translationTable['feature-button'] = 'v1-feature-button'
 		this.translationTable['planetary-system'] = 'v1-planetary-system'
 		this.translationTable['mining-operation'] = 'v1-mining-operation'

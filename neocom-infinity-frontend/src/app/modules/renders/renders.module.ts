@@ -32,6 +32,7 @@ import { V1MiningOperationRenderComponent } from '@app/industry/renders/v1-minin
 import { V1StackRenderComponent } from '@app/industry/renders/v1-stack-render/v1-stack-render.component';
 import { M3VolumePipe } from './pipes/m3volume.pipe';
 import { V1BlueprintCategoryRender } from '@app/industry/renders/v1-blueprint-category/v1-blueprint-category.component';
+import { V1ExtendedBlueprintRenderComponent } from '@app/industry/renders/v1-extended-blueprint-render/v1-extended-blueprint-render.component';
 
 
 @NgModule({
@@ -68,6 +69,7 @@ import { V1BlueprintCategoryRender } from '@app/industry/renders/v1-blueprint-ca
         V1MiningOperationRenderComponent,
         V1StackRenderComponent,
         V1BlueprintCategoryRender,
+        V1ExtendedBlueprintRenderComponent,
         // - PIPES
         IskScaledPipe,
         M3VolumePipe

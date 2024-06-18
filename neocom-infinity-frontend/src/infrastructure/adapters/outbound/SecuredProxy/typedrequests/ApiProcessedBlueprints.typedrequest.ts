@@ -7,19 +7,17 @@ import { SecureUseCaseInput } from '@app/use-cases/ISecureUseCaseInput.interface
 
 export interface ProcessedBlueprintsTypedRequestParameters {
 	token: string
-    pilotId:number
+	pilotId: number
 }
 export class ApiProcessedBlueprintsTypedRequest extends AngularBaseTypedRequest {
-    public requestAge:number = 3600
-	constructor(
-		private readonly parameters: ProcessedBlueprintsTypedRequestParameters,
-	) {
+	public requestAge: number = 3600
+	constructor(private readonly parameters: ProcessedBlueprintsTypedRequestParameters) {
 		super()
 	}
 
-    protected prepareRequest(): void {
-        const pilotId : number =3
-		this.request =  BACKEND_LINKS.BACKEND_PROCESSED_BLUEPRINTS_LINK_S1+this.parameters.pilotId+BACKEND_LINKS.BACKEND_PROCESSED_BLUEPRINTS_LINK_S2
+	protected prepareRequest(): void {
+		const pilotId: number = 3
+		this.request = BACKEND_LINKS.BACKEND_PROCESSED_BLUEPRINTS_LINK_S1 + '/-SESSION-ID-'
 		console.log('>>prepare->request->' + this.request)
 	}
 	protected prepareOptions(): void {
@@ -28,15 +26,16 @@ export class ApiProcessedBlueprintsTypedRequest extends AngularBaseTypedRequest 
 		headers = headers.append('Accept', 'application/json')
 		headers = headers.append('Cache-Control', 'no-cache')
 		headers = headers.append('X-NeoCom-Token', this.parameters.token)
+		headers = headers.append('Authorization', this.parameters.token)
 		this.options = {
 			headers: headers,
-            observe: 'body'
+			observe: 'body',
 		}
 	}
 	protected prepareBody(): void {
 		return undefined
 	}
-    public build(): ApiProcessedBlueprintsTypedRequest {
+	public build(): ApiProcessedBlueprintsTypedRequest {
 		this.prepare()
 		return this
 	}
