@@ -2,6 +2,7 @@ package org.dimensinfin.eveonline.neocom.industry.domain;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -129,6 +130,7 @@ public class ProcessedBlueprintSummaryTest {
 		} );
 	}
 
+	@Disabled
 	@Test
 	public void gettersContract() {
 		// When

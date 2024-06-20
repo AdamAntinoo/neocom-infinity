@@ -50,7 +50,7 @@ public class ResourceSerializerTest {
 				.build();
 		resource.setQuantity( TEST_RESOURCE_QUANTITY );
 		final String json = this.objectMapper.writeValueAsString( resource );
-		final String expected = "{\"typeId\":16636,\"name\":\"Silicates\",\"quantity\":543,\"group\":{\"categoryId\":0,\"groupId\":0,\"name\":\"Moon Materials\",\"published\":false,\"types\":[]},\"category\":{\"categoryId\":0,\"groups\":[],\"name\":\"Material\",\"published\":false},\"type\":{\"capacity\":0.0,\"description\":null,\"dogmaAttributes\":[],\"dogmaEffects\":[],\"graphicId\":0,\"groupId\":0,\"iconId\":0,\"marketGroupId\":0,\"mass\":0.0,\"name\":\"Silicates\",\"packagedVolume\":0.0,\"portionSize\":0,\"published\":false,\"radius\":0.0,\"typeId\":0,\"volume\":0.5},\"tech\":\"Tech I\",\"volume\":0.5,\"isBlueprint\":false,\"typeIconURL\":\"https://image.eveonline.com/Type/16636_64.png\"}";
+		final String expected = "{\"jsonClass\":\"Resource\",\"typeId\":16636,\"name\":\"Silicates\",\"quantity\":543,\"group\":{\"categoryId\":0,\"groupId\":0,\"name\":\"Moon Materials\",\"published\":false,\"types\":[]},\"category\":{\"categoryId\":0,\"groups\":[],\"name\":\"Material\",\"published\":false},\"type\":{\"capacity\":0.0,\"description\":null,\"dogmaAttributes\":[],\"dogmaEffects\":[],\"graphicId\":0,\"groupId\":0,\"iconId\":0,\"marketGroupId\":0,\"mass\":0.0,\"name\":\"Silicates\",\"packagedVolume\":0.0,\"portionSize\":0,\"published\":false,\"radius\":0.0,\"typeId\":0,\"volume\":0.5},\"tech\":\"Tech I\",\"volume\":0.5,\"isBlueprint\":false,\"typeIconURL\":\"https://image.eveonline.com/Type/16636_64.png\"}";
 		Assertions.assertEquals( expected, json );
 	}
 }

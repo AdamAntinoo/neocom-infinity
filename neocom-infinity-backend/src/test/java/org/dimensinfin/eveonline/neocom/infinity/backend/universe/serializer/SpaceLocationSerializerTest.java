@@ -60,7 +60,7 @@ public class SpaceLocationSerializerTest {
 				.withConstellation( constellation )
 				.build();
 		final String json = this.objectMapper.writeValueAsString( location );
-		final String expected = "{\"locationType\":\"CONSTELLATION\",\"locationId\":20000322,\"constellationId\":20000322,\"constellationName\":\"Throne Worlds\",\"regionId\":1000043,\"regionName\":\"Domain\"}";
+		final String expected = "{\"jsonClass\":\"SpaceLocationImplementation\",\"locationType\":\"CONSTELLATION\",\"locationId\":20000322,\"constellationId\":20000322,\"constellationName\":\"Throne Worlds\",\"regionId\":1000043,\"regionName\":\"Domain\"}";
 		Assertions.assertEquals( expected, json );
 	}
 
@@ -76,7 +76,7 @@ public class SpaceLocationSerializerTest {
 				.withRegion( region )
 				.build();
 		final String json = this.objectMapper.writeValueAsString( location );
-		final String expected = "{\"locationType\":\"REGION\",\"locationId\":1000043,\"regionId\":1000043,\"regionName\":\"Domain\"}";
+		final String expected = "{\"jsonClass\":\"SpaceLocationImplementation\",\"locationType\":\"REGION\",\"locationId\":1000043,\"regionId\":1000043,\"regionName\":\"Domain\"}";
 		Assertions.assertEquals( expected, json );
 	}
 
@@ -103,7 +103,7 @@ public class SpaceLocationSerializerTest {
 				.withSolarSystem( solarSystem )
 				.build();
 		final String json = this.objectMapper.writeValueAsString( location );
-		final String expected = "{\"locationType\":\"SOLAR_SYSTEM\",\"locationId\":30002187,\"solarSystemId\":30002187,\"solarSystemName\":\"Amarr\",\"securityClass\":\"E1\",\"securityStatus\":0.5623334,\"constellationId\":20000322,\"constellationName\":\"Throne Worlds\",\"regionId\":1000043,\"regionName\":\"Domain\"}";
+		final String expected = "{\"jsonClass\":\"SpaceLocationImplementation\",\"locationType\":\"SOLAR_SYSTEM\",\"locationId\":30002187,\"solarSystemId\":30002187,\"solarSystemName\":\"Amarr\",\"securityClass\":\"E1\",\"securityStatus\":0.5623334,\"constellationId\":20000322,\"constellationName\":\"Throne Worlds\",\"regionId\":1000043,\"regionName\":\"Domain\"}";
 		Assertions.assertEquals( expected, json );
 	}
 
@@ -134,7 +134,7 @@ public class SpaceLocationSerializerTest {
 				.withStation( station )
 				.build();
 		final String json = this.objectMapper.writeValueAsString( location );
-		final String expected = "{\"locationType\":\"STATION\",\"locationId\":60008494,\"stationId\":60008494,\"stationName\":\"Amarr VIII (Oris) - Emperor Family Academy\",\"solarSystemId\":30002187,\"solarSystemName\":\"Amarr\",\"securityClass\":\"E1\",\"securityStatus\":0.5623334,\"constellationId\":20000322,\"constellationName\":\"Throne Worlds\",\"regionId\":1000043,\"regionName\":\"Domain\"}";
+		final String expected = "{\"jsonClass\":\"SpaceLocationImplementation\",\"locationType\":\"STATION\",\"locationId\":60008494,\"stationId\":60008494,\"stationName\":\"Amarr VIII (Oris) - Emperor Family Academy\",\"solarSystemId\":30002187,\"solarSystemName\":\"Amarr\",\"securityClass\":\"E1\",\"securityStatus\":0.5623334,\"constellationId\":20000322,\"constellationName\":\"Throne Worlds\",\"regionId\":1000043,\"regionName\":\"Domain\"}";
 		Assertions.assertEquals( expected, json );
 	}
 
@@ -172,7 +172,7 @@ public class SpaceLocationSerializerTest {
 				.withCorporation( TEST_CORPORATION_ID, TEST_CORPORATION_NAME )
 				.build();
 		final String json = this.objectMapper.writeValueAsString( structureTarget );
-		final String expected = "{\"locationType\":\"STRUCTURE\",\"locationId\":60008494,\"structureId\":60008494,\"structureName\":\"Amarr VIII (Oris) - Emperor Family Academy\",\"ownerId\":98384726,\"structureTypeId\":60008494,\"corporationId\":98384726,\"corporationName\":\"Industrias Machaque\",\"stationId\":60008494,\"stationName\":\"Amarr VIII (Oris) - Emperor Family Academy\",\"solarSystemId\":30002187,\"solarSystemName\":\"Amarr\",\"securityClass\":\"E1\",\"securityStatus\":0.5623334,\"constellationId\":20000322,\"constellationName\":\"Throne Worlds\",\"regionId\":1000043,\"regionName\":\"Domain\"}";
+		final String expected = "{\"jsonClass\":\"Structure\",\"locationType\":\"STRUCTURE\",\"locationId\":60008494,\"structureId\":60008494,\"structureName\":\"Amarr VIII (Oris) - Emperor Family Academy\",\"ownerId\":98384726,\"structureTypeId\":60008494,\"corporationId\":98384726,\"corporationName\":\"Industrias Machaque\",\"stationId\":60008494,\"stationName\":\"Amarr VIII (Oris) - Emperor Family Academy\",\"solarSystemId\":30002187,\"solarSystemName\":\"Amarr\",\"securityClass\":\"E1\",\"securityStatus\":0.5623334,\"constellationId\":20000322,\"constellationName\":\"Throne Worlds\",\"regionId\":1000043,\"regionName\":\"Domain\"}";
 		Assertions.assertEquals( expected, json );
 	}
 }
