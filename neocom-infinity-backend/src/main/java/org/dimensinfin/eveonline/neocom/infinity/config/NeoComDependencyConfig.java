@@ -13,6 +13,7 @@ import org.dimensinfin.eveonline.neocom.database.repositories.CredentialReposito
 import org.dimensinfin.eveonline.neocom.database.repositories.PilotPreferencesRepository;
 import org.dimensinfin.eveonline.neocom.database.repositories.SDERepository;
 import org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendDependenciesModule;
+import org.dimensinfin.eveonline.neocom.infinity.app.ports.DataStorePort;
 import org.dimensinfin.eveonline.neocom.infinity.service.RedisDataStoreImplementation;
 import org.dimensinfin.eveonline.neocom.infinity.service.SBConfigurationService;
 import org.dimensinfin.eveonline.neocom.infinity.service.SBFileSystemService;
@@ -25,9 +26,9 @@ import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 import org.dimensinfin.eveonline.neocom.provider.IFileSystem;
 import org.dimensinfin.eveonline.neocom.service.DMServicesDependenciesModule;
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
-import org.dimensinfin.eveonline.neocom.service.IDataStore;
 import org.dimensinfin.eveonline.neocom.service.IStoreCache;
 import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;
+import org.dimensinfin.eveonline.neocom.service.LocationFactory;
 import org.dimensinfin.eveonline.neocom.service.MemoryStoreCacheService;
 import org.dimensinfin.eveonline.neocom.service.ResourceFactory;
 import org.dimensinfin.eveonline.neocom.service.RetrofitService;
@@ -78,6 +79,11 @@ public class NeoComDependencyConfig {
 	}
 
 	@Bean
+	public LocationFactory dependency_12_LocationFactory() {
+		LogWrapper.enter();
+		return this.injector.getInstance( LocationFactory.class );
+	}
+	@Bean
 	public LocationCatalogService dependency_12_LocationCatalogService() {
 		LogWrapper.enter();
 		return this.injector.getInstance( LocationCatalogService.class );
@@ -114,7 +120,7 @@ public class NeoComDependencyConfig {
 	}
 
 	@Bean
-	public IDataStore dependency_18_IDataStore() {
+	public DataStorePort dependency_18_IDataStore() {
 		LogWrapper.enter();
 		return this.injector.getInstance( RedisDataStoreImplementation.class );
 	}
