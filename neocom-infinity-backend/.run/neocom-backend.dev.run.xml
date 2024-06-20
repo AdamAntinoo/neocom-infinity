@@ -15,7 +15,7 @@
       <env name="SPRING_DATASOURCE_USERNAME" value="neocom-user" />
     </envs>
     <option name="MAIN_CLASS_NAME" value="org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendApplication" />
-    <module name="NeoCom.Infinity.Backend.main" />
+    <module name="neocom-infinity-backend.main" />
     <option name="PROGRAM_PARAMETERS" value="--spring.profiles.active=dev --server.port=9500" />
     <option name="VM_PARAMETERS" value="--add-opens java.base/java.lang=ALL-UNNAMED" />
     <method v="2">

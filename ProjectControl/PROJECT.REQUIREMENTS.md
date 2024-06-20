@@ -16,6 +16,8 @@
 * ***[STORY-NIF]*** Add Category expansion/collapse.
 * ***[STORY-NIB]*** Review the access to Market Data and see if we can use the same endpoint to retrieve the data.
 * ***[STORY-NIB]*** Update the endpoint to retrieve Extended Blueprints to serve the data using the json information required at the frontend.
+* [STORY-NIB] Update the use of caches. Remove cache form generators and start to use functional programming.
+* [STORY-NIB] Refactor data store code.
 * [STORY-NIF] Upgrade the current bluepint page to get the new Extended Blueprint data.
 
 
