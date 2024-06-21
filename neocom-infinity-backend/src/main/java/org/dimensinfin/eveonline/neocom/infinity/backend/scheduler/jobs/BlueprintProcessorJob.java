@@ -76,12 +76,26 @@ public class BlueprintProcessorJob extends NeoComBackendJob {
 						}
 					} ) // Remove any blueprint that cannot be reached because the location is not present. This should be notified.
 					.filter( ( BlueprintAndLocation bpLoc ) -> addedBlueprintLocators.add(
-							bpLoc.getBlueprint().getItemId() + REDIS_SEPARATOR + bpLoc.getLocation().get()
-									.getLocationId() ) )
+							bpLoc.getBlueprint().getItemId() +
+									REDIS_SEPARATOR +
+									bpLoc.getLocation().get().getLocationId() )
+					)
 					.map( ( BlueprintAndLocation bpLoc ) -> {
 						// Start to build the V2ExtendedBlueprint
 						final int blueprintTypeId = bpLoc.getBlueprint().getTypeId();
-						final EsiType blueprint = this.jobServicePackager.getResourceFactory().generateType4Id( blueprintTypeId );
+						// Use new cache systems with decoupled generators from data service caches.
+//						final Function<Integer, EsiType> generatorEsiType = ( Integer typeId ) -> this.jobServicePackager.getResourceFactory()
+//								.generateType4Id( typeId );
+//
+//
+//						final Optional<EsiType> blueprintEsiType = this.jobServicePackager.getDataStoreService()
+//								.accessType4Id( blueprintTypeId, generatorEsiType );
+
+						final Optional<EsiType> blueprint = this.jobServicePackager.getDataStoreService().accessType4Id(
+								blueprintTypeId,
+								( Integer typeId ) -> this.jobServicePackager.getResourceFactory()
+										.generateType4Id( typeId )
+						);
 						final int outputModuleId = this.jobServicePackager.getSDERepository().accessModule4Blueprint( blueprintTypeId );
 						final EsiType outputModule = this.jobServicePackager.getResourceFactory().generateType4Id( outputModuleId );
 						final List<Resource> bom = this.jobServicePackager.getSDERepository().accessBillOfMaterials( blueprintTypeId );
@@ -94,7 +108,7 @@ public class BlueprintProcessorJob extends NeoComBackendJob {
 							index = outputModuleAtRegionCost / bomAtRegionCost;
 						return ProcessedBlueprint.builder()
 								.withTypeId( blueprintTypeId )
-								.withBlueprintItem( blueprint )
+								.withBlueprintItem( blueprint.get())
 								.withLocation( bpLoc.getLocation().get() )
 								.withMaterialEfficiency( bpLoc.getBlueprint().getMaterialEfficiency() )
 								.withTimeEfficiency( bpLoc.getBlueprint().getTimeEfficiency() )

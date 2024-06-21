@@ -1,11 +1,16 @@
-package org.dimensinfin.eveonline.neocom.infinity.service;
+package org.dimensinfin.eveonline.neocom.infinity.infrastructure.adapters.outbound.datastore;
 
 import java.text.MessageFormat;
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 
@@ -19,12 +24,15 @@ import org.redisson.api.RedissonClient;
 import org.redisson.codec.JsonJacksonCodec;
 import org.redisson.config.Config;
 
+import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.domain.EsiType;
 import org.dimensinfin.eveonline.neocom.domain.space.SpaceLocation;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseTypesTypeIdOk;
 import org.dimensinfin.eveonline.neocom.exception.NeoComRuntimeException;
 import org.dimensinfin.eveonline.neocom.industry.domain.ProcessedBlueprint;
 import org.dimensinfin.eveonline.neocom.infinity.app.ports.DataStorePort;
+import org.dimensinfin.eveonline.neocom.infinity.config.NeoComApplicationConfigurationContext;
+import org.dimensinfin.eveonline.neocom.infinity.infrastructure.config.LogMessageCatalog;
 import org.dimensinfin.eveonline.neocom.market.MarketOrder;
 import org.dimensinfin.eveonline.neocom.market.service.MarketService;
 import org.dimensinfin.eveonline.neocom.service.DMServicesDependenciesModule;
@@ -32,7 +40,10 @@ import org.dimensinfin.eveonline.neocom.service.ESIDataService;
 import org.dimensinfin.eveonline.neocom.utility.NeoObjects;
 import org.dimensinfin.logging.LogWrapper;
 
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
 import static org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants.DataStoreKeys.ESI_TYPE_KEY_NAME;
+import static org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants.DataStoreKeys.ESI_TYPE_KEY_TTL;
 import static org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants.DataStoreKeys.ESI_UNIVERSE_TYPE_KEY_NAME;
 import static org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants.DataStoreKeys.EXTENDED_BLUEPRINTS_KEY_NAME;
 import static org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants.DataStoreKeys.LOWEST_SELL_ORDER_TTL;
@@ -40,28 +51,62 @@ import static org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants.DataS
 import static org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants.REDIS_SEPARATOR;
 
 /**
- * THis is the Redis implementation for a permanent Data Store. Data will not expire and will be persisted.
+ * This is the Redis implementation for a permanent Data Store. Data will not expire and will be persisted.
  *
  * @author Adam Antinoo (adamantinoo.git@gmail.com)
  * @since 0.20.0
  */
+//@Service
 public class RedisDataStoreImplementation implements DataStorePort {
+	@Deprecated
 	private static final ObjectMapper neocomObjectMapper = new ObjectMapper();
+	@Deprecated
 	private static final JsonJacksonCodec codec = new JsonJacksonCodec( neocomObjectMapper );
 
 	protected final RedissonClient redisClient;
+	private final MeterRegistry registry;
+	protected final Map<String, DataStoreDescriptor> cacheDescriptors = new HashMap<>();
+
 
 	// - C O N S T R U C T O R S
 	@Inject
-	public RedisDataStoreImplementation( @NotNull @Named(DMServicesDependenciesModule.REDIS_DATABASE_URL) final String redisAddress ) {
+	public RedisDataStoreImplementation(
+			final @NotNull @Named(DMServicesDependenciesModule.REDIS_DATABASE_URL) String redisAddress
+	) {
 		LogWrapper.enter();
 		LogWrapper.info( "Redis connection link: " + redisAddress );
 		final Config config = new Config();
 		config.useSingleServer().setAddress( redisAddress );
 		this.redisClient = Redisson.create( config );
+
+		// - Create cache descriptors
+		this.registry = NeoComApplicationConfigurationContext.globalRegistry;
+		cacheDescriptors.put( ESI_TYPE_KEY_NAME, DataStoreDescriptor.builder()
+				.withKeyPrefix( ESI_TYPE_KEY_NAME )
+				.withTTL( ESI_TYPE_KEY_TTL )
+				.withUniqueKeyGenerator( ( Integer typeId ) -> ESI_TYPE_KEY_NAME + REDIS_SEPARATOR + typeId )
+				.withTotalCounter( Counter.builder( ESI_TYPE_KEY_NAME + "_cache_total" )
+						.tag( "version", "v1" )
+						.description( ESI_TYPE_KEY_NAME + "Cache Total uses Count" )
+						.register( this.registry ) )
+				.withHitsCounter( Counter.builder( ESI_TYPE_KEY_NAME + "_hits" )
+						.tag( "version", "v1" )
+						.description( ESI_TYPE_KEY_NAME + "Cache Hits Count" )
+						.register( this.registry ) )
+				.withMissCounter( Counter.builder( ESI_TYPE_KEY_NAME + "_misses" )
+						.tag( "version", "v1" )
+						.description( ESI_TYPE_KEY_NAME + "Cache Misses Count" )
+						.register( this.registry ) )
+				.build()
+		);
+		LogWrapper.info( LogMessageCatalog.CACHE_DESCRIPTOR_CONFIGURED.getResolvedMessage(
+				ESI_TYPE_KEY_NAME,
+				cacheDescriptors.get( ESI_TYPE_KEY_NAME ).toString() )
+		);
 		LogWrapper.exit();
 	}
 
+	@Deprecated
 	@Override
 	public Optional<EsiType> accessEsiType4Id( final int typeId ) {
 		final String key = this.generateDataStoreUniqueKeyEsiType( typeId );
@@ -70,16 +115,47 @@ public class RedisDataStoreImplementation implements DataStorePort {
 		return Optional.ofNullable( bucket.get() );
 	}
 
+	// - C A C H E D   A C C E S S O R S
+
+	/**
+	 * Search for the <code>EsiType</code> on the corresponding cache key. If not found use the provided generator call to get a new instance to be
+	 * cached. Set the expiration time to the configured property.
+	 *
+	 * @param typeId           the esi type id to ge located.
+	 * @param generatorEsiType the esi type generator in the case the item is not available at the cache.
+	 * @return an optional with the esi type. Empty if that tipe is not available at the ESI data services.
+	 */
 	@Override
-	public EsiType storeEsiType4Id( final EsiType target ) {
-		RBucket<EsiType> bucket = this.redisClient.getBucket( this.generateDataStoreUniqueKeyEsiType( target.getTypeId() ) );
-		bucket.set( target );
-		return target;
+	public Optional<EsiType> accessType4Id( final int typeId, final @NotNull Function<Integer, EsiType> generatorEsiType ) {
+		final DataStoreDescriptor descriptor = this.cacheDescriptors.get( ESI_TYPE_KEY_NAME );
+		final String key = descriptor.getUniqueKeyGenerator().apply( typeId );
+		final RBucket<EsiType> bucket = this.redisClient.getBucket( key );
+		if ( bucket.isExists() ) return Optional.of( descriptor.countHit( bucket.get() ) );
+		else return Optional.ofNullable(
+				descriptor.countMiss(
+						this.storeEsiType4Id( generatorEsiType.apply( typeId ) )
+				)
+		);
 	}
+
+	@Override
+	public Optional<SpaceLocation> accessLocation4Id( final Long locationId, final Credential credential ) {
+		return Optional.empty();
+	}
+	// -----------------------------------------------------------------------------
 
 	private String generateDataStoreUniqueKeyEsiType( final int typeId ) {
 		return ESI_TYPE_KEY_NAME + REDIS_SEPARATOR + typeId;
 	}
+
+	@Override
+	public EsiType storeEsiType4Id( final EsiType target ) {
+		RBucket<EsiType> bucket = this.redisClient.getBucket( this.generateDataStoreUniqueKeyEsiType( target.getTypeId() ) );
+		bucket.set( target );
+		bucket.expire( Duration.of( ESI_TYPE_KEY_TTL, ChronoUnit.HOURS ) );
+		return target;
+	}
+
 
 	@Override
 	@Nullable
@@ -189,7 +265,7 @@ public class RedisDataStoreImplementation implements DataStorePort {
 	}
 
 	@Override
-	public void updateLocation( final String locationCacheId, final SpaceLocation location ) {
+	public SpaceLocation updateLocation( final String locationCacheId, final SpaceLocation location ) {
 		LogWrapper.enter();
 		final RMapCache<String, SpaceLocation> BCIMap = this.redisClient.getMapCache( SPACE_LOCATIONS_KEY_NAME, codec );
 		try {
@@ -199,6 +275,7 @@ public class RedisDataStoreImplementation implements DataStorePort {
 		} finally {
 			LogWrapper.exit();
 		}
+		return location;
 	}
 
 	private String generateDataStoreUniqueKeyEsiUniverseType( final Integer typeId ) {

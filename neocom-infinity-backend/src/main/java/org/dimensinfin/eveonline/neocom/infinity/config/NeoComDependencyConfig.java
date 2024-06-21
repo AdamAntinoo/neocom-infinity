@@ -12,9 +12,7 @@ import org.dimensinfin.eveonline.neocom.database.repositories.AssetRepository;
 import org.dimensinfin.eveonline.neocom.database.repositories.CredentialRepository;
 import org.dimensinfin.eveonline.neocom.database.repositories.PilotPreferencesRepository;
 import org.dimensinfin.eveonline.neocom.database.repositories.SDERepository;
-import org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendDependenciesModule;
-import org.dimensinfin.eveonline.neocom.infinity.app.ports.DataStorePort;
-import org.dimensinfin.eveonline.neocom.infinity.service.RedisDataStoreImplementation;
+import org.dimensinfin.eveonline.neocom.infinity.infrastructure.adapters.outbound.datastore.RedisDataStoreImplementation;
 import org.dimensinfin.eveonline.neocom.infinity.service.SBConfigurationService;
 import org.dimensinfin.eveonline.neocom.infinity.service.SBFileSystemService;
 import org.dimensinfin.eveonline.neocom.infinity.service.SBNeoComDBService;
@@ -26,6 +24,7 @@ import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 import org.dimensinfin.eveonline.neocom.provider.IFileSystem;
 import org.dimensinfin.eveonline.neocom.service.DMServicesDependenciesModule;
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
+import org.dimensinfin.eveonline.neocom.service.IDataStore;
 import org.dimensinfin.eveonline.neocom.service.IStoreCache;
 import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;
 import org.dimensinfin.eveonline.neocom.service.LocationFactory;
@@ -44,8 +43,14 @@ public class NeoComDependencyConfig {
 	// Guice modules are initialized before the spring context completes
 	{
 		LogWrapper.info( "Creating Injector for Guice dependencies..." );
-		this.injector = Guice.createInjector( new DMServicesDependenciesModule(), new NeoComInfinityBackendDependenciesModule() );
-		this.injector.getInstance( ESIDataService.class );
+		//		final AnnotationConfigApplicationContext context =
+		//				new AnnotationConfigApplicationContext( NeoComApplicationConfigurationContext.class );
+		this.injector = Guice.createInjector(
+				//				new SpringModule( context ),
+				new DMServicesDependenciesModule(),
+				new NeoComInfinityBackendDependenciesModule()
+		);
+		//		this.injector.getInstance( ESIDataService.class );
 	}
 
 	@Bean
@@ -83,6 +88,7 @@ public class NeoComDependencyConfig {
 		LogWrapper.enter();
 		return this.injector.getInstance( LocationFactory.class );
 	}
+
 	@Bean
 	public LocationCatalogService dependency_12_LocationCatalogService() {
 		LogWrapper.enter();
@@ -120,7 +126,7 @@ public class NeoComDependencyConfig {
 	}
 
 	@Bean
-	public DataStorePort dependency_18_IDataStore() {
+	public IDataStore dependency_18_IDataStore() {
 		LogWrapper.enter();
 		return this.injector.getInstance( RedisDataStoreImplementation.class );
 	}

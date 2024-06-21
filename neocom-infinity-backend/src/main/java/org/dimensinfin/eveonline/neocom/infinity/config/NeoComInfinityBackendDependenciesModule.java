@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity;
+package org.dimensinfin.eveonline.neocom.infinity.config;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
@@ -10,7 +10,7 @@ import org.dimensinfin.eveonline.neocom.database.core.ISDEDatabaseService;
 import org.dimensinfin.eveonline.neocom.database.repositories.AssetRepository;
 import org.dimensinfin.eveonline.neocom.database.repositories.CredentialRepository;
 import org.dimensinfin.eveonline.neocom.database.repositories.PilotPreferencesRepository;
-import org.dimensinfin.eveonline.neocom.infinity.service.RedisDataStoreImplementation;
+import org.dimensinfin.eveonline.neocom.infinity.infrastructure.adapters.outbound.datastore.RedisDataStoreImplementation;
 import org.dimensinfin.eveonline.neocom.infinity.service.SBConfigurationService;
 import org.dimensinfin.eveonline.neocom.infinity.service.SBFileSystemService;
 import org.dimensinfin.eveonline.neocom.infinity.service.SBNeoComDBService;
@@ -28,7 +28,7 @@ public class NeoComInfinityBackendDependenciesModule extends AbstractModule {
 	private static final String ENV_APPLICATION_DIRECTORY = "APPLICATION_DIRECTORY";
 	private static final String ENV_SDE_DATABASE = "SDE_DATABASE_PATH";
 	private static final String ENV_NEOCOM_DATABASE_URL = "NEOCOM_DATABASE_URL";
-	private static final String ENV_REDIS_DATABASE_URL = "REDIS_URL";
+	public static final String ENV_REDIS_DATABASE_URL = "REDIS_URL";
 	private static final String DEFAULT_PROPERTIES_DIRECTORY = "/build/resources/main/properties";
 	private static final String DEFAULT_APPLICATION_DIRECTORY = "./NeoCom.Infinity";
 	private static final String DEFAULT_SDE_DATABASE = "/build/resources/main/sde.db";
