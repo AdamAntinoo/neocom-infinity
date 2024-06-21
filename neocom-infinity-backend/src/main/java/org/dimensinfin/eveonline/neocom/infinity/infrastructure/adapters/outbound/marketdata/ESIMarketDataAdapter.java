@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.infrastructure.adapters.outbound.MarketData;
+package org.dimensinfin.eveonline.neocom.infinity.infrastructure.adapters.outbound.marketdata;
 
 import java.util.List;
 import javax.validation.constraints.NotNull;
@@ -8,7 +8,7 @@ import org.dimensinfin.eveonline.neocom.infinity.app.ports.MarketDataPort;
 import org.dimensinfin.eveonline.neocom.infinity.infrastructure.domain.V2MarketDataDto;
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
 
-import static org.dimensinfin.eveonline.neocom.infinity.infrastructure.adapters.outbound.MarketData.MarketDataAdapter.DEFAULT_MARKETDATA_SYSTEM;
+import static org.dimensinfin.eveonline.neocom.infinity.infrastructure.adapters.outbound.marketdata.MarketDataAdapter.DEFAULT_MARKETDATA_SYSTEM;
 
 public class ESIMarketDataAdapter implements MarketDataPort {
 	private final ESIDataService esiDataService;

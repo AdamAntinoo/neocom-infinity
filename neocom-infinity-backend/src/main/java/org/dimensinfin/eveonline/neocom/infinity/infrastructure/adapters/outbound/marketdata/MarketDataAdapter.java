@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.infrastructure.adapters.outbound.MarketData;
+package org.dimensinfin.eveonline.neocom.infinity.infrastructure.adapters.outbound.marketdata;
 
 import java.util.HashMap;
 import java.util.Map;

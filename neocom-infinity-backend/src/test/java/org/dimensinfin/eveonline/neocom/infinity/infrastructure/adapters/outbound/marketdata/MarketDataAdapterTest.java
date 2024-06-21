@@ -1,4 +1,4 @@
-package org.dimensinfin.eveonline.neocom.infinity.infrastructure.adapters.outbound.MarketData;
+package org.dimensinfin.eveonline.neocom.infinity.infrastructure.adapters.outbound.marketdata;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
