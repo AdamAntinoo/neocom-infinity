@@ -12,19 +12,19 @@ import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthentic
 import org.dimensinfin.eveonline.neocom.infinity.core.ExceptionMessagesExternalisedType;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendExceptionObsolete;
 import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComAuthenticatedService;
-import org.dimensinfin.eveonline.neocom.service.IDataStore;
+import org.dimensinfin.eveonline.neocom.ports.IDataStorePort;
 import org.dimensinfin.eveonline.neocom.utility.NeoObjects;
 import org.dimensinfin.logging.LogWrapper;
 
 @Service
 public class IndustryManufactureServiceV1 extends NeoComAuthenticatedService {
-	private final IDataStore dataStoreService;
+	private final IDataStorePort dataStoreService;
 
 	// - C O N S T R U C T O R S
 	@Autowired
 	public IndustryManufactureServiceV1( @NotNull final NeoComAuthenticationProvider neoComAuthenticationProvider,
 	                                     @NotNull final CredentialDetailsService credentialDetailsService,
-	                                     @NotNull final IDataStore dataStoreService ) {
+	                                     @NotNull final IDataStorePort dataStoreService ) {
 		super( neoComAuthenticationProvider, credentialDetailsService );
 		this.dataStoreService = dataStoreService;
 	}

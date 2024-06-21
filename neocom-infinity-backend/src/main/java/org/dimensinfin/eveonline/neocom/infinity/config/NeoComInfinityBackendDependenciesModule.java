@@ -19,7 +19,7 @@ import org.dimensinfin.eveonline.neocom.loyalty.persistence.LoyaltyOffersReposit
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 import org.dimensinfin.eveonline.neocom.provider.IFileSystem;
 import org.dimensinfin.eveonline.neocom.service.DMServicesDependenciesModule;
-import org.dimensinfin.eveonline.neocom.service.IDataStore;
+import org.dimensinfin.eveonline.neocom.ports.IDataStorePort;
 import org.dimensinfin.eveonline.neocom.service.IStoreCache;
 import org.dimensinfin.eveonline.neocom.service.MemoryStoreCacheService;
 
@@ -104,7 +104,7 @@ public class NeoComInfinityBackendDependenciesModule extends AbstractModule {
 				.to( PilotPreferencesRepository.class )
 				.in( Singleton.class );
 
-		this.bind( IDataStore.class )
+		this.bind( IDataStorePort.class )
 				.annotatedWith( Names.named( DMServicesDependenciesModule.IDATA_STORE ) )
 				.to( RedisDataStoreImplementation.class )
 				.in( Singleton.class );

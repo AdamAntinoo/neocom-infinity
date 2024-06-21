@@ -8,20 +8,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import org.dimensinfin.eveonline.neocom.industry.domain.ProcessedBlueprint;
-import org.dimensinfin.eveonline.neocom.infinity.app.ports.DataStorePort;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetailsService;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
 import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComAuthenticatedService;
+import org.dimensinfin.eveonline.neocom.ports.IDataStorePort;
 
 @Service
 public class ProcessedBlueprintsUseCase extends NeoComAuthenticatedService {
-	private final DataStorePort dataStoreService;
+	private final IDataStorePort dataStoreService;
 
 	// - C O N S T R U C T O R S
 	@Autowired
 	public ProcessedBlueprintsUseCase( @NotNull final NeoComAuthenticationProvider neoComAuthenticationProvider,
 	                                   @NotNull final CredentialDetailsService credentialDetailsService,
-	                                   @NotNull final DataStorePort dataStoreService ) {
+	                                   @NotNull final IDataStorePort dataStoreService ) {
 		super( neoComAuthenticationProvider, credentialDetailsService );
 		this.dataStoreService = dataStoreService;
 	}

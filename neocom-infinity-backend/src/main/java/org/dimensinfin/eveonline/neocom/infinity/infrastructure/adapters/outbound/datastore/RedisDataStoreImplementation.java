@@ -30,11 +30,11 @@ import org.dimensinfin.eveonline.neocom.domain.space.SpaceLocation;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseTypesTypeIdOk;
 import org.dimensinfin.eveonline.neocom.exception.NeoComRuntimeException;
 import org.dimensinfin.eveonline.neocom.industry.domain.ProcessedBlueprint;
-import org.dimensinfin.eveonline.neocom.infinity.app.ports.DataStorePort;
-import org.dimensinfin.eveonline.neocom.infinity.config.NeoComApplicationConfigurationContext;
+import org.dimensinfin.eveonline.neocom.infinity.config.NeoComDependencyConfig;
 import org.dimensinfin.eveonline.neocom.infinity.infrastructure.config.LogMessageCatalog;
 import org.dimensinfin.eveonline.neocom.market.MarketOrder;
 import org.dimensinfin.eveonline.neocom.market.service.MarketService;
+import org.dimensinfin.eveonline.neocom.ports.IDataStorePort;
 import org.dimensinfin.eveonline.neocom.service.DMServicesDependenciesModule;
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
 import org.dimensinfin.eveonline.neocom.utility.NeoObjects;
@@ -56,8 +56,7 @@ import static org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants.REDIS
  * @author Adam Antinoo (adamantinoo.git@gmail.com)
  * @since 0.20.0
  */
-//@Service
-public class RedisDataStoreImplementation implements DataStorePort {
+public class RedisDataStoreImplementation implements IDataStorePort {
 	@Deprecated
 	private static final ObjectMapper neocomObjectMapper = new ObjectMapper();
 	@Deprecated
@@ -80,7 +79,7 @@ public class RedisDataStoreImplementation implements DataStorePort {
 		this.redisClient = Redisson.create( config );
 
 		// - Create cache descriptors
-		this.registry = NeoComApplicationConfigurationContext.globalRegistry;
+		this.registry = NeoComDependencyConfig.globalRegistry;
 		cacheDescriptors.put( ESI_TYPE_KEY_NAME, DataStoreDescriptor.builder()
 				.withKeyPrefix( ESI_TYPE_KEY_NAME )
 				.withTTL( ESI_TYPE_KEY_TTL )

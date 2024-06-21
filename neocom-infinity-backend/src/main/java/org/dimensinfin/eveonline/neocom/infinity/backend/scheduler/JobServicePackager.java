@@ -6,9 +6,9 @@ import org.springframework.stereotype.Component;
 
 import org.dimensinfin.eveonline.neocom.database.repositories.PilotPreferencesRepository;
 import org.dimensinfin.eveonline.neocom.database.repositories.SDERepository;
-import org.dimensinfin.eveonline.neocom.infinity.app.ports.DataStorePort;
 import org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.config.SchedulerConfiguration;
 import org.dimensinfin.eveonline.neocom.market.service.MarketService;
+import org.dimensinfin.eveonline.neocom.ports.IDataStorePort;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
 import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;
@@ -25,7 +25,7 @@ public class JobServicePackager {
 	private final ESIDataService esiDataService;
 	private final LocationCatalogService locationCatalogService;
 	private final SDERepository sdeRepository;
-	private final DataStorePort dataStoreService;
+	private final IDataStorePort dataStoreService;
 	private final ResourceFactory resourceFactory;
 	private final MarketService marketService;
 	private final PilotPreferencesRepository preferencesRepository;
@@ -36,7 +36,7 @@ public class JobServicePackager {
 	                            @NotNull final ESIDataService esiDataService,
 	                            @NotNull final LocationCatalogService locationCatalogService,
 	                            @NotNull final SDERepository sdeRepository,
-	                            @NotNull final DataStorePort dataStoreService,
+	                            @NotNull final IDataStorePort dataStoreService,
 	                            @NotNull final ResourceFactory resourceFactory,
 	                            @NotNull final MarketService marketService,
 	                            @NotNull final PilotPreferencesRepository preferencesRepository ) {
@@ -56,7 +56,7 @@ public class JobServicePackager {
 		return this.configurationService;
 	}
 
-	public DataStorePort getDataStoreService() {
+	public IDataStorePort getDataStoreService() {
 		return this.dataStoreService;
 	}
 

@@ -2,6 +2,7 @@ package org.dimensinfin.eveonline.neocom.infinity.config;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import org.springframework.boot.actuate.autoconfigure.metrics.MeterRegistryCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -20,11 +21,11 @@ import org.dimensinfin.eveonline.neocom.infinity.service.SBSDEDatabaseService;
 import org.dimensinfin.eveonline.neocom.loyalty.persistence.LoyaltyOffersRepository;
 import org.dimensinfin.eveonline.neocom.loyalty.service.LoyaltyService;
 import org.dimensinfin.eveonline.neocom.market.service.MarketService;
+import org.dimensinfin.eveonline.neocom.ports.IDataStorePort;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 import org.dimensinfin.eveonline.neocom.provider.IFileSystem;
 import org.dimensinfin.eveonline.neocom.service.DMServicesDependenciesModule;
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
-import org.dimensinfin.eveonline.neocom.service.IDataStore;
 import org.dimensinfin.eveonline.neocom.service.IStoreCache;
 import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;
 import org.dimensinfin.eveonline.neocom.service.LocationFactory;
@@ -33,11 +34,14 @@ import org.dimensinfin.eveonline.neocom.service.ResourceFactory;
 import org.dimensinfin.eveonline.neocom.service.RetrofitService;
 import org.dimensinfin.logging.LogWrapper;
 
+import io.micrometer.core.instrument.MeterRegistry;
+
 /**
  * Configure the Guide dependencies defined at the Data Management library.
  */
 @Configuration
 public class NeoComDependencyConfig {
+	public static MeterRegistry globalRegistry;
 	private final Injector injector; // The global Guice injector singleton
 
 	// Guice modules are initialized before the spring context completes
@@ -53,6 +57,13 @@ public class NeoComDependencyConfig {
 		//		this.injector.getInstance( ESIDataService.class );
 	}
 
+	@Bean
+	public MeterRegistryCustomizer<MeterRegistry> metricsCommonTags() {
+		return (registry) -> {
+			globalRegistry=registry;
+			registry.config().commonTags("region", "us-east-1");
+		};
+	}
 	@Bean
 	public IConfigurationService dependency_01_IConfigurationService() {
 		LogWrapper.enter();
@@ -126,7 +137,7 @@ public class NeoComDependencyConfig {
 	}
 
 	@Bean
-	public IDataStore dependency_18_IDataStore() {
+	public IDataStorePort dependency_18_IDataStore() {
 		LogWrapper.enter();
 		return this.injector.getInstance( RedisDataStoreImplementation.class );
 	}

@@ -199,7 +199,7 @@ When calculating the cost index for a blueprint we can find the case that the sa
 
 So blueprints are aggregated by region at a first instance.
 
-## 3. FrontEnd Link Resolution
+# 3. FrontEnd Link Resolution
 EsiType -> EsiMarkletData
 
 
@@ -259,3 +259,62 @@ end
 This diagrams show the data dependencies for the simplest and base Fitting Build configuration where all items, from the hull to all the modules are just bought at the cheapest region market hub.
 
 Version 0.20.0 will then cover this structure and try to render all Fitting data for this initial configuration.
+
+# 4. Redis Cache Management
+
+Data on the Redis persistence instance should be serialized and timed. So it will behave as a real
+cache and items stored on it will be expired. This functionality is provided by Redis out of
+the box so I only need to craate the proper configurations to setup the different caches.
+
+Inside the Redis repository there are some sets of Maps and other Bucket srtructures. Maps allow to contain inside a single key a set of data
+indexed by the map key. Then we have two keys. The Redis record key and the map key.
+
+Redis set of keys is defined as follows:
+
+* EBM - Enhanced Blueprint Map. This key has a second parameter that is the **pilot** identifier. There is a key for each pilot with all the EBs for that pilot.
+* LOC - The cache for all found and accessed locations.
+* TYP - The cache for all ESI item definitions. This should reduce access to ESI Data Source because this data is never changed.
+
+## 4.1 EBM
+
+The EMB structure will store Extended Blueprints. One Extended Bluprint will have additional
+data about the blueprint, the possible output of the blueprint manufacture job
+and default market data records to do a comparative index profit evaluation.
+
+Data on this Map is expired so frontend accesses will get a correct list of blueprints and old
+blueprints moved or used will no longer be available on this list. Expiration is done on EB instance
+and not on the whole set of blueprints.
+
+The *BlueprintProcessorJob* will feed data into this Map scanning all the pilot available
+blueprints and packing and adding the additional data already commented.
+
+One EBM instance will then have a blueprint instance but for a blueprint pack (the **typeId** of the
+blueprint) and a secondary key for the **region** where that blueprint is located. The region
+key is added because identical blueprints located on different regions will use different
+MarketData sources and then can have a different profit ratio.
+
+EBM MarketData is referenced to the corresponding Region Market Hub that is a predefined list of
+stations.
+
+***This diagram depics the way to compose the Map key.***
+```mermaid
+graph TB
+    subgraph "EBM Key Structure"
+    EBM --> separator1[:]
+    separator1 --> region["region"]
+    region --> separator2[:]
+    separator2 --> blueprint["blueprint type"]
+end
+```
+4.2 LOC
+Locations will not be on a Map. They weill be stored on a Bucket and each location will have its own 
+key identifier. There is one exception to this rule but is not being implemented now that is the identification for different user structures that will have to be checked if the information provided changes from pilot to pilot (probably not).
+
+The LOC key then has this simple structure.
+```mermaid
+graph TB
+    subgraph "LOC Key Structure"
+    LOC --> separator1[:]
+    separator1 --> location["location identifier"]
+end
+```

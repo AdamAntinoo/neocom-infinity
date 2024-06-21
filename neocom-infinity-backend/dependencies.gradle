@@ -2,7 +2,7 @@
 ext {
     loggerVersion = '1.7.26'
     retrofitVersion = '2.11.0'
-    micrometerVersion = '1.1.0'
+    micrometerVersion = '1.13.1'
     ormliteVersion = '6.1'
     resilience4jVersion = '0.17.0'
     springfox = '2.9.2'
@@ -59,7 +59,7 @@ dependencies {
     annotationProcessor "org.projectlombok:lombok:$lombokVersion"
     compileOnly "org.projectlombok:lombok:$lombokVersion"
     // M E T R I C S
-//    runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
+    runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
     // L O G G I N G
 //    implementation "com.github.piomin:logstash-logging-spring-boot-starter:1.2.2.RELEASE"
     // D A T A B A S E
