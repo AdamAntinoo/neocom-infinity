@@ -1,10 +1,18 @@
 package org.dimensinfin.eveonline.neocom.infinity.backend.support;
 
+import java.util.Random;
+
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.domain.EsiType;
 import org.dimensinfin.eveonline.neocom.domain.IndustryGroup;
+import org.dimensinfin.eveonline.neocom.domain.space.SpaceLocation;
+import org.dimensinfin.eveonline.neocom.domain.space.SpaceSystemImplementation;
+import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdBlueprints200Ok;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseCategoriesCategoryIdOk;
+import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseConstellationsConstellationIdOk;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseGroupsGroupIdOk;
+import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseRegionsRegionIdOk;
+import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseSystemsSystemIdOk;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetUniverseTypesTypeIdOk;
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenResponse;
 
@@ -20,6 +28,16 @@ public class InstanceGenerator {
 	public static final Float TEST_ESITYPE_VOLUME = 0.1F;
 	public static final Integer TEST_GROUP_ID = 54;
 	public static final Integer TEST_CATEGORY_ID = 12;
+	public static final Long TEST_STATION_LOCATION_ID = 60006907L;
+
+	public SpaceLocation getSpaceLocation() {
+		return new SpaceSystemImplementation.Builder()
+				.withRegion( new GetUniverseRegionsRegionIdOk().regionId( 10000006 ).name( "REGION" ) )
+				.withConstellation(
+						new GetUniverseConstellationsConstellationIdOk().regionId( 10000006 ).constellationId( 20000006 ).name( "CONSTELLATION" ) )
+				.withSolarSystem( new GetUniverseSystemsSystemIdOk().constellationId( 20000006 ).systemId( 2000004 ).name( "SYSTEM" ) )
+				.build();
+	}
 
 	public AuthorizationTokenResponse generateAuthorizationTokenResponse() {
 		return new AuthorizationTokenResponse.Builder()
@@ -58,6 +76,15 @@ public class InstanceGenerator {
 				.withCategory( this.getGetUniverseCategoriesCategoryIdOk() )
 				.withGroup( this.getGetUniverseGroupsGroupIdOk() )
 				.build();
+	}
+	public GetCharactersCharacterIdBlueprints200Ok getGetCharactersCharacterIdBlueprints200Ok(){
+		return new GetCharactersCharacterIdBlueprints200Ok()
+				.itemId(new Random().nextLong()  )
+				.typeId( TEST_ESITYPE_ID )
+				.locationId( TEST_STATION_LOCATION_ID )
+				.materialEfficiency( 10 )
+				.timeEfficiency( 10 )
+				.runs( 20 );
 	}
 
 }

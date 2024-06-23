@@ -11,8 +11,10 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.domain.EsiType;
 import org.dimensinfin.eveonline.neocom.domain.space.SpaceLocation;
+import org.dimensinfin.eveonline.neocom.domain.space.SpaceRegion;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdBlueprints200Ok;
-import org.dimensinfin.eveonline.neocom.esiswagger.model.GetMarketsRegionIdOrders200Ok;
+import org.dimensinfin.eveonline.neocom.exception.ErrorInfoCatalog;
+import org.dimensinfin.eveonline.neocom.exception.NeoComRuntimeException;
 import org.dimensinfin.eveonline.neocom.industry.domain.ProcessedBlueprint;
 import org.dimensinfin.eveonline.neocom.industry.domain.Resource;
 import org.dimensinfin.eveonline.neocom.infinity.app.functional.BlueprintPacker;
@@ -25,6 +27,7 @@ import static org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants.REDIS
 
 public class BlueprintProcessorJob extends NeoComBackendJob {
 	private Credential credential;
+	private Integer uniqueIdentifier;
 
 	// - C O N S T R U C T O R S
 	private BlueprintProcessorJob() {}
@@ -32,10 +35,7 @@ public class BlueprintProcessorJob extends NeoComBackendJob {
 	// - G E T T E R S   &   S E T T E R S
 	@Override
 	public int getUniqueIdentifier() {
-		return new HashCodeBuilder( 19, 137 )
-				.appendSuper( super.hashCode() )
-				.append( this.getClass().getSimpleName() )
-				.toHashCode();
+		return this.uniqueIdentifier;
 	}
 
 	// - J O B
@@ -57,15 +57,23 @@ public class BlueprintProcessorJob extends NeoComBackendJob {
 			final Set<String> addedBlueprintLocators = new HashSet<>();
 			packedBlueprints.stream()
 					.map( ( GetCharactersCharacterIdBlueprints200Ok bp ) -> {
-						final Optional<SpaceLocation> location = this.jobServicePackager
-								.getLocationCatalogService()
-								.lookupLocation4Id( bp.getLocationId(), credential ); // Get the location to extract the Region
+						final Optional<SpaceLocation> location = this.jobServicePackager.getDataStoreService()
+								.accessLocation4Id(
+										bp.getLocationId(),
+										credential,
+										( Long locationId ) -> this.jobServicePackager.getLocationCatalogService()
+												.lookupLocation4Id( locationId, credential ).orElseThrow( () ->
+														new NeoComRuntimeException(
+																ErrorInfoCatalog.LOCATION_NOT_PRESENT.getErrorMessage( locationId )
+														)
+												)
+								); // Get the location to extract the Region
 						return BlueprintAndLocation.builder()
 								.blueprint( bp )
 								.location( location )
 								.build();
 					} )
-					.filter( bpLoc -> {
+					.filter( bpLoc -> { // Remove any blueprint that cannot be reached because the location is not present. This should be notified.
 						if ( bpLoc.getLocation().isPresent() ) return true;
 						else {
 							LogWrapper.info( LogMessageCatalog.BLUEPRINT_LOCATION_NOT_PRESENT.getResolvedMessage(
@@ -74,46 +82,45 @@ public class BlueprintProcessorJob extends NeoComBackendJob {
 							) );
 							return false;
 						}
-					} ) // Remove any blueprint that cannot be reached because the location is not present. This should be notified.
-					.filter( ( BlueprintAndLocation bpLoc ) -> addedBlueprintLocators.add(
-							bpLoc.getBlueprint().getItemId() +
-									REDIS_SEPARATOR +
-									bpLoc.getLocation().get().getLocationId() )
-					)
+					} )
+					// Remove any duplication when the same blueprint stack is on different locations of the same System location.
+					.filter( ( BlueprintAndLocation bpLoc ) -> this.filterEquivalentExtendedBlueprint( bpLoc, addedBlueprintLocators ) )
 					.map( ( BlueprintAndLocation bpLoc ) -> {
 						// Start to build the V2ExtendedBlueprint
 						final int blueprintTypeId = bpLoc.getBlueprint().getTypeId();
 						// Use new cache systems with decoupled generators from data service caches.
-//						final Function<Integer, EsiType> generatorEsiType = ( Integer typeId ) -> this.jobServicePackager.getResourceFactory()
-//								.generateType4Id( typeId );
-//
-//
-//						final Optional<EsiType> blueprintEsiType = this.jobServicePackager.getDataStoreService()
-//								.accessType4Id( blueprintTypeId, generatorEsiType );
-
 						final Optional<EsiType> blueprint = this.jobServicePackager.getDataStoreService().accessType4Id(
 								blueprintTypeId,
 								( Integer typeId ) -> this.jobServicePackager.getResourceFactory()
 										.generateType4Id( typeId )
 						);
+						if ( blueprint.isEmpty() )
+							throw new NeoComRuntimeException( ErrorInfoCatalog.ESITYPE_NOT_FOUND.getErrorMessage( blueprintTypeId ) );
 						final int outputModuleId = this.jobServicePackager.getSDERepository().accessModule4Blueprint( blueprintTypeId );
-						final EsiType outputModule = this.jobServicePackager.getResourceFactory().generateType4Id( outputModuleId );
+						final Optional<EsiType> outputModule = this.jobServicePackager.getDataStoreService().accessType4Id(
+								outputModuleId,
+								( Integer typeId ) -> this.jobServicePackager.getResourceFactory()
+										.generateType4Id( typeId )
+						);
+						if ( outputModule.isEmpty() )
+							throw new NeoComRuntimeException( ErrorInfoCatalog.ESITYPE_NOT_FOUND.getErrorMessage( outputModuleId ) );
 						final List<Resource> bom = this.jobServicePackager.getSDERepository().accessBillOfMaterials( blueprintTypeId );
-						final Double bomAtRegionCost = this.bomBuyCostAtRegionHub( bom, 10000002 );
+						final Integer locationRegionId = ((SpaceRegion) bpLoc.getLocation().get()).getRegionId();
+						final Double bomAtRegionCost = this.bomBuyCostAtRegionHub( bom, locationRegionId );
 						final Double outputModuleAtRegionCost = this.jobServicePackager.getMarketService()
-								.getMarketConsolidatedByRegion4ItemId( 10000002, outputModuleId )
+								.getMarketConsolidatedByRegion4ItemId( locationRegionId, outputModuleId )
 								.getBestSellPrice();
-						Double index = 0.0;
+						double index = 0.0;
 						if ( bomAtRegionCost > 0.0 )
 							index = outputModuleAtRegionCost / bomAtRegionCost;
 						return ProcessedBlueprint.builder()
 								.withTypeId( blueprintTypeId )
-								.withBlueprintItem( blueprint.get())
+								.withBlueprintItem( blueprint.get() )
 								.withLocation( bpLoc.getLocation().get() )
 								.withMaterialEfficiency( bpLoc.getBlueprint().getMaterialEfficiency() )
 								.withTimeEfficiency( bpLoc.getBlueprint().getTimeEfficiency() )
 								.withOutputTypeId( outputModuleId )
-								.withOutputItem( outputModule )
+								.withOutputItem( outputModule.get() )
 								.withManufactureCost( bomAtRegionCost )
 								.withOutputCost( outputModuleAtRegionCost )
 								.withBom( bom )
@@ -125,13 +132,32 @@ public class BlueprintProcessorJob extends NeoComBackendJob {
 						this.jobServicePackager.getDataStoreService()
 								.updateProcessedBlueprint( this.credential.getAccountId(), blueprint );
 					} );
-		} catch (
-				final Exception rte) {
+		} catch (final Exception rte) {
 			LogWrapper.error( rte );
 		} finally {
 			LogWrapper.exit();
 		}
 		return true;
+	}
+
+	/**
+	 * Filters blueprints packs that being on the same location and independent on the efficiency will generate equivalent
+	 * <code>ExtendedBlueprinnt</code> values.
+	 *
+	 * @param bpLoc                  the blueprint and location pair
+	 * @param addedBlueprintLocators the list of unique blueprint type and region location identifiers.
+	 * @return true if the expected generated ExtendedBlueprint is not equal to any already generated instance.
+	 */
+	private boolean filterEquivalentExtendedBlueprint( final BlueprintAndLocation bpLoc, final Set<String> addedBlueprintLocators ) {
+		return addedBlueprintLocators.add(
+				bpLoc.getBlueprint().getTypeId() +
+						REDIS_SEPARATOR +
+						((SpaceRegion) bpLoc.getLocation().get()).getRegionId() +
+						REDIS_SEPARATOR +
+						bpLoc.getBlueprint().getMaterialEfficiency() +
+						REDIS_SEPARATOR +
+						bpLoc.getBlueprint().getTimeEfficiency()
+		);
 	}
 
 	private Double bomBuyCostAtRegionHub( final List<Resource> bom, final int regionHubId ) {
@@ -142,15 +168,6 @@ public class BlueprintProcessorJob extends NeoComBackendJob {
 					return marketData.getBestSellPrice();
 				} )
 				.sum();
-	}
-
-	private Double getBestSellPriceFromMarketData( final MarketData data ) {
-		final List<GetMarketsRegionIdOrders200Ok> orders = data.getSellOrders();
-		if ( orders.isEmpty() ) return 0.0;
-		else
-			return orders.stream()
-					.mapToDouble( order -> order.getPrice() )
-					.max().orElse( 0 );
 	}
 
 	// - B U I L D E R
@@ -164,11 +181,17 @@ public class BlueprintProcessorJob extends NeoComBackendJob {
 
 		@Override
 		public BlueprintProcessorJob build() {
+			if ( Objects.isNull( this.onConstruction.jobServicePackager ))throw new NeoComRuntimeException( "Service Packager is mandatory but this time is null." );
+			if ( Objects.isNull( this.onConstruction.credential ))throw new NeoComRuntimeException( "Credential is mandatory but this time is null." );
 			return this.onConstruction;
 		}
 
 		public BlueprintProcessorJob.Builder withCredential( final Credential credential ) {
 			this.getActual().credential = Objects.requireNonNull( credential );
+			this.getActual().uniqueIdentifier = new HashCodeBuilder( 19, 137 )
+					.appendSuper( super.hashCode() )
+					.append( this.getClass().getSimpleName() )
+					.toHashCode();
 			return this;
 		}
 
