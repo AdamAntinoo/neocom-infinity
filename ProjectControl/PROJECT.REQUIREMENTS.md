@@ -20,6 +20,18 @@
 * [STORY-NIB] Refactor data store code.
 * [STORY-NIF] Upgrade the current bluepint page to get the new Extended Blueprint data.
 
+[STORY-PROJECT] Ready state should only be raised when the connectivity probes do not fail.
+TeamCity should confirm a pod is on Ready state after some time after deployment.
+There should be a image generation and deployment after each push to the repository.
+There are only two environments on Kubernetes, the Deploy and the Production.
+Selection of the deployment namespace only is decided by the repository commit.
+Production deployments should be tagged and then deployed once all testing is completed.
+Create a new development loop procedure that should guarantee the stability of the Production deployment.
+
+Deploy TeamCity as a Kubernetes service.
+Pair the TeamCity database with the TeamCity service on Kubernetes and remoce it form docker compose.
+Export the teamcity projects to the code repository.
+
 
 
 * [STORY-NIB] Stabilize development and increase code coverage and hexagonal compliance.

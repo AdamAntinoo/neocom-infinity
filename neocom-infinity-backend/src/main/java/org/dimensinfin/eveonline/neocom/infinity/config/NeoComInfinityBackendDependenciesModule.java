@@ -10,6 +10,7 @@ import org.dimensinfin.eveonline.neocom.database.core.ISDEDatabaseService;
 import org.dimensinfin.eveonline.neocom.database.repositories.AssetRepository;
 import org.dimensinfin.eveonline.neocom.database.repositories.CredentialRepository;
 import org.dimensinfin.eveonline.neocom.database.repositories.PilotPreferencesRepository;
+import org.dimensinfin.eveonline.neocom.exception.NeoComRuntimeException;
 import org.dimensinfin.eveonline.neocom.infinity.infrastructure.adapters.outbound.datastore.RedisDataStoreImplementation;
 import org.dimensinfin.eveonline.neocom.infinity.service.SBConfigurationService;
 import org.dimensinfin.eveonline.neocom.infinity.service.SBFileSystemService;
@@ -32,7 +33,6 @@ public class NeoComInfinityBackendDependenciesModule extends AbstractModule {
 	private static final String DEFAULT_PROPERTIES_DIRECTORY = "/build/resources/main/properties";
 	private static final String DEFAULT_APPLICATION_DIRECTORY = "./NeoCom.Infinity";
 	private static final String DEFAULT_SDE_DATABASE = "/build/resources/main/sde.db";
-	private static final String DEFAULT_NEOCOM_DATABASE_URL = "jdbc:postgresql://localhost:5432/postgres?user=adamantinoo&password=z.iliada.2020";
 	private static final String DEFAULT_REDIS_DATABASE_URL = "redis://localhost:6379";
 
 	@Override
@@ -46,7 +46,7 @@ public class NeoComInfinityBackendDependenciesModule extends AbstractModule {
 		if (null == propDirectory) propDirectory = DEFAULT_PROPERTIES_DIRECTORY;
 		if (null == appDirectory) appDirectory = DEFAULT_APPLICATION_DIRECTORY;
 		if (null == sdeDatabasePath) sdeDatabasePath = DEFAULT_SDE_DATABASE;
-		if (null == neoComDatabaseUrl) neoComDatabaseUrl = DEFAULT_NEOCOM_DATABASE_URL;
+		if (null == neoComDatabaseUrl) throw new NeoComRuntimeException( "NeoCom database URL is not defined in configuration." );
 		if (null == redisDatabaseUrl) redisDatabaseUrl = DEFAULT_REDIS_DATABASE_URL;
 		this.bind( String.class )
 				.annotatedWith( Names.named( "PropertiesDirectory" ) )

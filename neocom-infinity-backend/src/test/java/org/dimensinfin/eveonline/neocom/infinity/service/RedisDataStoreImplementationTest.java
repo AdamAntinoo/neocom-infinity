@@ -1,8 +1,8 @@
 package org.dimensinfin.eveonline.neocom.infinity.service;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.mockito.Mockito;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.redisson.Redisson;
 import org.redisson.api.RBucket;
 import org.redisson.api.RMapCache;
@@ -38,20 +38,26 @@ public class RedisDataStoreImplementationTest {
 	private GetMarketsRegionIdOrders200Ok orderData;
 	private MeterRegistry registry;
 
-	@BeforeEach
-	void setUp() {
-		this.registry = Mockito.mock(MeterRegistry.class);
-	}
+	//	@BeforeEach
+	//	void setUp() {
+	//		this.registry = Mockito.mock(MeterRegistry.class);
+	//	}
 	//	@Test
-//	void when_a_new_esitype_then_store_serialized_jackson() {
-//		// Given
-//		final EsiType target = new InstanceGenerator().getEsiType();
-//		final RedisDataStoreImplementation redisDataStore = new RedisDataStoreImplementation( REDIS_LOCAL_DEFAULT_ADDRESS );
-//		// When
-//		final EsiType sut = redisDataStore.storeEsiType4Id( target );
-//		// Then
-//		Assertions.assertNotNull( sut );
-//	}
+	//	void when_a_new_esitype_then_store_serialized_jackson() {
+	//		// Given
+	//		final EsiType target = new InstanceGenerator().getEsiType();
+	//		final RedisDataStoreImplementation redisDataStore = new RedisDataStoreImplementation( REDIS_LOCAL_DEFAULT_ADDRESS );
+	//		// When
+	//		final EsiType sut = redisDataStore.storeEsiType4Id( target );
+	//		// Then
+	//		Assertions.assertNotNull( sut );
+	//	}
+	@Disabled
+	@Test
+	public void constructorContract() {
+		final RedisDataStoreImplementation redisDataStore = this.getRedisDataStoreImplementation();
+		Assertions.assertNotNull( redisDataStore );
+	}
 
 	//	@Test
 	public void accessEsiUniverseItem4IdNotFound() {
@@ -120,11 +126,6 @@ public class RedisDataStoreImplementationTest {
 		this.orderData.setVolumeTotal( TEST_MARKET_ORDER_VOLUME_TOTAL );
 	}
 
-	//	@Test
-	public void constructorContract() {
-		final RedisDataStoreImplementation redisDataStore = this.getRedisDataStoreImplementation();
-		Assertions.assertNotNull( redisDataStore );
-	}
 
 	//	@AfterEach
 	//	public void tearDown() {
@@ -150,7 +151,8 @@ public class RedisDataStoreImplementationTest {
 		final RMapCache<String, MarketOrder> cache = redisClient.getMapCache( LOWEST_SELL_ORDER_MAP );
 		cache.clear();
 	}
-	private RedisDataStoreImplementation getRedisDataStoreImplementation(){
+
+	private RedisDataStoreImplementation getRedisDataStoreImplementation() {
 		return new RedisDataStoreImplementation( REDIS_LOCAL_DEFAULT_ADDRESS );
 	}
 }
