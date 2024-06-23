@@ -6,6 +6,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import org.dimensinfin.eveonline.neocom.domain.EsiType;
+import org.dimensinfin.eveonline.neocom.domain.space.SpaceLocation;
 
 import io.micrometer.core.instrument.Counter;
 import lombok.Builder;
@@ -16,7 +17,7 @@ import lombok.Getter;
 public class DataStoreDescriptor implements IDescriptor {
 	private String keyPrefix;
 	private Integer TTL;
-	private Function<Integer, String> uniqueKeyGenerator;
+	private Function<Long, String> uniqueKeyGenerator;
 	private Counter totalCounter;
 	private Counter hitsCounter;
 	private Counter missCounter;
@@ -31,6 +32,18 @@ public class DataStoreDescriptor implements IDescriptor {
 		this.totalCounter.increment();
 		this.missCounter.increment();
 		return type;
+	}
+
+	public SpaceLocation countHit( final SpaceLocation spaceLocation ) {
+		this.totalCounter.increment();
+		this.hitsCounter.increment();
+		return spaceLocation;
+	}
+
+	public SpaceLocation countMiss( final SpaceLocation spaceLocation ) {
+		this.totalCounter.increment();
+		this.missCounter.increment();
+		return spaceLocation;
 	}
 
 	@Override

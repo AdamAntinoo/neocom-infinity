@@ -47,21 +47,17 @@ public class NeoComDependencyConfig {
 	// Guice modules are initialized before the spring context completes
 	{
 		LogWrapper.info( "Creating Injector for Guice dependencies..." );
-		//		final AnnotationConfigApplicationContext context =
-		//				new AnnotationConfigApplicationContext( NeoComApplicationConfigurationContext.class );
 		this.injector = Guice.createInjector(
-				//				new SpringModule( context ),
 				new DMServicesDependenciesModule(),
 				new NeoComInfinityBackendDependenciesModule()
 		);
-		//		this.injector.getInstance( ESIDataService.class );
 	}
 
 	@Bean
 	public MeterRegistryCustomizer<MeterRegistry> metricsCommonTags() {
 		return (registry) -> {
 			globalRegistry=registry;
-			registry.config().commonTags("region", "us-east-1");
+			registry.config().commonTags("application", "neocom-infinity-backend", "appcode", "NIB");
 		};
 	}
 	@Bean

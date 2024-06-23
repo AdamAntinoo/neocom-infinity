@@ -41,12 +41,12 @@ import org.dimensinfin.eveonline.neocom.utility.NeoObjects;
 import org.dimensinfin.logging.LogWrapper;
 
 import io.micrometer.core.instrument.Counter;
-import io.micrometer.core.instrument.MeterRegistry;
 import static org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants.DataStoreKeys.ESI_TYPE_KEY_NAME;
 import static org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants.DataStoreKeys.ESI_TYPE_KEY_TTL;
 import static org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants.DataStoreKeys.ESI_UNIVERSE_TYPE_KEY_NAME;
 import static org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants.DataStoreKeys.EXTENDED_BLUEPRINTS_KEY_NAME;
 import static org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants.DataStoreKeys.LOWEST_SELL_ORDER_TTL;
+import static org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants.DataStoreKeys.SPACE_LOCATIONS_CACHE_TTL;
 import static org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants.DataStoreKeys.SPACE_LOCATIONS_KEY_NAME;
 import static org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants.REDIS_SEPARATOR;
 
@@ -63,7 +63,6 @@ public class RedisDataStoreImplementation implements IDataStorePort {
 	private static final JsonJacksonCodec codec = new JsonJacksonCodec( neocomObjectMapper );
 
 	protected final RedissonClient redisClient;
-	private final MeterRegistry registry;
 	protected final Map<String, DataStoreDescriptor> cacheDescriptors = new HashMap<>();
 
 
@@ -79,23 +78,40 @@ public class RedisDataStoreImplementation implements IDataStorePort {
 		this.redisClient = Redisson.create( config );
 
 		// - Create cache descriptors
-		this.registry = NeoComDependencyConfig.globalRegistry;
 		cacheDescriptors.put( ESI_TYPE_KEY_NAME, DataStoreDescriptor.builder()
 				.withKeyPrefix( ESI_TYPE_KEY_NAME )
 				.withTTL( ESI_TYPE_KEY_TTL )
-				.withUniqueKeyGenerator( ( Integer typeId ) -> ESI_TYPE_KEY_NAME + REDIS_SEPARATOR + typeId )
+				.withUniqueKeyGenerator( ( Long typeId ) -> ESI_TYPE_KEY_NAME + REDIS_SEPARATOR + typeId )
 				.withTotalCounter( Counter.builder( ESI_TYPE_KEY_NAME + "_cache_total" )
 						.tag( "version", "v1" )
-						.description( ESI_TYPE_KEY_NAME + "Cache Total uses Count" )
-						.register( this.registry ) )
+						.description( ESI_TYPE_KEY_NAME + "-Cache Total uses Count" )
+						.register( NeoComDependencyConfig.globalRegistry ) )
 				.withHitsCounter( Counter.builder( ESI_TYPE_KEY_NAME + "_hits" )
 						.tag( "version", "v1" )
-						.description( ESI_TYPE_KEY_NAME + "Cache Hits Count" )
-						.register( this.registry ) )
+						.description( ESI_TYPE_KEY_NAME + "-Cache Hits Count" )
+						.register( NeoComDependencyConfig.globalRegistry ) )
 				.withMissCounter( Counter.builder( ESI_TYPE_KEY_NAME + "_misses" )
 						.tag( "version", "v1" )
-						.description( ESI_TYPE_KEY_NAME + "Cache Misses Count" )
-						.register( this.registry ) )
+						.description( ESI_TYPE_KEY_NAME + "-Cache Misses Count" )
+						.register( NeoComDependencyConfig.globalRegistry ) )
+				.build()
+		);
+		cacheDescriptors.put( SPACE_LOCATIONS_KEY_NAME, DataStoreDescriptor.builder()
+				.withKeyPrefix( SPACE_LOCATIONS_KEY_NAME )
+				.withTTL( SPACE_LOCATIONS_CACHE_TTL )
+				.withUniqueKeyGenerator( ( Long locationId ) -> SPACE_LOCATIONS_KEY_NAME + REDIS_SEPARATOR + locationId )
+				.withTotalCounter( Counter.builder( SPACE_LOCATIONS_KEY_NAME + "_cache_total" )
+						.tag( "version", "v1" )
+						.description( SPACE_LOCATIONS_KEY_NAME + "-Cache Total uses Count" )
+						.register( NeoComDependencyConfig.globalRegistry ) )
+				.withHitsCounter( Counter.builder( SPACE_LOCATIONS_KEY_NAME + "_hits" )
+						.tag( "version", "v1" )
+						.description( SPACE_LOCATIONS_KEY_NAME + "-Cache Hits Count" )
+						.register( NeoComDependencyConfig.globalRegistry ) )
+				.withMissCounter( Counter.builder( SPACE_LOCATIONS_KEY_NAME + "_misses" )
+						.tag( "version", "v1" )
+						.description( SPACE_LOCATIONS_KEY_NAME + "-Cache Misses Count" )
+						.register( NeoComDependencyConfig.globalRegistry ) )
 				.build()
 		);
 		LogWrapper.info( LogMessageCatalog.CACHE_DESCRIPTOR_CONFIGURED.getResolvedMessage(
@@ -127,34 +143,46 @@ public class RedisDataStoreImplementation implements IDataStorePort {
 	@Override
 	public Optional<EsiType> accessType4Id( final int typeId, final @NotNull Function<Integer, EsiType> generatorEsiType ) {
 		final DataStoreDescriptor descriptor = this.cacheDescriptors.get( ESI_TYPE_KEY_NAME );
-		final String key = descriptor.getUniqueKeyGenerator().apply( typeId );
+		final String key = descriptor.getUniqueKeyGenerator().apply( Long.valueOf( typeId ) );
 		final RBucket<EsiType> bucket = this.redisClient.getBucket( key );
 		if ( bucket.isExists() ) return Optional.of( descriptor.countHit( bucket.get() ) );
 		else return Optional.ofNullable(
 				descriptor.countMiss(
-						this.storeEsiType4Id( generatorEsiType.apply( typeId ) )
+						this.storeEsiType4Id( bucket, generatorEsiType.apply( typeId ) )
 				)
 		);
 	}
 
 	@Override
-	public Optional<SpaceLocation> accessLocation4Id( final Long locationId, final Credential credential ) {
-		return Optional.empty();
+	public Optional<SpaceLocation> accessLocation4Id( final Long locationId, final Credential credential, final Function<Long, SpaceLocation> generatorLocation ) {
+		final DataStoreDescriptor descriptor = this.cacheDescriptors.get( SPACE_LOCATIONS_KEY_NAME );
+		final String key = descriptor.getUniqueKeyGenerator().apply( locationId );
+		final RBucket<SpaceLocation> bucket = this.redisClient.getBucket( key );
+		if ( bucket.isExists() ) return Optional.of( descriptor.countHit( bucket.get() ) );
+		else return Optional.ofNullable(
+				descriptor.countMiss(
+						this.storeSpaceLocation4Id( bucket, generatorLocation.apply( locationId ) )
+				)
+		);
 	}
-	// -----------------------------------------------------------------------------
 
+	// -----------------------------------------------------------------------------
+	@Deprecated
 	private String generateDataStoreUniqueKeyEsiType( final int typeId ) {
 		return ESI_TYPE_KEY_NAME + REDIS_SEPARATOR + typeId;
 	}
 
-	@Override
-	public EsiType storeEsiType4Id( final EsiType target ) {
-		RBucket<EsiType> bucket = this.redisClient.getBucket( this.generateDataStoreUniqueKeyEsiType( target.getTypeId() ) );
+	private EsiType storeEsiType4Id( final RBucket<EsiType> bucket, final EsiType target ) {
 		bucket.set( target );
 		bucket.expire( Duration.of( ESI_TYPE_KEY_TTL, ChronoUnit.HOURS ) );
 		return target;
 	}
 
+	private SpaceLocation storeSpaceLocation4Id( final RBucket<SpaceLocation> bucket, final SpaceLocation target ) {
+		bucket.set( target );
+		bucket.expire( Duration.of( ESI_TYPE_KEY_TTL, ChronoUnit.HOURS ) );
+		return target;
+	}
 
 	@Override
 	@Nullable
@@ -255,6 +283,7 @@ public class RedisDataStoreImplementation implements IDataStorePort {
 		}
 	}
 
+	@Deprecated
 	@Override
 	public Optional<SpaceLocation> accessLocation( final String locationCacheId ) {
 		final RMapCache<String, SpaceLocation> BCIMap = this.redisClient.getMapCache( SPACE_LOCATIONS_KEY_NAME, codec );
