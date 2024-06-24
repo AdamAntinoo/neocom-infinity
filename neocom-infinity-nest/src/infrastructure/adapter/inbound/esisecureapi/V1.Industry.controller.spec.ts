@@ -50,8 +50,8 @@ describe('CONTROLLER V1MiningOperationsController [Module: Infrastructure.Adapte
 			jest.spyOn(useCase, 'getMiningOperations').mockImplementation(() => operations)
 			const token: string =
 				'eyJhbGciOiJSUzI1NiIsImtpZCI6IkpXVC1TaWduYXR1cmUtS2V5IiwidHlwIjoiSldUIn0.eyJzY3AiOlsiZXNpLWFzc2V0cy5yZWFkX2Fzc2V0cy52MSIsImVzaS1pbmR1c3RyeS5yZWFkX2NoYXJhY3Rlcl9taW5pbmcudjEiXSwianRpIjoiY2NhZWFmNjctNjM2ZS00ZDhhLThiNDQtZThlNzViM2ExMjE2Iiwia2lkIjoiSldULVNpZ25hdHVyZS1LZXkiLCJzdWIiOiJDSEFSQUNURVI6RVZFOjkzODEzMzEwIiwiYXpwIjoiNjgzMDg0YWI1Zjg4NDhkNGIxODc0NjJhYzNiOTc2NzciLCJ0ZW5hbnQiOiJ0cmFucXVpbGl0eSIsInRpZXIiOiJsaXZlIiwicmVnaW9uIjoid29ybGQiLCJhdWQiOlsiNjgzMDg0YWI1Zjg4NDhkNGIxODc0NjJhYzNiOTc2NzciLCJFVkUgT25saW5lIl0sIm5hbWUiOiJQZXJpY28gVHVlcnRvIiwib3duZXIiOiJRc2lrT2pXUFFERnAzM1hucEl1VzhnM0Z5eFE9IiwiZXhwIjoxNzExNTMwMjExLCJpYXQiOjE3MTE1MjkwMTEsImlzcyI6Imh0dHBzOi8vbG9naW4uZXZlb25saW5lLmNvbSJ9.cVkBkCgLir-kzahfqxjhjNMmQoks1xbt0zthSvWt0Ynuv-rJhI25m4SGReMJSvnjyseh9bmyblJbXOYEJeF_zdbuyP-KRwshWj4hre-VZ4jJPf4Rl-QcdRxPJ-2hPk-w06ltuDCwWUmaCedQauXg9tHKnM8KGapZ64OENaEKbY4A4ilAS0Iukaz9HqqXEuW7rcGAKXvN27yguF2U_hoN3QzCzGcOB0sLyiW1lpjpOC-vO-1X9nc-RUJGK4bYxoVMtxUL1bBrbBmpp2Rb1A43bpsgNGWQQc-PSzasWw2sNX90oYFHKCGQ7_dRCsk2cT7xgcdaAGjVZe9yaIHTg4Ogzg'
-
-			expect(await controller.getMiningOperations(token)).toBe(mockOperationsList)
+			const sessionId = '-test-session-id-'
+			expect(await controller.getMiningOperations4Pilot(token, sessionId)).toBe(mockOperationsList)
 		})
 		test('when a request without cookie then we get an error', async () => {
 			expect(controller).toBeDefined()
@@ -61,8 +61,9 @@ describe('CONTROLLER V1MiningOperationsController [Module: Infrastructure.Adapte
 			})
 			jest.spyOn(useCase, 'getMiningOperations').mockImplementation(() => operations)
 			const expected = 'The authentication token is not present or invalid so the request is not authorized.'
+			const sessionId = '-test-session-id-'
 			try {
-				await controller.getMiningOperations(null)
+				await controller.getMiningOperations4Pilot(null, sessionId)
 			} catch (e) {
 				expect(e.message).toEqual(expected)
 			}

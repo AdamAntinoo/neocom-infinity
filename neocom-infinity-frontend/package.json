@@ -32,7 +32,8 @@
     "docker:stop": "docker-compose -f ./support/docker-compose.yml down ",
     "start:dev": "NODE_ENV=development npm run tag && npm run semver && npm run version:update &&ng serve --proxy-config proxy.conf.js --port 5201 ",
     "cypress:open": "./node_modules/cypress/bin/cypress open",
-    "upgrade:neocom": "npm uninstall --save npm neocom-domain && npm install --save-exact neocom-domain"
+    "upgrade:neocom": "npm uninstall --save npm neocom-domain && npm install --save-exact neocom-domain",
+    "test:dev": "ng test --watch=false"
   },
   "private": true,
   "engines": {
@@ -96,12 +97,12 @@
     "cypress": "^13.7.0",
     "jasmine-core": "4.0.0",
     "jasmine-spec-reporter": "4.2.1",
-    "karma": "6.3.0",
-    "karma-chrome-launcher": "3.1.0",
-    "karma-coverage": "~2.1.0",
+    "karma": "6.4.3",
+    "karma-chrome-launcher": "3.2.0",
+    "karma-coverage": "2.2.1",
     "karma-coverage-istanbul-reporter": "^3.0.3",
-    "karma-jasmine": "4.0.0",
-    "karma-jasmine-html-reporter": "1.7.0",
+    "karma-jasmine": "5.1.0",
+    "karma-jasmine-html-reporter": "2.1.0",
     "protractor": "7.0.0",
     "ts-node": "^9.0.0",
     "tsconfig-paths": "4.2.0",
