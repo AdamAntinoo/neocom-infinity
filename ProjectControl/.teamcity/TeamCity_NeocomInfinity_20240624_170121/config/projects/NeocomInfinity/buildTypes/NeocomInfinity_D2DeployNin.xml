@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<build-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="c802f2b9-ebc4-4192-b8c4-2a31346eeb1f" xsi:noNamespaceSchemaLocation="https://www.jetbrains.com/teamcity/schemas/2021.1/project-config.xsd">
+  <name>D2.Deploy NIN</name>
+  <description>Create a new docker image for the application neocom-infinity-nest</description>
+  <settings>
+    <options>
+      <option name="artifactRules" value="neocom-infinity-nest/.deploy =&gt; neocom-infinity-nest/.deploy" />
+    </options>
+    <parameters>
+      <param name="env.APP_CODE" value="neonest" />
+      <param name="env.ENVIRONMENT" value="staging" />
+      <param name="env.PORT" value="3000" />
+      <param name="env.PROJECT_NAME" value="neocom-infinity-nest" />
+    </parameters>
+    <build-runners>
+      <runner id="Generate_image_NIN" name="Deploy NIN to Kubernetes" type="simpleRunner">
+        <parameters>
+          <param name="script.content"><![CDATA[# D E P L O Y   K U B E R N E T E S
+# Deploy the image to the Kubernetes namespace
+#
+# - define variables for deployment
+export NAMESPACE="neocom-%env.ENVIRONMENT%"
+export APP_CODE="%env.APP_CODE%"
+export ENV="%env.ENVIRONMENT%"
+export MODULE_NAME="%env.PROJECT_NAME%"
+export PORT=%env.PORT%
+export IMAGE_NAME=$MODULE_NAME
+export VERSION=`gitversion /showvariable AssemblySemFileVer`
+export IMAGE_TAG=$IMAGE_NAME:$VERSION
+export DEPLOY_DIR=%teamcity.build.checkoutDir%/%env.PROJECT_NAME%/.deploy
+
+echo "##teamcity[setParameter name='_NEOCOM.APP_CODE' value='$APP_CODE']"
+echo "##teamcity[setParameter name='_NEOCOM.ENV' value='$ENV']"
+echo "##teamcity[setParameter name='_NEOCOM.NAMESPACE' value='$NAMESPACE']"
+echo "##teamcity[setParameter name='_NEOCOM.MODULE_NAME' value='$MODULE_NAME']"
+echo "##teamcity[setParameter name='_NEOCOM.PORT' value='$PORT']"
+echo "##teamcity[setParameter name='_NEOCOM.IMAGE_NAME' value='$IMAGE_NAME']"
+echo "##teamcity[setParameter name='_NEOCOM.VERSION' value='$VERSION']"
+echo "##teamcity[setParameter name='_NEOCOM.IMAGE_TAG' value='$IMAGE_TAG']"
+echo "##teamcity[setParameter name='_NEOCOM.DEPLOY_DIR' value='$DEPLOY_DIR']"
+
+cat $DEPLOY_DIR/deployment.template.yaml | envsubst > $DEPLOY_DIR/deployment.yaml
+echo '>>>>> Kuberneted deployment file'
+cat $DEPLOY_DIR/deployment.yaml
+echo '<<<<<'
+
+kubectl apply -f $DEPLOY_DIR/deployment.yaml]]></param>
+          <param name="teamcity.step.mode" value="default" />
+          <param name="use.custom.script" value="true" />
+        </parameters>
+      </runner>
+    </build-runners>
+    <vcs-settings>
+      <vcs-entry-ref root-id="NeocomInfinity_HttpsGithubComAdamAntinooNeocomInfinityGitRefsHeadsMaster" />
+    </vcs-settings>
+    <requirements />
+    <build-triggers />
+    <dependencies>
+      <depend-on sourceBuildTypeId="NeocomInfinity_C2CreateImageNin">
+        <options>
+          <option name="run-build-if-dependency-failed-to-start" value="CANCEL" />
+          <option name="take-started-build-with-same-revisions" value="true" />
+          <option name="take-successful-builds-only" value="true" />
+        </options>
+      </depend-on>
+    </dependencies>
+    <cleanup />
+  </settings>
+</build-type>
+

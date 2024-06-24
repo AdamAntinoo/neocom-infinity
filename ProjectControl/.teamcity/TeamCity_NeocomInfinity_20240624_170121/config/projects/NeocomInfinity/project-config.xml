@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="1bbd220b-569a-4150-b53a-e7abc6a38ef6" xsi:noNamespaceSchemaLocation="https://www.jetbrains.com/teamcity/schemas/2021.1/project-config.xsd">
+  <name>Neocom Infinity</name>
+  <description>NeoCom application to help on Eve heavy complex tasks relatyed to industry.</description>
+  <parameters />
+  <cleanup />
+</project>
+
