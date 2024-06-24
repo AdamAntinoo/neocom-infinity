@@ -96,8 +96,8 @@ registerLocaleData(localeEs)
 		V1BlueprintBOMPanelComponent,
 		V2AvailableBlueprintsPanelComponent,
 		// - PIPES
-		IskScaledPipe,
-		M3VolumePipe,
+		// IskScaledPipe,
+		// M3VolumePipe,
 	],
 	providers: [
 		// - SERVICES
@@ -110,8 +110,8 @@ registerLocaleData(localeEs)
 	bootstrap: [AppComponent],
 	exports: [
 		// - PIPES
-		IskScaledPipe,
-		M3VolumePipe,
+		// IskScaledPipe,
+		// M3VolumePipe,
 	],
 })
 export class AppModule {}
