@@ -16,11 +16,6 @@ repositories {
 }
 
 // - P R O J E C T   D E F I N I T I O N
-//java {
-//    toolchain {
-//        languageVersion = JavaLanguageVersion.of(17)
-//    }
-//}
 group = 'org.dimensinfin.eveonline.neocom'
 version = '0.29.0'
 archivesBaseName = 'neocom-infinity-backend'
@@ -51,11 +46,6 @@ sourceSets {
             srcDirs += 'src/acceptance/java'
         }
     }
-//    acceptance {
-//        resources {
-//            srcDirs += 'src/acceptance/resources'
-//        }
-//    }
 }
 
 // - C O N F I G U R A T I O N S
@@ -72,6 +62,11 @@ configurations {
 
 springBoot {
     buildInfo()
+}
+bootJar {
+    manifest {
+        attributes 'Start-Class': 'org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendApplication'
+    }
 }
 processResources {
     filesMatching('application.properties') {
