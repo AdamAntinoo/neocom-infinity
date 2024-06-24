@@ -4,7 +4,7 @@ import { TestBed } from '@angular/core/testing';
 import { SupportIsolationService } from '@app/testing/SupportIsolation.service';
 // - DOMAIN
 import { Pilot } from './Pilot.domain';
-import { environment } from '@env/environment.prod';
+import { environment } from '@env/environment';
 import { PlatformConstants } from '@env/PlatformConstants';
 import { NeoComConstants } from '@app/platform/NeocomConstants.platform';
 

@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 
 import { V1BlueprintCategoriesPanel } from './v1-blueprint-categories.component'
+import { Router } from 'express'
+import { RouterTestingModule } from '@angular/router/testing'
 
 describe('V1BlueprintCategoriesComponent', () => {
 	let component: V1BlueprintCategoriesPanel
@@ -8,7 +10,7 @@ describe('V1BlueprintCategoriesComponent', () => {
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			declarations: [V1BlueprintCategoriesPanel],
+			declarations: [V1BlueprintCategoriesPanel, RouterTestingModule],
 		}).compileComponents()
 	})
 

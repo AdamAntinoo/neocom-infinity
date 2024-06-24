@@ -14,8 +14,6 @@ import { IndustryService } from '@app/modules/industry/service/IndustryService.s
 import { ProcessedBlueprint } from '@app/industry/domain/V1ProcessedBlueprint.domain'
 import { HttpErrorResponse } from '@angular/common/http'
 import { environment } from '@env/environment'
-import { ProcessedBlueprintDto } from '@app/modules/industry/dto/ProcessedBlueprintDto.dto'
-import { ESIUniverseDataService } from '@app/services/ESIUniverseData.service'
 import { V1BlueprintListPageComponent } from '../../../../../industry/pages/v1-blueprint-list-page/v1-blueprint-list-page.component'
 import { V1ProcessedBlueprintSummary } from '@app/modules/industry/domain/V1ProcessedBlueprintSummary.domain'
 import { NeoComCredential } from '@domain/NeoComCredential.domain'

@@ -70,9 +70,6 @@ import { V1ExtendedBlueprintRenderComponent } from '@app/industry/renders/v1-ext
         V1StackRenderComponent,
         V1BlueprintCategoryRender,
         V1ExtendedBlueprintRenderComponent,
-        // - PIPES
-        IskScaledPipe,
-        M3VolumePipe
 
     ],
     exports: [
@@ -102,9 +99,6 @@ import { V1ExtendedBlueprintRenderComponent } from '@app/industry/renders/v1-ext
         V1MiningOperationRenderComponent,
         V1StackRenderComponent,
         // V1BlueprintRenderComponent,
-        // - PIPES
-        IskScaledPipe,
-        M3VolumePipe
     ]
 })
 export class RendersModule { }

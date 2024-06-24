@@ -108,80 +108,81 @@ describe('SERVICE IsolationService [Module: PLATFORM]', () => {
             expect(service.errorNotification).toHaveBeenCalled()
         });
     });
-    xdescribe('Code Coverage Phase [Storage]', async function () {
-        // it('setToStorage: store an object on local storage', () => {
-        //     const TEST_DATA: string = '-TEST-DATA-TO-STORE-';
-        //     expect(service.getFromStorage(DOCK_CURRENT_CONFIGURATION_KEY)).toBeUndefined();
-        //     service.setToStorage(DOCK_CURRENT_CONFIGURATION_KEY, TEST_DATA);
-        //     expect(service.getFromStorage(DOCK_CURRENT_CONFIGURATION_KEY)).toBeDefined();
-        //     expect(service.getFromStorage(DOCK_CURRENT_CONFIGURATION_KEY)).toBe(TEST_DATA);
-        // });
-        // it('setToStorageObject: store a serialized object on local storage', () => {
-        //     expect(service.getFromStorage(DOCK_CURRENT_CONFIGURATION_KEY)).toBeUndefined();
-        //     const targetFeature = new Object();
-        //     service.setToStorageObject(DOCK_CURRENT_CONFIGURATION_KEY, targetFeature);
-        //     expect(service.getFromStorage(DOCK_CURRENT_CONFIGURATION_KEY)).toBeDefined();
-        //     expect(service.getFromStorage(DOCK_CURRENT_CONFIGURATION_KEY)).toBe(JSON.stringify(targetFeature));
-        // });
-        // it('getFromStorage: get a serialized object from local storage', () => {
-        //     expect(service.getFromStorage(DOCK_CURRENT_CONFIGURATION_KEY)).toBeUndefined();
-        //     const targetFeature = new Object();
-        //     service.setToStorageObject(DOCK_CURRENT_CONFIGURATION_KEY, JSON.stringify(targetFeature))
-        //     expect(service.getFromStorage(DOCK_CURRENT_CONFIGURATION_KEY)).toBeDefined();
-        //     expect(service.getFromStorage(DOCK_CURRENT_CONFIGURATION_KEY)).toBe(JSON.stringify(JSON.stringify(targetFeature)))
-        // });
-        // it('removeFromStorage: remove an storage key', () => {
-        //     // localStorage = new Map();
-        //     expect(service.getFromStorage(DOCK_CURRENT_CONFIGURATION_KEY)).toBeUndefined();
-        //     service.setToStorageObject(DOCK_CURRENT_CONFIGURATION_KEY, new Object());
-        //     expect(service.getFromStorage(DOCK_CURRENT_CONFIGURATION_KEY)).toBeDefined();
-        //     const obtained = service.removeFromStorage(DOCK_CURRENT_CONFIGURATION_KEY)
-        //     expect(obtained).toBeDefined();
-        //     expect(service.getFromStorage(DOCK_CURRENT_CONFIGURATION_KEY)).toBeNull();
-        // });
-        it('getFromSession: check Session api', () => {
-            const key = service.generateRandomString(12);
-            const value = service.generateRandomString(12);
-            expect(service.getFromSession(key)).toBeNull();
-            service.setToSession(key, value);
-            expect(service.getFromSession(key)).toBe(value);
-        });
-        it('removeFromSession: check Session api', () => {
-            const key = service.generateRandomString(12);
-            const value = service.generateRandomString(12);
-            expect(service.getFromSession(key)).toBeNull();
-            service.setToSession(key, value);
-            expect(service.getFromSession(key)).toBe(value);
-            service.removeFromSession(key);
-            expect(service.getFromSession(key)).toBeNull();
-        });
-    });
-    describe('Code Coverage Phase [Notifications]', async function () {
-        // it('successNotification: show a success notification', () => {
-        //     service.successNotification(TEST_MESSAGE);
-        //     expect(notifier.successCount).toBe(1)
-        //     service.successNotification(TEST_MESSAGE, TEST_TITLE, { autoDismiss: false });
-        //     expect(notifier.successCount).toBe(2)
-        // });
-        // it('errorNotification: show an error notification', () => {
-        //     service.errorNotification(TEST_MESSAGE);
-        //     expect(notifier.errorCount).toBe(1)
-        //     service.errorNotification(TEST_MESSAGE, TEST_TITLE, { autoDismiss: false });
-        //     expect(notifier.errorCount).toBe(2)
-        // });
-        // it('warningNotification: show a warning notification', () => {
-        //     service.warningNotification(TEST_MESSAGE);
-        //     expect(notifier.warningCount).toBe(1)
-        //     service.warningNotification(TEST_MESSAGE, TEST_TITLE, { autoDismiss: false });
-        //     expect(notifier.warningCount).toBe(2)
-        // });
-        // it('infoNotification: show an info notification', () => {
-        //     service.infoNotification(TEST_MESSAGE);
-        //     expect(notifier.infoCount).toBe(1)
-        //     service.infoNotification(TEST_MESSAGE, TEST_TITLE, { autoDismiss: false });
-        //     expect(notifier.infoCount).toBe(2)
-        // });
-    });
+    // describe('Code Coverage Phase [Storage]', async function () {
+
+    //     // it('setToStorage: store an object on local storage', () => {
+    //     //     const TEST_DATA: string = '-TEST-DATA-TO-STORE-';
+    //     //     expect(service.getFromStorage(DOCK_CURRENT_CONFIGURATION_KEY)).toBeUndefined();
+    //     //     service.setToStorage(DOCK_CURRENT_CONFIGURATION_KEY, TEST_DATA);
+    //     //     expect(service.getFromStorage(DOCK_CURRENT_CONFIGURATION_KEY)).toBeDefined();
+    //     //     expect(service.getFromStorage(DOCK_CURRENT_CONFIGURATION_KEY)).toBe(TEST_DATA);
+    //     // });
+    //     // it('setToStorageObject: store a serialized object on local storage', () => {
+    //     //     expect(service.getFromStorage(DOCK_CURRENT_CONFIGURATION_KEY)).toBeUndefined();
+    //     //     const targetFeature = new Object();
+    //     //     service.setToStorageObject(DOCK_CURRENT_CONFIGURATION_KEY, targetFeature);
+    //     //     expect(service.getFromStorage(DOCK_CURRENT_CONFIGURATION_KEY)).toBeDefined();
+    //     //     expect(service.getFromStorage(DOCK_CURRENT_CONFIGURATION_KEY)).toBe(JSON.stringify(targetFeature));
+    //     // });
+    //     // it('getFromStorage: get a serialized object from local storage', () => {
+    //     //     expect(service.getFromStorage(DOCK_CURRENT_CONFIGURATION_KEY)).toBeUndefined();
+    //     //     const targetFeature = new Object();
+    //     //     service.setToStorageObject(DOCK_CURRENT_CONFIGURATION_KEY, JSON.stringify(targetFeature))
+    //     //     expect(service.getFromStorage(DOCK_CURRENT_CONFIGURATION_KEY)).toBeDefined();
+    //     //     expect(service.getFromStorage(DOCK_CURRENT_CONFIGURATION_KEY)).toBe(JSON.stringify(JSON.stringify(targetFeature)))
+    //     // });
+    //     // it('removeFromStorage: remove an storage key', () => {
+    //     //     // localStorage = new Map();
+    //     //     expect(service.getFromStorage(DOCK_CURRENT_CONFIGURATION_KEY)).toBeUndefined();
+    //     //     service.setToStorageObject(DOCK_CURRENT_CONFIGURATION_KEY, new Object());
+    //     //     expect(service.getFromStorage(DOCK_CURRENT_CONFIGURATION_KEY)).toBeDefined();
+    //     //     const obtained = service.removeFromStorage(DOCK_CURRENT_CONFIGURATION_KEY)
+    //     //     expect(obtained).toBeDefined();
+    //     //     expect(service.getFromStorage(DOCK_CURRENT_CONFIGURATION_KEY)).toBeNull();
+    //     // });
+    //     it('getFromSession: check Session api', () => {
+    //         const key = service.generateRandomString(12);
+    //         const value = service.generateRandomString(12);
+    //         expect(service.getFromSession(key)).toBeNull();
+    //         service.setToSession(key, value);
+    //         expect(service.getFromSession(key)).toBe(value);
+    //     });
+    //     it('removeFromSession: check Session api', () => {
+    //         const key = service.generateRandomString(12);
+    //         const value = service.generateRandomString(12);
+    //         expect(service.getFromSession(key)).toBeNull();
+    //         service.setToSession(key, value);
+    //         expect(service.getFromSession(key)).toBe(value);
+    //         service.removeFromSession(key);
+    //         expect(service.getFromSession(key)).toBeNull();
+    //     });
+    // });
+    // describe('Code Coverage Phase [Notifications]', async function () {
+    //     // it('successNotification: show a success notification', () => {
+    //     //     service.successNotification(TEST_MESSAGE);
+    //     //     expect(notifier.successCount).toBe(1)
+    //     //     service.successNotification(TEST_MESSAGE, TEST_TITLE, { autoDismiss: false });
+    //     //     expect(notifier.successCount).toBe(2)
+    //     // });
+    //     // it('errorNotification: show an error notification', () => {
+    //     //     service.errorNotification(TEST_MESSAGE);
+    //     //     expect(notifier.errorCount).toBe(1)
+    //     //     service.errorNotification(TEST_MESSAGE, TEST_TITLE, { autoDismiss: false });
+    //     //     expect(notifier.errorCount).toBe(2)
+    //     // });
+    //     // it('warningNotification: show a warning notification', () => {
+    //     //     service.warningNotification(TEST_MESSAGE);
+    //     //     expect(notifier.warningCount).toBe(1)
+    //     //     service.warningNotification(TEST_MESSAGE, TEST_TITLE, { autoDismiss: false });
+    //     //     expect(notifier.warningCount).toBe(2)
+    //     // });
+    //     // it('infoNotification: show an info notification', () => {
+    //     //     service.infoNotification(TEST_MESSAGE);
+    //     //     expect(notifier.infoCount).toBe(1)
+    //     //     service.infoNotification(TEST_MESSAGE, TEST_TITLE, { autoDismiss: false });
+    //     //     expect(notifier.infoCount).toBe(2)
+    //     // });
+    // });
     describe('Code Coverage Phase [Utilities]', async function () {
         it('dateAdd: add time to a date instance', () => {
             expect(service.dateAdd(new Date(), 'year', 1)).toBeDefined();

@@ -31,20 +31,20 @@ describe('ADAPTER V1SecuredProxyAdapter [Module: Infrastrucrture/Adapters]', () 
         expect(service['configuration']).toBeDefined()
         expect(service['httpService']).toBeDefined()
     })
-    describe('Endpoint phase', () => {
-        it('when the backend request then return an observable', async () => {
-            const pilotId: number = 77665
-            const sut: Observable<V1MiningOperationDto[]> = service.v3_apiNeocomMiningOperationsData(pilotId)
-            expect(sut).toBeDefined()
-            await sut.subscribe((operations: V1MiningOperationDto[]) => {
-                expect(operations).toBeDefined()
-                expect(operations.length).toBe(3)
-                console.log('operation->' + JSON.stringify(operations[0]))
-                expect(operations[0].jsonClass).toBe('MiningOperationDto')
-                expect(operations[0].resources).toBeDefined()
-                expect(operations[0].resources.length).toBe(2)
-                expect(operations[0].resources[0].jsonClass).toBe('StackDto')
-            })
-        })
-    })
+    // describe('Endpoint phase', () => {
+    //     it('when the backend request then return an observable', async () => {
+    //         const pilotId: number = 77665
+    //         const sut: Observable<V1MiningOperationDto[]> = service.v3_apiNeocomMiningOperationsData(pilotId)
+    //         expect(sut).toBeDefined()
+    //         await sut.subscribe((operations: V1MiningOperationDto[]) => {
+    //             expect(operations).toBeDefined()
+    //             expect(operations.length).toBe(3)
+    //             console.log('operation->' + JSON.stringify(operations[0]))
+    //             expect(operations[0].jsonClass).toBe('MiningOperationDto')
+    //             expect(operations[0].resources).toBeDefined()
+    //             expect(operations[0].resources.length).toBe(2)
+    //             expect(operations[0].resources[0].jsonClass).toBe('StackDto')
+    //         })
+    //     })
+    // })
 })

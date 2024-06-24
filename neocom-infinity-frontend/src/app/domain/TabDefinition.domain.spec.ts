@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 // - PROVIDERS
 import { SupportIsolationService } from '@app/testing/SupportIsolation.service';
 // - DOMAIN
-import { environment } from '@env/environment.prod';
+import { environment } from '@env/environment';
 import { TabDefinition } from './TabDefinition.domain';
 
 describe('CLASS TabDefinition [Module: DOMAIN]', () => {

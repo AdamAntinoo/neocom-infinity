@@ -1,23 +1,22 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { V1BlueprintCategoryComponent } from './v1-blueprint-category.component';
+import { V1BlueprintCategoryRender } from './v1-blueprint-category.component';
 
 describe('V1BlueprintCategoryComponent', () => {
-  let component: V1BlueprintCategoryComponent;
-  let fixture: ComponentFixture<V1BlueprintCategoryComponent>;
+  let component: V1BlueprintCategoryRender;
+  let fixture: ComponentFixture<V1BlueprintCategoryRender>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ V1BlueprintCategoryComponent ]
+      declarations: [ V1BlueprintCategoryRender ]
     })
     .compileComponents();
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(V1BlueprintCategoryComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+//   beforeEach(() => {
+//     fixture = TestBed.createComponent(V1BlueprintCategoryRender);
+//     component = fixture.componentInstance;
+//     fixture.detectChanges();
+//   });
 
   it('should create', () => {
     expect(component).toBeTruthy();

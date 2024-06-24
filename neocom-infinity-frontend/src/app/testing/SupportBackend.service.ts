@@ -9,7 +9,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 // - SERVICES
 // - DOMAIN
-import { environment } from '@env/environment.prod';
+import { environment } from '@env/environment';
 import { NeoComResponse } from '@app/domain/dto/NeoComResponse.dto';
 import { NeoComException } from '@innovative/domain/NeoComException';
 import { ResponseTransformer } from 'neocom-domain/ResponseTransformer';
@@ -32,7 +32,7 @@ export class SupportBackendService {
     constructor(
         public isolation: IsolationService,
         protected appStoreService: SupportAppStoreService) {
-        this.APIV1 = environment.serverName + PlatformConstants.NEOCOM_V1;
+        this.APIV1 = PlatformConstants.NEOCOM_V1;
     }
 
     // - E X C E P T I O N S
