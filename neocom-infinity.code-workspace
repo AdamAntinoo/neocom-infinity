@@ -20,6 +20,12 @@
 		},
 		{
 			"path": "neocom-infinity-backend"
+		},
+		{
+			"path": ".github"
+		},
+		{
+			"path": ".deploy"
 		}
 	],
 	"settings": {

@@ -21,7 +21,7 @@
     "build": "ng build ",
     "run:dev": "npm run build && NODE_ENV=development PORT=5205 PUBLICPROXY=http://localhost:5215 BACKENDPROXY=http://localhost:5225 NESTPROXY=http://localhost:5235 && node server.js",
     "env:dev": "NODE_ENV=development . ./scripts/generate.env.sh",
-    "env:staging": "NODE_ENV=staging . ./scripts/generate.env.sh",
+    "env:deployment": "NODE_ENV=deployment . ./scripts/generate.env.sh",
     "build:staging": "export NODE_ENV=staging && npm run tag && ng build --configuration=staging",
     "start:staging": "npm run env:staging && . .env.staging && node server.js ",
     "tag": "npm run semver && figlet NeoFront `gitversion /showvariable AssemblySemFileVer` > .app-banner.txt && cat .app-banner.txt",

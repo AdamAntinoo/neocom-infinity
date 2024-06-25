@@ -54,13 +54,13 @@
                 }
               ]
             },
-            "staging": {
+            "deployment": {
               "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true,
+              "namedChunks": true
             },
             "development": {
               "buildOptimizer": false,
