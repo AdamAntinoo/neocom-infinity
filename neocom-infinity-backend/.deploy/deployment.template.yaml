@@ -23,7 +23,7 @@ kind: ConfigMap
 metadata:
   name: $APP_CODE-config
   namespace: $NAMESPACE
-stringData:
+data:
   PORT: "$PORT"
   NEOCOM_DATABASE_URL: "$NEOCOM_DATABASE_URL"
   SPRING_DATASOURCE_URL: "$SPRING_DATASOURCE_URL"
@@ -43,7 +43,7 @@ kind: Secret
 metadata:
   name: $APP_CODE-secrets
   namespace: $NAMESPACE
-data:
+stringData:
   SPRING_DATASOURCE_URL: $SPRING_DATASOURCE_URL
   SPRING_DATASOURCE_USERNAME: $SPRING_DATASOURCE_USERNAME
   SPRING_DATASOURCE_PASSWORD: $SPRING_DATASOURCE_PASSWORD
@@ -59,7 +59,7 @@ metadata:
   labels:
     app: $APP_CODE
     version: "$VERSION"
-    port: "$PORT"
+    environment: $ENV
 spec:
   selector:
     matchLabels:
@@ -68,7 +68,7 @@ spec:
   template:
     metadata:
       labels:
-        app: $APP_CODE-$ENV
+        app: $APP_CODE
         environment: $ENV
         version: "$VERSION"
         port: "$PORT"

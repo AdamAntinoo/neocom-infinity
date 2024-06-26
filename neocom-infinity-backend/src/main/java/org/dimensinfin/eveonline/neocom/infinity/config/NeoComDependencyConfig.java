@@ -55,6 +55,7 @@ public class NeoComDependencyConfig {
 
 	@Bean
 	public MeterRegistryCustomizer<MeterRegistry> metricsCommonTags() {
+		LogWrapper.info( "Constructing bean"+"MeterRegistryCustomizer<MeterRegistry>" );
 		return (registry) -> {
 			globalRegistry=registry;
 			registry.config().commonTags("application", "neocom-infinity-backend", "appcode", "NIB");

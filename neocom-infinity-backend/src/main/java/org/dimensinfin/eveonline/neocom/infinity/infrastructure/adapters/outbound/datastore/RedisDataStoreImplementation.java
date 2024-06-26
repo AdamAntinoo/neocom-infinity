@@ -96,6 +96,10 @@ public class RedisDataStoreImplementation implements IDataStorePort {
 						.register( NeoComDependencyConfig.globalRegistry ) )
 				.build()
 		);
+		LogWrapper.info( LogMessageCatalog.CACHE_DESCRIPTOR_CONFIGURED.getResolvedMessage(
+				ESI_TYPE_KEY_NAME,
+				cacheDescriptors.get( ESI_TYPE_KEY_NAME ).toString() )
+		);
 		cacheDescriptors.put( SPACE_LOCATIONS_KEY_NAME, DataStoreDescriptor.builder()
 				.withKeyPrefix( SPACE_LOCATIONS_KEY_NAME )
 				.withTTL( SPACE_LOCATIONS_CACHE_TTL )
@@ -116,7 +120,7 @@ public class RedisDataStoreImplementation implements IDataStorePort {
 		);
 		LogWrapper.info( LogMessageCatalog.CACHE_DESCRIPTOR_CONFIGURED.getResolvedMessage(
 				ESI_TYPE_KEY_NAME,
-				cacheDescriptors.get( ESI_TYPE_KEY_NAME ).toString() )
+				cacheDescriptors.get( SPACE_LOCATIONS_KEY_NAME ).toString() )
 		);
 		LogWrapper.exit();
 	}
