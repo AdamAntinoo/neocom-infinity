@@ -21,8 +21,6 @@
     "build": "ng build ",
     "run:dev": "npm run build && NODE_ENV=development PORT=5205 PUBLICPROXY=http://localhost:5215 BACKENDPROXY=http://localhost:5225 NESTPROXY=http://localhost:5235 && node server.js",
     "env:dev": "NODE_ENV=development . ./scripts/generate.env.sh",
-    "env:deployment": "NODE_ENV=deployment . ./scripts/generate.env.sh",
-    "build:staging": "export NODE_ENV=staging && npm run tag && ng build --configuration=staging",
     "start:staging": "npm run env:staging && . .env.staging && node server.js ",
     "tag": "npm run semver && figlet NeoFront `gitversion /showvariable AssemblySemFileVer` > .app-banner.txt && cat .app-banner.txt",
     "semver": "gitversion /showvariable AssemblySemFileVer > .version.json && cat .version.json",
@@ -33,7 +31,9 @@
     "start:dev": "NODE_ENV=development npm run tag && npm run semver && npm run version:update &&ng serve --proxy-config proxy.conf.js --port 5201 ",
     "cypress:open": "./node_modules/cypress/bin/cypress open",
     "upgrade:neocom": "npm uninstall --save npm neocom-domain && npm install --save-exact neocom-domain",
-    "test:dev": "ng test --watch=false"
+    "test:dev": "ng test --watch=false",
+    "env:deployment": "NODE_ENV=deployment . ./scripts/generate.env.sh",
+    "build:deployment": "export NODE_ENV=deployment && npm run tag && ng build --configuration=deployment"
   },
   "private": true,
   "engines": {
