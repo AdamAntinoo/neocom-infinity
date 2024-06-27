@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<build-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="2c0f6f91-ae9e-499a-ae6d-9145101a1d6e" xsi:noNamespaceSchemaLocation="https://www.jetbrains.com/teamcity/schemas/2021.1/project-config.xsd">
+  <name>C2.Create Image NIN</name>
+  <description>Create a new docker image for the application neocom-infinity-nest</description>
+  <settings ref="NeocomInfinity_CCreateImage">
+    <options>
+      <option name="artifactRules" value="neocom-infinity-nest/.deploy =&gt; neocom-infinity-nest/.deploy&#xA;neocom-infinity-nest/dist =&gt; neocom-infinity-nest/dist" />
+    </options>
+    <parameters>
+      <param name="APP_CODE" value="neonest" />
+      <param name="PORT" value="3000" />
+      <param name="PROJECT_CODE" value="NeoNest" />
+      <param name="PROJECT_NAME" value="neocom-infinity-nest" />
+    </parameters>
+    <build-runners>
+      <runner id="Generate_image_NIN" name="S2. Generate image NIN" type="simpleRunner">
+        <parameters>
+          <param name="script.content"><![CDATA[# G E N E R A T E   D O C K E R   I M A G E
+# Create a docker image for the NestJS backend
+#
+export PROJECT_ROOT=%teamcity.build.checkoutDir%/%PROJECT_NAME%
+cd $PROJECT_ROOT
+
+# - generate banner
+echo '>>> Creating banner'
+echo 'WORKING_DIR->'$WORKING_DIR
+export BANNER_LOCATION=$WORKING_DIR/.app-banner.txt
+echo 'BANNER_LOCATION->'$BANNER_LOCATION
+figlet %PROJECT_CODE% $VERSION > $BANNER_LOCATION
+cat $BANNER_LOCATION
+figlet $ENV
+echo "<<<<<"
+
+# - build the image
+echo '>>> Building image'
+export DEPLOY_DIR=$WORKING_DIR/.deploy
+export ENV=%env.ENV%
+export PORT=%PORT%
+cat $DEPLOY_DIR/dockerfile.template | envsubst > $DEPLOY_DIR/Dockerfile
+docker build -f $DEPLOY_DIR/Dockerfile -t $IMAGE_NAME $WORKING_DIR
+echo "<<<<<"]]></param>
+          <param name="teamcity.step.mode" value="default" />
+          <param name="use.custom.script" value="true" />
+        </parameters>
+      </runner>
+      <runner id="Publish_Tag_the_image" name="S3. Publish &amp; Tag the image" type="simpleRunner">
+        <parameters>
+          <param name="script.content"><![CDATA[# P U B L I S H    I M A G E
+# Publish the image to the external repository
+# - tag the image
+export TAG=%PROJECT_NAME%:%env.VERSION%
+echo ">>> Tagging image->adamantinoo/$TAG"
+docker tag %env.IMAGE_NAME% adamantinoo/$TAG
+docker tag %env.IMAGE_NAME% $TAG
+docker push adamantinoo/$TAG
+echo "<<<<<"]]></param>
+          <param name="teamcity.step.mode" value="default" />
+          <param name="use.custom.script" value="true" />
+        </parameters>
+      </runner>
+    </build-runners>
+    <vcs-settings>
+      <vcs-entry-ref root-id="NeocomInfinity_HttpsGithubComAdamAntinooNeocomInfinityGitRefsHeadsMaster" />
+    </vcs-settings>
+    <requirements />
+    <build-triggers />
+    <cleanup />
+  </settings>
+</build-type>
+

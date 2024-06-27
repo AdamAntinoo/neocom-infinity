@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<build-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="1513aa6b-3172-499e-aba0-3f1ad79e9ec6" xsi:noNamespaceSchemaLocation="https://www.jetbrains.com/teamcity/schemas/2021.1/project-config.xsd">
+  <name>A3. Build NIF</name>
+  <description>Compile and build the frontend created with Angular framework.</description>
+  <settings>
+    <parameters>
+      <param name="PROJECT_NAME" value="neocom-infinity-frontend" />
+    </parameters>
+    <build-runners>
+      <runner id="S1_Get_Environment_1_1" name="S1. Get Environment" type="simpleRunner">
+        <parameters>
+          <param name="script.content"><![CDATA[# G E T   E N V I R O N M E N T
+# Extract the deployment environment from the branch/tag being processed along with the buid version
+#
+# - define workspace
+echo '>>> define workspace'
+export PROJECT_ROOT=%teamcity.build.checkoutDir%/%PROJECT_NAME%
+cd $PROJECT_ROOT
+export WORKING_DIR=$PROJECT_ROOT
+export DEPLOY_DIR=$WORKING_DIR/.deploy
+export SOURCES_DIR=$PROJECT_ROOT/src
+echo "PROJECT_ROOT->$PROJECT_ROOT"
+echo "WORKING_DIR->$WORKING_DIR"
+echo "DEPLOY_DIR->$DEPLOY_DIR"
+echo "SOURCES_DIR->$SOURCES_DIR"
+echo "<<<<<"
+
+# - define the deployment environment
+echo '>>> Identifying Environment'
+# - set default value to 'deployment'
+export ENVIRONMENT='deployment'
+export BRANCH=%teamcity.build.branch%
+echo "BRANCH->$BRANCH"
+if [[ "$BRANCH" =~ ^(.*)main ]];
+then 
+    export ENVIRONMENT='production'
+else 
+	export ENVIRONMENT='deployment'
+fi
+echo "ENVIRONMENT->$ENVIRONMENT"
+export IMAGE_NAME=%PROJECT_NAME%
+export ENV=$ENVIRONMENT
+echo "IMAGE_NAME->$IMAGE_NAME"
+echo "ENV->$ENV"
+echo "##teamcity[setParameter name='env.WORKING_DIR' value='$WORKING_DIR']"
+echo "##teamcity[setParameter name='env.BRANCH' value='$BRANCH']"
+echo "##teamcity[setParameter name='env.ENVIRONMENT' value='$ENVIRONMENT']"
+echo "##teamcity[setParameter name='env.IMAGE_NAME' value='$IMAGE_NAME']"
+echo "##teamcity[setParameter name='env.ENV' value='$ENV']"
+echo "<<<<<"
+
+# - Get version codes
+echo '>>> Identifying version'
+export SEMVER=`gitversion /showvariable MajorMinorPatch`
+export VMETA=`gitversion /showvariable CommitsSinceVersionSource`
+export SEMVERSION=$SEMVER
+export VERSION=`gitversion /showvariable AssemblySemFileVer`
+echo 'SEMVERSION->'$SEMVERSION
+echo 'VERSION->'$VERSION
+echo "##teamcity[setParameter name='env.SEMVERSION' value='$SEMVERSION']"
+echo "##teamcity[setParameter name='env.VERSION' value='$VERSION']"
+echo "<<<<<"]]></param>
+          <param name="teamcity.step.mode" value="default" />
+          <param name="use.custom.script" value="true" />
+        </parameters>
+      </runner>
+      <runner id="B1_Generate_environment" name="B1. Generate environment" type="simpleRunner">
+        <parameters>
+          <param name="script.content"><![CDATA[# G E N E R A T E   E N V I R O N M E N T
+# Get the environment configuration and generate all the environment settings to be used on next steps.
+#
+# - Generate environment from configuration
+export PROJECT_ROOT=%teamcity.build.checkoutDir%/%PROJECT_NAME%
+cd $PROJECT_ROOT
+echo 'ENVIRONMENT->'$ENVIRONMENT
+npm run env:$ENVIRONMENT]]></param>
+          <param name="teamcity.step.mode" value="default" />
+          <param name="use.custom.script" value="true" />
+        </parameters>
+      </runner>
+      <runner id="nodejs_runner" name="B2. Compile NIF" type="nodejs-runner">
+        <parameters>
+          <param name="plugin.docker.imageId" value="node:20.12.1-slim" />
+          <param name="plugin.docker.imagePlatform" value="linux" />
+          <param name="shellScript"><![CDATA[npm install
+npm run build]]></param>
+          <param name="teamcity.build.workingDir" value="neocom-infinity-frontend" />
+          <param name="teamcity.step.mode" value="default" />
+        </parameters>
+      </runner>
+    </build-runners>
+    <vcs-settings>
+      <vcs-entry-ref root-id="NeocomInfinity_HttpsGithubComAdamAntinooNeocomInfinityGitRefsHeadsMaster" />
+    </vcs-settings>
+    <requirements />
+    <build-triggers />
+    <cleanup />
+  </settings>
+</build-type>
+
