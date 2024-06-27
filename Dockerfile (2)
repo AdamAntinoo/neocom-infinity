@@ -1,0 +1,30 @@
+# Base image
+FROM azul/zulu-openjdk:17-latest AS BASEIMAGE
+
+WORKDIR /app
+
+# copy jars and configuration to image
+COPY ./build/libs/neocom-backend.jar /app
+COPY ./build/resources /app/resources
+
+# Create a second image that has only the build files and the configuration.
+FROM azul/zulu-openjdk:17-latest AS RUNNER
+ENV PORT=9500
+ENV NEOCOM_DATABASE_URL="jdbc:postgresql://host.docker.internal:5240/neocom?user=adamantinoo&password=z.iliada.2020"
+ENV SPRING_DATASOURCE_URL="jdbc:postgresql://host.docker.internal:5240/neocom"
+ENV SPRING_DATASOURCE_USERNAME="adamantinoo"
+ENV SPRING_DATASOURCE_PASSWORD="z.iliada.2020"
+ENV APPLICATION_DIRECTORY="/app/NeoCom.Infinity.deployment"
+ENV NEOCOM_BANNER_LOCATION="./resources/main/app-banner.txt"
+ENV PROFILE="deployment"
+ENV PROPERTIES_DIRECTORY="/resources/main/properties-deployment"
+ENV REDIS_URL="redis://host.docker.internal:5250"
+ENV SDE_DATABASE_PATH="/resources/main/sde.db"
+
+COPY --from=BASEIMAGE /app/resources /app/resources
+COPY --from=BASEIMAGE /app/neocom-backend.jar /app
+
+WORKDIR /app
+
+EXPOSE 9500
+ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=deployment", "neocom-backend.jar"]

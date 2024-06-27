@@ -35,6 +35,9 @@ data:
   PROPERTIES_DIRECTORY: "/resources/main/properties-$ENVIRONMENT"
   REDIS_URL: "$REDIS_CACHE_URL"
   SDE_DATABASE_PATH: "/resources/main/sde.db"
+  JVM_OPTS: -add-opens java.base/java.lang=ALL-UNNAMED -Xms100m -Xmx2g
+  JVM_PARAMETERS: --add-opens java.base/java.lang=ALL-UNNAMED -Xms100m -Xmx2g
+  CLI_PARAMETERS: --spring.profiles.active=$ENVIRONMENT
 
 ---
 
