@@ -20,7 +20,6 @@ ENV PROFILE="$ENVIRONMENT"
 ENV PROPERTIES_DIRECTORY="/resources/main/properties-$ENVIRONMENT"
 ENV REDIS_URL="$REDIS_CACHE_URL"
 ENV SDE_DATABASE_PATH="/resources/main/sde.db"
-ENV JAVA_OPTS="--add-opens java.base/java.lang=ALL-UNNAMED -Xms100m -Xmx2g"
 ENV JAVA_TOOL_OPTIONS="-Dspring.profiles.active=$ENVIRONMENT"
 
 COPY --from=BASEIMAGE /app/resources /app/resources
