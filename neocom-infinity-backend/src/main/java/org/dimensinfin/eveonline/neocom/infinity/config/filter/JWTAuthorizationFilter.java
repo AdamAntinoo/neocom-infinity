@@ -14,6 +14,7 @@ import javax.validation.constraints.NotNull;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -70,7 +71,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 			if ( this.validateSubject( token ) ) { // Check this is the subject we expect
 				return new UsernamePasswordAuthenticationToken( jwtToken.getPayload(), null, new ArrayList<>() );
 			}
-		} catch (final IllegalArgumentException runtime) {
+		} catch (final JWTDecodeException runtime) {
 			LogWrapper.error( runtime );
 		}
 		return null;
