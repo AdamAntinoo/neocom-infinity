@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -57,7 +58,8 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 						GET_ITEM ).permitAll() // List of URL that do not require authentication JWT token.
 				.anyRequest().authenticated() // The rest of endpoint are authenticated.
 				.and()
-				.addFilter( new JWTAuthorizationFilter( this.authenticationManager() ) ) // Sets the JWT validation filter.
+				.addFilterBefore( new JWTAuthorizationFilter( this.authenticationManager() ),
+						UsernamePasswordAuthenticationFilter.class ) // Sets the JWT validation filter.
 				// This disables session creation on Spring Security
 				.sessionManagement().sessionCreationPolicy( SessionCreationPolicy.STATELESS );
 		// Create the session when it is required.
