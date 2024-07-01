@@ -26,6 +26,9 @@
 		},
 		{
 			"path": ".deploy"
+		},
+		{
+			"path": ".kubernetes"
 		}
 	],
 	"settings": {
