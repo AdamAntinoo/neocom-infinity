@@ -6,7 +6,9 @@
 package org.dimensinfin.eveonline.neocom.infinity.api;
 
 import org.dimensinfin.eveonline.neocom.infinity.domain.BackendErrorDto;
+import java.util.UUID;
 import org.dimensinfin.eveonline.neocom.infinity.domain.V1MiningOperationDto;
+import org.dimensinfin.eveonline.neocom.infinity.domain.V2ProcessedBlueprintDto;
 import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -39,16 +41,17 @@ import jakarta.annotation.Generated;
 public interface IndustryApi {
 
     /**
-     * GET /api/v3/neocom/character/miningoperations : Get the minings operations for current target character.
+     * GET /api/v3/neonest/character/miningoperations/session/{sessionid} : Get the minings operations for current target character.
      * Gets the list of Esi Mining Operations that are generated automatically during mining. The target to be used is the capsuleer identifier or corporation identifier that is found on the access token. &lt;br&gt; The list  of operations is transformed to a hyperlink suitable frontend interpretation and operation items are given a unique key for easy identification of changes. &lt;br&gt; There is no persistence for this kind of data. 
      *
-     * @param NEOCOM_TOKEN The access token to be used for authorization. This token will contain information to locate the credential to be used for data location. (required)
+     * @param sessionid The session identifier to be used to cache the blueprints. This is an structural element not funational. (required)
+     * @param xNeoComAuthorization The access token to be used for authorization. This token will contain information to locate the credential to be used for data extraction. (required)
      * @return Success retrieving the list of Mining Operations. (status code 200)
      *         or Unauthorized. The current active access token is not present. The character identified thus cannot be accessed and the credential cannot be found. (status code 401)
      *         or Forbidden. The credential information is not valid to create a new access token and the authorization request is forbidden. (status code 403)
      */
     @Operation(
-        operationId = "getMiningOperations",
+        operationId = "getMiningOperations4Pilot",
         summary = "Get the minings operations for current target character.",
         description = "Gets the list of Esi Mining Operations that are generated automatically during mining. The target to be used is the capsuleer identifier or corporation identifier that is found on the access token. <br> The list  of operations is transformed to a hyperlink suitable frontend interpretation and operation items are given a unique key for easy identification of changes. <br> There is no persistence for this kind of data. ",
         tags = { "Industry" },
@@ -69,11 +72,42 @@ public interface IndustryApi {
     )
     @RequestMapping(
         method = RequestMethod.GET,
-        value = "/api/v3/neocom/character/miningoperations",
+        value = "/api/v3/neonest/character/miningoperations/session/{sessionid}",
         produces = "application/json"
     )
-    ResponseEntity<List<V1MiningOperationDto>> getMiningOperations(
-        @NotNull @Parameter(name = "NEOCOM_TOKEN", description = "The access token to be used for authorization. This token will contain information to locate the credential to be used for data location.", required = true, in = ParameterIn.COOKIE) @CookieValue(name = "NEOCOM_TOKEN") String NEOCOM_TOKEN
+    ResponseEntity<List<V1MiningOperationDto>> getMiningOperations4Pilot(
+        @Parameter(name = "sessionid", description = "The session identifier to be used to cache the blueprints. This is an structural element not funational.", required = true, in = ParameterIn.PATH) @PathVariable("sessionid") UUID sessionid,
+        @NotNull @Parameter(name = "X-NeoCom-Authorization", description = "The access token to be used for authorization. This token will contain information to locate the credential to be used for data extraction.", required = true, in = ParameterIn.HEADER) @RequestHeader(value = "X-NeoCom-Authorization", required = true) String xNeoComAuthorization
+    );
+
+
+    /**
+     * GET /api/v3/neonest/industry/pilots/manufacture/blueprints/session/{sessionid} : Gets the list of Extended Blueprints for the selected pilot including some standard cost calculations to get the blueprint comparison profit index.
+     * **v1** Analyze the list of blueprints accessible to the selected pilot. Calculate the Bill Of Materials, the production cost and the current market cost. For variable scenarios use the pilot configuration properties to identify the preferred manufacture factory or the trading market hub. The endpoint is authenticated so validate the selected pilot identifier before going to fetch the data. &lt;br&gt; **v2** On this version we have removed data from the response. But Market Data is still used to calculate the manufacture and the bom costs to be compared and to obtain the comparison index. That index is the market sell profit against the manufacture cost. The value should be grater than one for profitable items. Market Data used for the initial blueprint calculation is taken from the main hub that corresponds to the region where the item is located (to be completed). 
+     *
+     * @param sessionid The session identifier to be used to cache the blueprints. This is an structural element not funational. (required)
+     * @param xNeoComAuthorization The access token to be used for authorization. This token will contain information to locate the credential to be used for data extraction. (required)
+     * @return List of Extended Blueprints. A Extended Blueprint is a packed set of identical blueprints. Data is calculated using Region Hub market.  (status code 200)
+     */
+    @Operation(
+        operationId = "getProcessedBlueprints4Pilot",
+        summary = "Gets the list of Extended Blueprints for the selected pilot including some standard cost calculations to get the blueprint comparison profit index.",
+        description = "**v1** Analyze the list of blueprints accessible to the selected pilot. Calculate the Bill Of Materials, the production cost and the current market cost. For variable scenarios use the pilot configuration properties to identify the preferred manufacture factory or the trading market hub. The endpoint is authenticated so validate the selected pilot identifier before going to fetch the data. <br> **v2** On this version we have removed data from the response. But Market Data is still used to calculate the manufacture and the bom costs to be compared and to obtain the comparison index. That index is the market sell profit against the manufacture cost. The value should be grater than one for profitable items. Market Data used for the initial blueprint calculation is taken from the main hub that corresponds to the region where the item is located (to be completed). ",
+        tags = { "Industry" },
+        responses = {
+            @ApiResponse(responseCode = "200", description = "List of Extended Blueprints. A Extended Blueprint is a packed set of identical blueprints. Data is calculated using Region Hub market. ", content = {
+                @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = V2ProcessedBlueprintDto.class)))
+            })
+        }
+    )
+    @RequestMapping(
+        method = RequestMethod.GET,
+        value = "/api/v3/neonest/industry/pilots/manufacture/blueprints/session/{sessionid}",
+        produces = "application/json"
+    )
+    ResponseEntity<List<V2ProcessedBlueprintDto>> getProcessedBlueprints4Pilot(
+        @Parameter(name = "sessionid", description = "The session identifier to be used to cache the blueprints. This is an structural element not funational.", required = true, in = ParameterIn.PATH) @PathVariable("sessionid") UUID sessionid,
+        @NotNull @Parameter(name = "X-NeoCom-Authorization", description = "The access token to be used for authorization. This token will contain information to locate the credential to be used for data extraction.", required = true, in = ParameterIn.HEADER) @RequestHeader(value = "X-NeoCom-Authorization", required = true) String xNeoComAuthorization
     );
 
 }

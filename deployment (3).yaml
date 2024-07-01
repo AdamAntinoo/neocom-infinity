@@ -1,0 +1,102 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: neospring-deployment-svc
+  namespace: neocom-deployment
+spec:
+  selector:
+    app: neospring
+    environment: deployment
+  type: NodePort
+  ports:
+    - nodePort: 32110
+      protocol: TCP
+      port: 9500
+      targetPort: 9500     
+status:
+  loadBalancer: {}
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: neospring-config
+  namespace: neocom-deployment
+stringData:
+  PORT: "9500"
+  NEOCOM_DATABASE_URL: "jdbc:postgresql://host.docker.internal:5240/neocom?user=adamantinoo&password=z.iliada.2020"
+  SPRING_DATASOURCE_URL: "jdbc:postgresql://host.docker.internal:5240/neocom"
+  SPRING_DATASOURCE_USERNAME: "adamantinoo"
+  SPRING_DATASOURCE_PASSWORD: "z.iliada.2020"
+  APPLICATION_DIRECTORY: "/app/NeoCom.Infinity.deployment"
+  NEOCOM_BANNER_LOCATION: "./resources/main/app-banner.txt"
+  PROFILE: "deployment"
+  PROPERTIES_DIRECTORY: "/resources/main/properties-deployment"
+  REDIS_URL: ""
+  SDE_DATABASE_PATH: "/resources/main/sde.db"
+
+---
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: neospring-secrets
+  namespace: neocom-deployment
+data:
+  SPRING_DATASOURCE_URL: jdbc:postgresql://host.docker.internal:5240/neocom
+  SPRING_DATASOURCE_USERNAME: adamantinoo
+  SPRING_DATASOURCE_PASSWORD: z.iliada.2020
+  NEOCOM_DATABASE_URL: jdbc:postgresql://host.docker.internal:5240/neocom?user=adamantinoo&password=z.iliada.2020
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: neospring
+  namespace: neocom-deployment
+  labels:
+    app: neospring
+    version: "0.29.0-68"
+    port: "9500"
+spec:
+  selector:
+    matchLabels:
+      app: neospring
+      environment: deployment
+  template:
+    metadata:
+      labels:
+        app: neospring-deployment
+        environment: deployment
+        version: "0.29.0-68"
+        port: "9500"
+        module: neocom-infinity-backend
+    spec:
+      containers:
+        - name: neospring
+          image: adamantinoo/-infinity-backend:0.29.0-68
+          env:
+            - name: NODE_ENV
+              value: deployment
+            - name: SPRING_DATASOURCE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: neospring-secrets
+                  key: SPRING_DATASOURCE_URL
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: neospring-secrets
+                  key: SPRING_DATASOURCE_PASSWORD
+            - name: PROPERTIES_DIRECTORY
+              valueFrom:
+                configMapKeyRef:
+                  name: neospring-config
+                  key: PROPERTIES_DIRECTORY
+
+          ports:
+            - containerPort: 9500
+          imagePullPolicy: Always
+      serviceAccountName: default

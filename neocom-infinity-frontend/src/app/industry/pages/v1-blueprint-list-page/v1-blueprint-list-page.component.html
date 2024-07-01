@@ -1,0 +1,18 @@
+<div cy-section-name="header" class="row section">
+	<app-info-panel id="appinfo-panel" class="panel neocom-panel app-info-panel"></app-info-panel>
+	<v1-pilot-panel class="panel" [identifier]="getPilotId()"></v1-pilot-panel>
+	<div class="separator-4"></div>
+	<server-info-panel id="server-info-panel" class="panel neocom-panel server-info-panel"></server-info-panel>
+</div>
+<div cy-section-name="blueprint-manufacture" class="section column">
+		<div class="section-title">MANUFACTURE - BLUEPRINT ANALYSIS</div>
+		<div class="row">
+        <!-- <v1-blueprint-categories-panel class="panel" style="width: 20%;"></v1-blueprint-categories-panel>
+        <div class="separator-4"></div> -->
+        <v2-available-blueprints-panel class="panel" style="width: 20%;"></v2-available-blueprints-panel>
+        <div class="separator-4"></div>
+        <div class="row" *ngIf="selectedBlueprint">
+            <v1-blueprint-bompanel class="panel" style="width: 60%;"></v1-blueprint-bompanel>
+        </div>
+		</div>
+</div>

@@ -5,7 +5,7 @@ import org.dimensinfin.eveonline.neocom.domain.space.Station;
 import org.dimensinfin.eveonline.neocom.utility.NeoObjects;
 
 /**
- * Contains an abstract for the full processed blueprint data. Enough to report the user the quality of the blueprint but not all the details.
+ * Contains an abstract for the full Extended Blueprint data. Enough to report the user the quality of the blueprint but not all the details.
  * If a user has dozens of blueprints the amount of data to transfer and process will be high and time consuming. Better transfer an abstract and
  * then select a target that will retrieve the full data.
  *
@@ -109,12 +109,12 @@ public class ProcessedBlueprintSummary {
 			return this;
 		}
 
-		public ProcessedBlueprintSummary.Builder withOutput( final PricedResource output ) {
+		public ProcessedBlueprintSummary.Builder withOutput( final EsiType output ) {
 			if (null != output) {
 				this.onConstruction.outputTypeId = output.getTypeId();
 				this.onConstruction.outputTypeName = output.getName();
 				this.onConstruction.outputTypeIconURL = output.getTypeIconURL();
-				this.onConstruction.outputPrice = output.getMarketPrice();
+//				this.onConstruction.outputPrice = output.getMarketPrice();
 			}
 			return this;
 		}

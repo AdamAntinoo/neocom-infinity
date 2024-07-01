@@ -22,7 +22,7 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.servic
 import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetailsService;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRestError;
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendExceptionObsolete;
 import org.dimensinfin.eveonline.neocom.infinity.core.rest.NeoComCredentialService;
 import org.dimensinfin.eveonline.neocom.infinity.datamanagement.industry.processor.IndustryBuildProcessor;
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
@@ -153,11 +153,11 @@ public class FittingBuildConfigurationServiceV1 extends NeoComCredentialService 
 				Collectors.toList(),
 				list -> {
 					if (list.isEmpty())
-						throw new NeoComRuntimeBackendException( Error_FITTINGSEARCHRETURNEDFAILURE(
+						throw new NeoComRuntimeBackendExceptionObsolete( Error_FITTINGSEARCHRETURNEDFAILURE(
 								MessageFormat.format( "There is no fitting matching the requested id {0}", fittingId )
 						) );
 					if (1 != list.size())
-						throw new NeoComRuntimeBackendException( Error_FITTINGSEARCHRETURNEDFAILURE(
+						throw new NeoComRuntimeBackendExceptionObsolete( Error_FITTINGSEARCHRETURNEDFAILURE(
 								MessageFormat.format( "There are more than one fitting matching the requested id {0}", fittingId )
 						) );
 					return list.get( 0 );

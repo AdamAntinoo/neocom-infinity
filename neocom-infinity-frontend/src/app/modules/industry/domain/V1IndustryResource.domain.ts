@@ -1,5 +1,6 @@
 // - DOMAIN
 import { NeoCom } from "@domain/NeoCom.domain";
+/** @deprecated */
 export class IndustryResource extends NeoCom {
     public typeId: number = 34
     public name: string

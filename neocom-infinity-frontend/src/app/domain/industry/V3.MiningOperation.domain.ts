@@ -11,11 +11,6 @@ export class V3MiningOperation extends NeoCom {
     public solarSystem: V1SpaceLocation
     public resources: V1Stack[] = []
 
-    public constructor(values: Object = {}) {
-        super(values)
-        // this.jsonClass = this.identify()
-    }
-
     public identify(): string {
         return 'MiningOperation'
     }
@@ -50,6 +45,7 @@ export class V3MiningOperation extends NeoCom {
         this.solarSystem = solarSystem
         return this
     }
+
     public static Builder = class Builder {
         public miningOperation: V3MiningOperation
 

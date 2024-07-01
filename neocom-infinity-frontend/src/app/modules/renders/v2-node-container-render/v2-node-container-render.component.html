@@ -1,38 +1,46 @@
 <div (mouseenter)="mouseEnter(node)" style="position: relative;" (click)="onClick()">
-    <div class="row node-panel body-box">
-        <!-- {{node.jsonClass}} -->
-        <!-- BODY -->
-        <div style="width: 100%;">
-            <!-- P L A N E T A R Y -->
-            <v1-region *ngIf="node.jsonClass === 'LookupRegion'" [container]="container" [node]="node" [variant]="variant">
-            </v1-region>
-            <v1-solar-system *ngIf="node.jsonClass === 'LookupSolarSystem'" [container]="container" [node]="node" [variant]="variant">
-            </v1-solar-system>
-            <!-- I N D U S T R Y -->
-            <v1-bomresource *ngIf="node.jsonClass === 'BOMResource'" [container]="container" [node]="node" [variant]="variant">
-            </v1-bomresource>
-            <v1-bomgroup *ngIf="node.jsonClass === 'BOMGroup'" [container]="container" [node]="node" [variant]="variant">
-            </v1-bomgroup>
-            <v1-blueprint *ngIf="node.jsonClass === 'ProcessedBlueprintSummary'" [container]="container" [node]="node" [variant]="variant">
-            </v1-blueprint>
-            <v1-blueprint *ngIf="node.jsonClass === 'ProcessedBlueprint'" [container]="container" [node]="node" [variant]="variant">
-            </v1-blueprint>
-            <v1-bomresource *ngIf="node.jsonClass === 'IndustryResource'" [container]="container" [node]="node" [variant]="variant">
-            </v1-bomresource>
-            <!-- F I T T I N G -->
-            <v1-fitting-group *ngIf="node.jsonClass === 'FittingGroup'" [container]="container" [node]="node" [variant]="variant">
-            </v1-fitting-group>
-            <v1-fitting-build-content *ngIf="node.jsonClass === 'FittingBuildContentDao'" [container]="container" [node]="node" [variant]="variant">
-            </v1-fitting-build-content>
-            <v1-planetary-system *ngIf="node.jsonClass === 'KnownSystem'" [container]="container" [node]="node" [variant]="variant">
-            </v1-planetary-system>
-            <!-- L O Y A L T Y -->
-            <v1-loyalty-corporation *ngIf="node.jsonClass === 'LoyaltyCorporationV1'" [container]="container" [node]="node" [variant]="variant">
-            </v1-loyalty-corporation>
-            <v1-loyalty-offer *ngIf="node.jsonClass === 'LoyaltyOfferV1'" [container]="container" [node]="node" [variant]="variant">
-            </v1-loyalty-offer>
-            <v1-mining-operation *ngIf="node.jsonClass === 'MiningOperation'" [container]="container" [node]="node" [variant]="variant">
-            </v1-mining-operation>
-        </div>
+  <div class="row node-panel body-box">
+    <!-- {{node.jsonClass}} -->
+    <!-- BODY -->
+    <div style="width: 100%;">
+      <!-- P L A N E T A R Y -->
+      <v1-region *ngIf="node.jsonClass === 'LookupRegion'" [container]="container" [node]="node" [variant]="variant">
+      </v1-region>
+      <v1-solar-system *ngIf="node.jsonClass === 'LookupSolarSystem'" [container]="container" [node]="node" [variant]="variant">
+      </v1-solar-system>
+      <!-- I N D U S T R Y -->
+      <v1-bomresource *ngIf="node.jsonClass === 'BOMResource'" [container]="container" [node]="node" [variant]="variant">
+      </v1-bomresource>
+      <v1-bomgroup *ngIf="node.jsonClass === 'BOMGroup'" [container]="container" [node]="node" [variant]="variant">
+      </v1-bomgroup>
+      <v1-blueprint *ngIf="node.jsonClass === 'ProcessedBlueprintSummary'" [container]="container" [node]="node" [variant]="variant">
+      </v1-blueprint>
+      <v1-blueprint *ngIf="node.jsonClass === 'ProcessedBlueprint'" [container]="container" [node]="node" [variant]="variant">
+      </v1-blueprint>
+      <v1-bomresource *ngIf="node.jsonClass === 'IndustryResource'" [container]="container" [node]="node" [variant]="variant">
+      </v1-bomresource>
+      <!-- F I T T I N G -->
+      <v1-fitting-group *ngIf="node.jsonClass === 'FittingGroup'" [container]="container" [node]="node" [variant]="variant">
+      </v1-fitting-group>
+      <v1-fitting-build-content *ngIf="node.jsonClass === 'FittingBuildContentDao'" [container]="container" [node]="node"
+                                [variant]="variant">
+      </v1-fitting-build-content>
+      <v1-planetary-system *ngIf="node.jsonClass === 'KnownSystem'" [container]="container" [node]="node" [variant]="variant">
+      </v1-planetary-system>
+      <!-- L O Y A L T Y -->
+      <v1-loyalty-corporation *ngIf="node.jsonClass === 'LoyaltyCorporationV1'" [container]="container" [node]="node" [variant]="variant">
+      </v1-loyalty-corporation>
+      <v1-loyalty-offer *ngIf="node.jsonClass === 'LoyaltyOfferV1'" [container]="container" [node]="node" [variant]="variant">
+      </v1-loyalty-offer>
+      <v1-mining-operation *ngIf="node.jsonClass === 'MiningOperation'" [container]="container" [node]="node" [variant]="variant">
+      </v1-mining-operation>
+      <v1-blueprint-category *ngIf="node.jsonClass === 'BlueprintCategoryContainer'" [container]="container" [node]="node"
+                             [variant]="variant">
+      </v1-blueprint-category>
+      <v1-blueprint *ngIf="node.jsonClass === 'BlueprintItem'" [container]="container" [node]="node" [variant]="variant">
+      </v1-blueprint>
+      <v1-extended-blueprint-render *ngIf="node.jsonClass === 'ExtendedBlueprint'" [container]="container" [node]="node" [variant]="variant">
+      </v1-extended-blueprint-render>
     </div>
+  </div>
 </div>

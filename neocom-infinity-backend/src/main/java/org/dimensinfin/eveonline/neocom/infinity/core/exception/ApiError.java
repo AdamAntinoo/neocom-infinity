@@ -4,10 +4,10 @@ import java.time.Instant;
 import java.util.Objects;
 
 public class ApiError {
-	private final NeoComRuntimeBackendException neoComRuntimeBackendException;
+	private final NeoComRuntimeBackendExceptionObsolete neoComRuntimeBackendException;
 
 	// - C O N S T R U C T O R S
-	public ApiError( final NeoComRuntimeBackendException neoComRuntimeBackendException ) {
+	public ApiError( final NeoComRuntimeBackendExceptionObsolete neoComRuntimeBackendException ) {
 		this.neoComRuntimeBackendException = Objects.requireNonNull( neoComRuntimeBackendException );
 	}
 

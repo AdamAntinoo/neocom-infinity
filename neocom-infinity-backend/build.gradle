@@ -1,45 +1,23 @@
 // - P L U G I N S
-buildscript {
-    repositories {
-        mavenLocal()
-        mavenCentral()
-        jcenter()
-    }
-    dependencies {
-        classpath 'org.springframework.cloud:spring-cloud-contract-gradle-plugin:2.2.2.RELEASE'
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.2.1.RELEASE")
-    }
-    dependencies {
-        classpath "com.github.sedovalx.gradle:gradle-aspectj-binary:1.0.45"
-    }
-}
 plugins {
-    id 'org.springframework.boot' version '2.3.4.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
     id 'java'
-    id 'maven-publish'
+    id 'org.springframework.boot' version '2.7.18'
+    id 'io.spring.dependency-management' version '1.1.5'
     id 'project-report'
     id 'idea'
     id "org.sonarqube" version "3.0"
     id "org.hidetake.swagger.generator" version "2.18.2"
 }
-//apply plugin: 'com.github.sedovalx.gradle-aspectj-binary'
 
 repositories {
     mavenLocal()
     mavenCentral()
-    jcenter()
     maven { url 'https://jitpack.io' }
 }
 
 // - P R O J E C T   D E F I N I T I O N
 group = 'org.dimensinfin.eveonline.neocom'
-version = '0.20.3'
 archivesBaseName = 'neocom-infinity-backend'
-sourceCompatibility = '11'
-targetCompatibility = '11'
 
 // - S O U R C E S
 sourceSets {
@@ -67,11 +45,6 @@ sourceSets {
             srcDirs += 'src/acceptance/java'
         }
     }
-    acceptance {
-        resources {
-            srcDirs += 'src/acceptance/resources'
-        }
-    }
 }
 
 // - C O N F I G U R A T I O N S
@@ -88,6 +61,11 @@ configurations {
 
 springBoot {
     buildInfo()
+}
+bootJar {
+    manifest {
+        attributes 'Start-Class': 'org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendApplication'
+    }
 }
 processResources {
     filesMatching('application.properties') {
@@ -130,16 +108,6 @@ task swaggerDelete(type: Delete) {
 clean.doFirst {
     delete "$swaggerGenerated"
 }
-dependencies {
-    swaggerCodegen 'org.openapitools:openapi-generator-cli:3.0.0'     // or OpenAPI Generator.
-    compileOnly 'io.swagger:swagger-annotations:1.5.17'
-    compileOnly 'com.squareup.retrofit2:retrofit:2.3.0'
-    compileOnly 'com.squareup.retrofit2:converter-gson:2.3.0'
-    compileOnly 'com.squareup.retrofit2:converter-scalars:2.3.0'
-    compileOnly 'org.apache.oltu.oauth2:org.apache.oltu.oauth2.client:1.0.1'
-    compileOnly 'org.apache.httpcomponents:httpclient:4.5.4'
-    compileOnly 'org.threeten:threetenbp:1.4.4'
-}
 
 // - S O N A R C L O U D
 sonarqube {
@@ -154,20 +122,3 @@ sonarqube {
         property "sonar.login", "fd5ec42949cc79a93ef45dc873f14f95cf63c224"
     }
 }
-
-// - A S P E C T J
-//aspectjBinary {
-//    applyJavaPlugin = true
-//    weaveClasses {
-//        source = '1.8'
-//        target = '1.8'
-//        writeToLog = true
-//    }
-//}
-
-// - B O O T B U I L D I M A G E
-//tasks.named("bootBuildImage") {
-//    imageName = "neocom/backend"
-//    publishImage = true
-//    tags = "generated"
-//}

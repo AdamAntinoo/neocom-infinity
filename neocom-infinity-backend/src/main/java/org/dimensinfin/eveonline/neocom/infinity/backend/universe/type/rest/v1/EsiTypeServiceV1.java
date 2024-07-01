@@ -21,7 +21,7 @@ public class EsiTypeServiceV1 {
 	}
 
 	public EsiType getEsiType( final @NotNull Integer typeId ) {
-		final GetUniverseTypesTypeIdOk item = this.esiDataService.searchEsiItem4Id( typeId );
+		final GetUniverseTypesTypeIdOk item = this.esiDataService.searchEsiUniverseType4Id( typeId );
 		final GetUniverseGroupsGroupIdOk group = this.esiDataService.searchItemGroup4Id( item.getGroupId() );
 		return new EsiType.Builder()
 				.withTypeId( typeId )

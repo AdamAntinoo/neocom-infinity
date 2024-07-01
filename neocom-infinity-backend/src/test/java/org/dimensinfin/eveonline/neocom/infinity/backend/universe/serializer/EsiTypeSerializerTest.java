@@ -57,7 +57,7 @@ public class EsiTypeSerializerTest {
 				.withCategory( this.category )
 				.build();
 		final String json = this.objectMapper.writeValueAsString( esiType );
-		final String expected = "{\"typeId\":11535,\"name\":\"Magnetometric Sensor Cluster\",\"description\":\"Magnetometric Sensor Cluster\",\"group\":{\"categoryId\":0,\"groupId\":0,\"name\":null,\"published\":false,\"types\":[]},\"category\":{\"categoryId\":0,\"groups\":[],\"name\":\"Commodity\",\"published\":false},\"type\":{\"capacity\":0.0,\"description\":\"Magnetometric Sensor Cluster\",\"dogmaAttributes\":[],\"dogmaEffects\":[],\"graphicId\":0,\"groupId\":0,\"iconId\":0,\"marketGroupId\":0,\"mass\":0.0,\"name\":\"Magnetometric Sensor Cluster\",\"packagedVolume\":0.0,\"portionSize\":0,\"published\":false,\"radius\":0.0,\"typeId\":0,\"volume\":0.1},\"tech\":\"Tech I\",\"volume\":0.1,\"isBlueprint\":false,\"typeIconURL\":\"https://image.eveonline.com/Type/11535_64.png\",\"marketData\":{\"rel\":\"marketData\",\"href\":\"/api/v1/universe/market/consolidated/byregion/10000002/11535\"}}";
+		final String expected = "{\"jsonClass\":\"EsiType\",\"typeId\":11535,\"name\":\"Magnetometric Sensor Cluster\",\"marketGroupId\":0,\"groupId\":0,\"groupName\":null,\"categoryId\":0,\"categoryName\":\"Commodity\",\"capacity\":0.0,\"packagedVolume\":0.0,\"volume\":0.1,\"tech\":\"Tech I\",\"volume\":0.1,\"isBlueprint\":false}";
 		Assertions.assertEquals( expected, json );
 	}
 }

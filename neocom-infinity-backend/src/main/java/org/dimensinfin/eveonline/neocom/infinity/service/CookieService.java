@@ -5,7 +5,7 @@ import javax.servlet.http.Cookie;
 
 import org.springframework.stereotype.Service;
 
-import static org.dimensinfin.eveonline.neocom.infinity.infrastructure.config.GlobalAppConstants.TransportConstants.NEOCOM_COOKIE_NAME;
+import static org.dimensinfin.eveonline.neocom.infinity.infrastructure.config.GlobalAppConstants.NetworkConstants.NEOCOM_COOKIE_NAME;
 
 /**
  * @author Adam Antinoo (adamantinoo.git@gmail.com)

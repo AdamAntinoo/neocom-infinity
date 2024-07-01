@@ -1,0 +1,8 @@
+echo '>>> Setting project specific environment'
+export CHECKOUT_COMMAND='git clone https://github.com/AdamAntinoo/neocom-infinity.git'
+export PROJECT_NAME='neocom-infinity-backend'
+export PROJECT_CODE='neospring'
+export PORT=9500
+export JAVA_VERSION=17
+export JAVA_HOME=`java_versions --version 17`
+echo "<<<<<"

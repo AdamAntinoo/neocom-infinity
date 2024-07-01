@@ -20,7 +20,7 @@ Developments are mainly docused on Industry and on Market improvements and leavi
 
 # External Connections
 
-# 1. Authorization Flowa
+# 1. Authorization Flow
 The access tot ESO data requires to be authenticated on the Eve platform. This is authorized with a OAuth2 authentication flow. The ESI services have registered some application data to create this flow.
 
 The flow starts from the user interface with a customer request that initiates the authorization flow. We call the ***ESI login service*** (https://login.eveonline.com) with the application *unique code identifier* and the *callback URL* that should match what is configured for the registered application at ESI backend.
@@ -82,6 +82,15 @@ sequenceDiagram
     TokenAuthorizationGuard-->>dashboard-home-page: true
     TokenAuthorizationGuard-->>v1-start-page: false
 ```
+
+## New Authorization data
+To protect the backend from unauthorized access we need to use a JWT token that will not contain any ESI data. The NEOCOM-TOKEN is back and it should contain the IP address for the calling host when the authorization process was initiated. This way all requests are validated agains the existence of the JWT token and the match of the request IP with the authorized IP.
+
+Any ESI access will require of the ESI token that is only available from he Credentials repository at the Java backend. If any other service requires that ESI token it should then request it to the NIB backend and keep it only until token expiration.
+
+The best secure solution is to isilate the authorization and token management into a new backend service that will have no other endpoints available.
+
+
 The NeoCom cookie is deprecated and the only element to follow with authorization is the ESI token. This token will be used on all requests to any backend.
 Token expiration is one exception that should be added to the guard flow. If the token is expired there should be a new endpoint on the Java backend to generate a new token and publish it as the new cookie contents.
 
@@ -165,7 +174,32 @@ This is an example of the heavy hierarchical data distribution inside ESI. Just 
 **[EPIC-0.23] Create new endpoint to handle Esi locations and their representation at the UX.**
 * **[STORY-NIN]** Locations require additional endpoints to aggregate the location path.
 
-## 3. FrontEnd Link Resolution
+
+
+
+### Global Market Data Provider
+There is an ESI endpoint that will give average data for the price of every item on the Eve universe. The is is default data that can be used to replace the item value while a more detailed and focused location market data is being fetched. Initially the value of an item will be calculated from this global suurce and when the item is going to be used then we can select to retrieve a more detailed market data for an specific location.
+
+This will leverage a full development until the moment we really know what price information is relevant, like if the item's location is enought for that filtering or if we can only relay on main hubs. Probably for buying items we can search for a more specific place related to current location.
+
+Manufacturing is still quite undefined since the main element will be the station where the manufacturing process should take place. Once we know that place (for example through a user preference) we can then search for the station and the item on the market to see the manufacturing cost.
+
+
+### Preferred Market Hubs
+Whan calculation the prices for an item we are going to follow the next algorith:
+* First get the Global price for the item as default value.
+* Then get the region market hub.
+* Then calculate the distance to the region market hub.
+* If the distance is below a capsuleer preference value then this is a suitable trading place. Use it
+* If the distance is greater then get the item price for the system where the item is located.
+
+
+### Multiple locations
+When calculating the cost index for a blueprint we can find the case that the same blueprint is located on different stations on different systems at different regions. Effectively the cost index of that two blueprints is different and thenhas to be stored as two different elements on the list of cost index.
+
+So blueprints are aggregated by region at a first instance.
+
+# 3. FrontEnd Link Resolution
 EsiType -> EsiMarkletData
 
 
@@ -225,3 +259,62 @@ end
 This diagrams show the data dependencies for the simplest and base Fitting Build configuration where all items, from the hull to all the modules are just bought at the cheapest region market hub.
 
 Version 0.20.0 will then cover this structure and try to render all Fitting data for this initial configuration.
+
+# 4. Redis Cache Management
+
+Data on the Redis persistence instance should be serialized and timed. So it will behave as a real
+cache and items stored on it will be expired. This functionality is provided by Redis out of
+the box so I only need to craate the proper configurations to setup the different caches.
+
+Inside the Redis repository there are some sets of Maps and other Bucket srtructures. Maps allow to contain inside a single key a set of data
+indexed by the map key. Then we have two keys. The Redis record key and the map key.
+
+Redis set of keys is defined as follows:
+
+* EBM - Enhanced Blueprint Map. This key has a second parameter that is the **pilot** identifier. There is a key for each pilot with all the EBs for that pilot.
+* LOC - The cache for all found and accessed locations.
+* TYP - The cache for all ESI item definitions. This should reduce access to ESI Data Source because this data is never changed.
+
+## 4.1 EBM
+
+The EMB structure will store Extended Blueprints. One Extended Bluprint will have additional
+data about the blueprint, the possible output of the blueprint manufacture job
+and default market data records to do a comparative index profit evaluation.
+
+Data on this Map is expired so frontend accesses will get a correct list of blueprints and old
+blueprints moved or used will no longer be available on this list. Expiration is done on EB instance
+and not on the whole set of blueprints.
+
+The *BlueprintProcessorJob* will feed data into this Map scanning all the pilot available
+blueprints and packing and adding the additional data already commented.
+
+One EBM instance will then have a blueprint instance but for a blueprint pack (the **typeId** of the
+blueprint) and a secondary key for the **region** where that blueprint is located. The region
+key is added because identical blueprints located on different regions will use different
+MarketData sources and then can have a different profit ratio.
+
+EBM MarketData is referenced to the corresponding Region Market Hub that is a predefined list of
+stations.
+
+***This diagram depics the way to compose the Map key.***
+```mermaid
+graph TB
+    subgraph "EBM Key Structure"
+    EBM --> separator1[:]
+    separator1 --> region["region"]
+    region --> separator2[:]
+    separator2 --> blueprint["blueprint type"]
+end
+```
+4.2 LOC
+Locations will not be on a Map. They weill be stored on a Bucket and each location will have its own 
+key identifier. There is one exception to this rule but is not being implemented now that is the identification for different user structures that will have to be checked if the information provided changes from pilot to pilot (probably not).
+
+The LOC key then has this simple structure.
+```mermaid
+graph TB
+    subgraph "LOC Key Structure"
+    LOC --> separator1[:]
+    separator1 --> location["location identifier"]
+end
+```

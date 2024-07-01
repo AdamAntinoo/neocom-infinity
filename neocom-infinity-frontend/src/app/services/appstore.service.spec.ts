@@ -28,7 +28,7 @@ import { Credential } from '@domain/core/Credential.domain';
 import { environment } from '@env/environment';
 import { NeoComException } from '@innovative/domain/NeoComException';
 import { ExceptionCatalog } from '@app/platform/ExceptionCatalog';
-import { PlatformConstants } from '@env/PlatformConstants';
+import { PlatformConstants, STORAGE_LINKS } from '@env/PlatformConstants';
 
 xdescribe('SERVICE AppStoreService [Module: CORE]', () => {
     let service: AppStoreService;
@@ -136,7 +136,7 @@ xdescribe('SERVICE AppStoreService [Module: CORE]', () => {
                     "dataSource": "tranquility"
                 }
             );
-            isolationService.setToSession(PlatformConstants.CREDENTIAL_KEY, credential);
+            isolationService.setToSession(STORAGE_LINKS.CREDENTIAL_KEY, credential);
             const obtained: number = service.getCorporationIdentifier();
             expect(obtained).toBe(98384726);
         });
@@ -156,7 +156,7 @@ xdescribe('SERVICE AppStoreService [Module: CORE]', () => {
                     "dataSource": "tranquility"
                 }
             );
-            isolationService.setToSession(PlatformConstants.CREDENTIAL_KEY, credential);
+            isolationService.setToSession(STORAGE_LINKS.CREDENTIAL_KEY, credential);
             const obtained: number = service.getPilotIdentifier();
             expect(obtained).toBe(92223647);
         });

@@ -21,7 +21,7 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.Au
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRestError;
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendExceptionObsolete;
 import org.dimensinfin.eveonline.neocom.infinity.service.CookieService;
 import org.dimensinfin.eveonline.neocom.infinity.service.JWTTokenService;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
@@ -121,7 +121,7 @@ public class AuthorizationServiceV1 {
 		try {
 			this.credentialRepository.persist( credential );
 		} catch (final SQLException sqle) {
-			throw new NeoComRuntimeBackendException( NeoComRuntimeBackendException.errorUNEXPECTEDSQLEXCEPTION( sqle ) );
+			throw new NeoComRuntimeBackendExceptionObsolete( NeoComRuntimeBackendExceptionObsolete.errorUNEXPECTEDSQLEXCEPTION( sqle ) );
 		}
 		LogWrapper.info( MessageFormat.format( "Credential #{0}-{1} created successfully.",
 				credential.getAccountId() + "", credential.getAccountName() ) );
@@ -161,7 +161,7 @@ public class AuthorizationServiceV1 {
 				authorizationTokenRequest.getState(),
 				authorizationTokenRequest.getDataSourceName() );
 		if (!authorizationTokenRequest.getOauthFlow().verifyState( authorizationTokenRequest.getState() ))
-			throw new NeoComRuntimeBackendException( errorINVALIDSTATEVERIFICATION() );
+			throw new NeoComRuntimeBackendExceptionObsolete( errorINVALIDSTATEVERIFICATION() );
 		LogWrapper.exit( "Calling state verification: OK." );
 	}
 }

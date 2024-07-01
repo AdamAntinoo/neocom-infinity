@@ -21,8 +21,8 @@ describe('CONSTRUCTOR MiningOperationConstructor [Module: Constructors]', () => 
         const factory = new BackendFactory(resolver)
         expect(factory).toBeDefined()
     })
-    fdescribe('Functionality phase', () => {
-        it('when the constructor for a stack is called we get a completed stack', async () => {
+    describe('Functionality phase', () => {
+        xit('when the constructor for a stack is called we get a completed stack', async () => {
             expect(resolver).toBeDefined()
             const factory = new BackendFactory(resolver)
             expect(factory).toBeDefined()

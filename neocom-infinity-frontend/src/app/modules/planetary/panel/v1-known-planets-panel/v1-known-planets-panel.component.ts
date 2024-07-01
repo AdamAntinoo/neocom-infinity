@@ -36,7 +36,7 @@ export class V1KnownPlanetsPanelComponent extends BackgroundEnabledComponent imp
     public refresh(): void {
         this.clean()
         this.backendConnections.push(
-            this.planetaryDataService.apiv1_GetPlanets4System(this.system.getUniqueId(), new ResponseTransformer()
+            this.planetaryDataService.apiv1_GetPlanets4System(Number(this.system.getUniqueId()), new ResponseTransformer()
                 .setDescription('Transforms Planetary packed data into planet data records.')
                 .setTransformation((entrydata: any): PlanetaryData[] => {
                     let results: PlanetaryData[] = [];

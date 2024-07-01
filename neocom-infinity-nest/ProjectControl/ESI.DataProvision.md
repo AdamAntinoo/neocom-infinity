@@ -10,6 +10,14 @@ curl -X POST "https://esi.evetech.net/latest/universe/ids/?datasource=tranquilit
     }
   ]
 }
+{
+  "characters": [
+    {
+      "id": 92223647,
+      "name": "Beth Ripley"
+    }
+  ]
+}
 ## Gen Mining progress data
 characters/93813310/mining/?datasource=tranquility&page=1
 

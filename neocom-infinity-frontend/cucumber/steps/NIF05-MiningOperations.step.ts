@@ -4,10 +4,10 @@ import { HttpClient, HttpClientModule } from '@angular/common/http'
 import { NeoComCredential } from "@domain/NeoComCredential.domain";
 import { V1MiningOperationDto } from "neocom-domain";
 import { ConfigurationAdapter } from "@adapter/outbound/configuration/ConfigurationAdapter";
-import { ESISecureDataServiceAdapter } from "@adapter/outbound/esi-data-service/ESISecureDataServiceAdapter";
+import { V1SecuredProxyAdapter } from "@adapter/outbound/SecuredProxy/v1.SecuredProxy.adapter";
 
 describe('Feature: [NIF05]-Fetch mining data along the time.', () => {
-    let esiAdapter: ESISecureDataServiceAdapter
+    let esiAdapter: V1SecuredProxyAdapter
     let configuration: ConfigurationAdapter
     let credential: NeoComCredential
 
@@ -21,7 +21,7 @@ describe('Feature: [NIF05]-Fetch mining data along the time.', () => {
                 { provide: HttpClient, useClass: HttpClient }
             ]
         }).compileComponents()
-        esiAdapter = TestBed.inject(ESISecureDataServiceAdapter)
+        esiAdapter = TestBed.inject(V1SecuredProxyAdapter)
     })
 
     describe('[NIF05.01]-Get the initial set of mining data. This is controlled by the character being used for retrieval.', () => {
@@ -44,7 +44,7 @@ describe('Feature: [NIF05]-Fetch mining data along the time.', () => {
                 case "Get Mining Data": {
                     console.log('Get Mining Data-><')
                     const pilotId: number = 34565
-                    const sut = esiAdapter.v1_apiEsiMiningOperationsData(pilotId)
+                    const sut = esiAdapter.v3_apiNeocomMiningOperationsData(pilotId)
                     sut.subscribe((response: V1MiningOperationDto[]) => {
                         //     console.log('response->' + JSON.stringify(response))
                         //     expect(response).toBeDefined()

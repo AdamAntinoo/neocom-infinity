@@ -8,12 +8,18 @@ databaseChangeLog:
             tableName: LoyaltyOffers
             columns:
               - column:
-                  name: offerId
-                  type: int
+                  name: id
+                  type: varchar(21)
                   constraints:
                     primaryKey: true
                     nullable: false
                     updatable: false
+              - column:
+                  name: offerId
+                  type: int
+                  constraints:
+                    nullable: true
+                    updatable: true
               - column:
                   name: typeId
                   type: int

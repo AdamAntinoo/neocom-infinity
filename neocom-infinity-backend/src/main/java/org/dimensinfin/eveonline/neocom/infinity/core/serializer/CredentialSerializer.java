@@ -19,6 +19,7 @@ public class CredentialSerializer extends JsonSerializer<Credential> {
 
 		jgen.writeStringField( "jsonClass", value.getJsonClass() );
 		jgen.writeStringField( "uniqueCredential", value.getUniqueCredential() );
+		jgen.writeStringField( "uniqueId", value.getUniqueCredential() );
 		jgen.writeNumberField( "accountId", value.getAccountId() );
 		jgen.writeStringField( "accountName", value.getAccountName() );
 		jgen.writeStringField( "dataSource", value.getDataSource() );

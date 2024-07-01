@@ -2,6 +2,7 @@ package org.dimensinfin.eveonline.neocom.infinity.config;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import org.springframework.boot.actuate.autoconfigure.metrics.MeterRegistryCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -12,8 +13,7 @@ import org.dimensinfin.eveonline.neocom.database.repositories.AssetRepository;
 import org.dimensinfin.eveonline.neocom.database.repositories.CredentialRepository;
 import org.dimensinfin.eveonline.neocom.database.repositories.PilotPreferencesRepository;
 import org.dimensinfin.eveonline.neocom.database.repositories.SDERepository;
-import org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendDependenciesModule;
-import org.dimensinfin.eveonline.neocom.infinity.service.RedisDataStoreImplementation;
+import org.dimensinfin.eveonline.neocom.infinity.infrastructure.adapters.outbound.datastore.RedisDataStoreImplementation;
 import org.dimensinfin.eveonline.neocom.infinity.service.SBConfigurationService;
 import org.dimensinfin.eveonline.neocom.infinity.service.SBFileSystemService;
 import org.dimensinfin.eveonline.neocom.infinity.service.SBNeoComDBService;
@@ -21,32 +21,46 @@ import org.dimensinfin.eveonline.neocom.infinity.service.SBSDEDatabaseService;
 import org.dimensinfin.eveonline.neocom.loyalty.persistence.LoyaltyOffersRepository;
 import org.dimensinfin.eveonline.neocom.loyalty.service.LoyaltyService;
 import org.dimensinfin.eveonline.neocom.market.service.MarketService;
+import org.dimensinfin.eveonline.neocom.ports.IDataStorePort;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
 import org.dimensinfin.eveonline.neocom.provider.IFileSystem;
 import org.dimensinfin.eveonline.neocom.service.DMServicesDependenciesModule;
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
-import org.dimensinfin.eveonline.neocom.service.IDataStore;
 import org.dimensinfin.eveonline.neocom.service.IStoreCache;
 import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;
+import org.dimensinfin.eveonline.neocom.service.LocationFactory;
 import org.dimensinfin.eveonline.neocom.service.MemoryStoreCacheService;
 import org.dimensinfin.eveonline.neocom.service.ResourceFactory;
 import org.dimensinfin.eveonline.neocom.service.RetrofitService;
 import org.dimensinfin.logging.LogWrapper;
+
+import io.micrometer.core.instrument.MeterRegistry;
 
 /**
  * Configure the Guide dependencies defined at the Data Management library.
  */
 @Configuration
 public class NeoComDependencyConfig {
+	public static MeterRegistry globalRegistry;
 	private final Injector injector; // The global Guice injector singleton
 
 	// Guice modules are initialized before the spring context completes
 	{
 		LogWrapper.info( "Creating Injector for Guice dependencies..." );
-		this.injector = Guice.createInjector( new DMServicesDependenciesModule(), new NeoComInfinityBackendDependenciesModule() );
-		this.injector.getInstance( ESIDataService.class );
+		this.injector = Guice.createInjector(
+				new DMServicesDependenciesModule(),
+				new NeoComInfinityBackendDependenciesModule()
+		);
 	}
 
+	@Bean
+	public MeterRegistryCustomizer<MeterRegistry> metricsCommonTags() {
+		LogWrapper.info( "Constructing bean"+"MeterRegistryCustomizer<MeterRegistry>" );
+		return (registry) -> {
+			globalRegistry=registry;
+			registry.config().commonTags("application", "neocom-infinity-backend", "appcode", "NIB");
+		};
+	}
 	@Bean
 	public IConfigurationService dependency_01_IConfigurationService() {
 		LogWrapper.enter();
@@ -75,6 +89,12 @@ public class NeoComDependencyConfig {
 	public SDERepository dependency_11_SDERepository() {
 		LogWrapper.enter();
 		return this.injector.getInstance( SDERepository.class );
+	}
+
+	@Bean
+	public LocationFactory dependency_12_LocationFactory() {
+		LogWrapper.enter();
+		return this.injector.getInstance( LocationFactory.class );
 	}
 
 	@Bean
@@ -114,7 +134,7 @@ public class NeoComDependencyConfig {
 	}
 
 	@Bean
-	public IDataStore dependency_18_IDataStore() {
+	public IDataStorePort dependency_18_IDataStore() {
 		LogWrapper.enter();
 		return this.injector.getInstance( RedisDataStoreImplementation.class );
 	}

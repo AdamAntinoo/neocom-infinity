@@ -28,7 +28,18 @@ export class V1BlueprintDto extends Record {
 	public materialEfficiency: number = 0
 	public timeEfficiency: number = 0
 	public runs: number = 1
+	public identicalQuantity: number = 1
 	public original: boolean = false
+
+	public isIdentical(blueprint: V1BlueprintDto): boolean {
+		return (
+			this.storageLocation?.locationLink === blueprint.storageLocation?.locationLink &&
+			this.materialEfficiency === blueprint.materialEfficiency &&
+			this.timeEfficiency === blueprint.timeEfficiency &&
+			this.runs === blueprint.runs &&
+			this.typeLink === blueprint.typeLink
+		)
+	}
 
 	public static Builder = class Builder {
 		public constructingInstance: V1BlueprintDto

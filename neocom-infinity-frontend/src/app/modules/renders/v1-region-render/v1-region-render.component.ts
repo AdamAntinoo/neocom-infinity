@@ -21,8 +21,8 @@ export class V1RegionRenderComponent extends V2NodeContainerRenderComponent {
     public getNode(): LookupRegion {
         return this.node as LookupRegion
     }
-    public getUniqueId(): number{
-        return 0
+    public getUniqueId(): string{
+        return 0+''
     }
     public getName(): string {
         if (this.node) return this.getNode().name

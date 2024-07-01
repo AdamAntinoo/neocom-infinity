@@ -13,7 +13,6 @@ import org.dimensinfin.eveonline.neocom.esiswagger.model.GetMarketsRegionIdOrder
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.BuildAction;
 import org.dimensinfin.eveonline.neocom.infinity.backend.industry.fitting.domain.BuyBuildAction;
 import org.dimensinfin.eveonline.neocom.infinity.backend.market.converter.GetMarketsRegionIdOrdersToMarketOrderConverter;
-import org.dimensinfin.eveonline.neocom.provider.ESIDataProvider;
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
 import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;
 
@@ -57,7 +56,7 @@ public class IndustryBuildProcessor {
 		//				.sorted( Comparator.comparingDouble( GetMarketsRegionIdOrders200Ok::getPrice ) )
 		//				.collect( this.toSingleton() );
 		return new BuyBuildAction.Builder()
-				.withItem( this.esiDataService.searchEsiItem4Id( typeId ) )
+				.withItem( this.esiDataService.searchEsiUniverseType4Id( typeId ) )
 				.withCorporationHome( this.accessCorporationHomeStation() )
 				.withMarketOrder( new GetMarketsRegionIdOrdersToMarketOrderConverter( this.locationCatalogService ).convert( markerOrderOk ) )
 				.withQuantity( quantity )

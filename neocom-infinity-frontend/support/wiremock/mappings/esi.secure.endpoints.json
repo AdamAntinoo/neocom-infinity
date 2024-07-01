@@ -1,0 +1,52 @@
+{
+  "mappings": [
+    {
+      "priority": 10,
+      "request": {
+        "method": "GET",
+        "urlPathTemplate": "/api/v3/neocom/character/miningoperations",
+        "cookies": {
+          "ESI-DATA-SERVICES": {
+            "matches": ".*"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "perico.mining.03.08.01.json",
+        "headers": {
+          "Content-Type": "application/json",
+          "Allow": "OPTIONS, GET",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Origin, Authorization, Accept, Accept-Encoding, X-Auth-Token, content-type",
+          "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
+          "cache-control": "public"
+        }
+      }
+    },
+    {
+      "priority": 10,
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/api/v3/neospring/character/miningoperations/session/(.*)",
+        "headers": {
+          "Authorization": {
+            "matches": ".*"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "perico.extendedblueprints.json",
+        "headers": {
+          "Content-Type": "application/json",
+          "Allow": "OPTIONS, GET",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Origin, Authorization, Accept, Accept-Encoding, X-Auth-Token, content-type",
+          "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
+          "cache-control": "public"
+        }
+      }
+    }
+  ]
+}

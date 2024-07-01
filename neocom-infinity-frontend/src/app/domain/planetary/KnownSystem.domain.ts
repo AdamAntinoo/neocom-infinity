@@ -20,8 +20,8 @@ export class KnownSystem extends NeoCom {
     private transform(): void { }
 
     // - G E T T E R S
-    public getUniqueId(): number {
-        return this.systemId
+    public getUniqueId(): string {
+        return this.systemId+''
     }
     public getName(): string {
         return this.systemName

@@ -1,3 +1,4 @@
+/** @deprecated */
 export const platformConstants = {
     // - C O N S T A N T S
     // NEOCOM_V1: '/api/v1/neocom',

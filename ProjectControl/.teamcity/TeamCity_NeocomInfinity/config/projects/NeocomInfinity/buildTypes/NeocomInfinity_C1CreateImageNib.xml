@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<build-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="fa0c683a-0c79-49c6-8847-f4197ed822a0" xsi:noNamespaceSchemaLocation="https://www.jetbrains.com/teamcity/schemas/2021.1/project-config.xsd">
+  <name>C1.Create Image NIB</name>
+  <description>Create a new docker image for the application neocom-infinity-nest</description>
+  <settings ref="NeocomInfinity_CCreateImage">
+    <options>
+      <option name="artifactRules" value="neocom-infinity-backend/build/libs =&gt; neocom-infinity-backend/build/libs&#xA;neocom-infinity-backend/.deploy =&gt; neocom-infinity-backend/.deploy" />
+    </options>
+    <parameters>
+      <param name="PORT" value="9500" />
+      <param name="PROJECT_CODE" value="neospring" />
+      <param name="PROJECT_NAME" value="neocom-infinity-backend" />
+    </parameters>
+    <build-runners>
+      <runner id="Generate_image_NIN" name="S2. Generate image NIB" type="simpleRunner">
+        <parameters>
+          <param name="script.content"><![CDATA[# G E N E R A T E   D O C K E R   I M A G E
+# Create a docker image for the SpringBoot backend
+#
+export PROJECT_ROOT=%teamcity.build.checkoutDir%/%PROJECT_NAME%
+cd $PROJECT_ROOT
+
+# - generate banner
+echo '>>> Creating banner'
+echo 'WORKING_DIR->'$WORKING_DIR
+export BANNER_LOCATION=$WORKING_DIR/src/main/resources/app-banner.txt
+echo 'BANNER_LOCATION->'$BANNER_LOCATION
+figlet %PROJECT_CODE% $VERSION > $BANNER_LOCATION
+cat $BANNER_LOCATION
+figlet $ENV
+echo "<<<<<"
+
+# - export environment properties
+export PORT=%PORT%
+export ENVIRONMENT=%env.ENVIRONMENT%
+export HOST_IP="host.docker.internal"
+export REDIS_CACHE_URL="redis://${HOST_IP}:5250"
+export SPRING_DATASOURCE_URL="jdbc:postgresql://${HOST_IP}:5240/neocom"
+export SPRING_DATASOURCE_USERNAME='adamantinoo'
+export SPRING_DATASOURCE_PASSWORD='z.iliada.2020'
+export NEOCOM_DATABASE_URL="$SPRING_DATASOURCE_URL?user=$SPRING_DATASOURCE_USERNAME&password=$SPRING_DATASOURCE_PASSWORD"
+echo "##teamcity[setParameter name='env.HOST_IP' value='$HOST_IP']"
+echo "##teamcity[setParameter name='env.REDIS_CACHE_URL' value='$REDIS_CACHE_URL']"
+echo "##teamcity[setParameter name='env.SPRING_DATASOURCE_URL' value='$SPRING_DATASOURCE_URL']"
+echo "##teamcity[setParameter name='env.SPRING_DATASOURCE_USERNAME' value='$SPRING_DATASOURCE_USERNAME']"
+echo "##teamcity[setParameter name='env.NEOCOM_DATABASE_URL' value='$NEOCOM_DATABASE_URL']"
+
+# - build the jar
+echo '>>> Building image'
+export JAR_VERSION=$SEMVERSION
+echo "JAR_VERSION->$JAR_VERSION"
+echo "##teamcity[setParameter name='env.JAR_VERSION' value='$JAR_VERSION']"
+export JAVA_HOME=%env.JAVA_HOME%
+export PROFILE=%env.ENVIRONMENT%
+./gradlew -Pversion=$JAR_VERSION clean bootJar || exit 1
+cp $PROJECT_ROOT/build/libs/%PROJECT_NAME%-$JAR_VERSION.jar $PROJECT_ROOT/build/libs/neocom-backend.jar || exit 1
+
+# - build the image
+export DEPLOY_DIR=$WORKING_DIR/.deploy
+export JAVA_OPTS="--add-opens java.base/java.lang=ALL-UNNAMED -Xms100m -Xmx2g"
+cat $DEPLOY_DIR/dockerfile.template | envsubst > $DEPLOY_DIR/Dockerfile
+docker build -f $DEPLOY_DIR/Dockerfile -t $IMAGE_NAME $WORKING_DIR]]></param>
+          <param name="teamcity.step.mode" value="default" />
+          <param name="use.custom.script" value="true" />
+        </parameters>
+      </runner>
+      <runner id="Publish_Tag_the_image" name="Publish &amp; Tag the image" type="simpleRunner">
+        <parameters>
+          <param name="script.content"><![CDATA[# P U B L I S H    I M A G E
+# Publish the image to the external repository
+# - tag the image
+export TAG=%PROJECT_NAME%:%env.VERSION%
+echo ">>> Tagging image->adamantinoo/$TAG"
+docker tag %env.IMAGE_NAME% adamantinoo/$TAG
+docker tag %env.IMAGE_NAME% $TAG
+docker push adamantinoo/$TAG
+echo "<<<<<"]]></param>
+          <param name="teamcity.step.mode" value="default" />
+          <param name="use.custom.script" value="true" />
+        </parameters>
+      </runner>
+    </build-runners>
+    <vcs-settings>
+      <vcs-entry-ref root-id="NeocomInfinity_HttpsGithubComAdamAntinooNeocomInfinityGitRefsHeadsMaster" />
+    </vcs-settings>
+    <requirements />
+    <build-triggers />
+    <cleanup />
+  </settings>
+</build-type>
+

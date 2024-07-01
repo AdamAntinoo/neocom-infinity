@@ -1,14 +1,19 @@
 // - P R O D U C T   V E R S I O N S
 ext {
     loggerVersion = '1.7.26'
-    retrofitVersion = '2.5.0'
-    micrometerVersion = '1.1.0'
-    ormliteVersion = '4.48'
+    retrofitVersion = '2.11.0'
+    micrometerVersion = '1.13.1'
+    ormliteVersion = '6.1'
     resilience4jVersion = '0.17.0'
     springfox = '2.9.2'
     jodaTimeVersion = '2.10.5'
-    jacksonVersion = '2.9.8'
-    dataManagementVersion = '0.21.0'
+    jacksonVersion = '2.17.1'
+    dataManagementVersion = '0.29.7'
+    cucumberVersion = '7.18.0'
+    lombokVersion = '1.18.32'
+    junitVersion = '5.10.2'
+    mockitoVersion = '5.12.0'
+    powerMockVersion = '2.0.9'
 }
 
 // - S P R I N G B O O T
@@ -16,6 +21,13 @@ ext {
     set('springBootAdminVersion', "2.3.0")
     set('springCloudVersion', "Hoxton.SR8")
     set('testcontainersVersion', "1.14.3")
+}
+dependencyManagement {
+    imports {
+        mavenBom "de.codecentric:spring-boot-admin-dependencies:${springBootAdminVersion}"
+        mavenBom "org.testcontainers:testcontainers-bom:${testcontainersVersion}"
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
 }
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
@@ -25,53 +37,43 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-hateoas'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'de.codecentric:spring-boot-admin-starter-client'
-    implementation 'org.liquibase:liquibase-core'
-    implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j'
+    // M E T R I C S
+    runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
+    // D A T A B A S E
+    implementation 'org.liquibase:liquibase-core:4.28.0'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-}
-dependencyManagement {
-    imports {
-        mavenBom "de.codecentric:spring-boot-admin-dependencies:${springBootAdminVersion}"
-        mavenBom "org.testcontainers:testcontainers-bom:${testcontainersVersion}"
-        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
-    }
 }
 
 // - C O R E
 dependencies {
-    implementation 'net.logstash.logback:logstash-logback-encoder:4.11' // Configurable logging
     implementation 'javax.validation:validation-api:2.0.1.Final' // Validation annotations
-    implementation 'commons-codec:commons-codec:1.10' // Base64 decoding
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1' // Retrofit logs
+    implementation 'commons-codec:commons-codec:1.17.0' // Base64 decoding
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.12.0' // Retrofit logs
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion" // OAuth2 authentication
     implementation "com.squareup.retrofit2:converter-jackson:$retrofitVersion" // HTTP encapsulation and swagger support
-    implementation "com.squareup.retrofit2:converter-gson:2.4.0"
-    implementation 'com.google.inject:guice:4.1.0' // Google guice dependency injection framework
-    implementation 'com.jcabi:jcabi-aspects:0.22.6' // Useful annotations for methods
-    implementation 'org.apache.commons:commons-lang3:3.9'
-    implementation 'com.auth0:java-jwt:3.10.3' // JWT processing library
-    implementation 'org.projectlombok:lombok:1.18.32'
-    // M E T R I C S
-    runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation 'com.google.inject:guice:7.0.0' // Google guice dependency injection framework
+    implementation 'com.jcabi:jcabi-aspects:0.26.0' // Useful annotations for methods
+    implementation 'org.apache.commons:commons-lang3:14.0'
+    implementation 'com.auth0:java-jwt:4.4.0' // JWT processing library
+    annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+    compileOnly "org.projectlombok:lombok:$lombokVersion"
     // L O G G I N G
-    implementation "com.github.piomin:logstash-logging-spring-boot-starter:1.2.2.RELEASE"
+    implementation 'net.logstash.logback:logstash-logback-encoder:7.4' // Configurable logging
     // D A T A B A S E
-    implementation 'com.vladmihalcea:hibernate-types-52:2.4.2'
-    runtimeOnly 'org.postgresql:postgresql'
+    implementation 'com.vladmihalcea:hibernate-types-52:2.21.1'
+    runtimeOnly 'org.postgresql:postgresql:42.7.3'
     implementation "com.j256.ormlite:ormlite-jdbc:$ormliteVersion"
-    implementation 'org.xerial:sqlite-jdbc:3.16.1' // Database dependency to read sde sqlite database.
-    implementation 'org.xerial:sqlite-jdbc:3.16.1' // Database dependency to read sde sqlite database.
+    implementation 'org.xerial:sqlite-jdbc:3.46.0.0' // Database dependency to read sde sqlite database.
 }
 // - T E M P O R A L   D E P E N D E N C I E S
 dependencies {
-    implementation "joda-time:joda-time:$jodaTimeVersion" // Just use it until the next DataManagement version has the correct dependencies
     implementation "com.fasterxml.jackson.datatype:jackson-datatype-joda:$jacksonVersion"
     implementation "com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion"
 }
 // - E N V I R O N M E N T   D E P E N D E N C I E S
-def profile = System.getenv('PROFILE') ?: "development"
+def profile = System.getenv('PROFILE') ?: "deployment"
 def envScript = file("$profile-dependencies.gradle")
 println "Applying [$profile] configuration"
 apply from: envScript
@@ -79,30 +81,32 @@ apply from: envScript
 dependencies {
     // C O R E   D E P E N D E N C I E S
     implementation 'org.apache.commons:commons-lang3:3.9'
-    implementation 'com.annimon:stream:1.1.9' // Android compatible streams
+    implementation 'com.annimon:stream:1.2.2' // Android compatible streams
     implementation 'com.google.inject:guice:4.2.3' // Google injection library compatible with Android
-    implementation 'org.redisson:redisson:3.27.2' // Redisson Redis client to implements second level cache
+    implementation 'org.redisson:redisson:3.31.0' // Redisson Redis client to implements second level cache
     // D I M E N S I N F I N
     implementation 'org.bitbucket.dimensinfin:core-lib:3.2.1'
-    implementation 'org.bitbucket.dimensinfin:annotations:0.3.1'
-    implementation 'org.bitbucket.evedimensinfin.neocom-java-core:esi.swagger-api:0.20.6'
+    implementation 'org.bitbucket.dimensinfin:annotations:0.3.2'
+    implementation 'com.github.AdamAntinoo.neocom-java-core:esi.swagger-api:0.20.6'
 }
 
 // - U N I T   T E S T I N G
 test {
     useJUnitPlatform()
-    systemProperty "cucumber.filter.tags", System.getProperty("cucumber.filter.tags")
 }
 dependencies {
     // C O R E
-    testImplementation 'nl.jqno.equalsverifier:equalsverifier:3.1.10'
-//    testImplementation "com.squareup.retrofit2:converter-gson:2.4.0"
+    testImplementation 'nl.jqno.equalsverifier:equalsverifier:3.16.1'
     // T E S T I N G
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.4.2'
-    testImplementation 'org.junit.vintage:junit-vintage-engine:5.4.2'
-    testImplementation 'org.mockito:mockito-core:3.7.0'
-    testImplementation 'org.mockito:mockito-inline:3.7.0'
-    testImplementation 'com.openpojo:openpojo:0.8.12'
+    testImplementation "org.junit.platform:junit-platform-suite:1.10.2"
+    testImplementation "org.junit.jupiter:junit-jupiter:$junitVersion"
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
+    testImplementation "org.powermock:powermock-module-junit4:$powerMockVersion"
+    testImplementation "org.powermock:powermock-api-mockito2:$powerMockVersion"
+//    testImplementation 'org.powermock:powermock-api:2.0.9'
+//    testImplementation 'org.powermock:powermock-core:2.0.9'
+    testImplementation 'com.openpojo:openpojo:0.9.1'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
@@ -110,10 +114,6 @@ dependencies {
 
 // - I N T E G R A T I O N   T E S T I N G
 dependencies {
-    integrationImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-    }
-    integrationImplementation 'org.junit.jupiter:junit-jupiter-api'
     integrationImplementation 'org.awaitility:awaitility:3.1.6'
     integrationImplementation 'org.testcontainers:junit-jupiter'
 }
@@ -123,7 +123,11 @@ ext {
     cucumberVersion = '6.9.1'
 }
 dependencies {
+    acceptanceAnnotationProcessor "org.projectlombok:lombok:$lombokVersion"
+    acceptanceCompileOnly "org.projectlombok:lombok:$lombokVersion"
+    acceptanceImplementation 'org.postgresql:postgresql:42.7.3'
+    acceptanceImplementation "io.cucumber:cucumber-spring:$cucumberVersion"
     acceptanceImplementation "io.cucumber:cucumber-java:$cucumberVersion"
-    acceptanceImplementation "io.cucumber:cucumber-junit:$cucumberVersion"
-    acceptanceImplementation "io.cucumber:cucumber-picocontainer:$cucumberVersion"
+    acceptanceImplementation "io.cucumber:cucumber-junit-platform-engine:$cucumberVersion"
+    acceptanceImplementation 'org.junit.vintage:junit-vintage-engine:5.4.2'
 }
