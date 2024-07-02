@@ -5,8 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.dimensinfin.eveonline.neocom.backend.service.logger.NeoComLogger;
 import org.dimensinfin.eveonline.neocom.database.core.ISDEStatement;
-import org.dimensinfin.eveonline.neocom.service.logger.NeoComLogger;
 
 public class SBRawStatement implements ISDEStatement {
 	private final PreparedStatement prepStmt;

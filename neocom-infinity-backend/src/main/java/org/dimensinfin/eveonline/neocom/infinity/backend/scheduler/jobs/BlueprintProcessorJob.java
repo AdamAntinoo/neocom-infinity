@@ -8,6 +8,7 @@ import java.util.Set;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import org.dimensinfin.eveonline.neocom.backend.service.logger.NeoComLogger;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.domain.EsiType;
 import org.dimensinfin.eveonline.neocom.domain.space.SpaceLocation;
@@ -20,10 +21,8 @@ import org.dimensinfin.eveonline.neocom.industry.domain.Resource;
 import org.dimensinfin.eveonline.neocom.infinity.app.functional.BlueprintPacker;
 import org.dimensinfin.eveonline.neocom.infinity.infrastructure.config.LogMessageCatalog;
 import org.dimensinfin.eveonline.neocom.market.MarketData;
-import org.dimensinfin.logging.LogWrapper;
 
 import static org.dimensinfin.eveonline.neocom.utility.GlobalWideConstants.REDIS_SEPARATOR;
-
 
 public class BlueprintProcessorJob extends NeoComBackendJob {
 	private Credential credential;
@@ -48,7 +47,7 @@ public class BlueprintProcessorJob extends NeoComBackendJob {
 	 */
 	@Override
 	public Boolean call() throws Exception {
-		LogWrapper.enter();
+		NeoComLogger.enter();
 		try {
 			// Get the list of blueprints and then pack them with identical characteristics.
 			final List<GetCharactersCharacterIdBlueprints200Ok> blueprints = this.jobServicePackager.getEsiDataService()
@@ -76,7 +75,7 @@ public class BlueprintProcessorJob extends NeoComBackendJob {
 					.filter( bpLoc -> { // Remove any blueprint that cannot be reached because the location is not present. This should be notified.
 						if ( bpLoc.getLocation().isPresent() ) return true;
 						else {
-							LogWrapper.info( LogMessageCatalog.BLUEPRINT_LOCATION_NOT_PRESENT.getResolvedMessage(
+							NeoComLogger.info( LogMessageCatalog.BLUEPRINT_LOCATION_NOT_PRESENT.getResolvedMessage(
 									bpLoc.getBlueprint().getTypeId(),
 									bpLoc.getBlueprint().getLocationId()
 							) );
@@ -128,14 +127,14 @@ public class BlueprintProcessorJob extends NeoComBackendJob {
 								.build();
 					} )
 					.forEach( blueprint -> {
-						LogWrapper.info( "Extended Blueprint->" + blueprint.toString() );
+						NeoComLogger.info( "Extended Blueprint->" + blueprint.toString() );
 						this.jobServicePackager.getDataStoreService()
 								.updateProcessedBlueprint( this.credential.getAccountId(), blueprint );
 					} );
 		} catch (final Exception rte) {
-			LogWrapper.error( rte );
+			NeoComLogger.error( rte );
 		} finally {
-			LogWrapper.exit();
+			NeoComLogger.exit();
 		}
 		return true;
 	}

@@ -28,7 +28,6 @@ public class NeoComInfinityBackendDependenciesModule extends AbstractModule {
 	private static final String ENV_PROPERTIES_DIRECTORY = "PROPERTIES_DIRECTORY";
 	private static final String ENV_APPLICATION_DIRECTORY = "APPLICATION_DIRECTORY";
 	private static final String ENV_SDE_DATABASE = "SDE_DATABASE_PATH";
-	private static final String ENV_NEOCOM_DATABASE_URL = "NEOCOM_DATABASE_URL";
 	public static final String ENV_REDIS_DATABASE_URL = "REDIS_URL";
 	private static final String DEFAULT_PROPERTIES_DIRECTORY = "/build/resources/main/properties";
 	private static final String DEFAULT_APPLICATION_DIRECTORY = "./NeoCom.Infinity";
@@ -41,7 +40,9 @@ public class NeoComInfinityBackendDependenciesModule extends AbstractModule {
 		String propDirectory = System.getenv( ENV_PROPERTIES_DIRECTORY );
 		String appDirectory = System.getenv( ENV_APPLICATION_DIRECTORY );
 		String sdeDatabasePath = System.getenv( ENV_SDE_DATABASE );
-		String neoComDatabaseUrl = System.getenv( ENV_NEOCOM_DATABASE_URL );
+		String neoComDatabaseUrl = System.getenv( "SPRING_DATASOURCE_URL")
+				+"?user="+System.getenv("SPRING_DATASOURCE_USERNAME")
+				+"&password="+System.getenv("SPRING_DATASOURCE_PASSWORD");
 		String redisDatabaseUrl = System.getenv( ENV_REDIS_DATABASE_URL );
 		if (null == propDirectory) propDirectory = DEFAULT_PROPERTIES_DIRECTORY;
 		if (null == appDirectory) appDirectory = DEFAULT_APPLICATION_DIRECTORY;

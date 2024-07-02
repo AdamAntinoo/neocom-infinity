@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import org.dimensinfin.eveonline.neocom.backend.service.logger.NeoComLogger;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComSBException;
 import org.dimensinfin.eveonline.neocom.infinity.credential.persistence.SupportCredentialRepository;
 import org.dimensinfin.eveonline.neocom.infinity.support.client.CredentialCountResponse;
-import org.dimensinfin.eveonline.neocom.service.logger.NeoComLogger;
 
 @Profile({ "acceptance", "dev" })
 @Service

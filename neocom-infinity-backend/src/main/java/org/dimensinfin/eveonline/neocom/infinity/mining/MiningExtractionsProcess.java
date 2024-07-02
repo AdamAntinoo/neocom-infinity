@@ -4,10 +4,10 @@ import java.util.Objects;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import org.dimensinfin.eveonline.neocom.backend.service.logger.NeoComLogger;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.infinity.backend.scheduler.jobs.NeoComBackendJob;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComSBException;
-import org.dimensinfin.eveonline.neocom.service.logger.NeoComLogger;
 
 public class MiningExtractionsProcess extends NeoComBackendJob {
 	private Credential credential;
