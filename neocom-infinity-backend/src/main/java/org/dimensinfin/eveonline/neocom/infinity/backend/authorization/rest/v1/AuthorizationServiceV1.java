@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import org.dimensinfin.annotation.TimeElapsed;
+import org.dimensinfin.eveonline.neocom.adapter.httpclient.RetrofitConfiguration;
 import org.dimensinfin.eveonline.neocom.auth.NeoComOAuth2Flow;
 import org.dimensinfin.eveonline.neocom.auth.TokenTranslationResponse;
 import org.dimensinfin.eveonline.neocom.auth.TokenVerification;
@@ -26,7 +27,10 @@ import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBac
 import org.dimensinfin.eveonline.neocom.infinity.service.CookieService;
 import org.dimensinfin.eveonline.neocom.infinity.service.JWTTokenService;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
+import org.dimensinfin.eveonline.neocom.provider.IFileSystem;
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
+
+import static org.dimensinfin.eveonline.neocom.provider.PropertiesDefinitionsConstants.UNIVERSE_RETROFIT_CACHE_STATE;
 
 @Service
 public class AuthorizationServiceV1 {
@@ -40,6 +44,7 @@ public class AuthorizationServiceV1 {
 	}
 
 	private final IConfigurationService configurationService;
+	private final IFileSystem fileSystem;
 	private final ESIDataService esiDataService;
 	private final CredentialRepository credentialRepository;
 	private final CookieService cookieService;
@@ -48,11 +53,13 @@ public class AuthorizationServiceV1 {
 	// - C O N S T R U C T O R S
 	@Autowired
 	public AuthorizationServiceV1( @NotNull final IConfigurationService configurationService,
+	                               final @NotNull IFileSystem fileSystem,
 	                               @NotNull final ESIDataService esiDataService,
 	                               @NotNull final CredentialRepository credentialRepository,
 	                               @NotNull final CookieService cookieService,
 	                               @NotNull final JWTTokenService jwtTokenService ) {
 		this.configurationService = configurationService;
+		this.fileSystem = fileSystem;
 		this.esiDataService = esiDataService;
 		this.credentialRepository = credentialRepository;
 		this.cookieService = cookieService;
@@ -67,7 +74,7 @@ public class AuthorizationServiceV1 {
 	 */
 	public AuthenticationStateResponse validateAuthenticationState( final String sourceJWT, final HttpServletResponse response ) {
 		NeoComLogger.enter( sourceJWT );
-		if (this.jwtTokenService.validateToken( sourceJWT )) { // Token if correct then validate the Credential is at the repository.
+		if ( this.jwtTokenService.validateToken( sourceJWT ) ) { // Token if correct then validate the Credential is at the repository.
 			try {
 				final Credential credential = Objects.requireNonNull( this.credentialRepository.findCredentialById(
 						Objects.requireNonNull( this.jwtTokenService.extractPayload( sourceJWT ).getUniqueId() )
@@ -97,7 +104,9 @@ public class AuthorizationServiceV1 {
 	public AuthorizationTokenResponse validateAuthorizationToken( final AuthorizationTokenRequest authorizationTokenRequest ) {
 		NeoComLogger.enter();
 		final NeoComOAuth2Flow oauthFlow = new NeoComOAuth2Flow.Builder()
-				.withConfigurationService( this.configurationService )
+				.withConfigurationService(
+						new RetrofitConfiguration( this.configurationService, this.fileSystem, UNIVERSE_RETROFIT_CACHE_STATE )
+				)
 				.build();
 		authorizationTokenRequest.setRunningFlow( oauthFlow );
 		this.verifyState( authorizationTokenRequest ); // Check if the state matches the backend state configured.
@@ -161,7 +170,7 @@ public class AuthorizationServiceV1 {
 		authorizationTokenRequest.getOauthFlow().onStartFlow( authorizationTokenRequest.getCode(),
 				authorizationTokenRequest.getState(),
 				authorizationTokenRequest.getDataSourceName() );
-		if (!authorizationTokenRequest.getOauthFlow().verifyState( authorizationTokenRequest.getState() ))
+		if ( !authorizationTokenRequest.getOauthFlow().verifyState( authorizationTokenRequest.getState() ) )
 			throw new NeoComRuntimeBackendExceptionObsolete( errorINVALIDSTATEVERIFICATION() );
 		NeoComLogger.exit( "Calling state verification: OK." );
 	}

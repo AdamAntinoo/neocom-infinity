@@ -23,6 +23,7 @@ import org.dimensinfin.eveonline.neocom.infinity.config.security.JwtPayload;
 import org.dimensinfin.eveonline.neocom.infinity.service.CookieService;
 import org.dimensinfin.eveonline.neocom.infinity.service.JWTTokenService;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
+import org.dimensinfin.eveonline.neocom.provider.IFileSystem;
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
 
 public class AuthorizationServiceV1Test {
@@ -36,6 +37,7 @@ public class AuthorizationServiceV1Test {
 	private static final String TEST_JWT_TOKEN = "-JWT-TOKEN-";
 
 	private IConfigurationService configurationService;
+	private IFileSystem fileSystem;
 	private ESIDataService esiDataService;
 	private CredentialRepository credentialRepository;
 	private CookieService cookieService;
@@ -44,6 +46,7 @@ public class AuthorizationServiceV1Test {
 	@BeforeEach
 	public void beforeEach() {
 		this.configurationService = Mockito.mock( IConfigurationService.class );
+		this.fileSystem = Mockito.mock( IFileSystem.class );
 		this.esiDataService = Mockito.mock( ESIDataService.class );
 		this.credentialRepository = Mockito.mock( CredentialRepository.class );
 		this.cookieService = Mockito.mock( CookieService.class );
@@ -52,12 +55,7 @@ public class AuthorizationServiceV1Test {
 
 	@Test
 	public void constructorContract() {
-		final AuthorizationServiceV1 authorizationServiceV1 = new AuthorizationServiceV1(
-			this.configurationService,
-			this.esiDataService,
-			this.credentialRepository,
-			this.cookieService,
-			this.jwtTokenService );
+		final AuthorizationServiceV1 authorizationServiceV1 = this.getAuthorizationServiceV1();
 		Assertions.assertNotNull( authorizationServiceV1 );
 	}
 
@@ -73,12 +71,7 @@ public class AuthorizationServiceV1Test {
 		Mockito.when( this.jwtTokenService.extractPayload( Mockito.anyString() ) ).thenReturn( payload );
 		Mockito.when( payload.getUniqueId() ).thenReturn( "-UNIQUE-IS-" );
 		// Test
-		final AuthorizationServiceV1 authorizationServiceV1 = new AuthorizationServiceV1(
-			this.configurationService,
-			this.esiDataService,
-			this.credentialRepository,
-			this.cookieService,
-			this.jwtTokenService );
+		final AuthorizationServiceV1 authorizationServiceV1 = this.getAuthorizationServiceV1();
 		final AuthenticationStateResponse obtained = authorizationServiceV1.validateAuthenticationState( sourceJWT, servletResponse );
 		// Assertions
 		Assertions.assertNotNull( obtained );
@@ -93,12 +86,7 @@ public class AuthorizationServiceV1Test {
 		// When
 		Mockito.when( this.jwtTokenService.validateToken( Mockito.anyString() ) ).thenReturn( false );
 		// Test
-		final AuthorizationServiceV1 authorizationServiceV1 = new AuthorizationServiceV1(
-			this.configurationService,
-			this.esiDataService,
-			this.credentialRepository,
-			this.cookieService,
-			this.jwtTokenService );
+		final AuthorizationServiceV1 authorizationServiceV1 = this.getAuthorizationServiceV1();
 		final AuthenticationStateResponse obtained = authorizationServiceV1.validateAuthenticationState( sourceJWT, servletResponse );
 		// Assertions
 		Assertions.assertNotNull( obtained );
@@ -120,12 +108,7 @@ public class AuthorizationServiceV1Test {
 		Mockito.when( this.credentialRepository.findCredentialById( Mockito.anyString() ) ).thenReturn( credential );
 		Mockito.when( credential.getAccessToken() ).thenReturn( accessToken );
 		// Test
-		final AuthorizationServiceV1 authorizationServiceV1 = new AuthorizationServiceV1(
-			this.configurationService,
-			this.esiDataService,
-			this.credentialRepository,
-			this.cookieService,
-			this.jwtTokenService );
+		final AuthorizationServiceV1 authorizationServiceV1 = this.getAuthorizationServiceV1();
 		final AuthenticationStateResponse obtained = authorizationServiceV1.validateAuthenticationState( sourceJWT, servletResponse );
 		// Assertions
 		Assertions.assertNotNull( obtained );
@@ -148,7 +131,7 @@ public class AuthorizationServiceV1Test {
 		Mockito.when( AuthorizationTokenRequest.getState() ).thenReturn( "LVRFU1QtRU5DT0RFRC1TVEFURS0=" );
 		Mockito.when( flow.verifyState( Mockito.anyString() ) ).thenReturn( Boolean.TRUE );
 		Mockito.when( AuthorizationTokenRequest.setRunningFlow( Mockito.any( NeoComOAuth2Flow.class ) ) )
-			.thenReturn( AuthorizationTokenRequest );
+				.thenReturn( AuthorizationTokenRequest );
 		Mockito.when( flow.onTranslationStep() ).thenReturn( tokenStore );
 		Mockito.when( this.esiDataService.getCharactersCharacterId( Mockito.anyInt() ) ).thenReturn( characterData );
 		Mockito.when( tokenStore.getVerifyCharacterResponse() ).thenReturn( characterResponse );
@@ -163,14 +146,19 @@ public class AuthorizationServiceV1Test {
 		Mockito.when( this.jwtTokenService.createJWTToken( Mockito.anyString(), Mockito.anyInt() ) ).thenReturn( TEST_JWT_TOKEN );
 		Mockito.when( this.cookieService.generateCookie( Mockito.anyString() ) ).thenReturn( cookie );
 		// Test
-		final AuthorizationServiceV1 authorizationServiceV1 = new AuthorizationServiceV1(
-			this.configurationService,
-			this.esiDataService,
-			this.credentialRepository,
-			this.cookieService,
-			this.jwtTokenService );
+		final AuthorizationServiceV1 authorizationServiceV1 = this.getAuthorizationServiceV1();
 		final AuthorizationTokenResponse obtained = authorizationServiceV1.validateAuthorizationToken( AuthorizationTokenRequest );
 		// Assertions
 		Assertions.assertNotNull( obtained );
+	}
+
+	private AuthorizationServiceV1 getAuthorizationServiceV1() {
+		return new AuthorizationServiceV1(
+				this.configurationService,
+				this.fileSystem,
+				this.esiDataService,
+				this.credentialRepository,
+				this.cookieService,
+				this.jwtTokenService );
 	}
 }
