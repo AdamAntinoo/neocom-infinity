@@ -8,7 +8,7 @@ ext {
     springfox = '2.9.2'
     jodaTimeVersion = '2.10.5'
     jacksonVersion = '2.17.1'
-    dataManagementVersion = '0.29.7'
+    dataManagementVersion = '0.29.7-1'
     cucumberVersion = '7.18.0'
     lombokVersion = '1.18.32'
     junitVersion = '5.10.2'
@@ -59,6 +59,8 @@ dependencies {
     implementation 'com.auth0:java-jwt:4.4.0' // JWT processing library
     annotationProcessor "org.projectlombok:lombok:$lombokVersion"
     compileOnly "org.projectlombok:lombok:$lombokVersion"
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
+    implementation "net.troja.eve:eve-esi:4.8.1"
     // L O G G I N G
     implementation 'net.logstash.logback:logstash-logback-encoder:7.4' // Configurable logging
     // D A T A B A S E

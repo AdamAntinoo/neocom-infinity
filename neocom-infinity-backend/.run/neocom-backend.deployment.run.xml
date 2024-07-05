@@ -10,7 +10,7 @@
       <env name="REDIS_URL" value="redis://localhost:5250" />
       <env name="SDE_DATABASE_PATH" value="/build/resources/main/sde.db" />
       <env name="SPRING_DATASOURCE_PASSWORD" value="z.iliada.2020" />
-      <env name="SPRING_DATASOURCE_URL" value="jdbc:postgresql://0.0.0.0:5240/postgres" />
+      <env name="SPRING_DATASOURCE_URL" value="jdbc:postgresql://0.0.0.0:5240/neocom" />
       <env name="SPRING_DATASOURCE_USERNAME" value="adamantinoo" />
     </envs>
     <option name="MAIN_CLASS_NAME" value="org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendApplication" />

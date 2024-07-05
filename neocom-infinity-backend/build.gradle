@@ -10,6 +10,9 @@ plugins {
 }
 
 repositories {
+    flatDir {
+        dirs 'lib'
+    }
     mavenLocal()
     mavenCentral()
     maven { url 'https://jitpack.io' }

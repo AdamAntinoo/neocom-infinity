@@ -22,3 +22,4 @@ NeoCom.Infinity.unittesting/
 
 # - Ignore generated files
 coverage/
+lib/

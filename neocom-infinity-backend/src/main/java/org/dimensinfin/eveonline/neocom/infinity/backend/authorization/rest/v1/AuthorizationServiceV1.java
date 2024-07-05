@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import org.dimensinfin.annotation.TimeElapsed;
 import org.dimensinfin.eveonline.neocom.adapter.httpclient.RetrofitConfiguration;
@@ -100,12 +101,13 @@ public class AuthorizationServiceV1 {
 			return new AuthenticationStateResponse.Builder().withState( AuthenticationStateResponse.AuthenticationStateType.NOT_VALID ).build();
 	}
 
+	@Transactional
 	@TimeElapsed
 	public AuthorizationTokenResponse validateAuthorizationToken( final AuthorizationTokenRequest authorizationTokenRequest ) {
 		NeoComLogger.enter();
 		final NeoComOAuth2Flow oauthFlow = new NeoComOAuth2Flow.Builder()
 				.withConfigurationService(
-						new RetrofitConfiguration( this.configurationService, this.fileSystem, UNIVERSE_RETROFIT_CACHE_STATE )
+						new RetrofitConfiguration( this.configurationService, this.fileSystem, UNIVERSE_RETROFIT_CACHE_STATE, "" )
 				)
 				.build();
 		authorizationTokenRequest.setRunningFlow( oauthFlow );
