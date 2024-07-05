@@ -1,0 +1,118 @@
+{
+	"ProcessedBlueprint": {
+	  "typeId": 31717,
+	  "blueprintItem": {
+		"EsiType": {
+		  "typeId": 17464,
+		  "industryGroup": "COMMODITY",
+		  "type": {
+			"capacity": null,
+			"description": null,
+			"dogmaAttributes": [],
+			"dogmaEffects": [],
+			"graphicId": null,
+			"groupId": null,
+			"iconId": null,
+			"marketGroupId": null,
+			"mass": null,
+			"name": "Magnetometric Sensor Cluster",
+			"packagedVolume": null,
+			"portionSize": null,
+			"published": null,
+			"radius": null,
+			"typeId": 11535,
+			"volume": 0.1
+		  },
+		  "group": {
+			"categoryId": 12,
+			"groupId": 54,
+			"name": "Construction Components",
+			"published": null,
+			"types": []
+		  },
+		  "category": {
+			"categoryId": 12,
+			"groups": [],
+			"name": "Commodity",
+			"published": null
+		  },
+		  "tech": "Tech I",
+		  "volume": 0.10000000149011612,
+		  "categoryName": "Commodity",
+		  "groupName": "Construction Components",
+		  "hullGroup": "not-applies",
+		  "typeIconURL": "https://image.eveonline.com/Type/17464_64.png",
+		  "blueprint": false,
+		  "name": "Magnetometric Sensor Cluster",
+		  "jsonClass": "EsiType"
+		}
+	  },
+	  "location": {
+		"securityStatus": null,
+		"securityClass": null,
+		"solarSystemId": 2000004,
+		"solarSystemName": "SYSTEM",
+		"constellationId": 20000006,
+		"constellationName": "CONSTELLATION",
+		"regionId": 10000006,
+		"regionName": "REGION",
+		"locationId": 2000004,
+		"locationType": null,
+		"jsonClass": "SpaceSystemImplementation"
+	  },
+	  "materialEfficiency": 0,
+	  "timeEfficiency": 0,
+	  "outputTypeId": 0,
+	  "outputItem": {
+		"EsiType": {
+		  "typeId": 17464,
+		  "industryGroup": "COMMODITY",
+		  "type": {
+			"capacity": null,
+			"description": null,
+			"dogmaAttributes": [],
+			"dogmaEffects": [],
+			"graphicId": null,
+			"groupId": null,
+			"iconId": null,
+			"marketGroupId": null,
+			"mass": null,
+			"name": "Magnetometric Sensor Cluster",
+			"packagedVolume": null,
+			"portionSize": null,
+			"published": null,
+			"radius": null,
+			"typeId": 11535,
+			"volume": 0.1
+		  },
+		  "group": {
+			"categoryId": 12,
+			"groupId": 54,
+			"name": "Construction Components",
+			"published": null,
+			"types": []
+		  },
+		  "category": {
+			"categoryId": 12,
+			"groups": [],
+			"name": "Commodity",
+			"published": null
+		  },
+		  "tech": "Tech I",
+		  "volume": 0.10000000149011612,
+		  "categoryName": "Commodity",
+		  "groupName": "Construction Components",
+		  "hullGroup": "not-applies",
+		  "typeIconURL": "https://image.eveonline.com/Type/17464_64.png",
+		  "blueprint": false,
+		  "name": "Magnetometric Sensor Cluster",
+		  "jsonClass": "EsiType"
+		}
+	  },
+	  "manufactureCost": null,
+	  "outputCost": null,
+	  "bom": [],
+	  "index": 0.0,
+	  "storageUniqueId": "2000004:31717"
+	}
+  }
