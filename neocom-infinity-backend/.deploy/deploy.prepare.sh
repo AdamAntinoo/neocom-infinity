@@ -13,7 +13,7 @@ echo "##teamcity[setParameter name='env.VERSION' value='$VERSION']"
 echo "<<<<<"
 
 # - update compilation version
-echo "version=$SEMVERSION" > $WORKING_DIR=/gradle.properties
+echo "version=$SEMVERSION" > $WORKING_DIR/gradle.properties
 
 # - generate banner
 echo '>>> Creating banner'

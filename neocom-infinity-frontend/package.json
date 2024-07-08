@@ -1,6 +1,6 @@
 {
   "name": "neocom-infinity",
-  "version": "0.29.0-48",
+  "version": "0.29.0-91",
   "scripts": {
     "cucumber": "./node_modules/@cucumber/cucumber/bin/cucumber-js ./cucumber/**/*.feature --no-strict --require-module ts-node/register --require-module tsconfig-paths/register --require ./cucumber/**/*.step.ts --tags @NIF05.01",
     "document:dev": "compodoc -p tsconfig.json src",
@@ -33,7 +33,9 @@
     "upgrade:neocom": "npm uninstall --save npm neocom-domain && npm install --save-exact neocom-domain",
     "test:dev": "ng test --watch=false",
     "env:deployment": "NODE_ENV=deployment . ./scripts/generate.env.sh",
-    "build:deployment": "export NODE_ENV=deployment && npm run tag && ng build --configuration=deployment"
+    "build:deployment": "export NODE_ENV=deployment && npm run tag && ng build --configuration=deployment",
+    "generate:env": ". ./scripts/generate.env.sh",
+    "deploy:prepare": "npm run generate:env && npm run tag && npm run semver && npm run version:update"
   },
   "private": true,
   "engines": {

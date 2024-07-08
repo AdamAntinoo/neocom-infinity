@@ -23,3 +23,6 @@ NeoCom.Infinity.unittesting/
 # - Ignore generated files
 coverage/
 lib/
+
+# - Ignore version setup file
+gradle.properties

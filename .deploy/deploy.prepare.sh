@@ -10,10 +10,9 @@
 #
 ##########
 # - define workspace
-export NEOCOM_ROOT_DIRECTORY=.
+export NEOCOM_ROOT_DIRECTORY=`pwd`
 echo 'NEOCOM_ROOT_DIRECTORY->'$NEOCOM_ROOT_DIRECTORY
-echo 'location->'`pwd`
-cd $NEOCOM_ROOT_DIRECTORY/.deploy
+cd $NEOCOM_ROOT_DIRECTORY
 
 # - get the environment to be used
  # - set default value to 'deployment'
@@ -30,7 +29,7 @@ fi
 echo 'ENVIRONMENT->'$ENVIRONMENT
 
 # - generate the common environment properties
-. ./esi-configuration.$ENVIRONMENT.sh
+. ./.deploy/esi-configuration.$ENVIRONMENT.sh
 ##########
 # P R E - D E P L O Y M E N T
 # Run the predeployment scripts for all NeoCom projects.
@@ -39,6 +38,19 @@ echo 'ENVIRONMENT->'$ENVIRONMENT
 # - run NIB predeployment
 export PROJECT_CODE=$NIB_PROJECT_CODE
 echo 'PROJECT_CODE->'$PROJECT_CODE
-cd ..
 cd $NEOCOM_ROOT_DIRECTORY/$NEOCOM_NIB
 . ./.deploy/deploy.prepare.sh
+
+# - run NIN predeployment
+export PROJECT_CODE=$NIN_PROJECT_CODE
+echo 'PROJECT_CODE->'$PROJECT_CODE
+cd $NEOCOM_ROOT_DIRECTORY/$NEOCOM_NIN
+npm run deploy:prepare
+
+# - run NIF predeployment
+export PROJECT_CODE=$NIF_PROJECT_CODE
+echo 'PROJECT_CODE->'$PROJECT_CODE
+cd $NEOCOM_ROOT_DIRECTORY/$NEOCOM_NIF
+export NODE_ENV=$ENVIRONMENT
+echo 'NODE_ENV->'$NODE_ENV
+npm run deploy:prepare
