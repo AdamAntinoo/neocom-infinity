@@ -21,7 +21,7 @@
     "test:watch": "NODE_ENV=development jest --verbose --watch",
     "test:acc": "NODE_ENV=acceptance ./node_modules/@cucumber/cucumber/bin/cucumber-js ./test/**/*.feature --no-strict --require-module ts-node/register --require-module tsconfig-paths/register --require ./test/acceptance/steps/**/*.ts",
     "test:full": "npm run docker:start && npm run jest && npm run test:acc",
-    "deploy:prepare": "npm run tag && npm run semver && npm run version:update && npm run build",
+    "deploy:prepare": "npm run tag && npm run semver && npm run version:update",
     "debug": "VERSION=`cat .version.json` NODE_ENV=staging nest start --debug --watch",
     "tag": "figlet NeoNest `gitversion /showvariable AssemblySemFileVer` > .app-banner.txt",
     "semver": "gitversion /showvariable AssemblySemFileVer > .version.json && echo 'VERSION='`cat .version.json` > .env.version",

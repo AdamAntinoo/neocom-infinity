@@ -107,7 +107,7 @@ public class AuthorizationServiceV1 {
 		NeoComLogger.enter();
 		final NeoComOAuth2Flow oauthFlow = new NeoComOAuth2Flow.Builder()
 				.withConfigurationService(
-						new RetrofitConfiguration( this.configurationService, this.fileSystem, UNIVERSE_RETROFIT_CACHE_STATE, "" )
+						new RetrofitConfiguration( this.configurationService, this.fileSystem, UNIVERSE_RETROFIT_CACHE_STATE )
 				)
 				.build();
 		authorizationTokenRequest.setRunningFlow( oauthFlow );
