@@ -1,6 +1,5 @@
 export const NeoComConstants = {
     // - C O N S T A N T S
-    VALID_STATE: 'LU5FT0NPTS5JTkZJTklUWS1QUk9EVUNUSU9OLVZBTElEIFNUQVRFIFNUUklORy0=',
     DEFAULT_ICON_PLACEHOLDER: '/assets/media/defaulticonplaceholder.png',
     DEFAULT_AVATAR_PLACEHOLDER: '/assets/media/defaultavatarplaceholder.png',
     DEFAULT_CORPORATION_AVATAR_PLACEHOLDER: '/assets/media/defaultcorporationavatar.png',
