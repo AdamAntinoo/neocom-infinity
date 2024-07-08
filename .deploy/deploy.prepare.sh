@@ -29,7 +29,7 @@ fi
 echo 'ENVIRONMENT->'$ENVIRONMENT
 
 # - generate the common environment properties
-. ./.deploy/esi-configuration.$ENVIRONMENT.sh
+. ./.deploy/global-configuration.$ENVIRONMENT.sh
 ##########
 # P R E - D E P L O Y M E N T
 # Run the predeployment scripts for all NeoCom projects.
