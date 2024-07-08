@@ -1,12 +1,17 @@
-# E S I - A P P L I C A T I O N   C O N F I G U R A T I O N
+# - E S I - A P P L I C A T I O N   C O N F I G U R A T I O N
 export APPL_DESCRIPTION="NEOCOM.INFINITY - DEPLOYMENT KUBERNETES"
 export ESI_CLIENT_ID="e38a584ae3df42c4a2adeb15efb3badb"
 export ESI_SECRET_KEY="cD5FcqfCC66I4wxw7xyvbxOVUYhQLYJ472t5KcCJ"
+export ESI_STATE="-NEOCOM.INFINITY-DEPLOYMENT-VALID STATE STRING-"
+export ESI_STATE_BASE64="LU5FT0NPTS5JTkZJTklUWS1ERVBMT1lNRU5ULVZBTElEIFNUQVRFIFNUUklORy0="
+export ESI_SCOPE="publicData esi-wallet.read_character_wallet.v1 esi-planets.manage_planets.v1 esi-characters.read_agents_research.v1 esi-markets.read_character_orders.v1 esi-characters.read_blueprints.v1 esi-industry.read_character_mining.v1"
 export NEOFRONT_HOST="localhost:32100"
 export CALLBACK_RETURN_PAGE="/app/loginValidation"
 export ESI_CALLBACK_URL="http://$NEOFRONT_HOST$CALLBACK_RETURN_PAGE"
+export ESI_AUTHORIZATION_URL_PREFIX="v2/oauth"
+export ESI_TRANQUILITY_AUTHORIZATION_SERVER_URL="https://login.eveonline.com/"
 
-# N E O C O M   A P P L I C A T I O N   M O D U L E S
+# - N E O C O M   A P P L I C A T I O N   M O D U L E S
 export NEOCOM_NIB="neocom-infinity-backend"
 export NEOCOM_NIN="neocom-infinity-nest"
 export NEOCOM_NIF="neocom-infinity-frontend"

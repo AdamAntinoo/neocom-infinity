@@ -1,6 +1,6 @@
 {
   "name": "neocom-infinity",
-  "version": "0.29.0-91",
+  "version": "0.29.0-92",
   "scripts": {
     "cucumber": "./node_modules/@cucumber/cucumber/bin/cucumber-js ./cucumber/**/*.feature --no-strict --require-module ts-node/register --require-module tsconfig-paths/register --require ./cucumber/**/*.step.ts --tags @NIF05.01",
     "document:dev": "compodoc -p tsconfig.json src",
@@ -20,7 +20,7 @@
     "start": "npm run start:dev",
     "build": "ng build ",
     "run:dev": "npm run build && NODE_ENV=development PORT=5205 PUBLICPROXY=http://localhost:5215 BACKENDPROXY=http://localhost:5225 NESTPROXY=http://localhost:5235 && node server.js",
-    "env:dev": "NODE_ENV=development . ./scripts/generate.env.sh",
+    "env:dev": "NODE_ENV=development . ./.deploy/generate.env.sh",
     "start:staging": "npm run env:staging && . .env.staging && node server.js ",
     "tag": "npm run semver && figlet NeoFront `gitversion /showvariable AssemblySemFileVer` > .app-banner.txt && cat .app-banner.txt",
     "semver": "gitversion /showvariable AssemblySemFileVer > .version.json && cat .version.json",
@@ -32,9 +32,9 @@
     "cypress:open": "./node_modules/cypress/bin/cypress open",
     "upgrade:neocom": "npm uninstall --save npm neocom-domain && npm install --save-exact neocom-domain",
     "test:dev": "ng test --watch=false",
-    "env:deployment": "NODE_ENV=deployment . ./scripts/generate.env.sh",
+    "env:deployment": "NODE_ENV=deployment . ./.deploy/generate.env.sh",
     "build:deployment": "export NODE_ENV=deployment && npm run tag && ng build --configuration=deployment",
-    "generate:env": ". ./scripts/generate.env.sh",
+    "generate:env": ". ./.deploy/generate.env.sh",
     "deploy:prepare": "npm run generate:env && npm run tag && npm run semver && npm run version:update"
   },
   "private": true,
