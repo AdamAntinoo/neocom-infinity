@@ -21,3 +21,8 @@ kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard-kong-proxy
 # FRONTEND
 ## Generate a new render component
 ng generate component --export --selector v1-<render-name>-render --style scss industry/renders/v1-<render-name>-render
+
+# BACKEND
+## DataManagement
+Command to compile in JitPack
+./gradlew clean build publishToMavenLocal -xtest -xintegrationTest test jacocoTestReport sonar
