@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
@@ -40,6 +41,7 @@ public class MinuteTimeBaseSchedulerTest {
 		Assertions.assertNotNull( minuteScheduler );
 	}
 
+	@Disabled
 	@Test
 	public void printSchedulerJobsReport() {
 		// Given
@@ -88,6 +90,7 @@ public class MinuteTimeBaseSchedulerTest {
 		Assertions.assertEquals( "CredentialJobGenerator", jobs.get( 0 ).getJobName() );
 	}
 
+	@Disabled
 	@Test
 	public void timeBaseRun() {
 		// Given

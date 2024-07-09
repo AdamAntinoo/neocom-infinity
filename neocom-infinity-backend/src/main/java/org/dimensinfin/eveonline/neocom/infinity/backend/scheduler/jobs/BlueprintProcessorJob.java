@@ -6,8 +6,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
 import org.dimensinfin.eveonline.neocom.backend.service.logger.NeoComLogger;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.domain.EsiType;
@@ -187,10 +185,11 @@ public class BlueprintProcessorJob extends NeoComBackendJob {
 
 		public BlueprintProcessorJob.Builder withCredential( final Credential credential ) {
 			this.getActual().credential = Objects.requireNonNull( credential );
-			this.getActual().uniqueIdentifier = new HashCodeBuilder( 19, 137 )
-					.appendSuper( super.hashCode() )
+			this.getActual().uniqueIdentifier = new StringBuffer()
+					.append( this.getActual().credential.getUniqueCredential())
 					.append( this.getClass().getSimpleName() )
-					.toHashCode();
+					.toString()
+					.hashCode();
 			return this;
 		}
 

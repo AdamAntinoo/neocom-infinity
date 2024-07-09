@@ -76,10 +76,10 @@ public class BlueprintProcessorJobTest {
 	@Test
 	void getUniqueIdentifier_job_identifier() {
 		// Given
-		final Credential credentialA = new InstanceGenerator().generateCredential();
-		credentialA.setUniqueCredential( "-IUNIQUE-IDENTIFIER-CREENTIAL-A-" );
-		final Credential credentialB = new InstanceGenerator().generateCredential();
-		credentialB.setUniqueCredential( "-IUNIQUE-IDENTIFIER-CREENTIAL-B-" );
+		final Credential credentialA = new InstanceGenerator().generateCredential()
+				.setUniqueCredential( "-UNIQUE-IDENTIFIER-CREDENTIAL-A-" );
+		final Credential credentialB = new InstanceGenerator().generateCredential()
+				.setUniqueCredential( "-UNIQUE-IDENTIFIER-CREDENTIAL-B-" );
 		final BlueprintProcessorJob jobA = new BlueprintProcessorJob.Builder()
 				.withCredential( credentialA )
 				.withJobServicePackager( this.jobServicePackager )
