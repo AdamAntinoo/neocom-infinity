@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<gtd-data version="2.2" modified="2024-07-09T10:11:20.459+0200" lastActionID="41">
+
+<lists>
+  <list id="1" name="BACKLOG" type="ACTION" closed="false" modified="1720512384563">
+    <action id="41" created="1720506155383" resolution="OPEN" modified="1720512391325" description="[PROJECT] Deploy the last version on Kubernetes" queued="true" project="2" priority="High"></action>
+    <action id="37" created="1720506012417" resolution="OPEN" modified="1720512348668" description="[FEATURE] Display on logs the number of Blueprints downloaded." project="3" priority="None"></action>
+    <action id="33" created="1720505841692" resolution="OPEN" modified="1720512311005" description="[STORY] Activate the cache of Mining Operations on Redis as done with Blueprints." project="3" priority="None"></action>
+    <action id="38" created="1720506042829" resolution="OPEN" modified="1720506042829" description="[FEATURE] Display on logs the number of Extended Blueprints processed successfully." priority="None"></action>
+    <action id="22" created="1720183583739" resolution="OPEN" modified="1720183583739" description="[POC] Create a new NestJS project to test the ESI refresh token flow." priority="None"></action>
+    <action id="20" created="1719976827587" resolution="OPEN" modified="1719976827587" description="[REFACTOR] Add new exceptions for the ESI request processing." priority="None"></action>
+    <action id="19" created="1719976802402" resolution="OPEN" modified="1719976802402" description="[REFACTOR] Catch any exception on the JWT filter so any problem on that code will not block other filters and display useful exception reporting." priority="None"></action>
+    <action id="21" created="1720183543564" resolution="OPEN" modified="1720183543567" description="[CONFIG] Create a production like local configuration to test the production frontend against a development debugged backend." priority="None"></action>
+    <action id="23" created="1720375838017" resolution="OPEN" modified="1720375838020" description="[PROJECT] Create a new application and use a new account to check the refesh token." priority="None"></action>
+    <action id="18" created="1719976736062" resolution="OPEN" modified="1719976736062" description="[REFACTOR] Control request/response logs with application properties." priority="None"></action>
+    <action id="13" created="1719504684809" resolution="RESOLVED" resolved="1719573661837" modified="1720449057744" description="[BUG] The endpoint 'validateAuthenticationState' should not be authorized with JWT token." priority="None"></action>
+    <action id="12" created="1719503952272" resolution="OPEN" modified="1720449057744" description="[FEATURE] Add a unique default identifier for non request logs to keep log structure consistency." project="3" priority="None"></action>
+    <action id="10" created="1719503877450" resolution="OPEN" modified="1720449057745" description="[REFACTOR] LogMDCFilter is deprecated since we no longer need to record Heroku identifiers." project="3" priority="None"></action>
+    <action id="9" created="1719503531816" resolution="RESOLVED" resolved="1719568135683" modified="1720449057745" description="[SUPPORT] Add logs to the authorization NIB process so the Headers and Cookies are logged if the top level debug is active." project="3" priority="High"></action>
+    <action id="11" created="1719503920873" resolution="OPEN" modified="1720449057745" description="[FEATURE] Add a unique request identifier to logs to get trazability for requests." project="3" priority="None"></action>
+    <action id="8" created="1719503408528" resolution="OPEN" modified="1720449057745" description="[FEATURE] Authorization no longer relays on Cookies. So change the code to perform JWT validations only on accepted Headers." queued="true" project="3" priority="None"></action>
+    <action id="7" created="1719502961097" resolution="OPEN" modified="1720449057745" description="[RESEARCH] How to collect Kubernetes pod logs to a central service, preferably Grafana." queued="true" priority="Medium"></action>
+    <action id="4" created="1719500957331" resolution="OPEN" modified="1719500957331" description="[REFACTOR] Move the callback URL at NIF from environment configuration to deployment generation from the selected port." priority="None"></action>
+    <action id="2" created="1719500502741" resolution="OPEN" modified="1719500502741" description="[BUG] The callback URL for deployment is wrong and points to the PORT environment value." priority="None"></action>
+    <action id="1" created="1719494800121" resolution="OPEN" modified="1719494800121" description="[REFACTOR] .env.version file on NIN project is obsolete and not required for deployment. Remove from repository." priority="None"></action>
+    <action id="3" created="1719500904048" resolution="OPEN" modified="1719500904049" description="[BUG] The environment template with the environmwent values should be used during the deployment process to create the deployment configuration." priority="None"></action>
+    <action id="5" created="1719501202777" resolution="OPEN" modified="1720449057746" description="[STORY] Collect namespace logs into a single place." queued="true" project="2" priority="Low"></action>
+  </list>
+  <list id="-3" name="In-Bucket" type="INBUCKET" closed="false" modified="1720512384565">
+    <action id="24" created="1720420600170" resolution="RESOLVED" resolved="1720428215706" modified="1720449057746" description="[FEATURE] Create a Angular configuration service to read environment variables into configuration properties so ESI configuration can be externalized." priority="None"></action>
+    <action id="16" created="1719976451951" resolution="RESOLVED" resolved="1719976580543" modified="1720449057746" description="[REFACTOR] Remove the NEOCOM database string configuration environment variable." priority="None"></action>
+  </list>
+  <list id="4" name="EPIC 0.29" type="ACTION" closed="false" modified="1720512220015">
+    <action id="32" created="1720505803094" resolution="RESOLVED" resolved="1720512680447" modified="1720512680458" description="[FEATURE] Adjust job scheduling to fire with half the time of refresh of the expected data from ESI endpoint. No point in calling ESI more times than required." project="3" priority="High"></action>
+    <action id="25" created="1720449102061" resolution="OPEN" modified="1720453030354" description="[CONFIG] Move scheduler configuration to an externally configured properties file to be setup as a ConfigMap." project="3" priority="None"></action>
+    <action id="15" created="1719853768591" resolution="RESOLVED" resolved="1720512435467" modified="1720512435470" description="[BUG] The token expiration with the trojan library does not refresh the access token. There is the urgent need to fix the ESI Authorization flow." project="5" priority="High"></action>
+    <action id="17" created="1719976494893" resolution="OPEN" modified="1720512427058" description="[FIX] The new ESI Http Client requires a different flow and new data structures." queued="true" project="3" priority="Medium"></action>
+    <action id="14" created="1719573704109" resolution="RESOLVED" resolved="1720512415220" modified="1720512415229" description="[FEATURE] Add logs for the request and the response to NIB.\n[DONE] This is aready on place but if the JWT filter fails the code is not used so there are no logs." project="3" priority="High"></action>
+    <action id="6" created="1719502897818" resolution="RESOLVED" resolved="1719573619180" modified="1720449057747" description="[BUG] com.auth0.jwt.exceptions.JWTDecodeException: The token was expected to have 3 parts, but got 0." priority="High"></action>
+  </list>
+  <list id="6" name="EPIC 0.30" type="ACTION" closed="false" modified="1720512368883">
+    <action id="39" created="1720506100810" resolution="OPEN" modified="1720512376381" description="[REFACTOR] Refactor and clean up the new OAuth implementation. Mark as Deprecated any unused code." project="5" priority="High"></action>
+    <action id="35" created="1720505903992" resolution="OPEN" modified="1720512335972" description="[FEATURE] A click on a Extended Blueprint should extend the data presented on the display as done at https://indeve.space/." project="8" priority="Medium"></action>
+    <action id="31" created="1720505743818" resolution="OPEN" modified="1720512296543" description="[STORY] Process Credential invalidation exceptions to disable the affected Credential." project="3" priority="Low"></action>
+    <action id="29" created="1720504678857" resolution="OPEN" modified="1720512281330" description="[FEATURE] Validate Credential on each authenticated request. If the Credential has expired then return a 401 Unauthorized." project="3" priority="Medium"></action>
+    <action id="28" created="1720504631405" resolution="OPEN" modified="1720512265664" description="[FEATURE] If a backend call fails then mark the corresponding Credential as invalid." project="3" priority="None"></action>
+    <action id="30" created="1720505706825" resolution="OPEN" modified="1720512252114" description="[STORY] Change the Job system to disable jobs that are affected by expired Credentials." project="3" priority="Low"></action>
+    <action id="34" created="1720505871988" resolution="OPEN" modified="1720512078925" description="[STORY] Use the visual presentation of https://indeve.space/ to render the Extended Blueprint." project="8" priority="None"></action>
+    <action id="40" created="1720506119435" resolution="OPEN" modified="1720511986026" description="[REFACTOR] Move OAuth code to a new module." project="3" priority="None"></action>
+    <action id="27" created="1720504589306" resolution="OPEN" modified="1720511926597" description="[STORY] Change the NIB requests to validate the state of the Credential. If the credential is not valid because the access token has expired then redirect back to the login to get a new token." project="3" priority="None"></action>
+    <action id="26" created="1720449588833" resolution="RESOLVED" resolved="1720511973967" modified="1720511973967" description="[REFACTOR] The job unique identifier should not be a number but a string so the credential can be added to the hash generated or be used directly." priority="None"></action>
+  </list>
+  <list id="7" name="LINKS" type="REFERENCE" closed="false" modified="1720512045047">
+    <action id="36" created="1720505946096" resolution="OPEN" modified="1720512020589" description="[REFERENCE] https://indeve.space/ - Portal to display economic blueprint productivity." priority="None"></action>
+  </list>
+</lists>
+<projects>
+  <project id="2" name="PROJECT" closed="false" modified="1720512387195" actions="5,41"></project>
+  <project id="3" name="NIB" closed="false" modified="1720512348668" actions="8,11,9,10,12,14,17,25,27,40,32,30,28,29,31,33,37"></project>
+  <project id="5" name="DATAMANAGEMENT" closed="false" modified="1720512371725" actions="15,39"></project>
+  <project id="8" name="NIF" closed="false" modified="1720512332834" actions="34,35"></project>
+</projects>
+<queue id="-4" name="Next Actions" actions="5,7,8,17,41"></queue>
+</gtd-data>

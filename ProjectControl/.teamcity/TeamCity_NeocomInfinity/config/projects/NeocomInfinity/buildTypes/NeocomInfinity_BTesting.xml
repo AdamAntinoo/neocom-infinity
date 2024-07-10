@@ -26,8 +26,6 @@ echo "<<<<<"]]></param>
       <build-trigger id="TRIGGER_7" type="vcsTrigger">
         <parameters>
           <param name="branchFilter" value="+:*" />
-          <param name="groupCheckinsByCommitter" value="true" />
-          <param name="perCheckinTriggering" value="true" />
           <param name="quietPeriodMode" value="USE_DEFAULT" />
           <param name="watchChangesInDependencies" value="true" />
         </parameters>

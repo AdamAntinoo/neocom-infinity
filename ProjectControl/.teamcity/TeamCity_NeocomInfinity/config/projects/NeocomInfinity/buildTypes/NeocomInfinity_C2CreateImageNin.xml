@@ -31,6 +31,14 @@ cat $BANNER_LOCATION
 figlet $ENV
 echo "<<<<<"
 
+# - Build the image
+echo '>>> Building app'
+rimraf node_modules
+npm install
+npm run deploy:prepare
+npm run build
+echo "<<<<<"
+
 # - build the image
 echo '>>> Building image'
 export DEPLOY_DIR=$WORKING_DIR/.deploy

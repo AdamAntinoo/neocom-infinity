@@ -3,6 +3,10 @@
   <name>Z1.Post Deploy Check</name>
   <description>Check that the deployment completed successfully.</description>
   <settings>
+    <disabled-settings>
+      <setting-ref ref="TRIGGER_3" />
+      <setting-ref ref="TRIGGER_4" />
+    </disabled-settings>
     <parameters />
     <build-runners>
       <runner id="Check_Kuberneted_deployed_versions" name="Check Kubernetes deployed versions" type="simpleRunner">
@@ -25,9 +29,17 @@ kubectl -n %_NEOCOM.NAMESPACE% get pods --show-labels=true]]></param>
     <build-triggers>
       <build-trigger id="TRIGGER_3" type="vcsTrigger">
         <parameters>
-          <param name="branchFilter" value="+:&lt;default&gt;" />
-          <param name="enableQueueOptimization" value="true" />
-          <param name="quietPeriodMode" value="DO_NOT_USE" />
+          <param name="branchFilter"><![CDATA[+:*
+-:<default>]]></param>
+          <param name="quietPeriodMode" value="USE_DEFAULT" />
+        </parameters>
+      </build-trigger>
+      <build-trigger id="TRIGGER_4" type="buildDependencyTrigger">
+        <parameters>
+          <param name="afterSuccessfulBuildOnly" value="true" />
+          <param name="branchFilter"><![CDATA[+:*
+-:<default>]]></param>
+          <param name="dependsOn" value="NeocomInfinity_BTesting" />
         </parameters>
       </build-trigger>
     </build-triggers>

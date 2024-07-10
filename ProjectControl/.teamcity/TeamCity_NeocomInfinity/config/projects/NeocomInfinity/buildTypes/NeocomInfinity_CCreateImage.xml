@@ -26,6 +26,25 @@
           <param name="script.content"><![CDATA[# G E T   E N V I R O N M E N T
 # Extract the deployment environment from the branch/tag being processed along with the buid version
 #
+# - define the deployment environment
+echo '>>> Identifying Environment'
+# - set default value to 'deployment'
+export ENVIRONMENT='deployment'
+export BRANCH=%teamcity.build.branch%
+echo "BRANCH->$BRANCH"
+if [[ "$BRANCH" =~ ^(.*)main ]];
+then 
+    export ENVIRONMENT='production'
+else 
+	export ENVIRONMENT='deployment'
+fi
+echo 'ENVIRONMENT->'$ENVIRONMENT
+echo "##teamcity[setParameter name='env.ENVIRONMENT' value='$ENVIRONMENT']"
+echo "##teamcity[setParameter name='env.BRANCH' value='$BRANCH']"
+# - generate common environment
+. ./.deploy/global-configuration.$ENVIRONMENT.sh
+echo "<<<<<"
+
 # - define workspace
 echo '>>> define workspace'
 export PROJECT_ROOT=%teamcity.build.checkoutDir%/%PROJECT_NAME%
@@ -41,24 +60,11 @@ echo "<<<<<"
 
 # - define the deployment environment
 echo '>>> Identifying Environment'
-# - set default value to 'deployment'
-export ENVIRONMENT='deployment'
-export BRANCH=%teamcity.build.branch%
-echo "BRANCH->$BRANCH"
-if [[ "$BRANCH" =~ ^(.*)main ]];
-then 
-    export ENVIRONMENT='production'
-else 
-	export ENVIRONMENT='deployment'
-fi
-echo "ENVIRONMENT->$ENVIRONMENT"
 export IMAGE_NAME=%PROJECT_NAME%
 export ENV=$ENVIRONMENT
 echo "IMAGE_NAME->$IMAGE_NAME"
 echo "ENV->$ENV"
 echo "##teamcity[setParameter name='env.WORKING_DIR' value='$WORKING_DIR']"
-echo "##teamcity[setParameter name='env.BRANCH' value='$BRANCH']"
-echo "##teamcity[setParameter name='env.ENVIRONMENT' value='$ENVIRONMENT']"
 echo "##teamcity[setParameter name='env.IMAGE_NAME' value='$IMAGE_NAME']"
 echo "##teamcity[setParameter name='env.ENV' value='$ENV']"
 echo "<<<<<"

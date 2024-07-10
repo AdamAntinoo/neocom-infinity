@@ -3,6 +3,9 @@
   <name>D. Deploy</name>
   <description>Template to generate the environment settings and the variables.</description>
   <settings>
+    <options>
+      <option name="artifactRules" value=".deploy =&gt; .deploy" />
+    </options>
     <parameters>
       <param name="APP_CODE" value="neo%PROJECT_CODE%" />
       <param name="EXPOSE_PORT_BASE" value="32000" />
@@ -28,19 +31,6 @@
           <param name="script.content"><![CDATA[# G E T   E N V I R O N M E N T
 # Extract the deployment environment from the branch/tag being processed along with the buid version
 #
-# - define workspace
-echo '>>> define workspace'
-export PROJECT_ROOT=%teamcity.build.checkoutDir%/%PROJECT_NAME%
-cd $PROJECT_ROOT
-export WORKING_DIR=$PROJECT_ROOT
-export DEPLOY_DIR=$WORKING_DIR/.deploy
-export SOURCES_DIR=$PROJECT_ROOT/src
-echo "PROJECT_ROOT->$PROJECT_ROOT"
-echo "WORKING_DIR->$WORKING_DIR"
-echo "DEPLOY_DIR->$DEPLOY_DIR"
-echo "SOURCES_DIR->$SOURCES_DIR"
-echo "<<<<<"
-
 # - define the deployment environment
 echo '>>> Identifying Environment'
 # - set default value to 'deployment'
@@ -55,14 +45,31 @@ else
     export EXPOSE_PORT=$(echo "%EXPOSE_PORT_BASE%+100" | bc)
 fi
 echo 'ENVIRONMENT->'$ENVIRONMENT
+echo "##teamcity[setParameter name='env.ENVIRONMENT' value='$ENVIRONMENT']"
+echo "##teamcity[setParameter name='env.BRANCH' value='$BRANCH']"
+# - generate common environment
+. ./.deploy/global-configuration.$ENVIRONMENT.sh
+echo "<<<<<"
+
+# - define workspace
+echo '>>> define workspace'
+export PROJECT_ROOT=%teamcity.build.checkoutDir%/%PROJECT_NAME%
+cd $PROJECT_ROOT
+export WORKING_DIR=$PROJECT_ROOT
+export DEPLOY_DIR=$WORKING_DIR/.deploy
+export SOURCES_DIR=$PROJECT_ROOT/src
+echo "PROJECT_ROOT->$PROJECT_ROOT"
+echo "WORKING_DIR->$WORKING_DIR"
+echo "DEPLOY_DIR->$DEPLOY_DIR"
+echo "SOURCES_DIR->$SOURCES_DIR"
+echo "<<<<<"
+
 echo 'EXPOSE_PORT->'$EXPOSE_PORT
 export IMAGE_NAME=%PROJECT_NAME%
 export ENV=$ENVIRONMENT
 echo 'IMAGE_NAME->'$IMAGE_NAME
 echo "ENV->$ENV"
 echo "##teamcity[setParameter name='env.WORKING_DIR' value='$WORKING_DIR']"
-echo "##teamcity[setParameter name='env.BRANCH' value='$BRANCH']"
-echo "##teamcity[setParameter name='env.ENVIRONMENT' value='$ENVIRONMENT']"
 echo "##teamcity[setParameter name='env.IMAGE_NAME' value='$IMAGE_NAME']"
 echo "##teamcity[setParameter name='env.ENV' value='$ENV']"
 echo "##teamcity[setParameter name='env.EXPOSE_PORT' value='$EXPOSE_PORT']"
