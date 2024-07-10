@@ -2,11 +2,10 @@
 .DS_Store
 # IntelliJ Framework
 .idea/
-**/.idea/
 # Node Framework
 node_modules/
-# Nest Project
 package-lock.json
+# Common files
 *.log
 coverage/
-.idea/
+

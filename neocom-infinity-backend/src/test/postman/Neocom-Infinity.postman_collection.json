@@ -1260,7 +1260,7 @@
 					"response": []
 				},
 				{
-					"name": "Get Processed Blueprint By UID",
+					"name": "Get Extended Blueprint By UID",
 					"request": {
 						"auth": {
 							"type": "bearer",

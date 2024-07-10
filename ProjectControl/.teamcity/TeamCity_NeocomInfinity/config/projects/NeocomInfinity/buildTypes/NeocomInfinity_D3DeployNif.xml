@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<build-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="cb9f3969-24cb-46e3-bbea-5a580d4c38e2" xsi:noNamespaceSchemaLocation="https://www.jetbrains.com/teamcity/schemas/2021.1/project-config.xsd">
+  <name>D3.Deploy NIF</name>
+  <description>Create a new docker image for the application neocom-infinity-nest</description>
+  <settings ref="NeocomInfinity_DDeploy">
+    <options>
+      <option name="artifactRules" value="neocom-infinity-frontend/.deploy =&gt; neocom-infinity-frontend/.deploy" />
+    </options>
+    <parameters>
+      <param name="APP_CODE" value="neofront" />
+      <param name="MODULE_NAME" value="frontend" />
+      <param name="PORT" value="5201" />
+      <param name="PROJECT_CODE" value="neofront" />
+    </parameters>
+    <build-runners>
+      <runner id="Generate_image_NIN" name="S2. Deploy NIF to Kubernetes" type="simpleRunner">
+        <parameters>
+          <param name="script.content"><![CDATA[# D E P L O Y   K U B E R N E T E S
+# Deploy the image to the Kubernetes namespace
+#
+# - variables required to be on the environment.
+# APP_CODE - the reduced application string like 'neonest'.
+# ENV - the selector between a deployment and a production release
+# NAMESPACE - the destination Kubernetes namespace.
+# PORT - the standard service port of the application under the declared service. Ir is static for an application.
+# EXPOSE_PORT - the port number exposed to the localhost. It should change depending on the ENV.
+# VERSION - the image version that is assigned to the pod.
+# MODULE_NAME - the infinity module name. It is the long directory name of the software module.
+# IMAGE_TAG - the Dicker repository image tag name. Usually the module+version.
+
+# - environment definition to be mapped on kubernetes maps
+# NODE_ENV - the angular environment selected.
+# PORT - already declared.
+# ENVIRONMENT - possible to be deprecated because values are duplicated.
+# NODE_VERSION - the Node version being used on the pod.
+# PRODUCTION - undefined its purpose. To be deprecated.
+# SEMVERSION - semantic version. Included the number of commits from last deployment version.
+# VERSION - already declared.
+# ESI_CLIENTID - ESI unique client identifier for the application OAuth installation.
+# ESI_STATE - the unique state identifier to validated the callback to the correct application and initiator.
+# CALLBACK_URL - the URL to be used for callback on the authorization flow.
+# ESIPROXY - host for ESI requests.
+# OAUTHPROXY - host for ESI OAuth authorizartion flow.
+# PUBLICPROXY - host for public ESI data request.
+# BACKENDPROXY - host for the NeoCom backend. Applies to the SpringBoot services.
+# NESTPROXY - host for the NeoCom backend. Applies to the NestJS services.
+# APP_CODE - already declared.
+# MODULE_NAME - already declared.
+# APP_HOME - the directory location where the client code is located for local service.
+# APP_BASEREF - the relative path to the application code.
+  
+# - set environment values
+export APP_CODE=%APP_CODE%
+export ENV=%env.ENV%
+export NAMESPACE="neocom-$ENV"
+export PORT=%PORT%
+export EXPOSE_PORT=%env.EXPOSE_PORT%
+export VERSION=%env.VERSION%
+export MODULE_NAME=%PROJECT_NAME%
+export IMAGE_TAG=%env.IMAGE_NAME%:%env.VERSION%
+
+export PROJECT_ROOT=%teamcity.build.checkoutDir%/%PROJECT_NAME%
+cd $PROJECT_ROOT
+export NODE_ENV=$ENV
+. .env.$NODE_ENV
+echo ">>> ENVIRONMENT"
+export NAMESPACE=neocom-$NODE_ENV
+printenv | sort
+echo "<<<<<"
+
+# - Generate kubernetes deployment file from template
+export DEPLOY_DIR=%teamcity.build.checkoutDir%/%PROJECT_NAME%/.deploy
+cat  $DEPLOY_DIR/deployment.template.yaml | envsubst > $DEPLOY_DIR/deployment.yaml
+echo ">>> DEPLOYMENT"
+cat $DEPLOY_DIR/deployment.yaml
+echo "<<<<<"
+
+kubectl apply -f $DEPLOY_DIR/deployment.yaml]]></param>
+          <param name="teamcity.step.mode" value="default" />
+          <param name="use.custom.script" value="true" />
+        </parameters>
+      </runner>
+    </build-runners>
+    <vcs-settings>
+      <vcs-entry-ref root-id="NeocomInfinity_HttpsGithubComAdamAntinooNeocomInfinityGitRefsHeadsMaster" />
+    </vcs-settings>
+    <requirements />
+    <build-triggers />
+    <dependencies>
+      <depend-on sourceBuildTypeId="NeocomInfinity_C3CreateImageNif">
+        <options>
+          <option name="run-build-if-dependency-failed-to-start" value="CANCEL" />
+          <option name="take-started-build-with-same-revisions" value="true" />
+          <option name="take-successful-builds-only" value="true" />
+        </options>
+      </depend-on>
+    </dependencies>
+    <cleanup />
+  </settings>
+</build-type>
+

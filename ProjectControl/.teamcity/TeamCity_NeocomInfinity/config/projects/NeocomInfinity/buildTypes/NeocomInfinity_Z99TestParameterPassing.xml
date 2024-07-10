@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<build-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="b1ccaddc-42b4-46bd-9396-0bd96c6d481d" xsi:noNamespaceSchemaLocation="https://www.jetbrains.com/teamcity/schemas/2021.1/project-config.xsd">
+  <name>Z99.Test Parameter Passing</name>
+  <description>Check that the deployment completed successfully.</description>
+  <settings>
+    <parameters>
+      <param name="BRANCH" value="" />
+      <param name="ENV" value="" />
+      <param name="ENVIRONMENT" value="" />
+      <param name="IMAGE_NAME" value="" />
+      <param name="SEMVERSION" value="" />
+      <param name="VERSION" value="" />
+      <param name="system.BRANCH" value="%system.BRANCH%" />
+      <param name="system.ENVIRONMENT" value="" />
+      <param name="system.NAME" value="" />
+      <param name="system.PORT_NUMBER" value="9400" />
+    </parameters>
+    <build-runners>
+      <runner id="Check_Kuberneted_deployed_versions" name="Check Kubernetes deployed versions" type="simpleRunner">
+        <parameters>
+          <param name="script.content"><![CDATA[printenv | sort
+echo 'BRANCH->'%BRANCH%
+echo 'ENVIRONMENT->'%ENVIRONMENT%
+echo 'IMAGE_NAME->'%IMAGE_NAME%
+echo 'ENV->'%ENV%
+echo 'SEMVERSION->'%SEMVERSION%
+echo 'VERSION->'%VERSION%
+echo 'system.BRANCH->'%system.BRANCH%
+echo 'system.ENVIRONMENT->'%system.ENVIRONMENT%
+echo 'env.BRANCH->'%dep.NeocomInfinity_C1CreateImageNib.env.BRANCH%
+echo 'system.ENVIRONMENT->'%system.ENVIRONMENT%]]></param>
+          <param name="teamcity.step.mode" value="default" />
+          <param name="use.custom.script" value="true" />
+        </parameters>
+      </runner>
+    </build-runners>
+    <vcs-settings>
+      <vcs-entry-ref root-id="NeocomInfinity_HttpsGithubComAdamAntinooNeocomInfinityGitRefsHeadsMaster" />
+    </vcs-settings>
+    <requirements />
+    <build-triggers />
+    <dependencies>
+      <depend-on sourceBuildTypeId="NeocomInfinity_C1CreateImageNib">
+        <options>
+          <option name="run-build-if-dependency-failed" value="RUN_ADD_PROBLEM" />
+          <option name="take-started-build-with-same-revisions" value="true" />
+          <option name="take-successful-builds-only" value="true" />
+        </options>
+      </depend-on>
+    </dependencies>
+    <cleanup />
+  </settings>
+</build-type>
+

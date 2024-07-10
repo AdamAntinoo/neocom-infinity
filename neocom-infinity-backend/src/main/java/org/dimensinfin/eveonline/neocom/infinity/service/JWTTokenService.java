@@ -17,7 +17,7 @@ import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.database.repositories.CredentialRepository;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.JwtPayload;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRestError;
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendExceptionObsolete;
 
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.ISSUER;
 import static org.dimensinfin.eveonline.neocom.infinity.config.security.SecurityConstants.SECRET;
@@ -75,7 +75,7 @@ public class JWTTokenService {
 					.withClaim( TOKEN_PILOT_ID_FIELD_NAME, credential.getAccountId() )
 					.sign( Algorithm.HMAC512( SECRET ) );
 		} catch (final IllegalArgumentException | SQLException uce) {
-			throw new NeoComRuntimeBackendException( errorINVALIDTOKENCREATION( uce ) );
+			throw new NeoComRuntimeBackendExceptionObsolete( errorINVALIDTOKENCREATION( uce ) );
 		}
 	}
 
@@ -100,11 +100,11 @@ public class JWTTokenService {
 				final String payloadData = new String( Base64.decodeBase64( base64EncodedBody.getBytes() ) );
 				final JwtPayload payload = new ObjectMapper().readValue( payloadData, JwtPayload.class );
 				if (null == payload)
-					throw new NeoComRuntimeBackendException( errorINVALIDTOKEN( new Exception( "JWT token malformed payload." ) ) );
+					throw new NeoComRuntimeBackendExceptionObsolete( errorINVALIDTOKEN( new Exception( "JWT token malformed payload." ) ) );
 				return payload;
-			} else throw new NeoComRuntimeBackendException( errorINVALIDTOKEN( new Exception( "JWT token header is malformed. Invalid token" ) ) );
+			} else throw new NeoComRuntimeBackendExceptionObsolete( errorINVALIDTOKEN( new Exception( "JWT token header is malformed. Invalid token" ) ) );
 		} catch (final IOException ioe) {
-			throw new NeoComRuntimeBackendException( errorINVALIDTOKEN( ioe ) );
+			throw new NeoComRuntimeBackendExceptionObsolete( errorINVALIDTOKEN( ioe ) );
 		}
 	}
 

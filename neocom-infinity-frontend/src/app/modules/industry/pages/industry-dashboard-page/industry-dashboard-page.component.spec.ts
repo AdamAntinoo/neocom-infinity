@@ -23,7 +23,7 @@ import { SupportBackendService } from '@app/testing/SupportBackend.service';
 import { IndustryDashboardPageComponent } from './industry-dashboard-page.component';
 import { AppStoreService } from '@app/services/appstore.service';
 import { SupportAppStoreService } from '@app/testing/SupportAppStore.service';
-import { PlatformConstants } from '@env/PlatformConstants';
+import { PlatformConstants, STORAGE_LINKS } from '@env/PlatformConstants';
 import { NeocomCredential } from '@domain/core/Credential.domain';
 import { NeoComException } from '@innovative/domain/NeoComException';
 import { ExceptionCodes } from '@app/platform/ExceptionCodes';
@@ -68,7 +68,7 @@ describe('PAGE IndustryDashboardPageComponent [Module: INDUSTRY]', () => {
             const identifier = isolationService.generateRandomNum(123456, 234567)
             appStore.setPilotId(identifier)
             console.log('identifier=' + identifier)
-            isolationService.setToSession(PlatformConstants.CREDENTIAL_KEY, new NeocomCredential({ accountId: identifier }))
+            isolationService.setToSession(STORAGE_LINKS.CREDENTIAL_KEY, new NeocomCredential({ accountId: identifier }))
             expect(component.getPilotId()).toBe(identifier)
         })
         it('getPilotId.failure: read the currect selected pilot identifier', () => {

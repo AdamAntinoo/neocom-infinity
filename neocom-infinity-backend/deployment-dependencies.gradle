@@ -1,0 +1,6 @@
+// - D E V E L O P M E N T
+dependencies {
+    // N E O C O M
+    implementation "com.github.AdamAntinoo:neocom-datamanagement:$dataManagementVersion"
+//    implementation project(':neocom-datamanagement')
+}

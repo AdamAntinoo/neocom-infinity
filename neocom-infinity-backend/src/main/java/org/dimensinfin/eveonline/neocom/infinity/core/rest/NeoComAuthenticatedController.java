@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRestError;
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendExceptionObsolete;
 
 public abstract class NeoComAuthenticatedController {
 	public static NeoComRestError errorPILOTIDNOTAUTHORIZED() {
@@ -28,6 +28,6 @@ public abstract class NeoComAuthenticatedController {
 	protected void validateAuthorizedPilot( final Integer pilotId ) {
 		final Integer authorizedPilotId = this.neoComAuthenticationProvider.getAuthenticatedPilot();
 		if (authorizedPilotId.intValue() != pilotId.intValue())
-			throw new NeoComRuntimeBackendException( NeoComAuthenticatedController.errorPILOTIDNOTAUTHORIZED() );
+			throw new NeoComRuntimeBackendExceptionObsolete( NeoComAuthenticatedController.errorPILOTIDNOTAUTHORIZED() );
 	}
 }

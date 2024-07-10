@@ -22,8 +22,8 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.Au
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenResponse;
 import org.dimensinfin.logging.LogWrapper;
 
-import static org.dimensinfin.eveonline.neocom.infinity.infrastructure.config.GlobalAppConstants.TransportConstants.ESI_COOKIE_NAME;
-import static org.dimensinfin.eveonline.neocom.infinity.infrastructure.config.GlobalAppConstants.TransportConstants.NEOCOM_COOKIE_NAME;
+import static org.dimensinfin.eveonline.neocom.infinity.infrastructure.config.GlobalAppConstants.NetworkConstants.ESI_COOKIE_NAME;
+import static org.dimensinfin.eveonline.neocom.infinity.infrastructure.config.GlobalAppConstants.NetworkConstants.NEOCOM_COOKIE_NAME;
 import static org.dimensinfin.eveonline.neocom.provider.ESIDataProvider.DEFAULT_ESI_SERVER;
 
 /**

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<build-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="5a9ee4a1-636f-4695-bd5f-5a1a638d33d4" xsi:noNamespaceSchemaLocation="https://www.jetbrains.com/teamcity/schemas/2021.1/project-config.xsd">
+  <name>C3.Create Image NIF</name>
+  <description>Create a new docker image for the application neocom-infinity-frontend</description>
+  <settings ref="NeocomInfinity_CCreateImage">
+    <options>
+      <option name="artifactRules" value="neocom-infinity-frontend/.app-banner.txt&#xA;neocom-infinity-frontend/src/environments =&gt; neocom-infinity-frontend/src/environments&#xA;neocom-infinity-frontend/.deploy =&gt; neocom-infinity-frontend/.deploy&#xA;neocom-infinity-frontend/.env.development&#xA;neocom-infinity-frontend/.env.staging" />
+    </options>
+    <parameters>
+      <param name="APP_CODE" value="neofront" />
+      <param name="MODULE_NAME" value="frontend" />
+      <param name="PORT" value="5000" />
+      <param name="PROJECT_CODE" value="NeoFront" />
+    </parameters>
+    <build-runners>
+      <runner id="P1_Generate_Environment" name="S2. Extend Environment" type="simpleRunner">
+        <parameters>
+          <param name="script.content"><![CDATA[# E X T E N D   E N V I R O N M E N T
+# Extend the environment and generate the additional contents to be used on the Frontend service.
+#
+# - Move to the module that is the source for the configuration
+export PROJECT_ROOT=%teamcity.build.checkoutDir%/%PROJECT_NAME%
+export WORKING_DIR=$PROJECT_ROOT
+cd $WORKING_DIR
+
+# TODO - Get the running environment target from the commit type. Tags will go to production. Default is 'staging'.
+export ENVIRONMENT=%env.ENV%
+
+# - Generate environment from configuration
+npm run env:$ENVIRONMENT]]></param>
+          <param name="teamcity.step.mode" value="default" />
+          <param name="use.custom.script" value="true" />
+        </parameters>
+      </runner>
+      <runner id="P2_Generate_Image" name="S3. Generate Image" type="simpleRunner">
+        <parameters>
+          <param name="script.content"><![CDATA[# G E N E R A T E   D O C K E R   I M A G E
+# Create a docker image for the NestJS backend
+#
+echo ">>> Validate script variables"
+echo 'checkoutDir->'%teamcity.build.checkoutDir%
+echo 'PROJECT_NAME->'%PROJECT_NAME%
+echo 'ENVIRONMENT->'%env.ENVIRONMENT%
+echo 'IMAGE_NAME->'$IMAGE_NAME
+echo 'WORKING_DIR->'$WORKING_DIR
+echo "<<<<<"
+
+export PROJECT_ROOT=%teamcity.build.checkoutDir%/%PROJECT_NAME%
+cd $PROJECT_ROOT
+
+# - Generate environment from configuration
+. .env.%env.ENVIRONMENT%
+echo 'PORT->'%PORT%
+echo 'NODE_ENV->'$NODE_ENV
+echo 'VERSION->'$VERSION
+
+# - Build the image
+echo '>>> Building app'
+rimraf node_modules
+npm install
+npm run build:%env.ENVIRONMENT%
+echo "<<<<<"
+
+echo '>>> Building image'
+export DEPLOY_DIR=$WORKING_DIR/.deploy
+echo 'DEPLOY_DIR->'$DEPLOY_DIR
+cat $DEPLOY_DIR/dockerfile.template | envsubst > $DEPLOY_DIR/Dockerfile
+docker build -f $DEPLOY_DIR/Dockerfile -t $IMAGE_NAME $WORKING_DIR
+echo "<<<<<"]]></param>
+          <param name="teamcity.step.mode" value="default" />
+          <param name="use.custom.script" value="true" />
+        </parameters>
+      </runner>
+      <runner id="Publish_Tag_the_image" name="S4. Publish &amp; Tag the image" type="simpleRunner">
+        <parameters>
+          <param name="script.content"><![CDATA[# P U B L I S H    I M A G E
+# Publish the image to the external repository
+# - tag the image
+export TAG=%PROJECT_NAME%:%env.VERSION%
+echo ">>> Tagging image->adamantinoo/$TAG"
+docker tag %env.IMAGE_NAME% adamantinoo/$TAG
+docker tag %env.IMAGE_NAME% $TAG
+docker push adamantinoo/$TAG
+echo "<<<<<"]]></param>
+          <param name="teamcity.step.mode" value="default" />
+          <param name="use.custom.script" value="true" />
+        </parameters>
+      </runner>
+    </build-runners>
+    <vcs-settings>
+      <vcs-entry-ref root-id="NeocomInfinity_HttpsGithubComAdamAntinooNeocomInfinityGitRefsHeadsMaster" />
+    </vcs-settings>
+    <requirements />
+    <build-triggers />
+    <cleanup />
+  </settings>
+</build-type>
+

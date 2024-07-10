@@ -2,7 +2,7 @@
 Feature: [NIB12] The Industry endpoint set has some manufacture endpoints related to the Blueprint analisys.
 
   [STORY] Create a new endpoint to retrieve the list of blueprints for a pilot along the manufacture cost and profit index. This list has no details about the blueprint processing because there is much information.
-  [STORY] Add a second endpoint to access the detailed processed blueprint data in a one by one access using the unique identifier.
+  [STORY] Add a second endpoint to access the detailed Extended Blueprint data in a one by one access using the unique identifier.
 
   Background:
     Given "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6OTgzODQ3MjYsImFjY291bnROYW1lIjoiVGVzdGluZyBDaGFyYWN0ZXIgQWNjb3VudCIsImlzcyI6Ik5lb0NvbS5JbmZpbml0eS5CYWNrZW5kIiwidW5pcXVlSWQiOiJ0cmFucXVpbGl0eS45MzgxMzMxMCIsInBpbG90SWQiOjkzODEzMzEwfQ.E7gm6lbTZj07pFI-s5yz7InzAPtgYKM2VyZR5z_5j81KGJ4OJVFT_Z-_0n3TKPpz1wbL6TYwbQ07zSQE9hfGcg" authorization token

@@ -10,10 +10,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+import org.dimensinfin.eveonline.neocom.backend.service.logger.NeoComLogger;
 import org.dimensinfin.eveonline.neocom.database.entities.MiningExtractionEntity;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.AcceptanceTargetConfig;
 import org.dimensinfin.eveonline.neocom.infinity.support.rest.NeoComApiv1;
-import org.dimensinfin.eveonline.neocom.service.logger.NeoComLogger;
 import org.dimensinfin.eveonline.neocom.utility.GSONDateTimeDeserializer;
 import org.dimensinfin.eveonline.neocom.utility.GSONLocalDateDeserializer;
 

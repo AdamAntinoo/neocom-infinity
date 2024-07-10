@@ -17,16 +17,20 @@ public class ResourceSerializer extends JsonSerializer<Resource> {
 			throws IOException {
 		gen.writeStartObject();
 
+		gen.writeStringField( "jsonClass", value.getJsonClass() );
 		gen.writeNumberField( "typeId", value.getTypeId() );
 		gen.writeStringField( "name", value.getName() );
 		gen.writeNumberField( "quantity", value.getQuantity() );
-		if (null != value.getGroup()) gen.writeObjectField( "group", value.getGroup() );
-		if (null != value.getCategory()) gen.writeObjectField( "category", value.getCategory() );
-		if (null != value.getType()) gen.writeObjectField( "type", value.getType() );
-		gen.writeStringField( "tech", value.getTech() );
+		gen.writeNumberField( "marketGroupId", value.getType().getMarketGroupId() );
+		gen.writeNumberField( "groupId", value.getGroup().getGroupId() );
+		gen.writeStringField( "groupName", value.getGroup().getName() );
+		gen.writeNumberField( "categoryId", value.getCategory().getCategoryId() );
+		gen.writeStringField( "categoryName", value.getCategory().getName());
+		gen.writeNumberField( "capacity", value.getType().getCapacity() );
+		gen.writeNumberField( "packagedVolume", value.getType().getPackagedVolume() );
 		gen.writeNumberField( "volume", value.getType().getVolume() );
+		gen.writeStringField( "tech", value.getTech() );
 		gen.writeBooleanField( "isBlueprint", value.getCategoryName().equalsIgnoreCase( GlobalWideConstants.EveGlobal.BLUEPRINT ) );
-		gen.writeStringField( "typeIconURL", value.getTypeIconURL() );
 
 		gen.writeEndObject();
 	}

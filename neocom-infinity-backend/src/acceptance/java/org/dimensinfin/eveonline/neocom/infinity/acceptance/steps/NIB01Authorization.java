@@ -18,7 +18,7 @@ import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.api.NeoComSupportFeignClient;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.authorization.validation.JWTTokenValidator;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.JwtPayload;
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendExceptionObsolete;
 import org.dimensinfin.eveonline.neocom.infinity.support.ConverterContainer;
 import org.dimensinfin.eveonline.neocom.infinity.support.NeoComWorld;
 import org.dimensinfin.eveonline.neocom.infinity.support.RequestType;
@@ -145,11 +145,11 @@ public class NIB01Authorization extends SupportSteps {
 				final String payloadData = new String( org.apache.commons.codec.binary.Base64.decodeBase64( base64EncodedBody.getBytes() ) );
 				final JwtPayload payload = new ObjectMapper().readValue( payloadData, JwtPayload.class );
 				if (null == payload)
-					throw new NeoComRuntimeBackendException( "JWT token malformed payload." );
+					throw new NeoComRuntimeBackendExceptionObsolete( "JWT token malformed payload." );
 				return payload;
-			} else throw new NeoComRuntimeBackendException( "JWT token header is malformed. Invalid token" );
+			} else throw new NeoComRuntimeBackendExceptionObsolete( "JWT token header is malformed. Invalid token" );
 		} catch (final IOException ioe) {
-			throw new NeoComRuntimeBackendException( ioe.getMessage() );
+			throw new NeoComRuntimeBackendExceptionObsolete( ioe.getMessage() );
 		}
 	}
 

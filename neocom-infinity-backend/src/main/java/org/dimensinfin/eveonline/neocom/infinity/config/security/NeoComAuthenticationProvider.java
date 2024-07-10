@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.ErrorInfo;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComAuthorizationException;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRestError;
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendExceptionObsolete;
 
 @Component
 public class NeoComAuthenticationProvider implements AuthenticationProvider {
@@ -52,11 +52,11 @@ public class NeoComAuthenticationProvider implements AuthenticationProvider {
 	}
 
 	public Integer getAuthenticatedPilot() {
-		return this.accessDecodedPayload( new NeoComRuntimeBackendException( errorPILOT_ACCESS_NOT_AUTHORIZED() ) ).getPilotId();
+		return this.accessDecodedPayload( new NeoComRuntimeBackendExceptionObsolete( errorPILOT_ACCESS_NOT_AUTHORIZED() ) ).getPilotId();
 	}
 
 	public String getAuthenticatedUniqueId() {
-		return this.accessDecodedPayload( new NeoComRuntimeBackendException( errorPILOT_ACCESS_NOT_AUTHORIZED() ) ).getUniqueId();
+		return this.accessDecodedPayload( new NeoComRuntimeBackendExceptionObsolete( errorPILOT_ACCESS_NOT_AUTHORIZED() ) ).getUniqueId();
 	}
 
 	@Override
@@ -71,10 +71,10 @@ public class NeoComAuthenticationProvider implements AuthenticationProvider {
 
 	public void validatePilotIdentifier( final int pilotId ) {
 		if (pilotId != this.getAuthenticatedPilot().intValue())
-			throw new NeoComRuntimeBackendException( errorPILOT_ACCESS_NOT_AUTHORIZED() );
+			throw new NeoComRuntimeBackendExceptionObsolete( errorPILOT_ACCESS_NOT_AUTHORIZED() );
 	}
 
-	private JwtPayload accessDecodedPayload( final NeoComRuntimeBackendException configuredException ) {
+	private JwtPayload accessDecodedPayload( final NeoComRuntimeBackendExceptionObsolete configuredException ) {
 		try {
 			final Authentication authentication = Objects.requireNonNull( SecurityContextHolder.getContext().getAuthentication() );
 			final String payloadBase64 = (String) authentication.getPrincipal();
@@ -85,7 +85,7 @@ public class NeoComAuthenticationProvider implements AuthenticationProvider {
 		} catch (final IOException ioe) {
 			throw configuredException;
 		} catch (final NullPointerException npe) {
-			throw new NeoComRuntimeBackendException( errorAUTHENTICATION_NOT_PRESENT() );
+			throw new NeoComRuntimeBackendExceptionObsolete( errorAUTHENTICATION_NOT_PRESENT() );
 		}
 	}
 }

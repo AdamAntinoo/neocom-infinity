@@ -36,7 +36,7 @@ public class FittingServiceTest {
 		Mockito.when( category.getCategoryId() ).thenReturn( 6 );
 		Mockito.when( category.getName() ).thenReturn( "Ship" );
 		this.esiDataService = Mockito.mock( ESIDataService.class );
-		Mockito.when( this.esiDataService.searchEsiItem4Id( Mockito.anyInt() ) )
+		Mockito.when( this.esiDataService.searchEsiUniverseType4Id( Mockito.anyInt() ) )
 				.thenReturn( esiItem );
 		Mockito.when( this.esiDataService.searchItemGroup4Id( Mockito.anyInt() ) )
 				.thenReturn( group );

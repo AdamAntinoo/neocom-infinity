@@ -2,6 +2,7 @@
 import { Station } from "@domain/location/Station.domain"
 import { NeoCom } from "@domain/NeoCom.domain"
 
+/** @deprecated */
 export class V1ProcessedBlueprintSummary extends NeoCom {
     public uid: string
     public blueprintTypeId: number

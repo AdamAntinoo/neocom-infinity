@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendExceptionObsolete;
 
 public class NeoComAuthenticatedControllerTest {
 
@@ -46,7 +46,7 @@ public class NeoComAuthenticatedControllerTest {
 		Mockito.when( this.neoComAuthenticationProvider.getAuthenticatedPilot() ).thenReturn( TEST_PILOT_ID + 1000 );
 		// Test
 		final TestAuthenticatedController controller = new TestAuthenticatedController( this.neoComAuthenticationProvider );
-		final NeoComRuntimeBackendException exception = Assertions.assertThrows( NeoComRuntimeBackendException.class, () -> {
+		final NeoComRuntimeBackendExceptionObsolete exception = Assertions.assertThrows( NeoComRuntimeBackendExceptionObsolete.class, () -> {
 			controller.validateAuthorizedPilot( TEST_PILOT_ID );
 		} );
 		// Assertions

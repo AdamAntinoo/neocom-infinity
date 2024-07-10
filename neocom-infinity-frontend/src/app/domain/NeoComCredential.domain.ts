@@ -1,5 +1,5 @@
 export class NeoComCredential {
-    private uniqueId: string
+    private uniqueCredential: string
     private accountId: number = -1
     private accountName: string
     private dataSource: string = 'tranquility'
@@ -23,7 +23,7 @@ export class NeoComCredential {
         return this.accountName
     }
     public getUniqueId(): string {
-        return this.uniqueId
+        return this.uniqueCredential
     }
     public getRaceName(): string {
         if (null != this.raceName) return this.raceName

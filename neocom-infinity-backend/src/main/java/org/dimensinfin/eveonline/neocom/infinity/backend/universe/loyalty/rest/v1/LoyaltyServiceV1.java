@@ -13,7 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRestError;
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendExceptionObsolete;
 import org.dimensinfin.eveonline.neocom.loyalty.domain.LoyaltyServiceConfiguration;
 import org.dimensinfin.eveonline.neocom.loyalty.persistence.LoyaltyOfferEntity;
 import org.dimensinfin.eveonline.neocom.loyalty.persistence.LoyaltyOffersRepository;
@@ -71,7 +71,7 @@ public class LoyaltyServiceV1 {
 					corporationId,
 					offerList.size() ) );
 		} catch (final SQLException sqle) {
-			throw new NeoComRuntimeBackendException( errorINVENTORYSTOREREPOSITORYFAILURE( sqle ) );
+			throw new NeoComRuntimeBackendExceptionObsolete( errorINVENTORYSTOREREPOSITORYFAILURE( sqle ) );
 		}
 		if (offerList.isEmpty()) {
 			LogWrapper.info( "Reprocessing new list of offers." );

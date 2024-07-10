@@ -1,0 +1,63 @@
+helm repo add grafana https://grafana.github.io/helm-charts &&
+  helm repo update &&
+  helm upgrade --install --atomic --timeout 300s grafana-k8s-monitoring grafana/k8s-monitoring \
+    --namespace "grafana-cloud" --create-namespace --values - <<EOF
+cluster:
+  name: docker-desktop
+externalServices:
+  prometheus:
+    host: https://prometheus-prod-24-prod-eu-west-2.grafana.net
+    basicAuth:
+      username: "1657091"
+      password: glc_eyJvIjoiMTE2MDg0MSIsIm4iOiJzdGFjay05NzA2ODYtaW50ZWdyYXRpb24tZ3JhZmFuYS1jbG91ZC1hY2Nlc3MtcG9saWN5LXRva2VuLWdyYWZhbmEtY2xvdWQtYWNjZXNzLXBvbGljeS10b2tlbiIsImsiOiIxNTFPd0JqVTJJUERPNjc3TjNaMEI2dEMiLCJtIjp7InIiOiJwcm9kLWV1LXdlc3QtMiJ9fQ==
+  loki:
+    host: https://logs-prod-012.grafana.net
+    basicAuth:
+      username: "928466"
+      password: glc_eyJvIjoiMTE2MDg0MSIsIm4iOiJzdGFjay05NzA2ODYtaW50ZWdyYXRpb24tZ3JhZmFuYS1jbG91ZC1hY2Nlc3MtcG9saWN5LXRva2VuLWdyYWZhbmEtY2xvdWQtYWNjZXNzLXBvbGljeS10b2tlbiIsImsiOiIxNTFPd0JqVTJJUERPNjc3TjNaMEI2dEMiLCJtIjp7InIiOiJwcm9kLWV1LXdlc3QtMiJ9fQ==
+  tempo:
+    host: https://tempo-prod-10-prod-eu-west-2.grafana.net:443
+    basicAuth:
+      username: "922782"
+      password: glc_eyJvIjoiMTE2MDg0MSIsIm4iOiJzdGFjay05NzA2ODYtaW50ZWdyYXRpb24tZ3JhZmFuYS1jbG91ZC1hY2Nlc3MtcG9saWN5LXRva2VuLWdyYWZhbmEtY2xvdWQtYWNjZXNzLXBvbGljeS10b2tlbiIsImsiOiIxNTFPd0JqVTJJUERPNjc3TjNaMEI2dEMiLCJtIjp7InIiOiJwcm9kLWV1LXdlc3QtMiJ9fQ==
+metrics:
+  enabled: true
+  cost:
+    enabled: true
+  node-exporter:
+    enabled: true
+logs:
+  enabled: true
+  pod_logs:
+    enabled: true
+  cluster_events:
+    enabled: true
+traces:
+  enabled: true
+receivers:
+  grpc:
+    enabled: true
+  http:
+    enabled: true
+  zipkin:
+    enabled: true
+  grafanaCloudMetrics:
+    enabled: false
+opencost:
+  enabled: true
+  opencost:
+    exporter:
+      defaultClusterId: docker-desktop
+    prometheus:
+      external:
+        url: https://prometheus-prod-24-prod-eu-west-2.grafana.net/api/prom
+kube-state-metrics:
+  enabled: true
+prometheus-node-exporter:
+  enabled: true
+prometheus-operator-crds:
+  enabled: true
+alloy: {}
+alloy-events: {}
+alloy-logs: {}
+EOF

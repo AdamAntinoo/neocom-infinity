@@ -30,6 +30,7 @@ import org.dimensinfin.logging.LogWrapper;
  *
  * @author Adam Antinoo
  */
+@Deprecated
 public class SBFileSystemService implements IFileSystem {
 	private static final String DIRECTORY_SEPARATOR = "/";
 	private static final String PRODUCTION_RESOURCES_PATH = DIRECTORY_SEPARATOR + "build" +

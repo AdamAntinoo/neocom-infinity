@@ -16,7 +16,11 @@ The project will provide all ports on the range 5200 to 5299. Digits for port as
 * **5215** - Public ESI endpoints ApiSimulator.
 * **5225** - Backend /api/* endpoints.
 * **5235** - WireMock /api/v3 endpoints.
-#### 5234 - [DEVELOPMENT] Postgresql Common database
+* **5245** - Redis Cache
+* **5255** - Postgresql Common database
+* **5265** - Backend esi-oauth
+* **5275** - Backend esi-universe
+* **5285** - Backend esi-data
 
 #### 5200 - [DEVELOPMENT] Frontend Node server
 #### 5210 - [DEVELOPMENT] Frontend ApiSimulator backed server

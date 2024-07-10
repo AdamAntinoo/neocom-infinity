@@ -10,11 +10,11 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties
 public class ClientConfiguration {
 
-  @Value("${neocombackend.security.neocomEsiAuth.key:}")
+  @Value("${neocominfinitybackendpublic.security.neocomEsiAuth.key:}")
   private String neocomEsiAuthKey;
 
   @Bean
-  @ConditionalOnProperty(name = "neocombackend.security.neocomEsiAuth.key")
+  @ConditionalOnProperty(name = "neocominfinitybackendpublic.security.neocomEsiAuth.key")
   public ApiKeyRequestInterceptor neocomEsiAuthRequestInterceptor() {
     return new ApiKeyRequestInterceptor("query", "neocom_esi_auth", this.neocomEsiAuthKey);
   }

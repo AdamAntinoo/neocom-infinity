@@ -5,6 +5,7 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.stereotype.Component;
 
+import org.dimensinfin.eveonline.neocom.backend.service.logger.NeoComLogger;
 import org.dimensinfin.eveonline.neocom.database.entities.MiningExtractionEntity;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.AcceptanceTargetConfig;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.ITargetConfiguration;
@@ -12,7 +13,6 @@ import org.dimensinfin.eveonline.neocom.infinity.mining.rest.support.MiningExtra
 import org.dimensinfin.eveonline.neocom.infinity.mining.rest.support.StoreMiningExtractionResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.core.CommonFeignClient;
 import org.dimensinfin.eveonline.neocom.infinity.support.rest.NeoComApiv1;
-import org.dimensinfin.eveonline.neocom.service.logger.NeoComLogger;
 
 import retrofit2.Response;
 import retrofit2.Retrofit;

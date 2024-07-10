@@ -1,0 +1,24 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="neocom-backend.deployment" type="Application" factoryName="Application">
+    <option name="ALTERNATIVE_JRE_PATH" value="azul-17" />
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <envs>
+      <env name="APPLICATION_DIRECTORY" value="/build/NeoCom.Infinity.Integration" />
+      <env name="NEOCOM_BANNER_LOCATION" value="./build/resources/main/app-banner.txt" />
+      <env name="PROFILE" value="deployment" />
+      <env name="PROPERTIES_DIRECTORY" value="/build/resources/main/properties-deployment" />
+      <env name="REDIS_URL" value="redis://localhost:5250" />
+      <env name="SDE_DATABASE_PATH" value="/build/resources/main/sde.db" />
+      <env name="SPRING_DATASOURCE_PASSWORD" value="z.iliada.2020" />
+      <env name="SPRING_DATASOURCE_URL" value="jdbc:postgresql://0.0.0.0:5240/neocom" />
+      <env name="SPRING_DATASOURCE_USERNAME" value="adamantinoo" />
+    </envs>
+    <option name="MAIN_CLASS_NAME" value="org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendApplication" />
+    <module name="neocom-infinity-backend.main" />
+    <option name="PROGRAM_PARAMETERS" value="--spring.profiles.active=deployment --server.port=6000" />
+    <option name="VM_PARAMETERS" value="--add-opens java.base/java.lang=ALL-UNNAMED" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

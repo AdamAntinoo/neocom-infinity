@@ -4,9 +4,8 @@ import { AxiosResponse } from 'axios'
 import { ConfigService } from '@nestjs/config'
 import { Injectable, Logger } from '@nestjs/common'
 
-import { ESIDataServicesPort } from '@App/ports/ESIDataServices.port'
+import { ESIDataServicesPort } from '@App/ports/v1ESIDataServices.port'
 import {
-	BaseTypedRequest,
 	GetCharactersCharacterIdAssets200Ok,
 	GetCharactersCharacterIdBlueprints200Ok,
 	GetCharactersCharacterIdMining200Ok,
@@ -14,9 +13,10 @@ import {
 	NeoComErrorDefinition,
 	NeoComSharedErrorDefinition,
 } from 'neocom-domain'
-import { MiningOperationsTypedRequest } from './typedrequests/MiningOperations.typedrequest'
-import { AssetsTypedRequest } from './typedrequests/Assets.typedrequest'
-import { BlueprintsTypedRequest } from './TypedRequests/Blueprints.typedreques'
+import { MiningOperationsTypedRequest } from './TypedRequests/xMiningOperations.typedrequest'
+import { AssetsTypedRequest } from './TypedRequests/xAssets.typedrequest'
+import { BlueprintsTypedRequest } from './TypedRequests/xBlueprints.typedreques'
+import { BaseTypedRequest } from './TypedRequests/Base.typedrequest'
 
 export interface EsiSecureAdapterInput {
 	characterId: number

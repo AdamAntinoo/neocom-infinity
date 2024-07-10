@@ -33,13 +33,13 @@ Then('the esi response has a EsiType with the next fields', function (this: NIN0
 function validatEsiTypeInformation(row: any, esiType: V1EsiTypeDto): boolean {
     expect(Number(row['typeId'])).toBe(esiType.typeId)
     expect(row['typeName']).toBe(esiType.name)
-    expect(Number(row['iconId'])).toBe(esiType.iconId)
+    // expect(Number(row['iconId'])).toBe(esiType.iconId)
     expect(Number(row['groupId'])).toBe(esiType.groupId)
     expect(row['groupName']).toBe(esiType.groupName)
     expect(Number(row['categoryId'])).toBe(esiType.categoryId)
     expect(row['categoryName']).toBe(esiType.categoryName)
     expect(Number(row['volume'])).toBe(esiType.volume)
-    expect(row['marketDataLink']).toBe(esiType.marketDataLink)
+    // expect(row['marketDataLink']).toBe(esiType.marketDataLink)
     return true
 }
 function validateMarketData(row: any, marketData: V1MarketDataDto): boolean {

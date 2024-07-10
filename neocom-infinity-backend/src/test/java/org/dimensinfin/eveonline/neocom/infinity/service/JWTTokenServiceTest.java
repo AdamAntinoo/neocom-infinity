@@ -41,7 +41,7 @@ public class JWTTokenServiceTest {
 		// Test
 		final JWTTokenService jwtTokenService = new JWTTokenService( this.credentialRepository );
 		final String obtained = jwtTokenService.createJWTToken( TEST_CREDENTIAL_UNIQUE_ID, corporationId );
-		final String expected = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFU0kgT0F1dGgyIEF1dGhlbnRpY2F0aW9uIiwiY29ycG9yYXRpb25JZCI6MTIzNDU2LCJhY2NvdW50TmFtZSI6Ii1BQ0NPVU5ULU5BTUUtIiwiaXNzIjoiTmVvQ29tLkluZmluaXR5LkJhY2tlbmQiLCJ1bmlxdWVJZCI6Ii1VTklRVUUtSUQtIiwicGlsb3RJZCI6MTIzNDU2fQ.-zKcUJdF-6Dyzn1zWUxxpi4QtgcVIxazjkhiLDQt9YttiROgELKHVDJlpbBwQIViOYx73RgCG8HbW2cHr-XIsg";
+		final String expected = "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJOZW9Db20uSW5maW5pdHkuQmFja2VuZCIsInN1YiI6IkVTSSBPQXV0aDIgQXV0aGVudGljYXRpb24iLCJ1bmlxdWVJZCI6Ii1VTklRVUUtSUQtIiwiYWNjb3VudE5hbWUiOiItQUNDT1VOVC1OQU1FLSIsImNvcnBvcmF0aW9uSWQiOjEyMzQ1NiwicGlsb3RJZCI6MTIzNDU2fQ.O7jyWpjpkFbs1gDul3HO48eKVy39KHfXi2BkO0bocVuuQIM13fJrP_iviGYYdR974QcUtXDfEfvsPq2XqZSVng";
 		// Assertions
 		Assertions.assertNotNull( obtained );
 		Assertions.assertEquals( expected, obtained );

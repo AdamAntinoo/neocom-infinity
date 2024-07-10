@@ -1,7 +1,7 @@
 import { JwtService } from '@nestjs/jwt'
 import { AuthenticationTokenValidator } from './AuthenticationTokenValidator'
 import { Test } from '@nestjs/testing'
-import { EsiToken } from '../../../../application/domain/EsiToken.interface'
+import { EsiToken } from '../../security/EsiToken.interface'
 
 describe('VALIDATOR AuthenticationTokenValidator [Module: Infrastructue.Adapters]', () => {
 	let jwtService: JwtService

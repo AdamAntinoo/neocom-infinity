@@ -98,7 +98,7 @@ export class V1LoginValidationPageComponent extends BackgroundEnabledComponent i
     }
     private validateState(state2Check: string): void {
         console.log('-LoginValidationPageComponent.validateState')
-        if (state2Check === NeoComConstants.VALID_STATE) return
+        if (state2Check === environment.loginLinkData.parameters.state) return
         this.validationException = new NeoComException(
             { code: 400, message: 'The request state does not match. Caller not verified.' }
         )

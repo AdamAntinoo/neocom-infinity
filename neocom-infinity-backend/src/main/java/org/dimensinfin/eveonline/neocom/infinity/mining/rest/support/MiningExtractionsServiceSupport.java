@@ -2,11 +2,11 @@ package org.dimensinfin.eveonline.neocom.infinity.mining.rest.support;
 
 import java.sql.SQLException;
 
+import org.dimensinfin.eveonline.neocom.backend.service.logger.NeoComLogger;
 import org.dimensinfin.eveonline.neocom.database.entities.MiningExtractionEntity;
 import org.dimensinfin.eveonline.neocom.database.repositories.MiningRepository;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetailsService;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
-import org.dimensinfin.eveonline.neocom.service.logger.NeoComLogger;
 
 //@Service
 public class MiningExtractionsServiceSupport {

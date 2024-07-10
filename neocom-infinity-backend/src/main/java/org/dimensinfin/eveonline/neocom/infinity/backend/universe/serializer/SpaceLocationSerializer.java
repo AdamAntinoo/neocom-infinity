@@ -26,6 +26,7 @@ public class SpaceLocationSerializer extends JsonSerializer<SpaceLocationImpleme
 			throws IOException {
 		jgen.writeStartObject();
 
+		jgen.writeStringField( "jsonClass", value.getJsonClass() );
 		final LocationIdentifierType type = value.getLocationType();
 		jgen.writeStringField( "locationType", value.getLocationType().name() );
 		jgen.writeNumberField( "locationId", value.getLocationId() );

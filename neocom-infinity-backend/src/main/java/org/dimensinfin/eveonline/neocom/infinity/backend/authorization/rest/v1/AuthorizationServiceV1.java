@@ -9,11 +9,14 @@ import javax.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import org.dimensinfin.annotation.TimeElapsed;
+import org.dimensinfin.eveonline.neocom.adapter.httpclient.RetrofitConfiguration;
 import org.dimensinfin.eveonline.neocom.auth.NeoComOAuth2Flow;
 import org.dimensinfin.eveonline.neocom.auth.TokenTranslationResponse;
 import org.dimensinfin.eveonline.neocom.auth.TokenVerification;
+import org.dimensinfin.eveonline.neocom.backend.service.logger.NeoComLogger;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.database.repositories.CredentialRepository;
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdOk;
@@ -21,12 +24,14 @@ import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.Au
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenRequest;
 import org.dimensinfin.eveonline.neocom.infinity.backend.authorization.domain.AuthorizationTokenResponse;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRestError;
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendExceptionObsolete;
 import org.dimensinfin.eveonline.neocom.infinity.service.CookieService;
 import org.dimensinfin.eveonline.neocom.infinity.service.JWTTokenService;
 import org.dimensinfin.eveonline.neocom.provider.IConfigurationService;
+import org.dimensinfin.eveonline.neocom.provider.IFileSystem;
 import org.dimensinfin.eveonline.neocom.service.ESIDataService;
-import org.dimensinfin.logging.LogWrapper;
+
+import static org.dimensinfin.eveonline.neocom.provider.PropertiesDefinitionsConstants.UNIVERSE_RETROFIT_CACHE_STATE;
 
 @Service
 public class AuthorizationServiceV1 {
@@ -40,6 +45,7 @@ public class AuthorizationServiceV1 {
 	}
 
 	private final IConfigurationService configurationService;
+	private final IFileSystem fileSystem;
 	private final ESIDataService esiDataService;
 	private final CredentialRepository credentialRepository;
 	private final CookieService cookieService;
@@ -48,11 +54,13 @@ public class AuthorizationServiceV1 {
 	// - C O N S T R U C T O R S
 	@Autowired
 	public AuthorizationServiceV1( @NotNull final IConfigurationService configurationService,
+	                               final @NotNull IFileSystem fileSystem,
 	                               @NotNull final ESIDataService esiDataService,
 	                               @NotNull final CredentialRepository credentialRepository,
 	                               @NotNull final CookieService cookieService,
 	                               @NotNull final JWTTokenService jwtTokenService ) {
 		this.configurationService = configurationService;
+		this.fileSystem = fileSystem;
 		this.esiDataService = esiDataService;
 		this.credentialRepository = credentialRepository;
 		this.cookieService = cookieService;
@@ -66,13 +74,13 @@ public class AuthorizationServiceV1 {
 	 * @return the response message depending on the scenario found.
 	 */
 	public AuthenticationStateResponse validateAuthenticationState( final String sourceJWT, final HttpServletResponse response ) {
-		LogWrapper.enter( sourceJWT );
-		if (this.jwtTokenService.validateToken( sourceJWT )) { // Token if correct then validate the Credential is at the repository.
+		NeoComLogger.enter( sourceJWT );
+		if ( this.jwtTokenService.validateToken( sourceJWT ) ) { // Token if correct then validate the Credential is at the repository.
 			try {
 				final Credential credential = Objects.requireNonNull( this.credentialRepository.findCredentialById(
 						Objects.requireNonNull( this.jwtTokenService.extractPayload( sourceJWT ).getUniqueId() )
 				) );
-				LogWrapper.info( credential.toString() );
+				NeoComLogger.info( credential.toString() );
 				// Create a new cookie with a new expiration time.
 				response.addCookie( this.cookieService.generateCookie( sourceJWT ) );
 				return new AuthenticationStateResponse.Builder()
@@ -82,10 +90,10 @@ public class AuthorizationServiceV1 {
 						.withCredential( credential )
 						.build();
 			} catch (final SQLException sqle) {
-				LogWrapper.error( sqle );
+				NeoComLogger.error( sqle );
 				return new AuthenticationStateResponse.Builder().withState( AuthenticationStateResponse.AuthenticationStateType.NOT_FOUND ).build();
 			} catch (final NullPointerException npe) {
-				LogWrapper.error( npe );
+				NeoComLogger.error( npe );
 				// If the credential is not found then return the 'NOT_FOUND' message.
 				return new AuthenticationStateResponse.Builder().withState( AuthenticationStateResponse.AuthenticationStateType.NOT_FOUND ).build();
 			}
@@ -93,11 +101,14 @@ public class AuthorizationServiceV1 {
 			return new AuthenticationStateResponse.Builder().withState( AuthenticationStateResponse.AuthenticationStateType.NOT_VALID ).build();
 	}
 
+	@Transactional
 	@TimeElapsed
 	public AuthorizationTokenResponse validateAuthorizationToken( final AuthorizationTokenRequest authorizationTokenRequest ) {
-		LogWrapper.enter();
+		NeoComLogger.enter();
 		final NeoComOAuth2Flow oauthFlow = new NeoComOAuth2Flow.Builder()
-				.withConfigurationService( this.configurationService )
+				.withConfigurationService(
+						new RetrofitConfiguration( this.configurationService, this.fileSystem, UNIVERSE_RETROFIT_CACHE_STATE )
+				)
 				.build();
 		authorizationTokenRequest.setRunningFlow( oauthFlow );
 		this.verifyState( authorizationTokenRequest ); // Check if the state matches the backend state configured.
@@ -105,9 +116,10 @@ public class AuthorizationServiceV1 {
 		final GetCharactersCharacterIdOk pilotData = this.esiDataService.getCharactersCharacterId(
 				tokenStore.getAccountIdentifier()
 		);
+		// TODO - Pilot data should be validated because it can be null if ESI is down.
 		// - C R E D E N T I A L
 		// Create and persist the credential. Do an update if it already exists.
-		LogWrapper.info( "Creating Credential..." );
+		NeoComLogger.info( "Creating Credential..." );
 		final TokenTranslationResponse token = tokenStore.getTokenTranslationResponse();
 		final Credential credential = new Credential.Builder( tokenStore.getAccountIdentifier() )
 				.withAccountName( tokenStore.getVerifyCharacterResponse().getCharacterName() )
@@ -121,9 +133,9 @@ public class AuthorizationServiceV1 {
 		try {
 			this.credentialRepository.persist( credential );
 		} catch (final SQLException sqle) {
-			throw new NeoComRuntimeBackendException( NeoComRuntimeBackendException.errorUNEXPECTEDSQLEXCEPTION( sqle ) );
+			throw new NeoComRuntimeBackendExceptionObsolete( NeoComRuntimeBackendExceptionObsolete.errorUNEXPECTEDSQLEXCEPTION( sqle ) );
 		}
-		LogWrapper.info( MessageFormat.format( "Credential #{0}-{1} created successfully.",
+		NeoComLogger.info( MessageFormat.format( "Credential #{0}-{1} created successfully.",
 				credential.getAccountId() + "", credential.getAccountName() ) );
 
 		// - J W T T O K E N
@@ -138,12 +150,12 @@ public class AuthorizationServiceV1 {
 					.withEsiToken( token.getAccessToken() )
 					.build();
 		} finally {
-			LogWrapper.exit();
+			NeoComLogger.exit();
 		}
 	}
 
 	private TokenVerification verifyCharacter( final AuthorizationTokenRequest authorizationTokenRequest ) {
-		LogWrapper.enter();
+		NeoComLogger.enter();
 		final NeoComOAuth2Flow oauthFlow = authorizationTokenRequest.getOauthFlow();
 		try {
 			// TODO - This call is going to be made to the real esi login and it is going to fail for invalid codes.
@@ -151,17 +163,17 @@ public class AuthorizationServiceV1 {
 			final TokenVerification tokenStore = oauthFlow.onTranslationStep();
 			return Objects.requireNonNull( tokenStore );
 		} finally {
-			LogWrapper.exit( "Character verification: OK." );
+			NeoComLogger.exit( "Character verification: OK." );
 		}
 	}
 
 	private void verifyState( final AuthorizationTokenRequest authorizationTokenRequest ) {
-		LogWrapper.enter();
+		NeoComLogger.enter();
 		authorizationTokenRequest.getOauthFlow().onStartFlow( authorizationTokenRequest.getCode(),
 				authorizationTokenRequest.getState(),
 				authorizationTokenRequest.getDataSourceName() );
-		if (!authorizationTokenRequest.getOauthFlow().verifyState( authorizationTokenRequest.getState() ))
-			throw new NeoComRuntimeBackendException( errorINVALIDSTATEVERIFICATION() );
-		LogWrapper.exit( "Calling state verification: OK." );
+		if ( !authorizationTokenRequest.getOauthFlow().verifyState( authorizationTokenRequest.getState() ) )
+			throw new NeoComRuntimeBackendExceptionObsolete( errorINVALIDSTATEVERIFICATION() );
+		NeoComLogger.exit( "Calling state verification: OK." );
 	}
 }

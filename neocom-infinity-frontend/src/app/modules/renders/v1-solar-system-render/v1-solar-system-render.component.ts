@@ -22,8 +22,8 @@ export class V1SolarSystemRenderComponent extends V2NodeContainerRenderComponent
     public getNode(): LookupSolarSystem {
         return this.node as LookupSolarSystem
     }
-    public getUniqueId(): number{
-        return 0
+    public getUniqueId(): string{
+        return 0+''
     }
     public getName(): string {
         if (this.node) return this.getNode().getName()

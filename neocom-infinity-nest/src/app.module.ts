@@ -3,7 +3,7 @@ import { HttpModule } from '@nestjs/axios'
 import { ScheduleModule, SchedulerRegistry } from '@nestjs/schedule'
 import { LoggerMiddleware } from '@Infra/config/LoggerInterceptor'
 import { JwtModule } from '@nestjs/jwt'
-import { CapsuleerMiningOperationsUseCase } from '@App/use-cases/esisecure/CapsuleerMiningOperationsUseCase'
+import { CapsuleerMiningOperationsUseCase } from '@App/use-cases/esi-secure/CapsuleerMiningOperationsUseCase'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { GetTypeInformationUseCase } from 'application/use-cases/esi-universe/GetTypeInformation.usecase'
 import { ESIDataUniverseServicesPort } from 'application/ports/ESIDataUniverseServices.port'
@@ -12,12 +12,13 @@ import { GetMarketDataUseCase } from 'application/use-cases/esi-universe/GetMark
 import { GetSpaceLocationUseCase } from 'application/use-cases/esi-universe/GetSpaceLocation.usecase'
 import { V1ESISecureDataAdapter } from '@Infra/adapter/outbound/ESISecureDataServices/V1.EsiSecureData.adapter'
 
-import { ESIDataServicesPort } from '@App/ports/ESIDataServices.port'
-import { CapsuleerAssetsUseCase } from '@App/use-cases/esisecure/CapsuleerAssets.usecase'
-import { CapsuleerBlueprintsUseCase } from '@App/use-cases/esisecure/CapsuleerBlueprints.usecase'
+import { ESIDataServicesPort } from '@App/ports/v1ESIDataServices.port'
+import { CapsuleerAssetsUseCase } from '@App/use-cases/esi-secure/CapsuleerAssets.usecase'
+import { CapsuleerBlueprintsUseCase } from '@App/use-cases/esi-secure/CapsuleerBlueprints.usecase'
 import { V1CharacterController } from '@Infra/adapter/inbound/esisecureapi/V1.Character.controller'
 import { V1EsiUniverseController } from '@Infra/adapter/inbound/esiuniverse/v1.esiuniverse.controller'
 import { V1IndustryController } from '@Infra/adapter/inbound/esisecureapi/V1.Industry.controller'
+import { CacheModule } from '@nestjs/cache-manager'
 
 const ENV = process.env.NODE_ENV
 
@@ -35,6 +36,7 @@ const ENV = process.env.NODE_ENV
 			isGlobal: true,
 			envFilePath: [!ENV ? '.env' : `.env.${ENV}`, '.env.version'],
 		}),
+		CacheModule.register({ isGlobal: true }),
 	],
 	controllers: [V1CharacterController, V1IndustryController, V1EsiUniverseController],
 	providers: [

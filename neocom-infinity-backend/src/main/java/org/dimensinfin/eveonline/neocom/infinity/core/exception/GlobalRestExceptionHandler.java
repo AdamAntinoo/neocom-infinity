@@ -11,15 +11,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.ApiError;
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
 import org.dimensinfin.logging.LogWrapper;
 
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @ControllerAdvice
 public class GlobalRestExceptionHandler extends ResponseEntityExceptionHandler {
-	@ExceptionHandler(NeoComRuntimeBackendException.class)
-	protected ResponseEntity<ApiError> handleNeoComRuntimeException( final NeoComRuntimeBackendException neoComRuntimeBackendException ) {
+	@ExceptionHandler(NeoComRuntimeBackendExceptionObsolete.class)
+	protected ResponseEntity<ApiError> handleNeoComRuntimeException( final NeoComRuntimeBackendExceptionObsolete neoComRuntimeBackendException ) {
 		return new ResponseEntity<>( new ApiError( neoComRuntimeBackendException ), neoComRuntimeBackendException.getHttpStatus() );
 	}
 
@@ -28,7 +26,7 @@ public class GlobalRestExceptionHandler extends ResponseEntityExceptionHandler {
 		LogWrapper.info( "Exception: " + ex.toString() );
 		LogWrapper.info( "message: " + ex.getMessage() );
 		return new ResponseEntity<>(
-				new ApiError( new NeoComRuntimeBackendException( NeoComRuntimeBackendException.errorINVALIDREQUESTSTRUCTURE( ex ) ) ),
+				new ApiError( new NeoComRuntimeBackendExceptionObsolete( NeoComRuntimeBackendExceptionObsolete.errorINVALIDREQUESTSTRUCTURE( ex ) ) ),
 				HttpStatus.BAD_REQUEST );
 	}
 }

@@ -1,25 +1,27 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: neocom-$APP_CODE-svc
+  name: $APP_CODE-$ENV-svc
   namespace: $NAMESPACE
 spec:
   selector:
-    app: $APP_CODE-$ENV
-    version: $VERSION
+    app: $APP_CODE
+    environment: $ENV
   type: NodePort
   ports:
-    - protocol: TCP
-      port: 8000
+    - nodePort: $EXPOSE_PORT
+      protocol: TCP
+      port: $PORT
       targetPort: $PORT
-      nodePort: 32000
+status:
+  loadBalancer: {}
 
 ---
 
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: neocom-frontend-environment
+  name: $APP_CODE-config
   namespace: $NAMESPACE
 data:
   NODE_ENV: "$NODE_ENV"
@@ -47,123 +49,123 @@ data:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: $APP_CODE-$ENV
+  name: $APP_CODE
   namespace: $NAMESPACE
   labels:
-    app: $APP_CODE-$ENV
-    version: "$VERSION"
-    port: "$PORT"
-    module: $MODULE_NAME
+    app: $APP_CODE
+    environment: $ENV
 spec:
   selector:
     matchLabels:
-      app: $APP_CODE-$ENV
+      app: $APP_CODE
+      environment: $ENV
   template:
     metadata:
       labels:
-        app: $APP_CODE-$ENV
+        app: $APP_CODE
+        environment: $ENV
         version: "$VERSION"
         port: "$PORT"
         module: $MODULE_NAME
     spec:
       containers:
-      - name: $APP_CODE-$ENV
+      - name: $APP_CODE
         image: adamantinoo/$IMAGE_TAG
         env:
         - name: NODE_ENV
           valueFrom:
             configMapKeyRef:
-              name: neocom-frontend-environment
+              name: $APP_CODE-config
               key: NODE_ENV
         - name: PORT
           valueFrom:
             configMapKeyRef:
-              name: neocom-frontend-environment
+              name: $APP_CODE-config
               key: PORT
         - name: ENVIRONMENT
           valueFrom:
             configMapKeyRef:
-              name: neocom-frontend-environment
+              name: $APP_CODE-config
               key: ENVIRONMENT
         - name: NODE_VERSION
           valueFrom:
             configMapKeyRef:
-              name: neocom-frontend-environment
+              name: $APP_CODE-config
               key: NODE_VERSION
         - name: PRODUCTION
           valueFrom:
             configMapKeyRef:
-              name: neocom-frontend-environment
+              name: $APP_CODE-config
               key: PRODUCTION
         - name: SEMVERSION
           valueFrom:
             configMapKeyRef:
-              name: neocom-frontend-environment
+              name: $APP_CODE-config
               key: SEMVERSION
         - name: VERSION
           valueFrom:
             configMapKeyRef:
-              name: neocom-frontend-environment
+              name: $APP_CODE-config
               key: VERSION
         - name: ESI_CLIENTID
           valueFrom:
             configMapKeyRef:
-              name: neocom-frontend-environment
+              name: $APP_CODE-config
               key: ESI_CLIENTID
         - name: ESI_STATE
           valueFrom:
             configMapKeyRef:
-              name: neocom-frontend-environment
+              name: $APP_CODE-config
               key: ESI_STATE
         - name: CALLBACK_URL
           valueFrom:
             configMapKeyRef:
-              name: neocom-frontend-environment
+              name: $APP_CODE-config
               key: CALLBACK_URL
         - name: ESIPROXY
           valueFrom:
             configMapKeyRef:
-              name: neocom-frontend-environment
+              name: $APP_CODE-config
               key: ESIPROXY
         - name: OAUTHPROXY
           valueFrom:
             configMapKeyRef:
-              name: neocom-frontend-environment
+              name: $APP_CODE-config
               key: OAUTHPROXY
         - name: PUBLICPROXY
           valueFrom:
             configMapKeyRef:
-              name: neocom-frontend-environment
+              name: $APP_CODE-config
               key: PUBLICPROXY
         - name: BACKENDPROXY
           valueFrom:
             configMapKeyRef:
-              name: neocom-frontend-environment
+              name: $APP_CODE-config
               key: BACKENDPROXY
         - name: NESTPROXY
           valueFrom:
             configMapKeyRef:
-              name: neocom-frontend-environment
+              name: $APP_CODE-config
               key: NESTPROXY
         - name: APP_CODE
           valueFrom:
             configMapKeyRef:
-              name: neocom-frontend-environment
+              name: $APP_CODE-config
               key: APP_CODE
         - name: MODULE_NAME
           valueFrom:
             configMapKeyRef:
-              name: neocom-frontend-environment
+              name: $APP_CODE-config
               key: MODULE_NAME
         - name: APP_HOME
           valueFrom:
             configMapKeyRef:
-              name: neocom-frontend-environment
+              name: $APP_CODE-config
               key: APP_HOME
         - name: APP_BASEREF
           valueFrom:
             configMapKeyRef:
-              name: neocom-frontend-environment
+              name: $APP_CODE-config
               key: APP_BASEREF
         ports:
         - containerPort: $PORT

@@ -79,15 +79,15 @@ describe('PANEL AppPanelComponent [Module: SHARED]', () => {
         //     expect(obtained.length).toBe(1);
         // });
     });
-    describe('Validating interfaces [IViewer]', () => {
-        // it('notifyDataChanged.success: check that nodes get processed when the root load completes', () => {
-        //     const expected = new GroupContainer();
-        //     let componentAny = component as any;
-        //     componentAny.dataModelRoot.push(expected);
-        //     component.completeDowload();
-        //     let obtained = component.getNodes2Render();
-        //     expect(obtained).toBeDefined();
-        //     expect(obtained.length).toBe(1);
-        // });
-    });
+    // describe('Validating interfaces [IViewer]', () => {
+    //     // it('notifyDataChanged.success: check that nodes get processed when the root load completes', () => {
+    //     //     const expected = new GroupContainer();
+    //     //     let componentAny = component as any;
+    //     //     componentAny.dataModelRoot.push(expected);
+    //     //     component.completeDowload();
+    //     //     let obtained = component.getNodes2Render();
+    //     //     expect(obtained).toBeDefined();
+    //     //     expect(obtained.length).toBe(1);
+    //     // });
+    // });
 });

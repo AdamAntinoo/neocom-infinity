@@ -19,6 +19,7 @@ import com.j256.ormlite.stmt.Where;
 import com.j256.ormlite.table.TableUtils;
 import org.joda.time.LocalDate;
 
+import org.dimensinfin.eveonline.neocom.backend.service.logger.NeoComLogger;
 import org.dimensinfin.eveonline.neocom.database.NeoComDatabaseService;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.database.entities.MiningExtractionEntity;
@@ -29,8 +30,6 @@ import org.dimensinfin.eveonline.neocom.miningextraction.domain.MiningExtraction
 import org.dimensinfin.eveonline.neocom.service.DMServicesDependenciesModule;
 import org.dimensinfin.eveonline.neocom.service.LocationCatalogService;
 import org.dimensinfin.eveonline.neocom.service.ResourceFactory;
-import org.dimensinfin.eveonline.neocom.service.logger.NeoComLogger;
-import org.dimensinfin.logging.LogWrapper;
 
 import static org.dimensinfin.eveonline.neocom.database.repositories.DatabaseFieldNames.ID_FIELDNAME;
 import static org.dimensinfin.eveonline.neocom.database.repositories.DatabaseFieldNames.OWNERID_FIELDNAME;
@@ -50,7 +49,7 @@ public class SupportMiningRepository {
 		try {
 			this.miningExtractionDao = Objects.requireNonNull( neoComDatabaseService ).getMiningExtractionDao();
 		} catch (final SQLException sqle) {
-			LogWrapper.error( sqle );
+			NeoComLogger.error( sqle );
 			throw new NeoComRuntimeException( sqle );
 		}
 	}

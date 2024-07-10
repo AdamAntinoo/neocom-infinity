@@ -5,6 +5,7 @@ export * from "./api/character.interface.api"
 export * from "./api/industry.interface.api"
 
 export * from "./conf/GlobalConstants"
+export * from "./conf/NeoCom.constants"
 
 export * from "./converter/IConverter.interface"
 export * from "./converter/NoActionConverter"
@@ -23,13 +24,15 @@ export * from "./dto/V1.SpaceLocation.dto"
 export * from "./dto/V1.Stack.dto"
 export * from "./dto/V1.Station.interface"
 export * from "./dto/V1.StorageLocation.dto"
+export * from "./dto/v2.ProcessedBlueprint.dto"
+
+export * from "./enums/IndustryGroup.enumerated"
 
 export * from "./esi-api/model/models"
 
 export * from "./exceptions/NeoComError"
 export * from "./exceptions/NeoComSharedErrorCatalog"
 
-export * from "./interfaces/BaseTypedRequest"
 export * from "./interfaces/IConstructor.interface"
 export * from "./interfaces/IGenerator.interface"
 export * from "./interfaces/ITransformable.interface"

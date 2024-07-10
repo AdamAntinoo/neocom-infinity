@@ -4,6 +4,8 @@
 .idea/sonarlint/
 .idea/caches/
 .idea/libraries/
+.idea/*.xml
+!.idea/saveactions_settings.xml
 
 # Compilation ignorable directories
 .gradle/
@@ -20,3 +22,7 @@ NeoCom.Infinity.unittesting/
 
 # - Ignore generated files
 coverage/
+lib/
+
+# - Ignore version setup file
+gradle.properties

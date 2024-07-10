@@ -9,6 +9,7 @@ import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.springframework.stereotype.Component;
 
+import org.dimensinfin.eveonline.neocom.backend.service.logger.NeoComLogger;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.infinity.acceptance.support.AcceptanceTargetConfig;
 import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCredentialRequest;
@@ -16,7 +17,6 @@ import org.dimensinfin.eveonline.neocom.infinity.authorization.client.v1.StoreCr
 import org.dimensinfin.eveonline.neocom.infinity.support.client.CredentialCountResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.client.ScheduleJobCountResponse;
 import org.dimensinfin.eveonline.neocom.infinity.support.rest.NeoComApiv1;
-import org.dimensinfin.eveonline.neocom.service.logger.NeoComLogger;
 import org.dimensinfin.eveonline.neocom.service.scheduler.domain.JobRecord;
 import org.dimensinfin.eveonline.neocom.utility.GSONDateTimeDeserializer;
 import org.dimensinfin.eveonline.neocom.utility.GSONLocalDateDeserializer;

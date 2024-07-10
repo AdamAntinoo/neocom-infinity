@@ -13,7 +13,7 @@ import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetai
 import org.dimensinfin.eveonline.neocom.infinity.config.security.CredentialDetailsService;
 import org.dimensinfin.eveonline.neocom.infinity.config.security.NeoComAuthenticationProvider;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRestError;
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendExceptionObsolete;
 import org.dimensinfin.logging.LogWrapper;
 
 import static org.dimensinfin.eveonline.neocom.infinity.NeoComInfinityBackendApplication.APPLICATION_ERROR_CODE_PREFIX;
@@ -63,10 +63,10 @@ public abstract class NeoComCredentialService {
 				LogWrapper.info( MessageFormat.format( "Credential account: {0} - name: {1}", credential.getAccountId(), credential.getName() ) );
 				return credential;
 			} catch (final NullPointerException npe) {
-				throw new NeoComRuntimeBackendException( Error_CREDENTIALNOTFOUND() );
+				throw new NeoComRuntimeBackendExceptionObsolete( Error_CREDENTIALNOTFOUND() );
 			}
 		} catch (final UsernameNotFoundException unfe) {
-			throw new NeoComRuntimeBackendException( unfe.getMessage() );
+			throw new NeoComRuntimeBackendExceptionObsolete( unfe.getMessage() );
 		} finally {
 			LogWrapper.exit();
 		}

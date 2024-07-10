@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.dimensinfin.eveonline.neocom.database.entities.Credential;
 import org.dimensinfin.eveonline.neocom.infinity.core.client.v0.NeoComResponse;
 import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRestError;
-import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendException;
+import org.dimensinfin.eveonline.neocom.infinity.core.exception.NeoComRuntimeBackendExceptionObsolete;
 
 import lombok.Getter;
 import static org.dimensinfin.eveonline.neocom.infinity.backend.industry.IndustryControllerV1.INDUSTRY_ERROR_CODE_PREFIX;
@@ -66,9 +66,9 @@ public class AuthorizationTokenResponse extends NeoComResponse {
 
 		public AuthorizationTokenResponse build() {
 			if (Objects.isNull( this.onConstruction.jwtToken ))
-				throw new NeoComRuntimeBackendException( "Missing jwtToken" );
+				throw new NeoComRuntimeBackendExceptionObsolete( "Missing jwtToken" );
 			if (Objects.isNull( this.onConstruction.esiToken ))
-				throw new NeoComRuntimeBackendException( "Missing esiToken" );
+				throw new NeoComRuntimeBackendExceptionObsolete( "Missing esiToken" );
 			return this.onConstruction;
 		}
 

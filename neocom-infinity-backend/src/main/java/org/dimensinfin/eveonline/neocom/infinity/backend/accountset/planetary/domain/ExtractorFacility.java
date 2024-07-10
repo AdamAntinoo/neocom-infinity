@@ -12,8 +12,6 @@ import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterI
 import org.dimensinfin.eveonline.neocom.esiswagger.model.GetCharactersCharacterIdPlanetsPlanetIdOkPins;
 import org.dimensinfin.eveonline.neocom.planetary.domain.PlanetaryFacility;
 
-import liquibase.pro.packaged.R;
-
 public class ExtractorFacility extends PlanetaryFacilityWrapper {
 	public enum ExtractorState {
 		EXTRACTING, IDLE

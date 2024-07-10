@@ -23,7 +23,6 @@ export class GetTypeInformationUseCase {
 				typeId: esiType.type_id,
 				name: esiType.name,
 				description: esiType.description,
-				iconId: esiType.icon_id,
 				groupId: esiType.group_id,
 				groupName: esiGroup.name,
 				categoryId: esiGroup.category_id,
@@ -38,4 +37,7 @@ export class GetTypeInformationUseCase {
 	private generateMarketDataLink(typeId: number, region: number): string {
 		return this.esiUniverseTypeUrl + typeId + '/' + region
 	}
+	// private getHullType(typeId: number): Promise<V1EsiTypeDto> {
+	// 	return this.esiUniverseServices.getEsiType(typeId)
+	// }
 }

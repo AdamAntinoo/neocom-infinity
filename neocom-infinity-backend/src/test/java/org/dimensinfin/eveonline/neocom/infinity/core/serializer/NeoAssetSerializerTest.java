@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import org.dimensinfin.eveonline.neocom.asset.converter.GetCharactersCharacterIdAsset2EsiAssets200OkConverter;
@@ -43,7 +42,7 @@ class NeoAssetSerializerTest {
 		Mockito.when( esiCategory.getCategoryId() ).thenReturn( 4 );
 		Mockito.when( esiCategory.getName() ).thenReturn( "Material" );
 		final ESIDataService esiDataService = Mockito.mock( ESIDataService.class );
-		Mockito.when( esiDataService.searchEsiItem4Id( Mockito.anyInt() ) ).thenReturn( esiItem );
+		Mockito.when( esiDataService.searchEsiUniverseType4Id( Mockito.anyInt() ) ).thenReturn( esiItem );
 		Mockito.when( esiDataService.searchItemGroup4Id( Mockito.anyInt() ) ).thenReturn( esiGroup );
 		Mockito.when( esiDataService.searchItemCategory4Id( Mockito.anyInt() ) ).thenReturn( esiCategory );
 		NeoItem.injectEsiUniverseDataAdapter( esiDataService );
